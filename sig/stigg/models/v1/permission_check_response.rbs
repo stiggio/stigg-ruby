@@ -1,0 +1,15 @@
+module Stigg
+  module Models
+    module V1
+      type permission_check_response = { permitted_list: ::Array[bool] }
+
+      class PermissionCheckResponse < Stigg::Internal::Type::BaseModel
+        attr_accessor permitted_list: ::Array[bool]
+
+        def initialize: (permitted_list: ::Array[bool]) -> void
+
+        def to_hash: -> { permitted_list: ::Array[bool] }
+      end
+    end
+  end
+end
