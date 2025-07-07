@@ -1,0 +1,9 @@
+module Stigg
+  module Internal
+    extend Stigg::Internal::Util::SorbetRuntimeSupport
+
+    type file_input = Pathname | StringIO | IO | String | Stigg::FilePart
+
+    OMIT: Object
+  end
+end

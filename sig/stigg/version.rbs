@@ -1,0 +1,3 @@
+module Stigg
+  VERSION: String
+end

@@ -1,0 +1,62 @@
+module Stigg
+  module Internal
+    module Type
+      module Converter
+        extend Stigg::Internal::Util::SorbetRuntimeSupport
+
+        type input = Stigg::Internal::Type::Converter | Class
+
+        type coerce_state =
+          {
+            translate_names: bool,
+            strictness: bool,
+            exactness: { yes: Integer, no: Integer, maybe: Integer },
+            error: Class,
+            branched: Integer
+          }
+
+        type dump_state = { can_retry: bool }
+
+        def coerce: (
+          top value,
+          state: Stigg::Internal::Type::Converter::coerce_state
+        ) -> top
+
+        def dump: (
+          top value,
+          state: Stigg::Internal::Type::Converter::dump_state
+        ) -> top
+
+        def inspect: (?depth: Integer) -> String
+
+        def self.type_info: (
+          {
+            const: (nil | bool | Integer | Float | Symbol)?,
+            enum: ^-> Stigg::Internal::Type::Converter::input?,
+            union: ^-> Stigg::Internal::Type::Converter::input?
+          }
+          | ^-> Stigg::Internal::Type::Converter::input
+          | Stigg::Internal::Type::Converter::input spec
+        ) -> (^-> top)
+
+        def self.new_coerce_state: (
+          ?translate_names: bool
+        ) -> Stigg::Internal::Type::Converter::coerce_state
+
+        def self.coerce: (
+          Stigg::Internal::Type::Converter::input target,
+          top value,
+          ?state: Stigg::Internal::Type::Converter::coerce_state
+        ) -> top
+
+        def self.dump: (
+          Stigg::Internal::Type::Converter::input target,
+          top value,
+          ?state: Stigg::Internal::Type::Converter::dump_state
+        ) -> top
+
+        def self.inspect: (top target, depth: Integer) -> String
+      end
+    end
+  end
+end
