@@ -1,0 +1,18 @@
+module Stigg
+  module Resources
+    class V1
+      class Customers
+        class SubCustomer
+          def get_sub_customer: (
+            String ref_id,
+            x_api_key: String,
+            x_environment_id: String,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Customers::SubCustomerGetSubCustomerResponse
+
+          def initialize: (client: Stigg::Client) -> void
+        end
+      end
+    end
+  end
+end

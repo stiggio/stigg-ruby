@@ -436,8 +436,8 @@ module Stigg
         # @return [Hash{Symbol=>Object}]
         #
         # @example
-        #   # `v1_retrieve_customer_response` is a `Stigg::Models::V1RetrieveCustomerResponse`
-        #   v1_retrieve_customer_response => {
+        #   # `customer_get_customer_response` is a `Stigg::Models::V1::CustomerGetCustomerResponse`
+        #   customer_get_customer_response => {
         #     id: id,
         #     email: email,
         #     name: name

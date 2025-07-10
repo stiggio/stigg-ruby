@@ -1,5 +1,3 @@
 module Stigg
   module V1 = Stigg::Models::V1
-
-  class V1RetrieveCustomerParams = Stigg::Models::V1RetrieveCustomerParams
 end
