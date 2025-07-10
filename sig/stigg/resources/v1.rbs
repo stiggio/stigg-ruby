@@ -1,14 +1,9 @@
 module Stigg
   module Resources
     class V1
-      attr_reader permissions: Stigg::Resources::V1::Permissions
+      attr_reader customers: Stigg::Resources::V1::Customers
 
-      def retrieve_customer: (
-        String ref_id,
-        x_api_key: String,
-        x_environment_id: String,
-        ?request_options: Stigg::request_opts
-      ) -> Stigg::Models::V1RetrieveCustomerResponse
+      attr_reader permissions: Stigg::Resources::V1::Permissions
 
       def initialize: (client: Stigg::Client) -> void
     end

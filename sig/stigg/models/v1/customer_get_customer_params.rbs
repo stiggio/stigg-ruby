@@ -1,0 +1,30 @@
+module Stigg
+  module Models
+    module V1
+      type customer_get_customer_params =
+        { x_api_key: String, x_environment_id: String }
+        & Stigg::Internal::Type::request_parameters
+
+      class CustomerGetCustomerParams < Stigg::Internal::Type::BaseModel
+        extend Stigg::Internal::Type::RequestParameters::Converter
+        include Stigg::Internal::Type::RequestParameters
+
+        attr_accessor x_api_key: String
+
+        attr_accessor x_environment_id: String
+
+        def initialize: (
+          x_api_key: String,
+          x_environment_id: String,
+          ?request_options: Stigg::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          x_api_key: String,
+          x_environment_id: String,
+          request_options: Stigg::RequestOptions
+        }
+      end
+    end
+  end
+end
