@@ -7,7 +7,7 @@ module Stigg
         class SubCustomer
           # Get a single customer by id
           #
-          # @overload get_sub_customer(ref_id, x_api_key:, x_environment_id:, request_options: {})
+          # @overload retrieve(ref_id, x_api_key:, x_environment_id:, request_options: {})
           #
           # @param ref_id [String]
           #
@@ -17,16 +17,16 @@ module Stigg
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
-          # @return [Stigg::Models::V2::Customers::SubCustomerGetSubCustomerResponse]
+          # @return [Stigg::Models::V2::Customers::SubCustomerRetrieveResponse]
           #
-          # @see Stigg::Models::V2::Customers::SubCustomerGetSubCustomerParams
-          def get_sub_customer(ref_id, params)
-            parsed, options = Stigg::V2::Customers::SubCustomerGetSubCustomerParams.dump_request(params)
+          # @see Stigg::Models::V2::Customers::SubCustomerRetrieveParams
+          def retrieve(ref_id, params)
+            parsed, options = Stigg::V2::Customers::SubCustomerRetrieveParams.dump_request(params)
             @client.request(
               method: :get,
               path: ["api/v1/customers/%1$s", ref_id],
               headers: parsed.transform_keys(x_api_key: "x-api-key", x_environment_id: "x-environment-id"),
-              model: Stigg::Models::V2::Customers::SubCustomerGetSubCustomerResponse,
+              model: Stigg::Models::V2::Customers::SubCustomerRetrieveResponse,
               options: options
             )
           end

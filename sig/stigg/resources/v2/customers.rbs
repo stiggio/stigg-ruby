@@ -4,12 +4,12 @@ module Stigg
       class Customers
         attr_reader sub_customer: Stigg::Resources::V2::Customers::SubCustomer
 
-        def get_customer: (
+        def retrieve: (
           String ref_id,
           x_api_key: String,
           x_environment_id: String,
           ?request_options: Stigg::request_opts
-        ) -> Stigg::Models::V2::CustomerGetCustomerResponse
+        ) -> Stigg::Models::V2::CustomerRetrieveResponse
 
         def initialize: (client: Stigg::Client) -> void
       end

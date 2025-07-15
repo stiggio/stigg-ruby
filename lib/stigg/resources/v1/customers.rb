@@ -9,7 +9,7 @@ module Stigg
 
         # Get a single customer by id
         #
-        # @overload get_customer(ref_id, x_api_key:, x_environment_id:, request_options: {})
+        # @overload retrieve(ref_id, x_api_key:, x_environment_id:, request_options: {})
         #
         # @param ref_id [String]
         #
@@ -19,16 +19,16 @@ module Stigg
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Stigg::Models::V1::CustomerGetCustomerResponse]
+        # @return [Stigg::Models::V1::CustomerRetrieveResponse]
         #
-        # @see Stigg::Models::V1::CustomerGetCustomerParams
-        def get_customer(ref_id, params)
-          parsed, options = Stigg::V1::CustomerGetCustomerParams.dump_request(params)
+        # @see Stigg::Models::V1::CustomerRetrieveParams
+        def retrieve(ref_id, params)
+          parsed, options = Stigg::V1::CustomerRetrieveParams.dump_request(params)
           @client.request(
             method: :get,
             path: ["api/v1/customers/%1$s", ref_id],
             headers: parsed.transform_keys(x_api_key: "x-api-key", x_environment_id: "x-environment-id"),
-            model: Stigg::Models::V1::CustomerGetCustomerResponse,
+            model: Stigg::Models::V1::CustomerRetrieveResponse,
             options: options
           )
         end

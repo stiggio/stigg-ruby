@@ -2,17 +2,14 @@
 
 module Stigg
   module Models
-    module V2
-      class CustomerGetCustomerParams < Stigg::Internal::Type::BaseModel
+    module V1
+      class CustomerRetrieveParams < Stigg::Internal::Type::BaseModel
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
         OrHash =
           T.type_alias do
-            T.any(
-              Stigg::V2::CustomerGetCustomerParams,
-              Stigg::Internal::AnyHash
-            )
+            T.any(Stigg::V1::CustomerRetrieveParams, Stigg::Internal::AnyHash)
           end
 
         sig { returns(String) }

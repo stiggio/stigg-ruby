@@ -2,10 +2,10 @@
 
 module Stigg
   module Models
-    module V2
+    module V1
       module Customers
-        # @see Stigg::Resources::V2::Customers::SubCustomer#get_sub_customer
-        class SubCustomerGetSubCustomerParams < Stigg::Internal::Type::BaseModel
+        # @see Stigg::Resources::V1::Customers::SubCustomer#retrieve
+        class SubCustomerRetrieveParams < Stigg::Internal::Type::BaseModel
           extend Stigg::Internal::Type::RequestParameters::Converter
           include Stigg::Internal::Type::RequestParameters
 
