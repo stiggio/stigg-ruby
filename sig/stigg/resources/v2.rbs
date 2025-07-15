@@ -1,0 +1,11 @@
+module Stigg
+  module Resources
+    class V2
+      attr_reader customers: Stigg::Resources::V2::Customers
+
+      attr_reader permissions: Stigg::Resources::V2::Permissions
+
+      def initialize: (client: Stigg::Client) -> void
+    end
+  end
+end
