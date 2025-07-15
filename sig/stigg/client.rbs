@@ -12,6 +12,8 @@ module Stigg
 
     attr_reader v1: Stigg::Resources::V1
 
+    attr_reader v2: Stigg::Resources::V2
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

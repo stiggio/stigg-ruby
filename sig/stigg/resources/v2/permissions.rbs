@@ -1,0 +1,15 @@
+module Stigg
+  module Resources
+    class V2
+      class Permissions
+        def check: (
+          user_id: String,
+          resources_and_actions: ::Array[Stigg::V2::PermissionCheckParams::ResourcesAndAction],
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::Models::V2::PermissionCheckResponse
+
+        def initialize: (client: Stigg::Client) -> void
+      end
+    end
+  end
+end

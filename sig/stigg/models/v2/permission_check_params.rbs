@@ -1,0 +1,45 @@
+module Stigg
+  module Models
+    module V2
+      type permission_check_params =
+        {
+          user_id: String,
+          resources_and_actions: ::Array[Stigg::V2::PermissionCheckParams::ResourcesAndAction]
+        }
+        & Stigg::Internal::Type::request_parameters
+
+      class PermissionCheckParams < Stigg::Internal::Type::BaseModel
+        extend Stigg::Internal::Type::RequestParameters::Converter
+        include Stigg::Internal::Type::RequestParameters
+
+        attr_accessor user_id: String
+
+        attr_accessor resources_and_actions: ::Array[Stigg::V2::PermissionCheckParams::ResourcesAndAction]
+
+        def initialize: (
+          user_id: String,
+          resources_and_actions: ::Array[Stigg::V2::PermissionCheckParams::ResourcesAndAction],
+          ?request_options: Stigg::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          user_id: String,
+          resources_and_actions: ::Array[Stigg::V2::PermissionCheckParams::ResourcesAndAction],
+          request_options: Stigg::RequestOptions
+        }
+
+        type resources_and_action = { action: top, resource: String }
+
+        class ResourcesAndAction < Stigg::Internal::Type::BaseModel
+          attr_accessor action: top
+
+          attr_accessor resource: String
+
+          def initialize: (action: top, resource: String) -> void
+
+          def to_hash: -> { action: top, resource: String }
+        end
+      end
+    end
+  end
+end
