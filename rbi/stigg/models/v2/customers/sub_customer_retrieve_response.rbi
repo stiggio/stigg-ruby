@@ -2,13 +2,13 @@
 
 module Stigg
   module Models
-    module V1
+    module V2
       module Customers
-        class SubCustomerGetSubCustomerResponse < Stigg::Internal::Type::BaseModel
+        class SubCustomerRetrieveResponse < Stigg::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Stigg::Models::V1::Customers::SubCustomerGetSubCustomerResponse,
+                Stigg::Models::V2::Customers::SubCustomerRetrieveResponse,
                 Stigg::Internal::AnyHash
               )
             end

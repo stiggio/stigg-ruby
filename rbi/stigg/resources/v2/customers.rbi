@@ -14,9 +14,9 @@ module Stigg
             x_api_key: String,
             x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
-          ).returns(Stigg::Models::V2::CustomerGetCustomerResponse)
+          ).returns(Stigg::Models::V2::CustomerRetrieveResponse)
         end
-        def get_customer(
+        def retrieve(
           ref_id,
           # API Key
           x_api_key:,

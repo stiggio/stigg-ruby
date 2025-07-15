@@ -2,9 +2,9 @@
 
 module Stigg
   module Models
-    module V2
-      # @see Stigg::Resources::V2::Customers#get_customer
-      class CustomerGetCustomerResponse < Stigg::Internal::Type::BaseModel
+    module V1
+      # @see Stigg::Resources::V1::Customers#retrieve
+      class CustomerRetrieveResponse < Stigg::Internal::Type::BaseModel
         # @!attribute id
         #   Unique identifier for the entity
         #

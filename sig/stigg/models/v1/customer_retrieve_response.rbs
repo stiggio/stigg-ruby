@@ -1,10 +1,10 @@
 module Stigg
   module Models
     module V1
-      type customer_get_customer_response =
+      type customer_retrieve_response =
         { id: String, email: String?, name: String? }
 
-      class CustomerGetCustomerResponse < Stigg::Internal::Type::BaseModel
+      class CustomerRetrieveResponse < Stigg::Internal::Type::BaseModel
         attr_accessor id: String
 
         attr_accessor email: String?

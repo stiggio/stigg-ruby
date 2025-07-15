@@ -1,11 +1,11 @@
 module Stigg
   module Models
     module V2
-      type customer_get_customer_params =
+      type customer_retrieve_params =
         { x_api_key: String, x_environment_id: String }
         & Stigg::Internal::Type::request_parameters
 
-      class CustomerGetCustomerParams < Stigg::Internal::Type::BaseModel
+      class CustomerRetrieveParams < Stigg::Internal::Type::BaseModel
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 

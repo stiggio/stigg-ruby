@@ -4,8 +4,8 @@ module Stigg
   module Models
     module V2
       module Customers
-        # @see Stigg::Resources::V2::Customers::SubCustomer#get_sub_customer
-        class SubCustomerGetSubCustomerResponse < Stigg::Internal::Type::BaseModel
+        # @see Stigg::Resources::V2::Customers::SubCustomer#retrieve
+        class SubCustomerRetrieveResponse < Stigg::Internal::Type::BaseModel
           # @!attribute id
           #   Unique identifier for the entity
           #
