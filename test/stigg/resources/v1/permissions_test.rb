@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class Stigg::Test::Resources::V1::PermissionsTest < Stigg::Test::ResourceTest
   def test_check_required_params
-    skip("skipped: tests are disabled for the time being")
+    skip("Prism tests are disabled")
 
     response =
       @stigg.v1.permissions.check(

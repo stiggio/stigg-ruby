@@ -4,7 +4,7 @@ require_relative "../../../test_helper"
 
 class Stigg::Test::Resources::V2::Customers::SubCustomerTest < Stigg::Test::ResourceTest
   def test_retrieve_required_params
-    skip("skipped: tests are disabled for the time being")
+    skip("Prism tests are disabled")
 
     response =
       @stigg.v2.customers.sub_customer.retrieve(
