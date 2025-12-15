@@ -1,0 +1,40 @@
+module Stigg
+  module Models
+    module V1
+      type customer_list_params =
+        { ending_before: String, limit: Integer, starting_after: String }
+        & Stigg::Internal::Type::request_parameters
+
+      class CustomerListParams < Stigg::Internal::Type::BaseModel
+        extend Stigg::Internal::Type::RequestParameters::Converter
+        include Stigg::Internal::Type::RequestParameters
+
+        attr_reader ending_before: String?
+
+        def ending_before=: (String) -> String
+
+        attr_reader limit: Integer?
+
+        def limit=: (Integer) -> Integer
+
+        attr_reader starting_after: String?
+
+        def starting_after=: (String) -> String
+
+        def initialize: (
+          ?ending_before: String,
+          ?limit: Integer,
+          ?starting_after: String,
+          ?request_options: Stigg::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          ending_before: String,
+          limit: Integer,
+          starting_after: String,
+          request_options: Stigg::RequestOptions
+        }
+      end
+    end
+  end
+end

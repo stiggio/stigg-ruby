@@ -1,5 +1,3 @@
 module Stigg
   module V1 = Stigg::Models::V1
-
-  module V2 = Stigg::Models::V2
 end

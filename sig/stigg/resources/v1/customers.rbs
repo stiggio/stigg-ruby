@@ -2,14 +2,48 @@ module Stigg
   module Resources
     class V1
       class Customers
-        attr_reader sub_customer: Stigg::Resources::V1::Customers::SubCustomer
+        attr_reader payment_method: Stigg::Resources::V1::Customers::PaymentMethod
+
+        def create: (
+          email: String?,
+          external_id: String,
+          name: String?,
+          ?default_payment_method: Stigg::V1::CustomerCreateParams::DefaultPaymentMethod?,
+          ?integrations: ::Array[Stigg::V1::CustomerCreateParams::Integration],
+          ?metadata: ::Hash[Symbol, String],
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::V1::CustomerResponse
 
         def retrieve: (
-          String ref_id,
-          x_api_key: String,
-          x_environment_id: String,
+          String id,
           ?request_options: Stigg::request_opts
-        ) -> Stigg::Models::V1::CustomerRetrieveResponse
+        ) -> Stigg::V1::CustomerResponse
+
+        def update: (
+          String id,
+          ?email: String?,
+          ?integrations: ::Array[Stigg::V1::CustomerUpdateParams::Integration],
+          ?metadata: ::Hash[Symbol, String],
+          ?name: String?,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::V1::CustomerResponse
+
+        def list: (
+          ?ending_before: String,
+          ?limit: Integer,
+          ?starting_after: String,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::CustomerListResponse]
+
+        def archive: (
+          String id,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::V1::CustomerResponse
+
+        def unarchive: (
+          String id,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::V1::CustomerResponse
 
         def initialize: (client: Stigg::Client) -> void
       end

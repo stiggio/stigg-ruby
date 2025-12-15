@@ -3,8 +3,8 @@
 module Stigg
   module Models
     module V1
-      # @see Stigg::Resources::V1::Customers#retrieve
-      class CustomerRetrieveParams < Stigg::Internal::Type::BaseModel
+      # @see Stigg::Resources::V1::Customers#archive
+      class CustomerArchiveParams < Stigg::Internal::Type::BaseModel
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 

@@ -10,14 +10,11 @@ module Stigg
 
     DEFAULT_MAX_RETRY_DELAY = T.let(8.0, Float)
 
-    sig { returns(T.nilable(String)) }
+    sig { returns(String) }
     attr_reader :api_key
 
     sig { returns(Stigg::Resources::V1) }
     attr_reader :v1
-
-    sig { returns(Stigg::Resources::V2) }
-    attr_reader :v2
 
     # @api private
     sig { override.returns(T::Hash[String, String]) }

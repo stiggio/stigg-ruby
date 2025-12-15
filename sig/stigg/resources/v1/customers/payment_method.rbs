@@ -1,0 +1,25 @@
+module Stigg
+  module Resources
+    class V1
+      class Customers
+        class PaymentMethod
+          def attach: (
+            String id,
+            integration_id: String,
+            payment_method_id: String,
+            vendor_identifier: Stigg::Models::V1::Customers::PaymentMethodAttachParams::vendor_identifier,
+            ?billing_currency: Stigg::Models::V1::Customers::PaymentMethodAttachParams::billing_currency?,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::V1::CustomerResponse
+
+          def detach: (
+            String id,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::V1::CustomerResponse
+
+          def initialize: (client: Stigg::Client) -> void
+        end
+      end
+    end
+  end
+end

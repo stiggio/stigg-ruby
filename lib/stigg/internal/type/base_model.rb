@@ -438,11 +438,9 @@ module Stigg
         # @return [Hash{Symbol=>Object}]
         #
         # @example
-        #   # `customer_retrieve_response` is a `Stigg::Models::V1::CustomerRetrieveResponse`
-        #   customer_retrieve_response => {
-        #     id: id,
-        #     email: email,
-        #     name: name
+        #   # `customer_response` is a `Stigg::V1::CustomerResponse`
+        #   customer_response => {
+        #     data: data
         #   }
         def deconstruct_keys(keys)
           (keys || self.class.known_fields.keys)

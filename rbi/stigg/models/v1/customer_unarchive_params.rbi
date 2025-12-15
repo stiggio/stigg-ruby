@@ -3,13 +3,13 @@
 module Stigg
   module Models
     module V1
-      class CustomerRetrieveParams < Stigg::Internal::Type::BaseModel
+      class CustomerUnarchiveParams < Stigg::Internal::Type::BaseModel
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
         OrHash =
           T.type_alias do
-            T.any(Stigg::V1::CustomerRetrieveParams, Stigg::Internal::AnyHash)
+            T.any(Stigg::V1::CustomerUnarchiveParams, Stigg::Internal::AnyHash)
           end
 
         sig do

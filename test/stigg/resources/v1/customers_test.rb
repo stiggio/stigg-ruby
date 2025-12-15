@@ -3,21 +3,115 @@
 require_relative "../../test_helper"
 
 class Stigg::Test::Resources::V1::CustomersTest < Stigg::Test::ResourceTest
-  def test_retrieve_required_params
+  def test_create_required_params
     skip("Prism tests are disabled")
 
     response =
-      @stigg.v1.customers.retrieve("refId", x_api_key: "X-API-KEY", x_environment_id: "X-ENVIRONMENT-ID")
+      @stigg.v1.customers.create(email: "dev@stainless.com", external_id: "externalId", name: "name")
 
     assert_pattern do
-      response => Stigg::Models::V1::CustomerRetrieveResponse
+      response => Stigg::V1::CustomerResponse
     end
 
     assert_pattern do
       response => {
-        id: String,
+        data: Stigg::V1::CustomerResponse::Data
+      }
+    end
+  end
+
+  def test_retrieve
+    skip("Prism tests are disabled")
+
+    response = @stigg.v1.customers.retrieve("x")
+
+    assert_pattern do
+      response => Stigg::V1::CustomerResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: Stigg::V1::CustomerResponse::Data
+      }
+    end
+  end
+
+  def test_update
+    skip("Prism tests are disabled")
+
+    response = @stigg.v1.customers.update("x")
+
+    assert_pattern do
+      response => Stigg::V1::CustomerResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: Stigg::V1::CustomerResponse::Data
+      }
+    end
+  end
+
+  def test_list
+    skip("Prism tests are disabled")
+
+    response = @stigg.v1.customers.list
+
+    assert_pattern do
+      response => Stigg::Internal::MyCursorIDPage
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Stigg::Models::V1::CustomerListResponse
+    end
+
+    assert_pattern do
+      row => {
+        archived_at: Time | nil,
+        created_at: Time,
+        cursor_id: String,
         email: String | nil,
-        name: String | nil
+        external_id: String,
+        name: String | nil,
+        updated_at: Time,
+        default_payment_method: Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod | nil,
+        integrations: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::CustomerListResponse::Integration]) | nil,
+        metadata: ^(Stigg::Internal::Type::HashOf[String]) | nil
+      }
+    end
+  end
+
+  def test_archive
+    skip("Prism tests are disabled")
+
+    response = @stigg.v1.customers.archive("x")
+
+    assert_pattern do
+      response => Stigg::V1::CustomerResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: Stigg::V1::CustomerResponse::Data
+      }
+    end
+  end
+
+  def test_unarchive
+    skip("Prism tests are disabled")
+
+    response = @stigg.v1.customers.unarchive("x")
+
+    assert_pattern do
+      response => Stigg::V1::CustomerResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: Stigg::V1::CustomerResponse::Data
       }
     end
   end

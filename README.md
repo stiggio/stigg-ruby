@@ -26,12 +26,37 @@ stigg = Stigg::Client.new(
   api_key: ENV["STIGG_API_KEY"] # This is the default and can be omitted
 )
 
-response = stigg.v1.permissions.check(
-  user_id: "REPLACE_ME",
-  resources_and_actions: [{action: "read", resource: "product"}]
-)
+customer_response = stigg.v1.customers.retrieve("REPLACE_ME")
 
-puts(response.permittedList)
+puts(customer_response.data)
+```
+
+### Pagination
+
+List methods in the Stigg API are paginated.
+
+This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
+
+```ruby
+page = stigg.v1.customers.list(limit: 30)
+
+# Fetch single item from page.
+customer = page.data[0]
+puts(customer.cursor_id)
+
+# Automatically fetches more pages as needed.
+page.auto_paging_each do |customer|
+  puts(customer.cursor_id)
+end
+```
+
+Alternatively, you can use the `#next_page?` and `#next_page` methods for more granular control working with pages.
+
+```ruby
+if page.next_page?
+  new_page = page.next_page
+  puts(new_page.data[0].cursor_id)
+end
 ```
 
 ### Handling errors
@@ -40,10 +65,7 @@ When the library is unable to connect to the API, or if the API returns a non-su
 
 ```ruby
 begin
-  permission = stigg.v1.permissions.check(
-    user_id: "REPLACE_ME",
-    resources_and_actions: [{action: "read", resource: "product"}]
-  )
+  customer = stigg.v1.customers.retrieve("REPLACE_ME")
 rescue Stigg::Errors::APIConnectionError => e
   puts("The server could not be reached")
   puts(e.cause)  # an underlying Exception, likely raised within `net/http`
@@ -86,11 +108,7 @@ stigg = Stigg::Client.new(
 )
 
 # Or, configure per-request:
-stigg.v1.permissions.check(
-  user_id: "REPLACE_ME",
-  resources_and_actions: [{action: "read", resource: "product"}],
-  request_options: {max_retries: 5}
-)
+stigg.v1.customers.retrieve("REPLACE_ME", request_options: {max_retries: 5})
 ```
 
 ### Timeouts
@@ -104,11 +122,7 @@ stigg = Stigg::Client.new(
 )
 
 # Or, configure per-request:
-stigg.v1.permissions.check(
-  user_id: "REPLACE_ME",
-  resources_and_actions: [{action: "read", resource: "product"}],
-  request_options: {timeout: 5}
-)
+stigg.v1.customers.retrieve("REPLACE_ME", request_options: {timeout: 5})
 ```
 
 On timeout, `Stigg::Errors::APITimeoutError` is raised.
@@ -138,10 +152,9 @@ You can send undocumented parameters to any endpoint, and read undocumented resp
 Note: the `extra_` parameters of the same name overrides the documented parameters.
 
 ```ruby
-response =
-  stigg.v1.permissions.check(
-    user_id: "REPLACE_ME",
-    resources_and_actions: [{action: "read", resource: "product"}],
+customer_response =
+  stigg.v1.customers.retrieve(
+    "REPLACE_ME",
     request_options: {
       extra_query: {my_query_parameter: value},
       extra_body: {my_body_parameter: value},
@@ -149,7 +162,7 @@ response =
     }
   )
 
-puts(response[:my_undocumented_property])
+puts(customer_response[:my_undocumented_property])
 ```
 
 #### Undocumented request params
@@ -187,27 +200,46 @@ This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitio
 You can provide typesafe request parameters like so:
 
 ```ruby
-stigg.v1.permissions.check(
-  user_id: "REPLACE_ME",
-  resources_and_actions: [Stigg::V1::PermissionCheckParams::ResourcesAndAction.new(action: "read", resource: "product")]
-)
+stigg.v1.customers.retrieve("REPLACE_ME")
 ```
 
 Or, equivalently:
 
 ```ruby
 # Hashes work, but are not typesafe:
-stigg.v1.permissions.check(
-  user_id: "REPLACE_ME",
-  resources_and_actions: [{action: "read", resource: "product"}]
-)
+stigg.v1.customers.retrieve("REPLACE_ME")
 
 # You can also splat a full Params class:
-params = Stigg::V1::PermissionCheckParams.new(
-  user_id: "REPLACE_ME",
-  resources_and_actions: [Stigg::V1::PermissionCheckParams::ResourcesAndAction.new(action: "read", resource: "product")]
+params = Stigg::V1::CustomerRetrieveParams.new
+stigg.v1.customers.retrieve("REPLACE_ME", **params)
+```
+
+### Enums
+
+Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
+
+```ruby
+# :AUTH0
+puts(Stigg::V1::Customers::PaymentMethodAttachParams::VendorIdentifier::AUTH0)
+
+# Revealed type: `T.all(Stigg::V1::Customers::PaymentMethodAttachParams::VendorIdentifier, Symbol)`
+T.reveal_type(Stigg::V1::Customers::PaymentMethodAttachParams::VendorIdentifier::AUTH0)
+```
+
+Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
+
+```ruby
+# Using the enum constants preserves the tagged type information:
+stigg.v1.customers.payment_method.attach(
+  vendor_identifier: Stigg::V1::Customers::PaymentMethodAttachParams::VendorIdentifier::AUTH0,
+  # …
 )
-stigg.v1.permissions.check(**params)
+
+# Literal values are also permissible:
+stigg.v1.customers.payment_method.attach(
+  vendor_identifier: :AUTH0,
+  # …
+)
 ```
 
 ## Versioning

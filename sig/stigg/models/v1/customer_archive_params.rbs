@@ -1,10 +1,10 @@
 module Stigg
   module Models
     module V1
-      type customer_retrieve_params =
+      type customer_archive_params =
         {  } & Stigg::Internal::Type::request_parameters
 
-      class CustomerRetrieveParams < Stigg::Internal::Type::BaseModel
+      class CustomerArchiveParams < Stigg::Internal::Type::BaseModel
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 

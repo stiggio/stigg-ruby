@@ -27,70 +27,63 @@ class StiggTest < Minitest::Test
     super
   end
 
+  def test_raises_on_missing_non_nullable_opts
+    e = assert_raises(ArgumentError) do
+      Stigg::Client.new
+    end
+    assert_match(/is required/, e.message)
+  end
+
   def test_client_default_request_default_retry_attempts
-    stub_request(:post, "http://localhost/api/v1/permissions/check").to_return_json(status: 500, body: {})
+    stub_request(:get, "http://localhost/api/v1/customers/x").to_return_json(status: 500, body: {})
 
     stigg = Stigg::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(Stigg::Errors::InternalServerError) do
-      stigg.v1.permissions.check(
-        user_id: "userId",
-        resources_and_actions: [{action: "read", resource: "product"}]
-      )
+      stigg.v1.customers.retrieve("x")
     end
 
     assert_requested(:any, /./, times: 3)
   end
 
   def test_client_given_request_default_retry_attempts
-    stub_request(:post, "http://localhost/api/v1/permissions/check").to_return_json(status: 500, body: {})
+    stub_request(:get, "http://localhost/api/v1/customers/x").to_return_json(status: 500, body: {})
 
     stigg = Stigg::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
 
     assert_raises(Stigg::Errors::InternalServerError) do
-      stigg.v1.permissions.check(
-        user_id: "userId",
-        resources_and_actions: [{action: "read", resource: "product"}]
-      )
+      stigg.v1.customers.retrieve("x")
     end
 
     assert_requested(:any, /./, times: 4)
   end
 
   def test_client_default_request_given_retry_attempts
-    stub_request(:post, "http://localhost/api/v1/permissions/check").to_return_json(status: 500, body: {})
+    stub_request(:get, "http://localhost/api/v1/customers/x").to_return_json(status: 500, body: {})
 
     stigg = Stigg::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(Stigg::Errors::InternalServerError) do
-      stigg.v1.permissions.check(
-        user_id: "userId",
-        resources_and_actions: [{action: "read", resource: "product"}],
-        request_options: {max_retries: 3}
-      )
+      stigg.v1.customers.retrieve("x", request_options: {max_retries: 3})
     end
 
     assert_requested(:any, /./, times: 4)
   end
 
   def test_client_given_request_given_retry_attempts
-    stub_request(:post, "http://localhost/api/v1/permissions/check").to_return_json(status: 500, body: {})
+    stub_request(:get, "http://localhost/api/v1/customers/x").to_return_json(status: 500, body: {})
 
     stigg = Stigg::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
 
     assert_raises(Stigg::Errors::InternalServerError) do
-      stigg.v1.permissions.check(
-        user_id: "userId",
-        resources_and_actions: [{action: "read", resource: "product"}],
-        request_options: {max_retries: 4}
-      )
+      stigg.v1.customers.retrieve("x", request_options: {max_retries: 4})
     end
 
     assert_requested(:any, /./, times: 5)
   end
 
   def test_client_retry_after_seconds
-    stub_request(:post, "http://localhost/api/v1/permissions/check").to_return_json(
+    stub_request(:get, "http://localhost/api/v1/customers/x").to_return_json(
       status: 500,
       headers: {"retry-after" => "1.3"},
       body: {}
@@ -99,10 +92,7 @@ class StiggTest < Minitest::Test
     stigg = Stigg::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
 
     assert_raises(Stigg::Errors::InternalServerError) do
-      stigg.v1.permissions.check(
-        user_id: "userId",
-        resources_and_actions: [{action: "read", resource: "product"}]
-      )
+      stigg.v1.customers.retrieve("x")
     end
 
     assert_requested(:any, /./, times: 2)
@@ -110,7 +100,7 @@ class StiggTest < Minitest::Test
   end
 
   def test_client_retry_after_date
-    stub_request(:post, "http://localhost/api/v1/permissions/check").to_return_json(
+    stub_request(:get, "http://localhost/api/v1/customers/x").to_return_json(
       status: 500,
       headers: {"retry-after" => (Time.now + 10).httpdate},
       body: {}
@@ -120,10 +110,7 @@ class StiggTest < Minitest::Test
 
     assert_raises(Stigg::Errors::InternalServerError) do
       Thread.current.thread_variable_set(:time_now, Time.now)
-      stigg.v1.permissions.check(
-        user_id: "userId",
-        resources_and_actions: [{action: "read", resource: "product"}]
-      )
+      stigg.v1.customers.retrieve("x")
       Thread.current.thread_variable_set(:time_now, nil)
     end
 
@@ -132,7 +119,7 @@ class StiggTest < Minitest::Test
   end
 
   def test_client_retry_after_ms
-    stub_request(:post, "http://localhost/api/v1/permissions/check").to_return_json(
+    stub_request(:get, "http://localhost/api/v1/customers/x").to_return_json(
       status: 500,
       headers: {"retry-after-ms" => "1300"},
       body: {}
@@ -141,10 +128,7 @@ class StiggTest < Minitest::Test
     stigg = Stigg::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
 
     assert_raises(Stigg::Errors::InternalServerError) do
-      stigg.v1.permissions.check(
-        user_id: "userId",
-        resources_and_actions: [{action: "read", resource: "product"}]
-      )
+      stigg.v1.customers.retrieve("x")
     end
 
     assert_requested(:any, /./, times: 2)
@@ -152,15 +136,12 @@ class StiggTest < Minitest::Test
   end
 
   def test_retry_count_header
-    stub_request(:post, "http://localhost/api/v1/permissions/check").to_return_json(status: 500, body: {})
+    stub_request(:get, "http://localhost/api/v1/customers/x").to_return_json(status: 500, body: {})
 
     stigg = Stigg::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(Stigg::Errors::InternalServerError) do
-      stigg.v1.permissions.check(
-        user_id: "userId",
-        resources_and_actions: [{action: "read", resource: "product"}]
-      )
+      stigg.v1.customers.retrieve("x")
     end
 
     3.times do
@@ -169,16 +150,12 @@ class StiggTest < Minitest::Test
   end
 
   def test_omit_retry_count_header
-    stub_request(:post, "http://localhost/api/v1/permissions/check").to_return_json(status: 500, body: {})
+    stub_request(:get, "http://localhost/api/v1/customers/x").to_return_json(status: 500, body: {})
 
     stigg = Stigg::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(Stigg::Errors::InternalServerError) do
-      stigg.v1.permissions.check(
-        user_id: "userId",
-        resources_and_actions: [{action: "read", resource: "product"}],
-        request_options: {extra_headers: {"x-stainless-retry-count" => nil}}
-      )
+      stigg.v1.customers.retrieve("x", request_options: {extra_headers: {"x-stainless-retry-count" => nil}})
     end
 
     assert_requested(:any, /./, times: 3) do
@@ -187,23 +164,19 @@ class StiggTest < Minitest::Test
   end
 
   def test_overwrite_retry_count_header
-    stub_request(:post, "http://localhost/api/v1/permissions/check").to_return_json(status: 500, body: {})
+    stub_request(:get, "http://localhost/api/v1/customers/x").to_return_json(status: 500, body: {})
 
     stigg = Stigg::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(Stigg::Errors::InternalServerError) do
-      stigg.v1.permissions.check(
-        user_id: "userId",
-        resources_and_actions: [{action: "read", resource: "product"}],
-        request_options: {extra_headers: {"x-stainless-retry-count" => "42"}}
-      )
+      stigg.v1.customers.retrieve("x", request_options: {extra_headers: {"x-stainless-retry-count" => "42"}})
     end
 
     assert_requested(:any, /./, headers: {"x-stainless-retry-count" => "42"}, times: 3)
   end
 
   def test_client_redirect_307
-    stub_request(:post, "http://localhost/api/v1/permissions/check").to_return_json(
+    stub_request(:get, "http://localhost/api/v1/customers/x").to_return_json(
       status: 307,
       headers: {"location" => "/redirected"},
       body: {}
@@ -216,11 +189,7 @@ class StiggTest < Minitest::Test
     stigg = Stigg::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(Stigg::Errors::APIConnectionError) do
-      stigg.v1.permissions.check(
-        user_id: "userId",
-        resources_and_actions: [{action: "read", resource: "product"}],
-        request_options: {extra_headers: {}}
-      )
+      stigg.v1.customers.retrieve("x", request_options: {extra_headers: {}})
     end
 
     recorded, = WebMock::RequestRegistry.instance.requested_signatures.hash.first
@@ -236,7 +205,7 @@ class StiggTest < Minitest::Test
   end
 
   def test_client_redirect_303
-    stub_request(:post, "http://localhost/api/v1/permissions/check").to_return_json(
+    stub_request(:get, "http://localhost/api/v1/customers/x").to_return_json(
       status: 303,
       headers: {"location" => "/redirected"},
       body: {}
@@ -249,11 +218,7 @@ class StiggTest < Minitest::Test
     stigg = Stigg::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(Stigg::Errors::APIConnectionError) do
-      stigg.v1.permissions.check(
-        user_id: "userId",
-        resources_and_actions: [{action: "read", resource: "product"}],
-        request_options: {extra_headers: {}}
-      )
+      stigg.v1.customers.retrieve("x", request_options: {extra_headers: {}})
     end
 
     assert_requested(:get, "http://localhost/redirected", times: Stigg::Client::MAX_REDIRECTS) do
@@ -264,7 +229,7 @@ class StiggTest < Minitest::Test
   end
 
   def test_client_redirect_auth_keep_same_origin
-    stub_request(:post, "http://localhost/api/v1/permissions/check").to_return_json(
+    stub_request(:get, "http://localhost/api/v1/customers/x").to_return_json(
       status: 307,
       headers: {"location" => "/redirected"},
       body: {}
@@ -277,11 +242,7 @@ class StiggTest < Minitest::Test
     stigg = Stigg::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(Stigg::Errors::APIConnectionError) do
-      stigg.v1.permissions.check(
-        user_id: "userId",
-        resources_and_actions: [{action: "read", resource: "product"}],
-        request_options: {extra_headers: {"authorization" => "Bearer xyz"}}
-      )
+      stigg.v1.customers.retrieve("x", request_options: {extra_headers: {"authorization" => "Bearer xyz"}})
     end
 
     recorded, = WebMock::RequestRegistry.instance.requested_signatures.hash.first
@@ -295,7 +256,7 @@ class StiggTest < Minitest::Test
   end
 
   def test_client_redirect_auth_strip_cross_origin
-    stub_request(:post, "http://localhost/api/v1/permissions/check").to_return_json(
+    stub_request(:get, "http://localhost/api/v1/customers/x").to_return_json(
       status: 307,
       headers: {"location" => "https://example.com/redirected"},
       body: {}
@@ -308,11 +269,7 @@ class StiggTest < Minitest::Test
     stigg = Stigg::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(Stigg::Errors::APIConnectionError) do
-      stigg.v1.permissions.check(
-        user_id: "userId",
-        resources_and_actions: [{action: "read", resource: "product"}],
-        request_options: {extra_headers: {"authorization" => "Bearer xyz"}}
-      )
+      stigg.v1.customers.retrieve("x", request_options: {extra_headers: {"authorization" => "Bearer xyz"}})
     end
 
     assert_requested(:any, "https://example.com/redirected", times: Stigg::Client::MAX_REDIRECTS) do
@@ -322,14 +279,11 @@ class StiggTest < Minitest::Test
   end
 
   def test_default_headers
-    stub_request(:post, "http://localhost/api/v1/permissions/check").to_return_json(status: 200, body: {})
+    stub_request(:get, "http://localhost/api/v1/customers/x").to_return_json(status: 200, body: {})
 
     stigg = Stigg::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
-    stigg.v1.permissions.check(
-      user_id: "userId",
-      resources_and_actions: [{action: "read", resource: "product"}]
-    )
+    stigg.v1.customers.retrieve("x")
 
     assert_requested(:any, /./) do |req|
       headers = req.headers.transform_keys(&:downcase).fetch_values("accept", "content-type")
