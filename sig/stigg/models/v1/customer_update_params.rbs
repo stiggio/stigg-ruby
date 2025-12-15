@@ -1,0 +1,105 @@
+module Stigg
+  module Models
+    module V1
+      type customer_update_params =
+        {
+          email: String?,
+          integrations: ::Array[Stigg::V1::CustomerUpdateParams::Integration],
+          metadata: ::Hash[Symbol, String],
+          name: String?
+        }
+        & Stigg::Internal::Type::request_parameters
+
+      class CustomerUpdateParams < Stigg::Internal::Type::BaseModel
+        extend Stigg::Internal::Type::RequestParameters::Converter
+        include Stigg::Internal::Type::RequestParameters
+
+        attr_accessor email: String?
+
+        attr_reader integrations: ::Array[Stigg::V1::CustomerUpdateParams::Integration]?
+
+        def integrations=: (
+          ::Array[Stigg::V1::CustomerUpdateParams::Integration]
+        ) -> ::Array[Stigg::V1::CustomerUpdateParams::Integration]
+
+        attr_reader metadata: ::Hash[Symbol, String]?
+
+        def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+        attr_accessor name: String?
+
+        def initialize: (
+          ?email: String?,
+          ?integrations: ::Array[Stigg::V1::CustomerUpdateParams::Integration],
+          ?metadata: ::Hash[Symbol, String],
+          ?name: String?,
+          ?request_options: Stigg::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          email: String?,
+          integrations: ::Array[Stigg::V1::CustomerUpdateParams::Integration],
+          metadata: ::Hash[Symbol, String],
+          name: String?,
+          request_options: Stigg::RequestOptions
+        }
+
+        type integration =
+          {
+            id: String,
+            synced_entity_id: String?,
+            vendor_identifier: Stigg::Models::V1::CustomerUpdateParams::Integration::vendor_identifier
+          }
+
+        class Integration < Stigg::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor synced_entity_id: String?
+
+          attr_accessor vendor_identifier: Stigg::Models::V1::CustomerUpdateParams::Integration::vendor_identifier
+
+          def initialize: (
+            id: String,
+            synced_entity_id: String?,
+            vendor_identifier: Stigg::Models::V1::CustomerUpdateParams::Integration::vendor_identifier
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            synced_entity_id: String?,
+            vendor_identifier: Stigg::Models::V1::CustomerUpdateParams::Integration::vendor_identifier
+          }
+
+          type vendor_identifier =
+            :AUTH0
+            | :ZUORA
+            | :STRIPE
+            | :HUBSPOT
+            | :AWS_MARKETPLACE
+            | :SNOWFLAKE
+            | :SALESFORCE
+            | :BIG_QUERY
+            | :OPEN_FGA
+            | :APP_STORE
+
+          module VendorIdentifier
+            extend Stigg::Internal::Type::Enum
+
+            AUTH0: :AUTH0
+            ZUORA: :ZUORA
+            STRIPE: :STRIPE
+            HUBSPOT: :HUBSPOT
+            AWS_MARKETPLACE: :AWS_MARKETPLACE
+            SNOWFLAKE: :SNOWFLAKE
+            SALESFORCE: :SALESFORCE
+            BIG_QUERY: :BIG_QUERY
+            OPEN_FGA: :OPEN_FGA
+            APP_STORE: :APP_STORE
+
+            def self?.values: -> ::Array[Stigg::Models::V1::CustomerUpdateParams::Integration::vendor_identifier]
+          end
+        end
+      end
+    end
+  end
+end

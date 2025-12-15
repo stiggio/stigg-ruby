@@ -15,22 +15,17 @@ module Stigg
     # Default max retry delay in seconds.
     DEFAULT_MAX_RETRY_DELAY = 8.0
 
-    # @return [String, nil]
+    # @return [String]
     attr_reader :api_key
 
     # @return [Stigg::Resources::V1]
     attr_reader :v1
 
-    # @return [Stigg::Resources::V2]
-    attr_reader :v2
-
     # @api private
     #
     # @return [Hash{String=>String}]
     private def auth_headers
-      return {} if @api_key.nil?
-
-      {"authorization" => "Bearer #{@api_key}"}
+      {"x-api-key" => @api_key}
     end
 
     # Creates and returns a new client for interacting with the API.
@@ -57,7 +52,11 @@ module Stigg
     )
       base_url ||= "https://api.example.com"
 
-      @api_key = api_key&.to_s
+      if api_key.nil?
+        raise ArgumentError.new("api_key is required, and can be set via environ: \"STIGG_API_KEY\"")
+      end
+
+      @api_key = api_key.to_s
 
       super(
         base_url: base_url,
@@ -68,7 +67,6 @@ module Stigg
       )
 
       @v1 = Stigg::Resources::V1.new(client: self)
-      @v2 = Stigg::Resources::V2.new(client: self)
     end
   end
 end

@@ -8,11 +8,9 @@ module Stigg
 
     DEFAULT_MAX_RETRY_DELAY: Float
 
-    attr_reader api_key: String?
+    attr_reader api_key: String
 
     attr_reader v1: Stigg::Resources::V1
-
-    attr_reader v2: Stigg::Resources::V2
 
     private def auth_headers: -> ::Hash[String, String]
 
