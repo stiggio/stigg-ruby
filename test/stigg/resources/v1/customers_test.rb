@@ -58,12 +58,28 @@ class Stigg::Test::Resources::V1::CustomersTest < Stigg::Test::ResourceTest
     response = @stigg.v1.customers.list
 
     assert_pattern do
-      response => Stigg::Models::V1::CustomerListResponse
+      response => Stigg::Internal::MyCursorIDPage
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Stigg::Models::V1::CustomerListResponse
     end
 
     assert_pattern do
-      response => {
-        data: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::CustomerListResponse::Data])
+      row => {
+        archived_at: Time | nil,
+        created_at: Time,
+        cursor_id: String,
+        email: String | nil,
+        external_id: String,
+        name: String | nil,
+        updated_at: Time,
+        default_payment_method: Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod | nil,
+        integrations: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::CustomerListResponse::Integration]) | nil,
+        metadata: ^(Stigg::Internal::Type::HashOf[String]) | nil
       }
     end
   end
