@@ -1,0 +1,58 @@
+module Stigg
+  module Models
+    module V1
+      type subscription_list_params =
+        {
+          customer_id: String,
+          ending_before: String,
+          limit: Integer,
+          starting_after: String,
+          status: String
+        }
+        & Stigg::Internal::Type::request_parameters
+
+      class SubscriptionListParams < Stigg::Internal::Type::BaseModel
+        extend Stigg::Internal::Type::RequestParameters::Converter
+        include Stigg::Internal::Type::RequestParameters
+
+        attr_reader customer_id: String?
+
+        def customer_id=: (String) -> String
+
+        attr_reader ending_before: String?
+
+        def ending_before=: (String) -> String
+
+        attr_reader limit: Integer?
+
+        def limit=: (Integer) -> Integer
+
+        attr_reader starting_after: String?
+
+        def starting_after=: (String) -> String
+
+        attr_reader status: String?
+
+        def status=: (String) -> String
+
+        def initialize: (
+          ?customer_id: String,
+          ?ending_before: String,
+          ?limit: Integer,
+          ?starting_after: String,
+          ?status: String,
+          ?request_options: Stigg::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          customer_id: String,
+          ending_before: String,
+          limit: Integer,
+          starting_after: String,
+          status: String,
+          request_options: Stigg::RequestOptions
+        }
+      end
+    end
+  end
+end

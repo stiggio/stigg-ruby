@@ -1,0 +1,466 @@
+module Stigg
+  module Models
+    module V1
+      type subscription_preview_response =
+        { data: Stigg::Models::V1::SubscriptionPreviewResponse::Data }
+
+      class SubscriptionPreviewResponse < Stigg::Internal::Type::BaseModel
+        attr_accessor data: Stigg::Models::V1::SubscriptionPreviewResponse::Data
+
+        def initialize: (
+          data: Stigg::Models::V1::SubscriptionPreviewResponse::Data
+        ) -> void
+
+        def to_hash: -> {
+          data: Stigg::Models::V1::SubscriptionPreviewResponse::Data
+        }
+
+        type data =
+          {
+            immediate_invoice: Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice,
+            billing_period_range: Stigg::Models::V1::SubscriptionPreviewResponse::Data::BillingPeriodRange,
+            free_items: ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::FreeItem],
+            has_scheduled_updates: bool,
+            is_plan_downgrade: bool,
+            recurring_invoice: Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice
+          }
+
+        class Data < Stigg::Internal::Type::BaseModel
+          attr_accessor immediate_invoice: Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice
+
+          attr_reader billing_period_range: Stigg::Models::V1::SubscriptionPreviewResponse::Data::BillingPeriodRange?
+
+          def billing_period_range=: (
+            Stigg::Models::V1::SubscriptionPreviewResponse::Data::BillingPeriodRange
+          ) -> Stigg::Models::V1::SubscriptionPreviewResponse::Data::BillingPeriodRange
+
+          attr_reader free_items: ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::FreeItem]?
+
+          def free_items=: (
+            ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::FreeItem]
+          ) -> ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::FreeItem]
+
+          attr_reader has_scheduled_updates: bool?
+
+          def has_scheduled_updates=: (bool) -> bool
+
+          attr_reader is_plan_downgrade: bool?
+
+          def is_plan_downgrade=: (bool) -> bool
+
+          attr_reader recurring_invoice: Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice?
+
+          def recurring_invoice=: (
+            Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice
+          ) -> Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice
+
+          def initialize: (
+            immediate_invoice: Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice,
+            ?billing_period_range: Stigg::Models::V1::SubscriptionPreviewResponse::Data::BillingPeriodRange,
+            ?free_items: ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::FreeItem],
+            ?has_scheduled_updates: bool,
+            ?is_plan_downgrade: bool,
+            ?recurring_invoice: Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice
+          ) -> void
+
+          def to_hash: -> {
+            immediate_invoice: Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice,
+            billing_period_range: Stigg::Models::V1::SubscriptionPreviewResponse::Data::BillingPeriodRange,
+            free_items: ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::FreeItem],
+            has_scheduled_updates: bool,
+            is_plan_downgrade: bool,
+            recurring_invoice: Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice
+          }
+
+          type immediate_invoice =
+            {
+              sub_total: Float,
+              total: Float,
+              billing_period_range: Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice::BillingPeriodRange,
+              currency: String?,
+              discount: Float,
+              discount_details: Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice::DiscountDetails,
+              discounts: ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice::Discount],
+              lines: ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice::Line],
+              tax: Float
+            }
+
+          class ImmediateInvoice < Stigg::Internal::Type::BaseModel
+            attr_accessor sub_total: Float
+
+            attr_accessor total: Float
+
+            attr_reader billing_period_range: Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice::BillingPeriodRange?
+
+            def billing_period_range=: (
+              Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice::BillingPeriodRange
+            ) -> Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice::BillingPeriodRange
+
+            attr_accessor currency: String?
+
+            attr_reader discount: Float?
+
+            def discount=: (Float) -> Float
+
+            attr_reader discount_details: Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice::DiscountDetails?
+
+            def discount_details=: (
+              Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice::DiscountDetails
+            ) -> Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice::DiscountDetails
+
+            attr_reader discounts: ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice::Discount]?
+
+            def discounts=: (
+              ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice::Discount]
+            ) -> ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice::Discount]
+
+            attr_reader lines: ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice::Line]?
+
+            def lines=: (
+              ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice::Line]
+            ) -> ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice::Line]
+
+            attr_reader tax: Float?
+
+            def tax=: (Float) -> Float
+
+            def initialize: (
+              sub_total: Float,
+              total: Float,
+              ?billing_period_range: Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice::BillingPeriodRange,
+              ?currency: String?,
+              ?discount: Float,
+              ?discount_details: Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice::DiscountDetails,
+              ?discounts: ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice::Discount],
+              ?lines: ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice::Line],
+              ?tax: Float
+            ) -> void
+
+            def to_hash: -> {
+              sub_total: Float,
+              total: Float,
+              billing_period_range: Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice::BillingPeriodRange,
+              currency: String?,
+              discount: Float,
+              discount_details: Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice::DiscountDetails,
+              discounts: ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice::Discount],
+              lines: ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice::Line],
+              tax: Float
+            }
+
+            type billing_period_range = { end_: Time, start: Time }
+
+            class BillingPeriodRange < Stigg::Internal::Type::BaseModel
+              attr_accessor end_: Time
+
+              attr_accessor start: Time
+
+              def initialize: (end_: Time, start: Time) -> void
+
+              def to_hash: -> { end_: Time, start: Time }
+            end
+
+            type discount_details =
+              { code: String, fixed_amount: Float, percentage: Float }
+
+            class DiscountDetails < Stigg::Internal::Type::BaseModel
+              attr_reader code: String?
+
+              def code=: (String) -> String
+
+              attr_reader fixed_amount: Float?
+
+              def fixed_amount=: (Float) -> Float
+
+              attr_reader percentage: Float?
+
+              def percentage=: (Float) -> Float
+
+              def initialize: (
+                ?code: String,
+                ?fixed_amount: Float,
+                ?percentage: Float
+              ) -> void
+
+              def to_hash: -> {
+                code: String,
+                fixed_amount: Float,
+                percentage: Float
+              }
+            end
+
+            type discount =
+              { amount: Float, currency: String, description: String }
+
+            class Discount < Stigg::Internal::Type::BaseModel
+              attr_accessor amount: Float
+
+              attr_accessor currency: String
+
+              attr_accessor description: String
+
+              def initialize: (
+                amount: Float,
+                currency: String,
+                description: String
+              ) -> void
+
+              def to_hash: -> {
+                amount: Float,
+                currency: String,
+                description: String
+              }
+            end
+
+            type line =
+              {
+                currency: String,
+                description: String,
+                sub_total: Float,
+                unit_price: Float,
+                quantity: Float
+              }
+
+            class Line < Stigg::Internal::Type::BaseModel
+              attr_accessor currency: String
+
+              attr_accessor description: String
+
+              attr_accessor sub_total: Float
+
+              attr_accessor unit_price: Float
+
+              attr_reader quantity: Float?
+
+              def quantity=: (Float) -> Float
+
+              def initialize: (
+                currency: String,
+                description: String,
+                sub_total: Float,
+                unit_price: Float,
+                ?quantity: Float
+              ) -> void
+
+              def to_hash: -> {
+                currency: String,
+                description: String,
+                sub_total: Float,
+                unit_price: Float,
+                quantity: Float
+              }
+            end
+          end
+
+          type billing_period_range = { end_: Time, start: Time }
+
+          class BillingPeriodRange < Stigg::Internal::Type::BaseModel
+            attr_reader end_: Time?
+
+            def end_=: (Time) -> Time
+
+            attr_reader start: Time?
+
+            def start=: (Time) -> Time
+
+            def initialize: (?end_: Time, ?start: Time) -> void
+
+            def to_hash: -> { end_: Time, start: Time }
+          end
+
+          type free_item = { addon_id: String, quantity: Float }
+
+          class FreeItem < Stigg::Internal::Type::BaseModel
+            attr_accessor addon_id: String
+
+            attr_accessor quantity: Float
+
+            def initialize: (addon_id: String, quantity: Float) -> void
+
+            def to_hash: -> { addon_id: String, quantity: Float }
+          end
+
+          type recurring_invoice =
+            {
+              sub_total: Float,
+              total: Float,
+              billing_period_range: Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice::BillingPeriodRange,
+              currency: String?,
+              discount: Float,
+              discount_details: Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice::DiscountDetails,
+              discounts: ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice::Discount],
+              lines: ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice::Line],
+              tax: Float
+            }
+
+          class RecurringInvoice < Stigg::Internal::Type::BaseModel
+            attr_accessor sub_total: Float
+
+            attr_accessor total: Float
+
+            attr_reader billing_period_range: Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice::BillingPeriodRange?
+
+            def billing_period_range=: (
+              Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice::BillingPeriodRange
+            ) -> Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice::BillingPeriodRange
+
+            attr_accessor currency: String?
+
+            attr_reader discount: Float?
+
+            def discount=: (Float) -> Float
+
+            attr_reader discount_details: Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice::DiscountDetails?
+
+            def discount_details=: (
+              Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice::DiscountDetails
+            ) -> Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice::DiscountDetails
+
+            attr_reader discounts: ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice::Discount]?
+
+            def discounts=: (
+              ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice::Discount]
+            ) -> ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice::Discount]
+
+            attr_reader lines: ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice::Line]?
+
+            def lines=: (
+              ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice::Line]
+            ) -> ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice::Line]
+
+            attr_reader tax: Float?
+
+            def tax=: (Float) -> Float
+
+            def initialize: (
+              sub_total: Float,
+              total: Float,
+              ?billing_period_range: Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice::BillingPeriodRange,
+              ?currency: String?,
+              ?discount: Float,
+              ?discount_details: Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice::DiscountDetails,
+              ?discounts: ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice::Discount],
+              ?lines: ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice::Line],
+              ?tax: Float
+            ) -> void
+
+            def to_hash: -> {
+              sub_total: Float,
+              total: Float,
+              billing_period_range: Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice::BillingPeriodRange,
+              currency: String?,
+              discount: Float,
+              discount_details: Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice::DiscountDetails,
+              discounts: ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice::Discount],
+              lines: ::Array[Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice::Line],
+              tax: Float
+            }
+
+            type billing_period_range = { end_: Time, start: Time }
+
+            class BillingPeriodRange < Stigg::Internal::Type::BaseModel
+              attr_accessor end_: Time
+
+              attr_accessor start: Time
+
+              def initialize: (end_: Time, start: Time) -> void
+
+              def to_hash: -> { end_: Time, start: Time }
+            end
+
+            type discount_details =
+              { code: String, fixed_amount: Float, percentage: Float }
+
+            class DiscountDetails < Stigg::Internal::Type::BaseModel
+              attr_reader code: String?
+
+              def code=: (String) -> String
+
+              attr_reader fixed_amount: Float?
+
+              def fixed_amount=: (Float) -> Float
+
+              attr_reader percentage: Float?
+
+              def percentage=: (Float) -> Float
+
+              def initialize: (
+                ?code: String,
+                ?fixed_amount: Float,
+                ?percentage: Float
+              ) -> void
+
+              def to_hash: -> {
+                code: String,
+                fixed_amount: Float,
+                percentage: Float
+              }
+            end
+
+            type discount =
+              { amount: Float, currency: String, description: String }
+
+            class Discount < Stigg::Internal::Type::BaseModel
+              attr_accessor amount: Float
+
+              attr_accessor currency: String
+
+              attr_accessor description: String
+
+              def initialize: (
+                amount: Float,
+                currency: String,
+                description: String
+              ) -> void
+
+              def to_hash: -> {
+                amount: Float,
+                currency: String,
+                description: String
+              }
+            end
+
+            type line =
+              {
+                currency: String,
+                description: String,
+                sub_total: Float,
+                unit_price: Float,
+                quantity: Float
+              }
+
+            class Line < Stigg::Internal::Type::BaseModel
+              attr_accessor currency: String
+
+              attr_accessor description: String
+
+              attr_accessor sub_total: Float
+
+              attr_accessor unit_price: Float
+
+              attr_reader quantity: Float?
+
+              def quantity=: (Float) -> Float
+
+              def initialize: (
+                currency: String,
+                description: String,
+                sub_total: Float,
+                unit_price: Float,
+                ?quantity: Float
+              ) -> void
+
+              def to_hash: -> {
+                currency: String,
+                description: String,
+                sub_total: Float,
+                unit_price: Float,
+                quantity: Float
+              }
+            end
+          end
+        end
+      end
+    end
+  end
+end

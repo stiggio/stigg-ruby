@@ -3,6 +3,20 @@ module Stigg
     class V1
       attr_reader customers: Stigg::Resources::V1::Customers
 
+      attr_reader subscriptions: Stigg::Resources::V1::Subscriptions
+
+      attr_reader coupons: Stigg::Resources::V1::Coupons
+
+      def create_event: (
+        events: ::Array[Stigg::V1CreateEventParams::Event],
+        ?request_options: Stigg::request_opts
+      ) -> Stigg::Models::V1CreateEventResponse
+
+      def create_usage: (
+        usages: ::Array[Stigg::V1CreateUsageParams::Usage],
+        ?request_options: Stigg::request_opts
+      ) -> Stigg::Models::V1CreateUsageResponse
+
       def initialize: (client: Stigg::Client) -> void
     end
   end

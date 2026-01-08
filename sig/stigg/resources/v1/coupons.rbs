@@ -1,0 +1,32 @@
+module Stigg
+  module Resources
+    class V1
+      class Coupons
+        def create: (
+          id: String,
+          amounts_off: ::Array[Stigg::V1::CouponCreateParams::AmountsOff]?,
+          description: String?,
+          duration_in_months: Integer?,
+          name: String,
+          percent_off: Float?,
+          ?additional_meta_data: top,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::Models::V1::CouponCreateResponse
+
+        def retrieve: (
+          String id,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::Models::V1::CouponRetrieveResponse
+
+        def list: (
+          ?ending_before: String,
+          ?limit: Integer,
+          ?starting_after: String,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::Models::V1::CouponListResponse
+
+        def initialize: (client: Stigg::Client) -> void
+      end
+    end
+  end
+end

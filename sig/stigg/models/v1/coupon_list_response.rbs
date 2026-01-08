@@ -1,0 +1,399 @@
+module Stigg
+  module Models
+    module V1
+      type coupon_list_response =
+        { data: ::Array[Stigg::Models::V1::CouponListResponse::Data] }
+
+      class CouponListResponse < Stigg::Internal::Type::BaseModel
+        attr_accessor data: ::Array[Stigg::Models::V1::CouponListResponse::Data]
+
+        def initialize: (
+          data: ::Array[Stigg::Models::V1::CouponListResponse::Data]
+        ) -> void
+
+        def to_hash: -> {
+          data: ::Array[Stigg::Models::V1::CouponListResponse::Data]
+        }
+
+        type data =
+          {
+            id: String,
+            amounts_off: ::Array[Stigg::Models::V1::CouponListResponse::Data::AmountsOff]?,
+            billing_id: String?,
+            billing_link_url: String?,
+            created_at: Time,
+            cursor_id: String,
+            description: String?,
+            duration_in_months: Float?,
+            name: String,
+            percent_off: Float?,
+            source: Stigg::Models::V1::CouponListResponse::Data::source?,
+            status: Stigg::Models::V1::CouponListResponse::Data::status,
+            type: Stigg::Models::V1::CouponListResponse::Data::type_,
+            updated_at: Time
+          }
+
+        class Data < Stigg::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor amounts_off: ::Array[Stigg::Models::V1::CouponListResponse::Data::AmountsOff]?
+
+          attr_accessor billing_id: String?
+
+          attr_accessor billing_link_url: String?
+
+          attr_accessor created_at: Time
+
+          attr_accessor cursor_id: String
+
+          attr_accessor description: String?
+
+          attr_accessor duration_in_months: Float?
+
+          attr_accessor name: String
+
+          attr_accessor percent_off: Float?
+
+          attr_accessor source: Stigg::Models::V1::CouponListResponse::Data::source?
+
+          attr_accessor status: Stigg::Models::V1::CouponListResponse::Data::status
+
+          attr_accessor type: Stigg::Models::V1::CouponListResponse::Data::type_
+
+          attr_accessor updated_at: Time
+
+          def initialize: (
+            id: String,
+            amounts_off: ::Array[Stigg::Models::V1::CouponListResponse::Data::AmountsOff]?,
+            billing_id: String?,
+            billing_link_url: String?,
+            created_at: Time,
+            cursor_id: String,
+            description: String?,
+            duration_in_months: Float?,
+            name: String,
+            percent_off: Float?,
+            source: Stigg::Models::V1::CouponListResponse::Data::source?,
+            status: Stigg::Models::V1::CouponListResponse::Data::status,
+            type: Stigg::Models::V1::CouponListResponse::Data::type_,
+            updated_at: Time
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            amounts_off: ::Array[Stigg::Models::V1::CouponListResponse::Data::AmountsOff]?,
+            billing_id: String?,
+            billing_link_url: String?,
+            created_at: Time,
+            cursor_id: String,
+            description: String?,
+            duration_in_months: Float?,
+            name: String,
+            percent_off: Float?,
+            source: Stigg::Models::V1::CouponListResponse::Data::source?,
+            status: Stigg::Models::V1::CouponListResponse::Data::status,
+            type: Stigg::Models::V1::CouponListResponse::Data::type_,
+            updated_at: Time
+          }
+
+          type amounts_off =
+            {
+              amount: Float,
+              currency: Stigg::Models::V1::CouponListResponse::Data::AmountsOff::currency?
+            }
+
+          class AmountsOff < Stigg::Internal::Type::BaseModel
+            attr_accessor amount: Float
+
+            attr_accessor currency: Stigg::Models::V1::CouponListResponse::Data::AmountsOff::currency?
+
+            def initialize: (
+              amount: Float,
+              currency: Stigg::Models::V1::CouponListResponse::Data::AmountsOff::currency?
+            ) -> void
+
+            def to_hash: -> {
+              amount: Float,
+              currency: Stigg::Models::V1::CouponListResponse::Data::AmountsOff::currency?
+            }
+
+            type currency =
+              :usd
+              | :aed
+              | :all
+              | :amd
+              | :ang
+              | :aud
+              | :awg
+              | :azn
+              | :bam
+              | :bbd
+              | :bdt
+              | :bgn
+              | :bif
+              | :bmd
+              | :bnd
+              | :bsd
+              | :bwp
+              | :byn
+              | :bzd
+              | :brl
+              | :cad
+              | :cdf
+              | :chf
+              | :cny
+              | :czk
+              | :dkk
+              | :dop
+              | :dzd
+              | :egp
+              | :etb
+              | :eur
+              | :fjd
+              | :gbp
+              | :gel
+              | :gip
+              | :gmd
+              | :gyd
+              | :hkd
+              | :hrk
+              | :htg
+              | :idr
+              | :ils
+              | :inr
+              | :isk
+              | :jmd
+              | :jpy
+              | :kes
+              | :kgs
+              | :khr
+              | :kmf
+              | :krw
+              | :kyd
+              | :kzt
+              | :lbp
+              | :lkr
+              | :lrd
+              | :lsl
+              | :mad
+              | :mdl
+              | :mga
+              | :mkd
+              | :mmk
+              | :mnt
+              | :mop
+              | :mro
+              | :mvr
+              | :mwk
+              | :mxn
+              | :myr
+              | :mzn
+              | :nad
+              | :ngn
+              | :nok
+              | :npr
+              | :nzd
+              | :pgk
+              | :php
+              | :pkr
+              | :pln
+              | :qar
+              | :ron
+              | :rsd
+              | :rub
+              | :rwf
+              | :sar
+              | :sbd
+              | :scr
+              | :sek
+              | :sgd
+              | :sle
+              | :sll
+              | :sos
+              | :szl
+              | :thb
+              | :tjs
+              | :top
+              | :try
+              | :ttd
+              | :tzs
+              | :uah
+              | :uzs
+              | :vnd
+              | :vuv
+              | :wst
+              | :xaf
+              | :xcd
+              | :yer
+              | :zar
+              | :zmw
+              | :clp
+              | :djf
+              | :gnf
+              | :ugx
+              | :pyg
+              | :xof
+              | :xpf
+
+            module Currency
+              extend Stigg::Internal::Type::Enum
+
+              USD: :usd
+              AED: :aed
+              ALL: :all
+              AMD: :amd
+              ANG: :ang
+              AUD: :aud
+              AWG: :awg
+              AZN: :azn
+              BAM: :bam
+              BBD: :bbd
+              BDT: :bdt
+              BGN: :bgn
+              BIF: :bif
+              BMD: :bmd
+              BND: :bnd
+              BSD: :bsd
+              BWP: :bwp
+              BYN: :byn
+              BZD: :bzd
+              BRL: :brl
+              CAD: :cad
+              CDF: :cdf
+              CHF: :chf
+              CNY: :cny
+              CZK: :czk
+              DKK: :dkk
+              DOP: :dop
+              DZD: :dzd
+              EGP: :egp
+              ETB: :etb
+              EUR: :eur
+              FJD: :fjd
+              GBP: :gbp
+              GEL: :gel
+              GIP: :gip
+              GMD: :gmd
+              GYD: :gyd
+              HKD: :hkd
+              HRK: :hrk
+              HTG: :htg
+              IDR: :idr
+              ILS: :ils
+              INR: :inr
+              ISK: :isk
+              JMD: :jmd
+              JPY: :jpy
+              KES: :kes
+              KGS: :kgs
+              KHR: :khr
+              KMF: :kmf
+              KRW: :krw
+              KYD: :kyd
+              KZT: :kzt
+              LBP: :lbp
+              LKR: :lkr
+              LRD: :lrd
+              LSL: :lsl
+              MAD: :mad
+              MDL: :mdl
+              MGA: :mga
+              MKD: :mkd
+              MMK: :mmk
+              MNT: :mnt
+              MOP: :mop
+              MRO: :mro
+              MVR: :mvr
+              MWK: :mwk
+              MXN: :mxn
+              MYR: :myr
+              MZN: :mzn
+              NAD: :nad
+              NGN: :ngn
+              NOK: :nok
+              NPR: :npr
+              NZD: :nzd
+              PGK: :pgk
+              PHP: :php
+              PKR: :pkr
+              PLN: :pln
+              QAR: :qar
+              RON: :ron
+              RSD: :rsd
+              RUB: :rub
+              RWF: :rwf
+              SAR: :sar
+              SBD: :sbd
+              SCR: :scr
+              SEK: :sek
+              SGD: :sgd
+              SLE: :sle
+              SLL: :sll
+              SOS: :sos
+              SZL: :szl
+              THB: :thb
+              TJS: :tjs
+              TOP: :top
+              TRY: :try
+              TTD: :ttd
+              TZS: :tzs
+              UAH: :uah
+              UZS: :uzs
+              VND: :vnd
+              VUV: :vuv
+              WST: :wst
+              XAF: :xaf
+              XCD: :xcd
+              YER: :yer
+              ZAR: :zar
+              ZMW: :zmw
+              CLP: :clp
+              DJF: :djf
+              GNF: :gnf
+              UGX: :ugx
+              PYG: :pyg
+              XOF: :xof
+              XPF: :xpf
+
+              def self?.values: -> ::Array[Stigg::Models::V1::CouponListResponse::Data::AmountsOff::currency]
+            end
+          end
+
+          type source = :STIGG | :STIGG_ADHOC | :STRIPE
+
+          module Source
+            extend Stigg::Internal::Type::Enum
+
+            STIGG: :STIGG
+            STIGG_ADHOC: :STIGG_ADHOC
+            STRIPE: :STRIPE
+
+            def self?.values: -> ::Array[Stigg::Models::V1::CouponListResponse::Data::source]
+          end
+
+          type status = :ACTIVE | :ARCHIVED
+
+          module Status
+            extend Stigg::Internal::Type::Enum
+
+            ACTIVE: :ACTIVE
+            ARCHIVED: :ARCHIVED
+
+            def self?.values: -> ::Array[Stigg::Models::V1::CouponListResponse::Data::status]
+          end
+
+          type type_ = :FIXED | :PERCENTAGE
+
+          module Type
+            extend Stigg::Internal::Type::Enum
+
+            FIXED: :FIXED
+            PERCENTAGE: :PERCENTAGE
+
+            def self?.values: -> ::Array[Stigg::Models::V1::CouponListResponse::Data::type_]
+          end
+        end
+      end
+    end
+  end
+end

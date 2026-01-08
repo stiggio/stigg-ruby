@@ -1,0 +1,199 @@
+module Stigg
+  module Models
+    module V1
+      type subscription_create_params =
+        {
+          customer_id: String,
+          plan_id: String,
+          id: String?,
+          await_payment_confirmation: bool,
+          billing_period: Stigg::Models::V1::SubscriptionCreateParams::billing_period,
+          checkout_options: Stigg::V1::SubscriptionCreateParams::CheckoutOptions,
+          metadata: ::Hash[Symbol, String],
+          paying_customer_id: String?,
+          resource_id: String?,
+          trial_override_configuration: Stigg::V1::SubscriptionCreateParams::TrialOverrideConfiguration
+        }
+        & Stigg::Internal::Type::request_parameters
+
+      class SubscriptionCreateParams < Stigg::Internal::Type::BaseModel
+        extend Stigg::Internal::Type::RequestParameters::Converter
+        include Stigg::Internal::Type::RequestParameters
+
+        attr_accessor customer_id: String
+
+        attr_accessor plan_id: String
+
+        attr_accessor id: String?
+
+        attr_reader await_payment_confirmation: bool?
+
+        def await_payment_confirmation=: (bool) -> bool
+
+        attr_reader billing_period: Stigg::Models::V1::SubscriptionCreateParams::billing_period?
+
+        def billing_period=: (
+          Stigg::Models::V1::SubscriptionCreateParams::billing_period
+        ) -> Stigg::Models::V1::SubscriptionCreateParams::billing_period
+
+        attr_reader checkout_options: Stigg::V1::SubscriptionCreateParams::CheckoutOptions?
+
+        def checkout_options=: (
+          Stigg::V1::SubscriptionCreateParams::CheckoutOptions
+        ) -> Stigg::V1::SubscriptionCreateParams::CheckoutOptions
+
+        attr_reader metadata: ::Hash[Symbol, String]?
+
+        def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+        attr_accessor paying_customer_id: String?
+
+        attr_accessor resource_id: String?
+
+        attr_reader trial_override_configuration: Stigg::V1::SubscriptionCreateParams::TrialOverrideConfiguration?
+
+        def trial_override_configuration=: (
+          Stigg::V1::SubscriptionCreateParams::TrialOverrideConfiguration
+        ) -> Stigg::V1::SubscriptionCreateParams::TrialOverrideConfiguration
+
+        def initialize: (
+          customer_id: String,
+          plan_id: String,
+          ?id: String?,
+          ?await_payment_confirmation: bool,
+          ?billing_period: Stigg::Models::V1::SubscriptionCreateParams::billing_period,
+          ?checkout_options: Stigg::V1::SubscriptionCreateParams::CheckoutOptions,
+          ?metadata: ::Hash[Symbol, String],
+          ?paying_customer_id: String?,
+          ?resource_id: String?,
+          ?trial_override_configuration: Stigg::V1::SubscriptionCreateParams::TrialOverrideConfiguration,
+          ?request_options: Stigg::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          customer_id: String,
+          plan_id: String,
+          id: String?,
+          await_payment_confirmation: bool,
+          billing_period: Stigg::Models::V1::SubscriptionCreateParams::billing_period,
+          checkout_options: Stigg::V1::SubscriptionCreateParams::CheckoutOptions,
+          metadata: ::Hash[Symbol, String],
+          paying_customer_id: String?,
+          resource_id: String?,
+          trial_override_configuration: Stigg::V1::SubscriptionCreateParams::TrialOverrideConfiguration,
+          request_options: Stigg::RequestOptions
+        }
+
+        type billing_period = :MONTHLY | :ANNUALLY
+
+        module BillingPeriod
+          extend Stigg::Internal::Type::Enum
+
+          MONTHLY: :MONTHLY
+          ANNUALLY: :ANNUALLY
+
+          def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionCreateParams::billing_period]
+        end
+
+        type checkout_options =
+          {
+            cancel_url: String,
+            success_url: String,
+            allow_promo_codes: bool,
+            allow_tax_id_collection: bool,
+            collect_billing_address: bool,
+            collect_phone_number: bool,
+            reference_id: String?
+          }
+
+        class CheckoutOptions < Stigg::Internal::Type::BaseModel
+          attr_accessor cancel_url: String
+
+          attr_accessor success_url: String
+
+          attr_reader allow_promo_codes: bool?
+
+          def allow_promo_codes=: (bool) -> bool
+
+          attr_reader allow_tax_id_collection: bool?
+
+          def allow_tax_id_collection=: (bool) -> bool
+
+          attr_reader collect_billing_address: bool?
+
+          def collect_billing_address=: (bool) -> bool
+
+          attr_reader collect_phone_number: bool?
+
+          def collect_phone_number=: (bool) -> bool
+
+          attr_accessor reference_id: String?
+
+          def initialize: (
+            cancel_url: String,
+            success_url: String,
+            ?allow_promo_codes: bool,
+            ?allow_tax_id_collection: bool,
+            ?collect_billing_address: bool,
+            ?collect_phone_number: bool,
+            ?reference_id: String?
+          ) -> void
+
+          def to_hash: -> {
+            cancel_url: String,
+            success_url: String,
+            allow_promo_codes: bool,
+            allow_tax_id_collection: bool,
+            collect_billing_address: bool,
+            collect_phone_number: bool,
+            reference_id: String?
+          }
+        end
+
+        type trial_override_configuration =
+          {
+            is_trial: bool,
+            trial_end_behavior: Stigg::Models::V1::SubscriptionCreateParams::TrialOverrideConfiguration::trial_end_behavior,
+            trial_end_date: Time
+          }
+
+        class TrialOverrideConfiguration < Stigg::Internal::Type::BaseModel
+          attr_accessor is_trial: bool
+
+          attr_reader trial_end_behavior: Stigg::Models::V1::SubscriptionCreateParams::TrialOverrideConfiguration::trial_end_behavior?
+
+          def trial_end_behavior=: (
+            Stigg::Models::V1::SubscriptionCreateParams::TrialOverrideConfiguration::trial_end_behavior
+          ) -> Stigg::Models::V1::SubscriptionCreateParams::TrialOverrideConfiguration::trial_end_behavior
+
+          attr_reader trial_end_date: Time?
+
+          def trial_end_date=: (Time) -> Time
+
+          def initialize: (
+            is_trial: bool,
+            ?trial_end_behavior: Stigg::Models::V1::SubscriptionCreateParams::TrialOverrideConfiguration::trial_end_behavior,
+            ?trial_end_date: Time
+          ) -> void
+
+          def to_hash: -> {
+            is_trial: bool,
+            trial_end_behavior: Stigg::Models::V1::SubscriptionCreateParams::TrialOverrideConfiguration::trial_end_behavior,
+            trial_end_date: Time
+          }
+
+          type trial_end_behavior = :CONVERT_TO_PAID | :CANCEL_SUBSCRIPTION
+
+          module TrialEndBehavior
+            extend Stigg::Internal::Type::Enum
+
+            CONVERT_TO_PAID: :CONVERT_TO_PAID
+            CANCEL_SUBSCRIPTION: :CANCEL_SUBSCRIPTION
+
+            def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionCreateParams::TrialOverrideConfiguration::trial_end_behavior]
+          end
+        end
+      end
+    end
+  end
+end
