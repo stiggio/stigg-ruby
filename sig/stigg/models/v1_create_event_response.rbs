@@ -1,0 +1,13 @@
+module Stigg
+  module Models
+    type v1_create_event_response = { data: top }
+
+    class V1CreateEventResponse < Stigg::Internal::Type::BaseModel
+      attr_accessor data: top
+
+      def initialize: (data: top) -> void
+
+      def to_hash: -> { data: top }
+    end
+  end
+end

@@ -6,8 +6,14 @@ module Stigg
       module Customers
       end
 
+      module Subscriptions
+      end
+
       module V1
         module Customers
+        end
+
+        module Subscriptions
         end
       end
     end

@@ -1,0 +1,43 @@
+module Stigg
+  module Models
+    module V1
+      type subscription_migrate_params =
+        {
+          subscription_migration_time: Stigg::Models::V1::SubscriptionMigrateParams::subscription_migration_time
+        }
+        & Stigg::Internal::Type::request_parameters
+
+      class SubscriptionMigrateParams < Stigg::Internal::Type::BaseModel
+        extend Stigg::Internal::Type::RequestParameters::Converter
+        include Stigg::Internal::Type::RequestParameters
+
+        attr_reader subscription_migration_time: Stigg::Models::V1::SubscriptionMigrateParams::subscription_migration_time?
+
+        def subscription_migration_time=: (
+          Stigg::Models::V1::SubscriptionMigrateParams::subscription_migration_time
+        ) -> Stigg::Models::V1::SubscriptionMigrateParams::subscription_migration_time
+
+        def initialize: (
+          ?subscription_migration_time: Stigg::Models::V1::SubscriptionMigrateParams::subscription_migration_time,
+          ?request_options: Stigg::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          subscription_migration_time: Stigg::Models::V1::SubscriptionMigrateParams::subscription_migration_time,
+          request_options: Stigg::RequestOptions
+        }
+
+        type subscription_migration_time = :END_OF_BILLING_PERIOD | :IMMEDIATE
+
+        module SubscriptionMigrationTime
+          extend Stigg::Internal::Type::Enum
+
+          END_OF_BILLING_PERIOD: :END_OF_BILLING_PERIOD
+          IMMEDIATE: :IMMEDIATE
+
+          def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionMigrateParams::subscription_migration_time]
+        end
+      end
+    end
+  end
+end

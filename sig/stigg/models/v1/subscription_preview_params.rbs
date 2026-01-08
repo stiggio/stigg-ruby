@@ -1,0 +1,821 @@
+module Stigg
+  module Models
+    module V1
+      type subscription_preview_params =
+        {
+          customer_id: String,
+          plan_id: String,
+          addons: ::Array[Stigg::V1::SubscriptionPreviewParams::Addon],
+          applied_coupon: Stigg::V1::SubscriptionPreviewParams::AppliedCoupon,
+          billable_features: ::Array[Stigg::V1::SubscriptionPreviewParams::BillableFeature],
+          billing_country_code: String,
+          billing_information: Stigg::V1::SubscriptionPreviewParams::BillingInformation,
+          billing_period: Stigg::Models::V1::SubscriptionPreviewParams::billing_period,
+          charges: ::Array[Stigg::V1::SubscriptionPreviewParams::Charge],
+          paying_customer_id: String,
+          resource_id: String,
+          schedule_strategy: Stigg::Models::V1::SubscriptionPreviewParams::schedule_strategy,
+          start_date: Time,
+          trial_override_configuration: Stigg::V1::SubscriptionPreviewParams::TrialOverrideConfiguration,
+          unit_quantity: Float
+        }
+        & Stigg::Internal::Type::request_parameters
+
+      class SubscriptionPreviewParams < Stigg::Internal::Type::BaseModel
+        extend Stigg::Internal::Type::RequestParameters::Converter
+        include Stigg::Internal::Type::RequestParameters
+
+        attr_accessor customer_id: String
+
+        attr_accessor plan_id: String
+
+        attr_reader addons: ::Array[Stigg::V1::SubscriptionPreviewParams::Addon]?
+
+        def addons=: (
+          ::Array[Stigg::V1::SubscriptionPreviewParams::Addon]
+        ) -> ::Array[Stigg::V1::SubscriptionPreviewParams::Addon]
+
+        attr_reader applied_coupon: Stigg::V1::SubscriptionPreviewParams::AppliedCoupon?
+
+        def applied_coupon=: (
+          Stigg::V1::SubscriptionPreviewParams::AppliedCoupon
+        ) -> Stigg::V1::SubscriptionPreviewParams::AppliedCoupon
+
+        attr_reader billable_features: ::Array[Stigg::V1::SubscriptionPreviewParams::BillableFeature]?
+
+        def billable_features=: (
+          ::Array[Stigg::V1::SubscriptionPreviewParams::BillableFeature]
+        ) -> ::Array[Stigg::V1::SubscriptionPreviewParams::BillableFeature]
+
+        attr_reader billing_country_code: String?
+
+        def billing_country_code=: (String) -> String
+
+        attr_reader billing_information: Stigg::V1::SubscriptionPreviewParams::BillingInformation?
+
+        def billing_information=: (
+          Stigg::V1::SubscriptionPreviewParams::BillingInformation
+        ) -> Stigg::V1::SubscriptionPreviewParams::BillingInformation
+
+        attr_reader billing_period: Stigg::Models::V1::SubscriptionPreviewParams::billing_period?
+
+        def billing_period=: (
+          Stigg::Models::V1::SubscriptionPreviewParams::billing_period
+        ) -> Stigg::Models::V1::SubscriptionPreviewParams::billing_period
+
+        attr_reader charges: ::Array[Stigg::V1::SubscriptionPreviewParams::Charge]?
+
+        def charges=: (
+          ::Array[Stigg::V1::SubscriptionPreviewParams::Charge]
+        ) -> ::Array[Stigg::V1::SubscriptionPreviewParams::Charge]
+
+        attr_reader paying_customer_id: String?
+
+        def paying_customer_id=: (String) -> String
+
+        attr_reader resource_id: String?
+
+        def resource_id=: (String) -> String
+
+        attr_reader schedule_strategy: Stigg::Models::V1::SubscriptionPreviewParams::schedule_strategy?
+
+        def schedule_strategy=: (
+          Stigg::Models::V1::SubscriptionPreviewParams::schedule_strategy
+        ) -> Stigg::Models::V1::SubscriptionPreviewParams::schedule_strategy
+
+        attr_reader start_date: Time?
+
+        def start_date=: (Time) -> Time
+
+        attr_reader trial_override_configuration: Stigg::V1::SubscriptionPreviewParams::TrialOverrideConfiguration?
+
+        def trial_override_configuration=: (
+          Stigg::V1::SubscriptionPreviewParams::TrialOverrideConfiguration
+        ) -> Stigg::V1::SubscriptionPreviewParams::TrialOverrideConfiguration
+
+        attr_reader unit_quantity: Float?
+
+        def unit_quantity=: (Float) -> Float
+
+        def initialize: (
+          customer_id: String,
+          plan_id: String,
+          ?addons: ::Array[Stigg::V1::SubscriptionPreviewParams::Addon],
+          ?applied_coupon: Stigg::V1::SubscriptionPreviewParams::AppliedCoupon,
+          ?billable_features: ::Array[Stigg::V1::SubscriptionPreviewParams::BillableFeature],
+          ?billing_country_code: String,
+          ?billing_information: Stigg::V1::SubscriptionPreviewParams::BillingInformation,
+          ?billing_period: Stigg::Models::V1::SubscriptionPreviewParams::billing_period,
+          ?charges: ::Array[Stigg::V1::SubscriptionPreviewParams::Charge],
+          ?paying_customer_id: String,
+          ?resource_id: String,
+          ?schedule_strategy: Stigg::Models::V1::SubscriptionPreviewParams::schedule_strategy,
+          ?start_date: Time,
+          ?trial_override_configuration: Stigg::V1::SubscriptionPreviewParams::TrialOverrideConfiguration,
+          ?unit_quantity: Float,
+          ?request_options: Stigg::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          customer_id: String,
+          plan_id: String,
+          addons: ::Array[Stigg::V1::SubscriptionPreviewParams::Addon],
+          applied_coupon: Stigg::V1::SubscriptionPreviewParams::AppliedCoupon,
+          billable_features: ::Array[Stigg::V1::SubscriptionPreviewParams::BillableFeature],
+          billing_country_code: String,
+          billing_information: Stigg::V1::SubscriptionPreviewParams::BillingInformation,
+          billing_period: Stigg::Models::V1::SubscriptionPreviewParams::billing_period,
+          charges: ::Array[Stigg::V1::SubscriptionPreviewParams::Charge],
+          paying_customer_id: String,
+          resource_id: String,
+          schedule_strategy: Stigg::Models::V1::SubscriptionPreviewParams::schedule_strategy,
+          start_date: Time,
+          trial_override_configuration: Stigg::V1::SubscriptionPreviewParams::TrialOverrideConfiguration,
+          unit_quantity: Float,
+          request_options: Stigg::RequestOptions
+        }
+
+        type addon = { addon_id: String, quantity: Integer }
+
+        class Addon < Stigg::Internal::Type::BaseModel
+          attr_accessor addon_id: String
+
+          attr_reader quantity: Integer?
+
+          def quantity=: (Integer) -> Integer
+
+          def initialize: (addon_id: String, ?quantity: Integer) -> void
+
+          def to_hash: -> { addon_id: String, quantity: Integer }
+        end
+
+        type applied_coupon =
+          {
+            billing_coupon_id: String,
+            configuration: Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Configuration,
+            coupon_id: String,
+            discount: Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Discount,
+            promotion_code: String
+          }
+
+        class AppliedCoupon < Stigg::Internal::Type::BaseModel
+          attr_reader billing_coupon_id: String?
+
+          def billing_coupon_id=: (String) -> String
+
+          attr_reader configuration: Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Configuration?
+
+          def configuration=: (
+            Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Configuration
+          ) -> Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Configuration
+
+          attr_reader coupon_id: String?
+
+          def coupon_id=: (String) -> String
+
+          attr_reader discount: Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Discount?
+
+          def discount=: (
+            Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Discount
+          ) -> Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Discount
+
+          attr_reader promotion_code: String?
+
+          def promotion_code=: (String) -> String
+
+          def initialize: (
+            ?billing_coupon_id: String,
+            ?configuration: Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Configuration,
+            ?coupon_id: String,
+            ?discount: Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Discount,
+            ?promotion_code: String
+          ) -> void
+
+          def to_hash: -> {
+            billing_coupon_id: String,
+            configuration: Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Configuration,
+            coupon_id: String,
+            discount: Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Discount,
+            promotion_code: String
+          }
+
+          type configuration = { start_date: Time }
+
+          class Configuration < Stigg::Internal::Type::BaseModel
+            attr_reader start_date: Time?
+
+            def start_date=: (Time) -> Time
+
+            def initialize: (?start_date: Time) -> void
+
+            def to_hash: -> { start_date: Time }
+          end
+
+          type discount =
+            {
+              amounts_off: ::Array[Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff]?,
+              description: String,
+              duration_in_months: Float,
+              name: String,
+              percent_off: Float
+            }
+
+          class Discount < Stigg::Internal::Type::BaseModel
+            attr_accessor amounts_off: ::Array[Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff]?
+
+            attr_reader description: String?
+
+            def description=: (String) -> String
+
+            attr_reader duration_in_months: Float?
+
+            def duration_in_months=: (Float) -> Float
+
+            attr_reader name: String?
+
+            def name=: (String) -> String
+
+            attr_reader percent_off: Float?
+
+            def percent_off=: (Float) -> Float
+
+            def initialize: (
+              ?amounts_off: ::Array[Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff]?,
+              ?description: String,
+              ?duration_in_months: Float,
+              ?name: String,
+              ?percent_off: Float
+            ) -> void
+
+            def to_hash: -> {
+              amounts_off: ::Array[Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff]?,
+              description: String,
+              duration_in_months: Float,
+              name: String,
+              percent_off: Float
+            }
+
+            type amounts_off =
+              {
+                amount: Float,
+                currency: Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::currency
+              }
+
+            class AmountsOff < Stigg::Internal::Type::BaseModel
+              attr_accessor amount: Float
+
+              attr_reader currency: Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::currency?
+
+              def currency=: (
+                Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::currency
+              ) -> Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::currency
+
+              def initialize: (
+                amount: Float,
+                ?currency: Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::currency
+              ) -> void
+
+              def to_hash: -> {
+                amount: Float,
+                currency: Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::currency
+              }
+
+              type currency =
+                :usd
+                | :aed
+                | :all
+                | :amd
+                | :ang
+                | :aud
+                | :awg
+                | :azn
+                | :bam
+                | :bbd
+                | :bdt
+                | :bgn
+                | :bif
+                | :bmd
+                | :bnd
+                | :bsd
+                | :bwp
+                | :byn
+                | :bzd
+                | :brl
+                | :cad
+                | :cdf
+                | :chf
+                | :cny
+                | :czk
+                | :dkk
+                | :dop
+                | :dzd
+                | :egp
+                | :etb
+                | :eur
+                | :fjd
+                | :gbp
+                | :gel
+                | :gip
+                | :gmd
+                | :gyd
+                | :hkd
+                | :hrk
+                | :htg
+                | :idr
+                | :ils
+                | :inr
+                | :isk
+                | :jmd
+                | :jpy
+                | :kes
+                | :kgs
+                | :khr
+                | :kmf
+                | :krw
+                | :kyd
+                | :kzt
+                | :lbp
+                | :lkr
+                | :lrd
+                | :lsl
+                | :mad
+                | :mdl
+                | :mga
+                | :mkd
+                | :mmk
+                | :mnt
+                | :mop
+                | :mro
+                | :mvr
+                | :mwk
+                | :mxn
+                | :myr
+                | :mzn
+                | :nad
+                | :ngn
+                | :nok
+                | :npr
+                | :nzd
+                | :pgk
+                | :php
+                | :pkr
+                | :pln
+                | :qar
+                | :ron
+                | :rsd
+                | :rub
+                | :rwf
+                | :sar
+                | :sbd
+                | :scr
+                | :sek
+                | :sgd
+                | :sle
+                | :sll
+                | :sos
+                | :szl
+                | :thb
+                | :tjs
+                | :top
+                | :try
+                | :ttd
+                | :tzs
+                | :uah
+                | :uzs
+                | :vnd
+                | :vuv
+                | :wst
+                | :xaf
+                | :xcd
+                | :yer
+                | :zar
+                | :zmw
+                | :clp
+                | :djf
+                | :gnf
+                | :ugx
+                | :pyg
+                | :xof
+                | :xpf
+
+              module Currency
+                extend Stigg::Internal::Type::Enum
+
+                USD: :usd
+                AED: :aed
+                ALL: :all
+                AMD: :amd
+                ANG: :ang
+                AUD: :aud
+                AWG: :awg
+                AZN: :azn
+                BAM: :bam
+                BBD: :bbd
+                BDT: :bdt
+                BGN: :bgn
+                BIF: :bif
+                BMD: :bmd
+                BND: :bnd
+                BSD: :bsd
+                BWP: :bwp
+                BYN: :byn
+                BZD: :bzd
+                BRL: :brl
+                CAD: :cad
+                CDF: :cdf
+                CHF: :chf
+                CNY: :cny
+                CZK: :czk
+                DKK: :dkk
+                DOP: :dop
+                DZD: :dzd
+                EGP: :egp
+                ETB: :etb
+                EUR: :eur
+                FJD: :fjd
+                GBP: :gbp
+                GEL: :gel
+                GIP: :gip
+                GMD: :gmd
+                GYD: :gyd
+                HKD: :hkd
+                HRK: :hrk
+                HTG: :htg
+                IDR: :idr
+                ILS: :ils
+                INR: :inr
+                ISK: :isk
+                JMD: :jmd
+                JPY: :jpy
+                KES: :kes
+                KGS: :kgs
+                KHR: :khr
+                KMF: :kmf
+                KRW: :krw
+                KYD: :kyd
+                KZT: :kzt
+                LBP: :lbp
+                LKR: :lkr
+                LRD: :lrd
+                LSL: :lsl
+                MAD: :mad
+                MDL: :mdl
+                MGA: :mga
+                MKD: :mkd
+                MMK: :mmk
+                MNT: :mnt
+                MOP: :mop
+                MRO: :mro
+                MVR: :mvr
+                MWK: :mwk
+                MXN: :mxn
+                MYR: :myr
+                MZN: :mzn
+                NAD: :nad
+                NGN: :ngn
+                NOK: :nok
+                NPR: :npr
+                NZD: :nzd
+                PGK: :pgk
+                PHP: :php
+                PKR: :pkr
+                PLN: :pln
+                QAR: :qar
+                RON: :ron
+                RSD: :rsd
+                RUB: :rub
+                RWF: :rwf
+                SAR: :sar
+                SBD: :sbd
+                SCR: :scr
+                SEK: :sek
+                SGD: :sgd
+                SLE: :sle
+                SLL: :sll
+                SOS: :sos
+                SZL: :szl
+                THB: :thb
+                TJS: :tjs
+                TOP: :top
+                TRY: :try
+                TTD: :ttd
+                TZS: :tzs
+                UAH: :uah
+                UZS: :uzs
+                VND: :vnd
+                VUV: :vuv
+                WST: :wst
+                XAF: :xaf
+                XCD: :xcd
+                YER: :yer
+                ZAR: :zar
+                ZMW: :zmw
+                CLP: :clp
+                DJF: :djf
+                GNF: :gnf
+                UGX: :ugx
+                PYG: :pyg
+                XOF: :xof
+                XPF: :xpf
+
+                def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::currency]
+              end
+            end
+          end
+        end
+
+        type billable_feature = { feature_id: String, quantity: Float }
+
+        class BillableFeature < Stigg::Internal::Type::BaseModel
+          attr_accessor feature_id: String
+
+          attr_accessor quantity: Float
+
+          def initialize: (feature_id: String, quantity: Float) -> void
+
+          def to_hash: -> { feature_id: String, quantity: Float }
+        end
+
+        type billing_information =
+          {
+            billing_address: Stigg::V1::SubscriptionPreviewParams::BillingInformation::BillingAddress,
+            charge_on_behalf_of_account: String,
+            integration_id: String,
+            invoice_days_until_due: Float,
+            is_backdated: bool,
+            is_invoice_paid: bool,
+            metadata: top,
+            proration_behavior: Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation::proration_behavior,
+            tax_ids: ::Array[Stigg::V1::SubscriptionPreviewParams::BillingInformation::TaxID],
+            tax_percentage: Float,
+            tax_rate_ids: ::Array[String]
+          }
+
+        class BillingInformation < Stigg::Internal::Type::BaseModel
+          attr_reader billing_address: Stigg::V1::SubscriptionPreviewParams::BillingInformation::BillingAddress?
+
+          def billing_address=: (
+            Stigg::V1::SubscriptionPreviewParams::BillingInformation::BillingAddress
+          ) -> Stigg::V1::SubscriptionPreviewParams::BillingInformation::BillingAddress
+
+          attr_reader charge_on_behalf_of_account: String?
+
+          def charge_on_behalf_of_account=: (String) -> String
+
+          attr_reader integration_id: String?
+
+          def integration_id=: (String) -> String
+
+          attr_reader invoice_days_until_due: Float?
+
+          def invoice_days_until_due=: (Float) -> Float
+
+          attr_reader is_backdated: bool?
+
+          def is_backdated=: (bool) -> bool
+
+          attr_reader is_invoice_paid: bool?
+
+          def is_invoice_paid=: (bool) -> bool
+
+          attr_reader metadata: top?
+
+          def metadata=: (top) -> top
+
+          attr_reader proration_behavior: Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation::proration_behavior?
+
+          def proration_behavior=: (
+            Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation::proration_behavior
+          ) -> Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation::proration_behavior
+
+          attr_reader tax_ids: ::Array[Stigg::V1::SubscriptionPreviewParams::BillingInformation::TaxID]?
+
+          def tax_ids=: (
+            ::Array[Stigg::V1::SubscriptionPreviewParams::BillingInformation::TaxID]
+          ) -> ::Array[Stigg::V1::SubscriptionPreviewParams::BillingInformation::TaxID]
+
+          attr_reader tax_percentage: Float?
+
+          def tax_percentage=: (Float) -> Float
+
+          attr_reader tax_rate_ids: ::Array[String]?
+
+          def tax_rate_ids=: (::Array[String]) -> ::Array[String]
+
+          def initialize: (
+            ?billing_address: Stigg::V1::SubscriptionPreviewParams::BillingInformation::BillingAddress,
+            ?charge_on_behalf_of_account: String,
+            ?integration_id: String,
+            ?invoice_days_until_due: Float,
+            ?is_backdated: bool,
+            ?is_invoice_paid: bool,
+            ?metadata: top,
+            ?proration_behavior: Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation::proration_behavior,
+            ?tax_ids: ::Array[Stigg::V1::SubscriptionPreviewParams::BillingInformation::TaxID],
+            ?tax_percentage: Float,
+            ?tax_rate_ids: ::Array[String]
+          ) -> void
+
+          def to_hash: -> {
+            billing_address: Stigg::V1::SubscriptionPreviewParams::BillingInformation::BillingAddress,
+            charge_on_behalf_of_account: String,
+            integration_id: String,
+            invoice_days_until_due: Float,
+            is_backdated: bool,
+            is_invoice_paid: bool,
+            metadata: top,
+            proration_behavior: Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation::proration_behavior,
+            tax_ids: ::Array[Stigg::V1::SubscriptionPreviewParams::BillingInformation::TaxID],
+            tax_percentage: Float,
+            tax_rate_ids: ::Array[String]
+          }
+
+          type billing_address =
+            {
+              city: String,
+              country: String,
+              :line1 => String,
+              :line2 => String,
+              postal_code: String,
+              state: String
+            }
+
+          class BillingAddress < Stigg::Internal::Type::BaseModel
+            attr_reader city: String?
+
+            def city=: (String) -> String
+
+            attr_reader country: String?
+
+            def country=: (String) -> String
+
+            attr_reader line1: String?
+
+            def line1=: (String) -> String
+
+            attr_reader line2: String?
+
+            def line2=: (String) -> String
+
+            attr_reader postal_code: String?
+
+            def postal_code=: (String) -> String
+
+            attr_reader state: String?
+
+            def state=: (String) -> String
+
+            def initialize: (
+              ?city: String,
+              ?country: String,
+              ?line1: String,
+              ?line2: String,
+              ?postal_code: String,
+              ?state: String
+            ) -> void
+
+            def to_hash: -> {
+              city: String,
+              country: String,
+              :line1 => String,
+              :line2 => String,
+              postal_code: String,
+              state: String
+            }
+          end
+
+          type proration_behavior =
+            :INVOICE_IMMEDIATELY | :CREATE_PRORATIONS | :NONE
+
+          module ProrationBehavior
+            extend Stigg::Internal::Type::Enum
+
+            INVOICE_IMMEDIATELY: :INVOICE_IMMEDIATELY
+            CREATE_PRORATIONS: :CREATE_PRORATIONS
+            NONE: :NONE
+
+            def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation::proration_behavior]
+          end
+
+          type tax_id = { type: String, value: String }
+
+          class TaxID < Stigg::Internal::Type::BaseModel
+            attr_accessor type: String
+
+            attr_accessor value: String
+
+            def initialize: (type: String, value: String) -> void
+
+            def to_hash: -> { type: String, value: String }
+          end
+        end
+
+        type billing_period = :MONTHLY | :ANNUALLY
+
+        module BillingPeriod
+          extend Stigg::Internal::Type::Enum
+
+          MONTHLY: :MONTHLY
+          ANNUALLY: :ANNUALLY
+
+          def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionPreviewParams::billing_period]
+        end
+
+        type charge =
+          {
+            id: String,
+            quantity: Float,
+            type: Stigg::Models::V1::SubscriptionPreviewParams::Charge::type_
+          }
+
+        class Charge < Stigg::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor quantity: Float
+
+          attr_accessor type: Stigg::Models::V1::SubscriptionPreviewParams::Charge::type_
+
+          def initialize: (
+            id: String,
+            quantity: Float,
+            type: Stigg::Models::V1::SubscriptionPreviewParams::Charge::type_
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            quantity: Float,
+            type: Stigg::Models::V1::SubscriptionPreviewParams::Charge::type_
+          }
+
+          type type_ = :FEATURE | :CREDIT
+
+          module Type
+            extend Stigg::Internal::Type::Enum
+
+            FEATURE: :FEATURE
+            CREDIT: :CREDIT
+
+            def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionPreviewParams::Charge::type_]
+          end
+        end
+
+        type schedule_strategy =
+          :END_OF_BILLING_PERIOD | :END_OF_BILLING_MONTH | :IMMEDIATE
+
+        module ScheduleStrategy
+          extend Stigg::Internal::Type::Enum
+
+          END_OF_BILLING_PERIOD: :END_OF_BILLING_PERIOD
+          END_OF_BILLING_MONTH: :END_OF_BILLING_MONTH
+          IMMEDIATE: :IMMEDIATE
+
+          def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionPreviewParams::schedule_strategy]
+        end
+
+        type trial_override_configuration =
+          {
+            is_trial: bool,
+            trial_end_behavior: Stigg::Models::V1::SubscriptionPreviewParams::TrialOverrideConfiguration::trial_end_behavior,
+            trial_end_date: Time
+          }
+
+        class TrialOverrideConfiguration < Stigg::Internal::Type::BaseModel
+          attr_accessor is_trial: bool
+
+          attr_reader trial_end_behavior: Stigg::Models::V1::SubscriptionPreviewParams::TrialOverrideConfiguration::trial_end_behavior?
+
+          def trial_end_behavior=: (
+            Stigg::Models::V1::SubscriptionPreviewParams::TrialOverrideConfiguration::trial_end_behavior
+          ) -> Stigg::Models::V1::SubscriptionPreviewParams::TrialOverrideConfiguration::trial_end_behavior
+
+          attr_reader trial_end_date: Time?
+
+          def trial_end_date=: (Time) -> Time
+
+          def initialize: (
+            is_trial: bool,
+            ?trial_end_behavior: Stigg::Models::V1::SubscriptionPreviewParams::TrialOverrideConfiguration::trial_end_behavior,
+            ?trial_end_date: Time
+          ) -> void
+
+          def to_hash: -> {
+            is_trial: bool,
+            trial_end_behavior: Stigg::Models::V1::SubscriptionPreviewParams::TrialOverrideConfiguration::trial_end_behavior,
+            trial_end_date: Time
+          }
+
+          type trial_end_behavior = :CONVERT_TO_PAID | :CANCEL_SUBSCRIPTION
+
+          module TrialEndBehavior
+            extend Stigg::Internal::Type::Enum
+
+            CONVERT_TO_PAID: :CONVERT_TO_PAID
+            CANCEL_SUBSCRIPTION: :CANCEL_SUBSCRIPTION
+
+            def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionPreviewParams::TrialOverrideConfiguration::trial_end_behavior]
+          end
+        end
+      end
+    end
+  end
+end

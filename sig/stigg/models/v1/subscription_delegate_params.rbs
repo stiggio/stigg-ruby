@@ -1,0 +1,26 @@
+module Stigg
+  module Models
+    module V1
+      type subscription_delegate_params =
+        { target_customer_id: String }
+        & Stigg::Internal::Type::request_parameters
+
+      class SubscriptionDelegateParams < Stigg::Internal::Type::BaseModel
+        extend Stigg::Internal::Type::RequestParameters::Converter
+        include Stigg::Internal::Type::RequestParameters
+
+        attr_accessor target_customer_id: String
+
+        def initialize: (
+          target_customer_id: String,
+          ?request_options: Stigg::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          target_customer_id: String,
+          request_options: Stigg::RequestOptions
+        }
+      end
+    end
+  end
+end

@@ -1,0 +1,54 @@
+module Stigg
+  module Models
+    module V1
+      module Customers
+        type usage_retrieve_params =
+          {
+            customer_id: String,
+            start_date: Time,
+            end_date: Time,
+            group_by: String,
+            resource_id: String?
+          }
+          & Stigg::Internal::Type::request_parameters
+
+        class UsageRetrieveParams < Stigg::Internal::Type::BaseModel
+          extend Stigg::Internal::Type::RequestParameters::Converter
+          include Stigg::Internal::Type::RequestParameters
+
+          attr_accessor customer_id: String
+
+          attr_accessor start_date: Time
+
+          attr_reader end_date: Time?
+
+          def end_date=: (Time) -> Time
+
+          attr_reader group_by: String?
+
+          def group_by=: (String) -> String
+
+          attr_accessor resource_id: String?
+
+          def initialize: (
+            customer_id: String,
+            start_date: Time,
+            ?end_date: Time,
+            ?group_by: String,
+            ?resource_id: String?,
+            ?request_options: Stigg::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            customer_id: String,
+            start_date: Time,
+            end_date: Time,
+            group_by: String,
+            resource_id: String?,
+            request_options: Stigg::RequestOptions
+          }
+        end
+      end
+    end
+  end
+end

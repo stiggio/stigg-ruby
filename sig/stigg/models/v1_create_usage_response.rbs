@@ -1,0 +1,85 @@
+module Stigg
+  module Models
+    type v1_create_usage_response =
+      { data: ::Array[Stigg::Models::V1CreateUsageResponse::Data] }
+
+    class V1CreateUsageResponse < Stigg::Internal::Type::BaseModel
+      attr_accessor data: ::Array[Stigg::Models::V1CreateUsageResponse::Data]
+
+      def initialize: (
+        data: ::Array[Stigg::Models::V1CreateUsageResponse::Data]
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[Stigg::Models::V1CreateUsageResponse::Data]
+      }
+
+      type data =
+        {
+          id: String,
+          created_at: Time,
+          customer_id: String,
+          feature_id: String,
+          timestamp: Time,
+          value: Float,
+          current_usage: Float?,
+          next_reset_date: Time?,
+          resource_id: String?,
+          usage_period_end: Time?,
+          usage_period_start: Time?
+        }
+
+      class Data < Stigg::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor created_at: Time
+
+        attr_accessor customer_id: String
+
+        attr_accessor feature_id: String
+
+        attr_accessor timestamp: Time
+
+        attr_accessor value: Float
+
+        attr_accessor current_usage: Float?
+
+        attr_accessor next_reset_date: Time?
+
+        attr_accessor resource_id: String?
+
+        attr_accessor usage_period_end: Time?
+
+        attr_accessor usage_period_start: Time?
+
+        def initialize: (
+          id: String,
+          created_at: Time,
+          customer_id: String,
+          feature_id: String,
+          timestamp: Time,
+          value: Float,
+          ?current_usage: Float?,
+          ?next_reset_date: Time?,
+          ?resource_id: String?,
+          ?usage_period_end: Time?,
+          ?usage_period_start: Time?
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          created_at: Time,
+          customer_id: String,
+          feature_id: String,
+          timestamp: Time,
+          value: Float,
+          current_usage: Float?,
+          next_reset_date: Time?,
+          resource_id: String?,
+          usage_period_end: Time?,
+          usage_period_start: Time?
+        }
+      end
+    end
+  end
+end
