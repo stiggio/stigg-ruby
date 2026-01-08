@@ -33,7 +33,7 @@ module Stigg
           ?limit: Integer,
           ?starting_after: String,
           ?request_options: Stigg::request_opts
-        ) -> Stigg::Models::V1::CustomerListResponse
+        ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::CustomerListResponse]
 
         def archive: (
           String id,

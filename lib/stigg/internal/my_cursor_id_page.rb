@@ -10,8 +10,8 @@ module Stigg
     #   end
     #
     # @example
-    #   my_cursor_id_page.auto_paging_each do |item|
-    #     puts(item)
+    #   my_cursor_id_page.auto_paging_each do |customer|
+    #     puts(customer)
     #   end
     class MyCursorIDPage
       include Stigg::Internal::Type::BasePage
