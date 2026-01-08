@@ -83,11 +83,7 @@ module Stigg
             limit: Integer,
             starting_after: String,
             request_options: Stigg::RequestOptions::OrHash
-          ).returns(
-            Stigg::Internal::MyCursorIDPage[
-              Stigg::Models::V1::CustomerListResponse
-            ]
-          )
+          ).returns(Stigg::Models::V1::CustomerListResponse)
         end
         def list(
           # Ending before this UUID for pagination
