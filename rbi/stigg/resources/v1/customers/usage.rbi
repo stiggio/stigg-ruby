@@ -26,7 +26,7 @@ module Stigg
             start_date:,
             # Query param: The end date of the range
             end_date: nil,
-            # Query param:
+            # Query param
             group_by: nil,
             # Query param: Resource id
             resource_id: nil,

@@ -17,7 +17,7 @@ module Stigg
           #
           # @param end_date [Time] Query param: The end date of the range
           #
-          # @param group_by [String] Query param:
+          # @param group_by [String] Query param
           #
           # @param resource_id [String, nil] Query param: Resource id
           #
