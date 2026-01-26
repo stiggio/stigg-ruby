@@ -10,9 +10,6 @@ module Stigg
         # @return [Stigg::Resources::V1::Customers::Usage]
         attr_reader :usage
 
-        # @return [Stigg::Resources::V1::Customers::Promotional]
-        attr_reader :promotional
-
         # Create a new Customer
         #
         # @overload create(id:, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil, request_options: {})
@@ -169,7 +166,6 @@ module Stigg
           @client = client
           @payment_method = Stigg::Resources::V1::Customers::PaymentMethod.new(client: client)
           @usage = Stigg::Resources::V1::Customers::Usage.new(client: client)
-          @promotional = Stigg::Resources::V1::Customers::Promotional.new(client: client)
         end
       end
     end

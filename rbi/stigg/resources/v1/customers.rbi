@@ -10,9 +10,6 @@ module Stigg
         sig { returns(Stigg::Resources::V1::Customers::Usage) }
         attr_reader :usage
 
-        sig { returns(Stigg::Resources::V1::Customers::Promotional) }
-        attr_reader :promotional
-
         # Create a new Customer
         sig do
           params(
