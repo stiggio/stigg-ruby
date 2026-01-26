@@ -17,13 +17,13 @@ module Stigg
           # @see Stigg::Models::V1::Subscriptions::FutureUpdateCancelPendingPaymentResponse#data
           class Data < Stigg::Internal::Type::BaseModel
             # @!attribute id
-            #   external id of the canceled future update subscription
+            #   Subscription ID
             #
             #   @return [String]
             required :id, String
 
             # @!method initialize(id:)
-            #   @param id [String] external id of the canceled future update subscription
+            #   @param id [String] Subscription ID
           end
         end
       end

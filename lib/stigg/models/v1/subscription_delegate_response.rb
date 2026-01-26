@@ -16,6 +16,7 @@ module Stigg
         # @see Stigg::Models::V1::SubscriptionDelegateResponse#data
         class Data < Stigg::Internal::Type::BaseModel
           # @!attribute id
+          #   Subscription ID
           #
           #   @return [String]
           required :id, String
@@ -145,7 +146,7 @@ module Stigg
           optional :trial_end_date, Time, api_name: :trialEndDate, nil?: true
 
           # @!method initialize(id:, billing_id:, created_at:, customer_id:, payment_collection:, plan_id:, pricing_type:, start_date:, status:, cancellation_date: nil, cancel_reason: nil, current_billing_period_end: nil, current_billing_period_start: nil, effective_end_date: nil, end_date: nil, metadata: nil, paying_customer_id: nil, payment_collection_method: nil, resource_id: nil, trial_end_date: nil)
-          #   @param id [String]
+          #   @param id [String] Subscription ID
           #
           #   @param billing_id [String, nil] Billing ID
           #
