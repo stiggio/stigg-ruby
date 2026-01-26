@@ -9,12 +9,12 @@ module Stigg
         attr_reader promotional: Stigg::Resources::V1::Customers::Promotional
 
         def create: (
-          email: String?,
-          external_id: String,
-          name: String?,
+          id: String,
           ?default_payment_method: Stigg::V1::CustomerCreateParams::DefaultPaymentMethod?,
+          ?email: String?,
           ?integrations: ::Array[Stigg::V1::CustomerCreateParams::Integration],
           ?metadata: ::Hash[Symbol, String],
+          ?name: String?,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::CustomerResponse
 

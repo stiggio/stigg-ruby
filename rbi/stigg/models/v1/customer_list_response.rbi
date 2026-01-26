@@ -41,6 +41,10 @@ module Stigg
               )
             end
 
+          # Customer slug
+          sig { returns(String) }
+          attr_accessor :id
+
           # Timestamp of when the record was deleted
           sig { returns(T.nilable(Time)) }
           attr_accessor :archived_at
@@ -52,18 +56,6 @@ module Stigg
           # Cursor ID for query pagination
           sig { returns(String) }
           attr_accessor :cursor_id
-
-          # The email of the customer
-          sig { returns(T.nilable(String)) }
-          attr_accessor :email
-
-          # Customer slug
-          sig { returns(String) }
-          attr_accessor :external_id
-
-          # The name of the customer
-          sig { returns(T.nilable(String)) }
-          attr_accessor :name
 
           # Timestamp of when the record was last updated
           sig { returns(Time) }
@@ -88,6 +80,10 @@ module Stigg
             ).void
           end
           attr_writer :default_payment_method
+
+          # The email of the customer
+          sig { returns(T.nilable(String)) }
+          attr_accessor :email
 
           # List of integrations
           sig do
@@ -118,69 +114,73 @@ module Stigg
           sig { params(metadata: T::Hash[Symbol, String]).void }
           attr_writer :metadata
 
+          # The name of the customer
+          sig { returns(T.nilable(String)) }
+          attr_accessor :name
+
           sig do
             params(
+              id: String,
               archived_at: T.nilable(Time),
               created_at: Time,
               cursor_id: String,
-              email: T.nilable(String),
-              external_id: String,
-              name: T.nilable(String),
               updated_at: Time,
               default_payment_method:
                 T.nilable(
                   Stigg::Models::V1::CustomerListResponse::Data::DefaultPaymentMethod::OrHash
                 ),
+              email: T.nilable(String),
               integrations:
                 T::Array[
                   Stigg::Models::V1::CustomerListResponse::Data::Integration::OrHash
                 ],
-              metadata: T::Hash[Symbol, String]
+              metadata: T::Hash[Symbol, String],
+              name: T.nilable(String)
             ).returns(T.attached_class)
           end
           def self.new(
+            # Customer slug
+            id:,
             # Timestamp of when the record was deleted
             archived_at:,
             # Timestamp of when the record was created
             created_at:,
             # Cursor ID for query pagination
             cursor_id:,
-            # The email of the customer
-            email:,
-            # Customer slug
-            external_id:,
-            # The name of the customer
-            name:,
             # Timestamp of when the record was last updated
             updated_at:,
             # The default payment method details
             default_payment_method: nil,
+            # The email of the customer
+            email: nil,
             # List of integrations
             integrations: nil,
             # Additional metadata
-            metadata: nil
+            metadata: nil,
+            # The name of the customer
+            name: nil
           )
           end
 
           sig do
             override.returns(
               {
+                id: String,
                 archived_at: T.nilable(Time),
                 created_at: Time,
                 cursor_id: String,
-                email: T.nilable(String),
-                external_id: String,
-                name: T.nilable(String),
                 updated_at: Time,
                 default_payment_method:
                   T.nilable(
                     Stigg::Models::V1::CustomerListResponse::Data::DefaultPaymentMethod
                   ),
+                email: T.nilable(String),
                 integrations:
                   T::Array[
                     Stigg::Models::V1::CustomerListResponse::Data::Integration
                   ],
-                metadata: T::Hash[Symbol, String]
+                metadata: T::Hash[Symbol, String],
+                name: T.nilable(String)
               }
             )
           end

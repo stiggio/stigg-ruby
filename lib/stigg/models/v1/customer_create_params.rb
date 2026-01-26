@@ -8,23 +8,11 @@ module Stigg
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
-        # @!attribute email
-        #   The email of the customer
-        #
-        #   @return [String, nil]
-        required :email, String, nil?: true
-
-        # @!attribute external_id
+        # @!attribute id
         #   Customer slug
         #
         #   @return [String]
-        required :external_id, String, api_name: :externalId
-
-        # @!attribute name
-        #   The name of the customer
-        #
-        #   @return [String, nil]
-        required :name, String, nil?: true
+        required :id, String
 
         # @!attribute default_payment_method
         #   The default payment method details
@@ -34,6 +22,12 @@ module Stigg
                  -> { Stigg::V1::CustomerCreateParams::DefaultPaymentMethod },
                  api_name: :defaultPaymentMethod,
                  nil?: true
+
+        # @!attribute email
+        #   The email of the customer
+        #
+        #   @return [String, nil]
+        optional :email, String, nil?: true
 
         # @!attribute integrations
         #   List of integrations
@@ -48,18 +42,24 @@ module Stigg
         #   @return [Hash{Symbol=>String}, nil]
         optional :metadata, Stigg::Internal::Type::HashOf[String]
 
-        # @!method initialize(email:, external_id:, name:, default_payment_method: nil, integrations: nil, metadata: nil, request_options: {})
-        #   @param email [String, nil] The email of the customer
+        # @!attribute name
+        #   The name of the customer
         #
-        #   @param external_id [String] Customer slug
-        #
-        #   @param name [String, nil] The name of the customer
+        #   @return [String, nil]
+        optional :name, String, nil?: true
+
+        # @!method initialize(id:, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil, request_options: {})
+        #   @param id [String] Customer slug
         #
         #   @param default_payment_method [Stigg::Models::V1::CustomerCreateParams::DefaultPaymentMethod, nil] The default payment method details
+        #
+        #   @param email [String, nil] The email of the customer
         #
         #   @param integrations [Array<Stigg::Models::V1::CustomerCreateParams::Integration>] List of integrations
         #
         #   @param metadata [Hash{Symbol=>String}] Additional metadata
+        #
+        #   @param name [String, nil] The name of the customer
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 

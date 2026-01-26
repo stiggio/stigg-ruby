@@ -16,32 +16,32 @@ module Stigg
         # Create a new Customer
         sig do
           params(
-            email: T.nilable(String),
-            external_id: String,
-            name: T.nilable(String),
+            id: String,
             default_payment_method:
               T.nilable(
                 Stigg::V1::CustomerCreateParams::DefaultPaymentMethod::OrHash
               ),
+            email: T.nilable(String),
             integrations:
               T::Array[Stigg::V1::CustomerCreateParams::Integration::OrHash],
             metadata: T::Hash[Symbol, String],
+            name: T.nilable(String),
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::CustomerResponse)
         end
         def create(
-          # The email of the customer
-          email:,
           # Customer slug
-          external_id:,
-          # The name of the customer
-          name:,
+          id:,
           # The default payment method details
           default_payment_method: nil,
+          # The email of the customer
+          email: nil,
           # List of integrations
           integrations: nil,
           # Additional metadata
           metadata: nil,
+          # The name of the customer
+          name: nil,
           request_options: {}
         )
         end

@@ -12,17 +12,9 @@ module Stigg
             T.any(Stigg::V1::CustomerCreateParams, Stigg::Internal::AnyHash)
           end
 
-        # The email of the customer
-        sig { returns(T.nilable(String)) }
-        attr_accessor :email
-
         # Customer slug
         sig { returns(String) }
-        attr_accessor :external_id
-
-        # The name of the customer
-        sig { returns(T.nilable(String)) }
-        attr_accessor :name
+        attr_accessor :id
 
         # The default payment method details
         sig do
@@ -41,6 +33,10 @@ module Stigg
           ).void
         end
         attr_writer :default_payment_method
+
+        # The email of the customer
+        sig { returns(T.nilable(String)) }
+        attr_accessor :email
 
         # List of integrations
         sig do
@@ -65,34 +61,38 @@ module Stigg
         sig { params(metadata: T::Hash[Symbol, String]).void }
         attr_writer :metadata
 
+        # The name of the customer
+        sig { returns(T.nilable(String)) }
+        attr_accessor :name
+
         sig do
           params(
-            email: T.nilable(String),
-            external_id: String,
-            name: T.nilable(String),
+            id: String,
             default_payment_method:
               T.nilable(
                 Stigg::V1::CustomerCreateParams::DefaultPaymentMethod::OrHash
               ),
+            email: T.nilable(String),
             integrations:
               T::Array[Stigg::V1::CustomerCreateParams::Integration::OrHash],
             metadata: T::Hash[Symbol, String],
+            name: T.nilable(String),
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
-          # The email of the customer
-          email:,
           # Customer slug
-          external_id:,
-          # The name of the customer
-          name:,
+          id:,
           # The default payment method details
           default_payment_method: nil,
+          # The email of the customer
+          email: nil,
           # List of integrations
           integrations: nil,
           # Additional metadata
           metadata: nil,
+          # The name of the customer
+          name: nil,
           request_options: {}
         )
         end
@@ -100,16 +100,16 @@ module Stigg
         sig do
           override.returns(
             {
-              email: T.nilable(String),
-              external_id: String,
-              name: T.nilable(String),
+              id: String,
               default_payment_method:
                 T.nilable(
                   Stigg::V1::CustomerCreateParams::DefaultPaymentMethod
                 ),
+              email: T.nilable(String),
               integrations:
                 T::Array[Stigg::V1::CustomerCreateParams::Integration],
               metadata: T::Hash[Symbol, String],
+              name: T.nilable(String),
               request_options: Stigg::RequestOptions
             }
           )
