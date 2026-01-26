@@ -179,6 +179,7 @@ module Stigg
                 )
               end
 
+            # Subscription ID
             sig { returns(String) }
             attr_accessor :id
 
@@ -319,6 +320,7 @@ module Stigg
               ).returns(T.attached_class)
             end
             def self.new(
+              # Subscription ID
               id:,
               # Billing ID
               billing_id:,

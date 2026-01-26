@@ -15,19 +15,19 @@ module Stigg
 
         # Create a new Customer
         #
-        # @overload create(email:, external_id:, name:, default_payment_method: nil, integrations: nil, metadata: nil, request_options: {})
+        # @overload create(id:, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil, request_options: {})
         #
-        # @param email [String, nil] The email of the customer
-        #
-        # @param external_id [String] Customer slug
-        #
-        # @param name [String, nil] The name of the customer
+        # @param id [String] Customer slug
         #
         # @param default_payment_method [Stigg::Models::V1::CustomerCreateParams::DefaultPaymentMethod, nil] The default payment method details
+        #
+        # @param email [String, nil] The email of the customer
         #
         # @param integrations [Array<Stigg::Models::V1::CustomerCreateParams::Integration>] List of integrations
         #
         # @param metadata [Hash{Symbol=>String}] Additional metadata
+        #
+        # @param name [String, nil] The name of the customer
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #

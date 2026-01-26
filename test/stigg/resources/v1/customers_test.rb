@@ -6,8 +6,7 @@ class Stigg::Test::Resources::V1::CustomersTest < Stigg::Test::ResourceTest
   def test_create_required_params
     skip("Prism tests are disabled")
 
-    response =
-      @stigg.v1.customers.create(email: "dev@stainless.com", external_id: "externalId", name: "name")
+    response = @stigg.v1.customers.create(id: "id")
 
     assert_pattern do
       response => Stigg::V1::CustomerResponse

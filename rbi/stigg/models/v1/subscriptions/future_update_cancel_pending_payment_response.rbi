@@ -57,13 +57,13 @@ module Stigg
                 )
               end
 
-            # external id of the canceled future update subscription
+            # Subscription ID
             sig { returns(String) }
             attr_accessor :id
 
             sig { params(id: String).returns(T.attached_class) }
             def self.new(
-              # external id of the canceled future update subscription
+              # Subscription ID
               id:
             )
             end

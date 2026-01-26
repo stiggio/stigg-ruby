@@ -15,6 +15,12 @@ module Stigg
 
         # @see Stigg::Models::V1::CustomerResponse#data
         class Data < Stigg::Internal::Type::BaseModel
+          # @!attribute id
+          #   Customer slug
+          #
+          #   @return [String]
+          required :id, String
+
           # @!attribute archived_at
           #   Timestamp of when the record was deleted
           #
@@ -26,24 +32,6 @@ module Stigg
           #
           #   @return [Time]
           required :created_at, Time, api_name: :createdAt
-
-          # @!attribute email
-          #   The email of the customer
-          #
-          #   @return [String, nil]
-          required :email, String, nil?: true
-
-          # @!attribute external_id
-          #   Customer slug
-          #
-          #   @return [String]
-          required :external_id, String, api_name: :externalId
-
-          # @!attribute name
-          #   The name of the customer
-          #
-          #   @return [String, nil]
-          required :name, String, nil?: true
 
           # @!attribute updated_at
           #   Timestamp of when the record was last updated
@@ -60,6 +48,12 @@ module Stigg
                    api_name: :defaultPaymentMethod,
                    nil?: true
 
+          # @!attribute email
+          #   The email of the customer
+          #
+          #   @return [String, nil]
+          optional :email, String, nil?: true
+
           # @!attribute integrations
           #   List of integrations
           #
@@ -73,24 +67,30 @@ module Stigg
           #   @return [Hash{Symbol=>String}, nil]
           optional :metadata, Stigg::Internal::Type::HashOf[String]
 
-          # @!method initialize(archived_at:, created_at:, email:, external_id:, name:, updated_at:, default_payment_method: nil, integrations: nil, metadata: nil)
+          # @!attribute name
+          #   The name of the customer
+          #
+          #   @return [String, nil]
+          optional :name, String, nil?: true
+
+          # @!method initialize(id:, archived_at:, created_at:, updated_at:, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil)
+          #   @param id [String] Customer slug
+          #
           #   @param archived_at [Time, nil] Timestamp of when the record was deleted
           #
           #   @param created_at [Time] Timestamp of when the record was created
-          #
-          #   @param email [String, nil] The email of the customer
-          #
-          #   @param external_id [String] Customer slug
-          #
-          #   @param name [String, nil] The name of the customer
           #
           #   @param updated_at [Time] Timestamp of when the record was last updated
           #
           #   @param default_payment_method [Stigg::Models::V1::CustomerResponse::Data::DefaultPaymentMethod, nil] The default payment method details
           #
+          #   @param email [String, nil] The email of the customer
+          #
           #   @param integrations [Array<Stigg::Models::V1::CustomerResponse::Data::Integration>] List of integrations
           #
           #   @param metadata [Hash{Symbol=>String}] Additional metadata
+          #
+          #   @param name [String, nil] The name of the customer
 
           # @see Stigg::Models::V1::CustomerResponse::Data#default_payment_method
           class DefaultPaymentMethod < Stigg::Internal::Type::BaseModel

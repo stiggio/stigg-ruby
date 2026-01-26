@@ -17,34 +17,32 @@ module Stigg
 
         type data =
           {
+            id: String,
             archived_at: Time?,
             created_at: Time,
             cursor_id: String,
-            email: String?,
-            external_id: String,
-            name: String?,
             updated_at: Time,
             default_payment_method: Stigg::Models::V1::CustomerListResponse::Data::DefaultPaymentMethod?,
+            email: String?,
             integrations: ::Array[Stigg::Models::V1::CustomerListResponse::Data::Integration],
-            metadata: ::Hash[Symbol, String]
+            metadata: ::Hash[Symbol, String],
+            name: String?
           }
 
         class Data < Stigg::Internal::Type::BaseModel
+          attr_accessor id: String
+
           attr_accessor archived_at: Time?
 
           attr_accessor created_at: Time
 
           attr_accessor cursor_id: String
 
-          attr_accessor email: String?
-
-          attr_accessor external_id: String
-
-          attr_accessor name: String?
-
           attr_accessor updated_at: Time
 
           attr_accessor default_payment_method: Stigg::Models::V1::CustomerListResponse::Data::DefaultPaymentMethod?
+
+          attr_accessor email: String?
 
           attr_reader integrations: ::Array[Stigg::Models::V1::CustomerListResponse::Data::Integration]?
 
@@ -56,30 +54,32 @@ module Stigg
 
           def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
 
+          attr_accessor name: String?
+
           def initialize: (
+            id: String,
             archived_at: Time?,
             created_at: Time,
             cursor_id: String,
-            email: String?,
-            external_id: String,
-            name: String?,
             updated_at: Time,
             ?default_payment_method: Stigg::Models::V1::CustomerListResponse::Data::DefaultPaymentMethod?,
+            ?email: String?,
             ?integrations: ::Array[Stigg::Models::V1::CustomerListResponse::Data::Integration],
-            ?metadata: ::Hash[Symbol, String]
+            ?metadata: ::Hash[Symbol, String],
+            ?name: String?
           ) -> void
 
           def to_hash: -> {
+            id: String,
             archived_at: Time?,
             created_at: Time,
             cursor_id: String,
-            email: String?,
-            external_id: String,
-            name: String?,
             updated_at: Time,
             default_payment_method: Stigg::Models::V1::CustomerListResponse::Data::DefaultPaymentMethod?,
+            email: String?,
             integrations: ::Array[Stigg::Models::V1::CustomerListResponse::Data::Integration],
-            metadata: ::Hash[Symbol, String]
+            metadata: ::Hash[Symbol, String],
+            name: String?
           }
 
           type default_payment_method =
