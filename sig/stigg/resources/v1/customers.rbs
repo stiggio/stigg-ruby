@@ -6,8 +6,6 @@ module Stigg
 
         attr_reader usage: Stigg::Resources::V1::Customers::Usage
 
-        attr_reader promotional: Stigg::Resources::V1::Customers::Promotional
-
         def create: (
           id: String,
           ?coupon_id: String?,
