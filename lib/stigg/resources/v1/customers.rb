@@ -15,9 +15,11 @@ module Stigg
 
         # Create a new Customer
         #
-        # @overload create(id:, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil, request_options: {})
+        # @overload create(id:, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil, request_options: {})
         #
         # @param id [String] Customer slug
+        #
+        # @param coupon_id [String, nil] Customer level coupon
         #
         # @param default_payment_method [Stigg::Models::V1::CustomerCreateParams::DefaultPaymentMethod, nil] The default payment method details
         #
@@ -66,9 +68,11 @@ module Stigg
 
         # Update an existing Customer
         #
-        # @overload update(id, email: nil, integrations: nil, metadata: nil, name: nil, request_options: {})
+        # @overload update(id, coupon_id: nil, email: nil, integrations: nil, metadata: nil, name: nil, request_options: {})
         #
         # @param id [String]
+        #
+        # @param coupon_id [String, nil] Customer level coupon
         #
         # @param email [String, nil] The email of the customer
         #

@@ -16,6 +16,10 @@ module Stigg
         sig { returns(String) }
         attr_accessor :id
 
+        # Customer level coupon
+        sig { returns(T.nilable(String)) }
+        attr_accessor :coupon_id
+
         # The default payment method details
         sig do
           returns(
@@ -68,6 +72,7 @@ module Stigg
         sig do
           params(
             id: String,
+            coupon_id: T.nilable(String),
             default_payment_method:
               T.nilable(
                 Stigg::V1::CustomerCreateParams::DefaultPaymentMethod::OrHash
@@ -83,6 +88,8 @@ module Stigg
         def self.new(
           # Customer slug
           id:,
+          # Customer level coupon
+          coupon_id: nil,
           # The default payment method details
           default_payment_method: nil,
           # The email of the customer
@@ -101,6 +108,7 @@ module Stigg
           override.returns(
             {
               id: String,
+              coupon_id: T.nilable(String),
               default_payment_method:
                 T.nilable(
                   Stigg::V1::CustomerCreateParams::DefaultPaymentMethod

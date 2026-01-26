@@ -39,6 +39,12 @@ module Stigg
           #   @return [Time]
           required :updated_at, Time, api_name: :updatedAt
 
+          # @!attribute coupon_id
+          #   Customer level coupon
+          #
+          #   @return [String, nil]
+          optional :coupon_id, String, api_name: :couponId, nil?: true
+
           # @!attribute default_payment_method
           #   The default payment method details
           #
@@ -73,7 +79,7 @@ module Stigg
           #   @return [String, nil]
           optional :name, String, nil?: true
 
-          # @!method initialize(id:, archived_at:, created_at:, updated_at:, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil)
+          # @!method initialize(id:, archived_at:, created_at:, updated_at:, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil)
           #   @param id [String] Customer slug
           #
           #   @param archived_at [Time, nil] Timestamp of when the record was deleted
@@ -81,6 +87,8 @@ module Stigg
           #   @param created_at [Time] Timestamp of when the record was created
           #
           #   @param updated_at [Time] Timestamp of when the record was last updated
+          #
+          #   @param coupon_id [String, nil] Customer level coupon
           #
           #   @param default_payment_method [Stigg::Models::V1::CustomerResponse::Data::DefaultPaymentMethod, nil] The default payment method details
           #

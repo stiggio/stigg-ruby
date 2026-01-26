@@ -17,6 +17,7 @@ module Stigg
         sig do
           params(
             id: String,
+            coupon_id: T.nilable(String),
             default_payment_method:
               T.nilable(
                 Stigg::V1::CustomerCreateParams::DefaultPaymentMethod::OrHash
@@ -32,6 +33,8 @@ module Stigg
         def create(
           # Customer slug
           id:,
+          # Customer level coupon
+          coupon_id: nil,
           # The default payment method details
           default_payment_method: nil,
           # The email of the customer
@@ -60,6 +63,7 @@ module Stigg
         sig do
           params(
             id: String,
+            coupon_id: T.nilable(String),
             email: T.nilable(String),
             integrations:
               T::Array[Stigg::V1::CustomerUpdateParams::Integration::OrHash],
@@ -70,6 +74,8 @@ module Stigg
         end
         def update(
           id,
+          # Customer level coupon
+          coupon_id: nil,
           # The email of the customer
           email: nil,
           # List of integrations
