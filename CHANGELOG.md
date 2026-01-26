@@ -1,0 +1,45 @@
+# Changelog
+
+## 0.1.0-alpha.1 (2026-01-26)
+
+Full Changelog: [v0.0.1-alpha.0...v0.1.0-alpha.1](https://github.com/stiggio/stigg-ruby/compare/v0.0.1-alpha.0...v0.1.0-alpha.1)
+
+### Features
+
+* **api:** added customer endpoints ([a5fe6f6](https://github.com/stiggio/stigg-ruby/commit/a5fe6f66221c703ce0ffe69d93eb7505006cd26c))
+* **api:** api update ([d7837d5](https://github.com/stiggio/stigg-ruby/commit/d7837d555674e47b4ee0acb667d5569910c27299))
+* **api:** api update ([325a9aa](https://github.com/stiggio/stigg-ruby/commit/325a9aa56de8a86f733083392dfbcc8f8a23c7a6))
+* **api:** api update ([a535a97](https://github.com/stiggio/stigg-ruby/commit/a535a97229a02b99843d9c899ab00d58540a4af8))
+* **api:** manual updates ([b546928](https://github.com/stiggio/stigg-ruby/commit/b5469281c5fbbc04008b1e49ae256f524cf59d4e))
+* **api:** manual updates ([afc3e12](https://github.com/stiggio/stigg-ruby/commit/afc3e129a5b46165ae5ef48538c74db78b69c2f7))
+* **api:** manual updates ([ba96ba4](https://github.com/stiggio/stigg-ruby/commit/ba96ba4cd299ef253d5a6ab365ab27b953ba471d))
+* **api:** manual updates ([3486e14](https://github.com/stiggio/stigg-ruby/commit/3486e146b25a9c84c7410006d24b47ba5afac4f8))
+* **api:** update via SDK Studio ([85e177a](https://github.com/stiggio/stigg-ruby/commit/85e177a7392c3134fa49c5ab770431251ae959be))
+* **api:** update via SDK Studio ([22b7a50](https://github.com/stiggio/stigg-ruby/commit/22b7a50703128cbb6914f90a0ea7a20fb6e465d0))
+* **api:** update via SDK Studio ([2ac7af8](https://github.com/stiggio/stigg-ruby/commit/2ac7af8f7b023b88838c117ac11c7df9b201c88f))
+
+
+### Bug Fixes
+
+* better thread safety via early initializing SSL store during HTTP client creation ([7cf8f10](https://github.com/stiggio/stigg-ruby/commit/7cf8f1001ea1896efa05d10257b9f94e14911aba))
+* calling `break` out of streams should be instantaneous ([5baa906](https://github.com/stiggio/stigg-ruby/commit/5baa906da86e8d47a4af8d82a16ae0e7479244a5))
+* **internal:** ensure sorbet test always runs serially ([6a262c3](https://github.com/stiggio/stigg-ruby/commit/6a262c361465133cb20c2d2080ea62433a5ded4f))
+* issue where json.parse errors when receiving HTTP 204 with nobody ([17f63d2](https://github.com/stiggio/stigg-ruby/commit/17f63d2d5025b2372f61b7ccfbdf52a0f9e89866))
+
+
+### Chores
+
+* bump dependency version and update sorbet types ([7ab1dcf](https://github.com/stiggio/stigg-ruby/commit/7ab1dcf5c94cadcdd8857601fd6439dc84312709))
+* collect metadata from type DSL ([be1c0d7](https://github.com/stiggio/stigg-ruby/commit/be1c0d738855319d1ab96fcfedefd68b3b86a445))
+* configure new SDK language ([e267cd7](https://github.com/stiggio/stigg-ruby/commit/e267cd74f323f7bb9cfa84a77589aa64bff6d48c))
+* explicitly require "base64" gem ([8f91392](https://github.com/stiggio/stigg-ruby/commit/8f91392fa973fcf024a398556acc8be36228be35))
+* fix typo in descriptions ([342c8de](https://github.com/stiggio/stigg-ruby/commit/342c8de73ff6ef1aa6e39ebaa0d7e3f856ea6280))
+* **internal:** codegen related update ([08884ec](https://github.com/stiggio/stigg-ruby/commit/08884ec53b56eb05b1f094fe71a183e86d26ea6c))
+* **internal:** codegen related update ([e54273a](https://github.com/stiggio/stigg-ruby/commit/e54273a0ac89b6059614c7f22bf431e23f67b90d))
+* **internal:** increase visibility of internal helper method ([90ef8db](https://github.com/stiggio/stigg-ruby/commit/90ef8db86b910261891a4c766b03a479f0be47b2))
+* **internal:** update `actions/checkout` version ([288d9d3](https://github.com/stiggio/stigg-ruby/commit/288d9d3b6a4ab0271c808b918efe0a98b3cd7fbb))
+* **internal:** update comment in script ([a4a4e03](https://github.com/stiggio/stigg-ruby/commit/a4a4e036bcc1448ecef269d0341d58bc522aba74))
+* move `cgi` into dependencies for ruby 4 ([f553755](https://github.com/stiggio/stigg-ruby/commit/f55375555cb5a8e5fd15552dc5f7beef61cecf62))
+* update @stainless-api/prism-cli to v5.15.0 ([aeb43c8](https://github.com/stiggio/stigg-ruby/commit/aeb43c81a3fcb722aeb3a37cfadb1068b2a6e39e))
+* update contribute.md ([16bfcbe](https://github.com/stiggio/stigg-ruby/commit/16bfcbed77346b27a6ee1647a8584a91a033cda0))
+* update SDK settings ([d3fe01a](https://github.com/stiggio/stigg-ruby/commit/d3fe01a6342b51cba6b81fdeb18c459185e33a2b))
