@@ -8,6 +8,12 @@ module Stigg
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
+        # @!attribute coupon_id
+        #   Customer level coupon
+        #
+        #   @return [String, nil]
+        optional :coupon_id, String, api_name: :couponId, nil?: true
+
         # @!attribute email
         #   The email of the customer
         #
@@ -33,7 +39,9 @@ module Stigg
         #   @return [String, nil]
         optional :name, String, nil?: true
 
-        # @!method initialize(email: nil, integrations: nil, metadata: nil, name: nil, request_options: {})
+        # @!method initialize(coupon_id: nil, email: nil, integrations: nil, metadata: nil, name: nil, request_options: {})
+        #   @param coupon_id [String, nil] Customer level coupon
+        #
         #   @param email [String, nil] The email of the customer
         #
         #   @param integrations [Array<Stigg::Models::V1::CustomerUpdateParams::Integration>] List of integrations

@@ -4,6 +4,7 @@ module Stigg
       type customer_create_params =
         {
           id: String,
+          coupon_id: String?,
           default_payment_method: Stigg::V1::CustomerCreateParams::DefaultPaymentMethod?,
           email: String?,
           integrations: ::Array[Stigg::V1::CustomerCreateParams::Integration],
@@ -17,6 +18,8 @@ module Stigg
         include Stigg::Internal::Type::RequestParameters
 
         attr_accessor id: String
+
+        attr_accessor coupon_id: String?
 
         attr_accessor default_payment_method: Stigg::V1::CustomerCreateParams::DefaultPaymentMethod?
 
@@ -36,6 +39,7 @@ module Stigg
 
         def initialize: (
           id: String,
+          ?coupon_id: String?,
           ?default_payment_method: Stigg::V1::CustomerCreateParams::DefaultPaymentMethod?,
           ?email: String?,
           ?integrations: ::Array[Stigg::V1::CustomerCreateParams::Integration],
@@ -46,6 +50,7 @@ module Stigg
 
         def to_hash: -> {
           id: String,
+          coupon_id: String?,
           default_payment_method: Stigg::V1::CustomerCreateParams::DefaultPaymentMethod?,
           email: String?,
           integrations: ::Array[Stigg::V1::CustomerCreateParams::Integration],
