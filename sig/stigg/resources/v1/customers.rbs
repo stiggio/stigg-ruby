@@ -10,6 +10,7 @@ module Stigg
 
         def create: (
           id: String,
+          ?coupon_id: String?,
           ?default_payment_method: Stigg::V1::CustomerCreateParams::DefaultPaymentMethod?,
           ?email: String?,
           ?integrations: ::Array[Stigg::V1::CustomerCreateParams::Integration],
@@ -25,6 +26,7 @@ module Stigg
 
         def update: (
           String id,
+          ?coupon_id: String?,
           ?email: String?,
           ?integrations: ::Array[Stigg::V1::CustomerUpdateParams::Integration],
           ?metadata: ::Hash[Symbol, String],

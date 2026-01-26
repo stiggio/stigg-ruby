@@ -49,6 +49,10 @@ module Stigg
           sig { returns(Time) }
           attr_accessor :updated_at
 
+          # Customer level coupon
+          sig { returns(T.nilable(String)) }
+          attr_accessor :coupon_id
+
           # The default payment method details
           sig do
             returns(
@@ -106,6 +110,7 @@ module Stigg
               archived_at: T.nilable(Time),
               created_at: Time,
               updated_at: Time,
+              coupon_id: T.nilable(String),
               default_payment_method:
                 T.nilable(
                   Stigg::V1::CustomerResponse::Data::DefaultPaymentMethod::OrHash
@@ -128,6 +133,8 @@ module Stigg
             created_at:,
             # Timestamp of when the record was last updated
             updated_at:,
+            # Customer level coupon
+            coupon_id: nil,
             # The default payment method details
             default_payment_method: nil,
             # The email of the customer
@@ -148,6 +155,7 @@ module Stigg
                 archived_at: T.nilable(Time),
                 created_at: Time,
                 updated_at: Time,
+                coupon_id: T.nilable(String),
                 default_payment_method:
                   T.nilable(
                     Stigg::V1::CustomerResponse::Data::DefaultPaymentMethod

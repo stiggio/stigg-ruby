@@ -14,6 +14,12 @@ module Stigg
         #   @return [String]
         required :id, String
 
+        # @!attribute coupon_id
+        #   Customer level coupon
+        #
+        #   @return [String, nil]
+        optional :coupon_id, String, api_name: :couponId, nil?: true
+
         # @!attribute default_payment_method
         #   The default payment method details
         #
@@ -48,8 +54,10 @@ module Stigg
         #   @return [String, nil]
         optional :name, String, nil?: true
 
-        # @!method initialize(id:, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil, request_options: {})
+        # @!method initialize(id:, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil, request_options: {})
         #   @param id [String] Customer slug
+        #
+        #   @param coupon_id [String, nil] Customer level coupon
         #
         #   @param default_payment_method [Stigg::Models::V1::CustomerCreateParams::DefaultPaymentMethod, nil] The default payment method details
         #
