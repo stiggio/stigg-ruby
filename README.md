@@ -15,7 +15,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "stigg", "~> 0.0.1.pre.alpha.0"
+gem "stigg", "~> 0.1.0.pre.alpha.1"
 ```
 
 <!-- x-release-please-end -->
