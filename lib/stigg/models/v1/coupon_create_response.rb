@@ -133,15 +133,13 @@ module Stigg
             # @!attribute currency
             #   The price currency
             #
-            #   @return [Symbol, Stigg::Models::V1::CouponCreateResponse::Data::AmountsOff::Currency, nil]
-            required :currency,
-                     enum: -> { Stigg::Models::V1::CouponCreateResponse::Data::AmountsOff::Currency },
-                     nil?: true
+            #   @return [Symbol, Stigg::Models::V1::CouponCreateResponse::Data::AmountsOff::Currency]
+            required :currency, enum: -> { Stigg::Models::V1::CouponCreateResponse::Data::AmountsOff::Currency }
 
             # @!method initialize(amount:, currency:)
             #   @param amount [Float] The price amount
             #
-            #   @param currency [Symbol, Stigg::Models::V1::CouponCreateResponse::Data::AmountsOff::Currency, nil] The price currency
+            #   @param currency [Symbol, Stigg::Models::V1::CouponCreateResponse::Data::AmountsOff::Currency] The price currency
 
             # The price currency
             #
