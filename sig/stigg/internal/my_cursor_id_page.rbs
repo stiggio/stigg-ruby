@@ -5,7 +5,24 @@ module Stigg
 
       attr_accessor data: ::Array[Elem]?
 
+      attr_accessor pagination: Pagination
+
       def inspect: -> String
+
+      type pagination = { next_: String, prev: String }
+      class Pagination < Stigg::Internal::Type::BaseModel
+        attr_reader next_: String?
+
+        def next_=: (String) -> String
+
+        attr_reader prev: String?
+
+        def prev=: (String) -> String
+
+        def initialize: (?next_: String, ?prev: String) -> void
+
+        def to_hash: -> { next_: String, prev: String }
+      end
     end
   end
 end

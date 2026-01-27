@@ -26,7 +26,7 @@ module Stigg
           feature_id: String,
           value: Integer,
           created_at: Time,
-          dimensions: ::Hash[Symbol, Stigg::Models::V1CreateUsageParams::Usage::dimension],
+          dimensions: ::Hash[Symbol, String],
           resource_id: String?,
           update_behavior: Stigg::Models::V1CreateUsageParams::Usage::update_behavior
         }
@@ -42,11 +42,9 @@ module Stigg
 
         def created_at=: (Time) -> Time
 
-        attr_reader dimensions: ::Hash[Symbol, Stigg::Models::V1CreateUsageParams::Usage::dimension]?
+        attr_reader dimensions: ::Hash[Symbol, String]?
 
-        def dimensions=: (
-          ::Hash[Symbol, Stigg::Models::V1CreateUsageParams::Usage::dimension]
-        ) -> ::Hash[Symbol, Stigg::Models::V1CreateUsageParams::Usage::dimension]
+        def dimensions=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
 
         attr_accessor resource_id: String?
 
@@ -61,7 +59,7 @@ module Stigg
           feature_id: String,
           value: Integer,
           ?created_at: Time,
-          ?dimensions: ::Hash[Symbol, Stigg::Models::V1CreateUsageParams::Usage::dimension],
+          ?dimensions: ::Hash[Symbol, String],
           ?resource_id: String?,
           ?update_behavior: Stigg::Models::V1CreateUsageParams::Usage::update_behavior
         ) -> void
@@ -71,18 +69,10 @@ module Stigg
           feature_id: String,
           value: Integer,
           created_at: Time,
-          dimensions: ::Hash[Symbol, Stigg::Models::V1CreateUsageParams::Usage::dimension],
+          dimensions: ::Hash[Symbol, String],
           resource_id: String?,
           update_behavior: Stigg::Models::V1CreateUsageParams::Usage::update_behavior
         }
-
-        type dimension = String | Float | bool
-
-        module Dimension
-          extend Stigg::Internal::Type::Union
-
-          def self?.variants: -> ::Array[Stigg::Models::V1CreateUsageParams::Usage::dimension]
-        end
 
         type update_behavior = :DELTA | :SET
 

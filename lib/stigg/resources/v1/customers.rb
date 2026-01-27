@@ -107,7 +107,7 @@ module Stigg
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Stigg::Models::V1::CustomerListResponse]
+        # @return [Stigg::Internal::MyCursorIDPage<Stigg::Models::V1::CustomerListResponse>]
         #
         # @see Stigg::Models::V1::CustomerListParams
         def list(params = {})
@@ -116,6 +116,7 @@ module Stigg
             method: :get,
             path: "api/v1/customers",
             query: parsed,
+            page: Stigg::Internal::MyCursorIDPage,
             model: Stigg::Models::V1::CustomerListResponse,
             options: options
           )
