@@ -10,8 +10,16 @@ module Stigg
         #   @return [Array<Stigg::Models::V1::CustomerListResponse::Data>]
         required :data, -> { Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::CustomerListResponse::Data] }
 
-        # @!method initialize(data:)
+        # @!attribute pagination
+        #   Pagination information including cursors for navigation
+        #
+        #   @return [Stigg::Models::V1::CustomerListResponse::Pagination]
+        required :pagination, -> { Stigg::Models::V1::CustomerListResponse::Pagination }
+
+        # @!method initialize(data:, pagination:)
         #   @param data [Array<Stigg::Models::V1::CustomerListResponse::Data>]
+        #
+        #   @param pagination [Stigg::Models::V1::CustomerListResponse::Pagination] Pagination information including cursors for navigation
 
         class Data < Stigg::Internal::Type::BaseModel
           # @!attribute id
@@ -31,12 +39,6 @@ module Stigg
           #
           #   @return [Time]
           required :created_at, Time, api_name: :createdAt
-
-          # @!attribute cursor_id
-          #   Cursor ID for query pagination
-          #
-          #   @return [String]
-          required :cursor_id, String, api_name: :cursorId
 
           # @!attribute updated_at
           #   Timestamp of when the record was last updated
@@ -84,14 +86,12 @@ module Stigg
           #   @return [String, nil]
           optional :name, String, nil?: true
 
-          # @!method initialize(id:, archived_at:, created_at:, cursor_id:, updated_at:, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil)
+          # @!method initialize(id:, archived_at:, created_at:, updated_at:, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil)
           #   @param id [String] Customer slug
           #
           #   @param archived_at [Time, nil] Timestamp of when the record was deleted
           #
           #   @param created_at [Time] Timestamp of when the record was created
-          #
-          #   @param cursor_id [String] Cursor ID for query pagination
           #
           #   @param updated_at [Time] Timestamp of when the record was last updated
           #
@@ -216,6 +216,32 @@ module Stigg
               #   @return [Array<Symbol>]
             end
           end
+        end
+
+        # @see Stigg::Models::V1::CustomerListResponse#pagination
+        class Pagination < Stigg::Internal::Type::BaseModel
+          # @!attribute next_
+          #   Cursor to fetch the next page (use with after parameter), null if no more pages
+          #
+          #   @return [String, nil]
+          required :next_, String, api_name: :next, nil?: true
+
+          # @!attribute prev
+          #   Cursor to fetch the previous page (use with before parameter), null if no
+          #   previous pages
+          #
+          #   @return [String, nil]
+          required :prev, String, nil?: true
+
+          # @!method initialize(next_:, prev:)
+          #   Some parameter documentations has been truncated, see
+          #   {Stigg::Models::V1::CustomerListResponse::Pagination} for more details.
+          #
+          #   Pagination information including cursors for navigation
+          #
+          #   @param next_ [String, nil] Cursor to fetch the next page (use with after parameter), null if no more pages
+          #
+          #   @param prev [String, nil] Cursor to fetch the previous page (use with before parameter), null if no previo
         end
       end
     end

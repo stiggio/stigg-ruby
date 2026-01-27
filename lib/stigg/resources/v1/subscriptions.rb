@@ -71,15 +71,15 @@ module Stigg
         #
         # Get a list of Subscriptions
         #
-        # @overload list(customer_id: nil, ending_before: nil, limit: nil, starting_after: nil, status: nil, request_options: {})
+        # @overload list(after: nil, before: nil, customer_id: nil, limit: nil, status: nil, request_options: {})
+        #
+        # @param after [String] Starting after this UUID for pagination
+        #
+        # @param before [String] Ending before this UUID for pagination
         #
         # @param customer_id [String] Filter by customer ID
         #
-        # @param ending_before [String] Ending before this UUID for pagination
-        #
         # @param limit [Integer] Items per page
-        #
-        # @param starting_after [String] Starting after this UUID for pagination
         #
         # @param status [String] Filter by subscription status (comma-separated for multiple statuses, e.g., ACTI
         #
@@ -93,11 +93,7 @@ module Stigg
           @client.request(
             method: :get,
             path: "api/v1/subscriptions",
-            query: parsed.transform_keys(
-              customer_id: "customerId",
-              ending_before: "endingBefore",
-              starting_after: "startingAfter"
-            ),
+            query: parsed.transform_keys(customer_id: "customerId"),
             model: Stigg::Models::V1::SubscriptionListResponse,
             options: options
           )

@@ -15,17 +15,38 @@ module Stigg
         sig { returns(T::Array[Stigg::Models::V1::CouponListResponse::Data]) }
         attr_accessor :data
 
+        # Pagination information including cursors for navigation
+        sig { returns(Stigg::Models::V1::CouponListResponse::Pagination) }
+        attr_reader :pagination
+
         sig do
           params(
-            data: T::Array[Stigg::Models::V1::CouponListResponse::Data::OrHash]
+            pagination:
+              Stigg::Models::V1::CouponListResponse::Pagination::OrHash
+          ).void
+        end
+        attr_writer :pagination
+
+        sig do
+          params(
+            data: T::Array[Stigg::Models::V1::CouponListResponse::Data::OrHash],
+            pagination:
+              Stigg::Models::V1::CouponListResponse::Pagination::OrHash
           ).returns(T.attached_class)
         end
-        def self.new(data:)
+        def self.new(
+          data:,
+          # Pagination information including cursors for navigation
+          pagination:
+        )
         end
 
         sig do
           override.returns(
-            { data: T::Array[Stigg::Models::V1::CouponListResponse::Data] }
+            {
+              data: T::Array[Stigg::Models::V1::CouponListResponse::Data],
+              pagination: Stigg::Models::V1::CouponListResponse::Pagination
+            }
           )
         end
         def to_hash
@@ -67,10 +88,6 @@ module Stigg
           # Timestamp of when the record was created
           sig { returns(Time) }
           attr_accessor :created_at
-
-          # Cursor ID for query pagination
-          sig { returns(String) }
-          attr_accessor :cursor_id
 
           # Description of the coupon
           sig { returns(T.nilable(String)) }
@@ -130,7 +147,6 @@ module Stigg
               billing_id: T.nilable(String),
               billing_link_url: T.nilable(String),
               created_at: Time,
-              cursor_id: String,
               description: T.nilable(String),
               duration_in_months: T.nilable(Float),
               name: String,
@@ -156,8 +172,6 @@ module Stigg
             billing_link_url:,
             # Timestamp of when the record was created
             created_at:,
-            # Cursor ID for query pagination
-            cursor_id:,
             # Description of the coupon
             description:,
             # Duration of the coupon validity in months
@@ -190,7 +204,6 @@ module Stigg
                 billing_id: T.nilable(String),
                 billing_link_url: T.nilable(String),
                 created_at: Time,
-                cursor_id: String,
                 description: T.nilable(String),
                 duration_in_months: T.nilable(Float),
                 name: String,
@@ -975,6 +988,48 @@ module Stigg
             end
             def self.values
             end
+          end
+        end
+
+        class Pagination < Stigg::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Stigg::Models::V1::CouponListResponse::Pagination,
+                Stigg::Internal::AnyHash
+              )
+            end
+
+          # Cursor to fetch the next page (use with after parameter), null if no more pages
+          sig { returns(T.nilable(String)) }
+          attr_accessor :next_
+
+          # Cursor to fetch the previous page (use with before parameter), null if no
+          # previous pages
+          sig { returns(T.nilable(String)) }
+          attr_accessor :prev
+
+          # Pagination information including cursors for navigation
+          sig do
+            params(next_: T.nilable(String), prev: T.nilable(String)).returns(
+              T.attached_class
+            )
+          end
+          def self.new(
+            # Cursor to fetch the next page (use with after parameter), null if no more pages
+            next_:,
+            # Cursor to fetch the previous page (use with before parameter), null if no
+            # previous pages
+            prev:
+          )
+          end
+
+          sig do
+            override.returns(
+              { next_: T.nilable(String), prev: T.nilable(String) }
+            )
+          end
+          def to_hash
           end
         end
       end

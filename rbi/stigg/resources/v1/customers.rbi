@@ -88,19 +88,19 @@ module Stigg
         # Get a list of Customers
         sig do
           params(
-            ending_before: String,
+            after: String,
+            before: String,
             limit: Integer,
-            starting_after: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::Models::V1::CustomerListResponse)
         end
         def list(
+          # Starting after this UUID for pagination
+          after: nil,
           # Ending before this UUID for pagination
-          ending_before: nil,
+          before: nil,
           # Items per page
           limit: nil,
-          # Starting after this UUID for pagination
-          starting_after: nil,
           request_options: {}
         )
         end
