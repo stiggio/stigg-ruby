@@ -2,17 +2,24 @@ module Stigg
   module Models
     module V1
       type customer_list_response =
-        { data: ::Array[Stigg::Models::V1::CustomerListResponse::Data] }
+        {
+          data: ::Array[Stigg::Models::V1::CustomerListResponse::Data],
+          pagination: Stigg::Models::V1::CustomerListResponse::Pagination
+        }
 
       class CustomerListResponse < Stigg::Internal::Type::BaseModel
         attr_accessor data: ::Array[Stigg::Models::V1::CustomerListResponse::Data]
 
+        attr_accessor pagination: Stigg::Models::V1::CustomerListResponse::Pagination
+
         def initialize: (
-          data: ::Array[Stigg::Models::V1::CustomerListResponse::Data]
+          data: ::Array[Stigg::Models::V1::CustomerListResponse::Data],
+          pagination: Stigg::Models::V1::CustomerListResponse::Pagination
         ) -> void
 
         def to_hash: -> {
-          data: ::Array[Stigg::Models::V1::CustomerListResponse::Data]
+          data: ::Array[Stigg::Models::V1::CustomerListResponse::Data],
+          pagination: Stigg::Models::V1::CustomerListResponse::Pagination
         }
 
         type data =
@@ -20,7 +27,6 @@ module Stigg
             id: String,
             archived_at: Time?,
             created_at: Time,
-            cursor_id: String,
             updated_at: Time,
             coupon_id: String?,
             default_payment_method: Stigg::Models::V1::CustomerListResponse::Data::DefaultPaymentMethod?,
@@ -36,8 +42,6 @@ module Stigg
           attr_accessor archived_at: Time?
 
           attr_accessor created_at: Time
-
-          attr_accessor cursor_id: String
 
           attr_accessor updated_at: Time
 
@@ -63,7 +67,6 @@ module Stigg
             id: String,
             archived_at: Time?,
             created_at: Time,
-            cursor_id: String,
             updated_at: Time,
             ?coupon_id: String?,
             ?default_payment_method: Stigg::Models::V1::CustomerListResponse::Data::DefaultPaymentMethod?,
@@ -77,7 +80,6 @@ module Stigg
             id: String,
             archived_at: Time?,
             created_at: Time,
-            cursor_id: String,
             updated_at: Time,
             coupon_id: String?,
             default_payment_method: Stigg::Models::V1::CustomerListResponse::Data::DefaultPaymentMethod?,
@@ -191,6 +193,18 @@ module Stigg
               def self?.values: -> ::Array[Stigg::Models::V1::CustomerListResponse::Data::Integration::vendor_identifier]
             end
           end
+        end
+
+        type pagination = { next_: String?, prev: String? }
+
+        class Pagination < Stigg::Internal::Type::BaseModel
+          attr_accessor next_: String?
+
+          attr_accessor prev: String?
+
+          def initialize: (next_: String?, prev: String?) -> void
+
+          def to_hash: -> { next_: String?, prev: String? }
         end
       end
     end

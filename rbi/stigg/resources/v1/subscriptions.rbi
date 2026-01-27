@@ -61,23 +61,23 @@ module Stigg
         # Get a list of Subscriptions
         sig do
           params(
+            after: String,
+            before: String,
             customer_id: String,
-            ending_before: String,
             limit: Integer,
-            starting_after: String,
             status: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::Models::V1::SubscriptionListResponse)
         end
         def list(
+          # Starting after this UUID for pagination
+          after: nil,
+          # Ending before this UUID for pagination
+          before: nil,
           # Filter by customer ID
           customer_id: nil,
-          # Ending before this UUID for pagination
-          ending_before: nil,
           # Items per page
           limit: nil,
-          # Starting after this UUID for pagination
-          starting_after: nil,
           # Filter by subscription status (comma-separated for multiple statuses, e.g.,
           # ACTIVE,IN_TRIAL)
           status: nil,

@@ -2,17 +2,24 @@ module Stigg
   module Models
     module V1
       type subscription_list_response =
-        { data: ::Array[Stigg::Models::V1::SubscriptionListResponse::Data] }
+        {
+          data: ::Array[Stigg::Models::V1::SubscriptionListResponse::Data],
+          pagination: Stigg::Models::V1::SubscriptionListResponse::Pagination
+        }
 
       class SubscriptionListResponse < Stigg::Internal::Type::BaseModel
         attr_accessor data: ::Array[Stigg::Models::V1::SubscriptionListResponse::Data]
 
+        attr_accessor pagination: Stigg::Models::V1::SubscriptionListResponse::Pagination
+
         def initialize: (
-          data: ::Array[Stigg::Models::V1::SubscriptionListResponse::Data]
+          data: ::Array[Stigg::Models::V1::SubscriptionListResponse::Data],
+          pagination: Stigg::Models::V1::SubscriptionListResponse::Pagination
         ) -> void
 
         def to_hash: -> {
-          data: ::Array[Stigg::Models::V1::SubscriptionListResponse::Data]
+          data: ::Array[Stigg::Models::V1::SubscriptionListResponse::Data],
+          pagination: Stigg::Models::V1::SubscriptionListResponse::Pagination
         }
 
         type data =
@@ -20,7 +27,6 @@ module Stigg
             id: String,
             billing_id: String?,
             created_at: Time,
-            cursor_id: String,
             customer_id: String,
             payment_collection: Stigg::Models::V1::SubscriptionListResponse::Data::payment_collection,
             plan_id: String,
@@ -46,8 +52,6 @@ module Stigg
           attr_accessor billing_id: String?
 
           attr_accessor created_at: Time
-
-          attr_accessor cursor_id: String
 
           attr_accessor customer_id: String
 
@@ -89,7 +93,6 @@ module Stigg
             id: String,
             billing_id: String?,
             created_at: Time,
-            cursor_id: String,
             customer_id: String,
             payment_collection: Stigg::Models::V1::SubscriptionListResponse::Data::payment_collection,
             plan_id: String,
@@ -113,7 +116,6 @@ module Stigg
             id: String,
             billing_id: String?,
             created_at: Time,
-            cursor_id: String,
             customer_id: String,
             payment_collection: Stigg::Models::V1::SubscriptionListResponse::Data::payment_collection,
             plan_id: String,
@@ -222,6 +224,18 @@ module Stigg
 
             def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionListResponse::Data::payment_collection_method]
           end
+        end
+
+        type pagination = { next_: String?, prev: String? }
+
+        class Pagination < Stigg::Internal::Type::BaseModel
+          attr_accessor next_: String?
+
+          attr_accessor prev: String?
+
+          def initialize: (next_: String?, prev: String?) -> void
+
+          def to_hash: -> { next_: String?, prev: String? }
         end
       end
     end

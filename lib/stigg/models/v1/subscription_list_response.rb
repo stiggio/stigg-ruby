@@ -10,8 +10,16 @@ module Stigg
         #   @return [Array<Stigg::Models::V1::SubscriptionListResponse::Data>]
         required :data, -> { Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::SubscriptionListResponse::Data] }
 
-        # @!method initialize(data:)
+        # @!attribute pagination
+        #   Pagination information including cursors for navigation
+        #
+        #   @return [Stigg::Models::V1::SubscriptionListResponse::Pagination]
+        required :pagination, -> { Stigg::Models::V1::SubscriptionListResponse::Pagination }
+
+        # @!method initialize(data:, pagination:)
         #   @param data [Array<Stigg::Models::V1::SubscriptionListResponse::Data>]
+        #
+        #   @param pagination [Stigg::Models::V1::SubscriptionListResponse::Pagination] Pagination information including cursors for navigation
 
         class Data < Stigg::Internal::Type::BaseModel
           # @!attribute id
@@ -31,12 +39,6 @@ module Stigg
           #
           #   @return [Time]
           required :created_at, Time, api_name: :createdAt
-
-          # @!attribute cursor_id
-          #   Cursor ID for query pagination
-          #
-          #   @return [String]
-          required :cursor_id, String, api_name: :cursorId
 
           # @!attribute customer_id
           #   Customer ID
@@ -150,14 +152,12 @@ module Stigg
           #   @return [Time, nil]
           optional :trial_end_date, Time, api_name: :trialEndDate, nil?: true
 
-          # @!method initialize(id:, billing_id:, created_at:, cursor_id:, customer_id:, payment_collection:, plan_id:, pricing_type:, start_date:, status:, cancellation_date: nil, cancel_reason: nil, current_billing_period_end: nil, current_billing_period_start: nil, effective_end_date: nil, end_date: nil, metadata: nil, paying_customer_id: nil, payment_collection_method: nil, resource_id: nil, trial_end_date: nil)
+          # @!method initialize(id:, billing_id:, created_at:, customer_id:, payment_collection:, plan_id:, pricing_type:, start_date:, status:, cancellation_date: nil, cancel_reason: nil, current_billing_period_end: nil, current_billing_period_start: nil, effective_end_date: nil, end_date: nil, metadata: nil, paying_customer_id: nil, payment_collection_method: nil, resource_id: nil, trial_end_date: nil)
           #   @param id [String] Subscription ID
           #
           #   @param billing_id [String, nil] Billing ID
           #
           #   @param created_at [Time] Created at
-          #
-          #   @param cursor_id [String] Cursor ID for query pagination
           #
           #   @param customer_id [String] Customer ID
           #
@@ -274,6 +274,32 @@ module Stigg
             # @!method self.values
             #   @return [Array<Symbol>]
           end
+        end
+
+        # @see Stigg::Models::V1::SubscriptionListResponse#pagination
+        class Pagination < Stigg::Internal::Type::BaseModel
+          # @!attribute next_
+          #   Cursor to fetch the next page (use with after parameter), null if no more pages
+          #
+          #   @return [String, nil]
+          required :next_, String, api_name: :next, nil?: true
+
+          # @!attribute prev
+          #   Cursor to fetch the previous page (use with before parameter), null if no
+          #   previous pages
+          #
+          #   @return [String, nil]
+          required :prev, String, nil?: true
+
+          # @!method initialize(next_:, prev:)
+          #   Some parameter documentations has been truncated, see
+          #   {Stigg::Models::V1::SubscriptionListResponse::Pagination} for more details.
+          #
+          #   Pagination information including cursors for navigation
+          #
+          #   @param next_ [String, nil] Cursor to fetch the next page (use with after parameter), null if no more pages
+          #
+          #   @param prev [String, nil] Cursor to fetch the previous page (use with before parameter), null if no previo
         end
       end
     end

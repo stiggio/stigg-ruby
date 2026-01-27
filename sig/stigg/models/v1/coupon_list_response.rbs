@@ -2,17 +2,24 @@ module Stigg
   module Models
     module V1
       type coupon_list_response =
-        { data: ::Array[Stigg::Models::V1::CouponListResponse::Data] }
+        {
+          data: ::Array[Stigg::Models::V1::CouponListResponse::Data],
+          pagination: Stigg::Models::V1::CouponListResponse::Pagination
+        }
 
       class CouponListResponse < Stigg::Internal::Type::BaseModel
         attr_accessor data: ::Array[Stigg::Models::V1::CouponListResponse::Data]
 
+        attr_accessor pagination: Stigg::Models::V1::CouponListResponse::Pagination
+
         def initialize: (
-          data: ::Array[Stigg::Models::V1::CouponListResponse::Data]
+          data: ::Array[Stigg::Models::V1::CouponListResponse::Data],
+          pagination: Stigg::Models::V1::CouponListResponse::Pagination
         ) -> void
 
         def to_hash: -> {
-          data: ::Array[Stigg::Models::V1::CouponListResponse::Data]
+          data: ::Array[Stigg::Models::V1::CouponListResponse::Data],
+          pagination: Stigg::Models::V1::CouponListResponse::Pagination
         }
 
         type data =
@@ -22,7 +29,6 @@ module Stigg
             billing_id: String?,
             billing_link_url: String?,
             created_at: Time,
-            cursor_id: String,
             description: String?,
             duration_in_months: Float?,
             name: String,
@@ -43,8 +49,6 @@ module Stigg
           attr_accessor billing_link_url: String?
 
           attr_accessor created_at: Time
-
-          attr_accessor cursor_id: String
 
           attr_accessor description: String?
 
@@ -68,7 +72,6 @@ module Stigg
             billing_id: String?,
             billing_link_url: String?,
             created_at: Time,
-            cursor_id: String,
             description: String?,
             duration_in_months: Float?,
             name: String,
@@ -85,7 +88,6 @@ module Stigg
             billing_id: String?,
             billing_link_url: String?,
             created_at: Time,
-            cursor_id: String,
             description: String?,
             duration_in_months: Float?,
             name: String,
@@ -392,6 +394,18 @@ module Stigg
 
             def self?.values: -> ::Array[Stigg::Models::V1::CouponListResponse::Data::type_]
           end
+        end
+
+        type pagination = { next_: String?, prev: String? }
+
+        class Pagination < Stigg::Internal::Type::BaseModel
+          attr_accessor next_: String?
+
+          attr_accessor prev: String?
+
+          def initialize: (next_: String?, prev: String?) -> void
+
+          def to_hash: -> { next_: String?, prev: String? }
         end
       end
     end

@@ -59,13 +59,13 @@ module Stigg
 
         # Get a list of Coupons
         #
-        # @overload list(ending_before: nil, limit: nil, starting_after: nil, request_options: {})
+        # @overload list(after: nil, before: nil, limit: nil, request_options: {})
         #
-        # @param ending_before [String] Ending before this UUID for pagination
+        # @param after [String] Starting after this UUID for pagination
+        #
+        # @param before [String] Ending before this UUID for pagination
         #
         # @param limit [Integer] Items per page
-        #
-        # @param starting_after [String] Starting after this UUID for pagination
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -77,7 +77,7 @@ module Stigg
           @client.request(
             method: :get,
             path: "api/v1/coupons",
-            query: parsed.transform_keys(ending_before: "endingBefore", starting_after: "startingAfter"),
+            query: parsed,
             model: Stigg::Models::V1::CouponListResponse,
             options: options
           )

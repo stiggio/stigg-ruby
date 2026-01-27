@@ -10,8 +10,16 @@ module Stigg
         #   @return [Array<Stigg::Models::V1::CouponListResponse::Data>]
         required :data, -> { Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::CouponListResponse::Data] }
 
-        # @!method initialize(data:)
+        # @!attribute pagination
+        #   Pagination information including cursors for navigation
+        #
+        #   @return [Stigg::Models::V1::CouponListResponse::Pagination]
+        required :pagination, -> { Stigg::Models::V1::CouponListResponse::Pagination }
+
+        # @!method initialize(data:, pagination:)
         #   @param data [Array<Stigg::Models::V1::CouponListResponse::Data>]
+        #
+        #   @param pagination [Stigg::Models::V1::CouponListResponse::Pagination] Pagination information including cursors for navigation
 
         class Data < Stigg::Internal::Type::BaseModel
           # @!attribute id
@@ -46,12 +54,6 @@ module Stigg
           #
           #   @return [Time]
           required :created_at, Time, api_name: :createdAt
-
-          # @!attribute cursor_id
-          #   Cursor ID for query pagination
-          #
-          #   @return [String]
-          required :cursor_id, String, api_name: :cursorId
 
           # @!attribute description
           #   Description of the coupon
@@ -101,7 +103,7 @@ module Stigg
           #   @return [Time]
           required :updated_at, Time, api_name: :updatedAt
 
-          # @!method initialize(id:, amounts_off:, billing_id:, billing_link_url:, created_at:, cursor_id:, description:, duration_in_months:, name:, percent_off:, source:, status:, type:, updated_at:)
+          # @!method initialize(id:, amounts_off:, billing_id:, billing_link_url:, created_at:, description:, duration_in_months:, name:, percent_off:, source:, status:, type:, updated_at:)
           #   @param id [String] The unique identifier for the entity
           #
           #   @param amounts_off [Array<Stigg::Models::V1::CouponListResponse::Data::AmountsOff>, nil] Fixed amount discounts in different currencies
@@ -111,8 +113,6 @@ module Stigg
           #   @param billing_link_url [String, nil] The URL to the entity in the billing provider
           #
           #   @param created_at [Time] Timestamp of when the record was created
-          #
-          #   @param cursor_id [String] Cursor ID for query pagination
           #
           #   @param description [String, nil] Description of the coupon
           #
@@ -317,6 +317,32 @@ module Stigg
             # @!method self.values
             #   @return [Array<Symbol>]
           end
+        end
+
+        # @see Stigg::Models::V1::CouponListResponse#pagination
+        class Pagination < Stigg::Internal::Type::BaseModel
+          # @!attribute next_
+          #   Cursor to fetch the next page (use with after parameter), null if no more pages
+          #
+          #   @return [String, nil]
+          required :next_, String, api_name: :next, nil?: true
+
+          # @!attribute prev
+          #   Cursor to fetch the previous page (use with before parameter), null if no
+          #   previous pages
+          #
+          #   @return [String, nil]
+          required :prev, String, nil?: true
+
+          # @!method initialize(next_:, prev:)
+          #   Some parameter documentations has been truncated, see
+          #   {Stigg::Models::V1::CouponListResponse::Pagination} for more details.
+          #
+          #   Pagination information including cursors for navigation
+          #
+          #   @param next_ [String, nil] Cursor to fetch the next page (use with after parameter), null if no more pages
+          #
+          #   @param prev [String, nil] Cursor to fetch the previous page (use with before parameter), null if no previo
         end
       end
     end

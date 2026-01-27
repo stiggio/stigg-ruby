@@ -46,7 +46,8 @@ class Stigg::Test::Resources::V1::SubscriptionsTest < Stigg::Test::ResourceTest
 
     assert_pattern do
       response => {
-        data: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::SubscriptionListResponse::Data])
+        data: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::SubscriptionListResponse::Data]),
+        pagination: Stigg::Models::V1::SubscriptionListResponse::Pagination
       }
     end
   end

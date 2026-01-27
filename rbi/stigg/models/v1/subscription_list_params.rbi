@@ -12,6 +12,20 @@ module Stigg
             T.any(Stigg::V1::SubscriptionListParams, Stigg::Internal::AnyHash)
           end
 
+        # Starting after this UUID for pagination
+        sig { returns(T.nilable(String)) }
+        attr_reader :after
+
+        sig { params(after: String).void }
+        attr_writer :after
+
+        # Ending before this UUID for pagination
+        sig { returns(T.nilable(String)) }
+        attr_reader :before
+
+        sig { params(before: String).void }
+        attr_writer :before
+
         # Filter by customer ID
         sig { returns(T.nilable(String)) }
         attr_reader :customer_id
@@ -19,26 +33,12 @@ module Stigg
         sig { params(customer_id: String).void }
         attr_writer :customer_id
 
-        # Ending before this UUID for pagination
-        sig { returns(T.nilable(String)) }
-        attr_reader :ending_before
-
-        sig { params(ending_before: String).void }
-        attr_writer :ending_before
-
         # Items per page
         sig { returns(T.nilable(Integer)) }
         attr_reader :limit
 
         sig { params(limit: Integer).void }
         attr_writer :limit
-
-        # Starting after this UUID for pagination
-        sig { returns(T.nilable(String)) }
-        attr_reader :starting_after
-
-        sig { params(starting_after: String).void }
-        attr_writer :starting_after
 
         # Filter by subscription status (comma-separated for multiple statuses, e.g.,
         # ACTIVE,IN_TRIAL)
@@ -50,23 +50,23 @@ module Stigg
 
         sig do
           params(
+            after: String,
+            before: String,
             customer_id: String,
-            ending_before: String,
             limit: Integer,
-            starting_after: String,
             status: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
+          # Starting after this UUID for pagination
+          after: nil,
+          # Ending before this UUID for pagination
+          before: nil,
           # Filter by customer ID
           customer_id: nil,
-          # Ending before this UUID for pagination
-          ending_before: nil,
           # Items per page
           limit: nil,
-          # Starting after this UUID for pagination
-          starting_after: nil,
           # Filter by subscription status (comma-separated for multiple statuses, e.g.,
           # ACTIVE,IN_TRIAL)
           status: nil,
@@ -77,10 +77,10 @@ module Stigg
         sig do
           override.returns(
             {
+              after: String,
+              before: String,
               customer_id: String,
-              ending_before: String,
               limit: Integer,
-              starting_after: String,
               status: String,
               request_options: Stigg::RequestOptions
             }
