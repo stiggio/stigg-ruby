@@ -94,22 +94,22 @@ module Stigg
           type amounts_off =
             {
               amount: Float,
-              currency: Stigg::Models::V1::CouponRetrieveResponse::Data::AmountsOff::currency?
+              currency: Stigg::Models::V1::CouponRetrieveResponse::Data::AmountsOff::currency
             }
 
           class AmountsOff < Stigg::Internal::Type::BaseModel
             attr_accessor amount: Float
 
-            attr_accessor currency: Stigg::Models::V1::CouponRetrieveResponse::Data::AmountsOff::currency?
+            attr_accessor currency: Stigg::Models::V1::CouponRetrieveResponse::Data::AmountsOff::currency
 
             def initialize: (
               amount: Float,
-              currency: Stigg::Models::V1::CouponRetrieveResponse::Data::AmountsOff::currency?
+              currency: Stigg::Models::V1::CouponRetrieveResponse::Data::AmountsOff::currency
             ) -> void
 
             def to_hash: -> {
               amount: Float,
-              currency: Stigg::Models::V1::CouponRetrieveResponse::Data::AmountsOff::currency?
+              currency: Stigg::Models::V1::CouponRetrieveResponse::Data::AmountsOff::currency
             }
 
             type currency =
