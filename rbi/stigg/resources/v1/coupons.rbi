@@ -56,7 +56,11 @@ module Stigg
             before: String,
             limit: Integer,
             request_options: Stigg::RequestOptions::OrHash
-          ).returns(Stigg::Models::V1::CouponListResponse)
+          ).returns(
+            Stigg::Internal::MyCursorIDPage[
+              Stigg::Models::V1::CouponListResponse
+            ]
+          )
         end
         def list(
           # Starting after this UUID for pagination

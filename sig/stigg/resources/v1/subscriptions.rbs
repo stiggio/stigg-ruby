@@ -30,7 +30,7 @@ module Stigg
           ?limit: Integer,
           ?status: String,
           ?request_options: Stigg::request_opts
-        ) -> Stigg::Models::V1::SubscriptionListResponse
+        ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::SubscriptionListResponse]
 
         def delegate: (
           String id,

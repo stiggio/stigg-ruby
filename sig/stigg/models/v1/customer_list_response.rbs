@@ -3,208 +3,174 @@ module Stigg
     module V1
       type customer_list_response =
         {
-          data: ::Array[Stigg::Models::V1::CustomerListResponse::Data],
-          pagination: Stigg::Models::V1::CustomerListResponse::Pagination
+          id: String,
+          archived_at: Time?,
+          created_at: Time,
+          updated_at: Time,
+          coupon_id: String?,
+          default_payment_method: Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod?,
+          email: String?,
+          integrations: ::Array[Stigg::Models::V1::CustomerListResponse::Integration],
+          metadata: ::Hash[Symbol, String],
+          name: String?
         }
 
       class CustomerListResponse < Stigg::Internal::Type::BaseModel
-        attr_accessor data: ::Array[Stigg::Models::V1::CustomerListResponse::Data]
+        attr_accessor id: String
 
-        attr_accessor pagination: Stigg::Models::V1::CustomerListResponse::Pagination
+        attr_accessor archived_at: Time?
+
+        attr_accessor created_at: Time
+
+        attr_accessor updated_at: Time
+
+        attr_accessor coupon_id: String?
+
+        attr_accessor default_payment_method: Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod?
+
+        attr_accessor email: String?
+
+        attr_reader integrations: ::Array[Stigg::Models::V1::CustomerListResponse::Integration]?
+
+        def integrations=: (
+          ::Array[Stigg::Models::V1::CustomerListResponse::Integration]
+        ) -> ::Array[Stigg::Models::V1::CustomerListResponse::Integration]
+
+        attr_reader metadata: ::Hash[Symbol, String]?
+
+        def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+        attr_accessor name: String?
 
         def initialize: (
-          data: ::Array[Stigg::Models::V1::CustomerListResponse::Data],
-          pagination: Stigg::Models::V1::CustomerListResponse::Pagination
+          id: String,
+          archived_at: Time?,
+          created_at: Time,
+          updated_at: Time,
+          ?coupon_id: String?,
+          ?default_payment_method: Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod?,
+          ?email: String?,
+          ?integrations: ::Array[Stigg::Models::V1::CustomerListResponse::Integration],
+          ?metadata: ::Hash[Symbol, String],
+          ?name: String?
         ) -> void
 
         def to_hash: -> {
-          data: ::Array[Stigg::Models::V1::CustomerListResponse::Data],
-          pagination: Stigg::Models::V1::CustomerListResponse::Pagination
+          id: String,
+          archived_at: Time?,
+          created_at: Time,
+          updated_at: Time,
+          coupon_id: String?,
+          default_payment_method: Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod?,
+          email: String?,
+          integrations: ::Array[Stigg::Models::V1::CustomerListResponse::Integration],
+          metadata: ::Hash[Symbol, String],
+          name: String?
         }
 
-        type data =
+        type default_payment_method =
           {
-            id: String,
-            archived_at: Time?,
-            created_at: Time,
-            updated_at: Time,
-            coupon_id: String?,
-            default_payment_method: Stigg::Models::V1::CustomerListResponse::Data::DefaultPaymentMethod?,
-            email: String?,
-            integrations: ::Array[Stigg::Models::V1::CustomerListResponse::Data::Integration],
-            metadata: ::Hash[Symbol, String],
-            name: String?
+            billing_id: String?,
+            card_expiry_month: Float?,
+            card_expiry_year: Float?,
+            :card_last4_digits => String?,
+            type: Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::type_
           }
 
-        class Data < Stigg::Internal::Type::BaseModel
+        class DefaultPaymentMethod < Stigg::Internal::Type::BaseModel
+          attr_accessor billing_id: String?
+
+          attr_accessor card_expiry_month: Float?
+
+          attr_accessor card_expiry_year: Float?
+
+          attr_accessor card_last4_digits: String?
+
+          attr_accessor type: Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::type_
+
+          def initialize: (
+            billing_id: String?,
+            card_expiry_month: Float?,
+            card_expiry_year: Float?,
+            card_last4_digits: String?,
+            type: Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::type_
+          ) -> void
+
+          def to_hash: -> {
+            billing_id: String?,
+            card_expiry_month: Float?,
+            card_expiry_year: Float?,
+            :card_last4_digits => String?,
+            type: Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::type_
+          }
+
+          type type_ = :CARD | :BANK | :CASH_APP
+
+          module Type
+            extend Stigg::Internal::Type::Enum
+
+            CARD: :CARD
+            BANK: :BANK
+            CASH_APP: :CASH_APP
+
+            def self?.values: -> ::Array[Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::type_]
+          end
+        end
+
+        type integration =
+          {
+            id: String,
+            synced_entity_id: String?,
+            vendor_identifier: Stigg::Models::V1::CustomerListResponse::Integration::vendor_identifier
+          }
+
+        class Integration < Stigg::Internal::Type::BaseModel
           attr_accessor id: String
 
-          attr_accessor archived_at: Time?
+          attr_accessor synced_entity_id: String?
 
-          attr_accessor created_at: Time
-
-          attr_accessor updated_at: Time
-
-          attr_accessor coupon_id: String?
-
-          attr_accessor default_payment_method: Stigg::Models::V1::CustomerListResponse::Data::DefaultPaymentMethod?
-
-          attr_accessor email: String?
-
-          attr_reader integrations: ::Array[Stigg::Models::V1::CustomerListResponse::Data::Integration]?
-
-          def integrations=: (
-            ::Array[Stigg::Models::V1::CustomerListResponse::Data::Integration]
-          ) -> ::Array[Stigg::Models::V1::CustomerListResponse::Data::Integration]
-
-          attr_reader metadata: ::Hash[Symbol, String]?
-
-          def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
-
-          attr_accessor name: String?
+          attr_accessor vendor_identifier: Stigg::Models::V1::CustomerListResponse::Integration::vendor_identifier
 
           def initialize: (
             id: String,
-            archived_at: Time?,
-            created_at: Time,
-            updated_at: Time,
-            ?coupon_id: String?,
-            ?default_payment_method: Stigg::Models::V1::CustomerListResponse::Data::DefaultPaymentMethod?,
-            ?email: String?,
-            ?integrations: ::Array[Stigg::Models::V1::CustomerListResponse::Data::Integration],
-            ?metadata: ::Hash[Symbol, String],
-            ?name: String?
+            synced_entity_id: String?,
+            vendor_identifier: Stigg::Models::V1::CustomerListResponse::Integration::vendor_identifier
           ) -> void
 
           def to_hash: -> {
             id: String,
-            archived_at: Time?,
-            created_at: Time,
-            updated_at: Time,
-            coupon_id: String?,
-            default_payment_method: Stigg::Models::V1::CustomerListResponse::Data::DefaultPaymentMethod?,
-            email: String?,
-            integrations: ::Array[Stigg::Models::V1::CustomerListResponse::Data::Integration],
-            metadata: ::Hash[Symbol, String],
-            name: String?
+            synced_entity_id: String?,
+            vendor_identifier: Stigg::Models::V1::CustomerListResponse::Integration::vendor_identifier
           }
 
-          type default_payment_method =
-            {
-              billing_id: String?,
-              card_expiry_month: Float?,
-              card_expiry_year: Float?,
-              :card_last4_digits => String?,
-              type: Stigg::Models::V1::CustomerListResponse::Data::DefaultPaymentMethod::type_
-            }
+          type vendor_identifier =
+            :AUTH0
+            | :ZUORA
+            | :STRIPE
+            | :HUBSPOT
+            | :AWS_MARKETPLACE
+            | :SNOWFLAKE
+            | :SALESFORCE
+            | :BIG_QUERY
+            | :OPEN_FGA
+            | :APP_STORE
 
-          class DefaultPaymentMethod < Stigg::Internal::Type::BaseModel
-            attr_accessor billing_id: String?
+          module VendorIdentifier
+            extend Stigg::Internal::Type::Enum
 
-            attr_accessor card_expiry_month: Float?
+            AUTH0: :AUTH0
+            ZUORA: :ZUORA
+            STRIPE: :STRIPE
+            HUBSPOT: :HUBSPOT
+            AWS_MARKETPLACE: :AWS_MARKETPLACE
+            SNOWFLAKE: :SNOWFLAKE
+            SALESFORCE: :SALESFORCE
+            BIG_QUERY: :BIG_QUERY
+            OPEN_FGA: :OPEN_FGA
+            APP_STORE: :APP_STORE
 
-            attr_accessor card_expiry_year: Float?
-
-            attr_accessor card_last4_digits: String?
-
-            attr_accessor type: Stigg::Models::V1::CustomerListResponse::Data::DefaultPaymentMethod::type_
-
-            def initialize: (
-              billing_id: String?,
-              card_expiry_month: Float?,
-              card_expiry_year: Float?,
-              card_last4_digits: String?,
-              type: Stigg::Models::V1::CustomerListResponse::Data::DefaultPaymentMethod::type_
-            ) -> void
-
-            def to_hash: -> {
-              billing_id: String?,
-              card_expiry_month: Float?,
-              card_expiry_year: Float?,
-              :card_last4_digits => String?,
-              type: Stigg::Models::V1::CustomerListResponse::Data::DefaultPaymentMethod::type_
-            }
-
-            type type_ = :CARD | :BANK | :CASH_APP
-
-            module Type
-              extend Stigg::Internal::Type::Enum
-
-              CARD: :CARD
-              BANK: :BANK
-              CASH_APP: :CASH_APP
-
-              def self?.values: -> ::Array[Stigg::Models::V1::CustomerListResponse::Data::DefaultPaymentMethod::type_]
-            end
+            def self?.values: -> ::Array[Stigg::Models::V1::CustomerListResponse::Integration::vendor_identifier]
           end
-
-          type integration =
-            {
-              id: String,
-              synced_entity_id: String?,
-              vendor_identifier: Stigg::Models::V1::CustomerListResponse::Data::Integration::vendor_identifier
-            }
-
-          class Integration < Stigg::Internal::Type::BaseModel
-            attr_accessor id: String
-
-            attr_accessor synced_entity_id: String?
-
-            attr_accessor vendor_identifier: Stigg::Models::V1::CustomerListResponse::Data::Integration::vendor_identifier
-
-            def initialize: (
-              id: String,
-              synced_entity_id: String?,
-              vendor_identifier: Stigg::Models::V1::CustomerListResponse::Data::Integration::vendor_identifier
-            ) -> void
-
-            def to_hash: -> {
-              id: String,
-              synced_entity_id: String?,
-              vendor_identifier: Stigg::Models::V1::CustomerListResponse::Data::Integration::vendor_identifier
-            }
-
-            type vendor_identifier =
-              :AUTH0
-              | :ZUORA
-              | :STRIPE
-              | :HUBSPOT
-              | :AWS_MARKETPLACE
-              | :SNOWFLAKE
-              | :SALESFORCE
-              | :BIG_QUERY
-              | :OPEN_FGA
-              | :APP_STORE
-
-            module VendorIdentifier
-              extend Stigg::Internal::Type::Enum
-
-              AUTH0: :AUTH0
-              ZUORA: :ZUORA
-              STRIPE: :STRIPE
-              HUBSPOT: :HUBSPOT
-              AWS_MARKETPLACE: :AWS_MARKETPLACE
-              SNOWFLAKE: :SNOWFLAKE
-              SALESFORCE: :SALESFORCE
-              BIG_QUERY: :BIG_QUERY
-              OPEN_FGA: :OPEN_FGA
-              APP_STORE: :APP_STORE
-
-              def self?.values: -> ::Array[Stigg::Models::V1::CustomerListResponse::Data::Integration::vendor_identifier]
-            end
-          end
-        end
-
-        type pagination = { next_: String?, prev: String? }
-
-        class Pagination < Stigg::Internal::Type::BaseModel
-          attr_accessor next_: String?
-
-          attr_accessor prev: String?
-
-          def initialize: (next_: String?, prev: String?) -> void
-
-          def to_hash: -> { next_: String?, prev: String? }
         end
       end
     end

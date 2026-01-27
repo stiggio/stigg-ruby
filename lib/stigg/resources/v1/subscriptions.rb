@@ -85,7 +85,7 @@ module Stigg
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Stigg::Models::V1::SubscriptionListResponse]
+        # @return [Stigg::Internal::MyCursorIDPage<Stigg::Models::V1::SubscriptionListResponse>]
         #
         # @see Stigg::Models::V1::SubscriptionListParams
         def list(params = {})
@@ -94,6 +94,7 @@ module Stigg
             method: :get,
             path: "api/v1/subscriptions",
             query: parsed.transform_keys(customer_id: "customerId"),
+            page: Stigg::Internal::MyCursorIDPage,
             model: Stigg::Models::V1::SubscriptionListResponse,
             options: options
           )

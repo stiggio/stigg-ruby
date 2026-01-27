@@ -5,301 +5,257 @@ module Stigg
     module V1
       # @see Stigg::Resources::V1::Subscriptions#list
       class SubscriptionListResponse < Stigg::Internal::Type::BaseModel
-        # @!attribute data
+        # @!attribute id
+        #   Subscription ID
         #
-        #   @return [Array<Stigg::Models::V1::SubscriptionListResponse::Data>]
-        required :data, -> { Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::SubscriptionListResponse::Data] }
+        #   @return [String]
+        required :id, String
 
-        # @!attribute pagination
-        #   Pagination information including cursors for navigation
+        # @!attribute billing_id
+        #   Billing ID
         #
-        #   @return [Stigg::Models::V1::SubscriptionListResponse::Pagination]
-        required :pagination, -> { Stigg::Models::V1::SubscriptionListResponse::Pagination }
+        #   @return [String, nil]
+        required :billing_id, String, api_name: :billingId, nil?: true
 
-        # @!method initialize(data:, pagination:)
-        #   @param data [Array<Stigg::Models::V1::SubscriptionListResponse::Data>]
+        # @!attribute created_at
+        #   Created at
         #
-        #   @param pagination [Stigg::Models::V1::SubscriptionListResponse::Pagination] Pagination information including cursors for navigation
+        #   @return [Time]
+        required :created_at, Time, api_name: :createdAt
 
-        class Data < Stigg::Internal::Type::BaseModel
-          # @!attribute id
-          #   Subscription ID
-          #
-          #   @return [String]
-          required :id, String
+        # @!attribute customer_id
+        #   Customer ID
+        #
+        #   @return [String]
+        required :customer_id, String, api_name: :customerId
 
-          # @!attribute billing_id
-          #   Billing ID
-          #
-          #   @return [String, nil]
-          required :billing_id, String, api_name: :billingId, nil?: true
+        # @!attribute payment_collection
+        #   Payment collection
+        #
+        #   @return [Symbol, Stigg::Models::V1::SubscriptionListResponse::PaymentCollection]
+        required :payment_collection,
+                 enum: -> { Stigg::Models::V1::SubscriptionListResponse::PaymentCollection },
+                 api_name: :paymentCollection
 
-          # @!attribute created_at
-          #   Created at
-          #
-          #   @return [Time]
-          required :created_at, Time, api_name: :createdAt
+        # @!attribute plan_id
+        #   Plan ID
+        #
+        #   @return [String]
+        required :plan_id, String, api_name: :planId
 
-          # @!attribute customer_id
-          #   Customer ID
-          #
-          #   @return [String]
-          required :customer_id, String, api_name: :customerId
+        # @!attribute pricing_type
+        #   Pricing type
+        #
+        #   @return [Symbol, Stigg::Models::V1::SubscriptionListResponse::PricingType]
+        required :pricing_type,
+                 enum: -> { Stigg::Models::V1::SubscriptionListResponse::PricingType },
+                 api_name: :pricingType
 
-          # @!attribute payment_collection
-          #   Payment collection
-          #
-          #   @return [Symbol, Stigg::Models::V1::SubscriptionListResponse::Data::PaymentCollection]
-          required :payment_collection,
-                   enum: -> { Stigg::Models::V1::SubscriptionListResponse::Data::PaymentCollection },
-                   api_name: :paymentCollection
+        # @!attribute start_date
+        #   Subscription start date
+        #
+        #   @return [Time]
+        required :start_date, Time, api_name: :startDate
 
-          # @!attribute plan_id
-          #   Plan ID
-          #
-          #   @return [String]
-          required :plan_id, String, api_name: :planId
+        # @!attribute status
+        #   Subscription status
+        #
+        #   @return [Symbol, Stigg::Models::V1::SubscriptionListResponse::Status]
+        required :status, enum: -> { Stigg::Models::V1::SubscriptionListResponse::Status }
 
-          # @!attribute pricing_type
-          #   Pricing type
-          #
-          #   @return [Symbol, Stigg::Models::V1::SubscriptionListResponse::Data::PricingType]
-          required :pricing_type,
-                   enum: -> { Stigg::Models::V1::SubscriptionListResponse::Data::PricingType },
-                   api_name: :pricingType
+        # @!attribute cancellation_date
+        #   Subscription cancellation date
+        #
+        #   @return [Time, nil]
+        optional :cancellation_date, Time, api_name: :cancellationDate, nil?: true
 
-          # @!attribute start_date
-          #   Subscription start date
-          #
-          #   @return [Time]
-          required :start_date, Time, api_name: :startDate
+        # @!attribute cancel_reason
+        #   Subscription cancel reason
+        #
+        #   @return [Symbol, Stigg::Models::V1::SubscriptionListResponse::CancelReason, nil]
+        optional :cancel_reason,
+                 enum: -> { Stigg::Models::V1::SubscriptionListResponse::CancelReason },
+                 api_name: :cancelReason,
+                 nil?: true
 
-          # @!attribute status
-          #   Subscription status
-          #
-          #   @return [Symbol, Stigg::Models::V1::SubscriptionListResponse::Data::Status]
-          required :status, enum: -> { Stigg::Models::V1::SubscriptionListResponse::Data::Status }
+        # @!attribute current_billing_period_end
+        #   End of the current billing period
+        #
+        #   @return [Time, nil]
+        optional :current_billing_period_end, Time, api_name: :currentBillingPeriodEnd, nil?: true
 
-          # @!attribute cancellation_date
-          #   Subscription cancellation date
-          #
-          #   @return [Time, nil]
-          optional :cancellation_date, Time, api_name: :cancellationDate, nil?: true
+        # @!attribute current_billing_period_start
+        #   Start of the current billing period
+        #
+        #   @return [Time, nil]
+        optional :current_billing_period_start, Time, api_name: :currentBillingPeriodStart, nil?: true
 
-          # @!attribute cancel_reason
-          #   Subscription cancel reason
-          #
-          #   @return [Symbol, Stigg::Models::V1::SubscriptionListResponse::Data::CancelReason, nil]
-          optional :cancel_reason,
-                   enum: -> { Stigg::Models::V1::SubscriptionListResponse::Data::CancelReason },
-                   api_name: :cancelReason,
-                   nil?: true
+        # @!attribute effective_end_date
+        #   Subscription effective end date
+        #
+        #   @return [Time, nil]
+        optional :effective_end_date, Time, api_name: :effectiveEndDate, nil?: true
 
-          # @!attribute current_billing_period_end
-          #   End of the current billing period
-          #
-          #   @return [Time, nil]
-          optional :current_billing_period_end, Time, api_name: :currentBillingPeriodEnd, nil?: true
+        # @!attribute end_date
+        #   Subscription end date
+        #
+        #   @return [Time, nil]
+        optional :end_date, Time, api_name: :endDate, nil?: true
 
-          # @!attribute current_billing_period_start
-          #   Start of the current billing period
-          #
-          #   @return [Time, nil]
-          optional :current_billing_period_start, Time, api_name: :currentBillingPeriodStart, nil?: true
+        # @!attribute metadata
+        #   Additional metadata for the subscription
+        #
+        #   @return [Hash{Symbol=>String}, nil]
+        optional :metadata, Stigg::Internal::Type::HashOf[String]
 
-          # @!attribute effective_end_date
-          #   Subscription effective end date
-          #
-          #   @return [Time, nil]
-          optional :effective_end_date, Time, api_name: :effectiveEndDate, nil?: true
+        # @!attribute paying_customer_id
+        #   Paying customer ID for delegated billing
+        #
+        #   @return [String, nil]
+        optional :paying_customer_id, String, api_name: :payingCustomerId, nil?: true
 
-          # @!attribute end_date
-          #   Subscription end date
-          #
-          #   @return [Time, nil]
-          optional :end_date, Time, api_name: :endDate, nil?: true
+        # @!attribute payment_collection_method
+        #   The method used to collect payments for a subscription
+        #
+        #   @return [Symbol, Stigg::Models::V1::SubscriptionListResponse::PaymentCollectionMethod, nil]
+        optional :payment_collection_method,
+                 enum: -> { Stigg::Models::V1::SubscriptionListResponse::PaymentCollectionMethod },
+                 api_name: :paymentCollectionMethod,
+                 nil?: true
 
-          # @!attribute metadata
-          #   Additional metadata for the subscription
-          #
-          #   @return [Hash{Symbol=>String}, nil]
-          optional :metadata, Stigg::Internal::Type::HashOf[String]
+        # @!attribute resource_id
+        #   Resource ID
+        #
+        #   @return [String, nil]
+        optional :resource_id, String, api_name: :resourceId, nil?: true
 
-          # @!attribute paying_customer_id
-          #   Paying customer ID for delegated billing
-          #
-          #   @return [String, nil]
-          optional :paying_customer_id, String, api_name: :payingCustomerId, nil?: true
+        # @!attribute trial_end_date
+        #   Subscription trial end date
+        #
+        #   @return [Time, nil]
+        optional :trial_end_date, Time, api_name: :trialEndDate, nil?: true
 
-          # @!attribute payment_collection_method
-          #   The method used to collect payments for a subscription
-          #
-          #   @return [Symbol, Stigg::Models::V1::SubscriptionListResponse::Data::PaymentCollectionMethod, nil]
-          optional :payment_collection_method,
-                   enum: -> { Stigg::Models::V1::SubscriptionListResponse::Data::PaymentCollectionMethod },
-                   api_name: :paymentCollectionMethod,
-                   nil?: true
+        # @!method initialize(id:, billing_id:, created_at:, customer_id:, payment_collection:, plan_id:, pricing_type:, start_date:, status:, cancellation_date: nil, cancel_reason: nil, current_billing_period_end: nil, current_billing_period_start: nil, effective_end_date: nil, end_date: nil, metadata: nil, paying_customer_id: nil, payment_collection_method: nil, resource_id: nil, trial_end_date: nil)
+        #   @param id [String] Subscription ID
+        #
+        #   @param billing_id [String, nil] Billing ID
+        #
+        #   @param created_at [Time] Created at
+        #
+        #   @param customer_id [String] Customer ID
+        #
+        #   @param payment_collection [Symbol, Stigg::Models::V1::SubscriptionListResponse::PaymentCollection] Payment collection
+        #
+        #   @param plan_id [String] Plan ID
+        #
+        #   @param pricing_type [Symbol, Stigg::Models::V1::SubscriptionListResponse::PricingType] Pricing type
+        #
+        #   @param start_date [Time] Subscription start date
+        #
+        #   @param status [Symbol, Stigg::Models::V1::SubscriptionListResponse::Status] Subscription status
+        #
+        #   @param cancellation_date [Time, nil] Subscription cancellation date
+        #
+        #   @param cancel_reason [Symbol, Stigg::Models::V1::SubscriptionListResponse::CancelReason, nil] Subscription cancel reason
+        #
+        #   @param current_billing_period_end [Time, nil] End of the current billing period
+        #
+        #   @param current_billing_period_start [Time, nil] Start of the current billing period
+        #
+        #   @param effective_end_date [Time, nil] Subscription effective end date
+        #
+        #   @param end_date [Time, nil] Subscription end date
+        #
+        #   @param metadata [Hash{Symbol=>String}] Additional metadata for the subscription
+        #
+        #   @param paying_customer_id [String, nil] Paying customer ID for delegated billing
+        #
+        #   @param payment_collection_method [Symbol, Stigg::Models::V1::SubscriptionListResponse::PaymentCollectionMethod, nil] The method used to collect payments for a subscription
+        #
+        #   @param resource_id [String, nil] Resource ID
+        #
+        #   @param trial_end_date [Time, nil] Subscription trial end date
 
-          # @!attribute resource_id
-          #   Resource ID
-          #
-          #   @return [String, nil]
-          optional :resource_id, String, api_name: :resourceId, nil?: true
+        # Payment collection
+        #
+        # @see Stigg::Models::V1::SubscriptionListResponse#payment_collection
+        module PaymentCollection
+          extend Stigg::Internal::Type::Enum
 
-          # @!attribute trial_end_date
-          #   Subscription trial end date
-          #
-          #   @return [Time, nil]
-          optional :trial_end_date, Time, api_name: :trialEndDate, nil?: true
+          NOT_REQUIRED = :NOT_REQUIRED
+          PROCESSING = :PROCESSING
+          FAILED = :FAILED
+          ACTION_REQUIRED = :ACTION_REQUIRED
 
-          # @!method initialize(id:, billing_id:, created_at:, customer_id:, payment_collection:, plan_id:, pricing_type:, start_date:, status:, cancellation_date: nil, cancel_reason: nil, current_billing_period_end: nil, current_billing_period_start: nil, effective_end_date: nil, end_date: nil, metadata: nil, paying_customer_id: nil, payment_collection_method: nil, resource_id: nil, trial_end_date: nil)
-          #   @param id [String] Subscription ID
-          #
-          #   @param billing_id [String, nil] Billing ID
-          #
-          #   @param created_at [Time] Created at
-          #
-          #   @param customer_id [String] Customer ID
-          #
-          #   @param payment_collection [Symbol, Stigg::Models::V1::SubscriptionListResponse::Data::PaymentCollection] Payment collection
-          #
-          #   @param plan_id [String] Plan ID
-          #
-          #   @param pricing_type [Symbol, Stigg::Models::V1::SubscriptionListResponse::Data::PricingType] Pricing type
-          #
-          #   @param start_date [Time] Subscription start date
-          #
-          #   @param status [Symbol, Stigg::Models::V1::SubscriptionListResponse::Data::Status] Subscription status
-          #
-          #   @param cancellation_date [Time, nil] Subscription cancellation date
-          #
-          #   @param cancel_reason [Symbol, Stigg::Models::V1::SubscriptionListResponse::Data::CancelReason, nil] Subscription cancel reason
-          #
-          #   @param current_billing_period_end [Time, nil] End of the current billing period
-          #
-          #   @param current_billing_period_start [Time, nil] Start of the current billing period
-          #
-          #   @param effective_end_date [Time, nil] Subscription effective end date
-          #
-          #   @param end_date [Time, nil] Subscription end date
-          #
-          #   @param metadata [Hash{Symbol=>String}] Additional metadata for the subscription
-          #
-          #   @param paying_customer_id [String, nil] Paying customer ID for delegated billing
-          #
-          #   @param payment_collection_method [Symbol, Stigg::Models::V1::SubscriptionListResponse::Data::PaymentCollectionMethod, nil] The method used to collect payments for a subscription
-          #
-          #   @param resource_id [String, nil] Resource ID
-          #
-          #   @param trial_end_date [Time, nil] Subscription trial end date
-
-          # Payment collection
-          #
-          # @see Stigg::Models::V1::SubscriptionListResponse::Data#payment_collection
-          module PaymentCollection
-            extend Stigg::Internal::Type::Enum
-
-            NOT_REQUIRED = :NOT_REQUIRED
-            PROCESSING = :PROCESSING
-            FAILED = :FAILED
-            ACTION_REQUIRED = :ACTION_REQUIRED
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
-
-          # Pricing type
-          #
-          # @see Stigg::Models::V1::SubscriptionListResponse::Data#pricing_type
-          module PricingType
-            extend Stigg::Internal::Type::Enum
-
-            FREE = :FREE
-            PAID = :PAID
-            CUSTOM = :CUSTOM
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
-
-          # Subscription status
-          #
-          # @see Stigg::Models::V1::SubscriptionListResponse::Data#status
-          module Status
-            extend Stigg::Internal::Type::Enum
-
-            PAYMENT_PENDING = :PAYMENT_PENDING
-            ACTIVE = :ACTIVE
-            EXPIRED = :EXPIRED
-            IN_TRIAL = :IN_TRIAL
-            CANCELED = :CANCELED
-            NOT_STARTED = :NOT_STARTED
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
-
-          # Subscription cancel reason
-          #
-          # @see Stigg::Models::V1::SubscriptionListResponse::Data#cancel_reason
-          module CancelReason
-            extend Stigg::Internal::Type::Enum
-
-            UPGRADE_OR_DOWNGRADE = :UPGRADE_OR_DOWNGRADE
-            CANCELLED_BY_BILLING = :CANCELLED_BY_BILLING
-            EXPIRED = :EXPIRED
-            DETACH_BILLING = :DETACH_BILLING
-            TRIAL_ENDED = :TRIAL_ENDED
-            IMMEDIATE = :Immediate
-            TRIAL_CONVERTED = :TRIAL_CONVERTED
-            PENDING_PAYMENT_EXPIRED = :PENDING_PAYMENT_EXPIRED
-            SCHEDULED_CANCELLATION = :ScheduledCancellation
-            CUSTOMER_ARCHIVED = :CustomerArchived
-            AUTO_CANCELLATION_RULE = :AutoCancellationRule
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
-
-          # The method used to collect payments for a subscription
-          #
-          # @see Stigg::Models::V1::SubscriptionListResponse::Data#payment_collection_method
-          module PaymentCollectionMethod
-            extend Stigg::Internal::Type::Enum
-
-            CHARGE = :CHARGE
-            INVOICE = :INVOICE
-            NONE = :NONE
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
 
-        # @see Stigg::Models::V1::SubscriptionListResponse#pagination
-        class Pagination < Stigg::Internal::Type::BaseModel
-          # @!attribute next_
-          #   Cursor to fetch the next page (use with after parameter), null if no more pages
-          #
-          #   @return [String, nil]
-          required :next_, String, api_name: :next, nil?: true
+        # Pricing type
+        #
+        # @see Stigg::Models::V1::SubscriptionListResponse#pricing_type
+        module PricingType
+          extend Stigg::Internal::Type::Enum
 
-          # @!attribute prev
-          #   Cursor to fetch the previous page (use with before parameter), null if no
-          #   previous pages
-          #
-          #   @return [String, nil]
-          required :prev, String, nil?: true
+          FREE = :FREE
+          PAID = :PAID
+          CUSTOM = :CUSTOM
 
-          # @!method initialize(next_:, prev:)
-          #   Some parameter documentations has been truncated, see
-          #   {Stigg::Models::V1::SubscriptionListResponse::Pagination} for more details.
-          #
-          #   Pagination information including cursors for navigation
-          #
-          #   @param next_ [String, nil] Cursor to fetch the next page (use with after parameter), null if no more pages
-          #
-          #   @param prev [String, nil] Cursor to fetch the previous page (use with before parameter), null if no previo
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # Subscription status
+        #
+        # @see Stigg::Models::V1::SubscriptionListResponse#status
+        module Status
+          extend Stigg::Internal::Type::Enum
+
+          PAYMENT_PENDING = :PAYMENT_PENDING
+          ACTIVE = :ACTIVE
+          EXPIRED = :EXPIRED
+          IN_TRIAL = :IN_TRIAL
+          CANCELED = :CANCELED
+          NOT_STARTED = :NOT_STARTED
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # Subscription cancel reason
+        #
+        # @see Stigg::Models::V1::SubscriptionListResponse#cancel_reason
+        module CancelReason
+          extend Stigg::Internal::Type::Enum
+
+          UPGRADE_OR_DOWNGRADE = :UPGRADE_OR_DOWNGRADE
+          CANCELLED_BY_BILLING = :CANCELLED_BY_BILLING
+          EXPIRED = :EXPIRED
+          DETACH_BILLING = :DETACH_BILLING
+          TRIAL_ENDED = :TRIAL_ENDED
+          IMMEDIATE = :Immediate
+          TRIAL_CONVERTED = :TRIAL_CONVERTED
+          PENDING_PAYMENT_EXPIRED = :PENDING_PAYMENT_EXPIRED
+          SCHEDULED_CANCELLATION = :ScheduledCancellation
+          CUSTOMER_ARCHIVED = :CustomerArchived
+          AUTO_CANCELLATION_RULE = :AutoCancellationRule
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # The method used to collect payments for a subscription
+        #
+        # @see Stigg::Models::V1::SubscriptionListResponse#payment_collection_method
+        module PaymentCollectionMethod
+          extend Stigg::Internal::Type::Enum
+
+          CHARGE = :CHARGE
+          INVOICE = :INVOICE
+          NONE = :NONE
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
     end
