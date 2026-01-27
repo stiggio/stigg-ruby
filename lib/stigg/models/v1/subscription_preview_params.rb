@@ -235,20 +235,25 @@ module Stigg
 
             class AmountsOff < Stigg::Internal::Type::BaseModel
               # @!attribute amount
+              #   The price amount
               #
               #   @return [Float]
               required :amount, Float
 
               # @!attribute currency
+              #   The price currency
               #
-              #   @return [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::Currency, nil]
-              optional :currency,
+              #   @return [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::Currency]
+              required :currency,
                        enum: -> { Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::Currency }
 
-              # @!method initialize(amount:, currency: nil)
-              #   @param amount [Float]
-              #   @param currency [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::Currency]
+              # @!method initialize(amount:, currency:)
+              #   @param amount [Float] The price amount
+              #
+              #   @param currency [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::Currency] The price currency
 
+              # The price currency
+              #
               # @see Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff#currency
               module Currency
                 extend Stigg::Internal::Type::Enum
