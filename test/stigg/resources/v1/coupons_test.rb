@@ -54,7 +54,8 @@ class Stigg::Test::Resources::V1::CouponsTest < Stigg::Test::ResourceTest
 
     assert_pattern do
       response => {
-        data: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::CouponListResponse::Data])
+        data: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::CouponListResponse::Data]),
+        pagination: Stigg::Models::V1::CouponListResponse::Pagination
       }
     end
   end

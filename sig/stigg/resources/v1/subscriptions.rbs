@@ -24,10 +24,10 @@ module Stigg
         ) -> Stigg::Models::V1::SubscriptionRetrieveResponse
 
         def list: (
+          ?after: String,
+          ?before: String,
           ?customer_id: String,
-          ?ending_before: String,
           ?limit: Integer,
-          ?starting_after: String,
           ?status: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Models::V1::SubscriptionListResponse
