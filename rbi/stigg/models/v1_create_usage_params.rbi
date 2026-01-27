@@ -65,10 +65,27 @@ module Stigg
         attr_writer :created_at
 
         # Additional dimensions for the usage report
-        sig { returns(T.nilable(T::Hash[Symbol, String])) }
+        sig do
+          returns(
+            T.nilable(
+              T::Hash[
+                Symbol,
+                Stigg::V1CreateUsageParams::Usage::Dimension::Variants
+              ]
+            )
+          )
+        end
         attr_reader :dimensions
 
-        sig { params(dimensions: T::Hash[Symbol, String]).void }
+        sig do
+          params(
+            dimensions:
+              T::Hash[
+                Symbol,
+                Stigg::V1CreateUsageParams::Usage::Dimension::Variants
+              ]
+          ).void
+        end
         attr_writer :dimensions
 
         # Resource id
@@ -99,7 +116,11 @@ module Stigg
             feature_id: String,
             value: Integer,
             created_at: Time,
-            dimensions: T::Hash[Symbol, String],
+            dimensions:
+              T::Hash[
+                Symbol,
+                Stigg::V1CreateUsageParams::Usage::Dimension::Variants
+              ],
             resource_id: T.nilable(String),
             update_behavior:
               Stigg::V1CreateUsageParams::Usage::UpdateBehavior::OrSymbol
@@ -130,7 +151,11 @@ module Stigg
               feature_id: String,
               value: Integer,
               created_at: Time,
-              dimensions: T::Hash[Symbol, String],
+              dimensions:
+                T::Hash[
+                  Symbol,
+                  Stigg::V1CreateUsageParams::Usage::Dimension::Variants
+                ],
               resource_id: T.nilable(String),
               update_behavior:
                 Stigg::V1CreateUsageParams::Usage::UpdateBehavior::OrSymbol
@@ -138,6 +163,20 @@ module Stigg
           )
         end
         def to_hash
+        end
+
+        module Dimension
+          extend Stigg::Internal::Type::Union
+
+          Variants = T.type_alias { T.any(String, Float, T::Boolean) }
+
+          sig do
+            override.returns(
+              T::Array[Stigg::V1CreateUsageParams::Usage::Dimension::Variants]
+            )
+          end
+          def self.variants
+          end
         end
 
         # The method by which the usage value should be updated
