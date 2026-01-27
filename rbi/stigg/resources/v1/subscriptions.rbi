@@ -67,7 +67,11 @@ module Stigg
             limit: Integer,
             status: String,
             request_options: Stigg::RequestOptions::OrHash
-          ).returns(Stigg::Models::V1::SubscriptionListResponse)
+          ).returns(
+            Stigg::Internal::MyCursorIDPage[
+              Stigg::Models::V1::SubscriptionListResponse
+            ]
+          )
         end
         def list(
           # Starting after this UUID for pagination

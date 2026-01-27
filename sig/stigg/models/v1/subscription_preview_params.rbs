@@ -264,11 +264,15 @@ module Stigg
             class AmountsOff < Stigg::Internal::Type::BaseModel
               attr_accessor amount: Float
 
-              attr_accessor currency: Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::currency
+              attr_reader currency: Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::currency?
+
+              def currency=: (
+                Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::currency
+              ) -> Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::currency
 
               def initialize: (
                 amount: Float,
-                currency: Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::currency
+                ?currency: Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::currency
               ) -> void
 
               def to_hash: -> {

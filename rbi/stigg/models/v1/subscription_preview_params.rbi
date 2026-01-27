@@ -524,17 +524,25 @@ module Stigg
                   )
                 end
 
-              # The price amount
               sig { returns(Float) }
               attr_accessor :amount
 
-              # The price currency
               sig do
                 returns(
-                  Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::Currency::OrSymbol
+                  T.nilable(
+                    Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::Currency::OrSymbol
+                  )
                 )
               end
-              attr_accessor :currency
+              attr_reader :currency
+
+              sig do
+                params(
+                  currency:
+                    Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::Currency::OrSymbol
+                ).void
+              end
+              attr_writer :currency
 
               sig do
                 params(
@@ -543,12 +551,7 @@ module Stigg
                     Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::Currency::OrSymbol
                 ).returns(T.attached_class)
               end
-              def self.new(
-                # The price amount
-                amount:,
-                # The price currency
-                currency:
-              )
+              def self.new(amount:, currency: nil)
               end
 
               sig do
@@ -563,7 +566,6 @@ module Stigg
               def to_hash
               end
 
-              # The price currency
               module Currency
                 extend Stigg::Internal::Type::Enum
 

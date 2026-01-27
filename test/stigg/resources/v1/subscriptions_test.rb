@@ -41,13 +41,38 @@ class Stigg::Test::Resources::V1::SubscriptionsTest < Stigg::Test::ResourceTest
     response = @stigg.v1.subscriptions.list
 
     assert_pattern do
-      response => Stigg::Models::V1::SubscriptionListResponse
+      response => Stigg::Internal::MyCursorIDPage
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Stigg::Models::V1::SubscriptionListResponse
     end
 
     assert_pattern do
-      response => {
-        data: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::SubscriptionListResponse::Data]),
-        pagination: Stigg::Models::V1::SubscriptionListResponse::Pagination
+      row => {
+        id: String,
+        billing_id: String | nil,
+        created_at: Time,
+        customer_id: String,
+        payment_collection: Stigg::Models::V1::SubscriptionListResponse::PaymentCollection,
+        plan_id: String,
+        pricing_type: Stigg::Models::V1::SubscriptionListResponse::PricingType,
+        start_date: Time,
+        status: Stigg::Models::V1::SubscriptionListResponse::Status,
+        cancellation_date: Time | nil,
+        cancel_reason: Stigg::Models::V1::SubscriptionListResponse::CancelReason | nil,
+        current_billing_period_end: Time | nil,
+        current_billing_period_start: Time | nil,
+        effective_end_date: Time | nil,
+        end_date: Time | nil,
+        metadata: ^(Stigg::Internal::Type::HashOf[String]) | nil,
+        paying_customer_id: String | nil,
+        payment_collection_method: Stigg::Models::V1::SubscriptionListResponse::PaymentCollectionMethod | nil,
+        resource_id: String | nil,
+        trial_end_date: Time | nil
       }
     end
   end

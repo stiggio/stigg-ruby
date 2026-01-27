@@ -10,8 +10,8 @@ module Stigg
     #   end
     #
     # @example
-    #   my_cursor_id_page.auto_paging_each do |item|
-    #     puts(item)
+    #   my_cursor_id_page.auto_paging_each do |customer|
+    #     puts(customer)
     #   end
     class MyCursorIDPage
       include Stigg::Internal::Type::BasePage
@@ -19,9 +19,12 @@ module Stigg
       # @return [Array<generic<Elem>>, nil]
       attr_accessor :data
 
+      # @return [Pagination]
+      attr_accessor :pagination
+
       # @return [Boolean]
       def next_page?
-        !data.to_a.empty?
+        !data.to_a.empty? && (!pagination&.prev.to_s.empty? || !pagination&.next_.to_s.empty?)
       end
 
       # @raise [Stigg::HTTP::Error]
@@ -32,7 +35,10 @@ module Stigg
           raise RuntimeError.new(message)
         end
 
-        req = Stigg::Internal::Util.deep_merge(@req, {query: {starting_after: data&.last&.cursor_id}})
+        req = Stigg::Internal::Util.deep_merge(
+          @req,
+          {query: pagination&.prev.nil? ? {after: pagination&.next_} : {before: pagination&.prev}}
+        )
         @client.request(req)
       end
 
@@ -67,6 +73,12 @@ module Stigg
           @data = data.map { Stigg::Internal::Type::Converter.coerce(@model, _1) }
         else
         end
+        case page_data
+        in {pagination: Hash | nil => pagination}
+          @pagination =
+            Stigg::Internal::Type::Converter.coerce(Stigg::Internal::MyCursorIDPage::Pagination, pagination)
+        else
+        end
       end
 
       # @api private
@@ -76,6 +88,22 @@ module Stigg
         model = Stigg::Internal::Type::Converter.inspect(@model, depth: 1)
 
         "#<#{self.class}[#{model}]:0x#{object_id.to_s(16)}>"
+      end
+
+      class Pagination < Stigg::Internal::Type::BaseModel
+        # @!attribute next_
+        #
+        #   @return [String, nil]
+        optional :next_, String, api_name: :next
+
+        # @!attribute prev
+        #
+        #   @return [String, nil]
+        optional :prev, String
+
+        # @!method initialize(next_: nil, prev: nil)
+        #   @param next_ [String]
+        #   @param prev [String]
       end
     end
   end

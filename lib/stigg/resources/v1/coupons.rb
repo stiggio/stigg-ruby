@@ -69,7 +69,7 @@ module Stigg
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Stigg::Models::V1::CouponListResponse]
+        # @return [Stigg::Internal::MyCursorIDPage<Stigg::Models::V1::CouponListResponse>]
         #
         # @see Stigg::Models::V1::CouponListParams
         def list(params = {})
@@ -78,6 +78,7 @@ module Stigg
             method: :get,
             path: "api/v1/coupons",
             query: parsed,
+            page: Stigg::Internal::MyCursorIDPage,
             model: Stigg::Models::V1::CouponListResponse,
             options: options
           )
