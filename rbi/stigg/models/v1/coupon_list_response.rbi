@@ -239,9 +239,7 @@ module Stigg
             # The price currency
             sig do
               returns(
-                T.nilable(
-                  Stigg::Models::V1::CouponListResponse::Data::AmountsOff::Currency::TaggedSymbol
-                )
+                Stigg::Models::V1::CouponListResponse::Data::AmountsOff::Currency::TaggedSymbol
               )
             end
             attr_accessor :currency
@@ -250,9 +248,7 @@ module Stigg
               params(
                 amount: Float,
                 currency:
-                  T.nilable(
-                    Stigg::Models::V1::CouponListResponse::Data::AmountsOff::Currency::OrSymbol
-                  )
+                  Stigg::Models::V1::CouponListResponse::Data::AmountsOff::Currency::OrSymbol
               ).returns(T.attached_class)
             end
             def self.new(
@@ -268,9 +264,7 @@ module Stigg
                 {
                   amount: Float,
                   currency:
-                    T.nilable(
-                      Stigg::Models::V1::CouponListResponse::Data::AmountsOff::Currency::TaggedSymbol
-                    )
+                    Stigg::Models::V1::CouponListResponse::Data::AmountsOff::Currency::TaggedSymbol
                 }
               )
             end
