@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.2 (2026-01-28)
+
+Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
+
+### Features
+
+* **api:** api update ([5401740](https://github.com/stiggio/stigg-ruby/commit/5401740b164e4f2e4dfec6b1551d4c6bba400eda))
+* **api:** api update ([af0dbbf](https://github.com/stiggio/stigg-ruby/commit/af0dbbfbe7cabffe473c52077d91594b7c4ec181))
+* **api:** api update ([985e956](https://github.com/stiggio/stigg-ruby/commit/985e9563afe956a76da955a97571a93ba293b097))
+* **api:** api update ([fa4a31b](https://github.com/stiggio/stigg-ruby/commit/fa4a31b7afa59ab427d38557fab38d93ad72ca28))
+* **api:** api update ([59c9248](https://github.com/stiggio/stigg-ruby/commit/59c92487bd880f091b5c4411c2c8c15491bc7ec2))
+* **api:** comment out promotional endpoints ([3c40e53](https://github.com/stiggio/stigg-ruby/commit/3c40e538184cca72a2048129672b65eb787f466c))
+* **api:** improved cursor pagination ([b5650f4](https://github.com/stiggio/stigg-ruby/commit/b5650f4dcd6d97b8539ea76426aece84f8741496))
+
 ## 0.1.0-alpha.1 (2026-01-26)
 
 Full Changelog: [v0.0.1-alpha.0...v0.1.0-alpha.1](https://github.com/stiggio/stigg-ruby/compare/v0.0.1-alpha.0...v0.1.0-alpha.1)
