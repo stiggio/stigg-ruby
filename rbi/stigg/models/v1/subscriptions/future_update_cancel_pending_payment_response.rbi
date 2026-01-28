@@ -28,6 +28,7 @@ module Stigg
           end
           attr_writer :data
 
+          # Response object
           sig do
             params(
               data:

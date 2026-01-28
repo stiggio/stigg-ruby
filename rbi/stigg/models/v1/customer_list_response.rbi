@@ -87,6 +87,7 @@ module Stigg
         sig { returns(T.nilable(String)) }
         attr_accessor :name
 
+        # A customer can be either an organization or an individual
         sig do
           params(
             id: String,
@@ -293,6 +294,7 @@ module Stigg
           end
           attr_accessor :vendor_identifier
 
+          # External billing or CRM integration link
           sig do
             params(
               id: String,

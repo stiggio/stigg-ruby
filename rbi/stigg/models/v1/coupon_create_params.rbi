@@ -120,6 +120,7 @@ module Stigg
           end
           attr_accessor :currency
 
+          # Monetary amount with currency
           sig do
             params(
               amount: Float,

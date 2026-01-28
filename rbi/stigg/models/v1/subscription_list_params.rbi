@@ -12,14 +12,14 @@ module Stigg
             T.any(Stigg::V1::SubscriptionListParams, Stigg::Internal::AnyHash)
           end
 
-        # Starting after this UUID for pagination
+        # Return items that come after this cursor
         sig { returns(T.nilable(String)) }
         attr_reader :after
 
         sig { params(after: String).void }
         attr_writer :after
 
-        # Ending before this UUID for pagination
+        # Return items that come before this cursor
         sig { returns(T.nilable(String)) }
         attr_reader :before
 
@@ -33,15 +33,14 @@ module Stigg
         sig { params(customer_id: String).void }
         attr_writer :customer_id
 
-        # Items per page
+        # Maximum number of items to return
         sig { returns(T.nilable(Integer)) }
         attr_reader :limit
 
         sig { params(limit: Integer).void }
         attr_writer :limit
 
-        # Filter by subscription status (comma-separated for multiple statuses, e.g.,
-        # ACTIVE,IN_TRIAL)
+        # Filter by status (comma-separated)
         sig { returns(T.nilable(String)) }
         attr_reader :status
 
@@ -59,16 +58,15 @@ module Stigg
           ).returns(T.attached_class)
         end
         def self.new(
-          # Starting after this UUID for pagination
+          # Return items that come after this cursor
           after: nil,
-          # Ending before this UUID for pagination
+          # Return items that come before this cursor
           before: nil,
           # Filter by customer ID
           customer_id: nil,
-          # Items per page
+          # Maximum number of items to return
           limit: nil,
-          # Filter by subscription status (comma-separated for multiple statuses, e.g.,
-          # ACTIVE,IN_TRIAL)
+          # Filter by status (comma-separated)
           status: nil,
           request_options: {}
         )

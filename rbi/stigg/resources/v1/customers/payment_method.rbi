@@ -5,7 +5,7 @@ module Stigg
     class V1
       class Customers
         class PaymentMethod
-          # Perform payment-method attachment on a Customer
+          # Attach payment method
           sig do
             params(
               id: String,
@@ -21,6 +21,7 @@ module Stigg
             ).returns(Stigg::V1::CustomerResponse)
           end
           def attach(
+            # The unique identifier of the entity
             id,
             # Integration details
             integration_id:,
@@ -28,19 +29,24 @@ module Stigg
             payment_method_id:,
             # The vendor identifier of integration
             vendor_identifier:,
+            # Customers selected currency
             billing_currency: nil,
             request_options: {}
           )
           end
 
-          # Perform payment-method detachment on a Customer
+          # Detach payment method
           sig do
             params(
               id: String,
               request_options: Stigg::RequestOptions::OrHash
             ).returns(Stigg::V1::CustomerResponse)
           end
-          def detach(id, request_options: {})
+          def detach(
+            # The unique identifier of the entity
+            id,
+            request_options: {}
+          )
           end
 
           # @api private

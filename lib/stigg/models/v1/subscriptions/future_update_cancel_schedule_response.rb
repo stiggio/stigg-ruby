@@ -12,6 +12,8 @@ module Stigg
           required :data, -> { Stigg::Models::V1::Subscriptions::FutureUpdateCancelScheduleResponse::Data }
 
           # @!method initialize(data:)
+          #   Response object
+          #
           #   @param data [Stigg::Models::V1::Subscriptions::FutureUpdateCancelScheduleResponse::Data]
 
           # @see Stigg::Models::V1::Subscriptions::FutureUpdateCancelScheduleResponse#data

@@ -12,6 +12,7 @@ module Stigg
             )
           end
 
+        # Customer subscription to a plan
         sig { returns(Stigg::Models::V1::SubscriptionTransferResponse::Data) }
         attr_reader :data
 
@@ -22,12 +23,16 @@ module Stigg
         end
         attr_writer :data
 
+        # Response object
         sig do
           params(
             data: Stigg::Models::V1::SubscriptionTransferResponse::Data::OrHash
           ).returns(T.attached_class)
         end
-        def self.new(data:)
+        def self.new(
+          # Customer subscription to a plan
+          data:
+        )
         end
 
         sig do
@@ -175,12 +180,7 @@ module Stigg
           sig { returns(T.nilable(Time)) }
           attr_accessor :trial_end_date
 
-          sig { returns(T.nilable(Float)) }
-          attr_reader :unit_quantity
-
-          sig { params(unit_quantity: Float).void }
-          attr_writer :unit_quantity
-
+          # Customer subscription to a plan
           sig do
             params(
               id: String,
@@ -215,8 +215,7 @@ module Stigg
                   Stigg::Models::V1::SubscriptionTransferResponse::Data::Price::OrHash
                 ],
               resource_id: T.nilable(String),
-              trial_end_date: T.nilable(Time),
-              unit_quantity: Float
+              trial_end_date: T.nilable(Time)
             ).returns(T.attached_class)
           end
           def self.new(
@@ -260,8 +259,7 @@ module Stigg
             # Resource ID
             resource_id: nil,
             # Subscription trial end date
-            trial_end_date: nil,
-            unit_quantity: nil
+            trial_end_date: nil
           )
           end
 
@@ -300,8 +298,7 @@ module Stigg
                     Stigg::Models::V1::SubscriptionTransferResponse::Data::Price
                   ],
                 resource_id: T.nilable(String),
-                trial_end_date: T.nilable(Time),
-                unit_quantity: Float
+                trial_end_date: T.nilable(Time)
               }
             )
           end

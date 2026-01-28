@@ -87,6 +87,8 @@ module Stigg
         required :updated_at, Time, api_name: :updatedAt
 
         # @!method initialize(id:, amounts_off:, billing_id:, billing_link_url:, created_at:, description:, duration_in_months:, name:, percent_off:, source:, status:, type:, updated_at:)
+        #   Discount instrument with percentage or fixed amount
+        #
         #   @param id [String] The unique identifier for the entity
         #
         #   @param amounts_off [Array<Stigg::Models::V1::CouponListResponse::AmountsOff>, nil] Fixed amount discounts in different currencies
@@ -127,6 +129,8 @@ module Stigg
           required :currency, enum: -> { Stigg::Models::V1::CouponListResponse::AmountsOff::Currency }
 
           # @!method initialize(amount:, currency:)
+          #   Monetary amount with currency
+          #
           #   @param amount [Float] The price amount
           #
           #   @param currency [Symbol, Stigg::Models::V1::CouponListResponse::AmountsOff::Currency] The price currency

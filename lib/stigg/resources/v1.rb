@@ -12,7 +12,7 @@ module Stigg
       # @return [Stigg::Resources::V1::Coupons]
       attr_reader :coupons
 
-      # Create events
+      # Report usage events
       #
       # @overload create_event(events:, request_options: {})
       #
@@ -34,7 +34,7 @@ module Stigg
         )
       end
 
-      # Create a new Usage
+      # Report usage measurements
       #
       # @overload create_usage(usages:, request_options: {})
       #

@@ -84,6 +84,8 @@ module Stigg
           required :currency, enum: -> { Stigg::V1::CouponCreateParams::AmountsOff::Currency }
 
           # @!method initialize(amount:, currency:)
+          #   Monetary amount with currency
+          #
           #   @param amount [Float] The price amount
           #
           #   @param currency [Symbol, Stigg::Models::V1::CouponCreateParams::AmountsOff::Currency] The price currency

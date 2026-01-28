@@ -138,12 +138,7 @@ module Stigg
         sig { returns(T.nilable(Time)) }
         attr_accessor :trial_end_date
 
-        sig { returns(T.nilable(Float)) }
-        attr_reader :unit_quantity
-
-        sig { params(unit_quantity: Float).void }
-        attr_writer :unit_quantity
-
+        # Customer subscription to a plan
         sig do
           params(
             id: String,
@@ -178,8 +173,7 @@ module Stigg
                 Stigg::Models::V1::SubscriptionListResponse::Price::OrHash
               ],
             resource_id: T.nilable(String),
-            trial_end_date: T.nilable(Time),
-            unit_quantity: Float
+            trial_end_date: T.nilable(Time)
           ).returns(T.attached_class)
         end
         def self.new(
@@ -223,8 +217,7 @@ module Stigg
           # Resource ID
           resource_id: nil,
           # Subscription trial end date
-          trial_end_date: nil,
-          unit_quantity: nil
+          trial_end_date: nil
         )
         end
 
@@ -261,8 +254,7 @@ module Stigg
               prices:
                 T::Array[Stigg::Models::V1::SubscriptionListResponse::Price],
               resource_id: T.nilable(String),
-              trial_end_date: T.nilable(Time),
-              unit_quantity: Float
+              trial_end_date: T.nilable(Time)
             }
           )
         end

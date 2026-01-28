@@ -12,6 +12,7 @@ module Stigg
             )
           end
 
+        # Pricing preview with invoices
         sig { returns(Stigg::Models::V1::SubscriptionPreviewResponse::Data) }
         attr_reader :data
 
@@ -22,12 +23,16 @@ module Stigg
         end
         attr_writer :data
 
+        # Response object
         sig do
           params(
             data: Stigg::Models::V1::SubscriptionPreviewResponse::Data::OrHash
           ).returns(T.attached_class)
         end
-        def self.new(data:)
+        def self.new(
+          # Pricing preview with invoices
+          data:
+        )
         end
 
         sig do
@@ -47,6 +52,7 @@ module Stigg
               )
             end
 
+          # Invoice due immediately
           sig do
             returns(
               Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice
@@ -62,6 +68,7 @@ module Stigg
           end
           attr_writer :immediate_invoice
 
+          # Billing period range
           sig do
             returns(
               T.nilable(
@@ -79,6 +86,7 @@ module Stigg
           end
           attr_writer :billing_period_range
 
+          # Free items included
           sig do
             returns(
               T.nilable(
@@ -100,18 +108,21 @@ module Stigg
           end
           attr_writer :free_items
 
+          # Whether updates are scheduled
           sig { returns(T.nilable(T::Boolean)) }
           attr_reader :has_scheduled_updates
 
           sig { params(has_scheduled_updates: T::Boolean).void }
           attr_writer :has_scheduled_updates
 
+          # Whether this is a downgrade
           sig { returns(T.nilable(T::Boolean)) }
           attr_reader :is_plan_downgrade
 
           sig { params(is_plan_downgrade: T::Boolean).void }
           attr_writer :is_plan_downgrade
 
+          # Recurring invoice preview
           sig do
             returns(
               T.nilable(
@@ -129,6 +140,7 @@ module Stigg
           end
           attr_writer :recurring_invoice
 
+          # Pricing preview with invoices
           sig do
             params(
               immediate_invoice:
@@ -146,11 +158,17 @@ module Stigg
             ).returns(T.attached_class)
           end
           def self.new(
+            # Invoice due immediately
             immediate_invoice:,
+            # Billing period range
             billing_period_range: nil,
+            # Free items included
             free_items: nil,
+            # Whether updates are scheduled
             has_scheduled_updates: nil,
+            # Whether this is a downgrade
             is_plan_downgrade: nil,
+            # Recurring invoice preview
             recurring_invoice: nil
           )
           end
@@ -185,12 +203,15 @@ module Stigg
                 )
               end
 
+            # Subtotal before discounts
             sig { returns(Float) }
             attr_accessor :sub_total
 
+            # Invoice total
             sig { returns(Float) }
             attr_accessor :total
 
+            # Billing period covered
             sig do
               returns(
                 T.nilable(
@@ -208,15 +229,18 @@ module Stigg
             end
             attr_writer :billing_period_range
 
+            # Currency code
             sig { returns(T.nilable(String)) }
             attr_accessor :currency
 
+            # Total discount amount
             sig { returns(T.nilable(Float)) }
             attr_reader :discount
 
             sig { params(discount: Float).void }
             attr_writer :discount
 
+            # Discount breakdown
             sig do
               returns(
                 T.nilable(
@@ -234,6 +258,7 @@ module Stigg
             end
             attr_writer :discount_details
 
+            # Applied discounts
             sig do
               returns(
                 T.nilable(
@@ -255,6 +280,7 @@ module Stigg
             end
             attr_writer :discounts
 
+            # Line items
             sig do
               returns(
                 T.nilable(
@@ -276,12 +302,14 @@ module Stigg
             end
             attr_writer :lines
 
+            # Tax amount
             sig { returns(T.nilable(Float)) }
             attr_reader :tax
 
             sig { params(tax: Float).void }
             attr_writer :tax
 
+            # Invoice due immediately
             sig do
               params(
                 sub_total: Float,
@@ -304,14 +332,23 @@ module Stigg
               ).returns(T.attached_class)
             end
             def self.new(
+              # Subtotal before discounts
               sub_total:,
+              # Invoice total
               total:,
+              # Billing period covered
               billing_period_range: nil,
+              # Currency code
               currency: nil,
+              # Total discount amount
               discount: nil,
+              # Discount breakdown
               discount_details: nil,
+              # Applied discounts
               discounts: nil,
+              # Line items
               lines: nil,
+              # Tax amount
               tax: nil
             )
             end
@@ -359,6 +396,7 @@ module Stigg
               sig { returns(Time) }
               attr_accessor :start
 
+              # Billing period covered
               sig { params(end_: Time, start: Time).returns(T.attached_class) }
               def self.new(
                 # Billing period end date
@@ -382,24 +420,28 @@ module Stigg
                   )
                 end
 
+              # Promo code used
               sig { returns(T.nilable(String)) }
               attr_reader :code
 
               sig { params(code: String).void }
               attr_writer :code
 
+              # Fixed discount amount
               sig { returns(T.nilable(Float)) }
               attr_reader :fixed_amount
 
               sig { params(fixed_amount: Float).void }
               attr_writer :fixed_amount
 
+              # Percentage discount
               sig { returns(T.nilable(Float)) }
               attr_reader :percentage
 
               sig { params(percentage: Float).void }
               attr_writer :percentage
 
+              # Discount breakdown
               sig do
                 params(
                   code: String,
@@ -407,7 +449,14 @@ module Stigg
                   percentage: Float
                 ).returns(T.attached_class)
               end
-              def self.new(code: nil, fixed_amount: nil, percentage: nil)
+              def self.new(
+                # Promo code used
+                code: nil,
+                # Fixed discount amount
+                fixed_amount: nil,
+                # Percentage discount
+                percentage: nil
+              )
               end
 
               sig do
@@ -428,15 +477,19 @@ module Stigg
                   )
                 end
 
+              # Discount amount
               sig { returns(Float) }
               attr_accessor :amount
 
+              # Currency code
               sig { returns(String) }
               attr_accessor :currency
 
+              # Discount description
               sig { returns(String) }
               attr_accessor :description
 
+              # Applied discount amount
               sig do
                 params(
                   amount: Float,
@@ -444,7 +497,14 @@ module Stigg
                   description: String
                 ).returns(T.attached_class)
               end
-              def self.new(amount:, currency:, description:)
+              def self.new(
+                # Discount amount
+                amount:,
+                # Currency code
+                currency:,
+                # Discount description
+                description:
+              )
               end
 
               sig do
@@ -465,24 +525,30 @@ module Stigg
                   )
                 end
 
+              # Currency code
               sig { returns(String) }
               attr_accessor :currency
 
+              # Line item description
               sig { returns(String) }
               attr_accessor :description
 
+              # Line subtotal
               sig { returns(Float) }
               attr_accessor :sub_total
 
+              # Price per unit
               sig { returns(Float) }
               attr_accessor :unit_price
 
+              # Quantity
               sig { returns(T.nilable(Float)) }
               attr_reader :quantity
 
               sig { params(quantity: Float).void }
               attr_writer :quantity
 
+              # Invoice line item
               sig do
                 params(
                   currency: String,
@@ -493,10 +559,15 @@ module Stigg
                 ).returns(T.attached_class)
               end
               def self.new(
+                # Currency code
                 currency:,
+                # Line item description
                 description:,
+                # Line subtotal
                 sub_total:,
+                # Price per unit
                 unit_price:,
+                # Quantity
                 quantity: nil
               )
               end
@@ -540,6 +611,7 @@ module Stigg
             sig { params(start: Time).void }
             attr_writer :start
 
+            # Billing period range
             sig { params(end_: Time, start: Time).returns(T.attached_class) }
             def self.new(
               # Billing period end date
@@ -563,18 +635,26 @@ module Stigg
                 )
               end
 
+            # Addon ID
             sig { returns(String) }
             attr_accessor :addon_id
 
+            # Quantity
             sig { returns(Float) }
             attr_accessor :quantity
 
+            # Free item in subscription
             sig do
               params(addon_id: String, quantity: Float).returns(
                 T.attached_class
               )
             end
-            def self.new(addon_id:, quantity:)
+            def self.new(
+              # Addon ID
+              addon_id:,
+              # Quantity
+              quantity:
+            )
             end
 
             sig { override.returns({ addon_id: String, quantity: Float }) }
@@ -591,12 +671,15 @@ module Stigg
                 )
               end
 
+            # Subtotal before discounts
             sig { returns(Float) }
             attr_accessor :sub_total
 
+            # Invoice total
             sig { returns(Float) }
             attr_accessor :total
 
+            # Billing period covered
             sig do
               returns(
                 T.nilable(
@@ -614,15 +697,18 @@ module Stigg
             end
             attr_writer :billing_period_range
 
+            # Currency code
             sig { returns(T.nilable(String)) }
             attr_accessor :currency
 
+            # Total discount amount
             sig { returns(T.nilable(Float)) }
             attr_reader :discount
 
             sig { params(discount: Float).void }
             attr_writer :discount
 
+            # Discount breakdown
             sig do
               returns(
                 T.nilable(
@@ -640,6 +726,7 @@ module Stigg
             end
             attr_writer :discount_details
 
+            # Applied discounts
             sig do
               returns(
                 T.nilable(
@@ -661,6 +748,7 @@ module Stigg
             end
             attr_writer :discounts
 
+            # Line items
             sig do
               returns(
                 T.nilable(
@@ -682,12 +770,14 @@ module Stigg
             end
             attr_writer :lines
 
+            # Tax amount
             sig { returns(T.nilable(Float)) }
             attr_reader :tax
 
             sig { params(tax: Float).void }
             attr_writer :tax
 
+            # Recurring invoice preview
             sig do
               params(
                 sub_total: Float,
@@ -710,14 +800,23 @@ module Stigg
               ).returns(T.attached_class)
             end
             def self.new(
+              # Subtotal before discounts
               sub_total:,
+              # Invoice total
               total:,
+              # Billing period covered
               billing_period_range: nil,
+              # Currency code
               currency: nil,
+              # Total discount amount
               discount: nil,
+              # Discount breakdown
               discount_details: nil,
+              # Applied discounts
               discounts: nil,
+              # Line items
               lines: nil,
+              # Tax amount
               tax: nil
             )
             end
@@ -765,6 +864,7 @@ module Stigg
               sig { returns(Time) }
               attr_accessor :start
 
+              # Billing period covered
               sig { params(end_: Time, start: Time).returns(T.attached_class) }
               def self.new(
                 # Billing period end date
@@ -788,24 +888,28 @@ module Stigg
                   )
                 end
 
+              # Promo code used
               sig { returns(T.nilable(String)) }
               attr_reader :code
 
               sig { params(code: String).void }
               attr_writer :code
 
+              # Fixed discount amount
               sig { returns(T.nilable(Float)) }
               attr_reader :fixed_amount
 
               sig { params(fixed_amount: Float).void }
               attr_writer :fixed_amount
 
+              # Percentage discount
               sig { returns(T.nilable(Float)) }
               attr_reader :percentage
 
               sig { params(percentage: Float).void }
               attr_writer :percentage
 
+              # Discount breakdown
               sig do
                 params(
                   code: String,
@@ -813,7 +917,14 @@ module Stigg
                   percentage: Float
                 ).returns(T.attached_class)
               end
-              def self.new(code: nil, fixed_amount: nil, percentage: nil)
+              def self.new(
+                # Promo code used
+                code: nil,
+                # Fixed discount amount
+                fixed_amount: nil,
+                # Percentage discount
+                percentage: nil
+              )
               end
 
               sig do
@@ -834,15 +945,19 @@ module Stigg
                   )
                 end
 
+              # Discount amount
               sig { returns(Float) }
               attr_accessor :amount
 
+              # Currency code
               sig { returns(String) }
               attr_accessor :currency
 
+              # Discount description
               sig { returns(String) }
               attr_accessor :description
 
+              # Applied discount amount
               sig do
                 params(
                   amount: Float,
@@ -850,7 +965,14 @@ module Stigg
                   description: String
                 ).returns(T.attached_class)
               end
-              def self.new(amount:, currency:, description:)
+              def self.new(
+                # Discount amount
+                amount:,
+                # Currency code
+                currency:,
+                # Discount description
+                description:
+              )
               end
 
               sig do
@@ -871,24 +993,30 @@ module Stigg
                   )
                 end
 
+              # Currency code
               sig { returns(String) }
               attr_accessor :currency
 
+              # Line item description
               sig { returns(String) }
               attr_accessor :description
 
+              # Line subtotal
               sig { returns(Float) }
               attr_accessor :sub_total
 
+              # Price per unit
               sig { returns(Float) }
               attr_accessor :unit_price
 
+              # Quantity
               sig { returns(T.nilable(Float)) }
               attr_reader :quantity
 
               sig { params(quantity: Float).void }
               attr_writer :quantity
 
+              # Invoice line item
               sig do
                 params(
                   currency: String,
@@ -899,10 +1027,15 @@ module Stigg
                 ).returns(T.attached_class)
               end
               def self.new(
+                # Currency code
                 currency:,
+                # Line item description
                 description:,
+                # Line subtotal
                 sub_total:,
+                # Price per unit
                 unit_price:,
+                # Quantity
                 quantity: nil
               )
               end

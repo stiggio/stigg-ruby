@@ -7,7 +7,7 @@ module Stigg
         def create: (
           customer_id: String,
           plan_id: String,
-          ?id: String?,
+          ?id: String,
           ?addons: ::Array[Stigg::V1::SubscriptionCreateParams::Addon],
           ?applied_coupon: Stigg::V1::SubscriptionCreateParams::AppliedCoupon,
           ?await_payment_confirmation: bool,

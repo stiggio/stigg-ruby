@@ -5,12 +5,16 @@ module Stigg
     # @see Stigg::Resources::V1#create_usage
     class V1CreateUsageResponse < Stigg::Internal::Type::BaseModel
       # @!attribute data
+      #   Array of usage measurements with current values and period info
       #
       #   @return [Array<Stigg::Models::V1CreateUsageResponse::Data>]
       required :data, -> { Stigg::Internal::Type::ArrayOf[Stigg::Models::V1CreateUsageResponse::Data] }
 
       # @!method initialize(data:)
-      #   @param data [Array<Stigg::Models::V1CreateUsageResponse::Data>]
+      #   Response containing reported usage measurements with current usage values,
+      #   period information, and reset dates for each measurement.
+      #
+      #   @param data [Array<Stigg::Models::V1CreateUsageResponse::Data>] Array of usage measurements with current values and period info
 
       class Data < Stigg::Internal::Type::BaseModel
         # @!attribute id
@@ -84,6 +88,8 @@ module Stigg
         # @!method initialize(id:, created_at:, customer_id:, feature_id:, timestamp:, value:, current_usage: nil, next_reset_date: nil, resource_id: nil, usage_period_end: nil, usage_period_start: nil)
         #   Some parameter documentations has been truncated, see
         #   {Stigg::Models::V1CreateUsageResponse::Data} for more details.
+        #
+        #   Recorded usage with period info
         #
         #   @param id [String] Unique identifier for the entity
         #

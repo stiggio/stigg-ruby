@@ -3,16 +3,6 @@ module Stigg
     class V1
       class Customers
         class Usage
-          def retrieve: (
-            String feature_id,
-            customer_id: String,
-            start_date: Time,
-            ?end_date: Time,
-            ?group_by: String,
-            ?resource_id: String?,
-            ?request_options: Stigg::request_opts
-          ) -> Stigg::Models::V1::Customers::UsageRetrieveResponse
-
           def initialize: (client: Stigg::Client) -> void
         end
       end

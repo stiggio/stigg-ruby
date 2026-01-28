@@ -264,6 +264,7 @@ module Stigg
           end
           attr_accessor :vendor_identifier
 
+          # External billing or CRM integration link
           sig do
             params(
               id: String,

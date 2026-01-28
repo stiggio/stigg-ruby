@@ -15,7 +15,7 @@ module Stigg
             )
           end
 
-        # When to migrate the subscription: IMMEDIATE or END_OF_BILLING_PERIOD
+        # When to migrate (immediate or period end)
         sig do
           returns(
             T.nilable(
@@ -41,7 +41,7 @@ module Stigg
           ).returns(T.attached_class)
         end
         def self.new(
-          # When to migrate the subscription: IMMEDIATE or END_OF_BILLING_PERIOD
+          # When to migrate (immediate or period end)
           subscription_migration_time: nil,
           request_options: {}
         )
@@ -59,7 +59,7 @@ module Stigg
         def to_hash
         end
 
-        # When to migrate the subscription: IMMEDIATE or END_OF_BILLING_PERIOD
+        # When to migrate (immediate or period end)
         module SubscriptionMigrationTime
           extend Stigg::Internal::Type::Enum
 

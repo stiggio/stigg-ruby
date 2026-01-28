@@ -23,8 +23,7 @@ module Stigg
           payment_collection_method: Stigg::Models::V1::SubscriptionListResponse::payment_collection_method?,
           prices: ::Array[Stigg::Models::V1::SubscriptionListResponse::Price],
           resource_id: String?,
-          trial_end_date: Time?,
-          unit_quantity: Float
+          trial_end_date: Time?
         }
 
       class SubscriptionListResponse < Stigg::Internal::Type::BaseModel
@@ -76,10 +75,6 @@ module Stigg
 
         attr_accessor trial_end_date: Time?
 
-        attr_reader unit_quantity: Float?
-
-        def unit_quantity=: (Float) -> Float
-
         def initialize: (
           id: String,
           billing_id: String?,
@@ -101,8 +96,7 @@ module Stigg
           ?payment_collection_method: Stigg::Models::V1::SubscriptionListResponse::payment_collection_method?,
           ?prices: ::Array[Stigg::Models::V1::SubscriptionListResponse::Price],
           ?resource_id: String?,
-          ?trial_end_date: Time?,
-          ?unit_quantity: Float
+          ?trial_end_date: Time?
         ) -> void
 
         def to_hash: -> {
@@ -126,8 +120,7 @@ module Stigg
           payment_collection_method: Stigg::Models::V1::SubscriptionListResponse::payment_collection_method?,
           prices: ::Array[Stigg::Models::V1::SubscriptionListResponse::Price],
           resource_id: String?,
-          trial_end_date: Time?,
-          unit_quantity: Float
+          trial_end_date: Time?
         }
 
         type payment_collection =

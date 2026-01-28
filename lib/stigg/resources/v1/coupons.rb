@@ -4,7 +4,7 @@ module Stigg
   module Resources
     class V1
       class Coupons
-        # Create a new Coupon
+        # Create coupon
         #
         # @overload create(id:, amounts_off:, description:, duration_in_months:, name:, percent_off:, additional_meta_data: nil, request_options: {})
         #
@@ -38,11 +38,12 @@ module Stigg
           )
         end
 
-        # Get a single Coupon by id
+        # Get a single coupon by ID
         #
         # @overload retrieve(id, request_options: {})
         #
-        # @param id [String]
+        # @param id [String] The unique identifier of the entity
+        #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
         # @return [Stigg::Models::V1::CouponRetrieveResponse]
@@ -57,15 +58,15 @@ module Stigg
           )
         end
 
-        # Get a list of Coupons
+        # Get a list of coupons
         #
         # @overload list(after: nil, before: nil, limit: nil, request_options: {})
         #
-        # @param after [String] Starting after this UUID for pagination
+        # @param after [String] Return items that come after this cursor
         #
-        # @param before [String] Ending before this UUID for pagination
+        # @param before [String] Return items that come before this cursor
         #
-        # @param limit [Integer] Items per page
+        # @param limit [Integer] Maximum number of items to return
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #

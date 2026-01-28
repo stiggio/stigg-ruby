@@ -9,7 +9,7 @@ module Stigg
         include Stigg::Internal::Type::RequestParameters
 
         # @!attribute subscription_migration_time
-        #   When to migrate the subscription: IMMEDIATE or END_OF_BILLING_PERIOD
+        #   When to migrate (immediate or period end)
         #
         #   @return [Symbol, Stigg::Models::V1::SubscriptionMigrateParams::SubscriptionMigrationTime, nil]
         optional :subscription_migration_time,
@@ -17,11 +17,11 @@ module Stigg
                  api_name: :subscriptionMigrationTime
 
         # @!method initialize(subscription_migration_time: nil, request_options: {})
-        #   @param subscription_migration_time [Symbol, Stigg::Models::V1::SubscriptionMigrateParams::SubscriptionMigrationTime] When to migrate the subscription: IMMEDIATE or END_OF_BILLING_PERIOD
+        #   @param subscription_migration_time [Symbol, Stigg::Models::V1::SubscriptionMigrateParams::SubscriptionMigrationTime] When to migrate (immediate or period end)
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 
-        # When to migrate the subscription: IMMEDIATE or END_OF_BILLING_PERIOD
+        # When to migrate (immediate or period end)
         module SubscriptionMigrationTime
           extend Stigg::Internal::Type::Enum
 
