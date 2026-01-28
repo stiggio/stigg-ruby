@@ -21,6 +21,12 @@ module Stigg
           #   @return [String]
           required :id, String
 
+          # @!attribute entitlements
+          #
+          #   @return [Array<Stigg::Models::V1::SubscriptionCreateResponse::Data::Entitlement>]
+          required :entitlements,
+                   -> { Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::SubscriptionCreateResponse::Data::Entitlement] }
+
           # @!attribute status
           #   Provision status: SUCCESS or PAYMENT_REQUIRED
           #
@@ -50,8 +56,10 @@ module Stigg
           #   @return [Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription, nil]
           optional :subscription, -> { Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription }
 
-          # @!method initialize(id:, status:, checkout_billing_id: nil, checkout_url: nil, is_scheduled: nil, subscription: nil)
+          # @!method initialize(id:, entitlements:, status:, checkout_billing_id: nil, checkout_url: nil, is_scheduled: nil, subscription: nil)
           #   @param id [String] Unique identifier for the provisioned subscription
+          #
+          #   @param entitlements [Array<Stigg::Models::V1::SubscriptionCreateResponse::Data::Entitlement>]
           #
           #   @param status [Symbol, Stigg::Models::V1::SubscriptionCreateResponse::Data::Status] Provision status: SUCCESS or PAYMENT_REQUIRED
           #
@@ -62,6 +70,123 @@ module Stigg
           #   @param is_scheduled [Boolean] Whether the subscription is scheduled for future activation
           #
           #   @param subscription [Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription]
+
+          class Entitlement < Stigg::Internal::Type::BaseModel
+            # @!attribute access_denied_reason
+            #
+            #   @return [String, nil]
+            optional :access_denied_reason, String, api_name: :accessDeniedReason, nil?: true
+
+            # @!attribute current_usage
+            #
+            #   @return [Float, nil]
+            optional :current_usage, Float, api_name: :currentUsage
+
+            # @!attribute entitlement_updated_at
+            #   entitlement updated at
+            #
+            #   @return [Time, nil]
+            optional :entitlement_updated_at, Time, api_name: :entitlementUpdatedAt, nil?: true
+
+            # @!attribute feature
+            #
+            #   @return [Stigg::Models::V1::SubscriptionCreateResponse::Data::Entitlement::Feature, nil]
+            optional :feature,
+                     -> { Stigg::Models::V1::SubscriptionCreateResponse::Data::Entitlement::Feature },
+                     nil?: true
+
+            # @!attribute has_unlimited_usage
+            #
+            #   @return [Boolean, nil]
+            optional :has_unlimited_usage,
+                     Stigg::Internal::Type::Boolean,
+                     api_name: :hasUnlimitedUsage,
+                     nil?: true
+
+            # @!attribute is_granted
+            #
+            #   @return [Boolean, nil]
+            optional :is_granted, Stigg::Internal::Type::Boolean, api_name: :isGranted
+
+            # @!attribute reset_period
+            #
+            #   @return [Symbol, Stigg::Models::V1::SubscriptionCreateResponse::Data::Entitlement::ResetPeriod, nil]
+            optional :reset_period,
+                     enum: -> { Stigg::Models::V1::SubscriptionCreateResponse::Data::Entitlement::ResetPeriod },
+                     api_name: :resetPeriod,
+                     nil?: true
+
+            # @!attribute usage_limit
+            #
+            #   @return [Float, nil]
+            optional :usage_limit, Float, api_name: :usageLimit, nil?: true
+
+            # @!attribute usage_period_anchor
+            #   usage period anchor
+            #
+            #   @return [Time, nil]
+            optional :usage_period_anchor, Time, api_name: :usagePeriodAnchor, nil?: true
+
+            # @!attribute usage_period_end
+            #   usage period end
+            #
+            #   @return [Time, nil]
+            optional :usage_period_end, Time, api_name: :usagePeriodEnd, nil?: true
+
+            # @!attribute usage_period_start
+            #   usage period start
+            #
+            #   @return [Time, nil]
+            optional :usage_period_start, Time, api_name: :usagePeriodStart, nil?: true
+
+            # @!method initialize(access_denied_reason: nil, current_usage: nil, entitlement_updated_at: nil, feature: nil, has_unlimited_usage: nil, is_granted: nil, reset_period: nil, usage_limit: nil, usage_period_anchor: nil, usage_period_end: nil, usage_period_start: nil)
+            #   @param access_denied_reason [String, nil]
+            #
+            #   @param current_usage [Float]
+            #
+            #   @param entitlement_updated_at [Time, nil] entitlement updated at
+            #
+            #   @param feature [Stigg::Models::V1::SubscriptionCreateResponse::Data::Entitlement::Feature, nil]
+            #
+            #   @param has_unlimited_usage [Boolean, nil]
+            #
+            #   @param is_granted [Boolean]
+            #
+            #   @param reset_period [Symbol, Stigg::Models::V1::SubscriptionCreateResponse::Data::Entitlement::ResetPeriod, nil]
+            #
+            #   @param usage_limit [Float, nil]
+            #
+            #   @param usage_period_anchor [Time, nil] usage period anchor
+            #
+            #   @param usage_period_end [Time, nil] usage period end
+            #
+            #   @param usage_period_start [Time, nil] usage period start
+
+            # @see Stigg::Models::V1::SubscriptionCreateResponse::Data::Entitlement#feature
+            class Feature < Stigg::Internal::Type::BaseModel
+              # @!attribute ref_id
+              #
+              #   @return [String]
+              required :ref_id, String, api_name: :refId
+
+              # @!method initialize(ref_id:)
+              #   @param ref_id [String]
+            end
+
+            # @see Stigg::Models::V1::SubscriptionCreateResponse::Data::Entitlement#reset_period
+            module ResetPeriod
+              extend Stigg::Internal::Type::Enum
+
+              YEAR = :YEAR
+              MONTH = :MONTH
+              WEEK = :WEEK
+              DAY = :DAY
+              HOUR = :HOUR
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+          end
 
           # Provision status: SUCCESS or PAYMENT_REQUIRED
           #
@@ -196,6 +321,12 @@ module Stigg
                      api_name: :paymentCollectionMethod,
                      nil?: true
 
+            # @!attribute prices
+            #
+            #   @return [Array<Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price>, nil]
+            optional :prices,
+                     -> { Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price] }
+
             # @!attribute resource_id
             #   Resource ID
             #
@@ -208,7 +339,12 @@ module Stigg
             #   @return [Time, nil]
             optional :trial_end_date, Time, api_name: :trialEndDate, nil?: true
 
-            # @!method initialize(id:, billing_id:, created_at:, customer_id:, payment_collection:, plan_id:, pricing_type:, start_date:, status:, cancellation_date: nil, cancel_reason: nil, current_billing_period_end: nil, current_billing_period_start: nil, effective_end_date: nil, end_date: nil, metadata: nil, paying_customer_id: nil, payment_collection_method: nil, resource_id: nil, trial_end_date: nil)
+            # @!attribute unit_quantity
+            #
+            #   @return [Float, nil]
+            optional :unit_quantity, Float, api_name: :unitQuantity
+
+            # @!method initialize(id:, billing_id:, created_at:, customer_id:, payment_collection:, plan_id:, pricing_type:, start_date:, status:, cancellation_date: nil, cancel_reason: nil, current_billing_period_end: nil, current_billing_period_start: nil, effective_end_date: nil, end_date: nil, metadata: nil, paying_customer_id: nil, payment_collection_method: nil, prices: nil, resource_id: nil, trial_end_date: nil, unit_quantity: nil)
             #   @param id [String] Subscription ID
             #
             #   @param billing_id [String, nil] Billing ID
@@ -245,9 +381,13 @@ module Stigg
             #
             #   @param payment_collection_method [Symbol, Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::PaymentCollectionMethod, nil] The method used to collect payments for a subscription
             #
+            #   @param prices [Array<Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price>]
+            #
             #   @param resource_id [String, nil] Resource ID
             #
             #   @param trial_end_date [Time, nil] Subscription trial end date
+            #
+            #   @param unit_quantity [Float]
 
             # Payment collection
             #
@@ -329,6 +469,563 @@ module Stigg
 
               # @!method self.values
               #   @return [Array<Symbol>]
+            end
+
+            class Price < Stigg::Internal::Type::BaseModel
+              # @!attribute addon_id
+              #   Addon identifier for the price override
+              #
+              #   @return [String, nil]
+              optional :addon_id, String, api_name: :addonId, nil?: true
+
+              # @!attribute base_charge
+              #   Whether this is a base charge override
+              #
+              #   @return [Boolean, nil]
+              optional :base_charge, Stigg::Internal::Type::Boolean, api_name: :baseCharge
+
+              # @!attribute block_size
+              #   Block size for pricing
+              #
+              #   @return [Float, nil]
+              optional :block_size, Float, api_name: :blockSize
+
+              # @!attribute feature_id
+              #   Feature identifier for the price override
+              #
+              #   @return [String, nil]
+              optional :feature_id, String, api_name: :featureId, nil?: true
+
+              # @!attribute price
+              #   Override price amount
+              #
+              #   @return [Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Price, nil]
+              optional :price, -> { Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Price }
+
+              # @!attribute tiers
+              #   Pricing tiers configuration
+              #
+              #   @return [Array<Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier>, nil]
+              optional :tiers,
+                       -> { Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier] }
+
+              # @!method initialize(addon_id: nil, base_charge: nil, block_size: nil, feature_id: nil, price: nil, tiers: nil)
+              #   @param addon_id [String, nil] Addon identifier for the price override
+              #
+              #   @param base_charge [Boolean] Whether this is a base charge override
+              #
+              #   @param block_size [Float] Block size for pricing
+              #
+              #   @param feature_id [String, nil] Feature identifier for the price override
+              #
+              #   @param price [Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Price] Override price amount
+              #
+              #   @param tiers [Array<Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier>] Pricing tiers configuration
+
+              # @see Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price#price
+              class Price < Stigg::Internal::Type::BaseModel
+                # @!attribute amount
+                #   The price amount
+                #
+                #   @return [Float, nil]
+                optional :amount, Float
+
+                # @!attribute billing_country_code
+                #   The billing country code of the price
+                #
+                #   @return [String, nil]
+                optional :billing_country_code, String, api_name: :billingCountryCode, nil?: true
+
+                # @!attribute currency
+                #   The price currency
+                #
+                #   @return [Symbol, Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Price::Currency, nil]
+                optional :currency,
+                         enum: -> { Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Price::Currency }
+
+                # @!method initialize(amount: nil, billing_country_code: nil, currency: nil)
+                #   Override price amount
+                #
+                #   @param amount [Float] The price amount
+                #
+                #   @param billing_country_code [String, nil] The billing country code of the price
+                #
+                #   @param currency [Symbol, Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Price::Currency] The price currency
+
+                # The price currency
+                #
+                # @see Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Price#currency
+                module Currency
+                  extend Stigg::Internal::Type::Enum
+
+                  USD = :usd
+                  AED = :aed
+                  ALL = :all
+                  AMD = :amd
+                  ANG = :ang
+                  AUD = :aud
+                  AWG = :awg
+                  AZN = :azn
+                  BAM = :bam
+                  BBD = :bbd
+                  BDT = :bdt
+                  BGN = :bgn
+                  BIF = :bif
+                  BMD = :bmd
+                  BND = :bnd
+                  BSD = :bsd
+                  BWP = :bwp
+                  BYN = :byn
+                  BZD = :bzd
+                  BRL = :brl
+                  CAD = :cad
+                  CDF = :cdf
+                  CHF = :chf
+                  CNY = :cny
+                  CZK = :czk
+                  DKK = :dkk
+                  DOP = :dop
+                  DZD = :dzd
+                  EGP = :egp
+                  ETB = :etb
+                  EUR = :eur
+                  FJD = :fjd
+                  GBP = :gbp
+                  GEL = :gel
+                  GIP = :gip
+                  GMD = :gmd
+                  GYD = :gyd
+                  HKD = :hkd
+                  HRK = :hrk
+                  HTG = :htg
+                  IDR = :idr
+                  ILS = :ils
+                  INR = :inr
+                  ISK = :isk
+                  JMD = :jmd
+                  JPY = :jpy
+                  KES = :kes
+                  KGS = :kgs
+                  KHR = :khr
+                  KMF = :kmf
+                  KRW = :krw
+                  KYD = :kyd
+                  KZT = :kzt
+                  LBP = :lbp
+                  LKR = :lkr
+                  LRD = :lrd
+                  LSL = :lsl
+                  MAD = :mad
+                  MDL = :mdl
+                  MGA = :mga
+                  MKD = :mkd
+                  MMK = :mmk
+                  MNT = :mnt
+                  MOP = :mop
+                  MRO = :mro
+                  MVR = :mvr
+                  MWK = :mwk
+                  MXN = :mxn
+                  MYR = :myr
+                  MZN = :mzn
+                  NAD = :nad
+                  NGN = :ngn
+                  NOK = :nok
+                  NPR = :npr
+                  NZD = :nzd
+                  PGK = :pgk
+                  PHP = :php
+                  PKR = :pkr
+                  PLN = :pln
+                  QAR = :qar
+                  RON = :ron
+                  RSD = :rsd
+                  RUB = :rub
+                  RWF = :rwf
+                  SAR = :sar
+                  SBD = :sbd
+                  SCR = :scr
+                  SEK = :sek
+                  SGD = :sgd
+                  SLE = :sle
+                  SLL = :sll
+                  SOS = :sos
+                  SZL = :szl
+                  THB = :thb
+                  TJS = :tjs
+                  TOP = :top
+                  TRY = :try
+                  TTD = :ttd
+                  TZS = :tzs
+                  UAH = :uah
+                  UZS = :uzs
+                  VND = :vnd
+                  VUV = :vuv
+                  WST = :wst
+                  XAF = :xaf
+                  XCD = :xcd
+                  YER = :yer
+                  ZAR = :zar
+                  ZMW = :zmw
+                  CLP = :clp
+                  DJF = :djf
+                  GNF = :gnf
+                  UGX = :ugx
+                  PYG = :pyg
+                  XOF = :xof
+                  XPF = :xpf
+
+                  # @!method self.values
+                  #   @return [Array<Symbol>]
+                end
+              end
+
+              class Tier < Stigg::Internal::Type::BaseModel
+                # @!attribute flat_price
+                #   The flat fee price of the price tier
+                #
+                #   @return [Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::FlatPrice, nil]
+                optional :flat_price,
+                         -> { Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::FlatPrice },
+                         api_name: :flatPrice
+
+                # @!attribute unit_price
+                #   The unit price of the price tier
+                #
+                #   @return [Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::UnitPrice, nil]
+                optional :unit_price,
+                         -> { Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::UnitPrice },
+                         api_name: :unitPrice
+
+                # @!attribute up_to
+                #   The up to quantity of the price tier
+                #
+                #   @return [Float, nil]
+                optional :up_to, Float, api_name: :upTo
+
+                # @!method initialize(flat_price: nil, unit_price: nil, up_to: nil)
+                #   @param flat_price [Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::FlatPrice] The flat fee price of the price tier
+                #
+                #   @param unit_price [Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::UnitPrice] The unit price of the price tier
+                #
+                #   @param up_to [Float] The up to quantity of the price tier
+
+                # @see Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier#flat_price
+                class FlatPrice < Stigg::Internal::Type::BaseModel
+                  # @!attribute amount
+                  #   The price amount
+                  #
+                  #   @return [Float, nil]
+                  optional :amount, Float
+
+                  # @!attribute billing_country_code
+                  #   The billing country code of the price
+                  #
+                  #   @return [String, nil]
+                  optional :billing_country_code, String, api_name: :billingCountryCode, nil?: true
+
+                  # @!attribute currency
+                  #   The price currency
+                  #
+                  #   @return [Symbol, Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::FlatPrice::Currency, nil]
+                  optional :currency,
+                           enum: -> { Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::FlatPrice::Currency }
+
+                  # @!method initialize(amount: nil, billing_country_code: nil, currency: nil)
+                  #   The flat fee price of the price tier
+                  #
+                  #   @param amount [Float] The price amount
+                  #
+                  #   @param billing_country_code [String, nil] The billing country code of the price
+                  #
+                  #   @param currency [Symbol, Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::FlatPrice::Currency] The price currency
+
+                  # The price currency
+                  #
+                  # @see Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::FlatPrice#currency
+                  module Currency
+                    extend Stigg::Internal::Type::Enum
+
+                    USD = :usd
+                    AED = :aed
+                    ALL = :all
+                    AMD = :amd
+                    ANG = :ang
+                    AUD = :aud
+                    AWG = :awg
+                    AZN = :azn
+                    BAM = :bam
+                    BBD = :bbd
+                    BDT = :bdt
+                    BGN = :bgn
+                    BIF = :bif
+                    BMD = :bmd
+                    BND = :bnd
+                    BSD = :bsd
+                    BWP = :bwp
+                    BYN = :byn
+                    BZD = :bzd
+                    BRL = :brl
+                    CAD = :cad
+                    CDF = :cdf
+                    CHF = :chf
+                    CNY = :cny
+                    CZK = :czk
+                    DKK = :dkk
+                    DOP = :dop
+                    DZD = :dzd
+                    EGP = :egp
+                    ETB = :etb
+                    EUR = :eur
+                    FJD = :fjd
+                    GBP = :gbp
+                    GEL = :gel
+                    GIP = :gip
+                    GMD = :gmd
+                    GYD = :gyd
+                    HKD = :hkd
+                    HRK = :hrk
+                    HTG = :htg
+                    IDR = :idr
+                    ILS = :ils
+                    INR = :inr
+                    ISK = :isk
+                    JMD = :jmd
+                    JPY = :jpy
+                    KES = :kes
+                    KGS = :kgs
+                    KHR = :khr
+                    KMF = :kmf
+                    KRW = :krw
+                    KYD = :kyd
+                    KZT = :kzt
+                    LBP = :lbp
+                    LKR = :lkr
+                    LRD = :lrd
+                    LSL = :lsl
+                    MAD = :mad
+                    MDL = :mdl
+                    MGA = :mga
+                    MKD = :mkd
+                    MMK = :mmk
+                    MNT = :mnt
+                    MOP = :mop
+                    MRO = :mro
+                    MVR = :mvr
+                    MWK = :mwk
+                    MXN = :mxn
+                    MYR = :myr
+                    MZN = :mzn
+                    NAD = :nad
+                    NGN = :ngn
+                    NOK = :nok
+                    NPR = :npr
+                    NZD = :nzd
+                    PGK = :pgk
+                    PHP = :php
+                    PKR = :pkr
+                    PLN = :pln
+                    QAR = :qar
+                    RON = :ron
+                    RSD = :rsd
+                    RUB = :rub
+                    RWF = :rwf
+                    SAR = :sar
+                    SBD = :sbd
+                    SCR = :scr
+                    SEK = :sek
+                    SGD = :sgd
+                    SLE = :sle
+                    SLL = :sll
+                    SOS = :sos
+                    SZL = :szl
+                    THB = :thb
+                    TJS = :tjs
+                    TOP = :top
+                    TRY = :try
+                    TTD = :ttd
+                    TZS = :tzs
+                    UAH = :uah
+                    UZS = :uzs
+                    VND = :vnd
+                    VUV = :vuv
+                    WST = :wst
+                    XAF = :xaf
+                    XCD = :xcd
+                    YER = :yer
+                    ZAR = :zar
+                    ZMW = :zmw
+                    CLP = :clp
+                    DJF = :djf
+                    GNF = :gnf
+                    UGX = :ugx
+                    PYG = :pyg
+                    XOF = :xof
+                    XPF = :xpf
+
+                    # @!method self.values
+                    #   @return [Array<Symbol>]
+                  end
+                end
+
+                # @see Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier#unit_price
+                class UnitPrice < Stigg::Internal::Type::BaseModel
+                  # @!attribute amount
+                  #   The price amount
+                  #
+                  #   @return [Float, nil]
+                  optional :amount, Float
+
+                  # @!attribute billing_country_code
+                  #   The billing country code of the price
+                  #
+                  #   @return [String, nil]
+                  optional :billing_country_code, String, api_name: :billingCountryCode, nil?: true
+
+                  # @!attribute currency
+                  #   The price currency
+                  #
+                  #   @return [Symbol, Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::UnitPrice::Currency, nil]
+                  optional :currency,
+                           enum: -> { Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::UnitPrice::Currency }
+
+                  # @!method initialize(amount: nil, billing_country_code: nil, currency: nil)
+                  #   The unit price of the price tier
+                  #
+                  #   @param amount [Float] The price amount
+                  #
+                  #   @param billing_country_code [String, nil] The billing country code of the price
+                  #
+                  #   @param currency [Symbol, Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::UnitPrice::Currency] The price currency
+
+                  # The price currency
+                  #
+                  # @see Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::UnitPrice#currency
+                  module Currency
+                    extend Stigg::Internal::Type::Enum
+
+                    USD = :usd
+                    AED = :aed
+                    ALL = :all
+                    AMD = :amd
+                    ANG = :ang
+                    AUD = :aud
+                    AWG = :awg
+                    AZN = :azn
+                    BAM = :bam
+                    BBD = :bbd
+                    BDT = :bdt
+                    BGN = :bgn
+                    BIF = :bif
+                    BMD = :bmd
+                    BND = :bnd
+                    BSD = :bsd
+                    BWP = :bwp
+                    BYN = :byn
+                    BZD = :bzd
+                    BRL = :brl
+                    CAD = :cad
+                    CDF = :cdf
+                    CHF = :chf
+                    CNY = :cny
+                    CZK = :czk
+                    DKK = :dkk
+                    DOP = :dop
+                    DZD = :dzd
+                    EGP = :egp
+                    ETB = :etb
+                    EUR = :eur
+                    FJD = :fjd
+                    GBP = :gbp
+                    GEL = :gel
+                    GIP = :gip
+                    GMD = :gmd
+                    GYD = :gyd
+                    HKD = :hkd
+                    HRK = :hrk
+                    HTG = :htg
+                    IDR = :idr
+                    ILS = :ils
+                    INR = :inr
+                    ISK = :isk
+                    JMD = :jmd
+                    JPY = :jpy
+                    KES = :kes
+                    KGS = :kgs
+                    KHR = :khr
+                    KMF = :kmf
+                    KRW = :krw
+                    KYD = :kyd
+                    KZT = :kzt
+                    LBP = :lbp
+                    LKR = :lkr
+                    LRD = :lrd
+                    LSL = :lsl
+                    MAD = :mad
+                    MDL = :mdl
+                    MGA = :mga
+                    MKD = :mkd
+                    MMK = :mmk
+                    MNT = :mnt
+                    MOP = :mop
+                    MRO = :mro
+                    MVR = :mvr
+                    MWK = :mwk
+                    MXN = :mxn
+                    MYR = :myr
+                    MZN = :mzn
+                    NAD = :nad
+                    NGN = :ngn
+                    NOK = :nok
+                    NPR = :npr
+                    NZD = :nzd
+                    PGK = :pgk
+                    PHP = :php
+                    PKR = :pkr
+                    PLN = :pln
+                    QAR = :qar
+                    RON = :ron
+                    RSD = :rsd
+                    RUB = :rub
+                    RWF = :rwf
+                    SAR = :sar
+                    SBD = :sbd
+                    SCR = :scr
+                    SEK = :sek
+                    SGD = :sgd
+                    SLE = :sle
+                    SLL = :sll
+                    SOS = :sos
+                    SZL = :szl
+                    THB = :thb
+                    TJS = :tjs
+                    TOP = :top
+                    TRY = :try
+                    TTD = :ttd
+                    TZS = :tzs
+                    UAH = :uah
+                    UZS = :uzs
+                    VND = :vnd
+                    VUV = :vuv
+                    WST = :wst
+                    XAF = :xaf
+                    XCD = :xcd
+                    YER = :yer
+                    ZAR = :zar
+                    ZMW = :zmw
+                    CLP = :clp
+                    DJF = :djf
+                    GNF = :gnf
+                    UGX = :ugx
+                    PYG = :pyg
+                    XOF = :xof
+                    XPF = :xpf
+
+                    # @!method self.values
+                    #   @return [Array<Symbol>]
+                  end
+                end
+              end
             end
           end
         end

@@ -13,16 +13,47 @@ module Stigg
             customer_id: String,
             plan_id: String,
             id: T.nilable(String),
+            addons:
+              T::Array[Stigg::V1::SubscriptionCreateParams::Addon::OrHash],
+            applied_coupon:
+              Stigg::V1::SubscriptionCreateParams::AppliedCoupon::OrHash,
             await_payment_confirmation: T::Boolean,
+            billing_country_code: T.nilable(String),
+            billing_id: T.nilable(String),
+            billing_information:
+              Stigg::V1::SubscriptionCreateParams::BillingInformation::OrHash,
             billing_period:
               Stigg::V1::SubscriptionCreateParams::BillingPeriod::OrSymbol,
+            budget:
+              T.nilable(Stigg::V1::SubscriptionCreateParams::Budget::OrHash),
+            charges:
+              T::Array[Stigg::V1::SubscriptionCreateParams::Charge::OrHash],
             checkout_options:
               Stigg::V1::SubscriptionCreateParams::CheckoutOptions::OrHash,
             metadata: T::Hash[Symbol, String],
+            minimum_spend:
+              T.nilable(
+                Stigg::V1::SubscriptionCreateParams::MinimumSpend::OrHash
+              ),
             paying_customer_id: T.nilable(String),
+            payment_collection_method:
+              Stigg::V1::SubscriptionCreateParams::PaymentCollectionMethod::OrSymbol,
+            price_overrides:
+              T::Array[
+                Stigg::V1::SubscriptionCreateParams::PriceOverride::OrHash
+              ],
             resource_id: T.nilable(String),
+            salesforce_id: T.nilable(String),
+            schedule_strategy:
+              Stigg::V1::SubscriptionCreateParams::ScheduleStrategy::OrSymbol,
+            start_date: Time,
+            subscription_entitlements:
+              T::Array[
+                Stigg::V1::SubscriptionCreateParams::SubscriptionEntitlement::OrHash
+              ],
             trial_override_configuration:
               Stigg::V1::SubscriptionCreateParams::TrialOverrideConfiguration::OrHash,
+            unit_quantity: Float,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::Models::V1::SubscriptionCreateResponse)
         end
@@ -33,17 +64,38 @@ module Stigg
           plan_id:,
           # Unique identifier for the subscription
           id: nil,
+          addons: nil,
+          applied_coupon: nil,
           # Whether to wait for payment confirmation before returning the subscription
           await_payment_confirmation: nil,
+          # The ISO 3166-1 alpha-2 country code for billing
+          billing_country_code: nil,
+          # External billing system identifier
+          billing_id: nil,
+          billing_information: nil,
           billing_period: nil,
+          budget: nil,
+          charges: nil,
           checkout_options: nil,
           # Additional metadata for the subscription
           metadata: nil,
+          minimum_spend: nil,
           # Optional paying customer ID for split billing scenarios
           paying_customer_id: nil,
+          # How payments should be collected for this subscription
+          payment_collection_method: nil,
+          price_overrides: nil,
           # Optional resource ID for multi-instance subscriptions
           resource_id: nil,
+          # Salesforce ID
+          salesforce_id: nil,
+          # Strategy for scheduling subscription changes
+          schedule_strategy: nil,
+          # Subscription start date
+          start_date: nil,
+          subscription_entitlements: nil,
           trial_override_configuration: nil,
+          unit_quantity: nil,
           request_options: {}
         )
         end
