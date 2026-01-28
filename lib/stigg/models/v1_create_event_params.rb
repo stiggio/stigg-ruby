@@ -57,6 +57,8 @@ module Stigg
         optional :timestamp, Time
 
         # @!method initialize(customer_id:, event_name:, idempotency_key:, dimensions: nil, resource_id: nil, timestamp: nil)
+        #   Raw usage event
+        #
         #   @param customer_id [String] Customer id
         #
         #   @param event_name [String] The name of the usage event

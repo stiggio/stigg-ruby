@@ -23,6 +23,7 @@ module Stigg
         sig { returns(String) }
         attr_accessor :plan_id
 
+        # Addons to include
         sig do
           returns(
             T.nilable(T::Array[Stigg::V1::SubscriptionPreviewParams::Addon])
@@ -38,6 +39,7 @@ module Stigg
         end
         attr_writer :addons
 
+        # Coupon or discount to apply
         sig do
           returns(
             T.nilable(Stigg::V1::SubscriptionPreviewParams::AppliedCoupon)
@@ -53,6 +55,7 @@ module Stigg
         end
         attr_writer :applied_coupon
 
+        # Billable features with quantities
         sig do
           returns(
             T.nilable(
@@ -72,12 +75,14 @@ module Stigg
         end
         attr_writer :billable_features
 
+        # ISO 3166-1 country code for localization
         sig { returns(T.nilable(String)) }
         attr_reader :billing_country_code
 
         sig { params(billing_country_code: String).void }
         attr_writer :billing_country_code
 
+        # Billing and tax configuration
         sig do
           returns(
             T.nilable(Stigg::V1::SubscriptionPreviewParams::BillingInformation)
@@ -93,6 +98,7 @@ module Stigg
         end
         attr_writer :billing_information
 
+        # Billing period (MONTHLY or ANNUALLY)
         sig do
           returns(
             T.nilable(
@@ -110,6 +116,7 @@ module Stigg
         end
         attr_writer :billing_period
 
+        # One-time or recurring charges
         sig do
           returns(
             T.nilable(T::Array[Stigg::V1::SubscriptionPreviewParams::Charge])
@@ -125,18 +132,21 @@ module Stigg
         end
         attr_writer :charges
 
+        # Paying customer ID for delegated billing
         sig { returns(T.nilable(String)) }
         attr_reader :paying_customer_id
 
         sig { params(paying_customer_id: String).void }
         attr_writer :paying_customer_id
 
+        # Resource ID for multi-instance subscriptions
         sig { returns(T.nilable(String)) }
         attr_reader :resource_id
 
         sig { params(resource_id: String).void }
         attr_writer :resource_id
 
+        # When to apply subscription changes
         sig do
           returns(
             T.nilable(
@@ -161,6 +171,7 @@ module Stigg
         sig { params(start_date: Time).void }
         attr_writer :start_date
 
+        # Trial period override settings
         sig do
           returns(
             T.nilable(
@@ -178,6 +189,7 @@ module Stigg
         end
         attr_writer :trial_override_configuration
 
+        # Unit quantity for per-unit pricing
         sig { returns(T.nilable(Float)) }
         attr_reader :unit_quantity
 
@@ -219,19 +231,31 @@ module Stigg
           customer_id:,
           # Plan ID
           plan_id:,
+          # Addons to include
           addons: nil,
+          # Coupon or discount to apply
           applied_coupon: nil,
+          # Billable features with quantities
           billable_features: nil,
+          # ISO 3166-1 country code for localization
           billing_country_code: nil,
+          # Billing and tax configuration
           billing_information: nil,
+          # Billing period (MONTHLY or ANNUALLY)
           billing_period: nil,
+          # One-time or recurring charges
           charges: nil,
+          # Paying customer ID for delegated billing
           paying_customer_id: nil,
+          # Resource ID for multi-instance subscriptions
           resource_id: nil,
+          # When to apply subscription changes
           schedule_strategy: nil,
           # Subscription start date
           start_date: nil,
+          # Trial period override settings
           trial_override_configuration: nil,
+          # Unit quantity for per-unit pricing
           unit_quantity: nil,
           request_options: {}
         )
@@ -281,12 +305,14 @@ module Stigg
           sig { returns(String) }
           attr_accessor :addon_id
 
+          # Number of addon instances
           sig { returns(T.nilable(Integer)) }
           attr_reader :quantity
 
           sig { params(quantity: Integer).void }
           attr_writer :quantity
 
+          # Addon configuration
           sig do
             params(addon_id: String, quantity: Integer).returns(
               T.attached_class
@@ -295,6 +321,7 @@ module Stigg
           def self.new(
             # Addon ID
             addon_id:,
+            # Number of addon instances
             quantity: nil
           )
           end
@@ -313,12 +340,14 @@ module Stigg
               )
             end
 
+          # Billing provider coupon ID
           sig { returns(T.nilable(String)) }
           attr_reader :billing_coupon_id
 
           sig { params(billing_coupon_id: String).void }
           attr_writer :billing_coupon_id
 
+          # Coupon timing configuration
           sig do
             returns(
               T.nilable(
@@ -336,12 +365,14 @@ module Stigg
           end
           attr_writer :configuration
 
+          # Stigg coupon ID
           sig { returns(T.nilable(String)) }
           attr_reader :coupon_id
 
           sig { params(coupon_id: String).void }
           attr_writer :coupon_id
 
+          # Ad-hoc discount configuration
           sig do
             returns(
               T.nilable(
@@ -359,12 +390,14 @@ module Stigg
           end
           attr_writer :discount
 
+          # Promotion code to apply
           sig { returns(T.nilable(String)) }
           attr_reader :promotion_code
 
           sig { params(promotion_code: String).void }
           attr_writer :promotion_code
 
+          # Coupon or discount to apply
           sig do
             params(
               billing_coupon_id: String,
@@ -377,10 +410,15 @@ module Stigg
             ).returns(T.attached_class)
           end
           def self.new(
+            # Billing provider coupon ID
             billing_coupon_id: nil,
+            # Coupon timing configuration
             configuration: nil,
+            # Stigg coupon ID
             coupon_id: nil,
+            # Ad-hoc discount configuration
             discount: nil,
+            # Promotion code to apply
             promotion_code: nil
           )
           end
@@ -417,6 +455,7 @@ module Stigg
             sig { params(start_date: Time).void }
             attr_writer :start_date
 
+            # Coupon timing configuration
             sig { params(start_date: Time).returns(T.attached_class) }
             def self.new(
               # Coupon start date
@@ -438,6 +477,7 @@ module Stigg
                 )
               end
 
+            # Fixed amounts off by currency
             sig do
               returns(
                 T.nilable(
@@ -449,30 +489,35 @@ module Stigg
             end
             attr_accessor :amounts_off
 
+            # Ad-hoc discount
             sig { returns(T.nilable(String)) }
             attr_reader :description
 
             sig { params(description: String).void }
             attr_writer :description
 
+            # Duration in months
             sig { returns(T.nilable(Float)) }
             attr_reader :duration_in_months
 
             sig { params(duration_in_months: Float).void }
             attr_writer :duration_in_months
 
+            # Discount name
             sig { returns(T.nilable(String)) }
             attr_reader :name
 
             sig { params(name: String).void }
             attr_writer :name
 
+            # Percentage discount
             sig { returns(T.nilable(Float)) }
             attr_reader :percent_off
 
             sig { params(percent_off: Float).void }
             attr_writer :percent_off
 
+            # Ad-hoc discount configuration
             sig do
               params(
                 amounts_off:
@@ -488,10 +533,15 @@ module Stigg
               ).returns(T.attached_class)
             end
             def self.new(
+              # Fixed amounts off by currency
               amounts_off: nil,
+              # Ad-hoc discount
               description: nil,
+              # Duration in months
               duration_in_months: nil,
+              # Discount name
               name: nil,
+              # Percentage discount
               percent_off: nil
             )
             end
@@ -524,25 +574,17 @@ module Stigg
                   )
                 end
 
+              # The price amount
               sig { returns(Float) }
               attr_accessor :amount
 
+              # The price currency
               sig do
                 returns(
-                  T.nilable(
-                    Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::Currency::OrSymbol
-                  )
+                  Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::Currency::OrSymbol
                 )
               end
-              attr_reader :currency
-
-              sig do
-                params(
-                  currency:
-                    Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::Currency::OrSymbol
-                ).void
-              end
-              attr_writer :currency
+              attr_accessor :currency
 
               sig do
                 params(
@@ -551,7 +593,12 @@ module Stigg
                     Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::Currency::OrSymbol
                 ).returns(T.attached_class)
               end
-              def self.new(amount:, currency: nil)
+              def self.new(
+                # The price amount
+                amount:,
+                # The price currency
+                currency:
+              )
               end
 
               sig do
@@ -566,6 +613,7 @@ module Stigg
               def to_hash
               end
 
+              # The price currency
               module Currency
                 extend Stigg::Internal::Type::Enum
 
@@ -1186,9 +1234,11 @@ module Stigg
           sig { returns(String) }
           attr_accessor :feature_id
 
+          # Quantity of feature units
           sig { returns(Float) }
           attr_accessor :quantity
 
+          # Feature with quantity
           sig do
             params(feature_id: String, quantity: Float).returns(
               T.attached_class
@@ -1197,6 +1247,7 @@ module Stigg
           def self.new(
             # Feature ID
             feature_id:,
+            # Quantity of feature units
             quantity:
           )
           end
@@ -1215,6 +1266,7 @@ module Stigg
               )
             end
 
+          # Billing address
           sig do
             returns(
               T.nilable(
@@ -1232,42 +1284,49 @@ module Stigg
           end
           attr_writer :billing_address
 
+          # Connected account ID for platform billing
           sig { returns(T.nilable(String)) }
           attr_reader :charge_on_behalf_of_account
 
           sig { params(charge_on_behalf_of_account: String).void }
           attr_writer :charge_on_behalf_of_account
 
+          # Billing integration ID
           sig { returns(T.nilable(String)) }
           attr_reader :integration_id
 
           sig { params(integration_id: String).void }
           attr_writer :integration_id
 
+          # Days until invoice is due
           sig { returns(T.nilable(Float)) }
           attr_reader :invoice_days_until_due
 
           sig { params(invoice_days_until_due: Float).void }
           attr_writer :invoice_days_until_due
 
+          # Whether subscription is backdated
           sig { returns(T.nilable(T::Boolean)) }
           attr_reader :is_backdated
 
           sig { params(is_backdated: T::Boolean).void }
           attr_writer :is_backdated
 
+          # Whether invoice is already paid
           sig { returns(T.nilable(T::Boolean)) }
           attr_reader :is_invoice_paid
 
           sig { params(is_invoice_paid: T::Boolean).void }
           attr_writer :is_invoice_paid
 
+          # Additional billing metadata
           sig { returns(T.nilable(T.anything)) }
           attr_reader :metadata
 
           sig { params(metadata: T.anything).void }
           attr_writer :metadata
 
+          # Proration behavior
           sig do
             returns(
               T.nilable(
@@ -1285,6 +1344,7 @@ module Stigg
           end
           attr_writer :proration_behavior
 
+          # Customer tax IDs
           sig do
             returns(
               T.nilable(
@@ -1306,18 +1366,21 @@ module Stigg
           end
           attr_writer :tax_ids
 
+          # Tax percentage to apply
           sig { returns(T.nilable(Float)) }
           attr_reader :tax_percentage
 
           sig { params(tax_percentage: Float).void }
           attr_writer :tax_percentage
 
+          # Tax rate IDs from billing provider
           sig { returns(T.nilable(T::Array[String])) }
           attr_reader :tax_rate_ids
 
           sig { params(tax_rate_ids: T::Array[String]).void }
           attr_writer :tax_rate_ids
 
+          # Billing and tax configuration
           sig do
             params(
               billing_address:
@@ -1339,16 +1402,27 @@ module Stigg
             ).returns(T.attached_class)
           end
           def self.new(
+            # Billing address
             billing_address: nil,
+            # Connected account ID for platform billing
             charge_on_behalf_of_account: nil,
+            # Billing integration ID
             integration_id: nil,
+            # Days until invoice is due
             invoice_days_until_due: nil,
+            # Whether subscription is backdated
             is_backdated: nil,
+            # Whether invoice is already paid
             is_invoice_paid: nil,
+            # Additional billing metadata
             metadata: nil,
+            # Proration behavior
             proration_behavior: nil,
+            # Customer tax IDs
             tax_ids: nil,
+            # Tax percentage to apply
             tax_percentage: nil,
+            # Tax rate IDs from billing provider
             tax_rate_ids: nil
           )
           end
@@ -1423,6 +1497,7 @@ module Stigg
             sig { params(state: String).void }
             attr_writer :state
 
+            # Billing address
             sig do
               params(
                 city: String,
@@ -1459,6 +1534,7 @@ module Stigg
             end
           end
 
+          # Proration behavior
           module ProrationBehavior
             extend Stigg::Internal::Type::Enum
 
@@ -1507,16 +1583,24 @@ module Stigg
                 )
               end
 
+            # Tax exemption type (e.g., vat, gst)
             sig { returns(String) }
             attr_accessor :type
 
+            # Tax exemption identifier value
             sig { returns(String) }
             attr_accessor :value
 
+            # Tax exemption identifier
             sig do
               params(type: String, value: String).returns(T.attached_class)
             end
-            def self.new(type:, value:)
+            def self.new(
+              # Tax exemption type (e.g., vat, gst)
+              type:,
+              # Tax exemption identifier value
+              value:
+            )
             end
 
             sig { override.returns({ type: String, value: String }) }
@@ -1525,6 +1609,7 @@ module Stigg
           end
         end
 
+        # Billing period (MONTHLY or ANNUALLY)
         module BillingPeriod
           extend Stigg::Internal::Type::Enum
 
@@ -1581,6 +1666,7 @@ module Stigg
           end
           attr_accessor :type
 
+          # Charge item
           sig do
             params(
               id: String,
@@ -1647,6 +1733,7 @@ module Stigg
           end
         end
 
+        # When to apply subscription changes
         module ScheduleStrategy
           extend Stigg::Internal::Type::Enum
 
@@ -1695,9 +1782,11 @@ module Stigg
               )
             end
 
+          # Whether to start as trial
           sig { returns(T::Boolean) }
           attr_accessor :is_trial
 
+          # Behavior when trial ends
           sig do
             returns(
               T.nilable(
@@ -1722,6 +1811,7 @@ module Stigg
           sig { params(trial_end_date: Time).void }
           attr_writer :trial_end_date
 
+          # Trial period override settings
           sig do
             params(
               is_trial: T::Boolean,
@@ -1731,7 +1821,9 @@ module Stigg
             ).returns(T.attached_class)
           end
           def self.new(
+            # Whether to start as trial
             is_trial:,
+            # Behavior when trial ends
             trial_end_behavior: nil,
             # Trial end date
             trial_end_date: nil
@@ -1751,6 +1843,7 @@ module Stigg
           def to_hash
           end
 
+          # Behavior when trial ends
           module TrialEndBehavior
             extend Stigg::Internal::Type::Enum
 

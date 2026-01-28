@@ -32,6 +32,7 @@ module Stigg
           end
           attr_accessor :vendor_identifier
 
+          # Customers selected currency
           sig do
             returns(
               T.nilable(
@@ -61,6 +62,7 @@ module Stigg
             payment_method_id:,
             # The vendor identifier of integration
             vendor_identifier:,
+            # Customers selected currency
             billing_currency: nil,
             request_options: {}
           )
@@ -159,6 +161,7 @@ module Stigg
             end
           end
 
+          # Customers selected currency
           module BillingCurrency
             extend Stigg::Internal::Type::Enum
 

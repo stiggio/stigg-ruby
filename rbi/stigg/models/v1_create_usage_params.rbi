@@ -110,6 +110,7 @@ module Stigg
         end
         attr_writer :update_behavior
 
+        # Single usage measurement
         sig do
           params(
             customer_id: String,

@@ -65,6 +65,8 @@ module Stigg
                  api_name: :updateBehavior
 
         # @!method initialize(customer_id:, feature_id:, value:, created_at: nil, dimensions: nil, resource_id: nil, update_behavior: nil)
+        #   Single usage measurement
+        #
         #   @param customer_id [String] Customer id
         #
         #   @param feature_id [String] Feature id

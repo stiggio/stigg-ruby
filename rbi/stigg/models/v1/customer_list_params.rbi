@@ -12,21 +12,21 @@ module Stigg
             T.any(Stigg::V1::CustomerListParams, Stigg::Internal::AnyHash)
           end
 
-        # Starting after this UUID for pagination
+        # Return items that come after this cursor
         sig { returns(T.nilable(String)) }
         attr_reader :after
 
         sig { params(after: String).void }
         attr_writer :after
 
-        # Ending before this UUID for pagination
+        # Return items that come before this cursor
         sig { returns(T.nilable(String)) }
         attr_reader :before
 
         sig { params(before: String).void }
         attr_writer :before
 
-        # Items per page
+        # Maximum number of items to return
         sig { returns(T.nilable(Integer)) }
         attr_reader :limit
 
@@ -42,11 +42,11 @@ module Stigg
           ).returns(T.attached_class)
         end
         def self.new(
-          # Starting after this UUID for pagination
+          # Return items that come after this cursor
           after: nil,
-          # Ending before this UUID for pagination
+          # Return items that come before this cursor
           before: nil,
-          # Items per page
+          # Maximum number of items to return
           limit: nil,
           request_options: {}
         )

@@ -7,12 +7,12 @@ module Stigg
         sig { returns(Stigg::Resources::V1::Subscriptions::FutureUpdate) }
         attr_reader :future_update
 
-        # Create a new Subscription
+        # Provision subscription
         sig do
           params(
             customer_id: String,
             plan_id: String,
-            id: T.nilable(String),
+            id: String,
             addons:
               T::Array[Stigg::V1::SubscriptionCreateParams::Addon::OrHash],
             applied_coupon:
@@ -65,6 +65,7 @@ module Stigg
           # Unique identifier for the subscription
           id: nil,
           addons: nil,
+          # Coupon configuration
           applied_coupon: nil,
           # Whether to wait for payment confirmation before returning the subscription
           await_payment_confirmation: nil,
@@ -73,9 +74,11 @@ module Stigg
           # External billing system identifier
           billing_id: nil,
           billing_information: nil,
+          # Billing period (MONTHLY or ANNUALLY)
           billing_period: nil,
           budget: nil,
           charges: nil,
+          # Checkout page configuration for payment collection
           checkout_options: nil,
           # Additional metadata for the subscription
           metadata: nil,
@@ -94,23 +97,28 @@ module Stigg
           # Subscription start date
           start_date: nil,
           subscription_entitlements: nil,
+          # Trial period override settings
           trial_override_configuration: nil,
           unit_quantity: nil,
           request_options: {}
         )
         end
 
-        # Get a single Subscription by id
+        # Get a single subscription by ID
         sig do
           params(
             id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::Models::V1::SubscriptionRetrieveResponse)
         end
-        def retrieve(id, request_options: {})
+        def retrieve(
+          # The unique identifier of the entity
+          id,
+          request_options: {}
+        )
         end
 
-        # Get a list of Subscriptions
+        # Get a list of subscriptions
         sig do
           params(
             after: String,
@@ -126,22 +134,21 @@ module Stigg
           )
         end
         def list(
-          # Starting after this UUID for pagination
+          # Return items that come after this cursor
           after: nil,
-          # Ending before this UUID for pagination
+          # Return items that come before this cursor
           before: nil,
           # Filter by customer ID
           customer_id: nil,
-          # Items per page
+          # Maximum number of items to return
           limit: nil,
-          # Filter by subscription status (comma-separated for multiple statuses, e.g.,
-          # ACTIVE,IN_TRIAL)
+          # Filter by status (comma-separated)
           status: nil,
           request_options: {}
         )
         end
 
-        # Perform delegate on a Subscription
+        # Delegate subscription payment to customer
         sig do
           params(
             id: String,
@@ -150,14 +157,17 @@ module Stigg
           ).returns(Stigg::Models::V1::SubscriptionDelegateResponse)
         end
         def delegate(
+          # The unique identifier of the entity
           id,
-          # The customer ID to delegate the subscription to
+          # The unique identifier of the customer who will assume payment responsibility for
+          # this subscription. This customer must already exist in your Stigg account and
+          # have a valid payment method if the subscription requires payment.
           target_customer_id:,
           request_options: {}
         )
         end
 
-        # Perform migrate to latest plan version on a Subscription
+        # Migrate subscription to latest plan version
         sig do
           params(
             id: String,
@@ -167,14 +177,15 @@ module Stigg
           ).returns(Stigg::Models::V1::SubscriptionMigrateResponse)
         end
         def migrate(
+          # The unique identifier of the entity
           id,
-          # When to migrate the subscription: IMMEDIATE or END_OF_BILLING_PERIOD
+          # When to migrate (immediate or period end)
           subscription_migration_time: nil,
           request_options: {}
         )
         end
 
-        # Create a new Subscription Preview
+        # Preview subscription
         sig do
           params(
             customer_id: String,
@@ -210,25 +221,37 @@ module Stigg
           customer_id:,
           # Plan ID
           plan_id:,
+          # Addons to include
           addons: nil,
+          # Coupon or discount to apply
           applied_coupon: nil,
+          # Billable features with quantities
           billable_features: nil,
+          # ISO 3166-1 country code for localization
           billing_country_code: nil,
+          # Billing and tax configuration
           billing_information: nil,
+          # Billing period (MONTHLY or ANNUALLY)
           billing_period: nil,
+          # One-time or recurring charges
           charges: nil,
+          # Paying customer ID for delegated billing
           paying_customer_id: nil,
+          # Resource ID for multi-instance subscriptions
           resource_id: nil,
+          # When to apply subscription changes
           schedule_strategy: nil,
           # Subscription start date
           start_date: nil,
+          # Trial period override settings
           trial_override_configuration: nil,
+          # Unit quantity for per-unit pricing
           unit_quantity: nil,
           request_options: {}
         )
         end
 
-        # Perform transfer to resource on a Subscription
+        # Transfer subscription to resource
         sig do
           params(
             id: String,
@@ -237,9 +260,9 @@ module Stigg
           ).returns(Stigg::Models::V1::SubscriptionTransferResponse)
         end
         def transfer(
+          # The unique identifier of the entity
           id,
-          # The resource ID to transfer the subscription to. The destination resource must
-          # belong to the same customer.
+          # Resource ID to transfer the subscription to
           destination_resource_id:,
           request_options: {}
         )

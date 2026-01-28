@@ -9,13 +9,13 @@ module Stigg
         include Stigg::Internal::Type::RequestParameters
 
         # @!attribute after
-        #   Starting after this UUID for pagination
+        #   Return items that come after this cursor
         #
         #   @return [String, nil]
         optional :after, String
 
         # @!attribute before
-        #   Ending before this UUID for pagination
+        #   Return items that come before this cursor
         #
         #   @return [String, nil]
         optional :before, String
@@ -27,31 +27,27 @@ module Stigg
         optional :customer_id, String
 
         # @!attribute limit
-        #   Items per page
+        #   Maximum number of items to return
         #
         #   @return [Integer, nil]
         optional :limit, Integer
 
         # @!attribute status
-        #   Filter by subscription status (comma-separated for multiple statuses, e.g.,
-        #   ACTIVE,IN_TRIAL)
+        #   Filter by status (comma-separated)
         #
         #   @return [String, nil]
         optional :status, String
 
         # @!method initialize(after: nil, before: nil, customer_id: nil, limit: nil, status: nil, request_options: {})
-        #   Some parameter documentations has been truncated, see
-        #   {Stigg::Models::V1::SubscriptionListParams} for more details.
+        #   @param after [String] Return items that come after this cursor
         #
-        #   @param after [String] Starting after this UUID for pagination
-        #
-        #   @param before [String] Ending before this UUID for pagination
+        #   @param before [String] Return items that come before this cursor
         #
         #   @param customer_id [String] Filter by customer ID
         #
-        #   @param limit [Integer] Items per page
+        #   @param limit [Integer] Maximum number of items to return
         #
-        #   @param status [String] Filter by subscription status (comma-separated for multiple statuses, e.g., ACTI
+        #   @param status [String] Filter by status (comma-separated)
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
       end

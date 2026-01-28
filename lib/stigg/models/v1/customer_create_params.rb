@@ -152,6 +152,8 @@ module Stigg
                    api_name: :vendorIdentifier
 
           # @!method initialize(id:, synced_entity_id:, vendor_identifier:)
+          #   External billing or CRM integration link
+          #
           #   @param id [String] Integration details
           #
           #   @param synced_entity_id [String, nil] Synced entity id

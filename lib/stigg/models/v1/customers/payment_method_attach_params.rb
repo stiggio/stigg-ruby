@@ -30,6 +30,7 @@ module Stigg
                    api_name: :vendorIdentifier
 
           # @!attribute billing_currency
+          #   Customers selected currency
           #
           #   @return [Symbol, Stigg::Models::V1::Customers::PaymentMethodAttachParams::BillingCurrency, nil]
           optional :billing_currency,
@@ -44,7 +45,7 @@ module Stigg
           #
           #   @param vendor_identifier [Symbol, Stigg::Models::V1::Customers::PaymentMethodAttachParams::VendorIdentifier] The vendor identifier of integration
           #
-          #   @param billing_currency [Symbol, Stigg::Models::V1::Customers::PaymentMethodAttachParams::BillingCurrency, nil]
+          #   @param billing_currency [Symbol, Stigg::Models::V1::Customers::PaymentMethodAttachParams::BillingCurrency, nil] Customers selected currency
           #
           #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 
@@ -67,6 +68,7 @@ module Stigg
             #   @return [Array<Symbol>]
           end
 
+          # Customers selected currency
           module BillingCurrency
             extend Stigg::Internal::Type::Enum
 

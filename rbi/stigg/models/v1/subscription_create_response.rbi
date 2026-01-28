@@ -12,6 +12,7 @@ module Stigg
             )
           end
 
+        # Provisioning result with status and subscription or checkout URL.
         sig { returns(Stigg::Models::V1::SubscriptionCreateResponse::Data) }
         attr_reader :data
 
@@ -22,12 +23,16 @@ module Stigg
         end
         attr_writer :data
 
+        # Response object
         sig do
           params(
             data: Stigg::Models::V1::SubscriptionCreateResponse::Data::OrHash
           ).returns(T.attached_class)
         end
-        def self.new(data:)
+        def self.new(
+          # Provisioning result with status and subscription or checkout URL.
+          data:
+        )
         end
 
         sig do
@@ -83,6 +88,7 @@ module Stigg
           sig { params(is_scheduled: T::Boolean).void }
           attr_writer :is_scheduled
 
+          # Created subscription (when status is SUCCESS)
           sig do
             returns(
               T.nilable(
@@ -100,6 +106,7 @@ module Stigg
           end
           attr_writer :subscription
 
+          # Provisioning result with status and subscription or checkout URL.
           sig do
             params(
               id: String,
@@ -128,6 +135,7 @@ module Stigg
             checkout_url: nil,
             # Whether the subscription is scheduled for future activation
             is_scheduled: nil,
+            # Created subscription (when status is SUCCESS)
             subscription: nil
           )
           end
@@ -302,11 +310,15 @@ module Stigg
                   )
                 end
 
+              # Feature ID
               sig { returns(String) }
               attr_accessor :ref_id
 
               sig { params(ref_id: String).returns(T.attached_class) }
-              def self.new(ref_id:)
+              def self.new(
+                # Feature ID
+                ref_id:
+              )
               end
 
               sig { override.returns({ ref_id: String }) }
@@ -536,12 +548,7 @@ module Stigg
             sig { returns(T.nilable(Time)) }
             attr_accessor :trial_end_date
 
-            sig { returns(T.nilable(Float)) }
-            attr_reader :unit_quantity
-
-            sig { params(unit_quantity: Float).void }
-            attr_writer :unit_quantity
-
+            # Created subscription (when status is SUCCESS)
             sig do
               params(
                 id: String,
@@ -576,8 +583,7 @@ module Stigg
                     Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::OrHash
                   ],
                 resource_id: T.nilable(String),
-                trial_end_date: T.nilable(Time),
-                unit_quantity: Float
+                trial_end_date: T.nilable(Time)
               ).returns(T.attached_class)
             end
             def self.new(
@@ -621,8 +627,7 @@ module Stigg
               # Resource ID
               resource_id: nil,
               # Subscription trial end date
-              trial_end_date: nil,
-              unit_quantity: nil
+              trial_end_date: nil
             )
             end
 
@@ -661,8 +666,7 @@ module Stigg
                       Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price
                     ],
                   resource_id: T.nilable(String),
-                  trial_end_date: T.nilable(Time),
-                  unit_quantity: Float
+                  trial_end_date: T.nilable(Time)
                 }
               )
             end

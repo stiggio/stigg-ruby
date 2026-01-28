@@ -9,29 +9,29 @@ module Stigg
         include Stigg::Internal::Type::RequestParameters
 
         # @!attribute after
-        #   Starting after this UUID for pagination
+        #   Return items that come after this cursor
         #
         #   @return [String, nil]
         optional :after, String
 
         # @!attribute before
-        #   Ending before this UUID for pagination
+        #   Return items that come before this cursor
         #
         #   @return [String, nil]
         optional :before, String
 
         # @!attribute limit
-        #   Items per page
+        #   Maximum number of items to return
         #
         #   @return [Integer, nil]
         optional :limit, Integer
 
         # @!method initialize(after: nil, before: nil, limit: nil, request_options: {})
-        #   @param after [String] Starting after this UUID for pagination
+        #   @param after [String] Return items that come after this cursor
         #
-        #   @param before [String] Ending before this UUID for pagination
+        #   @param before [String] Return items that come before this cursor
         #
-        #   @param limit [Integer] Items per page
+        #   @param limit [Integer] Maximum number of items to return
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
       end

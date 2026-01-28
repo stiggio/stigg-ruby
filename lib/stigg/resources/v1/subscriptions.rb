@@ -7,7 +7,7 @@ module Stigg
         # @return [Stigg::Resources::V1::Subscriptions::FutureUpdate]
         attr_reader :future_update
 
-        # Create a new Subscription
+        # Provision subscription
         #
         # @overload create(customer_id:, plan_id:, id: nil, addons: nil, applied_coupon: nil, await_payment_confirmation: nil, billing_country_code: nil, billing_id: nil, billing_information: nil, billing_period: nil, budget: nil, charges: nil, checkout_options: nil, metadata: nil, minimum_spend: nil, paying_customer_id: nil, payment_collection_method: nil, price_overrides: nil, resource_id: nil, salesforce_id: nil, schedule_strategy: nil, start_date: nil, subscription_entitlements: nil, trial_override_configuration: nil, unit_quantity: nil, request_options: {})
         #
@@ -15,11 +15,11 @@ module Stigg
         #
         # @param plan_id [String] Plan ID to provision
         #
-        # @param id [String, nil] Unique identifier for the subscription
+        # @param id [String] Unique identifier for the subscription
         #
         # @param addons [Array<Stigg::Models::V1::SubscriptionCreateParams::Addon>]
         #
-        # @param applied_coupon [Stigg::Models::V1::SubscriptionCreateParams::AppliedCoupon]
+        # @param applied_coupon [Stigg::Models::V1::SubscriptionCreateParams::AppliedCoupon] Coupon configuration
         #
         # @param await_payment_confirmation [Boolean] Whether to wait for payment confirmation before returning the subscription
         #
@@ -29,13 +29,13 @@ module Stigg
         #
         # @param billing_information [Stigg::Models::V1::SubscriptionCreateParams::BillingInformation]
         #
-        # @param billing_period [Symbol, Stigg::Models::V1::SubscriptionCreateParams::BillingPeriod]
+        # @param billing_period [Symbol, Stigg::Models::V1::SubscriptionCreateParams::BillingPeriod] Billing period (MONTHLY or ANNUALLY)
         #
         # @param budget [Stigg::Models::V1::SubscriptionCreateParams::Budget, nil]
         #
         # @param charges [Array<Stigg::Models::V1::SubscriptionCreateParams::Charge>]
         #
-        # @param checkout_options [Stigg::Models::V1::SubscriptionCreateParams::CheckoutOptions]
+        # @param checkout_options [Stigg::Models::V1::SubscriptionCreateParams::CheckoutOptions] Checkout page configuration for payment collection
         #
         # @param metadata [Hash{Symbol=>String}] Additional metadata for the subscription
         #
@@ -57,7 +57,7 @@ module Stigg
         #
         # @param subscription_entitlements [Array<Stigg::Models::V1::SubscriptionCreateParams::SubscriptionEntitlement>]
         #
-        # @param trial_override_configuration [Stigg::Models::V1::SubscriptionCreateParams::TrialOverrideConfiguration]
+        # @param trial_override_configuration [Stigg::Models::V1::SubscriptionCreateParams::TrialOverrideConfiguration] Trial period override settings
         #
         # @param unit_quantity [Float]
         #
@@ -77,11 +77,12 @@ module Stigg
           )
         end
 
-        # Get a single Subscription by id
+        # Get a single subscription by ID
         #
         # @overload retrieve(id, request_options: {})
         #
-        # @param id [String]
+        # @param id [String] The unique identifier of the entity
+        #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
         # @return [Stigg::Models::V1::SubscriptionRetrieveResponse]
@@ -96,22 +97,19 @@ module Stigg
           )
         end
 
-        # Some parameter documentations has been truncated, see
-        # {Stigg::Models::V1::SubscriptionListParams} for more details.
-        #
-        # Get a list of Subscriptions
+        # Get a list of subscriptions
         #
         # @overload list(after: nil, before: nil, customer_id: nil, limit: nil, status: nil, request_options: {})
         #
-        # @param after [String] Starting after this UUID for pagination
+        # @param after [String] Return items that come after this cursor
         #
-        # @param before [String] Ending before this UUID for pagination
+        # @param before [String] Return items that come before this cursor
         #
         # @param customer_id [String] Filter by customer ID
         #
-        # @param limit [Integer] Items per page
+        # @param limit [Integer] Maximum number of items to return
         #
-        # @param status [String] Filter by subscription status (comma-separated for multiple statuses, e.g., ACTI
+        # @param status [String] Filter by status (comma-separated)
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -130,13 +128,16 @@ module Stigg
           )
         end
 
-        # Perform delegate on a Subscription
+        # Some parameter documentations has been truncated, see
+        # {Stigg::Models::V1::SubscriptionDelegateParams} for more details.
+        #
+        # Delegate subscription payment to customer
         #
         # @overload delegate(id, target_customer_id:, request_options: {})
         #
-        # @param id [String]
+        # @param id [String] The unique identifier of the entity
         #
-        # @param target_customer_id [String] The customer ID to delegate the subscription to
+        # @param target_customer_id [String] The unique identifier of the customer who will assume payment responsibility for
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -154,13 +155,13 @@ module Stigg
           )
         end
 
-        # Perform migrate to latest plan version on a Subscription
+        # Migrate subscription to latest plan version
         #
         # @overload migrate(id, subscription_migration_time: nil, request_options: {})
         #
-        # @param id [String]
+        # @param id [String] The unique identifier of the entity
         #
-        # @param subscription_migration_time [Symbol, Stigg::Models::V1::SubscriptionMigrateParams::SubscriptionMigrationTime] When to migrate the subscription: IMMEDIATE or END_OF_BILLING_PERIOD
+        # @param subscription_migration_time [Symbol, Stigg::Models::V1::SubscriptionMigrateParams::SubscriptionMigrationTime] When to migrate (immediate or period end)
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -178,7 +179,7 @@ module Stigg
           )
         end
 
-        # Create a new Subscription Preview
+        # Preview subscription
         #
         # @overload preview(customer_id:, plan_id:, addons: nil, applied_coupon: nil, billable_features: nil, billing_country_code: nil, billing_information: nil, billing_period: nil, charges: nil, paying_customer_id: nil, resource_id: nil, schedule_strategy: nil, start_date: nil, trial_override_configuration: nil, unit_quantity: nil, request_options: {})
         #
@@ -186,31 +187,31 @@ module Stigg
         #
         # @param plan_id [String] Plan ID
         #
-        # @param addons [Array<Stigg::Models::V1::SubscriptionPreviewParams::Addon>]
+        # @param addons [Array<Stigg::Models::V1::SubscriptionPreviewParams::Addon>] Addons to include
         #
-        # @param applied_coupon [Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon]
+        # @param applied_coupon [Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon] Coupon or discount to apply
         #
-        # @param billable_features [Array<Stigg::Models::V1::SubscriptionPreviewParams::BillableFeature>]
+        # @param billable_features [Array<Stigg::Models::V1::SubscriptionPreviewParams::BillableFeature>] Billable features with quantities
         #
-        # @param billing_country_code [String]
+        # @param billing_country_code [String] ISO 3166-1 country code for localization
         #
-        # @param billing_information [Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation]
+        # @param billing_information [Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation] Billing and tax configuration
         #
-        # @param billing_period [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::BillingPeriod]
+        # @param billing_period [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::BillingPeriod] Billing period (MONTHLY or ANNUALLY)
         #
-        # @param charges [Array<Stigg::Models::V1::SubscriptionPreviewParams::Charge>]
+        # @param charges [Array<Stigg::Models::V1::SubscriptionPreviewParams::Charge>] One-time or recurring charges
         #
-        # @param paying_customer_id [String]
+        # @param paying_customer_id [String] Paying customer ID for delegated billing
         #
-        # @param resource_id [String]
+        # @param resource_id [String] Resource ID for multi-instance subscriptions
         #
-        # @param schedule_strategy [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::ScheduleStrategy]
+        # @param schedule_strategy [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::ScheduleStrategy] When to apply subscription changes
         #
         # @param start_date [Time] Subscription start date
         #
-        # @param trial_override_configuration [Stigg::Models::V1::SubscriptionPreviewParams::TrialOverrideConfiguration]
+        # @param trial_override_configuration [Stigg::Models::V1::SubscriptionPreviewParams::TrialOverrideConfiguration] Trial period override settings
         #
-        # @param unit_quantity [Float]
+        # @param unit_quantity [Float] Unit quantity for per-unit pricing
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -228,16 +229,13 @@ module Stigg
           )
         end
 
-        # Some parameter documentations has been truncated, see
-        # {Stigg::Models::V1::SubscriptionTransferParams} for more details.
-        #
-        # Perform transfer to resource on a Subscription
+        # Transfer subscription to resource
         #
         # @overload transfer(id, destination_resource_id:, request_options: {})
         #
-        # @param id [String]
+        # @param id [String] The unique identifier of the entity
         #
-        # @param destination_resource_id [String] The resource ID to transfer the subscription to. The destination resource must b
+        # @param destination_resource_id [String] Resource ID to transfer the subscription to
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #

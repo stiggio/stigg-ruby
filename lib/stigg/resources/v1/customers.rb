@@ -10,7 +10,7 @@ module Stigg
         # @return [Stigg::Resources::V1::Customers::Usage]
         attr_reader :usage
 
-        # Create a new Customer
+        # Provision customer
         #
         # @overload create(id:, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil, request_options: {})
         #
@@ -44,11 +44,12 @@ module Stigg
           )
         end
 
-        # Get a single Customer by id
+        # Get a single customer by ID
         #
         # @overload retrieve(id, request_options: {})
         #
-        # @param id [String]
+        # @param id [String] The unique identifier of the entity
+        #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
         # @return [Stigg::Models::V1::CustomerResponse]
@@ -63,11 +64,11 @@ module Stigg
           )
         end
 
-        # Update an existing Customer
+        # Update a customer
         #
         # @overload update(id, coupon_id: nil, email: nil, integrations: nil, metadata: nil, name: nil, request_options: {})
         #
-        # @param id [String]
+        # @param id [String] The unique identifier of the entity
         #
         # @param coupon_id [String, nil] Customer level coupon
         #
@@ -95,15 +96,15 @@ module Stigg
           )
         end
 
-        # Get a list of Customers
+        # Get a list of customers
         #
         # @overload list(after: nil, before: nil, limit: nil, request_options: {})
         #
-        # @param after [String] Starting after this UUID for pagination
+        # @param after [String] Return items that come after this cursor
         #
-        # @param before [String] Ending before this UUID for pagination
+        # @param before [String] Return items that come before this cursor
         #
-        # @param limit [Integer] Items per page
+        # @param limit [Integer] Maximum number of items to return
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -122,11 +123,12 @@ module Stigg
           )
         end
 
-        # Perform archive on a Customer
+        # Archive customer
         #
         # @overload archive(id, request_options: {})
         #
-        # @param id [String]
+        # @param id [String] The unique identifier of the entity
+        #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
         # @return [Stigg::Models::V1::CustomerResponse]
@@ -141,11 +143,12 @@ module Stigg
           )
         end
 
-        # Perform unarchive on a Customer
+        # Unarchive customer
         #
         # @overload unarchive(id, request_options: {})
         #
-        # @param id [String]
+        # @param id [String] The unique identifier of the entity
+        #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
         # @return [Stigg::Models::V1::CustomerResponse]

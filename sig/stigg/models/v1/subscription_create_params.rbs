@@ -5,7 +5,7 @@ module Stigg
         {
           customer_id: String,
           plan_id: String,
-          id: String?,
+          id: String,
           addons: ::Array[Stigg::V1::SubscriptionCreateParams::Addon],
           applied_coupon: Stigg::V1::SubscriptionCreateParams::AppliedCoupon,
           await_payment_confirmation: bool,
@@ -39,7 +39,9 @@ module Stigg
 
         attr_accessor plan_id: String
 
-        attr_accessor id: String?
+        attr_reader id: String?
+
+        def id=: (String) -> String
 
         attr_reader addons: ::Array[Stigg::V1::SubscriptionCreateParams::Addon]?
 
@@ -140,7 +142,7 @@ module Stigg
         def initialize: (
           customer_id: String,
           plan_id: String,
-          ?id: String?,
+          ?id: String,
           ?addons: ::Array[Stigg::V1::SubscriptionCreateParams::Addon],
           ?applied_coupon: Stigg::V1::SubscriptionCreateParams::AppliedCoupon,
           ?await_payment_confirmation: bool,
@@ -169,7 +171,7 @@ module Stigg
         def to_hash: -> {
           customer_id: String,
           plan_id: String,
-          id: String?,
+          id: String,
           addons: ::Array[Stigg::V1::SubscriptionCreateParams::Addon],
           applied_coupon: Stigg::V1::SubscriptionCreateParams::AppliedCoupon,
           await_payment_confirmation: bool,
@@ -324,15 +326,11 @@ module Stigg
             class AmountsOff < Stigg::Internal::Type::BaseModel
               attr_accessor amount: Float
 
-              attr_reader currency: Stigg::Models::V1::SubscriptionCreateParams::AppliedCoupon::Discount::AmountsOff::currency?
-
-              def currency=: (
-                Stigg::Models::V1::SubscriptionCreateParams::AppliedCoupon::Discount::AmountsOff::currency
-              ) -> Stigg::Models::V1::SubscriptionCreateParams::AppliedCoupon::Discount::AmountsOff::currency
+              attr_accessor currency: Stigg::Models::V1::SubscriptionCreateParams::AppliedCoupon::Discount::AmountsOff::currency
 
               def initialize: (
                 amount: Float,
-                ?currency: Stigg::Models::V1::SubscriptionCreateParams::AppliedCoupon::Discount::AmountsOff::currency
+                currency: Stigg::Models::V1::SubscriptionCreateParams::AppliedCoupon::Discount::AmountsOff::currency
               ) -> void
 
               def to_hash: -> {
