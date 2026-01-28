@@ -71,8 +71,10 @@ class Stigg::Test::Resources::V1::SubscriptionsTest < Stigg::Test::ResourceTest
         metadata: ^(Stigg::Internal::Type::HashOf[String]) | nil,
         paying_customer_id: String | nil,
         payment_collection_method: Stigg::Models::V1::SubscriptionListResponse::PaymentCollectionMethod | nil,
+        prices: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::SubscriptionListResponse::Price]) | nil,
         resource_id: String | nil,
-        trial_end_date: Time | nil
+        trial_end_date: Time | nil,
+        unit_quantity: Float | nil
       }
     end
   end

@@ -35,8 +35,10 @@ module Stigg
             metadata: ::Hash[Symbol, String],
             paying_customer_id: String?,
             payment_collection_method: Stigg::Models::V1::SubscriptionDelegateResponse::Data::payment_collection_method?,
+            prices: ::Array[Stigg::Models::V1::SubscriptionDelegateResponse::Data::Price],
             resource_id: String?,
-            trial_end_date: Time?
+            trial_end_date: Time?,
+            unit_quantity: Float
           }
 
         class Data < Stigg::Internal::Type::BaseModel
@@ -78,9 +80,19 @@ module Stigg
 
           attr_accessor payment_collection_method: Stigg::Models::V1::SubscriptionDelegateResponse::Data::payment_collection_method?
 
+          attr_reader prices: ::Array[Stigg::Models::V1::SubscriptionDelegateResponse::Data::Price]?
+
+          def prices=: (
+            ::Array[Stigg::Models::V1::SubscriptionDelegateResponse::Data::Price]
+          ) -> ::Array[Stigg::Models::V1::SubscriptionDelegateResponse::Data::Price]
+
           attr_accessor resource_id: String?
 
           attr_accessor trial_end_date: Time?
+
+          attr_reader unit_quantity: Float?
+
+          def unit_quantity=: (Float) -> Float
 
           def initialize: (
             id: String,
@@ -101,8 +113,10 @@ module Stigg
             ?metadata: ::Hash[Symbol, String],
             ?paying_customer_id: String?,
             ?payment_collection_method: Stigg::Models::V1::SubscriptionDelegateResponse::Data::payment_collection_method?,
+            ?prices: ::Array[Stigg::Models::V1::SubscriptionDelegateResponse::Data::Price],
             ?resource_id: String?,
-            ?trial_end_date: Time?
+            ?trial_end_date: Time?,
+            ?unit_quantity: Float
           ) -> void
 
           def to_hash: -> {
@@ -124,8 +138,10 @@ module Stigg
             metadata: ::Hash[Symbol, String],
             paying_customer_id: String?,
             payment_collection_method: Stigg::Models::V1::SubscriptionDelegateResponse::Data::payment_collection_method?,
+            prices: ::Array[Stigg::Models::V1::SubscriptionDelegateResponse::Data::Price],
             resource_id: String?,
-            trial_end_date: Time?
+            trial_end_date: Time?,
+            unit_quantity: Float
           }
 
           type payment_collection =
@@ -216,6 +232,28 @@ module Stigg
             NONE: :NONE
 
             def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionDelegateResponse::Data::payment_collection_method]
+          end
+
+          type price = { id: String, created_at: String, updated_at: String }
+
+          class Price < Stigg::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor created_at: String
+
+            attr_accessor updated_at: String
+
+            def initialize: (
+              id: String,
+              created_at: String,
+              updated_at: String
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              created_at: String,
+              updated_at: String
+            }
           end
         end
       end

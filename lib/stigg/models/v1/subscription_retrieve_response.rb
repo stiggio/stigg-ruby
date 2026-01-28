@@ -133,6 +133,12 @@ module Stigg
                    api_name: :paymentCollectionMethod,
                    nil?: true
 
+          # @!attribute prices
+          #
+          #   @return [Array<Stigg::Models::V1::SubscriptionRetrieveResponse::Data::Price>, nil]
+          optional :prices,
+                   -> { Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::SubscriptionRetrieveResponse::Data::Price] }
+
           # @!attribute resource_id
           #   Resource ID
           #
@@ -145,7 +151,12 @@ module Stigg
           #   @return [Time, nil]
           optional :trial_end_date, Time, api_name: :trialEndDate, nil?: true
 
-          # @!method initialize(id:, billing_id:, created_at:, customer_id:, payment_collection:, plan_id:, pricing_type:, start_date:, status:, cancellation_date: nil, cancel_reason: nil, current_billing_period_end: nil, current_billing_period_start: nil, effective_end_date: nil, end_date: nil, metadata: nil, paying_customer_id: nil, payment_collection_method: nil, resource_id: nil, trial_end_date: nil)
+          # @!attribute unit_quantity
+          #
+          #   @return [Float, nil]
+          optional :unit_quantity, Float, api_name: :unitQuantity
+
+          # @!method initialize(id:, billing_id:, created_at:, customer_id:, payment_collection:, plan_id:, pricing_type:, start_date:, status:, cancellation_date: nil, cancel_reason: nil, current_billing_period_end: nil, current_billing_period_start: nil, effective_end_date: nil, end_date: nil, metadata: nil, paying_customer_id: nil, payment_collection_method: nil, prices: nil, resource_id: nil, trial_end_date: nil, unit_quantity: nil)
           #   @param id [String] Subscription ID
           #
           #   @param billing_id [String, nil] Billing ID
@@ -182,9 +193,13 @@ module Stigg
           #
           #   @param payment_collection_method [Symbol, Stigg::Models::V1::SubscriptionRetrieveResponse::Data::PaymentCollectionMethod, nil] The method used to collect payments for a subscription
           #
+          #   @param prices [Array<Stigg::Models::V1::SubscriptionRetrieveResponse::Data::Price>]
+          #
           #   @param resource_id [String, nil] Resource ID
           #
           #   @param trial_end_date [Time, nil] Subscription trial end date
+          #
+          #   @param unit_quantity [Float]
 
           # Payment collection
           #
@@ -266,6 +281,33 @@ module Stigg
 
             # @!method self.values
             #   @return [Array<Symbol>]
+          end
+
+          class Price < Stigg::Internal::Type::BaseModel
+            # @!attribute id
+            #   Price ID
+            #
+            #   @return [String]
+            required :id, String
+
+            # @!attribute created_at
+            #   Creation timestamp
+            #
+            #   @return [String]
+            required :created_at, String, api_name: :createdAt
+
+            # @!attribute updated_at
+            #   Last update timestamp
+            #
+            #   @return [String]
+            required :updated_at, String, api_name: :updatedAt
+
+            # @!method initialize(id:, created_at:, updated_at:)
+            #   @param id [String] Price ID
+            #
+            #   @param created_at [String] Creation timestamp
+            #
+            #   @param updated_at [String] Last update timestamp
           end
         end
       end

@@ -18,6 +18,7 @@ module Stigg
         type data =
           {
             id: String,
+            entitlements: ::Array[Stigg::Models::V1::SubscriptionCreateResponse::Data::Entitlement],
             status: Stigg::Models::V1::SubscriptionCreateResponse::Data::status,
             checkout_billing_id: String?,
             checkout_url: String?,
@@ -27,6 +28,8 @@ module Stigg
 
         class Data < Stigg::Internal::Type::BaseModel
           attr_accessor id: String
+
+          attr_accessor entitlements: ::Array[Stigg::Models::V1::SubscriptionCreateResponse::Data::Entitlement]
 
           attr_accessor status: Stigg::Models::V1::SubscriptionCreateResponse::Data::status
 
@@ -46,6 +49,7 @@ module Stigg
 
           def initialize: (
             id: String,
+            entitlements: ::Array[Stigg::Models::V1::SubscriptionCreateResponse::Data::Entitlement],
             status: Stigg::Models::V1::SubscriptionCreateResponse::Data::status,
             ?checkout_billing_id: String?,
             ?checkout_url: String?,
@@ -55,12 +59,108 @@ module Stigg
 
           def to_hash: -> {
             id: String,
+            entitlements: ::Array[Stigg::Models::V1::SubscriptionCreateResponse::Data::Entitlement],
             status: Stigg::Models::V1::SubscriptionCreateResponse::Data::status,
             checkout_billing_id: String?,
             checkout_url: String?,
             is_scheduled: bool,
             subscription: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription
           }
+
+          type entitlement =
+            {
+              access_denied_reason: String?,
+              current_usage: Float,
+              entitlement_updated_at: Time?,
+              feature: Stigg::Models::V1::SubscriptionCreateResponse::Data::Entitlement::Feature?,
+              has_unlimited_usage: bool?,
+              is_granted: bool,
+              reset_period: Stigg::Models::V1::SubscriptionCreateResponse::Data::Entitlement::reset_period?,
+              usage_limit: Float?,
+              usage_period_anchor: Time?,
+              usage_period_end: Time?,
+              usage_period_start: Time?
+            }
+
+          class Entitlement < Stigg::Internal::Type::BaseModel
+            attr_accessor access_denied_reason: String?
+
+            attr_reader current_usage: Float?
+
+            def current_usage=: (Float) -> Float
+
+            attr_accessor entitlement_updated_at: Time?
+
+            attr_accessor feature: Stigg::Models::V1::SubscriptionCreateResponse::Data::Entitlement::Feature?
+
+            attr_accessor has_unlimited_usage: bool?
+
+            attr_reader is_granted: bool?
+
+            def is_granted=: (bool) -> bool
+
+            attr_accessor reset_period: Stigg::Models::V1::SubscriptionCreateResponse::Data::Entitlement::reset_period?
+
+            attr_accessor usage_limit: Float?
+
+            attr_accessor usage_period_anchor: Time?
+
+            attr_accessor usage_period_end: Time?
+
+            attr_accessor usage_period_start: Time?
+
+            def initialize: (
+              ?access_denied_reason: String?,
+              ?current_usage: Float,
+              ?entitlement_updated_at: Time?,
+              ?feature: Stigg::Models::V1::SubscriptionCreateResponse::Data::Entitlement::Feature?,
+              ?has_unlimited_usage: bool?,
+              ?is_granted: bool,
+              ?reset_period: Stigg::Models::V1::SubscriptionCreateResponse::Data::Entitlement::reset_period?,
+              ?usage_limit: Float?,
+              ?usage_period_anchor: Time?,
+              ?usage_period_end: Time?,
+              ?usage_period_start: Time?
+            ) -> void
+
+            def to_hash: -> {
+              access_denied_reason: String?,
+              current_usage: Float,
+              entitlement_updated_at: Time?,
+              feature: Stigg::Models::V1::SubscriptionCreateResponse::Data::Entitlement::Feature?,
+              has_unlimited_usage: bool?,
+              is_granted: bool,
+              reset_period: Stigg::Models::V1::SubscriptionCreateResponse::Data::Entitlement::reset_period?,
+              usage_limit: Float?,
+              usage_period_anchor: Time?,
+              usage_period_end: Time?,
+              usage_period_start: Time?
+            }
+
+            type feature = { ref_id: String }
+
+            class Feature < Stigg::Internal::Type::BaseModel
+              attr_accessor ref_id: String
+
+              def initialize: (ref_id: String) -> void
+
+              def to_hash: -> { ref_id: String }
+            end
+
+            type reset_period = :YEAR | :MONTH | :WEEK | :DAY | :HOUR
+
+            module ResetPeriod
+              extend Stigg::Internal::Type::Enum
+
+              YEAR: :YEAR
+              MONTH: :MONTH
+              WEEK: :WEEK
+              DAY: :DAY
+              HOUR: :HOUR
+
+              def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionCreateResponse::Data::Entitlement::reset_period]
+            end
+          end
 
           type status = :SUCCESS | :PAYMENT_REQUIRED
 
@@ -93,8 +193,10 @@ module Stigg
               metadata: ::Hash[Symbol, String],
               paying_customer_id: String?,
               payment_collection_method: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::payment_collection_method?,
+              prices: ::Array[Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price],
               resource_id: String?,
-              trial_end_date: Time?
+              trial_end_date: Time?,
+              unit_quantity: Float
             }
 
           class Subscription < Stigg::Internal::Type::BaseModel
@@ -136,9 +238,19 @@ module Stigg
 
             attr_accessor payment_collection_method: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::payment_collection_method?
 
+            attr_reader prices: ::Array[Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price]?
+
+            def prices=: (
+              ::Array[Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price]
+            ) -> ::Array[Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price]
+
             attr_accessor resource_id: String?
 
             attr_accessor trial_end_date: Time?
+
+            attr_reader unit_quantity: Float?
+
+            def unit_quantity=: (Float) -> Float
 
             def initialize: (
               id: String,
@@ -159,8 +271,10 @@ module Stigg
               ?metadata: ::Hash[Symbol, String],
               ?paying_customer_id: String?,
               ?payment_collection_method: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::payment_collection_method?,
+              ?prices: ::Array[Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price],
               ?resource_id: String?,
-              ?trial_end_date: Time?
+              ?trial_end_date: Time?,
+              ?unit_quantity: Float
             ) -> void
 
             def to_hash: -> {
@@ -182,8 +296,10 @@ module Stigg
               metadata: ::Hash[Symbol, String],
               paying_customer_id: String?,
               payment_collection_method: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::payment_collection_method?,
+              prices: ::Array[Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price],
               resource_id: String?,
-              trial_end_date: Time?
+              trial_end_date: Time?,
+              unit_quantity: Float
             }
 
             type payment_collection =
@@ -274,6 +390,919 @@ module Stigg
               NONE: :NONE
 
               def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::payment_collection_method]
+            end
+
+            type price =
+              {
+                addon_id: String?,
+                base_charge: bool,
+                block_size: Float,
+                feature_id: String?,
+                price: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Price,
+                tiers: ::Array[Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier]
+              }
+
+            class Price < Stigg::Internal::Type::BaseModel
+              attr_accessor addon_id: String?
+
+              attr_reader base_charge: bool?
+
+              def base_charge=: (bool) -> bool
+
+              attr_reader block_size: Float?
+
+              def block_size=: (Float) -> Float
+
+              attr_accessor feature_id: String?
+
+              attr_reader price: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Price?
+
+              def price=: (
+                Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Price
+              ) -> Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Price
+
+              attr_reader tiers: ::Array[Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier]?
+
+              def tiers=: (
+                ::Array[Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier]
+              ) -> ::Array[Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier]
+
+              def initialize: (
+                ?addon_id: String?,
+                ?base_charge: bool,
+                ?block_size: Float,
+                ?feature_id: String?,
+                ?price: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Price,
+                ?tiers: ::Array[Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier]
+              ) -> void
+
+              def to_hash: -> {
+                addon_id: String?,
+                base_charge: bool,
+                block_size: Float,
+                feature_id: String?,
+                price: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Price,
+                tiers: ::Array[Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier]
+              }
+
+              type price =
+                {
+                  amount: Float,
+                  billing_country_code: String?,
+                  currency: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Price::currency
+                }
+
+              class Price < Stigg::Internal::Type::BaseModel
+                attr_reader amount: Float?
+
+                def amount=: (Float) -> Float
+
+                attr_accessor billing_country_code: String?
+
+                attr_reader currency: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Price::currency?
+
+                def currency=: (
+                  Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Price::currency
+                ) -> Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Price::currency
+
+                def initialize: (
+                  ?amount: Float,
+                  ?billing_country_code: String?,
+                  ?currency: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Price::currency
+                ) -> void
+
+                def to_hash: -> {
+                  amount: Float,
+                  billing_country_code: String?,
+                  currency: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Price::currency
+                }
+
+                type currency =
+                  :usd
+                  | :aed
+                  | :all
+                  | :amd
+                  | :ang
+                  | :aud
+                  | :awg
+                  | :azn
+                  | :bam
+                  | :bbd
+                  | :bdt
+                  | :bgn
+                  | :bif
+                  | :bmd
+                  | :bnd
+                  | :bsd
+                  | :bwp
+                  | :byn
+                  | :bzd
+                  | :brl
+                  | :cad
+                  | :cdf
+                  | :chf
+                  | :cny
+                  | :czk
+                  | :dkk
+                  | :dop
+                  | :dzd
+                  | :egp
+                  | :etb
+                  | :eur
+                  | :fjd
+                  | :gbp
+                  | :gel
+                  | :gip
+                  | :gmd
+                  | :gyd
+                  | :hkd
+                  | :hrk
+                  | :htg
+                  | :idr
+                  | :ils
+                  | :inr
+                  | :isk
+                  | :jmd
+                  | :jpy
+                  | :kes
+                  | :kgs
+                  | :khr
+                  | :kmf
+                  | :krw
+                  | :kyd
+                  | :kzt
+                  | :lbp
+                  | :lkr
+                  | :lrd
+                  | :lsl
+                  | :mad
+                  | :mdl
+                  | :mga
+                  | :mkd
+                  | :mmk
+                  | :mnt
+                  | :mop
+                  | :mro
+                  | :mvr
+                  | :mwk
+                  | :mxn
+                  | :myr
+                  | :mzn
+                  | :nad
+                  | :ngn
+                  | :nok
+                  | :npr
+                  | :nzd
+                  | :pgk
+                  | :php
+                  | :pkr
+                  | :pln
+                  | :qar
+                  | :ron
+                  | :rsd
+                  | :rub
+                  | :rwf
+                  | :sar
+                  | :sbd
+                  | :scr
+                  | :sek
+                  | :sgd
+                  | :sle
+                  | :sll
+                  | :sos
+                  | :szl
+                  | :thb
+                  | :tjs
+                  | :top
+                  | :try
+                  | :ttd
+                  | :tzs
+                  | :uah
+                  | :uzs
+                  | :vnd
+                  | :vuv
+                  | :wst
+                  | :xaf
+                  | :xcd
+                  | :yer
+                  | :zar
+                  | :zmw
+                  | :clp
+                  | :djf
+                  | :gnf
+                  | :ugx
+                  | :pyg
+                  | :xof
+                  | :xpf
+
+                module Currency
+                  extend Stigg::Internal::Type::Enum
+
+                  USD: :usd
+                  AED: :aed
+                  ALL: :all
+                  AMD: :amd
+                  ANG: :ang
+                  AUD: :aud
+                  AWG: :awg
+                  AZN: :azn
+                  BAM: :bam
+                  BBD: :bbd
+                  BDT: :bdt
+                  BGN: :bgn
+                  BIF: :bif
+                  BMD: :bmd
+                  BND: :bnd
+                  BSD: :bsd
+                  BWP: :bwp
+                  BYN: :byn
+                  BZD: :bzd
+                  BRL: :brl
+                  CAD: :cad
+                  CDF: :cdf
+                  CHF: :chf
+                  CNY: :cny
+                  CZK: :czk
+                  DKK: :dkk
+                  DOP: :dop
+                  DZD: :dzd
+                  EGP: :egp
+                  ETB: :etb
+                  EUR: :eur
+                  FJD: :fjd
+                  GBP: :gbp
+                  GEL: :gel
+                  GIP: :gip
+                  GMD: :gmd
+                  GYD: :gyd
+                  HKD: :hkd
+                  HRK: :hrk
+                  HTG: :htg
+                  IDR: :idr
+                  ILS: :ils
+                  INR: :inr
+                  ISK: :isk
+                  JMD: :jmd
+                  JPY: :jpy
+                  KES: :kes
+                  KGS: :kgs
+                  KHR: :khr
+                  KMF: :kmf
+                  KRW: :krw
+                  KYD: :kyd
+                  KZT: :kzt
+                  LBP: :lbp
+                  LKR: :lkr
+                  LRD: :lrd
+                  LSL: :lsl
+                  MAD: :mad
+                  MDL: :mdl
+                  MGA: :mga
+                  MKD: :mkd
+                  MMK: :mmk
+                  MNT: :mnt
+                  MOP: :mop
+                  MRO: :mro
+                  MVR: :mvr
+                  MWK: :mwk
+                  MXN: :mxn
+                  MYR: :myr
+                  MZN: :mzn
+                  NAD: :nad
+                  NGN: :ngn
+                  NOK: :nok
+                  NPR: :npr
+                  NZD: :nzd
+                  PGK: :pgk
+                  PHP: :php
+                  PKR: :pkr
+                  PLN: :pln
+                  QAR: :qar
+                  RON: :ron
+                  RSD: :rsd
+                  RUB: :rub
+                  RWF: :rwf
+                  SAR: :sar
+                  SBD: :sbd
+                  SCR: :scr
+                  SEK: :sek
+                  SGD: :sgd
+                  SLE: :sle
+                  SLL: :sll
+                  SOS: :sos
+                  SZL: :szl
+                  THB: :thb
+                  TJS: :tjs
+                  TOP: :top
+                  TRY: :try
+                  TTD: :ttd
+                  TZS: :tzs
+                  UAH: :uah
+                  UZS: :uzs
+                  VND: :vnd
+                  VUV: :vuv
+                  WST: :wst
+                  XAF: :xaf
+                  XCD: :xcd
+                  YER: :yer
+                  ZAR: :zar
+                  ZMW: :zmw
+                  CLP: :clp
+                  DJF: :djf
+                  GNF: :gnf
+                  UGX: :ugx
+                  PYG: :pyg
+                  XOF: :xof
+                  XPF: :xpf
+
+                  def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Price::currency]
+                end
+              end
+
+              type tier =
+                {
+                  flat_price: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::FlatPrice,
+                  unit_price: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::UnitPrice,
+                  up_to: Float
+                }
+
+              class Tier < Stigg::Internal::Type::BaseModel
+                attr_reader flat_price: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::FlatPrice?
+
+                def flat_price=: (
+                  Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::FlatPrice
+                ) -> Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::FlatPrice
+
+                attr_reader unit_price: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::UnitPrice?
+
+                def unit_price=: (
+                  Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::UnitPrice
+                ) -> Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::UnitPrice
+
+                attr_reader up_to: Float?
+
+                def up_to=: (Float) -> Float
+
+                def initialize: (
+                  ?flat_price: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::FlatPrice,
+                  ?unit_price: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::UnitPrice,
+                  ?up_to: Float
+                ) -> void
+
+                def to_hash: -> {
+                  flat_price: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::FlatPrice,
+                  unit_price: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::UnitPrice,
+                  up_to: Float
+                }
+
+                type flat_price =
+                  {
+                    amount: Float,
+                    billing_country_code: String?,
+                    currency: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::FlatPrice::currency
+                  }
+
+                class FlatPrice < Stigg::Internal::Type::BaseModel
+                  attr_reader amount: Float?
+
+                  def amount=: (Float) -> Float
+
+                  attr_accessor billing_country_code: String?
+
+                  attr_reader currency: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::FlatPrice::currency?
+
+                  def currency=: (
+                    Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::FlatPrice::currency
+                  ) -> Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::FlatPrice::currency
+
+                  def initialize: (
+                    ?amount: Float,
+                    ?billing_country_code: String?,
+                    ?currency: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::FlatPrice::currency
+                  ) -> void
+
+                  def to_hash: -> {
+                    amount: Float,
+                    billing_country_code: String?,
+                    currency: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::FlatPrice::currency
+                  }
+
+                  type currency =
+                    :usd
+                    | :aed
+                    | :all
+                    | :amd
+                    | :ang
+                    | :aud
+                    | :awg
+                    | :azn
+                    | :bam
+                    | :bbd
+                    | :bdt
+                    | :bgn
+                    | :bif
+                    | :bmd
+                    | :bnd
+                    | :bsd
+                    | :bwp
+                    | :byn
+                    | :bzd
+                    | :brl
+                    | :cad
+                    | :cdf
+                    | :chf
+                    | :cny
+                    | :czk
+                    | :dkk
+                    | :dop
+                    | :dzd
+                    | :egp
+                    | :etb
+                    | :eur
+                    | :fjd
+                    | :gbp
+                    | :gel
+                    | :gip
+                    | :gmd
+                    | :gyd
+                    | :hkd
+                    | :hrk
+                    | :htg
+                    | :idr
+                    | :ils
+                    | :inr
+                    | :isk
+                    | :jmd
+                    | :jpy
+                    | :kes
+                    | :kgs
+                    | :khr
+                    | :kmf
+                    | :krw
+                    | :kyd
+                    | :kzt
+                    | :lbp
+                    | :lkr
+                    | :lrd
+                    | :lsl
+                    | :mad
+                    | :mdl
+                    | :mga
+                    | :mkd
+                    | :mmk
+                    | :mnt
+                    | :mop
+                    | :mro
+                    | :mvr
+                    | :mwk
+                    | :mxn
+                    | :myr
+                    | :mzn
+                    | :nad
+                    | :ngn
+                    | :nok
+                    | :npr
+                    | :nzd
+                    | :pgk
+                    | :php
+                    | :pkr
+                    | :pln
+                    | :qar
+                    | :ron
+                    | :rsd
+                    | :rub
+                    | :rwf
+                    | :sar
+                    | :sbd
+                    | :scr
+                    | :sek
+                    | :sgd
+                    | :sle
+                    | :sll
+                    | :sos
+                    | :szl
+                    | :thb
+                    | :tjs
+                    | :top
+                    | :try
+                    | :ttd
+                    | :tzs
+                    | :uah
+                    | :uzs
+                    | :vnd
+                    | :vuv
+                    | :wst
+                    | :xaf
+                    | :xcd
+                    | :yer
+                    | :zar
+                    | :zmw
+                    | :clp
+                    | :djf
+                    | :gnf
+                    | :ugx
+                    | :pyg
+                    | :xof
+                    | :xpf
+
+                  module Currency
+                    extend Stigg::Internal::Type::Enum
+
+                    USD: :usd
+                    AED: :aed
+                    ALL: :all
+                    AMD: :amd
+                    ANG: :ang
+                    AUD: :aud
+                    AWG: :awg
+                    AZN: :azn
+                    BAM: :bam
+                    BBD: :bbd
+                    BDT: :bdt
+                    BGN: :bgn
+                    BIF: :bif
+                    BMD: :bmd
+                    BND: :bnd
+                    BSD: :bsd
+                    BWP: :bwp
+                    BYN: :byn
+                    BZD: :bzd
+                    BRL: :brl
+                    CAD: :cad
+                    CDF: :cdf
+                    CHF: :chf
+                    CNY: :cny
+                    CZK: :czk
+                    DKK: :dkk
+                    DOP: :dop
+                    DZD: :dzd
+                    EGP: :egp
+                    ETB: :etb
+                    EUR: :eur
+                    FJD: :fjd
+                    GBP: :gbp
+                    GEL: :gel
+                    GIP: :gip
+                    GMD: :gmd
+                    GYD: :gyd
+                    HKD: :hkd
+                    HRK: :hrk
+                    HTG: :htg
+                    IDR: :idr
+                    ILS: :ils
+                    INR: :inr
+                    ISK: :isk
+                    JMD: :jmd
+                    JPY: :jpy
+                    KES: :kes
+                    KGS: :kgs
+                    KHR: :khr
+                    KMF: :kmf
+                    KRW: :krw
+                    KYD: :kyd
+                    KZT: :kzt
+                    LBP: :lbp
+                    LKR: :lkr
+                    LRD: :lrd
+                    LSL: :lsl
+                    MAD: :mad
+                    MDL: :mdl
+                    MGA: :mga
+                    MKD: :mkd
+                    MMK: :mmk
+                    MNT: :mnt
+                    MOP: :mop
+                    MRO: :mro
+                    MVR: :mvr
+                    MWK: :mwk
+                    MXN: :mxn
+                    MYR: :myr
+                    MZN: :mzn
+                    NAD: :nad
+                    NGN: :ngn
+                    NOK: :nok
+                    NPR: :npr
+                    NZD: :nzd
+                    PGK: :pgk
+                    PHP: :php
+                    PKR: :pkr
+                    PLN: :pln
+                    QAR: :qar
+                    RON: :ron
+                    RSD: :rsd
+                    RUB: :rub
+                    RWF: :rwf
+                    SAR: :sar
+                    SBD: :sbd
+                    SCR: :scr
+                    SEK: :sek
+                    SGD: :sgd
+                    SLE: :sle
+                    SLL: :sll
+                    SOS: :sos
+                    SZL: :szl
+                    THB: :thb
+                    TJS: :tjs
+                    TOP: :top
+                    TRY: :try
+                    TTD: :ttd
+                    TZS: :tzs
+                    UAH: :uah
+                    UZS: :uzs
+                    VND: :vnd
+                    VUV: :vuv
+                    WST: :wst
+                    XAF: :xaf
+                    XCD: :xcd
+                    YER: :yer
+                    ZAR: :zar
+                    ZMW: :zmw
+                    CLP: :clp
+                    DJF: :djf
+                    GNF: :gnf
+                    UGX: :ugx
+                    PYG: :pyg
+                    XOF: :xof
+                    XPF: :xpf
+
+                    def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::FlatPrice::currency]
+                  end
+                end
+
+                type unit_price =
+                  {
+                    amount: Float,
+                    billing_country_code: String?,
+                    currency: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::UnitPrice::currency
+                  }
+
+                class UnitPrice < Stigg::Internal::Type::BaseModel
+                  attr_reader amount: Float?
+
+                  def amount=: (Float) -> Float
+
+                  attr_accessor billing_country_code: String?
+
+                  attr_reader currency: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::UnitPrice::currency?
+
+                  def currency=: (
+                    Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::UnitPrice::currency
+                  ) -> Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::UnitPrice::currency
+
+                  def initialize: (
+                    ?amount: Float,
+                    ?billing_country_code: String?,
+                    ?currency: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::UnitPrice::currency
+                  ) -> void
+
+                  def to_hash: -> {
+                    amount: Float,
+                    billing_country_code: String?,
+                    currency: Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::UnitPrice::currency
+                  }
+
+                  type currency =
+                    :usd
+                    | :aed
+                    | :all
+                    | :amd
+                    | :ang
+                    | :aud
+                    | :awg
+                    | :azn
+                    | :bam
+                    | :bbd
+                    | :bdt
+                    | :bgn
+                    | :bif
+                    | :bmd
+                    | :bnd
+                    | :bsd
+                    | :bwp
+                    | :byn
+                    | :bzd
+                    | :brl
+                    | :cad
+                    | :cdf
+                    | :chf
+                    | :cny
+                    | :czk
+                    | :dkk
+                    | :dop
+                    | :dzd
+                    | :egp
+                    | :etb
+                    | :eur
+                    | :fjd
+                    | :gbp
+                    | :gel
+                    | :gip
+                    | :gmd
+                    | :gyd
+                    | :hkd
+                    | :hrk
+                    | :htg
+                    | :idr
+                    | :ils
+                    | :inr
+                    | :isk
+                    | :jmd
+                    | :jpy
+                    | :kes
+                    | :kgs
+                    | :khr
+                    | :kmf
+                    | :krw
+                    | :kyd
+                    | :kzt
+                    | :lbp
+                    | :lkr
+                    | :lrd
+                    | :lsl
+                    | :mad
+                    | :mdl
+                    | :mga
+                    | :mkd
+                    | :mmk
+                    | :mnt
+                    | :mop
+                    | :mro
+                    | :mvr
+                    | :mwk
+                    | :mxn
+                    | :myr
+                    | :mzn
+                    | :nad
+                    | :ngn
+                    | :nok
+                    | :npr
+                    | :nzd
+                    | :pgk
+                    | :php
+                    | :pkr
+                    | :pln
+                    | :qar
+                    | :ron
+                    | :rsd
+                    | :rub
+                    | :rwf
+                    | :sar
+                    | :sbd
+                    | :scr
+                    | :sek
+                    | :sgd
+                    | :sle
+                    | :sll
+                    | :sos
+                    | :szl
+                    | :thb
+                    | :tjs
+                    | :top
+                    | :try
+                    | :ttd
+                    | :tzs
+                    | :uah
+                    | :uzs
+                    | :vnd
+                    | :vuv
+                    | :wst
+                    | :xaf
+                    | :xcd
+                    | :yer
+                    | :zar
+                    | :zmw
+                    | :clp
+                    | :djf
+                    | :gnf
+                    | :ugx
+                    | :pyg
+                    | :xof
+                    | :xpf
+
+                  module Currency
+                    extend Stigg::Internal::Type::Enum
+
+                    USD: :usd
+                    AED: :aed
+                    ALL: :all
+                    AMD: :amd
+                    ANG: :ang
+                    AUD: :aud
+                    AWG: :awg
+                    AZN: :azn
+                    BAM: :bam
+                    BBD: :bbd
+                    BDT: :bdt
+                    BGN: :bgn
+                    BIF: :bif
+                    BMD: :bmd
+                    BND: :bnd
+                    BSD: :bsd
+                    BWP: :bwp
+                    BYN: :byn
+                    BZD: :bzd
+                    BRL: :brl
+                    CAD: :cad
+                    CDF: :cdf
+                    CHF: :chf
+                    CNY: :cny
+                    CZK: :czk
+                    DKK: :dkk
+                    DOP: :dop
+                    DZD: :dzd
+                    EGP: :egp
+                    ETB: :etb
+                    EUR: :eur
+                    FJD: :fjd
+                    GBP: :gbp
+                    GEL: :gel
+                    GIP: :gip
+                    GMD: :gmd
+                    GYD: :gyd
+                    HKD: :hkd
+                    HRK: :hrk
+                    HTG: :htg
+                    IDR: :idr
+                    ILS: :ils
+                    INR: :inr
+                    ISK: :isk
+                    JMD: :jmd
+                    JPY: :jpy
+                    KES: :kes
+                    KGS: :kgs
+                    KHR: :khr
+                    KMF: :kmf
+                    KRW: :krw
+                    KYD: :kyd
+                    KZT: :kzt
+                    LBP: :lbp
+                    LKR: :lkr
+                    LRD: :lrd
+                    LSL: :lsl
+                    MAD: :mad
+                    MDL: :mdl
+                    MGA: :mga
+                    MKD: :mkd
+                    MMK: :mmk
+                    MNT: :mnt
+                    MOP: :mop
+                    MRO: :mro
+                    MVR: :mvr
+                    MWK: :mwk
+                    MXN: :mxn
+                    MYR: :myr
+                    MZN: :mzn
+                    NAD: :nad
+                    NGN: :ngn
+                    NOK: :nok
+                    NPR: :npr
+                    NZD: :nzd
+                    PGK: :pgk
+                    PHP: :php
+                    PKR: :pkr
+                    PLN: :pln
+                    QAR: :qar
+                    RON: :ron
+                    RSD: :rsd
+                    RUB: :rub
+                    RWF: :rwf
+                    SAR: :sar
+                    SBD: :sbd
+                    SCR: :scr
+                    SEK: :sek
+                    SGD: :sgd
+                    SLE: :sle
+                    SLL: :sll
+                    SOS: :sos
+                    SZL: :szl
+                    THB: :thb
+                    TJS: :tjs
+                    TOP: :top
+                    TRY: :try
+                    TTD: :ttd
+                    TZS: :tzs
+                    UAH: :uah
+                    UZS: :uzs
+                    VND: :vnd
+                    VUV: :vuv
+                    WST: :wst
+                    XAF: :xaf
+                    XCD: :xcd
+                    YER: :yer
+                    ZAR: :zar
+                    ZMW: :zmw
+                    CLP: :clp
+                    DJF: :djf
+                    GNF: :gnf
+                    UGX: :ugx
+                    PYG: :pyg
+                    XOF: :xof
+                    XPF: :xpf
+
+                    def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription::Price::Tier::UnitPrice::currency]
+                  end
+                end
+              end
             end
           end
         end

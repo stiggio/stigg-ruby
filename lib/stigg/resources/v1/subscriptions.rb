@@ -9,7 +9,7 @@ module Stigg
 
         # Create a new Subscription
         #
-        # @overload create(customer_id:, plan_id:, id: nil, await_payment_confirmation: nil, billing_period: nil, checkout_options: nil, metadata: nil, paying_customer_id: nil, resource_id: nil, trial_override_configuration: nil, request_options: {})
+        # @overload create(customer_id:, plan_id:, id: nil, addons: nil, applied_coupon: nil, await_payment_confirmation: nil, billing_country_code: nil, billing_id: nil, billing_information: nil, billing_period: nil, budget: nil, charges: nil, checkout_options: nil, metadata: nil, minimum_spend: nil, paying_customer_id: nil, payment_collection_method: nil, price_overrides: nil, resource_id: nil, salesforce_id: nil, schedule_strategy: nil, start_date: nil, subscription_entitlements: nil, trial_override_configuration: nil, unit_quantity: nil, request_options: {})
         #
         # @param customer_id [String] Customer ID to provision the subscription for
         #
@@ -17,19 +17,49 @@ module Stigg
         #
         # @param id [String, nil] Unique identifier for the subscription
         #
+        # @param addons [Array<Stigg::Models::V1::SubscriptionCreateParams::Addon>]
+        #
+        # @param applied_coupon [Stigg::Models::V1::SubscriptionCreateParams::AppliedCoupon]
+        #
         # @param await_payment_confirmation [Boolean] Whether to wait for payment confirmation before returning the subscription
         #
+        # @param billing_country_code [String, nil] The ISO 3166-1 alpha-2 country code for billing
+        #
+        # @param billing_id [String, nil] External billing system identifier
+        #
+        # @param billing_information [Stigg::Models::V1::SubscriptionCreateParams::BillingInformation]
+        #
         # @param billing_period [Symbol, Stigg::Models::V1::SubscriptionCreateParams::BillingPeriod]
+        #
+        # @param budget [Stigg::Models::V1::SubscriptionCreateParams::Budget, nil]
+        #
+        # @param charges [Array<Stigg::Models::V1::SubscriptionCreateParams::Charge>]
         #
         # @param checkout_options [Stigg::Models::V1::SubscriptionCreateParams::CheckoutOptions]
         #
         # @param metadata [Hash{Symbol=>String}] Additional metadata for the subscription
         #
+        # @param minimum_spend [Stigg::Models::V1::SubscriptionCreateParams::MinimumSpend, nil]
+        #
         # @param paying_customer_id [String, nil] Optional paying customer ID for split billing scenarios
+        #
+        # @param payment_collection_method [Symbol, Stigg::Models::V1::SubscriptionCreateParams::PaymentCollectionMethod] How payments should be collected for this subscription
+        #
+        # @param price_overrides [Array<Stigg::Models::V1::SubscriptionCreateParams::PriceOverride>]
         #
         # @param resource_id [String, nil] Optional resource ID for multi-instance subscriptions
         #
+        # @param salesforce_id [String, nil] Salesforce ID
+        #
+        # @param schedule_strategy [Symbol, Stigg::Models::V1::SubscriptionCreateParams::ScheduleStrategy] Strategy for scheduling subscription changes
+        #
+        # @param start_date [Time] Subscription start date
+        #
+        # @param subscription_entitlements [Array<Stigg::Models::V1::SubscriptionCreateParams::SubscriptionEntitlement>]
+        #
         # @param trial_override_configuration [Stigg::Models::V1::SubscriptionCreateParams::TrialOverrideConfiguration]
+        #
+        # @param unit_quantity [Float]
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
