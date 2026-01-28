@@ -12,6 +12,7 @@ module Stigg
             )
           end
 
+        # Discount instrument with percentage or fixed amount
         sig { returns(Stigg::Models::V1::CouponRetrieveResponse::Data) }
         attr_reader :data
 
@@ -22,12 +23,16 @@ module Stigg
         end
         attr_writer :data
 
+        # Response object
         sig do
           params(
             data: Stigg::Models::V1::CouponRetrieveResponse::Data::OrHash
           ).returns(T.attached_class)
         end
-        def self.new(data:)
+        def self.new(
+          # Discount instrument with percentage or fixed amount
+          data:
+        )
         end
 
         sig do
@@ -121,6 +126,7 @@ module Stigg
           sig { returns(Time) }
           attr_accessor :updated_at
 
+          # Discount instrument with percentage or fixed amount
           sig do
             params(
               id: String,
@@ -231,6 +237,7 @@ module Stigg
             end
             attr_accessor :currency
 
+            # Monetary amount with currency
             sig do
               params(
                 amount: Float,

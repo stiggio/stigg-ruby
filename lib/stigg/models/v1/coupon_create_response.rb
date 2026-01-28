@@ -6,12 +6,15 @@ module Stigg
       # @see Stigg::Resources::V1::Coupons#create
       class CouponCreateResponse < Stigg::Internal::Type::BaseModel
         # @!attribute data
+        #   Discount instrument with percentage or fixed amount
         #
         #   @return [Stigg::Models::V1::CouponCreateResponse::Data]
         required :data, -> { Stigg::Models::V1::CouponCreateResponse::Data }
 
         # @!method initialize(data:)
-        #   @param data [Stigg::Models::V1::CouponCreateResponse::Data]
+        #   Response object
+        #
+        #   @param data [Stigg::Models::V1::CouponCreateResponse::Data] Discount instrument with percentage or fixed amount
 
         # @see Stigg::Models::V1::CouponCreateResponse#data
         class Data < Stigg::Internal::Type::BaseModel
@@ -97,6 +100,8 @@ module Stigg
           required :updated_at, Time, api_name: :updatedAt
 
           # @!method initialize(id:, amounts_off:, billing_id:, billing_link_url:, created_at:, description:, duration_in_months:, name:, percent_off:, source:, status:, type:, updated_at:)
+          #   Discount instrument with percentage or fixed amount
+          #
           #   @param id [String] The unique identifier for the entity
           #
           #   @param amounts_off [Array<Stigg::Models::V1::CouponCreateResponse::Data::AmountsOff>, nil] Fixed amount discounts in different currencies
@@ -137,6 +142,8 @@ module Stigg
             required :currency, enum: -> { Stigg::Models::V1::CouponCreateResponse::Data::AmountsOff::Currency }
 
             # @!method initialize(amount:, currency:)
+            #   Monetary amount with currency
+            #
             #   @param amount [Float] The price amount
             #
             #   @param currency [Symbol, Stigg::Models::V1::CouponCreateResponse::Data::AmountsOff::Currency] The price currency

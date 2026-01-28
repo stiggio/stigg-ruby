@@ -70,6 +70,8 @@ module Stigg
         optional :name, String, nil?: true
 
         # @!method initialize(id:, archived_at:, created_at:, updated_at:, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil)
+        #   A customer can be either an organization or an individual
+        #
         #   @param id [String] Customer slug
         #
         #   @param archived_at [Time, nil] Timestamp of when the record was deleted
@@ -172,6 +174,8 @@ module Stigg
                    api_name: :vendorIdentifier
 
           # @!method initialize(id:, synced_entity_id:, vendor_identifier:)
+          #   External billing or CRM integration link
+          #
           #   @param id [String] Integration details
           #
           #   @param synced_entity_id [String, nil] Synced entity id

@@ -8,11 +8,18 @@ module Stigg
           T.any(Stigg::Models::V1CreateEventResponse, Stigg::Internal::AnyHash)
         end
 
+      # Empty success response confirming that events were successfully ingested and
+      # queued for processing by Stigg's metering system.
       sig { returns(T.anything) }
       attr_accessor :data
 
+      # Response object
       sig { params(data: T.anything).returns(T.attached_class) }
-      def self.new(data:)
+      def self.new(
+        # Empty success response confirming that events were successfully ingested and
+        # queued for processing by Stigg's metering system.
+        data:
+      )
       end
 
       sig { override.returns({ data: T.anything }) }

@@ -15,7 +15,9 @@ module Stigg
             )
           end
 
-        # The customer ID to delegate the subscription to
+        # The unique identifier of the customer who will assume payment responsibility for
+        # this subscription. This customer must already exist in your Stigg account and
+        # have a valid payment method if the subscription requires payment.
         sig { returns(String) }
         attr_accessor :target_customer_id
 
@@ -26,7 +28,9 @@ module Stigg
           ).returns(T.attached_class)
         end
         def self.new(
-          # The customer ID to delegate the subscription to
+          # The unique identifier of the customer who will assume payment responsibility for
+          # this subscription. This customer must already exist in your Stigg account and
+          # have a valid payment method if the subscription requires payment.
           target_customer_id:,
           request_options: {}
         )

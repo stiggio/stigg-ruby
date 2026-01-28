@@ -12,7 +12,7 @@ module Stigg
       sig { returns(Stigg::Resources::V1::Coupons) }
       attr_reader :coupons
 
-      # Create events
+      # Report usage events
       sig do
         params(
           events: T::Array[Stigg::V1CreateEventParams::Event::OrHash],
@@ -26,7 +26,7 @@ module Stigg
       )
       end
 
-      # Create a new Usage
+      # Report usage measurements
       sig do
         params(
           usages: T::Array[Stigg::V1CreateUsageParams::Usage::OrHash],

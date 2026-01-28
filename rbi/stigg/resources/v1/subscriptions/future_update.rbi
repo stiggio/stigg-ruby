@@ -5,7 +5,7 @@ module Stigg
     class V1
       class Subscriptions
         class FutureUpdate
-          # Perform cancel future update on a Subscription
+          # Cancel pending payment update
           sig do
             params(
               id: String,
@@ -14,10 +14,14 @@ module Stigg
               Stigg::Models::V1::Subscriptions::FutureUpdateCancelPendingPaymentResponse
             )
           end
-          def cancel_pending_payment(id, request_options: {})
+          def cancel_pending_payment(
+            # The unique identifier of the entity
+            id,
+            request_options: {}
+          )
           end
 
-          # Perform cancel future update on a Subscription
+          # Cancel scheduled update
           sig do
             params(
               id: String,
@@ -26,7 +30,11 @@ module Stigg
               Stigg::Models::V1::Subscriptions::FutureUpdateCancelScheduleResponse
             )
           end
-          def cancel_schedule(id, request_options: {})
+          def cancel_schedule(
+            # The unique identifier of the entity
+            id,
+            request_options: {}
+          )
           end
 
           # @api private

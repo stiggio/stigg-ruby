@@ -12,6 +12,8 @@ module Stigg
           required :data, -> { Stigg::Models::V1::Subscriptions::FutureUpdateCancelPendingPaymentResponse::Data }
 
           # @!method initialize(data:)
+          #   Response object
+          #
           #   @param data [Stigg::Models::V1::Subscriptions::FutureUpdateCancelPendingPaymentResponse::Data]
 
           # @see Stigg::Models::V1::Subscriptions::FutureUpdateCancelPendingPaymentResponse#data

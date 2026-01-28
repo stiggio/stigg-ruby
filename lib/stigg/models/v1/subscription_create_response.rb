@@ -6,12 +6,15 @@ module Stigg
       # @see Stigg::Resources::V1::Subscriptions#create
       class SubscriptionCreateResponse < Stigg::Internal::Type::BaseModel
         # @!attribute data
+        #   Provisioning result with status and subscription or checkout URL.
         #
         #   @return [Stigg::Models::V1::SubscriptionCreateResponse::Data]
         required :data, -> { Stigg::Models::V1::SubscriptionCreateResponse::Data }
 
         # @!method initialize(data:)
-        #   @param data [Stigg::Models::V1::SubscriptionCreateResponse::Data]
+        #   Response object
+        #
+        #   @param data [Stigg::Models::V1::SubscriptionCreateResponse::Data] Provisioning result with status and subscription or checkout URL.
 
         # @see Stigg::Models::V1::SubscriptionCreateResponse#data
         class Data < Stigg::Internal::Type::BaseModel
@@ -52,11 +55,14 @@ module Stigg
           optional :is_scheduled, Stigg::Internal::Type::Boolean, api_name: :isScheduled
 
           # @!attribute subscription
+          #   Created subscription (when status is SUCCESS)
           #
           #   @return [Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription, nil]
           optional :subscription, -> { Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription }
 
           # @!method initialize(id:, entitlements:, status:, checkout_billing_id: nil, checkout_url: nil, is_scheduled: nil, subscription: nil)
+          #   Provisioning result with status and subscription or checkout URL.
+          #
           #   @param id [String] Unique identifier for the provisioned subscription
           #
           #   @param entitlements [Array<Stigg::Models::V1::SubscriptionCreateResponse::Data::Entitlement>]
@@ -69,7 +75,7 @@ module Stigg
           #
           #   @param is_scheduled [Boolean] Whether the subscription is scheduled for future activation
           #
-          #   @param subscription [Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription]
+          #   @param subscription [Stigg::Models::V1::SubscriptionCreateResponse::Data::Subscription] Created subscription (when status is SUCCESS)
 
           class Entitlement < Stigg::Internal::Type::BaseModel
             # @!attribute access_denied_reason
@@ -165,12 +171,13 @@ module Stigg
             # @see Stigg::Models::V1::SubscriptionCreateResponse::Data::Entitlement#feature
             class Feature < Stigg::Internal::Type::BaseModel
               # @!attribute ref_id
+              #   Feature ID
               #
               #   @return [String]
               required :ref_id, String, api_name: :refId
 
               # @!method initialize(ref_id:)
-              #   @param ref_id [String]
+              #   @param ref_id [String] Feature ID
             end
 
             # @see Stigg::Models::V1::SubscriptionCreateResponse::Data::Entitlement#reset_period
@@ -339,12 +346,9 @@ module Stigg
             #   @return [Time, nil]
             optional :trial_end_date, Time, api_name: :trialEndDate, nil?: true
 
-            # @!attribute unit_quantity
+            # @!method initialize(id:, billing_id:, created_at:, customer_id:, payment_collection:, plan_id:, pricing_type:, start_date:, status:, cancellation_date: nil, cancel_reason: nil, current_billing_period_end: nil, current_billing_period_start: nil, effective_end_date: nil, end_date: nil, metadata: nil, paying_customer_id: nil, payment_collection_method: nil, prices: nil, resource_id: nil, trial_end_date: nil)
+            #   Created subscription (when status is SUCCESS)
             #
-            #   @return [Float, nil]
-            optional :unit_quantity, Float, api_name: :unitQuantity
-
-            # @!method initialize(id:, billing_id:, created_at:, customer_id:, payment_collection:, plan_id:, pricing_type:, start_date:, status:, cancellation_date: nil, cancel_reason: nil, current_billing_period_end: nil, current_billing_period_start: nil, effective_end_date: nil, end_date: nil, metadata: nil, paying_customer_id: nil, payment_collection_method: nil, prices: nil, resource_id: nil, trial_end_date: nil, unit_quantity: nil)
             #   @param id [String] Subscription ID
             #
             #   @param billing_id [String, nil] Billing ID
@@ -386,8 +390,6 @@ module Stigg
             #   @param resource_id [String, nil] Resource ID
             #
             #   @param trial_end_date [Time, nil] Subscription trial end date
-            #
-            #   @param unit_quantity [Float]
 
             # Payment collection
             #

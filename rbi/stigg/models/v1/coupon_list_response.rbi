@@ -80,6 +80,7 @@ module Stigg
         sig { returns(Time) }
         attr_accessor :updated_at
 
+        # Discount instrument with percentage or fixed amount
         sig do
           params(
             id: String,
@@ -185,6 +186,7 @@ module Stigg
           end
           attr_accessor :currency
 
+          # Monetary amount with currency
           sig do
             params(
               amount: Float,

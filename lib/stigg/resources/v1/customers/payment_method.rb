@@ -5,11 +5,11 @@ module Stigg
     class V1
       class Customers
         class PaymentMethod
-          # Perform payment-method attachment on a Customer
+          # Attach payment method
           #
           # @overload attach(id, integration_id:, payment_method_id:, vendor_identifier:, billing_currency: nil, request_options: {})
           #
-          # @param id [String]
+          # @param id [String] The unique identifier of the entity
           #
           # @param integration_id [String] Integration details
           #
@@ -17,7 +17,7 @@ module Stigg
           #
           # @param vendor_identifier [Symbol, Stigg::Models::V1::Customers::PaymentMethodAttachParams::VendorIdentifier] The vendor identifier of integration
           #
-          # @param billing_currency [Symbol, Stigg::Models::V1::Customers::PaymentMethodAttachParams::BillingCurrency, nil]
+          # @param billing_currency [Symbol, Stigg::Models::V1::Customers::PaymentMethodAttachParams::BillingCurrency, nil] Customers selected currency
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
@@ -35,11 +35,12 @@ module Stigg
             )
           end
 
-          # Perform payment-method detachment on a Customer
+          # Detach payment method
           #
           # @overload detach(id, request_options: {})
           #
-          # @param id [String]
+          # @param id [String] The unique identifier of the entity
+          #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
           # @return [Stigg::Models::V1::CustomerResponse]

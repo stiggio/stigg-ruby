@@ -6,12 +6,15 @@ module Stigg
       # @see Stigg::Resources::V1::Customers#create
       class CustomerResponse < Stigg::Internal::Type::BaseModel
         # @!attribute data
+        #   A customer can be either an organization or an individual
         #
         #   @return [Stigg::Models::V1::CustomerResponse::Data]
         required :data, -> { Stigg::V1::CustomerResponse::Data }
 
         # @!method initialize(data:)
-        #   @param data [Stigg::Models::V1::CustomerResponse::Data]
+        #   Response object
+        #
+        #   @param data [Stigg::Models::V1::CustomerResponse::Data] A customer can be either an organization or an individual
 
         # @see Stigg::Models::V1::CustomerResponse#data
         class Data < Stigg::Internal::Type::BaseModel
@@ -80,6 +83,8 @@ module Stigg
           optional :name, String, nil?: true
 
           # @!method initialize(id:, archived_at:, created_at:, updated_at:, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil)
+          #   A customer can be either an organization or an individual
+          #
           #   @param id [String] Customer slug
           #
           #   @param archived_at [Time, nil] Timestamp of when the record was deleted
@@ -182,6 +187,8 @@ module Stigg
                      api_name: :vendorIdentifier
 
             # @!method initialize(id:, synced_entity_id:, vendor_identifier:)
+            #   External billing or CRM integration link
+            #
             #   @param id [String] Integration details
             #
             #   @param synced_entity_id [String, nil] Synced entity id

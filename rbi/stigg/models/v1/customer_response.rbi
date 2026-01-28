@@ -9,18 +9,23 @@ module Stigg
             T.any(Stigg::V1::CustomerResponse, Stigg::Internal::AnyHash)
           end
 
+        # A customer can be either an organization or an individual
         sig { returns(Stigg::V1::CustomerResponse::Data) }
         attr_reader :data
 
         sig { params(data: Stigg::V1::CustomerResponse::Data::OrHash).void }
         attr_writer :data
 
+        # Response object
         sig do
           params(data: Stigg::V1::CustomerResponse::Data::OrHash).returns(
             T.attached_class
           )
         end
-        def self.new(data:)
+        def self.new(
+          # A customer can be either an organization or an individual
+          data:
+        )
         end
 
         sig { override.returns({ data: Stigg::V1::CustomerResponse::Data }) }
@@ -104,6 +109,7 @@ module Stigg
           sig { returns(T.nilable(String)) }
           attr_accessor :name
 
+          # A customer can be either an organization or an individual
           sig do
             params(
               id: String,
@@ -310,6 +316,7 @@ module Stigg
             end
             attr_accessor :vendor_identifier
 
+            # External billing or CRM integration link
             sig do
               params(
                 id: String,

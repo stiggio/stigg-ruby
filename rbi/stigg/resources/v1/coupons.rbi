@@ -4,7 +4,7 @@ module Stigg
   module Resources
     class V1
       class Coupons
-        # Create a new Coupon
+        # Create coupon
         sig do
           params(
             id: String,
@@ -39,17 +39,21 @@ module Stigg
         )
         end
 
-        # Get a single Coupon by id
+        # Get a single coupon by ID
         sig do
           params(
             id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::Models::V1::CouponRetrieveResponse)
         end
-        def retrieve(id, request_options: {})
+        def retrieve(
+          # The unique identifier of the entity
+          id,
+          request_options: {}
+        )
         end
 
-        # Get a list of Coupons
+        # Get a list of coupons
         sig do
           params(
             after: String,
@@ -63,11 +67,11 @@ module Stigg
           )
         end
         def list(
-          # Starting after this UUID for pagination
+          # Return items that come after this cursor
           after: nil,
-          # Ending before this UUID for pagination
+          # Return items that come before this cursor
           before: nil,
-          # Items per page
+          # Maximum number of items to return
           limit: nil,
           request_options: {}
         )

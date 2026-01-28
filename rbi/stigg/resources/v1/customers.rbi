@@ -10,7 +10,7 @@ module Stigg
         sig { returns(Stigg::Resources::V1::Customers::Usage) }
         attr_reader :usage
 
-        # Create a new Customer
+        # Provision customer
         sig do
           params(
             id: String,
@@ -46,17 +46,21 @@ module Stigg
         )
         end
 
-        # Get a single Customer by id
+        # Get a single customer by ID
         sig do
           params(
             id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::CustomerResponse)
         end
-        def retrieve(id, request_options: {})
+        def retrieve(
+          # The unique identifier of the entity
+          id,
+          request_options: {}
+        )
         end
 
-        # Update an existing Customer
+        # Update a customer
         sig do
           params(
             id: String,
@@ -70,6 +74,7 @@ module Stigg
           ).returns(Stigg::V1::CustomerResponse)
         end
         def update(
+          # The unique identifier of the entity
           id,
           # Customer level coupon
           coupon_id: nil,
@@ -85,7 +90,7 @@ module Stigg
         )
         end
 
-        # Get a list of Customers
+        # Get a list of customers
         sig do
           params(
             after: String,
@@ -99,34 +104,42 @@ module Stigg
           )
         end
         def list(
-          # Starting after this UUID for pagination
+          # Return items that come after this cursor
           after: nil,
-          # Ending before this UUID for pagination
+          # Return items that come before this cursor
           before: nil,
-          # Items per page
+          # Maximum number of items to return
           limit: nil,
           request_options: {}
         )
         end
 
-        # Perform archive on a Customer
+        # Archive customer
         sig do
           params(
             id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::CustomerResponse)
         end
-        def archive(id, request_options: {})
+        def archive(
+          # The unique identifier of the entity
+          id,
+          request_options: {}
+        )
         end
 
-        # Perform unarchive on a Customer
+        # Unarchive customer
         sig do
           params(
             id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::CustomerResponse)
         end
-        def unarchive(id, request_options: {})
+        def unarchive(
+          # The unique identifier of the entity
+          id,
+          request_options: {}
+        )
         end
 
         # @api private

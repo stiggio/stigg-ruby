@@ -15,8 +15,7 @@ module Stigg
             )
           end
 
-        # The resource ID to transfer the subscription to. The destination resource must
-        # belong to the same customer.
+        # Resource ID to transfer the subscription to
         sig { returns(String) }
         attr_accessor :destination_resource_id
 
@@ -27,8 +26,7 @@ module Stigg
           ).returns(T.attached_class)
         end
         def self.new(
-          # The resource ID to transfer the subscription to. The destination resource must
-          # belong to the same customer.
+          # Resource ID to transfer the subscription to
           destination_resource_id:,
           request_options: {}
         )

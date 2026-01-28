@@ -5,11 +5,12 @@ module Stigg
     class V1
       class Subscriptions
         class FutureUpdate
-          # Perform cancel future update on a Subscription
+          # Cancel pending payment update
           #
           # @overload cancel_pending_payment(id, request_options: {})
           #
-          # @param id [String]
+          # @param id [String] The unique identifier of the entity
+          #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
           # @return [Stigg::Models::V1::Subscriptions::FutureUpdateCancelPendingPaymentResponse]
@@ -24,11 +25,12 @@ module Stigg
             )
           end
 
-          # Perform cancel future update on a Subscription
+          # Cancel scheduled update
           #
           # @overload cancel_schedule(id, request_options: {})
           #
-          # @param id [String]
+          # @param id [String] The unique identifier of the entity
+          #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
           # @return [Stigg::Models::V1::Subscriptions::FutureUpdateCancelScheduleResponse]

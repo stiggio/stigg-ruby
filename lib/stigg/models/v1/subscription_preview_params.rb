@@ -21,11 +21,13 @@ module Stigg
         required :plan_id, String, api_name: :planId
 
         # @!attribute addons
+        #   Addons to include
         #
         #   @return [Array<Stigg::Models::V1::SubscriptionPreviewParams::Addon>, nil]
         optional :addons, -> { Stigg::Internal::Type::ArrayOf[Stigg::V1::SubscriptionPreviewParams::Addon] }
 
         # @!attribute applied_coupon
+        #   Coupon or discount to apply
         #
         #   @return [Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon, nil]
         optional :applied_coupon,
@@ -33,6 +35,7 @@ module Stigg
                  api_name: :appliedCoupon
 
         # @!attribute billable_features
+        #   Billable features with quantities
         #
         #   @return [Array<Stigg::Models::V1::SubscriptionPreviewParams::BillableFeature>, nil]
         optional :billable_features,
@@ -40,11 +43,13 @@ module Stigg
                  api_name: :billableFeatures
 
         # @!attribute billing_country_code
+        #   ISO 3166-1 country code for localization
         #
         #   @return [String, nil]
         optional :billing_country_code, String, api_name: :billingCountryCode
 
         # @!attribute billing_information
+        #   Billing and tax configuration
         #
         #   @return [Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation, nil]
         optional :billing_information,
@@ -52,6 +57,7 @@ module Stigg
                  api_name: :billingInformation
 
         # @!attribute billing_period
+        #   Billing period (MONTHLY or ANNUALLY)
         #
         #   @return [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::BillingPeriod, nil]
         optional :billing_period,
@@ -59,21 +65,25 @@ module Stigg
                  api_name: :billingPeriod
 
         # @!attribute charges
+        #   One-time or recurring charges
         #
         #   @return [Array<Stigg::Models::V1::SubscriptionPreviewParams::Charge>, nil]
         optional :charges, -> { Stigg::Internal::Type::ArrayOf[Stigg::V1::SubscriptionPreviewParams::Charge] }
 
         # @!attribute paying_customer_id
+        #   Paying customer ID for delegated billing
         #
         #   @return [String, nil]
         optional :paying_customer_id, String, api_name: :payingCustomerId
 
         # @!attribute resource_id
+        #   Resource ID for multi-instance subscriptions
         #
         #   @return [String, nil]
         optional :resource_id, String, api_name: :resourceId
 
         # @!attribute schedule_strategy
+        #   When to apply subscription changes
         #
         #   @return [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::ScheduleStrategy, nil]
         optional :schedule_strategy,
@@ -87,6 +97,7 @@ module Stigg
         optional :start_date, Time, api_name: :startDate
 
         # @!attribute trial_override_configuration
+        #   Trial period override settings
         #
         #   @return [Stigg::Models::V1::SubscriptionPreviewParams::TrialOverrideConfiguration, nil]
         optional :trial_override_configuration,
@@ -94,6 +105,7 @@ module Stigg
                  api_name: :trialOverrideConfiguration
 
         # @!attribute unit_quantity
+        #   Unit quantity for per-unit pricing
         #
         #   @return [Float, nil]
         optional :unit_quantity, Float, api_name: :unitQuantity
@@ -103,31 +115,31 @@ module Stigg
         #
         #   @param plan_id [String] Plan ID
         #
-        #   @param addons [Array<Stigg::Models::V1::SubscriptionPreviewParams::Addon>]
+        #   @param addons [Array<Stigg::Models::V1::SubscriptionPreviewParams::Addon>] Addons to include
         #
-        #   @param applied_coupon [Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon]
+        #   @param applied_coupon [Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon] Coupon or discount to apply
         #
-        #   @param billable_features [Array<Stigg::Models::V1::SubscriptionPreviewParams::BillableFeature>]
+        #   @param billable_features [Array<Stigg::Models::V1::SubscriptionPreviewParams::BillableFeature>] Billable features with quantities
         #
-        #   @param billing_country_code [String]
+        #   @param billing_country_code [String] ISO 3166-1 country code for localization
         #
-        #   @param billing_information [Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation]
+        #   @param billing_information [Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation] Billing and tax configuration
         #
-        #   @param billing_period [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::BillingPeriod]
+        #   @param billing_period [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::BillingPeriod] Billing period (MONTHLY or ANNUALLY)
         #
-        #   @param charges [Array<Stigg::Models::V1::SubscriptionPreviewParams::Charge>]
+        #   @param charges [Array<Stigg::Models::V1::SubscriptionPreviewParams::Charge>] One-time or recurring charges
         #
-        #   @param paying_customer_id [String]
+        #   @param paying_customer_id [String] Paying customer ID for delegated billing
         #
-        #   @param resource_id [String]
+        #   @param resource_id [String] Resource ID for multi-instance subscriptions
         #
-        #   @param schedule_strategy [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::ScheduleStrategy]
+        #   @param schedule_strategy [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::ScheduleStrategy] When to apply subscription changes
         #
         #   @param start_date [Time] Subscription start date
         #
-        #   @param trial_override_configuration [Stigg::Models::V1::SubscriptionPreviewParams::TrialOverrideConfiguration]
+        #   @param trial_override_configuration [Stigg::Models::V1::SubscriptionPreviewParams::TrialOverrideConfiguration] Trial period override settings
         #
-        #   @param unit_quantity [Float]
+        #   @param unit_quantity [Float] Unit quantity for per-unit pricing
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 
@@ -139,48 +151,62 @@ module Stigg
           required :addon_id, String, api_name: :addonId
 
           # @!attribute quantity
+          #   Number of addon instances
           #
           #   @return [Integer, nil]
           optional :quantity, Integer
 
           # @!method initialize(addon_id:, quantity: nil)
+          #   Addon configuration
+          #
           #   @param addon_id [String] Addon ID
           #
-          #   @param quantity [Integer]
+          #   @param quantity [Integer] Number of addon instances
         end
 
         class AppliedCoupon < Stigg::Internal::Type::BaseModel
           # @!attribute billing_coupon_id
+          #   Billing provider coupon ID
           #
           #   @return [String, nil]
           optional :billing_coupon_id, String, api_name: :billingCouponId
 
           # @!attribute configuration
+          #   Coupon timing configuration
           #
           #   @return [Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Configuration, nil]
           optional :configuration, -> { Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Configuration }
 
           # @!attribute coupon_id
+          #   Stigg coupon ID
           #
           #   @return [String, nil]
           optional :coupon_id, String, api_name: :couponId
 
           # @!attribute discount
+          #   Ad-hoc discount configuration
           #
           #   @return [Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount, nil]
           optional :discount, -> { Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Discount }
 
           # @!attribute promotion_code
+          #   Promotion code to apply
           #
           #   @return [String, nil]
           optional :promotion_code, String, api_name: :promotionCode
 
           # @!method initialize(billing_coupon_id: nil, configuration: nil, coupon_id: nil, discount: nil, promotion_code: nil)
-          #   @param billing_coupon_id [String]
-          #   @param configuration [Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Configuration]
-          #   @param coupon_id [String]
-          #   @param discount [Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount]
-          #   @param promotion_code [String]
+          #   Coupon or discount to apply
+          #
+          #   @param billing_coupon_id [String] Billing provider coupon ID
+          #
+          #   @param configuration [Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Configuration] Coupon timing configuration
+          #
+          #   @param coupon_id [String] Stigg coupon ID
+          #
+          #   @param discount [Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount] Ad-hoc discount configuration
+          #
+          #   @param promotion_code [String] Promotion code to apply
 
           # @see Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon#configuration
           class Configuration < Stigg::Internal::Type::BaseModel
@@ -191,12 +217,15 @@ module Stigg
             optional :start_date, Time, api_name: :startDate
 
             # @!method initialize(start_date: nil)
+            #   Coupon timing configuration
+            #
             #   @param start_date [Time] Coupon start date
           end
 
           # @see Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon#discount
           class Discount < Stigg::Internal::Type::BaseModel
             # @!attribute amounts_off
+            #   Fixed amounts off by currency
             #
             #   @return [Array<Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff>, nil]
             optional :amounts_off,
@@ -207,48 +236,63 @@ module Stigg
                      nil?: true
 
             # @!attribute description
+            #   Ad-hoc discount
             #
             #   @return [String, nil]
             optional :description, String
 
             # @!attribute duration_in_months
+            #   Duration in months
             #
             #   @return [Float, nil]
             optional :duration_in_months, Float, api_name: :durationInMonths
 
             # @!attribute name
+            #   Discount name
             #
             #   @return [String, nil]
             optional :name, String
 
             # @!attribute percent_off
+            #   Percentage discount
             #
             #   @return [Float, nil]
             optional :percent_off, Float, api_name: :percentOff
 
             # @!method initialize(amounts_off: nil, description: nil, duration_in_months: nil, name: nil, percent_off: nil)
-            #   @param amounts_off [Array<Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff>, nil]
-            #   @param description [String]
-            #   @param duration_in_months [Float]
-            #   @param name [String]
-            #   @param percent_off [Float]
+            #   Ad-hoc discount configuration
+            #
+            #   @param amounts_off [Array<Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff>, nil] Fixed amounts off by currency
+            #
+            #   @param description [String] Ad-hoc discount
+            #
+            #   @param duration_in_months [Float] Duration in months
+            #
+            #   @param name [String] Discount name
+            #
+            #   @param percent_off [Float] Percentage discount
 
             class AmountsOff < Stigg::Internal::Type::BaseModel
               # @!attribute amount
+              #   The price amount
               #
               #   @return [Float]
               required :amount, Float
 
               # @!attribute currency
+              #   The price currency
               #
-              #   @return [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::Currency, nil]
-              optional :currency,
+              #   @return [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::Currency]
+              required :currency,
                        enum: -> { Stigg::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::Currency }
 
-              # @!method initialize(amount:, currency: nil)
-              #   @param amount [Float]
-              #   @param currency [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::Currency]
+              # @!method initialize(amount:, currency:)
+              #   @param amount [Float] The price amount
+              #
+              #   @param currency [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::Currency] The price currency
 
+              # The price currency
+              #
               # @see Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff#currency
               module Currency
                 extend Stigg::Internal::Type::Enum
@@ -385,18 +429,22 @@ module Stigg
           required :feature_id, String, api_name: :featureId
 
           # @!attribute quantity
+          #   Quantity of feature units
           #
           #   @return [Float]
           required :quantity, Float
 
           # @!method initialize(feature_id:, quantity:)
+          #   Feature with quantity
+          #
           #   @param feature_id [String] Feature ID
           #
-          #   @param quantity [Float]
+          #   @param quantity [Float] Quantity of feature units
         end
 
         class BillingInformation < Stigg::Internal::Type::BaseModel
           # @!attribute billing_address
+          #   Billing address
           #
           #   @return [Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation::BillingAddress, nil]
           optional :billing_address,
@@ -404,36 +452,43 @@ module Stigg
                    api_name: :billingAddress
 
           # @!attribute charge_on_behalf_of_account
+          #   Connected account ID for platform billing
           #
           #   @return [String, nil]
           optional :charge_on_behalf_of_account, String, api_name: :chargeOnBehalfOfAccount
 
           # @!attribute integration_id
+          #   Billing integration ID
           #
           #   @return [String, nil]
           optional :integration_id, String, api_name: :integrationId
 
           # @!attribute invoice_days_until_due
+          #   Days until invoice is due
           #
           #   @return [Float, nil]
           optional :invoice_days_until_due, Float, api_name: :invoiceDaysUntilDue
 
           # @!attribute is_backdated
+          #   Whether subscription is backdated
           #
           #   @return [Boolean, nil]
           optional :is_backdated, Stigg::Internal::Type::Boolean, api_name: :isBackdated
 
           # @!attribute is_invoice_paid
+          #   Whether invoice is already paid
           #
           #   @return [Boolean, nil]
           optional :is_invoice_paid, Stigg::Internal::Type::Boolean, api_name: :isInvoicePaid
 
           # @!attribute metadata
+          #   Additional billing metadata
           #
           #   @return [Object, nil]
           optional :metadata, Stigg::Internal::Type::Unknown
 
           # @!attribute proration_behavior
+          #   Proration behavior
           #
           #   @return [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation::ProrationBehavior, nil]
           optional :proration_behavior,
@@ -441,6 +496,7 @@ module Stigg
                    api_name: :prorationBehavior
 
           # @!attribute tax_ids
+          #   Customer tax IDs
           #
           #   @return [Array<Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation::TaxID>, nil]
           optional :tax_ids,
@@ -450,27 +506,41 @@ module Stigg
                    api_name: :taxIds
 
           # @!attribute tax_percentage
+          #   Tax percentage to apply
           #
           #   @return [Float, nil]
           optional :tax_percentage, Float, api_name: :taxPercentage
 
           # @!attribute tax_rate_ids
+          #   Tax rate IDs from billing provider
           #
           #   @return [Array<String>, nil]
           optional :tax_rate_ids, Stigg::Internal::Type::ArrayOf[String], api_name: :taxRateIds
 
           # @!method initialize(billing_address: nil, charge_on_behalf_of_account: nil, integration_id: nil, invoice_days_until_due: nil, is_backdated: nil, is_invoice_paid: nil, metadata: nil, proration_behavior: nil, tax_ids: nil, tax_percentage: nil, tax_rate_ids: nil)
-          #   @param billing_address [Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation::BillingAddress]
-          #   @param charge_on_behalf_of_account [String]
-          #   @param integration_id [String]
-          #   @param invoice_days_until_due [Float]
-          #   @param is_backdated [Boolean]
-          #   @param is_invoice_paid [Boolean]
-          #   @param metadata [Object]
-          #   @param proration_behavior [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation::ProrationBehavior]
-          #   @param tax_ids [Array<Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation::TaxID>]
-          #   @param tax_percentage [Float]
-          #   @param tax_rate_ids [Array<String>]
+          #   Billing and tax configuration
+          #
+          #   @param billing_address [Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation::BillingAddress] Billing address
+          #
+          #   @param charge_on_behalf_of_account [String] Connected account ID for platform billing
+          #
+          #   @param integration_id [String] Billing integration ID
+          #
+          #   @param invoice_days_until_due [Float] Days until invoice is due
+          #
+          #   @param is_backdated [Boolean] Whether subscription is backdated
+          #
+          #   @param is_invoice_paid [Boolean] Whether invoice is already paid
+          #
+          #   @param metadata [Object] Additional billing metadata
+          #
+          #   @param proration_behavior [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation::ProrationBehavior] Proration behavior
+          #
+          #   @param tax_ids [Array<Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation::TaxID>] Customer tax IDs
+          #
+          #   @param tax_percentage [Float] Tax percentage to apply
+          #
+          #   @param tax_rate_ids [Array<String>] Tax rate IDs from billing provider
 
           # @see Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation#billing_address
           class BillingAddress < Stigg::Internal::Type::BaseModel
@@ -505,6 +575,8 @@ module Stigg
             optional :state, String
 
             # @!method initialize(city: nil, country: nil, line1: nil, line2: nil, postal_code: nil, state: nil)
+            #   Billing address
+            #
             #   @param city [String]
             #   @param country [String]
             #   @param line1 [String]
@@ -513,6 +585,8 @@ module Stigg
             #   @param state [String]
           end
 
+          # Proration behavior
+          #
           # @see Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation#proration_behavior
           module ProrationBehavior
             extend Stigg::Internal::Type::Enum
@@ -527,21 +601,27 @@ module Stigg
 
           class TaxID < Stigg::Internal::Type::BaseModel
             # @!attribute type
+            #   Tax exemption type (e.g., vat, gst)
             #
             #   @return [String]
             required :type, String
 
             # @!attribute value
+            #   Tax exemption identifier value
             #
             #   @return [String]
             required :value, String
 
             # @!method initialize(type:, value:)
-            #   @param type [String]
-            #   @param value [String]
+            #   Tax exemption identifier
+            #
+            #   @param type [String] Tax exemption type (e.g., vat, gst)
+            #
+            #   @param value [String] Tax exemption identifier value
           end
         end
 
+        # Billing period (MONTHLY or ANNUALLY)
         module BillingPeriod
           extend Stigg::Internal::Type::Enum
 
@@ -572,6 +652,8 @@ module Stigg
           required :type, enum: -> { Stigg::V1::SubscriptionPreviewParams::Charge::Type }
 
           # @!method initialize(id:, quantity:, type:)
+          #   Charge item
+          #
           #   @param id [String] Charge ID
           #
           #   @param quantity [Float] Charge quantity
@@ -592,6 +674,7 @@ module Stigg
           end
         end
 
+        # When to apply subscription changes
         module ScheduleStrategy
           extend Stigg::Internal::Type::Enum
 
@@ -605,11 +688,13 @@ module Stigg
 
         class TrialOverrideConfiguration < Stigg::Internal::Type::BaseModel
           # @!attribute is_trial
+          #   Whether to start as trial
           #
           #   @return [Boolean]
           required :is_trial, Stigg::Internal::Type::Boolean, api_name: :isTrial
 
           # @!attribute trial_end_behavior
+          #   Behavior when trial ends
           #
           #   @return [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::TrialOverrideConfiguration::TrialEndBehavior, nil]
           optional :trial_end_behavior,
@@ -625,12 +710,16 @@ module Stigg
           optional :trial_end_date, Time, api_name: :trialEndDate
 
           # @!method initialize(is_trial:, trial_end_behavior: nil, trial_end_date: nil)
-          #   @param is_trial [Boolean]
+          #   Trial period override settings
           #
-          #   @param trial_end_behavior [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::TrialOverrideConfiguration::TrialEndBehavior]
+          #   @param is_trial [Boolean] Whether to start as trial
+          #
+          #   @param trial_end_behavior [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::TrialOverrideConfiguration::TrialEndBehavior] Behavior when trial ends
           #
           #   @param trial_end_date [Time] Trial end date
 
+          # Behavior when trial ends
+          #
           # @see Stigg::Models::V1::SubscriptionPreviewParams::TrialOverrideConfiguration#trial_end_behavior
           module TrialEndBehavior
             extend Stigg::Internal::Type::Enum

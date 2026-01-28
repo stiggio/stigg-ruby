@@ -8,15 +8,21 @@ module Stigg
           T.any(Stigg::Models::V1CreateUsageResponse, Stigg::Internal::AnyHash)
         end
 
+      # Array of usage measurements with current values and period info
       sig { returns(T::Array[Stigg::Models::V1CreateUsageResponse::Data]) }
       attr_accessor :data
 
+      # Response containing reported usage measurements with current usage values,
+      # period information, and reset dates for each measurement.
       sig do
         params(
           data: T::Array[Stigg::Models::V1CreateUsageResponse::Data::OrHash]
         ).returns(T.attached_class)
       end
-      def self.new(data:)
+      def self.new(
+        # Array of usage measurements with current values and period info
+        data:
+      )
       end
 
       sig do
@@ -82,6 +88,7 @@ module Stigg
         sig { returns(T.nilable(Time)) }
         attr_accessor :usage_period_start
 
+        # Recorded usage with period info
         sig do
           params(
             id: String,

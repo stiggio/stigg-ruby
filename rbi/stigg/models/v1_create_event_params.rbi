@@ -92,6 +92,7 @@ module Stigg
         sig { params(timestamp: Time).void }
         attr_writer :timestamp
 
+        # Raw usage event
         sig do
           params(
             customer_id: String,
