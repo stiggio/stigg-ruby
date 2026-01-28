@@ -146,6 +146,27 @@ module Stigg
           end
           attr_accessor :payment_collection_method
 
+          sig do
+            returns(
+              T.nilable(
+                T::Array[
+                  Stigg::Models::V1::SubscriptionMigrateResponse::Data::Price
+                ]
+              )
+            )
+          end
+          attr_reader :prices
+
+          sig do
+            params(
+              prices:
+                T::Array[
+                  Stigg::Models::V1::SubscriptionMigrateResponse::Data::Price::OrHash
+                ]
+            ).void
+          end
+          attr_writer :prices
+
           # Resource ID
           sig { returns(T.nilable(String)) }
           attr_accessor :resource_id
@@ -153,6 +174,12 @@ module Stigg
           # Subscription trial end date
           sig { returns(T.nilable(Time)) }
           attr_accessor :trial_end_date
+
+          sig { returns(T.nilable(Float)) }
+          attr_reader :unit_quantity
+
+          sig { params(unit_quantity: Float).void }
+          attr_writer :unit_quantity
 
           sig do
             params(
@@ -183,8 +210,13 @@ module Stigg
                 T.nilable(
                   Stigg::Models::V1::SubscriptionMigrateResponse::Data::PaymentCollectionMethod::OrSymbol
                 ),
+              prices:
+                T::Array[
+                  Stigg::Models::V1::SubscriptionMigrateResponse::Data::Price::OrHash
+                ],
               resource_id: T.nilable(String),
-              trial_end_date: T.nilable(Time)
+              trial_end_date: T.nilable(Time),
+              unit_quantity: Float
             ).returns(T.attached_class)
           end
           def self.new(
@@ -224,10 +256,12 @@ module Stigg
             paying_customer_id: nil,
             # The method used to collect payments for a subscription
             payment_collection_method: nil,
+            prices: nil,
             # Resource ID
             resource_id: nil,
             # Subscription trial end date
-            trial_end_date: nil
+            trial_end_date: nil,
+            unit_quantity: nil
           )
           end
 
@@ -261,8 +295,13 @@ module Stigg
                   T.nilable(
                     Stigg::Models::V1::SubscriptionMigrateResponse::Data::PaymentCollectionMethod::TaggedSymbol
                   ),
+                prices:
+                  T::Array[
+                    Stigg::Models::V1::SubscriptionMigrateResponse::Data::Price
+                  ],
                 resource_id: T.nilable(String),
-                trial_end_date: T.nilable(Time)
+                trial_end_date: T.nilable(Time),
+                unit_quantity: Float
               }
             )
           end
@@ -526,6 +565,53 @@ module Stigg
               )
             end
             def self.values
+            end
+          end
+
+          class Price < Stigg::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Stigg::Models::V1::SubscriptionMigrateResponse::Data::Price,
+                  Stigg::Internal::AnyHash
+                )
+              end
+
+            # Price ID
+            sig { returns(String) }
+            attr_accessor :id
+
+            # Creation timestamp
+            sig { returns(String) }
+            attr_accessor :created_at
+
+            # Last update timestamp
+            sig { returns(String) }
+            attr_accessor :updated_at
+
+            sig do
+              params(
+                id: String,
+                created_at: String,
+                updated_at: String
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # Price ID
+              id:,
+              # Creation timestamp
+              created_at:,
+              # Last update timestamp
+              updated_at:
+            )
+            end
+
+            sig do
+              override.returns(
+                { id: String, created_at: String, updated_at: String }
+              )
+            end
+            def to_hash
             end
           end
         end
