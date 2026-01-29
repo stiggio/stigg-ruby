@@ -1,0 +1,129 @@
+module Stigg
+  module Models
+    module V1
+      type usage_history_response =
+        { data: Stigg::Models::V1::UsageHistoryResponse::Data }
+
+      class UsageHistoryResponse < Stigg::Internal::Type::BaseModel
+        attr_accessor data: Stigg::Models::V1::UsageHistoryResponse::Data
+
+        def initialize: (
+          data: Stigg::Models::V1::UsageHistoryResponse::Data
+        ) -> void
+
+        def to_hash: -> { data: Stigg::Models::V1::UsageHistoryResponse::Data }
+
+        type data =
+          {
+            markers: ::Array[Stigg::Models::V1::UsageHistoryResponse::Data::Marker],
+            series: ::Array[Stigg::Models::V1::UsageHistoryResponse::Data::Series]
+          }
+
+        class Data < Stigg::Internal::Type::BaseModel
+          attr_accessor markers: ::Array[Stigg::Models::V1::UsageHistoryResponse::Data::Marker]
+
+          attr_accessor series: ::Array[Stigg::Models::V1::UsageHistoryResponse::Data::Series]
+
+          def initialize: (
+            markers: ::Array[Stigg::Models::V1::UsageHistoryResponse::Data::Marker],
+            series: ::Array[Stigg::Models::V1::UsageHistoryResponse::Data::Series]
+          ) -> void
+
+          def to_hash: -> {
+            markers: ::Array[Stigg::Models::V1::UsageHistoryResponse::Data::Marker],
+            series: ::Array[Stigg::Models::V1::UsageHistoryResponse::Data::Series]
+          }
+
+          type marker =
+            {
+              timestamp: Time,
+              type: Stigg::Models::V1::UsageHistoryResponse::Data::Marker::type_
+            }
+
+          class Marker < Stigg::Internal::Type::BaseModel
+            attr_accessor timestamp: Time
+
+            attr_accessor type: Stigg::Models::V1::UsageHistoryResponse::Data::Marker::type_
+
+            def initialize: (
+              timestamp: Time,
+              type: Stigg::Models::V1::UsageHistoryResponse::Data::Marker::type_
+            ) -> void
+
+            def to_hash: -> {
+              timestamp: Time,
+              type: Stigg::Models::V1::UsageHistoryResponse::Data::Marker::type_
+            }
+
+            type type_ = :PERIODIC_RESET | :SUBSCRIPTION_CHANGE_RESET
+
+            module Type
+              extend Stigg::Internal::Type::Enum
+
+              PERIODIC_RESET: :PERIODIC_RESET
+              SUBSCRIPTION_CHANGE_RESET: :SUBSCRIPTION_CHANGE_RESET
+
+              def self?.values: -> ::Array[Stigg::Models::V1::UsageHistoryResponse::Data::Marker::type_]
+            end
+          end
+
+          type series =
+            {
+              points: ::Array[Stigg::Models::V1::UsageHistoryResponse::Data::Series::Point],
+              tags: ::Array[Stigg::Models::V1::UsageHistoryResponse::Data::Series::Tag]
+            }
+
+          class Series < Stigg::Internal::Type::BaseModel
+            attr_accessor points: ::Array[Stigg::Models::V1::UsageHistoryResponse::Data::Series::Point]
+
+            attr_accessor tags: ::Array[Stigg::Models::V1::UsageHistoryResponse::Data::Series::Tag]
+
+            def initialize: (
+              points: ::Array[Stigg::Models::V1::UsageHistoryResponse::Data::Series::Point],
+              tags: ::Array[Stigg::Models::V1::UsageHistoryResponse::Data::Series::Tag]
+            ) -> void
+
+            def to_hash: -> {
+              points: ::Array[Stigg::Models::V1::UsageHistoryResponse::Data::Series::Point],
+              tags: ::Array[Stigg::Models::V1::UsageHistoryResponse::Data::Series::Tag]
+            }
+
+            type point = { is_reset_point: bool, timestamp: Time, value: Float }
+
+            class Point < Stigg::Internal::Type::BaseModel
+              attr_accessor is_reset_point: bool
+
+              attr_accessor timestamp: Time
+
+              attr_accessor value: Float
+
+              def initialize: (
+                is_reset_point: bool,
+                timestamp: Time,
+                value: Float
+              ) -> void
+
+              def to_hash: -> {
+                is_reset_point: bool,
+                timestamp: Time,
+                value: Float
+              }
+            end
+
+            type tag = { key: String, value: String }
+
+            class Tag < Stigg::Internal::Type::BaseModel
+              attr_accessor key: String
+
+              attr_accessor value: String
+
+              def initialize: (key: String, value: String) -> void
+
+              def to_hash: -> { key: String, value: String }
+            end
+          end
+        end
+      end
+    end
+  end
+end

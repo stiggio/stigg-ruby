@@ -17,12 +17,12 @@ class Stigg::Test::Resources::V1::CouponsTest < Stigg::Test::ResourceTest
       )
 
     assert_pattern do
-      response => Stigg::Models::V1::CouponCreateResponse
+      response => Stigg::V1::Coupon
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::CouponCreateResponse::Data
+        data: Stigg::V1::Coupon::Data
       }
     end
   end
@@ -33,12 +33,12 @@ class Stigg::Test::Resources::V1::CouponsTest < Stigg::Test::ResourceTest
     response = @stigg.v1.coupons.retrieve("x")
 
     assert_pattern do
-      response => Stigg::Models::V1::CouponRetrieveResponse
+      response => Stigg::V1::Coupon
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::CouponRetrieveResponse::Data
+        data: Stigg::V1::Coupon::Data
       }
     end
   end

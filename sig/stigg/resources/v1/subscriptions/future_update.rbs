@@ -6,12 +6,12 @@ module Stigg
           def cancel_pending_payment: (
             String id,
             ?request_options: Stigg::request_opts
-          ) -> Stigg::Models::V1::Subscriptions::FutureUpdateCancelPendingPaymentResponse
+          ) -> Stigg::V1::Subscriptions::CancelSubscription
 
           def cancel_schedule: (
             String id,
             ?request_options: Stigg::request_opts
-          ) -> Stigg::Models::V1::Subscriptions::FutureUpdateCancelScheduleResponse
+          ) -> Stigg::V1::Subscriptions::CancelSubscription
 
           def initialize: (client: Stigg::Client) -> void
         end

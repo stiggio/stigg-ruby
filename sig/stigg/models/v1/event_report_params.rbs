@@ -1,0 +1,82 @@
+module Stigg
+  module Models
+    module V1
+      type event_report_params =
+        { events: ::Array[Stigg::V1::EventReportParams::Event] }
+        & Stigg::Internal::Type::request_parameters
+
+      class EventReportParams < Stigg::Internal::Type::BaseModel
+        extend Stigg::Internal::Type::RequestParameters::Converter
+        include Stigg::Internal::Type::RequestParameters
+
+        attr_accessor events: ::Array[Stigg::V1::EventReportParams::Event]
+
+        def initialize: (
+          events: ::Array[Stigg::V1::EventReportParams::Event],
+          ?request_options: Stigg::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          events: ::Array[Stigg::V1::EventReportParams::Event],
+          request_options: Stigg::RequestOptions
+        }
+
+        type event =
+          {
+            customer_id: String,
+            event_name: String,
+            idempotency_key: String,
+            dimensions: ::Hash[Symbol, Stigg::Models::V1::EventReportParams::Event::dimension],
+            resource_id: String?,
+            timestamp: Time
+          }
+
+        class Event < Stigg::Internal::Type::BaseModel
+          attr_accessor customer_id: String
+
+          attr_accessor event_name: String
+
+          attr_accessor idempotency_key: String
+
+          attr_reader dimensions: ::Hash[Symbol, Stigg::Models::V1::EventReportParams::Event::dimension]?
+
+          def dimensions=: (
+            ::Hash[Symbol, Stigg::Models::V1::EventReportParams::Event::dimension]
+          ) -> ::Hash[Symbol, Stigg::Models::V1::EventReportParams::Event::dimension]
+
+          attr_accessor resource_id: String?
+
+          attr_reader timestamp: Time?
+
+          def timestamp=: (Time) -> Time
+
+          def initialize: (
+            customer_id: String,
+            event_name: String,
+            idempotency_key: String,
+            ?dimensions: ::Hash[Symbol, Stigg::Models::V1::EventReportParams::Event::dimension],
+            ?resource_id: String?,
+            ?timestamp: Time
+          ) -> void
+
+          def to_hash: -> {
+            customer_id: String,
+            event_name: String,
+            idempotency_key: String,
+            dimensions: ::Hash[Symbol, Stigg::Models::V1::EventReportParams::Event::dimension],
+            resource_id: String?,
+            timestamp: Time
+          }
+
+          type dimension = String | Float | bool
+
+          module Dimension
+            extend Stigg::Internal::Type::Union
+
+            def self?.variants: -> ::Array[Stigg::Models::V1::EventReportParams::Event::dimension]
+          end
+        end
+      end
+    end
+  end
+end

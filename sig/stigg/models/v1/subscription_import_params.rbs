@@ -1,0 +1,84 @@
+module Stigg
+  module Models
+    module V1
+      type subscription_import_params =
+        {
+          subscriptions: ::Array[Stigg::V1::SubscriptionImportParams::Subscription]
+        }
+        & Stigg::Internal::Type::request_parameters
+
+      class SubscriptionImportParams < Stigg::Internal::Type::BaseModel
+        extend Stigg::Internal::Type::RequestParameters::Converter
+        include Stigg::Internal::Type::RequestParameters
+
+        attr_accessor subscriptions: ::Array[Stigg::V1::SubscriptionImportParams::Subscription]
+
+        def initialize: (
+          subscriptions: ::Array[Stigg::V1::SubscriptionImportParams::Subscription],
+          ?request_options: Stigg::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          subscriptions: ::Array[Stigg::V1::SubscriptionImportParams::Subscription],
+          request_options: Stigg::RequestOptions
+        }
+
+        type subscription =
+          {
+            id: String,
+            customer_id: String,
+            plan_id: String,
+            billing_id: String?,
+            end_date: Time?,
+            metadata: ::Hash[Symbol, String],
+            resource_id: String?,
+            start_date: Time
+          }
+
+        class Subscription < Stigg::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor customer_id: String
+
+          attr_accessor plan_id: String
+
+          attr_accessor billing_id: String?
+
+          attr_accessor end_date: Time?
+
+          attr_reader metadata: ::Hash[Symbol, String]?
+
+          def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+          attr_accessor resource_id: String?
+
+          attr_reader start_date: Time?
+
+          def start_date=: (Time) -> Time
+
+          def initialize: (
+            id: String,
+            customer_id: String,
+            plan_id: String,
+            ?billing_id: String?,
+            ?end_date: Time?,
+            ?metadata: ::Hash[Symbol, String],
+            ?resource_id: String?,
+            ?start_date: Time
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            customer_id: String,
+            plan_id: String,
+            billing_id: String?,
+            end_date: Time?,
+            metadata: ::Hash[Symbol, String],
+            resource_id: String?,
+            start_date: Time
+          }
+        end
+      end
+    end
+  end
+end

@@ -24,7 +24,7 @@ module Stigg
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Stigg::Models::V1::CouponCreateResponse]
+        # @return [Stigg::Models::V1::Coupon]
         #
         # @see Stigg::Models::V1::CouponCreateParams
         def create(params)
@@ -33,7 +33,7 @@ module Stigg
             method: :post,
             path: "api/v1/coupons",
             body: parsed,
-            model: Stigg::Models::V1::CouponCreateResponse,
+            model: Stigg::V1::Coupon,
             options: options
           )
         end
@@ -46,14 +46,14 @@ module Stigg
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Stigg::Models::V1::CouponRetrieveResponse]
+        # @return [Stigg::Models::V1::Coupon]
         #
         # @see Stigg::Models::V1::CouponRetrieveParams
         def retrieve(id, params = {})
           @client.request(
             method: :get,
             path: ["api/v1/coupons/%1$s", id],
-            model: Stigg::Models::V1::CouponRetrieveResponse,
+            model: Stigg::V1::Coupon,
             options: params[:request_options]
           )
         end

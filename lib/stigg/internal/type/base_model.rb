@@ -438,8 +438,8 @@ module Stigg
         # @return [Hash{Symbol=>Object}]
         #
         # @example
-        #   # `v1_create_event_response` is a `Stigg::Models::V1CreateEventResponse`
-        #   v1_create_event_response => {
+        #   # `customer_response` is a `Stigg::V1::CustomerResponse`
+        #   customer_response => {
         #     data: data
         #   }
         def deconstruct_keys(keys)
