@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.3 (2026-01-29)
+
+Full Changelog: [v0.1.0-alpha.2...v0.1.0-alpha.3](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.2...v0.1.0-alpha.3)
+
+### Features
+
+* **api:** update stainless config ([9d48da5](https://github.com/stiggio/stigg-ruby/commit/9d48da56de7780968ac51cdf3f80073bd8f3e7da))
+
 ## 0.1.0-alpha.2 (2026-01-28)
 
 Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
