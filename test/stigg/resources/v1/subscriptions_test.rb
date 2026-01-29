@@ -3,34 +3,34 @@
 require_relative "../../test_helper"
 
 class Stigg::Test::Resources::V1::SubscriptionsTest < Stigg::Test::ResourceTest
-  def test_create_required_params
-    skip("Prism tests are disabled")
-
-    response = @stigg.v1.subscriptions.create(customer_id: "customerId", plan_id: "planId")
-
-    assert_pattern do
-      response => Stigg::Models::V1::SubscriptionCreateResponse
-    end
-
-    assert_pattern do
-      response => {
-        data: Stigg::Models::V1::SubscriptionCreateResponse::Data
-      }
-    end
-  end
-
   def test_retrieve
     skip("Prism tests are disabled")
 
     response = @stigg.v1.subscriptions.retrieve("x")
 
     assert_pattern do
-      response => Stigg::Models::V1::SubscriptionRetrieveResponse
+      response => Stigg::V1::Subscription
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::SubscriptionRetrieveResponse::Data
+        data: Stigg::V1::Subscription::Data
+      }
+    end
+  end
+
+  def test_update
+    skip("Prism tests are disabled")
+
+    response = @stigg.v1.subscriptions.update("x")
+
+    assert_pattern do
+      response => Stigg::V1::Subscription
+    end
+
+    assert_pattern do
+      response => {
+        data: Stigg::V1::Subscription::Data
       }
     end
   end
@@ -78,18 +78,51 @@ class Stigg::Test::Resources::V1::SubscriptionsTest < Stigg::Test::ResourceTest
     end
   end
 
+  def test_cancel
+    skip("Prism tests are disabled")
+
+    response = @stigg.v1.subscriptions.cancel("x")
+
+    assert_pattern do
+      response => Stigg::V1::Subscription
+    end
+
+    assert_pattern do
+      response => {
+        data: Stigg::V1::Subscription::Data
+      }
+    end
+  end
+
   def test_delegate_required_params
     skip("Prism tests are disabled")
 
     response = @stigg.v1.subscriptions.delegate("x", target_customer_id: "targetCustomerId")
 
     assert_pattern do
-      response => Stigg::Models::V1::SubscriptionDelegateResponse
+      response => Stigg::V1::Subscription
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::SubscriptionDelegateResponse::Data
+        data: Stigg::V1::Subscription::Data
+      }
+    end
+  end
+
+  def test_import_required_params
+    skip("Prism tests are disabled")
+
+    response =
+      @stigg.v1.subscriptions.import(subscriptions: [{id: "id", customerId: "customerId", planId: "planId"}])
+
+    assert_pattern do
+      response => Stigg::Models::V1::SubscriptionImportResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: Stigg::Models::V1::SubscriptionImportResponse::Data
       }
     end
   end
@@ -100,12 +133,12 @@ class Stigg::Test::Resources::V1::SubscriptionsTest < Stigg::Test::ResourceTest
     response = @stigg.v1.subscriptions.migrate("x")
 
     assert_pattern do
-      response => Stigg::Models::V1::SubscriptionMigrateResponse
+      response => Stigg::V1::Subscription
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::SubscriptionMigrateResponse::Data
+        data: Stigg::V1::Subscription::Data
       }
     end
   end
@@ -126,18 +159,34 @@ class Stigg::Test::Resources::V1::SubscriptionsTest < Stigg::Test::ResourceTest
     end
   end
 
+  def test_provision_required_params
+    skip("Prism tests are disabled")
+
+    response = @stigg.v1.subscriptions.provision(customer_id: "customerId", plan_id: "planId")
+
+    assert_pattern do
+      response => Stigg::Models::V1::SubscriptionProvisionResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: Stigg::Models::V1::SubscriptionProvisionResponse::Data
+      }
+    end
+  end
+
   def test_transfer_required_params
     skip("Prism tests are disabled")
 
     response = @stigg.v1.subscriptions.transfer("x", destination_resource_id: "destinationResourceId")
 
     assert_pattern do
-      response => Stigg::Models::V1::SubscriptionTransferResponse
+      response => Stigg::V1::Subscription
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::SubscriptionTransferResponse::Data
+        data: Stigg::V1::Subscription::Data
       }
     end
   end

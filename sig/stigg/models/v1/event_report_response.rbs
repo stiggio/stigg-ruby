@@ -1,0 +1,15 @@
+module Stigg
+  module Models
+    module V1
+      type event_report_response = { data: top }
+
+      class EventReportResponse < Stigg::Internal::Type::BaseModel
+        attr_accessor data: top
+
+        def initialize: (data: top) -> void
+
+        def to_hash: -> { data: top }
+      end
+    end
+  end
+end

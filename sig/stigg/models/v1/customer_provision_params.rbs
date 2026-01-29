@@ -1,0 +1,169 @@
+module Stigg
+  module Models
+    module V1
+      type customer_provision_params =
+        {
+          id: String,
+          coupon_id: String?,
+          default_payment_method: Stigg::V1::CustomerProvisionParams::DefaultPaymentMethod?,
+          email: String?,
+          integrations: ::Array[Stigg::V1::CustomerProvisionParams::Integration],
+          metadata: ::Hash[Symbol, String],
+          name: String?
+        }
+        & Stigg::Internal::Type::request_parameters
+
+      class CustomerProvisionParams < Stigg::Internal::Type::BaseModel
+        extend Stigg::Internal::Type::RequestParameters::Converter
+        include Stigg::Internal::Type::RequestParameters
+
+        attr_accessor id: String
+
+        attr_accessor coupon_id: String?
+
+        attr_accessor default_payment_method: Stigg::V1::CustomerProvisionParams::DefaultPaymentMethod?
+
+        attr_accessor email: String?
+
+        attr_reader integrations: ::Array[Stigg::V1::CustomerProvisionParams::Integration]?
+
+        def integrations=: (
+          ::Array[Stigg::V1::CustomerProvisionParams::Integration]
+        ) -> ::Array[Stigg::V1::CustomerProvisionParams::Integration]
+
+        attr_reader metadata: ::Hash[Symbol, String]?
+
+        def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+        attr_accessor name: String?
+
+        def initialize: (
+          id: String,
+          ?coupon_id: String?,
+          ?default_payment_method: Stigg::V1::CustomerProvisionParams::DefaultPaymentMethod?,
+          ?email: String?,
+          ?integrations: ::Array[Stigg::V1::CustomerProvisionParams::Integration],
+          ?metadata: ::Hash[Symbol, String],
+          ?name: String?,
+          ?request_options: Stigg::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          coupon_id: String?,
+          default_payment_method: Stigg::V1::CustomerProvisionParams::DefaultPaymentMethod?,
+          email: String?,
+          integrations: ::Array[Stigg::V1::CustomerProvisionParams::Integration],
+          metadata: ::Hash[Symbol, String],
+          name: String?,
+          request_options: Stigg::RequestOptions
+        }
+
+        type default_payment_method =
+          {
+            billing_id: String?,
+            card_expiry_month: Float?,
+            card_expiry_year: Float?,
+            :card_last4_digits => String?,
+            type: Stigg::Models::V1::CustomerProvisionParams::DefaultPaymentMethod::type_
+          }
+
+        class DefaultPaymentMethod < Stigg::Internal::Type::BaseModel
+          attr_accessor billing_id: String?
+
+          attr_accessor card_expiry_month: Float?
+
+          attr_accessor card_expiry_year: Float?
+
+          attr_accessor card_last4_digits: String?
+
+          attr_accessor type: Stigg::Models::V1::CustomerProvisionParams::DefaultPaymentMethod::type_
+
+          def initialize: (
+            billing_id: String?,
+            card_expiry_month: Float?,
+            card_expiry_year: Float?,
+            card_last4_digits: String?,
+            type: Stigg::Models::V1::CustomerProvisionParams::DefaultPaymentMethod::type_
+          ) -> void
+
+          def to_hash: -> {
+            billing_id: String?,
+            card_expiry_month: Float?,
+            card_expiry_year: Float?,
+            :card_last4_digits => String?,
+            type: Stigg::Models::V1::CustomerProvisionParams::DefaultPaymentMethod::type_
+          }
+
+          type type_ = :CARD | :BANK | :CASH_APP
+
+          module Type
+            extend Stigg::Internal::Type::Enum
+
+            CARD: :CARD
+            BANK: :BANK
+            CASH_APP: :CASH_APP
+
+            def self?.values: -> ::Array[Stigg::Models::V1::CustomerProvisionParams::DefaultPaymentMethod::type_]
+          end
+        end
+
+        type integration =
+          {
+            id: String,
+            synced_entity_id: String?,
+            vendor_identifier: Stigg::Models::V1::CustomerProvisionParams::Integration::vendor_identifier
+          }
+
+        class Integration < Stigg::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor synced_entity_id: String?
+
+          attr_accessor vendor_identifier: Stigg::Models::V1::CustomerProvisionParams::Integration::vendor_identifier
+
+          def initialize: (
+            id: String,
+            synced_entity_id: String?,
+            vendor_identifier: Stigg::Models::V1::CustomerProvisionParams::Integration::vendor_identifier
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            synced_entity_id: String?,
+            vendor_identifier: Stigg::Models::V1::CustomerProvisionParams::Integration::vendor_identifier
+          }
+
+          type vendor_identifier =
+            :AUTH0
+            | :ZUORA
+            | :STRIPE
+            | :HUBSPOT
+            | :AWS_MARKETPLACE
+            | :SNOWFLAKE
+            | :SALESFORCE
+            | :BIG_QUERY
+            | :OPEN_FGA
+            | :APP_STORE
+
+          module VendorIdentifier
+            extend Stigg::Internal::Type::Enum
+
+            AUTH0: :AUTH0
+            ZUORA: :ZUORA
+            STRIPE: :STRIPE
+            HUBSPOT: :HUBSPOT
+            AWS_MARKETPLACE: :AWS_MARKETPLACE
+            SNOWFLAKE: :SNOWFLAKE
+            SALESFORCE: :SALESFORCE
+            BIG_QUERY: :BIG_QUERY
+            OPEN_FGA: :OPEN_FGA
+            APP_STORE: :APP_STORE
+
+            def self?.values: -> ::Array[Stigg::Models::V1::CustomerProvisionParams::Integration::vendor_identifier]
+          end
+        end
+      end
+    end
+  end
+end

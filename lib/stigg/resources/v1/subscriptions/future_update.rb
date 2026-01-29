@@ -13,14 +13,14 @@ module Stigg
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
-          # @return [Stigg::Models::V1::Subscriptions::FutureUpdateCancelPendingPaymentResponse]
+          # @return [Stigg::Models::V1::Subscriptions::CancelSubscription]
           #
           # @see Stigg::Models::V1::Subscriptions::FutureUpdateCancelPendingPaymentParams
           def cancel_pending_payment(id, params = {})
             @client.request(
               method: :delete,
               path: ["api/v1/subscriptions/%1$s/future-update/pending-payment", id],
-              model: Stigg::Models::V1::Subscriptions::FutureUpdateCancelPendingPaymentResponse,
+              model: Stigg::V1::Subscriptions::CancelSubscription,
               options: params[:request_options]
             )
           end
@@ -33,14 +33,14 @@ module Stigg
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
-          # @return [Stigg::Models::V1::Subscriptions::FutureUpdateCancelScheduleResponse]
+          # @return [Stigg::Models::V1::Subscriptions::CancelSubscription]
           #
           # @see Stigg::Models::V1::Subscriptions::FutureUpdateCancelScheduleParams
           def cancel_schedule(id, params = {})
             @client.request(
               method: :delete,
               path: ["api/v1/subscriptions/%1$s/future-update/schedule", id],
-              model: Stigg::Models::V1::Subscriptions::FutureUpdateCancelScheduleResponse,
+              model: Stigg::V1::Subscriptions::CancelSubscription,
               options: params[:request_options]
             )
           end

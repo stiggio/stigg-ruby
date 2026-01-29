@@ -9,12 +9,12 @@ class Stigg::Test::Resources::V1::Subscriptions::FutureUpdateTest < Stigg::Test:
     response = @stigg.v1.subscriptions.future_update.cancel_pending_payment("x")
 
     assert_pattern do
-      response => Stigg::Models::V1::Subscriptions::FutureUpdateCancelPendingPaymentResponse
+      response => Stigg::V1::Subscriptions::CancelSubscription
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::Subscriptions::FutureUpdateCancelPendingPaymentResponse::Data
+        data: Stigg::V1::Subscriptions::CancelSubscription::Data
       }
     end
   end
@@ -25,12 +25,12 @@ class Stigg::Test::Resources::V1::Subscriptions::FutureUpdateTest < Stigg::Test:
     response = @stigg.v1.subscriptions.future_update.cancel_schedule("x")
 
     assert_pattern do
-      response => Stigg::Models::V1::Subscriptions::FutureUpdateCancelScheduleResponse
+      response => Stigg::V1::Subscriptions::CancelSubscription
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::Subscriptions::FutureUpdateCancelScheduleResponse::Data
+        data: Stigg::V1::Subscriptions::CancelSubscription::Data
       }
     end
   end

@@ -7,44 +7,10 @@ module Stigg
         sig { returns(Stigg::Resources::V1::Customers::PaymentMethod) }
         attr_reader :payment_method
 
-        sig { returns(Stigg::Resources::V1::Customers::Usage) }
-        attr_reader :usage
-
-        # Provision customer
         sig do
-          params(
-            id: String,
-            coupon_id: T.nilable(String),
-            default_payment_method:
-              T.nilable(
-                Stigg::V1::CustomerCreateParams::DefaultPaymentMethod::OrHash
-              ),
-            email: T.nilable(String),
-            integrations:
-              T::Array[Stigg::V1::CustomerCreateParams::Integration::OrHash],
-            metadata: T::Hash[Symbol, String],
-            name: T.nilable(String),
-            request_options: Stigg::RequestOptions::OrHash
-          ).returns(Stigg::V1::CustomerResponse)
+          returns(Stigg::Resources::V1::Customers::PromotionalEntitlements)
         end
-        def create(
-          # Customer slug
-          id:,
-          # Customer level coupon
-          coupon_id: nil,
-          # The default payment method details
-          default_payment_method: nil,
-          # The email of the customer
-          email: nil,
-          # List of integrations
-          integrations: nil,
-          # Additional metadata
-          metadata: nil,
-          # The name of the customer
-          name: nil,
-          request_options: {}
-        )
-        end
+        attr_reader :promotional_entitlements
 
         # Get a single customer by ID
         sig do
@@ -124,6 +90,57 @@ module Stigg
         def archive(
           # The unique identifier of the entity
           id,
+          request_options: {}
+        )
+        end
+
+        # Bulk import customers
+        sig do
+          params(
+            customers:
+              T::Array[Stigg::V1::CustomerImportParams::Customer::OrHash],
+            request_options: Stigg::RequestOptions::OrHash
+          ).returns(Stigg::Models::V1::CustomerImportResponse)
+        end
+        def import(
+          # List of customer objects to import
+          customers:,
+          request_options: {}
+        )
+        end
+
+        # Provision customer
+        sig do
+          params(
+            id: String,
+            coupon_id: T.nilable(String),
+            default_payment_method:
+              T.nilable(
+                Stigg::V1::CustomerProvisionParams::DefaultPaymentMethod::OrHash
+              ),
+            email: T.nilable(String),
+            integrations:
+              T::Array[Stigg::V1::CustomerProvisionParams::Integration::OrHash],
+            metadata: T::Hash[Symbol, String],
+            name: T.nilable(String),
+            request_options: Stigg::RequestOptions::OrHash
+          ).returns(Stigg::V1::CustomerResponse)
+        end
+        def provision(
+          # Customer slug
+          id:,
+          # Customer level coupon
+          coupon_id: nil,
+          # The default payment method details
+          default_payment_method: nil,
+          # The email of the customer
+          email: nil,
+          # List of integrations
+          integrations: nil,
+          # Additional metadata
+          metadata: nil,
+          # The name of the customer
+          name: nil,
           request_options: {}
         )
         end

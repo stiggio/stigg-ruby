@@ -4,39 +4,29 @@ module Stigg
       class Subscriptions
         attr_reader future_update: Stigg::Resources::V1::Subscriptions::FutureUpdate
 
-        def create: (
-          customer_id: String,
-          plan_id: String,
-          ?id: String,
-          ?addons: ::Array[Stigg::V1::SubscriptionCreateParams::Addon],
-          ?applied_coupon: Stigg::V1::SubscriptionCreateParams::AppliedCoupon,
-          ?await_payment_confirmation: bool,
-          ?billing_country_code: String?,
-          ?billing_id: String?,
-          ?billing_information: Stigg::V1::SubscriptionCreateParams::BillingInformation,
-          ?billing_period: Stigg::Models::V1::SubscriptionCreateParams::billing_period,
-          ?budget: Stigg::V1::SubscriptionCreateParams::Budget?,
-          ?charges: ::Array[Stigg::V1::SubscriptionCreateParams::Charge],
-          ?checkout_options: Stigg::V1::SubscriptionCreateParams::CheckoutOptions,
-          ?metadata: ::Hash[Symbol, String],
-          ?minimum_spend: Stigg::V1::SubscriptionCreateParams::MinimumSpend?,
-          ?paying_customer_id: String?,
-          ?payment_collection_method: Stigg::Models::V1::SubscriptionCreateParams::payment_collection_method,
-          ?price_overrides: ::Array[Stigg::V1::SubscriptionCreateParams::PriceOverride],
-          ?resource_id: String?,
-          ?salesforce_id: String?,
-          ?schedule_strategy: Stigg::Models::V1::SubscriptionCreateParams::schedule_strategy,
-          ?start_date: Time,
-          ?subscription_entitlements: ::Array[Stigg::V1::SubscriptionCreateParams::SubscriptionEntitlement],
-          ?trial_override_configuration: Stigg::V1::SubscriptionCreateParams::TrialOverrideConfiguration,
-          ?unit_quantity: Float,
-          ?request_options: Stigg::request_opts
-        ) -> Stigg::Models::V1::SubscriptionCreateResponse
-
         def retrieve: (
           String id,
           ?request_options: Stigg::request_opts
-        ) -> Stigg::Models::V1::SubscriptionRetrieveResponse
+        ) -> Stigg::V1::Subscription
+
+        def update: (
+          String id,
+          ?addons: ::Array[Stigg::V1::SubscriptionUpdateParams::Addon],
+          ?applied_coupon: Stigg::V1::SubscriptionUpdateParams::AppliedCoupon,
+          ?await_payment_confirmation: bool,
+          ?billing_information: Stigg::V1::SubscriptionUpdateParams::BillingInformation,
+          ?billing_period: Stigg::Models::V1::SubscriptionUpdateParams::billing_period,
+          ?budget: Stigg::V1::SubscriptionUpdateParams::Budget?,
+          ?charges: ::Array[Stigg::V1::SubscriptionUpdateParams::Charge],
+          ?metadata: ::Hash[Symbol, String],
+          ?minimum_spend: Stigg::V1::SubscriptionUpdateParams::MinimumSpend?,
+          ?price_overrides: ::Array[Stigg::V1::SubscriptionUpdateParams::PriceOverride],
+          ?promotion_code: String,
+          ?schedule_strategy: Stigg::Models::V1::SubscriptionUpdateParams::schedule_strategy,
+          ?subscription_entitlements: ::Array[Stigg::V1::SubscriptionUpdateParams::SubscriptionEntitlement],
+          ?trial_end_date: Time,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::V1::Subscription
 
         def list: (
           ?after: String,
@@ -47,17 +37,31 @@ module Stigg
           ?request_options: Stigg::request_opts
         ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::SubscriptionListResponse]
 
+        def cancel: (
+          String id,
+          ?cancellation_action: Stigg::Models::V1::SubscriptionCancelParams::cancellation_action,
+          ?cancellation_time: Stigg::Models::V1::SubscriptionCancelParams::cancellation_time,
+          ?end_date: Time,
+          ?prorate: bool,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::V1::Subscription
+
         def delegate: (
           String id,
           target_customer_id: String,
           ?request_options: Stigg::request_opts
-        ) -> Stigg::Models::V1::SubscriptionDelegateResponse
+        ) -> Stigg::V1::Subscription
+
+        def import: (
+          subscriptions: ::Array[Stigg::V1::SubscriptionImportParams::Subscription],
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::Models::V1::SubscriptionImportResponse
 
         def migrate: (
           String id,
           ?subscription_migration_time: Stigg::Models::V1::SubscriptionMigrateParams::subscription_migration_time,
           ?request_options: Stigg::request_opts
-        ) -> Stigg::Models::V1::SubscriptionMigrateResponse
+        ) -> Stigg::V1::Subscription
 
         def preview: (
           customer_id: String,
@@ -78,11 +82,40 @@ module Stigg
           ?request_options: Stigg::request_opts
         ) -> Stigg::Models::V1::SubscriptionPreviewResponse
 
+        def provision: (
+          customer_id: String,
+          plan_id: String,
+          ?id: String,
+          ?addons: ::Array[Stigg::V1::SubscriptionProvisionParams::Addon],
+          ?applied_coupon: Stigg::V1::SubscriptionProvisionParams::AppliedCoupon,
+          ?await_payment_confirmation: bool,
+          ?billing_country_code: String?,
+          ?billing_id: String?,
+          ?billing_information: Stigg::V1::SubscriptionProvisionParams::BillingInformation,
+          ?billing_period: Stigg::Models::V1::SubscriptionProvisionParams::billing_period,
+          ?budget: Stigg::V1::SubscriptionProvisionParams::Budget?,
+          ?charges: ::Array[Stigg::V1::SubscriptionProvisionParams::Charge],
+          ?checkout_options: Stigg::V1::SubscriptionProvisionParams::CheckoutOptions,
+          ?metadata: ::Hash[Symbol, String],
+          ?minimum_spend: Stigg::V1::SubscriptionProvisionParams::MinimumSpend?,
+          ?paying_customer_id: String?,
+          ?payment_collection_method: Stigg::Models::V1::SubscriptionProvisionParams::payment_collection_method,
+          ?price_overrides: ::Array[Stigg::V1::SubscriptionProvisionParams::PriceOverride],
+          ?resource_id: String?,
+          ?salesforce_id: String?,
+          ?schedule_strategy: Stigg::Models::V1::SubscriptionProvisionParams::schedule_strategy,
+          ?start_date: Time,
+          ?subscription_entitlements: ::Array[Stigg::V1::SubscriptionProvisionParams::SubscriptionEntitlement],
+          ?trial_override_configuration: Stigg::V1::SubscriptionProvisionParams::TrialOverrideConfiguration,
+          ?unit_quantity: Float,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::Models::V1::SubscriptionProvisionResponse
+
         def transfer: (
           String id,
           destination_resource_id: String,
           ?request_options: Stigg::request_opts
-        ) -> Stigg::Models::V1::SubscriptionTransferResponse
+        ) -> Stigg::V1::Subscription
 
         def initialize: (client: Stigg::Client) -> void
       end

@@ -3,7 +3,7 @@
 module Stigg
   module Models
     module V1
-      # @see Stigg::Resources::V1::Customers#create
+      # @see Stigg::Resources::V1::Customers#retrieve
       class CustomerResponse < Stigg::Internal::Type::BaseModel
         # @!attribute data
         #   A customer can be either an organization or an individual

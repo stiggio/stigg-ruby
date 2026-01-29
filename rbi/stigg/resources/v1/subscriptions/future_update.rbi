@@ -10,9 +10,7 @@ module Stigg
             params(
               id: String,
               request_options: Stigg::RequestOptions::OrHash
-            ).returns(
-              Stigg::Models::V1::Subscriptions::FutureUpdateCancelPendingPaymentResponse
-            )
+            ).returns(Stigg::V1::Subscriptions::CancelSubscription)
           end
           def cancel_pending_payment(
             # The unique identifier of the entity
@@ -26,9 +24,7 @@ module Stigg
             params(
               id: String,
               request_options: Stigg::RequestOptions::OrHash
-            ).returns(
-              Stigg::Models::V1::Subscriptions::FutureUpdateCancelScheduleResponse
-            )
+            ).returns(Stigg::V1::Subscriptions::CancelSubscription)
           end
           def cancel_schedule(
             # The unique identifier of the entity
