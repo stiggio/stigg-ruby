@@ -1,0 +1,74 @@
+module Stigg
+  module Models
+    module V1
+      type customer_import_params =
+        { customers: ::Array[Stigg::V1::CustomerImportParams::Customer] }
+        & Stigg::Internal::Type::request_parameters
+
+      class CustomerImportParams < Stigg::Internal::Type::BaseModel
+        extend Stigg::Internal::Type::RequestParameters::Converter
+        include Stigg::Internal::Type::RequestParameters
+
+        attr_accessor customers: ::Array[Stigg::V1::CustomerImportParams::Customer]
+
+        def initialize: (
+          customers: ::Array[Stigg::V1::CustomerImportParams::Customer],
+          ?request_options: Stigg::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          customers: ::Array[Stigg::V1::CustomerImportParams::Customer],
+          request_options: Stigg::RequestOptions
+        }
+
+        type customer =
+          {
+            id: String,
+            email: String?,
+            name: String?,
+            metadata: ::Hash[Symbol, String],
+            payment_method_id: String,
+            updated_at: Time
+          }
+
+        class Customer < Stigg::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor email: String?
+
+          attr_accessor name: String?
+
+          attr_reader metadata: ::Hash[Symbol, String]?
+
+          def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+          attr_reader payment_method_id: String?
+
+          def payment_method_id=: (String) -> String
+
+          attr_reader updated_at: Time?
+
+          def updated_at=: (Time) -> Time
+
+          def initialize: (
+            id: String,
+            email: String?,
+            name: String?,
+            ?metadata: ::Hash[Symbol, String],
+            ?payment_method_id: String,
+            ?updated_at: Time
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            email: String?,
+            name: String?,
+            metadata: ::Hash[Symbol, String],
+            payment_method_id: String,
+            updated_at: Time
+          }
+        end
+      end
+    end
+  end
+end

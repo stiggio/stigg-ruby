@@ -7,15 +7,9 @@ module Stigg
 
       attr_reader coupons: Stigg::Resources::V1::Coupons
 
-      def create_event: (
-        events: ::Array[Stigg::V1CreateEventParams::Event],
-        ?request_options: Stigg::request_opts
-      ) -> Stigg::Models::V1CreateEventResponse
+      attr_reader events: Stigg::Resources::V1::Events
 
-      def create_usage: (
-        usages: ::Array[Stigg::V1CreateUsageParams::Usage],
-        ?request_options: Stigg::request_opts
-      ) -> Stigg::Models::V1CreateUsageResponse
+      attr_reader usage: Stigg::Resources::V1::Usage
 
       def initialize: (client: Stigg::Client) -> void
     end

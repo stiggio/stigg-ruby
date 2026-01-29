@@ -1,7 +1,3 @@
 module Stigg
   module V1 = Stigg::Models::V1
-
-  class V1CreateEventParams = Stigg::Models::V1CreateEventParams
-
-  class V1CreateUsageParams = Stigg::Models::V1CreateUsageParams
 end

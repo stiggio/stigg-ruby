@@ -1,0 +1,14 @@
+module Stigg
+  module Resources
+    class V1
+      class Events
+        def report: (
+          events: ::Array[Stigg::V1::EventReportParams::Event],
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::Models::V1::EventReportResponse
+
+        def initialize: (client: Stigg::Client) -> void
+      end
+    end
+  end
+end

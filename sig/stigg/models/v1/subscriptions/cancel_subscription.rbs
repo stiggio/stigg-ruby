@@ -1,0 +1,34 @@
+module Stigg
+  module Models
+    module V1
+      class CancelSubscription = Subscriptions::CancelSubscription
+
+      module Subscriptions
+        type cancel_subscription =
+          { data: Stigg::V1::Subscriptions::CancelSubscription::Data }
+
+        class CancelSubscription < Stigg::Internal::Type::BaseModel
+          attr_accessor data: Stigg::V1::Subscriptions::CancelSubscription::Data
+
+          def initialize: (
+            data: Stigg::V1::Subscriptions::CancelSubscription::Data
+          ) -> void
+
+          def to_hash: -> {
+            data: Stigg::V1::Subscriptions::CancelSubscription::Data
+          }
+
+          type data = { id: String }
+
+          class Data < Stigg::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            def initialize: (id: String) -> void
+
+            def to_hash: -> { id: String }
+          end
+        end
+      end
+    end
+  end
+end

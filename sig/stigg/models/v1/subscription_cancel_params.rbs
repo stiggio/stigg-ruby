@@ -1,0 +1,79 @@
+module Stigg
+  module Models
+    module V1
+      type subscription_cancel_params =
+        {
+          cancellation_action: Stigg::Models::V1::SubscriptionCancelParams::cancellation_action,
+          cancellation_time: Stigg::Models::V1::SubscriptionCancelParams::cancellation_time,
+          end_date: Time,
+          prorate: bool
+        }
+        & Stigg::Internal::Type::request_parameters
+
+      class SubscriptionCancelParams < Stigg::Internal::Type::BaseModel
+        extend Stigg::Internal::Type::RequestParameters::Converter
+        include Stigg::Internal::Type::RequestParameters
+
+        attr_reader cancellation_action: Stigg::Models::V1::SubscriptionCancelParams::cancellation_action?
+
+        def cancellation_action=: (
+          Stigg::Models::V1::SubscriptionCancelParams::cancellation_action
+        ) -> Stigg::Models::V1::SubscriptionCancelParams::cancellation_action
+
+        attr_reader cancellation_time: Stigg::Models::V1::SubscriptionCancelParams::cancellation_time?
+
+        def cancellation_time=: (
+          Stigg::Models::V1::SubscriptionCancelParams::cancellation_time
+        ) -> Stigg::Models::V1::SubscriptionCancelParams::cancellation_time
+
+        attr_reader end_date: Time?
+
+        def end_date=: (Time) -> Time
+
+        attr_reader prorate: bool?
+
+        def prorate=: (bool) -> bool
+
+        def initialize: (
+          ?cancellation_action: Stigg::Models::V1::SubscriptionCancelParams::cancellation_action,
+          ?cancellation_time: Stigg::Models::V1::SubscriptionCancelParams::cancellation_time,
+          ?end_date: Time,
+          ?prorate: bool,
+          ?request_options: Stigg::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          cancellation_action: Stigg::Models::V1::SubscriptionCancelParams::cancellation_action,
+          cancellation_time: Stigg::Models::V1::SubscriptionCancelParams::cancellation_time,
+          end_date: Time,
+          prorate: bool,
+          request_options: Stigg::RequestOptions
+        }
+
+        type cancellation_action = :DEFAULT | :REVOKE_ENTITLEMENTS
+
+        module CancellationAction
+          extend Stigg::Internal::Type::Enum
+
+          DEFAULT: :DEFAULT
+          REVOKE_ENTITLEMENTS: :REVOKE_ENTITLEMENTS
+
+          def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionCancelParams::cancellation_action]
+        end
+
+        type cancellation_time =
+          :END_OF_BILLING_PERIOD | :IMMEDIATE | :SPECIFIC_DATE
+
+        module CancellationTime
+          extend Stigg::Internal::Type::Enum
+
+          END_OF_BILLING_PERIOD: :END_OF_BILLING_PERIOD
+          IMMEDIATE: :IMMEDIATE
+          SPECIFIC_DATE: :SPECIFIC_DATE
+
+          def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionCancelParams::cancellation_time]
+        end
+      end
+    end
+  end
+end

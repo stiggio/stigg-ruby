@@ -18,7 +18,7 @@ module Stigg
             percent_off: T.nilable(Float),
             additional_meta_data: T.anything,
             request_options: Stigg::RequestOptions::OrHash
-          ).returns(Stigg::Models::V1::CouponCreateResponse)
+          ).returns(Stigg::V1::Coupon)
         end
         def create(
           # The unique identifier for the entity
@@ -44,7 +44,7 @@ module Stigg
           params(
             id: String,
             request_options: Stigg::RequestOptions::OrHash
-          ).returns(Stigg::Models::V1::CouponRetrieveResponse)
+          ).returns(Stigg::V1::Coupon)
         end
         def retrieve(
           # The unique identifier of the entity

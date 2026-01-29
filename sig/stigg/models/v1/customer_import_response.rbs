@@ -1,0 +1,30 @@
+module Stigg
+  module Models
+    module V1
+      type customer_import_response =
+        { data: Stigg::Models::V1::CustomerImportResponse::Data }
+
+      class CustomerImportResponse < Stigg::Internal::Type::BaseModel
+        attr_accessor data: Stigg::Models::V1::CustomerImportResponse::Data
+
+        def initialize: (
+          data: Stigg::Models::V1::CustomerImportResponse::Data
+        ) -> void
+
+        def to_hash: -> {
+          data: Stigg::Models::V1::CustomerImportResponse::Data
+        }
+
+        type data = { new_customers: ::Array[String] }
+
+        class Data < Stigg::Internal::Type::BaseModel
+          attr_accessor new_customers: ::Array[String]
+
+          def initialize: (new_customers: ::Array[String]) -> void
+
+          def to_hash: -> { new_customers: ::Array[String] }
+        end
+      end
+    end
+  end
+end

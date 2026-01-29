@@ -4,18 +4,7 @@ module Stigg
       class Customers
         attr_reader payment_method: Stigg::Resources::V1::Customers::PaymentMethod
 
-        attr_reader usage: Stigg::Resources::V1::Customers::Usage
-
-        def create: (
-          id: String,
-          ?coupon_id: String?,
-          ?default_payment_method: Stigg::V1::CustomerCreateParams::DefaultPaymentMethod?,
-          ?email: String?,
-          ?integrations: ::Array[Stigg::V1::CustomerCreateParams::Integration],
-          ?metadata: ::Hash[Symbol, String],
-          ?name: String?,
-          ?request_options: Stigg::request_opts
-        ) -> Stigg::V1::CustomerResponse
+        attr_reader promotional_entitlements: Stigg::Resources::V1::Customers::PromotionalEntitlements
 
         def retrieve: (
           String id,
@@ -41,6 +30,22 @@ module Stigg
 
         def archive: (
           String id,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::V1::CustomerResponse
+
+        def import: (
+          customers: ::Array[Stigg::V1::CustomerImportParams::Customer],
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::Models::V1::CustomerImportResponse
+
+        def provision: (
+          id: String,
+          ?coupon_id: String?,
+          ?default_payment_method: Stigg::V1::CustomerProvisionParams::DefaultPaymentMethod?,
+          ?email: String?,
+          ?integrations: ::Array[Stigg::V1::CustomerProvisionParams::Integration],
+          ?metadata: ::Hash[Symbol, String],
+          ?name: String?,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::CustomerResponse
 

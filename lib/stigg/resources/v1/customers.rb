@@ -7,42 +7,8 @@ module Stigg
         # @return [Stigg::Resources::V1::Customers::PaymentMethod]
         attr_reader :payment_method
 
-        # @return [Stigg::Resources::V1::Customers::Usage]
-        attr_reader :usage
-
-        # Provision customer
-        #
-        # @overload create(id:, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil, request_options: {})
-        #
-        # @param id [String] Customer slug
-        #
-        # @param coupon_id [String, nil] Customer level coupon
-        #
-        # @param default_payment_method [Stigg::Models::V1::CustomerCreateParams::DefaultPaymentMethod, nil] The default payment method details
-        #
-        # @param email [String, nil] The email of the customer
-        #
-        # @param integrations [Array<Stigg::Models::V1::CustomerCreateParams::Integration>] List of integrations
-        #
-        # @param metadata [Hash{Symbol=>String}] Additional metadata
-        #
-        # @param name [String, nil] The name of the customer
-        #
-        # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
-        #
-        # @return [Stigg::Models::V1::CustomerResponse]
-        #
-        # @see Stigg::Models::V1::CustomerCreateParams
-        def create(params)
-          parsed, options = Stigg::V1::CustomerCreateParams.dump_request(params)
-          @client.request(
-            method: :post,
-            path: "api/v1/customers",
-            body: parsed,
-            model: Stigg::V1::CustomerResponse,
-            options: options
-          )
-        end
+        # @return [Stigg::Resources::V1::Customers::PromotionalEntitlements]
+        attr_reader :promotional_entitlements
 
         # Get a single customer by ID
         #
@@ -143,6 +109,62 @@ module Stigg
           )
         end
 
+        # Bulk import customers
+        #
+        # @overload import(customers:, request_options: {})
+        #
+        # @param customers [Array<Stigg::Models::V1::CustomerImportParams::Customer>] List of customer objects to import
+        #
+        # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [Stigg::Models::V1::CustomerImportResponse]
+        #
+        # @see Stigg::Models::V1::CustomerImportParams
+        def import(params)
+          parsed, options = Stigg::V1::CustomerImportParams.dump_request(params)
+          @client.request(
+            method: :post,
+            path: "api/v1/customers/import",
+            body: parsed,
+            model: Stigg::Models::V1::CustomerImportResponse,
+            options: options
+          )
+        end
+
+        # Provision customer
+        #
+        # @overload provision(id:, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil, request_options: {})
+        #
+        # @param id [String] Customer slug
+        #
+        # @param coupon_id [String, nil] Customer level coupon
+        #
+        # @param default_payment_method [Stigg::Models::V1::CustomerProvisionParams::DefaultPaymentMethod, nil] The default payment method details
+        #
+        # @param email [String, nil] The email of the customer
+        #
+        # @param integrations [Array<Stigg::Models::V1::CustomerProvisionParams::Integration>] List of integrations
+        #
+        # @param metadata [Hash{Symbol=>String}] Additional metadata
+        #
+        # @param name [String, nil] The name of the customer
+        #
+        # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [Stigg::Models::V1::CustomerResponse]
+        #
+        # @see Stigg::Models::V1::CustomerProvisionParams
+        def provision(params)
+          parsed, options = Stigg::V1::CustomerProvisionParams.dump_request(params)
+          @client.request(
+            method: :post,
+            path: "api/v1/customers",
+            body: parsed,
+            model: Stigg::V1::CustomerResponse,
+            options: options
+          )
+        end
+
         # Unarchive customer
         #
         # @overload unarchive(id, request_options: {})
@@ -169,7 +191,7 @@ module Stigg
         def initialize(client:)
           @client = client
           @payment_method = Stigg::Resources::V1::Customers::PaymentMethod.new(client: client)
-          @usage = Stigg::Resources::V1::Customers::Usage.new(client: client)
+          @promotional_entitlements = Stigg::Resources::V1::Customers::PromotionalEntitlements.new(client: client)
         end
       end
     end

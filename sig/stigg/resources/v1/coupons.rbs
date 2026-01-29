@@ -11,12 +11,12 @@ module Stigg
           percent_off: Float?,
           ?additional_meta_data: top,
           ?request_options: Stigg::request_opts
-        ) -> Stigg::Models::V1::CouponCreateResponse
+        ) -> Stigg::V1::Coupon
 
         def retrieve: (
           String id,
           ?request_options: Stigg::request_opts
-        ) -> Stigg::Models::V1::CouponRetrieveResponse
+        ) -> Stigg::V1::Coupon
 
         def list: (
           ?after: String,
