@@ -5,7 +5,8 @@ module Stigg
     class V1
       class Customers
         class PromotionalEntitlements
-          # Create a promotional entitlements
+          # Grants promotional entitlements to a customer, providing feature access outside
+          # their subscription. Entitlements can be time-limited or permanent.
           sig do
             params(
               customer_id: String,
@@ -27,7 +28,8 @@ module Stigg
           )
           end
 
-          # Revoke promotional entitlement
+          # Revokes a previously granted promotional entitlement from a customer for a
+          # specific feature.
           sig do
             params(
               feature_id: String,

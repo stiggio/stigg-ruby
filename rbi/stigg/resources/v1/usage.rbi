@@ -4,7 +4,7 @@ module Stigg
   module Resources
     class V1
       class Usage
-        # Get usage history
+        # Retrieves historical usage data for a customer's metered feature over time.
         sig do
           params(
             feature_id: String,
@@ -33,7 +33,8 @@ module Stigg
         )
         end
 
-        # Report usage measurements
+        # Reports usage measurements for metered features. The reported usage is used to
+        # track, limit, and bill customer consumption.
         sig do
           params(
             usages: T::Array[Stigg::V1::UsageReportParams::Usage::OrHash],

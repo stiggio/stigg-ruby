@@ -5,7 +5,8 @@ module Stigg
     class V1
       class Customers
         class PromotionalEntitlements
-          # Create a promotional entitlements
+          # Grants promotional entitlements to a customer, providing feature access outside
+          # their subscription. Entitlements can be time-limited or permanent.
           #
           # @overload grant(customer_id, promotional_entitlements:, request_options: {})
           #
@@ -29,7 +30,8 @@ module Stigg
             )
           end
 
-          # Revoke promotional entitlement
+          # Revokes a previously granted promotional entitlement from a customer for a
+          # specific feature.
           #
           # @overload revoke(feature_id, customer_id:, request_options: {})
           #

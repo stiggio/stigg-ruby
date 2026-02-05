@@ -5,7 +5,7 @@ module Stigg
     class V1
       class Subscriptions
         class FutureUpdate
-          # Cancel pending payment update
+          # Cancels a subscription update that is pending payment completion.
           sig do
             params(
               id: String,
@@ -19,7 +19,8 @@ module Stigg
           )
           end
 
-          # Cancel scheduled update
+          # Cancels a scheduled subscription update, such as a future downgrade or plan
+          # change.
           sig do
             params(
               id: String,

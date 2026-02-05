@@ -12,7 +12,8 @@ module Stigg
         end
         attr_reader :promotional_entitlements
 
-        # Get a single customer by ID
+        # Retrieves a customer by their unique identifier, including billing information
+        # and subscription status.
         sig do
           params(
             id: String,
@@ -26,7 +27,8 @@ module Stigg
         )
         end
 
-        # Update a customer
+        # Updates an existing customer's properties such as name, email, and billing
+        # information.
         sig do
           params(
             id: String,
@@ -56,7 +58,7 @@ module Stigg
         )
         end
 
-        # Get a list of customers
+        # Retrieves a paginated list of customers in the environment.
         sig do
           params(
             after: String,
@@ -80,7 +82,8 @@ module Stigg
         )
         end
 
-        # Archive customer
+        # Archives a customer, preventing new subscriptions. Optionally cancels existing
+        # subscriptions.
         sig do
           params(
             id: String,
@@ -94,7 +97,8 @@ module Stigg
         )
         end
 
-        # Bulk import customers
+        # Imports multiple customers in bulk. Used for migrating customer data from
+        # external systems.
         sig do
           params(
             customers:
@@ -109,7 +113,8 @@ module Stigg
         )
         end
 
-        # Provision customer
+        # Creates a new customer and optionally provisions an initial subscription in a
+        # single operation.
         sig do
           params(
             id: String,
@@ -145,7 +150,7 @@ module Stigg
         )
         end
 
-        # Unarchive customer
+        # Restores an archived customer, allowing them to create new subscriptions again.
         sig do
           params(
             id: String,

@@ -4,7 +4,8 @@ module Stigg
   module Resources
     class V1
       class Events
-        # Report usage events
+        # Reports raw usage events for event-based metering. Events are ingested
+        # asynchronously and aggregated into usage totals.
         sig do
           params(
             events: T::Array[Stigg::V1::EventReportParams::Event::OrHash],
