@@ -167,9 +167,11 @@ module Stigg
 
         # Bulk import subscriptions
         #
-        # @overload import(subscriptions:, request_options: {})
+        # @overload import(subscriptions:, integration_id: nil, request_options: {})
         #
         # @param subscriptions [Array<Stigg::Models::V1::SubscriptionImportParams::Subscription>] List of subscription objects to import
+        #
+        # @param integration_id [String, nil] Integration ID to use for importing subscriptions
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
