@@ -165,12 +165,15 @@ module Stigg
               T::Array[
                 Stigg::V1::SubscriptionImportParams::Subscription::OrHash
               ],
+            integration_id: T.nilable(String),
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::Models::V1::SubscriptionImportResponse)
         end
         def import(
           # List of subscription objects to import
           subscriptions:,
+          # Integration ID to use for importing subscriptions
+          integration_id: nil,
           request_options: {}
         )
         end

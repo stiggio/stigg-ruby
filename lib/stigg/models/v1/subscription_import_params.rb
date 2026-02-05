@@ -15,8 +15,16 @@ module Stigg
         required :subscriptions,
                  -> { Stigg::Internal::Type::ArrayOf[Stigg::V1::SubscriptionImportParams::Subscription] }
 
-        # @!method initialize(subscriptions:, request_options: {})
+        # @!attribute integration_id
+        #   Integration ID to use for importing subscriptions
+        #
+        #   @return [String, nil]
+        optional :integration_id, String, api_name: :integrationId, nil?: true
+
+        # @!method initialize(subscriptions:, integration_id: nil, request_options: {})
         #   @param subscriptions [Array<Stigg::Models::V1::SubscriptionImportParams::Subscription>] List of subscription objects to import
+        #
+        #   @param integration_id [String, nil] Integration ID to use for importing subscriptions
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 

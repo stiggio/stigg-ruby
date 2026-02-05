@@ -54,6 +54,7 @@ module Stigg
 
         def import: (
           subscriptions: ::Array[Stigg::V1::SubscriptionImportParams::Subscription],
+          ?integration_id: String?,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Models::V1::SubscriptionImportResponse
 
