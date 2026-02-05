@@ -5,7 +5,8 @@ module Stigg
     class V1
       class Customers
         class PaymentMethod
-          # Attach payment method
+          # Attaches a payment method to a customer for billing. Required for paid
+          # subscriptions when integrated with a billing provider.
           #
           # @overload attach(id, integration_id:, payment_method_id:, vendor_identifier:, billing_currency: nil, request_options: {})
           #
@@ -35,7 +36,8 @@ module Stigg
             )
           end
 
-          # Detach payment method
+          # Removes the payment method from a customer. Ensure active paid subscriptions
+          # have an alternative payment method.
           #
           # @overload detach(id, request_options: {})
           #

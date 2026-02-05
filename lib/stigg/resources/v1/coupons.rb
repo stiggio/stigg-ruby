@@ -4,7 +4,8 @@ module Stigg
   module Resources
     class V1
       class Coupons
-        # Create coupon
+        # Creates a new discount coupon with percentage or fixed amount off, applicable to
+        # customer subscriptions.
         #
         # @overload create(id:, amounts_off:, description:, duration_in_months:, name:, percent_off:, additional_meta_data: nil, request_options: {})
         #
@@ -38,7 +39,7 @@ module Stigg
           )
         end
 
-        # Get a single coupon by ID
+        # Retrieves a coupon by its unique identifier.
         #
         # @overload retrieve(id, request_options: {})
         #
@@ -58,7 +59,7 @@ module Stigg
           )
         end
 
-        # Get a list of coupons
+        # Retrieves a paginated list of coupons in the environment.
         #
         # @overload list(after: nil, before: nil, limit: nil, request_options: {})
         #

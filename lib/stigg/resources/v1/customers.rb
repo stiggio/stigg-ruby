@@ -10,7 +10,8 @@ module Stigg
         # @return [Stigg::Resources::V1::Customers::PromotionalEntitlements]
         attr_reader :promotional_entitlements
 
-        # Get a single customer by ID
+        # Retrieves a customer by their unique identifier, including billing information
+        # and subscription status.
         #
         # @overload retrieve(id, request_options: {})
         #
@@ -30,7 +31,8 @@ module Stigg
           )
         end
 
-        # Update a customer
+        # Updates an existing customer's properties such as name, email, and billing
+        # information.
         #
         # @overload update(id, coupon_id: nil, email: nil, integrations: nil, metadata: nil, name: nil, request_options: {})
         #
@@ -62,7 +64,7 @@ module Stigg
           )
         end
 
-        # Get a list of customers
+        # Retrieves a paginated list of customers in the environment.
         #
         # @overload list(after: nil, before: nil, limit: nil, request_options: {})
         #
@@ -89,7 +91,8 @@ module Stigg
           )
         end
 
-        # Archive customer
+        # Archives a customer, preventing new subscriptions. Optionally cancels existing
+        # subscriptions.
         #
         # @overload archive(id, request_options: {})
         #
@@ -109,7 +112,8 @@ module Stigg
           )
         end
 
-        # Bulk import customers
+        # Imports multiple customers in bulk. Used for migrating customer data from
+        # external systems.
         #
         # @overload import(customers:, request_options: {})
         #
@@ -131,7 +135,8 @@ module Stigg
           )
         end
 
-        # Provision customer
+        # Creates a new customer and optionally provisions an initial subscription in a
+        # single operation.
         #
         # @overload provision(id:, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil, request_options: {})
         #
@@ -165,7 +170,7 @@ module Stigg
           )
         end
 
-        # Unarchive customer
+        # Restores an archived customer, allowing them to create new subscriptions again.
         #
         # @overload unarchive(id, request_options: {})
         #

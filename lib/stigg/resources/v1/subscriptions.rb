@@ -7,7 +7,8 @@ module Stigg
         # @return [Stigg::Resources::V1::Subscriptions::FutureUpdate]
         attr_reader :future_update
 
-        # Get a single subscription by ID
+        # Retrieves a subscription by its unique identifier, including plan details,
+        # billing period, status, and add-ons.
         #
         # @overload retrieve(id, request_options: {})
         #
@@ -27,7 +28,8 @@ module Stigg
           )
         end
 
-        # Update a subscription
+        # Updates an active subscription's properties including billing period, add-ons,
+        # unit quantities, and discounts.
         #
         # @overload update(id, addons: nil, applied_coupon: nil, await_payment_confirmation: nil, billing_information: nil, billing_period: nil, budget: nil, charges: nil, metadata: nil, minimum_spend: nil, price_overrides: nil, promotion_code: nil, schedule_strategy: nil, subscription_entitlements: nil, trial_end_date: nil, request_options: {})
         #
@@ -77,7 +79,8 @@ module Stigg
           )
         end
 
-        # Get a list of subscriptions
+        # Retrieves a paginated list of subscriptions, with optional filters for customer,
+        # status, and plan.
         #
         # @overload list(after: nil, before: nil, customer_id: nil, limit: nil, status: nil, request_options: {})
         #
@@ -108,7 +111,8 @@ module Stigg
           )
         end
 
-        # Cancel subscription
+        # Cancels an active subscription, either immediately or at a specified time such
+        # as end of billing period.
         #
         # @overload cancel(id, cancellation_action: nil, cancellation_time: nil, end_date: nil, prorate: nil, request_options: {})
         #
@@ -141,7 +145,8 @@ module Stigg
         # Some parameter documentations has been truncated, see
         # {Stigg::Models::V1::SubscriptionDelegateParams} for more details.
         #
-        # Delegate subscription payment to customer
+        # Delegates the payment responsibility of a subscription to a different customer.
+        # The delegated customer will be billed for this subscription.
         #
         # @overload delegate(id, target_customer_id:, request_options: {})
         #
@@ -165,7 +170,8 @@ module Stigg
           )
         end
 
-        # Bulk import subscriptions
+        # Imports multiple subscriptions in bulk. Used for migrating subscription data
+        # from external systems.
         #
         # @overload import(subscriptions:, integration_id: nil, request_options: {})
         #
@@ -189,7 +195,8 @@ module Stigg
           )
         end
 
-        # Migrate subscription to latest plan version
+        # Migrates a subscription to the latest published version of its plan or add-ons.
+        # Handles prorated charges or credits automatically.
         #
         # @overload migrate(id, subscription_migration_time: nil, request_options: {})
         #
@@ -213,7 +220,8 @@ module Stigg
           )
         end
 
-        # Preview subscription
+        # Previews the pricing impact of creating or updating a subscription without
+        # making changes. Returns estimated costs, taxes, and proration details.
         #
         # @overload preview(customer_id:, plan_id:, addons: nil, applied_coupon: nil, billable_features: nil, billing_country_code: nil, billing_information: nil, billing_period: nil, charges: nil, paying_customer_id: nil, resource_id: nil, schedule_strategy: nil, start_date: nil, trial_override_configuration: nil, unit_quantity: nil, request_options: {})
         #
@@ -263,7 +271,8 @@ module Stigg
           )
         end
 
-        # Provision subscription
+        # Creates a new subscription for an existing customer. When payment is required
+        # and no payment method exists, returns a checkout URL.
         #
         # @overload provision(customer_id:, plan_id:, id: nil, addons: nil, applied_coupon: nil, await_payment_confirmation: nil, billing_country_code: nil, billing_id: nil, billing_information: nil, billing_period: nil, budget: nil, charges: nil, checkout_options: nil, metadata: nil, minimum_spend: nil, paying_customer_id: nil, payment_collection_method: nil, price_overrides: nil, resource_id: nil, salesforce_id: nil, schedule_strategy: nil, start_date: nil, subscription_entitlements: nil, trial_override_configuration: nil, unit_quantity: nil, request_options: {})
         #
@@ -333,7 +342,8 @@ module Stigg
           )
         end
 
-        # Transfer subscription to resource
+        # Transfers a subscription to a different resource ID. Used for multi-resource
+        # products where subscriptions apply to specific entities like websites or apps.
         #
         # @overload transfer(id, destination_resource_id:, request_options: {})
         #

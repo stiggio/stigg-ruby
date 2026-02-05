@@ -7,7 +7,8 @@ module Stigg
         sig { returns(Stigg::Resources::V1::Subscriptions::FutureUpdate) }
         attr_reader :future_update
 
-        # Get a single subscription by ID
+        # Retrieves a subscription by its unique identifier, including plan details,
+        # billing period, status, and add-ons.
         sig do
           params(
             id: String,
@@ -21,7 +22,8 @@ module Stigg
         )
         end
 
-        # Update a subscription
+        # Updates an active subscription's properties including billing period, add-ons,
+        # unit quantities, and discounts.
         sig do
           params(
             id: String,
@@ -81,7 +83,8 @@ module Stigg
         )
         end
 
-        # Get a list of subscriptions
+        # Retrieves a paginated list of subscriptions, with optional filters for customer,
+        # status, and plan.
         sig do
           params(
             after: String,
@@ -111,7 +114,8 @@ module Stigg
         )
         end
 
-        # Cancel subscription
+        # Cancels an active subscription, either immediately or at a specified time such
+        # as end of billing period.
         sig do
           params(
             id: String,
@@ -139,7 +143,8 @@ module Stigg
         )
         end
 
-        # Delegate subscription payment to customer
+        # Delegates the payment responsibility of a subscription to a different customer.
+        # The delegated customer will be billed for this subscription.
         sig do
           params(
             id: String,
@@ -158,7 +163,8 @@ module Stigg
         )
         end
 
-        # Bulk import subscriptions
+        # Imports multiple subscriptions in bulk. Used for migrating subscription data
+        # from external systems.
         sig do
           params(
             subscriptions:
@@ -178,7 +184,8 @@ module Stigg
         )
         end
 
-        # Migrate subscription to latest plan version
+        # Migrates a subscription to the latest published version of its plan or add-ons.
+        # Handles prorated charges or credits automatically.
         sig do
           params(
             id: String,
@@ -196,7 +203,8 @@ module Stigg
         )
         end
 
-        # Preview subscription
+        # Previews the pricing impact of creating or updating a subscription without
+        # making changes. Returns estimated costs, taxes, and proration details.
         sig do
           params(
             customer_id: String,
@@ -262,7 +270,8 @@ module Stigg
         )
         end
 
-        # Provision subscription
+        # Creates a new subscription for an existing customer. When payment is required
+        # and no payment method exists, returns a checkout URL.
         sig do
           params(
             customer_id: String,
@@ -359,7 +368,8 @@ module Stigg
         )
         end
 
-        # Transfer subscription to resource
+        # Transfers a subscription to a different resource ID. Used for multi-resource
+        # products where subscriptions apply to specific entities like websites or apps.
         sig do
           params(
             id: String,
