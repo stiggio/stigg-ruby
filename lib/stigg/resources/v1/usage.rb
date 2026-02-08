@@ -4,7 +4,7 @@ module Stigg
   module Resources
     class V1
       class Usage
-        # Get usage history
+        # Retrieves historical usage data for a customer's metered feature over time.
         #
         # @overload history(feature_id, customer_id:, start_date:, end_date: nil, group_by: nil, resource_id: nil, request_options: {})
         #
@@ -45,7 +45,8 @@ module Stigg
           )
         end
 
-        # Report usage measurements
+        # Reports usage measurements for metered features. The reported usage is used to
+        # track, limit, and bill customer consumption.
         #
         # @overload report(usages:, request_options: {})
         #

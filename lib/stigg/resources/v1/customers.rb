@@ -10,7 +10,8 @@ module Stigg
         # @return [Stigg::Resources::V1::Customers::PromotionalEntitlements]
         attr_reader :promotional_entitlements
 
-        # Get a single customer by ID
+        # Retrieves a customer by their unique identifier, including billing information
+        # and subscription status.
         #
         # @overload retrieve(id, request_options: {})
         #
@@ -30,7 +31,8 @@ module Stigg
           )
         end
 
-        # Update a customer
+        # Updates an existing customer's properties such as name, email, and billing
+        # information.
         #
         # @overload update(id, coupon_id: nil, email: nil, integrations: nil, metadata: nil, name: nil, request_options: {})
         #
@@ -62,7 +64,7 @@ module Stigg
           )
         end
 
-        # Get a list of customers
+        # Retrieves a paginated list of customers in the environment.
         #
         # @overload list(after: nil, before: nil, limit: nil, request_options: {})
         #
@@ -89,7 +91,8 @@ module Stigg
           )
         end
 
-        # Archive customer
+        # Archives a customer, preventing new subscriptions. Optionally cancels existing
+        # subscriptions.
         #
         # @overload archive(id, request_options: {})
         #
@@ -109,7 +112,8 @@ module Stigg
           )
         end
 
-        # Bulk import customers
+        # Imports multiple customers in bulk. Used for migrating customer data from
+        # external systems.
         #
         # @overload import(customers:, request_options: {})
         #
@@ -131,7 +135,37 @@ module Stigg
           )
         end
 
-        # Provision customer
+        # Get a list of customerresources
+        #
+        # @overload list_resources(id, after: nil, before: nil, limit: nil, request_options: {})
+        #
+        # @param id [String] The unique identifier of the entity
+        #
+        # @param after [String] Return items that come after this cursor
+        #
+        # @param before [String] Return items that come before this cursor
+        #
+        # @param limit [Integer] Maximum number of items to return
+        #
+        # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [Stigg::Internal::MyCursorIDPage<Stigg::Models::V1::CustomerListResourcesResponse>]
+        #
+        # @see Stigg::Models::V1::CustomerListResourcesParams
+        def list_resources(id, params = {})
+          parsed, options = Stigg::V1::CustomerListResourcesParams.dump_request(params)
+          @client.request(
+            method: :get,
+            path: ["api/v1/customers/%1$s/resources", id],
+            query: parsed,
+            page: Stigg::Internal::MyCursorIDPage,
+            model: Stigg::Models::V1::CustomerListResourcesResponse,
+            options: options
+          )
+        end
+
+        # Creates a new customer and optionally provisions an initial subscription in a
+        # single operation.
         #
         # @overload provision(id:, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil, request_options: {})
         #
@@ -165,7 +199,7 @@ module Stigg
           )
         end
 
-        # Unarchive customer
+        # Restores an archived customer, allowing them to create new subscriptions again.
         #
         # @overload unarchive(id, request_options: {})
         #

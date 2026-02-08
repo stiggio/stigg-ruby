@@ -58,9 +58,11 @@ module Stigg
 
           sig do
             returns(
-              T::Array[
-                Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement
-              ]
+              T.nilable(
+                T::Array[
+                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::Variants
+                ]
+              )
             )
           end
           attr_accessor :entitlements
@@ -72,21 +74,6 @@ module Stigg
             )
           end
           attr_accessor :status
-
-          # Checkout billing ID when payment is required
-          sig { returns(T.nilable(String)) }
-          attr_accessor :checkout_billing_id
-
-          # URL to complete payment when PAYMENT_REQUIRED
-          sig { returns(T.nilable(String)) }
-          attr_accessor :checkout_url
-
-          # Whether the subscription is scheduled for future activation
-          sig { returns(T.nilable(T::Boolean)) }
-          attr_reader :is_scheduled
-
-          sig { params(is_scheduled: T::Boolean).void }
-          attr_writer :is_scheduled
 
           # Created subscription (when status is SUCCESS)
           sig do
@@ -101,26 +88,56 @@ module Stigg
           sig do
             params(
               subscription:
-                Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::OrHash
+                T.nilable(
+                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::OrHash
+                )
             ).void
           end
           attr_writer :subscription
+
+          # Checkout billing ID when payment is required
+          sig { returns(T.nilable(String)) }
+          attr_reader :checkout_billing_id
+
+          sig { params(checkout_billing_id: String).void }
+          attr_writer :checkout_billing_id
+
+          # URL to complete payment when PAYMENT_REQUIRED
+          sig { returns(T.nilable(String)) }
+          attr_reader :checkout_url
+
+          sig { params(checkout_url: String).void }
+          attr_writer :checkout_url
+
+          # Whether the subscription is scheduled for future activation
+          sig { returns(T.nilable(T::Boolean)) }
+          attr_reader :is_scheduled
+
+          sig { params(is_scheduled: T::Boolean).void }
+          attr_writer :is_scheduled
 
           # Provisioning result with status and subscription or checkout URL.
           sig do
             params(
               id: String,
               entitlements:
-                T::Array[
-                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::OrHash
-                ],
+                T.nilable(
+                  T::Array[
+                    T.any(
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::OrHash,
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::OrHash
+                    )
+                  ]
+                ),
               status:
                 Stigg::Models::V1::SubscriptionProvisionResponse::Data::Status::OrSymbol,
-              checkout_billing_id: T.nilable(String),
-              checkout_url: T.nilable(String),
-              is_scheduled: T::Boolean,
               subscription:
-                Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::OrHash
+                T.nilable(
+                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::OrHash
+                ),
+              checkout_billing_id: String,
+              checkout_url: String,
+              is_scheduled: T::Boolean
             ).returns(T.attached_class)
           end
           def self.new(
@@ -129,14 +146,14 @@ module Stigg
             entitlements:,
             # Provision status: SUCCESS or PAYMENT_REQUIRED
             status:,
+            # Created subscription (when status is SUCCESS)
+            subscription:,
             # Checkout billing ID when payment is required
             checkout_billing_id: nil,
             # URL to complete payment when PAYMENT_REQUIRED
             checkout_url: nil,
             # Whether the subscription is scheduled for future activation
-            is_scheduled: nil,
-            # Created subscription (when status is SUCCESS)
-            subscription: nil
+            is_scheduled: nil
           )
           end
 
@@ -145,234 +162,832 @@ module Stigg
               {
                 id: String,
                 entitlements:
-                  T::Array[
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement
-                  ],
+                  T.nilable(
+                    T::Array[
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::Variants
+                    ]
+                  ),
                 status:
                   Stigg::Models::V1::SubscriptionProvisionResponse::Data::Status::TaggedSymbol,
-                checkout_billing_id: T.nilable(String),
-                checkout_url: T.nilable(String),
-                is_scheduled: T::Boolean,
                 subscription:
-                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription
+                  T.nilable(
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription
+                  ),
+                checkout_billing_id: String,
+                checkout_url: String,
+                is_scheduled: T::Boolean
               }
             )
           end
           def to_hash
           end
 
-          class Entitlement < Stigg::Internal::Type::BaseModel
-            OrHash =
+          module Entitlement
+            extend Stigg::Internal::Type::Union
+
+            Variants =
               T.type_alias do
                 T.any(
-                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement,
-                  Stigg::Internal::AnyHash
+                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement,
+                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement
                 )
               end
 
-            sig { returns(T.nilable(String)) }
-            attr_accessor :access_denied_reason
-
-            sig { returns(T.nilable(Float)) }
-            attr_reader :current_usage
-
-            sig { params(current_usage: Float).void }
-            attr_writer :current_usage
-
-            # entitlement updated at
-            sig { returns(T.nilable(Time)) }
-            attr_accessor :entitlement_updated_at
-
-            sig do
-              returns(
-                T.nilable(
-                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::Feature
-                )
-              )
-            end
-            attr_reader :feature
-
-            sig do
-              params(
-                feature:
-                  T.nilable(
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::Feature::OrHash
-                  )
-              ).void
-            end
-            attr_writer :feature
-
-            sig { returns(T.nilable(T::Boolean)) }
-            attr_accessor :has_unlimited_usage
-
-            sig { returns(T.nilable(T::Boolean)) }
-            attr_reader :is_granted
-
-            sig { params(is_granted: T::Boolean).void }
-            attr_writer :is_granted
-
-            sig do
-              returns(
-                T.nilable(
-                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::ResetPeriod::TaggedSymbol
-                )
-              )
-            end
-            attr_accessor :reset_period
-
-            sig { returns(T.nilable(Float)) }
-            attr_accessor :usage_limit
-
-            # usage period anchor
-            sig { returns(T.nilable(Time)) }
-            attr_accessor :usage_period_anchor
-
-            # usage period end
-            sig { returns(T.nilable(Time)) }
-            attr_accessor :usage_period_end
-
-            # usage period start
-            sig { returns(T.nilable(Time)) }
-            attr_accessor :usage_period_start
-
-            sig do
-              params(
-                access_denied_reason: T.nilable(String),
-                current_usage: Float,
-                entitlement_updated_at: T.nilable(Time),
-                feature:
-                  T.nilable(
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::Feature::OrHash
-                  ),
-                has_unlimited_usage: T.nilable(T::Boolean),
-                is_granted: T::Boolean,
-                reset_period:
-                  T.nilable(
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::ResetPeriod::OrSymbol
-                  ),
-                usage_limit: T.nilable(Float),
-                usage_period_anchor: T.nilable(Time),
-                usage_period_end: T.nilable(Time),
-                usage_period_start: T.nilable(Time)
-              ).returns(T.attached_class)
-            end
-            def self.new(
-              access_denied_reason: nil,
-              current_usage: nil,
-              # entitlement updated at
-              entitlement_updated_at: nil,
-              feature: nil,
-              has_unlimited_usage: nil,
-              is_granted: nil,
-              reset_period: nil,
-              usage_limit: nil,
-              # usage period anchor
-              usage_period_anchor: nil,
-              # usage period end
-              usage_period_end: nil,
-              # usage period start
-              usage_period_start: nil
-            )
-            end
-
-            sig do
-              override.returns(
-                {
-                  access_denied_reason: T.nilable(String),
-                  current_usage: Float,
-                  entitlement_updated_at: T.nilable(Time),
-                  feature:
-                    T.nilable(
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::Feature
-                    ),
-                  has_unlimited_usage: T.nilable(T::Boolean),
-                  is_granted: T::Boolean,
-                  reset_period:
-                    T.nilable(
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::ResetPeriod::TaggedSymbol
-                    ),
-                  usage_limit: T.nilable(Float),
-                  usage_period_anchor: T.nilable(Time),
-                  usage_period_end: T.nilable(Time),
-                  usage_period_start: T.nilable(Time)
-                }
-              )
-            end
-            def to_hash
-            end
-
-            class Feature < Stigg::Internal::Type::BaseModel
+            class SubscriptionFeatureEntitlement < Stigg::Internal::Type::BaseModel
               OrHash =
                 T.type_alias do
                   T.any(
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::Feature,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement,
                     Stigg::Internal::AnyHash
                   )
                 end
 
-              # Feature ID
-              sig { returns(String) }
-              attr_accessor :ref_id
+              sig do
+                returns(
+                  T.nilable(
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+                )
+              end
+              attr_accessor :access_denied_reason
 
-              sig { params(ref_id: String).returns(T.attached_class) }
+              sig { returns(T::Boolean) }
+              attr_accessor :is_granted
+
+              sig do
+                returns(
+                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Type::TaggedSymbol
+                )
+              end
+              attr_accessor :type
+
+              sig { returns(T.nilable(Float)) }
+              attr_reader :current_usage
+
+              sig { params(current_usage: Float).void }
+              attr_writer :current_usage
+
+              # Timestamp of the last update to the entitlement grant or configuration.
+              sig { returns(T.nilable(Time)) }
+              attr_reader :entitlement_updated_at
+
+              sig { params(entitlement_updated_at: Time).void }
+              attr_writer :entitlement_updated_at
+
+              sig do
+                returns(
+                  T.nilable(
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature
+                  )
+                )
+              end
+              attr_reader :feature
+
+              sig do
+                params(
+                  feature:
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::OrHash
+                ).void
+              end
+              attr_writer :feature
+
+              sig { returns(T.nilable(T::Boolean)) }
+              attr_reader :has_unlimited_usage
+
+              sig { params(has_unlimited_usage: T::Boolean).void }
+              attr_writer :has_unlimited_usage
+
+              sig do
+                returns(
+                  T.nilable(
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::ResetPeriod::TaggedSymbol
+                  )
+                )
+              end
+              attr_accessor :reset_period
+
+              sig { returns(T.nilable(Float)) }
+              attr_accessor :usage_limit
+
+              # The anchor for calculating the usage period for metered entitlements with a
+              # reset period configured
+              sig { returns(T.nilable(Time)) }
+              attr_reader :usage_period_anchor
+
+              sig { params(usage_period_anchor: Time).void }
+              attr_writer :usage_period_anchor
+
+              # The end date of the usage period for metered entitlements with a reset period
+              # configured
+              sig { returns(T.nilable(Time)) }
+              attr_reader :usage_period_end
+
+              sig { params(usage_period_end: Time).void }
+              attr_writer :usage_period_end
+
+              # The start date of the usage period for metered entitlements with a reset period
+              # configured
+              sig { returns(T.nilable(Time)) }
+              attr_reader :usage_period_start
+
+              sig { params(usage_period_start: Time).void }
+              attr_writer :usage_period_start
+
+              # The next time the entitlement should be recalculated
+              sig { returns(T.nilable(Time)) }
+              attr_reader :valid_until
+
+              sig { params(valid_until: Time).void }
+              attr_writer :valid_until
+
+              sig do
+                params(
+                  access_denied_reason:
+                    T.nilable(
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::OrSymbol
+                    ),
+                  is_granted: T::Boolean,
+                  type:
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Type::OrSymbol,
+                  current_usage: Float,
+                  entitlement_updated_at: Time,
+                  feature:
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::OrHash,
+                  has_unlimited_usage: T::Boolean,
+                  reset_period:
+                    T.nilable(
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::ResetPeriod::OrSymbol
+                    ),
+                  usage_limit: T.nilable(Float),
+                  usage_period_anchor: Time,
+                  usage_period_end: Time,
+                  usage_period_start: Time,
+                  valid_until: Time
+                ).returns(T.attached_class)
+              end
               def self.new(
-                # Feature ID
-                ref_id:
+                access_denied_reason:,
+                is_granted:,
+                type:,
+                current_usage: nil,
+                # Timestamp of the last update to the entitlement grant or configuration.
+                entitlement_updated_at: nil,
+                feature: nil,
+                has_unlimited_usage: nil,
+                reset_period: nil,
+                usage_limit: nil,
+                # The anchor for calculating the usage period for metered entitlements with a
+                # reset period configured
+                usage_period_anchor: nil,
+                # The end date of the usage period for metered entitlements with a reset period
+                # configured
+                usage_period_end: nil,
+                # The start date of the usage period for metered entitlements with a reset period
+                # configured
+                usage_period_start: nil,
+                # The next time the entitlement should be recalculated
+                valid_until: nil
               )
               end
 
-              sig { override.returns({ ref_id: String }) }
+              sig do
+                override.returns(
+                  {
+                    access_denied_reason:
+                      T.nilable(
+                        Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                      ),
+                    is_granted: T::Boolean,
+                    type:
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Type::TaggedSymbol,
+                    current_usage: Float,
+                    entitlement_updated_at: Time,
+                    feature:
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature,
+                    has_unlimited_usage: T::Boolean,
+                    reset_period:
+                      T.nilable(
+                        Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::ResetPeriod::TaggedSymbol
+                      ),
+                    usage_limit: T.nilable(Float),
+                    usage_period_anchor: Time,
+                    usage_period_end: Time,
+                    usage_period_start: Time,
+                    valid_until: Time
+                  }
+                )
+              end
               def to_hash
+              end
+
+              module AccessDeniedReason
+                extend Stigg::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                FEATURE_NOT_FOUND =
+                  T.let(
+                    :FeatureNotFound,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+                CUSTOMER_NOT_FOUND =
+                  T.let(
+                    :CustomerNotFound,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+                CUSTOMER_IS_ARCHIVED =
+                  T.let(
+                    :CustomerIsArchived,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+                CUSTOMER_RESOURCE_NOT_FOUND =
+                  T.let(
+                    :CustomerResourceNotFound,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+                NO_ACTIVE_SUBSCRIPTION =
+                  T.let(
+                    :NoActiveSubscription,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+                NO_FEATURE_ENTITLEMENT_IN_SUBSCRIPTION =
+                  T.let(
+                    :NoFeatureEntitlementInSubscription,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+                REQUESTED_USAGE_EXCEEDING_LIMIT =
+                  T.let(
+                    :RequestedUsageExceedingLimit,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+                REQUESTED_VALUES_MISMATCH =
+                  T.let(
+                    :RequestedValuesMismatch,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+                BUDGET_EXCEEDED =
+                  T.let(
+                    :BudgetExceeded,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+                UNKNOWN =
+                  T.let(
+                    :Unknown,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+                FEATURE_TYPE_MISMATCH =
+                  T.let(
+                    :FeatureTypeMismatch,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+                REVOKED =
+                  T.let(
+                    :Revoked,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+                INSUFFICIENT_CREDITS =
+                  T.let(
+                    :InsufficientCredits,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+                ENTITLEMENT_NOT_FOUND =
+                  T.let(
+                    :EntitlementNotFound,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+
+              module Type
+                extend Stigg::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Type
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                FEATURE =
+                  T.let(
+                    :FEATURE,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Type::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Type::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+
+              class Feature < Stigg::Internal::Type::BaseModel
+                OrHash =
+                  T.type_alias do
+                    T.any(
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature,
+                      Stigg::Internal::AnyHash
+                    )
+                  end
+
+                # The human-readable name of the entitlement, shown in UI elements.
+                sig { returns(String) }
+                attr_accessor :display_name
+
+                # The current status of the feature.
+                sig do
+                  returns(
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureStatus::TaggedSymbol
+                  )
+                end
+                attr_accessor :feature_status
+
+                # The type of feature associated with the entitlement.
+                sig do
+                  returns(
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureType::TaggedSymbol
+                  )
+                end
+                attr_accessor :feature_type
+
+                # The unique reference ID of the entitlement.
+                sig { returns(String) }
+                attr_accessor :ref_id
+
+                sig do
+                  params(
+                    display_name: String,
+                    feature_status:
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureStatus::OrSymbol,
+                    feature_type:
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureType::OrSymbol,
+                    ref_id: String
+                  ).returns(T.attached_class)
+                end
+                def self.new(
+                  # The human-readable name of the entitlement, shown in UI elements.
+                  display_name:,
+                  # The current status of the feature.
+                  feature_status:,
+                  # The type of feature associated with the entitlement.
+                  feature_type:,
+                  # The unique reference ID of the entitlement.
+                  ref_id:
+                )
+                end
+
+                sig do
+                  override.returns(
+                    {
+                      display_name: String,
+                      feature_status:
+                        Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureStatus::TaggedSymbol,
+                      feature_type:
+                        Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureType::TaggedSymbol,
+                      ref_id: String
+                    }
+                  )
+                end
+                def to_hash
+                end
+
+                # The current status of the feature.
+                module FeatureStatus
+                  extend Stigg::Internal::Type::Enum
+
+                  TaggedSymbol =
+                    T.type_alias do
+                      T.all(
+                        Symbol,
+                        Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureStatus
+                      )
+                    end
+                  OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                  NEW =
+                    T.let(
+                      :NEW,
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureStatus::TaggedSymbol
+                    )
+                  SUSPENDED =
+                    T.let(
+                      :SUSPENDED,
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureStatus::TaggedSymbol
+                    )
+                  ACTIVE =
+                    T.let(
+                      :ACTIVE,
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureStatus::TaggedSymbol
+                    )
+
+                  sig do
+                    override.returns(
+                      T::Array[
+                        Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureStatus::TaggedSymbol
+                      ]
+                    )
+                  end
+                  def self.values
+                  end
+                end
+
+                # The type of feature associated with the entitlement.
+                module FeatureType
+                  extend Stigg::Internal::Type::Enum
+
+                  TaggedSymbol =
+                    T.type_alias do
+                      T.all(
+                        Symbol,
+                        Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureType
+                      )
+                    end
+                  OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                  BOOLEAN =
+                    T.let(
+                      :BOOLEAN,
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureType::TaggedSymbol
+                    )
+                  NUMBER =
+                    T.let(
+                      :NUMBER,
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureType::TaggedSymbol
+                    )
+                  ENUM =
+                    T.let(
+                      :ENUM,
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureType::TaggedSymbol
+                    )
+
+                  sig do
+                    override.returns(
+                      T::Array[
+                        Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureType::TaggedSymbol
+                      ]
+                    )
+                  end
+                  def self.values
+                  end
+                end
+              end
+
+              module ResetPeriod
+                extend Stigg::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::ResetPeriod
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                YEAR =
+                  T.let(
+                    :YEAR,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::ResetPeriod::TaggedSymbol
+                  )
+                MONTH =
+                  T.let(
+                    :MONTH,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::ResetPeriod::TaggedSymbol
+                  )
+                WEEK =
+                  T.let(
+                    :WEEK,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::ResetPeriod::TaggedSymbol
+                  )
+                DAY =
+                  T.let(
+                    :DAY,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::ResetPeriod::TaggedSymbol
+                  )
+                HOUR =
+                  T.let(
+                    :HOUR,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::ResetPeriod::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::ResetPeriod::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
               end
             end
 
-            module ResetPeriod
-              extend Stigg::Internal::Type::Enum
-
-              TaggedSymbol =
+            class SubscriptionCreditEntitlement < Stigg::Internal::Type::BaseModel
+              OrHash =
                 T.type_alias do
-                  T.all(
-                    Symbol,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::ResetPeriod
+                  T.any(
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement,
+                    Stigg::Internal::AnyHash
                   )
                 end
-              OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-              YEAR =
-                T.let(
-                  :YEAR,
-                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::ResetPeriod::TaggedSymbol
+              sig do
+                returns(
+                  T.nilable(
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
                 )
-              MONTH =
-                T.let(
-                  :MONTH,
-                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::ResetPeriod::TaggedSymbol
+              end
+              attr_accessor :access_denied_reason
+
+              # The currency associated with a credit entitlement.
+              sig do
+                returns(
+                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Currency
                 )
-              WEEK =
-                T.let(
-                  :WEEK,
-                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::ResetPeriod::TaggedSymbol
+              end
+              attr_reader :currency
+
+              sig do
+                params(
+                  currency:
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Currency::OrHash
+                ).void
+              end
+              attr_writer :currency
+
+              sig { returns(Float) }
+              attr_accessor :current_usage
+
+              sig { returns(T::Boolean) }
+              attr_accessor :is_granted
+
+              sig do
+                returns(
+                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Type::TaggedSymbol
                 )
-              DAY =
-                T.let(
-                  :DAY,
-                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::ResetPeriod::TaggedSymbol
-                )
-              HOUR =
-                T.let(
-                  :HOUR,
-                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::ResetPeriod::TaggedSymbol
-                )
+              end
+              attr_accessor :type
+
+              sig { returns(Float) }
+              attr_accessor :usage_limit
+
+              # Timestamp of the last update to the credit usage.
+              sig { returns(Time) }
+              attr_accessor :usage_updated_at
+
+              # Timestamp of the last update to the entitlement grant or configuration.
+              sig { returns(T.nilable(Time)) }
+              attr_reader :entitlement_updated_at
+
+              sig { params(entitlement_updated_at: Time).void }
+              attr_writer :entitlement_updated_at
+
+              # The next time the entitlement should be recalculated
+              sig { returns(T.nilable(Time)) }
+              attr_reader :valid_until
+
+              sig { params(valid_until: Time).void }
+              attr_writer :valid_until
+
+              sig do
+                params(
+                  access_denied_reason:
+                    T.nilable(
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::OrSymbol
+                    ),
+                  currency:
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Currency::OrHash,
+                  current_usage: Float,
+                  is_granted: T::Boolean,
+                  type:
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Type::OrSymbol,
+                  usage_limit: Float,
+                  usage_updated_at: Time,
+                  entitlement_updated_at: Time,
+                  valid_until: Time
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                access_denied_reason:,
+                # The currency associated with a credit entitlement.
+                currency:,
+                current_usage:,
+                is_granted:,
+                type:,
+                usage_limit:,
+                # Timestamp of the last update to the credit usage.
+                usage_updated_at:,
+                # Timestamp of the last update to the entitlement grant or configuration.
+                entitlement_updated_at: nil,
+                # The next time the entitlement should be recalculated
+                valid_until: nil
+              )
+              end
 
               sig do
                 override.returns(
-                  T::Array[
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::ResetPeriod::TaggedSymbol
-                  ]
+                  {
+                    access_denied_reason:
+                      T.nilable(
+                        Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                      ),
+                    currency:
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Currency,
+                    current_usage: Float,
+                    is_granted: T::Boolean,
+                    type:
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Type::TaggedSymbol,
+                    usage_limit: Float,
+                    usage_updated_at: Time,
+                    entitlement_updated_at: Time,
+                    valid_until: Time
+                  }
                 )
               end
-              def self.values
+              def to_hash
               end
+
+              module AccessDeniedReason
+                extend Stigg::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                FEATURE_NOT_FOUND =
+                  T.let(
+                    :FeatureNotFound,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+                CUSTOMER_NOT_FOUND =
+                  T.let(
+                    :CustomerNotFound,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+                CUSTOMER_IS_ARCHIVED =
+                  T.let(
+                    :CustomerIsArchived,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+                CUSTOMER_RESOURCE_NOT_FOUND =
+                  T.let(
+                    :CustomerResourceNotFound,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+                NO_ACTIVE_SUBSCRIPTION =
+                  T.let(
+                    :NoActiveSubscription,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+                NO_FEATURE_ENTITLEMENT_IN_SUBSCRIPTION =
+                  T.let(
+                    :NoFeatureEntitlementInSubscription,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+                REQUESTED_USAGE_EXCEEDING_LIMIT =
+                  T.let(
+                    :RequestedUsageExceedingLimit,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+                REQUESTED_VALUES_MISMATCH =
+                  T.let(
+                    :RequestedValuesMismatch,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+                BUDGET_EXCEEDED =
+                  T.let(
+                    :BudgetExceeded,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+                UNKNOWN =
+                  T.let(
+                    :Unknown,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+                FEATURE_TYPE_MISMATCH =
+                  T.let(
+                    :FeatureTypeMismatch,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+                REVOKED =
+                  T.let(
+                    :Revoked,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+                INSUFFICIENT_CREDITS =
+                  T.let(
+                    :InsufficientCredits,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+                ENTITLEMENT_NOT_FOUND =
+                  T.let(
+                    :EntitlementNotFound,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+
+              class Currency < Stigg::Internal::Type::BaseModel
+                OrHash =
+                  T.type_alias do
+                    T.any(
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Currency,
+                      Stigg::Internal::AnyHash
+                    )
+                  end
+
+                # The unique identifier of the custom currency.
+                sig { returns(String) }
+                attr_accessor :currency_id
+
+                # The currency associated with a credit entitlement.
+                sig { params(currency_id: String).returns(T.attached_class) }
+                def self.new(
+                  # The unique identifier of the custom currency.
+                  currency_id:
+                )
+                end
+
+                sig { override.returns({ currency_id: String }) }
+                def to_hash
+                end
+              end
+
+              module Type
+                extend Stigg::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Type
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                CREDIT =
+                  T.let(
+                    :CREDIT,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Type::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Type::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+            end
+
+            sig do
+              override.returns(
+                T::Array[
+                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::Variants
+                ]
+              )
+            end
+            def self.variants
             end
           end
 

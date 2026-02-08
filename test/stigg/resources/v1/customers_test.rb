@@ -99,6 +99,31 @@ class Stigg::Test::Resources::V1::CustomersTest < Stigg::Test::ResourceTest
     end
   end
 
+  def test_list_resources
+    skip("Prism tests are disabled")
+
+    response = @stigg.v1.customers.list_resources("x")
+
+    assert_pattern do
+      response => Stigg::Internal::MyCursorIDPage
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Stigg::Models::V1::CustomerListResourcesResponse
+    end
+
+    assert_pattern do
+      row => {
+        id: String,
+        created_at: Time,
+        updated_at: Time
+      }
+    end
+  end
+
   def test_provision_required_params
     skip("Prism tests are disabled")
 

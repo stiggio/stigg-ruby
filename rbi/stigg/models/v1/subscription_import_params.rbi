@@ -18,18 +18,25 @@ module Stigg
         end
         attr_accessor :subscriptions
 
+        # Integration ID to use for importing subscriptions
+        sig { returns(T.nilable(String)) }
+        attr_accessor :integration_id
+
         sig do
           params(
             subscriptions:
               T::Array[
                 Stigg::V1::SubscriptionImportParams::Subscription::OrHash
               ],
+            integration_id: T.nilable(String),
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
           # List of subscription objects to import
           subscriptions:,
+          # Integration ID to use for importing subscriptions
+          integration_id: nil,
           request_options: {}
         )
         end
@@ -39,6 +46,7 @@ module Stigg
             {
               subscriptions:
                 T::Array[Stigg::V1::SubscriptionImportParams::Subscription],
+              integration_id: T.nilable(String),
               request_options: Stigg::RequestOptions
             }
           )

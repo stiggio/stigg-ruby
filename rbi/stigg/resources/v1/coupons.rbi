@@ -4,7 +4,8 @@ module Stigg
   module Resources
     class V1
       class Coupons
-        # Create coupon
+        # Creates a new discount coupon with percentage or fixed amount off, applicable to
+        # customer subscriptions.
         sig do
           params(
             id: String,
@@ -39,7 +40,7 @@ module Stigg
         )
         end
 
-        # Get a single coupon by ID
+        # Retrieves a coupon by its unique identifier.
         sig do
           params(
             id: String,
@@ -53,7 +54,7 @@ module Stigg
         )
         end
 
-        # Get a list of coupons
+        # Retrieves a paginated list of coupons in the environment.
         sig do
           params(
             after: String,

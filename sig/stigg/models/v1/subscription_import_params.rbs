@@ -3,7 +3,8 @@ module Stigg
     module V1
       type subscription_import_params =
         {
-          subscriptions: ::Array[Stigg::V1::SubscriptionImportParams::Subscription]
+          subscriptions: ::Array[Stigg::V1::SubscriptionImportParams::Subscription],
+          integration_id: String?
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -13,13 +14,17 @@ module Stigg
 
         attr_accessor subscriptions: ::Array[Stigg::V1::SubscriptionImportParams::Subscription]
 
+        attr_accessor integration_id: String?
+
         def initialize: (
           subscriptions: ::Array[Stigg::V1::SubscriptionImportParams::Subscription],
+          ?integration_id: String?,
           ?request_options: Stigg::request_opts
         ) -> void
 
         def to_hash: -> {
           subscriptions: ::Array[Stigg::V1::SubscriptionImportParams::Subscription],
+          integration_id: String?,
           request_options: Stigg::RequestOptions
         }
 

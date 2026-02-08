@@ -5,7 +5,7 @@ module Stigg
     class V1
       class Subscriptions
         class FutureUpdate
-          # Cancel pending payment update
+          # Cancels a subscription update that is pending payment completion.
           #
           # @overload cancel_pending_payment(id, request_options: {})
           #
@@ -25,7 +25,8 @@ module Stigg
             )
           end
 
-          # Cancel scheduled update
+          # Cancels a scheduled subscription update, such as a future downgrade or plan
+          # change.
           #
           # @overload cancel_schedule(id, request_options: {})
           #
