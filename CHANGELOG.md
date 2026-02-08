@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.1.0-alpha.4 (2026-02-08)
+
+Full Changelog: [v0.1.0-alpha.3...v0.1.0-alpha.4](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
+
+### Features
+
+* **api:** api update ([be82837](https://github.com/stiggio/stigg-ruby/commit/be828376f59cdc953328db6686a68f8b9759451f))
+* **api:** api update ([6eba42a](https://github.com/stiggio/stigg-ruby/commit/6eba42a20f428acbd6883681ac5ee11d8a14ff49))
+* **api:** api update ([6bce992](https://github.com/stiggio/stigg-ruby/commit/6bce9926ff821e5a0bca13e55bad8c0ab3aa2e47))
+* **api:** manual updates ([36853c8](https://github.com/stiggio/stigg-ruby/commit/36853c8baeac42420cd16d77fb7a1deecd202419))
+* **api:** manual updates ([687e40e](https://github.com/stiggio/stigg-ruby/commit/687e40ec3f6e37f92942320c4e1f5289b03acf7a))
+
+
+### Bug Fixes
+
+* **client:** always add content-length to post body, even when empty ([b0dfc8b](https://github.com/stiggio/stigg-ruby/commit/b0dfc8b9bcec28580c67453ad50ad05a059e870a))
+* **client:** loosen json header parsing ([818129e](https://github.com/stiggio/stigg-ruby/commit/818129efdba328937836f3e1b5e473a17562bbe1))
+
+
+### Chores
+
+* **docs:** remove www prefix ([3d79132](https://github.com/stiggio/stigg-ruby/commit/3d7913276fe7a991830af80837e1bb78255930d2))
+
 ## 0.1.0-alpha.3 (2026-01-29)
 
 Full Changelog: [v0.1.0-alpha.2...v0.1.0-alpha.3](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.2...v0.1.0-alpha.3)
