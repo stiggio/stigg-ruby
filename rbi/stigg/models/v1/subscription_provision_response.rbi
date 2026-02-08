@@ -124,8 +124,8 @@ module Stigg
                 T.nilable(
                   T::Array[
                     T.any(
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::OrHash,
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::OrHash
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::OrHash,
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::OrHash
                     )
                   ]
                 ),
@@ -188,16 +188,16 @@ module Stigg
             Variants =
               T.type_alias do
                 T.any(
-                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement,
-                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement
+                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0,
+                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1
                 )
               end
 
-            class SubscriptionFeatureEntitlement < Stigg::Internal::Type::BaseModel
+            class UnionMember0 < Stigg::Internal::Type::BaseModel
               OrHash =
                 T.type_alias do
                   T.any(
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0,
                     Stigg::Internal::AnyHash
                   )
                 end
@@ -205,7 +205,7 @@ module Stigg
               sig do
                 returns(
                   T.nilable(
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::AccessDeniedReason::TaggedSymbol
                   )
                 )
               end
@@ -216,7 +216,7 @@ module Stigg
 
               sig do
                 returns(
-                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Type::TaggedSymbol
+                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Type::TaggedSymbol
                 )
               end
               attr_accessor :type
@@ -237,7 +237,7 @@ module Stigg
               sig do
                 returns(
                   T.nilable(
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature
                   )
                 )
               end
@@ -246,7 +246,7 @@ module Stigg
               sig do
                 params(
                   feature:
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::OrHash
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::OrHash
                 ).void
               end
               attr_writer :feature
@@ -260,7 +260,7 @@ module Stigg
               sig do
                 returns(
                   T.nilable(
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::ResetPeriod::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::ResetPeriod::TaggedSymbol
                   )
                 )
               end
@@ -304,19 +304,19 @@ module Stigg
                 params(
                   access_denied_reason:
                     T.nilable(
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::OrSymbol
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::AccessDeniedReason::OrSymbol
                     ),
                   is_granted: T::Boolean,
                   type:
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Type::OrSymbol,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Type::OrSymbol,
                   current_usage: Float,
                   entitlement_updated_at: Time,
                   feature:
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::OrHash,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::OrHash,
                   has_unlimited_usage: T::Boolean,
                   reset_period:
                     T.nilable(
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::ResetPeriod::OrSymbol
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::ResetPeriod::OrSymbol
                     ),
                   usage_limit: T.nilable(Float),
                   usage_period_anchor: Time,
@@ -355,19 +355,19 @@ module Stigg
                   {
                     access_denied_reason:
                       T.nilable(
-                        Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                        Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::AccessDeniedReason::TaggedSymbol
                       ),
                     is_granted: T::Boolean,
                     type:
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Type::TaggedSymbol,
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Type::TaggedSymbol,
                     current_usage: Float,
                     entitlement_updated_at: Time,
                     feature:
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature,
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature,
                     has_unlimited_usage: T::Boolean,
                     reset_period:
                       T.nilable(
-                        Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::ResetPeriod::TaggedSymbol
+                        Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::ResetPeriod::TaggedSymbol
                       ),
                     usage_limit: T.nilable(Float),
                     usage_period_anchor: Time,
@@ -387,7 +387,7 @@ module Stigg
                   T.type_alias do
                     T.all(
                       Symbol,
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::AccessDeniedReason
                     )
                   end
                 OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -395,78 +395,78 @@ module Stigg
                 FEATURE_NOT_FOUND =
                   T.let(
                     :FeatureNotFound,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::AccessDeniedReason::TaggedSymbol
                   )
                 CUSTOMER_NOT_FOUND =
                   T.let(
                     :CustomerNotFound,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::AccessDeniedReason::TaggedSymbol
                   )
                 CUSTOMER_IS_ARCHIVED =
                   T.let(
                     :CustomerIsArchived,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::AccessDeniedReason::TaggedSymbol
                   )
                 CUSTOMER_RESOURCE_NOT_FOUND =
                   T.let(
                     :CustomerResourceNotFound,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::AccessDeniedReason::TaggedSymbol
                   )
                 NO_ACTIVE_SUBSCRIPTION =
                   T.let(
                     :NoActiveSubscription,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::AccessDeniedReason::TaggedSymbol
                   )
                 NO_FEATURE_ENTITLEMENT_IN_SUBSCRIPTION =
                   T.let(
                     :NoFeatureEntitlementInSubscription,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::AccessDeniedReason::TaggedSymbol
                   )
                 REQUESTED_USAGE_EXCEEDING_LIMIT =
                   T.let(
                     :RequestedUsageExceedingLimit,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::AccessDeniedReason::TaggedSymbol
                   )
                 REQUESTED_VALUES_MISMATCH =
                   T.let(
                     :RequestedValuesMismatch,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::AccessDeniedReason::TaggedSymbol
                   )
                 BUDGET_EXCEEDED =
                   T.let(
                     :BudgetExceeded,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::AccessDeniedReason::TaggedSymbol
                   )
                 UNKNOWN =
                   T.let(
                     :Unknown,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::AccessDeniedReason::TaggedSymbol
                   )
                 FEATURE_TYPE_MISMATCH =
                   T.let(
                     :FeatureTypeMismatch,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::AccessDeniedReason::TaggedSymbol
                   )
                 REVOKED =
                   T.let(
                     :Revoked,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::AccessDeniedReason::TaggedSymbol
                   )
                 INSUFFICIENT_CREDITS =
                   T.let(
                     :InsufficientCredits,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::AccessDeniedReason::TaggedSymbol
                   )
                 ENTITLEMENT_NOT_FOUND =
                   T.let(
                     :EntitlementNotFound,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::AccessDeniedReason::TaggedSymbol
                   )
 
                 sig do
                   override.returns(
                     T::Array[
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason::TaggedSymbol
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::AccessDeniedReason::TaggedSymbol
                     ]
                   )
                 end
@@ -481,7 +481,7 @@ module Stigg
                   T.type_alias do
                     T.all(
                       Symbol,
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Type
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Type
                     )
                   end
                 OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -489,13 +489,13 @@ module Stigg
                 FEATURE =
                   T.let(
                     :FEATURE,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Type::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Type::TaggedSymbol
                   )
 
                 sig do
                   override.returns(
                     T::Array[
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Type::TaggedSymbol
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Type::TaggedSymbol
                     ]
                   )
                 end
@@ -507,7 +507,7 @@ module Stigg
                 OrHash =
                   T.type_alias do
                     T.any(
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature,
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature,
                       Stigg::Internal::AnyHash
                     )
                   end
@@ -519,7 +519,7 @@ module Stigg
                 # The current status of the feature.
                 sig do
                   returns(
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureStatus::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::FeatureStatus::TaggedSymbol
                   )
                 end
                 attr_accessor :feature_status
@@ -527,7 +527,7 @@ module Stigg
                 # The type of feature associated with the entitlement.
                 sig do
                   returns(
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureType::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::FeatureType::TaggedSymbol
                   )
                 end
                 attr_accessor :feature_type
@@ -540,9 +540,9 @@ module Stigg
                   params(
                     display_name: String,
                     feature_status:
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureStatus::OrSymbol,
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::FeatureStatus::OrSymbol,
                     feature_type:
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureType::OrSymbol,
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::FeatureType::OrSymbol,
                     ref_id: String
                   ).returns(T.attached_class)
                 end
@@ -563,9 +563,9 @@ module Stigg
                     {
                       display_name: String,
                       feature_status:
-                        Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureStatus::TaggedSymbol,
+                        Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::FeatureStatus::TaggedSymbol,
                       feature_type:
-                        Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureType::TaggedSymbol,
+                        Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::FeatureType::TaggedSymbol,
                       ref_id: String
                     }
                   )
@@ -581,7 +581,7 @@ module Stigg
                     T.type_alias do
                       T.all(
                         Symbol,
-                        Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureStatus
+                        Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::FeatureStatus
                       )
                     end
                   OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -589,23 +589,23 @@ module Stigg
                   NEW =
                     T.let(
                       :NEW,
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureStatus::TaggedSymbol
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::FeatureStatus::TaggedSymbol
                     )
                   SUSPENDED =
                     T.let(
                       :SUSPENDED,
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureStatus::TaggedSymbol
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::FeatureStatus::TaggedSymbol
                     )
                   ACTIVE =
                     T.let(
                       :ACTIVE,
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureStatus::TaggedSymbol
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::FeatureStatus::TaggedSymbol
                     )
 
                   sig do
                     override.returns(
                       T::Array[
-                        Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureStatus::TaggedSymbol
+                        Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::FeatureStatus::TaggedSymbol
                       ]
                     )
                   end
@@ -621,7 +621,7 @@ module Stigg
                     T.type_alias do
                       T.all(
                         Symbol,
-                        Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureType
+                        Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::FeatureType
                       )
                     end
                   OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -629,23 +629,23 @@ module Stigg
                   BOOLEAN =
                     T.let(
                       :BOOLEAN,
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureType::TaggedSymbol
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::FeatureType::TaggedSymbol
                     )
                   NUMBER =
                     T.let(
                       :NUMBER,
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureType::TaggedSymbol
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::FeatureType::TaggedSymbol
                     )
                   ENUM =
                     T.let(
                       :ENUM,
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureType::TaggedSymbol
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::FeatureType::TaggedSymbol
                     )
 
                   sig do
                     override.returns(
                       T::Array[
-                        Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureType::TaggedSymbol
+                        Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::FeatureType::TaggedSymbol
                       ]
                     )
                   end
@@ -661,7 +661,7 @@ module Stigg
                   T.type_alias do
                     T.all(
                       Symbol,
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::ResetPeriod
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::ResetPeriod
                     )
                   end
                 OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -669,33 +669,33 @@ module Stigg
                 YEAR =
                   T.let(
                     :YEAR,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::ResetPeriod::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::ResetPeriod::TaggedSymbol
                   )
                 MONTH =
                   T.let(
                     :MONTH,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::ResetPeriod::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::ResetPeriod::TaggedSymbol
                   )
                 WEEK =
                   T.let(
                     :WEEK,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::ResetPeriod::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::ResetPeriod::TaggedSymbol
                   )
                 DAY =
                   T.let(
                     :DAY,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::ResetPeriod::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::ResetPeriod::TaggedSymbol
                   )
                 HOUR =
                   T.let(
                     :HOUR,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::ResetPeriod::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::ResetPeriod::TaggedSymbol
                   )
 
                 sig do
                   override.returns(
                     T::Array[
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::ResetPeriod::TaggedSymbol
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::ResetPeriod::TaggedSymbol
                     ]
                   )
                 end
@@ -704,11 +704,11 @@ module Stigg
               end
             end
 
-            class SubscriptionCreditEntitlement < Stigg::Internal::Type::BaseModel
+            class UnionMember1 < Stigg::Internal::Type::BaseModel
               OrHash =
                 T.type_alias do
                   T.any(
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1,
                     Stigg::Internal::AnyHash
                   )
                 end
@@ -716,7 +716,7 @@ module Stigg
               sig do
                 returns(
                   T.nilable(
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::AccessDeniedReason::TaggedSymbol
                   )
                 )
               end
@@ -725,7 +725,7 @@ module Stigg
               # The currency associated with a credit entitlement.
               sig do
                 returns(
-                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Currency
+                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::Currency
                 )
               end
               attr_reader :currency
@@ -733,7 +733,7 @@ module Stigg
               sig do
                 params(
                   currency:
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Currency::OrHash
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::Currency::OrHash
                 ).void
               end
               attr_writer :currency
@@ -746,7 +746,7 @@ module Stigg
 
               sig do
                 returns(
-                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Type::TaggedSymbol
+                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::Type::TaggedSymbol
                 )
               end
               attr_accessor :type
@@ -776,14 +776,14 @@ module Stigg
                 params(
                   access_denied_reason:
                     T.nilable(
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::OrSymbol
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::AccessDeniedReason::OrSymbol
                     ),
                   currency:
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Currency::OrHash,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::Currency::OrHash,
                   current_usage: Float,
                   is_granted: T::Boolean,
                   type:
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Type::OrSymbol,
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::Type::OrSymbol,
                   usage_limit: Float,
                   usage_updated_at: Time,
                   entitlement_updated_at: Time,
@@ -812,14 +812,14 @@ module Stigg
                   {
                     access_denied_reason:
                       T.nilable(
-                        Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                        Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::AccessDeniedReason::TaggedSymbol
                       ),
                     currency:
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Currency,
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::Currency,
                     current_usage: Float,
                     is_granted: T::Boolean,
                     type:
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Type::TaggedSymbol,
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::Type::TaggedSymbol,
                     usage_limit: Float,
                     usage_updated_at: Time,
                     entitlement_updated_at: Time,
@@ -837,7 +837,7 @@ module Stigg
                   T.type_alias do
                     T.all(
                       Symbol,
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::AccessDeniedReason
                     )
                   end
                 OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -845,78 +845,78 @@ module Stigg
                 FEATURE_NOT_FOUND =
                   T.let(
                     :FeatureNotFound,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::AccessDeniedReason::TaggedSymbol
                   )
                 CUSTOMER_NOT_FOUND =
                   T.let(
                     :CustomerNotFound,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::AccessDeniedReason::TaggedSymbol
                   )
                 CUSTOMER_IS_ARCHIVED =
                   T.let(
                     :CustomerIsArchived,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::AccessDeniedReason::TaggedSymbol
                   )
                 CUSTOMER_RESOURCE_NOT_FOUND =
                   T.let(
                     :CustomerResourceNotFound,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::AccessDeniedReason::TaggedSymbol
                   )
                 NO_ACTIVE_SUBSCRIPTION =
                   T.let(
                     :NoActiveSubscription,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::AccessDeniedReason::TaggedSymbol
                   )
                 NO_FEATURE_ENTITLEMENT_IN_SUBSCRIPTION =
                   T.let(
                     :NoFeatureEntitlementInSubscription,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::AccessDeniedReason::TaggedSymbol
                   )
                 REQUESTED_USAGE_EXCEEDING_LIMIT =
                   T.let(
                     :RequestedUsageExceedingLimit,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::AccessDeniedReason::TaggedSymbol
                   )
                 REQUESTED_VALUES_MISMATCH =
                   T.let(
                     :RequestedValuesMismatch,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::AccessDeniedReason::TaggedSymbol
                   )
                 BUDGET_EXCEEDED =
                   T.let(
                     :BudgetExceeded,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::AccessDeniedReason::TaggedSymbol
                   )
                 UNKNOWN =
                   T.let(
                     :Unknown,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::AccessDeniedReason::TaggedSymbol
                   )
                 FEATURE_TYPE_MISMATCH =
                   T.let(
                     :FeatureTypeMismatch,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::AccessDeniedReason::TaggedSymbol
                   )
                 REVOKED =
                   T.let(
                     :Revoked,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::AccessDeniedReason::TaggedSymbol
                   )
                 INSUFFICIENT_CREDITS =
                   T.let(
                     :InsufficientCredits,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::AccessDeniedReason::TaggedSymbol
                   )
                 ENTITLEMENT_NOT_FOUND =
                   T.let(
                     :EntitlementNotFound,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::AccessDeniedReason::TaggedSymbol
                   )
 
                 sig do
                   override.returns(
                     T::Array[
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason::TaggedSymbol
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::AccessDeniedReason::TaggedSymbol
                     ]
                   )
                 end
@@ -928,7 +928,7 @@ module Stigg
                 OrHash =
                   T.type_alias do
                     T.any(
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Currency,
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::Currency,
                       Stigg::Internal::AnyHash
                     )
                   end
@@ -957,7 +957,7 @@ module Stigg
                   T.type_alias do
                     T.all(
                       Symbol,
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Type
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::Type
                     )
                   end
                 OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -965,13 +965,13 @@ module Stigg
                 CREDIT =
                   T.let(
                     :CREDIT,
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Type::TaggedSymbol
+                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::Type::TaggedSymbol
                   )
 
                 sig do
                   override.returns(
                     T::Array[
-                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Type::TaggedSymbol
+                      Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::Type::TaggedSymbol
                     ]
                   )
                 end
