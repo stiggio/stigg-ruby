@@ -1,0 +1,20 @@
+module Stigg
+  module Models
+    module V1
+      type customer_list_resources_response =
+        { id: String, created_at: Time, updated_at: Time }
+
+      class CustomerListResourcesResponse < Stigg::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor created_at: Time
+
+        attr_accessor updated_at: Time
+
+        def initialize: (id: String, created_at: Time, updated_at: Time) -> void
+
+        def to_hash: -> { id: String, created_at: Time, updated_at: Time }
+      end
+    end
+  end
+end

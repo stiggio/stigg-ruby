@@ -18,6 +18,9 @@ module Stigg
       # @return [Stigg::Resources::V1::Usage]
       attr_reader :usage
 
+      # @return [Stigg::Resources::V1::Products]
+      attr_reader :products
+
       # @api private
       #
       # @param client [Stigg::Client]
@@ -28,6 +31,7 @@ module Stigg
         @coupons = Stigg::Resources::V1::Coupons.new(client: client)
         @events = Stigg::Resources::V1::Events.new(client: client)
         @usage = Stigg::Resources::V1::Usage.new(client: client)
+        @products = Stigg::Resources::V1::Products.new(client: client)
       end
     end
   end

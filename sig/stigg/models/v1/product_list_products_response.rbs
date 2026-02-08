@@ -1,0 +1,68 @@
+module Stigg
+  module Models
+    module V1
+      type product_list_products_response =
+        {
+          id: String,
+          created_at: Time,
+          description: String?,
+          display_name: String,
+          metadata: ::Hash[Symbol, String],
+          multiple_subscriptions: bool,
+          status: Stigg::Models::V1::ProductListProductsResponse::status,
+          updated_at: Time
+        }
+
+      class ProductListProductsResponse < Stigg::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor created_at: Time
+
+        attr_accessor description: String?
+
+        attr_accessor display_name: String
+
+        attr_accessor metadata: ::Hash[Symbol, String]
+
+        attr_accessor multiple_subscriptions: bool
+
+        attr_accessor status: Stigg::Models::V1::ProductListProductsResponse::status
+
+        attr_accessor updated_at: Time
+
+        def initialize: (
+          id: String,
+          created_at: Time,
+          description: String?,
+          display_name: String,
+          metadata: ::Hash[Symbol, String],
+          multiple_subscriptions: bool,
+          status: Stigg::Models::V1::ProductListProductsResponse::status,
+          updated_at: Time
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          created_at: Time,
+          description: String?,
+          display_name: String,
+          metadata: ::Hash[Symbol, String],
+          multiple_subscriptions: bool,
+          status: Stigg::Models::V1::ProductListProductsResponse::status,
+          updated_at: Time
+        }
+
+        type status = :PUBLISHED | :ARCHIVED
+
+        module Status
+          extend Stigg::Internal::Type::Enum
+
+          PUBLISHED: :PUBLISHED
+          ARCHIVED: :ARCHIVED
+
+          def self?.values: -> ::Array[Stigg::Models::V1::ProductListProductsResponse::status]
+        end
+      end
+    end
+  end
+end
