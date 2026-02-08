@@ -1,0 +1,40 @@
+module Stigg
+  module Models
+    module V1
+      type product_list_products_params =
+        { after: String, before: String, limit: Integer }
+        & Stigg::Internal::Type::request_parameters
+
+      class ProductListProductsParams < Stigg::Internal::Type::BaseModel
+        extend Stigg::Internal::Type::RequestParameters::Converter
+        include Stigg::Internal::Type::RequestParameters
+
+        attr_reader after: String?
+
+        def after=: (String) -> String
+
+        attr_reader before: String?
+
+        def before=: (String) -> String
+
+        attr_reader limit: Integer?
+
+        def limit=: (Integer) -> Integer
+
+        def initialize: (
+          ?after: String,
+          ?before: String,
+          ?limit: Integer,
+          ?request_options: Stigg::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          after: String,
+          before: String,
+          limit: Integer,
+          request_options: Stigg::RequestOptions
+        }
+      end
+    end
+  end
+end

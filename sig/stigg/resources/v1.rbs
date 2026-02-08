@@ -11,6 +11,8 @@ module Stigg
 
       attr_reader usage: Stigg::Resources::V1::Usage
 
+      attr_reader products: Stigg::Resources::V1::Products
+
       def initialize: (client: Stigg::Client) -> void
     end
   end

@@ -38,6 +38,14 @@ module Stigg
           ?request_options: Stigg::request_opts
         ) -> Stigg::Models::V1::CustomerImportResponse
 
+        def list_resources: (
+          String id,
+          ?after: String,
+          ?before: String,
+          ?limit: Integer,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::CustomerListResourcesResponse]
+
         def provision: (
           id: String,
           ?coupon_id: String?,

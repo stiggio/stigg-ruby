@@ -113,6 +113,33 @@ module Stigg
         )
         end
 
+        # Get a list of customerresources
+        sig do
+          params(
+            id: String,
+            after: String,
+            before: String,
+            limit: Integer,
+            request_options: Stigg::RequestOptions::OrHash
+          ).returns(
+            Stigg::Internal::MyCursorIDPage[
+              Stigg::Models::V1::CustomerListResourcesResponse
+            ]
+          )
+        end
+        def list_resources(
+          # The unique identifier of the entity
+          id,
+          # Return items that come after this cursor
+          after: nil,
+          # Return items that come before this cursor
+          before: nil,
+          # Maximum number of items to return
+          limit: nil,
+          request_options: {}
+        )
+        end
+
         # Creates a new customer and optionally provisions an initial subscription in a
         # single operation.
         sig do

@@ -1,0 +1,16 @@
+module Stigg
+  module Resources
+    class V1
+      class Products
+        def list_products: (
+          ?after: String,
+          ?before: String,
+          ?limit: Integer,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::ProductListProductsResponse]
+
+        def initialize: (client: Stigg::Client) -> void
+      end
+    end
+  end
+end
