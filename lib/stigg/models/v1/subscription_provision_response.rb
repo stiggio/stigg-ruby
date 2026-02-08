@@ -26,7 +26,7 @@ module Stigg
 
           # @!attribute entitlements
           #
-          #   @return [Array<Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1>, nil]
+          #   @return [Array<Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement>, nil]
           required :entitlements,
                    -> { Stigg::Internal::Type::ArrayOf[union: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement] },
                    nil?: true
@@ -68,7 +68,7 @@ module Stigg
           #
           #   @param id [String] Unique identifier for the provisioned subscription
           #
-          #   @param entitlements [Array<Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1>, nil]
+          #   @param entitlements [Array<Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement>, nil]
           #
           #   @param status [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Status] Provision status: SUCCESS or PAYMENT_REQUIRED
           #
@@ -83,16 +83,16 @@ module Stigg
           module Entitlement
             extend Stigg::Internal::Type::Union
 
-            variant -> { Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0 }
+            variant -> { Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement }
 
-            variant -> { Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1 }
+            variant -> { Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement }
 
-            class UnionMember0 < Stigg::Internal::Type::BaseModel
+            class SubscriptionFeatureEntitlement < Stigg::Internal::Type::BaseModel
               # @!attribute access_denied_reason
               #
-              #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::AccessDeniedReason, nil]
+              #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason, nil]
               required :access_denied_reason,
-                       enum: -> { Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::AccessDeniedReason },
+                       enum: -> { Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason },
                        api_name: :accessDeniedReason,
                        nil?: true
 
@@ -103,9 +103,9 @@ module Stigg
 
               # @!attribute type
               #
-              #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Type]
+              #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Type]
               required :type,
-                       enum: -> { Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Type }
+                       enum: -> { Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Type }
 
               # @!attribute current_usage
               #
@@ -120,9 +120,9 @@ module Stigg
 
               # @!attribute feature
               #
-              #   @return [Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature, nil]
+              #   @return [Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature, nil]
               optional :feature,
-                       -> { Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature }
+                       -> { Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature }
 
               # @!attribute has_unlimited_usage
               #
@@ -131,9 +131,9 @@ module Stigg
 
               # @!attribute reset_period
               #
-              #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::ResetPeriod, nil]
+              #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::ResetPeriod, nil]
               optional :reset_period,
-                       enum: -> { Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::ResetPeriod },
+                       enum: -> { Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::ResetPeriod },
                        api_name: :resetPeriod,
                        nil?: true
 
@@ -171,24 +171,24 @@ module Stigg
 
               # @!method initialize(access_denied_reason:, is_granted:, type:, current_usage: nil, entitlement_updated_at: nil, feature: nil, has_unlimited_usage: nil, reset_period: nil, usage_limit: nil, usage_period_anchor: nil, usage_period_end: nil, usage_period_start: nil, valid_until: nil)
               #   Some parameter documentations has been truncated, see
-              #   {Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0}
+              #   {Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement}
               #   for more details.
               #
-              #   @param access_denied_reason [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::AccessDeniedReason, nil]
+              #   @param access_denied_reason [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::AccessDeniedReason, nil]
               #
               #   @param is_granted [Boolean]
               #
-              #   @param type [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Type]
+              #   @param type [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Type]
               #
               #   @param current_usage [Float]
               #
               #   @param entitlement_updated_at [Time] Timestamp of the last update to the entitlement grant or configuration.
               #
-              #   @param feature [Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature]
+              #   @param feature [Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature]
               #
               #   @param has_unlimited_usage [Boolean]
               #
-              #   @param reset_period [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::ResetPeriod, nil]
+              #   @param reset_period [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::ResetPeriod, nil]
               #
               #   @param usage_limit [Float, nil]
               #
@@ -200,7 +200,7 @@ module Stigg
               #
               #   @param valid_until [Time] The next time the entitlement should be recalculated
 
-              # @see Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0#access_denied_reason
+              # @see Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement#access_denied_reason
               module AccessDeniedReason
                 extend Stigg::Internal::Type::Enum
 
@@ -223,7 +223,7 @@ module Stigg
                 #   @return [Array<Symbol>]
               end
 
-              # @see Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0#type
+              # @see Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement#type
               module Type
                 extend Stigg::Internal::Type::Enum
 
@@ -233,7 +233,7 @@ module Stigg
                 #   @return [Array<Symbol>]
               end
 
-              # @see Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0#feature
+              # @see Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement#feature
               class Feature < Stigg::Internal::Type::BaseModel
                 # @!attribute display_name
                 #   The human-readable name of the entitlement, shown in UI elements.
@@ -244,17 +244,17 @@ module Stigg
                 # @!attribute feature_status
                 #   The current status of the feature.
                 #
-                #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::FeatureStatus]
+                #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureStatus]
                 required :feature_status,
-                         enum: -> { Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::FeatureStatus },
+                         enum: -> { Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureStatus },
                          api_name: :featureStatus
 
                 # @!attribute feature_type
                 #   The type of feature associated with the entitlement.
                 #
-                #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::FeatureType]
+                #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureType]
                 required :feature_type,
-                         enum: -> { Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::FeatureType },
+                         enum: -> { Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureType },
                          api_name: :featureType
 
                 # @!attribute ref_id
@@ -266,15 +266,15 @@ module Stigg
                 # @!method initialize(display_name:, feature_status:, feature_type:, ref_id:)
                 #   @param display_name [String] The human-readable name of the entitlement, shown in UI elements.
                 #
-                #   @param feature_status [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::FeatureStatus] The current status of the feature.
+                #   @param feature_status [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureStatus] The current status of the feature.
                 #
-                #   @param feature_type [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::FeatureType] The type of feature associated with the entitlement.
+                #   @param feature_type [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::FeatureType] The type of feature associated with the entitlement.
                 #
                 #   @param ref_id [String] The unique reference ID of the entitlement.
 
                 # The current status of the feature.
                 #
-                # @see Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature#feature_status
+                # @see Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature#feature_status
                 module FeatureStatus
                   extend Stigg::Internal::Type::Enum
 
@@ -288,7 +288,7 @@ module Stigg
 
                 # The type of feature associated with the entitlement.
                 #
-                # @see Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature#feature_type
+                # @see Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature#feature_type
                 module FeatureType
                   extend Stigg::Internal::Type::Enum
 
@@ -301,7 +301,7 @@ module Stigg
                 end
               end
 
-              # @see Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0#reset_period
+              # @see Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement#reset_period
               module ResetPeriod
                 extend Stigg::Internal::Type::Enum
 
@@ -316,21 +316,21 @@ module Stigg
               end
             end
 
-            class UnionMember1 < Stigg::Internal::Type::BaseModel
+            class SubscriptionCreditEntitlement < Stigg::Internal::Type::BaseModel
               # @!attribute access_denied_reason
               #
-              #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::AccessDeniedReason, nil]
+              #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason, nil]
               required :access_denied_reason,
-                       enum: -> { Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::AccessDeniedReason },
+                       enum: -> { Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason },
                        api_name: :accessDeniedReason,
                        nil?: true
 
               # @!attribute currency
               #   The currency associated with a credit entitlement.
               #
-              #   @return [Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::Currency]
+              #   @return [Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Currency]
               required :currency,
-                       -> { Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::Currency }
+                       -> { Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Currency }
 
               # @!attribute current_usage
               #
@@ -344,9 +344,9 @@ module Stigg
 
               # @!attribute type
               #
-              #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::Type]
+              #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Type]
               required :type,
-                       enum: -> { Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::Type }
+                       enum: -> { Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Type }
 
               # @!attribute usage_limit
               #
@@ -372,15 +372,15 @@ module Stigg
               optional :valid_until, Time, api_name: :validUntil
 
               # @!method initialize(access_denied_reason:, currency:, current_usage:, is_granted:, type:, usage_limit:, usage_updated_at:, entitlement_updated_at: nil, valid_until: nil)
-              #   @param access_denied_reason [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::AccessDeniedReason, nil]
+              #   @param access_denied_reason [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::AccessDeniedReason, nil]
               #
-              #   @param currency [Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::Currency] The currency associated with a credit entitlement.
+              #   @param currency [Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Currency] The currency associated with a credit entitlement.
               #
               #   @param current_usage [Float]
               #
               #   @param is_granted [Boolean]
               #
-              #   @param type [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::Type]
+              #   @param type [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Type]
               #
               #   @param usage_limit [Float]
               #
@@ -390,7 +390,7 @@ module Stigg
               #
               #   @param valid_until [Time] The next time the entitlement should be recalculated
 
-              # @see Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1#access_denied_reason
+              # @see Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement#access_denied_reason
               module AccessDeniedReason
                 extend Stigg::Internal::Type::Enum
 
@@ -413,7 +413,7 @@ module Stigg
                 #   @return [Array<Symbol>]
               end
 
-              # @see Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1#currency
+              # @see Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement#currency
               class Currency < Stigg::Internal::Type::BaseModel
                 # @!attribute currency_id
                 #   The unique identifier of the custom currency.
@@ -427,7 +427,7 @@ module Stigg
                 #   @param currency_id [String] The unique identifier of the custom currency.
               end
 
-              # @see Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1#type
+              # @see Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement#type
               module Type
                 extend Stigg::Internal::Type::Enum
 
@@ -439,7 +439,7 @@ module Stigg
             end
 
             # @!method self.variants
-            #   @return [Array(Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1)]
+            #   @return [Array(Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement)]
           end
 
           # Provision status: SUCCESS or PAYMENT_REQUIRED
