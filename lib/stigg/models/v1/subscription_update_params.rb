@@ -770,18 +770,42 @@ module Stigg
         end
 
         class PriceOverride < Stigg::Internal::Type::BaseModel
+          # @!attribute addon_id
+          #   Addon ID
+          #
+          #   @return [String, nil]
+          optional :addon_id, String, api_name: :addonId
+
+          # @!attribute base_charge
+          #   Whether this is a base charge override
+          #
+          #   @return [Boolean, nil]
+          optional :base_charge, Stigg::Internal::Type::Boolean, api_name: :baseCharge
+
+          # @!attribute currency_id
+          #   The corresponding custom currency id of the recurring credits price
+          #
+          #   @return [String, nil]
+          optional :currency_id, String, api_name: :currencyId
+
           # @!attribute feature_id
           #   Feature ID
           #
-          #   @return [String]
-          required :feature_id, String, api_name: :featureId
+          #   @return [String, nil]
+          optional :feature_id, String, api_name: :featureId
 
           # @!attribute price
           #
           #   @return [Stigg::Models::V1::SubscriptionUpdateParams::PriceOverride::Price, nil]
           optional :price, -> { Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price }
 
-          # @!method initialize(feature_id:, price: nil)
+          # @!method initialize(addon_id: nil, base_charge: nil, currency_id: nil, feature_id: nil, price: nil)
+          #   @param addon_id [String] Addon ID
+          #
+          #   @param base_charge [Boolean] Whether this is a base charge override
+          #
+          #   @param currency_id [String] The corresponding custom currency id of the recurring credits price
+          #
           #   @param feature_id [String] Feature ID
           #
           #   @param price [Stigg::Models::V1::SubscriptionUpdateParams::PriceOverride::Price]
