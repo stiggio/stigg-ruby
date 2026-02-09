@@ -1041,12 +1041,29 @@ module Stigg
 
         type price_override =
           {
+            addon_id: String,
+            base_charge: bool,
+            currency_id: String,
             feature_id: String,
             price: Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price
           }
 
         class PriceOverride < Stigg::Internal::Type::BaseModel
-          attr_accessor feature_id: String
+          attr_reader addon_id: String?
+
+          def addon_id=: (String) -> String
+
+          attr_reader base_charge: bool?
+
+          def base_charge=: (bool) -> bool
+
+          attr_reader currency_id: String?
+
+          def currency_id=: (String) -> String
+
+          attr_reader feature_id: String?
+
+          def feature_id=: (String) -> String
 
           attr_reader price: Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price?
 
@@ -1055,11 +1072,17 @@ module Stigg
           ) -> Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price
 
           def initialize: (
-            feature_id: String,
+            ?addon_id: String,
+            ?base_charge: bool,
+            ?currency_id: String,
+            ?feature_id: String,
             ?price: Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price
           ) -> void
 
           def to_hash: -> {
+            addon_id: String,
+            base_charge: bool,
+            currency_id: String,
             feature_id: String,
             price: Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price
           }

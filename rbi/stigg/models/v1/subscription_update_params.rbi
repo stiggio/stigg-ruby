@@ -2384,9 +2384,33 @@ module Stigg
               )
             end
 
+          # Addon ID
+          sig { returns(T.nilable(String)) }
+          attr_reader :addon_id
+
+          sig { params(addon_id: String).void }
+          attr_writer :addon_id
+
+          # Whether this is a base charge override
+          sig { returns(T.nilable(T::Boolean)) }
+          attr_reader :base_charge
+
+          sig { params(base_charge: T::Boolean).void }
+          attr_writer :base_charge
+
+          # The corresponding custom currency id of the recurring credits price
+          sig { returns(T.nilable(String)) }
+          attr_reader :currency_id
+
+          sig { params(currency_id: String).void }
+          attr_writer :currency_id
+
           # Feature ID
-          sig { returns(String) }
-          attr_accessor :feature_id
+          sig { returns(T.nilable(String)) }
+          attr_reader :feature_id
+
+          sig { params(feature_id: String).void }
+          attr_writer :feature_id
 
           sig do
             returns(
@@ -2407,14 +2431,23 @@ module Stigg
 
           sig do
             params(
+              addon_id: String,
+              base_charge: T::Boolean,
+              currency_id: String,
               feature_id: String,
               price:
                 Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::OrHash
             ).returns(T.attached_class)
           end
           def self.new(
+            # Addon ID
+            addon_id: nil,
+            # Whether this is a base charge override
+            base_charge: nil,
+            # The corresponding custom currency id of the recurring credits price
+            currency_id: nil,
             # Feature ID
-            feature_id:,
+            feature_id: nil,
             price: nil
           )
           end
@@ -2422,6 +2455,9 @@ module Stigg
           sig do
             override.returns(
               {
+                addon_id: String,
+                base_charge: T::Boolean,
+                currency_id: String,
                 feature_id: String,
                 price: Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price
               }
