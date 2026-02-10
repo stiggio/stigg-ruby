@@ -28,7 +28,8 @@ class Stigg::Test::Resources::V1::ProductsTest < Stigg::Test::ResourceTest
         metadata: ^(Stigg::Internal::Type::HashOf[String]),
         multiple_subscriptions: Stigg::Internal::Type::Boolean,
         status: Stigg::Models::V1::ProductListProductsResponse::Status,
-        updated_at: Time
+        updated_at: Time,
+        product_settings: Stigg::Models::V1::ProductListProductsResponse::ProductSettings | nil
       }
     end
   end
