@@ -61,13 +61,21 @@ module Stigg
 
         # Retrieves a paginated list of coupons in the environment.
         #
-        # @overload list(after: nil, before: nil, limit: nil, request_options: {})
+        # @overload list(id: nil, after: nil, before: nil, created_at: nil, limit: nil, status: nil, type: nil, request_options: {})
+        #
+        # @param id [String] Filter by entity ID
         #
         # @param after [String] Return items that come after this cursor
         #
         # @param before [String] Return items that come before this cursor
         #
+        # @param created_at [Stigg::Models::V1::CouponListParams::CreatedAt] Filter by creation date using range operators: gt, gte, lt, lte
+        #
         # @param limit [Integer] Maximum number of items to return
+        #
+        # @param status [String] Filter by coupon status. Supports comma-separated values for multiple statuses
+        #
+        # @param type [Symbol, Stigg::Models::V1::CouponListParams::Type] Filter by coupon type (FIXED or PERCENTAGE)
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -79,7 +87,7 @@ module Stigg
           @client.request(
             method: :get,
             path: "api/v1/coupons",
-            query: parsed,
+            query: parsed.transform_keys(created_at: "createdAt"),
             page: Stigg::Internal::MyCursorIDPage,
             model: Stigg::Models::V1::CouponListResponse,
             options: options

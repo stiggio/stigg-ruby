@@ -79,20 +79,31 @@ module Stigg
           )
         end
 
+        # Some parameter documentations has been truncated, see
+        # {Stigg::Models::V1::SubscriptionListParams} for more details.
+        #
         # Retrieves a paginated list of subscriptions, with optional filters for customer,
         # status, and plan.
         #
-        # @overload list(after: nil, before: nil, customer_id: nil, limit: nil, status: nil, request_options: {})
+        # @overload list(after: nil, before: nil, created_at: nil, customer_id: nil, limit: nil, plan_id: nil, pricing_type: nil, resource_id: nil, status: nil, request_options: {})
         #
         # @param after [String] Return items that come after this cursor
         #
         # @param before [String] Return items that come before this cursor
         #
+        # @param created_at [Stigg::Models::V1::SubscriptionListParams::CreatedAt] Filter by creation date using range operators: gt, gte, lt, lte
+        #
         # @param customer_id [String] Filter by customer ID
         #
         # @param limit [Integer] Maximum number of items to return
         #
-        # @param status [String] Filter by status (comma-separated)
+        # @param plan_id [String] Filter by plan ID
+        #
+        # @param pricing_type [String] Filter by pricing type. Supports comma-separated values for multiple types
+        #
+        # @param resource_id [String] Filter by resource ID
+        #
+        # @param status [String] Filter by subscription status. Supports comma-separated values for multiple stat
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -104,7 +115,13 @@ module Stigg
           @client.request(
             method: :get,
             path: "api/v1/subscriptions",
-            query: parsed.transform_keys(customer_id: "customerId"),
+            query: parsed.transform_keys(
+              created_at: "createdAt",
+              customer_id: "customerId",
+              plan_id: "planId",
+              pricing_type: "pricingType",
+              resource_id: "resourceId"
+            ),
             page: Stigg::Internal::MyCursorIDPage,
             model: Stigg::Models::V1::SubscriptionListResponse,
             options: options

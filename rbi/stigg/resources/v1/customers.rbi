@@ -63,7 +63,10 @@ module Stigg
           params(
             after: String,
             before: String,
+            created_at: Stigg::V1::CustomerListParams::CreatedAt::OrHash,
+            email: String,
             limit: Integer,
+            name: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(
             Stigg::Internal::MyCursorIDPage[
@@ -76,8 +79,14 @@ module Stigg
           after: nil,
           # Return items that come before this cursor
           before: nil,
+          # Filter by creation date using range operators: gt, gte, lt, lte
+          created_at: nil,
+          # Filter by exact customer email address
+          email: nil,
           # Maximum number of items to return
           limit: nil,
+          # Filter by exact customer name
+          name: nil,
           request_options: {}
         )
         end
