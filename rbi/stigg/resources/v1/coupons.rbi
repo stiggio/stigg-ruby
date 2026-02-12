@@ -57,9 +57,13 @@ module Stigg
         # Retrieves a paginated list of coupons in the environment.
         sig do
           params(
+            id: String,
             after: String,
             before: String,
+            created_at: Stigg::V1::CouponListParams::CreatedAt::OrHash,
             limit: Integer,
+            status: String,
+            type: Stigg::V1::CouponListParams::Type::OrSymbol,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(
             Stigg::Internal::MyCursorIDPage[
@@ -68,12 +72,20 @@ module Stigg
           )
         end
         def list(
+          # Filter by entity ID
+          id: nil,
           # Return items that come after this cursor
           after: nil,
           # Return items that come before this cursor
           before: nil,
+          # Filter by creation date using range operators: gt, gte, lt, lte
+          created_at: nil,
           # Maximum number of items to return
           limit: nil,
+          # Filter by coupon status. Supports comma-separated values for multiple statuses
+          status: nil,
+          # Filter by coupon type (FIXED or PERCENTAGE)
+          type: nil,
           request_options: {}
         )
         end

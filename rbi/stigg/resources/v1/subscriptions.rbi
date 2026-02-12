@@ -89,8 +89,12 @@ module Stigg
           params(
             after: String,
             before: String,
+            created_at: Stigg::V1::SubscriptionListParams::CreatedAt::OrHash,
             customer_id: String,
             limit: Integer,
+            plan_id: String,
+            pricing_type: String,
+            resource_id: String,
             status: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(
@@ -104,11 +108,20 @@ module Stigg
           after: nil,
           # Return items that come before this cursor
           before: nil,
+          # Filter by creation date using range operators: gt, gte, lt, lte
+          created_at: nil,
           # Filter by customer ID
           customer_id: nil,
           # Maximum number of items to return
           limit: nil,
-          # Filter by status (comma-separated)
+          # Filter by plan ID
+          plan_id: nil,
+          # Filter by pricing type. Supports comma-separated values for multiple types
+          pricing_type: nil,
+          # Filter by resource ID
+          resource_id: nil,
+          # Filter by subscription status. Supports comma-separated values for multiple
+          # statuses
           status: nil,
           request_options: {}
         )

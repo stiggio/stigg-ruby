@@ -2,12 +2,24 @@ module Stigg
   module Models
     module V1
       type coupon_list_params =
-        { after: String, before: String, limit: Integer }
+        {
+          id: String,
+          after: String,
+          before: String,
+          created_at: Stigg::V1::CouponListParams::CreatedAt,
+          limit: Integer,
+          status: String,
+          type: Stigg::Models::V1::CouponListParams::type_
+        }
         & Stigg::Internal::Type::request_parameters
 
       class CouponListParams < Stigg::Internal::Type::BaseModel
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
+
+        attr_reader id: String?
+
+        def id=: (String) -> String
 
         attr_reader after: String?
 
@@ -17,23 +29,82 @@ module Stigg
 
         def before=: (String) -> String
 
+        attr_reader created_at: Stigg::V1::CouponListParams::CreatedAt?
+
+        def created_at=: (
+          Stigg::V1::CouponListParams::CreatedAt
+        ) -> Stigg::V1::CouponListParams::CreatedAt
+
         attr_reader limit: Integer?
 
         def limit=: (Integer) -> Integer
 
+        attr_reader status: String?
+
+        def status=: (String) -> String
+
+        attr_reader type: Stigg::Models::V1::CouponListParams::type_?
+
+        def type=: (
+          Stigg::Models::V1::CouponListParams::type_
+        ) -> Stigg::Models::V1::CouponListParams::type_
+
         def initialize: (
+          ?id: String,
           ?after: String,
           ?before: String,
+          ?created_at: Stigg::V1::CouponListParams::CreatedAt,
           ?limit: Integer,
+          ?status: String,
+          ?type: Stigg::Models::V1::CouponListParams::type_,
           ?request_options: Stigg::request_opts
         ) -> void
 
         def to_hash: -> {
+          id: String,
           after: String,
           before: String,
+          created_at: Stigg::V1::CouponListParams::CreatedAt,
           limit: Integer,
+          status: String,
+          type: Stigg::Models::V1::CouponListParams::type_,
           request_options: Stigg::RequestOptions
         }
+
+        type created_at = { gt: Time, gte: Time, lt: Time, lte: Time }
+
+        class CreatedAt < Stigg::Internal::Type::BaseModel
+          attr_reader gt: Time?
+
+          def gt=: (Time) -> Time
+
+          attr_reader gte: Time?
+
+          def gte=: (Time) -> Time
+
+          attr_reader lt: Time?
+
+          def lt=: (Time) -> Time
+
+          attr_reader lte: Time?
+
+          def lte=: (Time) -> Time
+
+          def initialize: (?gt: Time, ?gte: Time, ?lt: Time, ?lte: Time) -> void
+
+          def to_hash: -> { gt: Time, gte: Time, lt: Time, lte: Time }
+        end
+
+        type type_ = :FIXED | :PERCENTAGE
+
+        module Type
+          extend Stigg::Internal::Type::Enum
+
+          FIXED: :FIXED
+          PERCENTAGE: :PERCENTAGE
+
+          def self?.values: -> ::Array[Stigg::Models::V1::CouponListParams::type_]
+        end
       end
     end
   end
