@@ -365,13 +365,19 @@ module Stigg
               #   @return [Time, nil]
               optional :entitlement_updated_at, Time, api_name: :entitlementUpdatedAt
 
+              # @!attribute usage_period_end
+              #   The end date of the current billing period for recurring credit grants.
+              #
+              #   @return [Time, nil]
+              optional :usage_period_end, Time, api_name: :usagePeriodEnd
+
               # @!attribute valid_until
               #   The next time the entitlement should be recalculated
               #
               #   @return [Time, nil]
               optional :valid_until, Time, api_name: :validUntil
 
-              # @!method initialize(access_denied_reason:, currency:, current_usage:, is_granted:, type:, usage_limit:, usage_updated_at:, entitlement_updated_at: nil, valid_until: nil)
+              # @!method initialize(access_denied_reason:, currency:, current_usage:, is_granted:, type:, usage_limit:, usage_updated_at:, entitlement_updated_at: nil, usage_period_end: nil, valid_until: nil)
               #   @param access_denied_reason [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::AccessDeniedReason, nil]
               #
               #   @param currency [Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::Currency] The currency associated with a credit entitlement.
@@ -387,6 +393,8 @@ module Stigg
               #   @param usage_updated_at [Time] Timestamp of the last update to the credit usage.
               #
               #   @param entitlement_updated_at [Time] Timestamp of the last update to the entitlement grant or configuration.
+              #
+              #   @param usage_period_end [Time] The end date of the current billing period for recurring credit grants.
               #
               #   @param valid_until [Time] The next time the entitlement should be recalculated
 
