@@ -765,6 +765,13 @@ module Stigg
               sig { params(entitlement_updated_at: Time).void }
               attr_writer :entitlement_updated_at
 
+              # The end date of the current billing period for recurring credit grants.
+              sig { returns(T.nilable(Time)) }
+              attr_reader :usage_period_end
+
+              sig { params(usage_period_end: Time).void }
+              attr_writer :usage_period_end
+
               # The next time the entitlement should be recalculated
               sig { returns(T.nilable(Time)) }
               attr_reader :valid_until
@@ -787,6 +794,7 @@ module Stigg
                   usage_limit: Float,
                   usage_updated_at: Time,
                   entitlement_updated_at: Time,
+                  usage_period_end: Time,
                   valid_until: Time
                 ).returns(T.attached_class)
               end
@@ -802,6 +810,8 @@ module Stigg
                 usage_updated_at:,
                 # Timestamp of the last update to the entitlement grant or configuration.
                 entitlement_updated_at: nil,
+                # The end date of the current billing period for recurring credit grants.
+                usage_period_end: nil,
                 # The next time the entitlement should be recalculated
                 valid_until: nil
               )
@@ -823,6 +833,7 @@ module Stigg
                     usage_limit: Float,
                     usage_updated_at: Time,
                     entitlement_updated_at: Time,
+                    usage_period_end: Time,
                     valid_until: Time
                   }
                 )

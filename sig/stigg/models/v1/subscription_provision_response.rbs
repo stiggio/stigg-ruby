@@ -296,6 +296,7 @@ module Stigg
                 usage_limit: Float,
                 usage_updated_at: Time,
                 entitlement_updated_at: Time,
+                usage_period_end: Time,
                 valid_until: Time
               }
 
@@ -318,6 +319,10 @@ module Stigg
 
               def entitlement_updated_at=: (Time) -> Time
 
+              attr_reader usage_period_end: Time?
+
+              def usage_period_end=: (Time) -> Time
+
               attr_reader valid_until: Time?
 
               def valid_until=: (Time) -> Time
@@ -331,6 +336,7 @@ module Stigg
                 usage_limit: Float,
                 usage_updated_at: Time,
                 ?entitlement_updated_at: Time,
+                ?usage_period_end: Time,
                 ?valid_until: Time
               ) -> void
 
@@ -343,6 +349,7 @@ module Stigg
                 usage_limit: Float,
                 usage_updated_at: Time,
                 entitlement_updated_at: Time,
+                usage_period_end: Time,
                 valid_until: Time
               }
 
