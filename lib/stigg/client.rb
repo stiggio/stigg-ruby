@@ -50,7 +50,7 @@ module Stigg
       initial_retry_delay: self.class::DEFAULT_INITIAL_RETRY_DELAY,
       max_retry_delay: self.class::DEFAULT_MAX_RETRY_DELAY
     )
-      base_url ||= "https://api.example.com"
+      base_url ||= "https://api.stigg.io"
 
       if api_key.nil?
         raise ArgumentError.new("api_key is required, and can be set via environ: \"STIGG_API_KEY\"")
