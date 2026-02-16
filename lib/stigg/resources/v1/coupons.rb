@@ -7,7 +7,7 @@ module Stigg
         # Creates a new discount coupon with percentage or fixed amount off, applicable to
         # customer subscriptions.
         #
-        # @overload create(id:, amounts_off:, description:, duration_in_months:, name:, percent_off:, additional_meta_data: nil, request_options: {})
+        # @overload create(id:, amounts_off:, description:, duration_in_months:, metadata:, name:, percent_off:, request_options: {})
         #
         # @param id [String] The unique identifier for the entity
         #
@@ -17,11 +17,11 @@ module Stigg
         #
         # @param duration_in_months [Integer, nil] Duration of the coupon validity in months
         #
+        # @param metadata [Hash{Symbol=>String}, nil] Metadata associated with the entity
+        #
         # @param name [String] Name of the coupon
         #
         # @param percent_off [Float, nil] Percentage discount off the original price
-        #
-        # @param additional_meta_data [Object] Metadata associated with the entity
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #

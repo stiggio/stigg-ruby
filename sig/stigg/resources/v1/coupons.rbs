@@ -7,9 +7,9 @@ module Stigg
           amounts_off: ::Array[Stigg::V1::CouponCreateParams::AmountsOff]?,
           description: String?,
           duration_in_months: Integer?,
+          metadata: ::Hash[Symbol, String]?,
           name: String,
           percent_off: Float?,
-          ?additional_meta_data: top,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Coupon
 

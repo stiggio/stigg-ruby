@@ -12,6 +12,7 @@ class Stigg::Test::Resources::V1::CouponsTest < Stigg::Test::ResourceTest
         amounts_off: [{amount: 0, currency: :usd}],
         description: "description",
         duration_in_months: 1,
+        metadata: {foo: "string"},
         name: "name",
         percent_off: 1
       )
