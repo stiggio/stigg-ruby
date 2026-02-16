@@ -15,9 +15,9 @@ module Stigg
               ),
             description: T.nilable(String),
             duration_in_months: T.nilable(Integer),
+            metadata: T.nilable(T::Hash[Symbol, String]),
             name: String,
             percent_off: T.nilable(Float),
-            additional_meta_data: T.anything,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Coupon)
         end
@@ -30,12 +30,12 @@ module Stigg
           description:,
           # Duration of the coupon validity in months
           duration_in_months:,
+          # Metadata associated with the entity
+          metadata:,
           # Name of the coupon
           name:,
           # Percentage discount off the original price
           percent_off:,
-          # Metadata associated with the entity
-          additional_meta_data: nil,
           request_options: {}
         )
         end

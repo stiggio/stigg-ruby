@@ -35,6 +35,12 @@ module Stigg
         #   @return [Integer, nil]
         required :duration_in_months, Integer, api_name: :durationInMonths, nil?: true
 
+        # @!attribute metadata
+        #   Metadata associated with the entity
+        #
+        #   @return [Hash{Symbol=>String}, nil]
+        required :metadata, Stigg::Internal::Type::HashOf[String], nil?: true
+
         # @!attribute name
         #   Name of the coupon
         #
@@ -47,13 +53,7 @@ module Stigg
         #   @return [Float, nil]
         required :percent_off, Float, api_name: :percentOff, nil?: true
 
-        # @!attribute additional_meta_data
-        #   Metadata associated with the entity
-        #
-        #   @return [Object, nil]
-        optional :additional_meta_data, Stigg::Internal::Type::Unknown, api_name: :additionalMetaData
-
-        # @!method initialize(id:, amounts_off:, description:, duration_in_months:, name:, percent_off:, additional_meta_data: nil, request_options: {})
+        # @!method initialize(id:, amounts_off:, description:, duration_in_months:, metadata:, name:, percent_off:, request_options: {})
         #   @param id [String] The unique identifier for the entity
         #
         #   @param amounts_off [Array<Stigg::Models::V1::CouponCreateParams::AmountsOff>, nil] Fixed amount discounts in different currencies
@@ -62,11 +62,11 @@ module Stigg
         #
         #   @param duration_in_months [Integer, nil] Duration of the coupon validity in months
         #
+        #   @param metadata [Hash{Symbol=>String}, nil] Metadata associated with the entity
+        #
         #   @param name [String] Name of the coupon
         #
         #   @param percent_off [Float, nil] Percentage discount off the original price
-        #
-        #   @param additional_meta_data [Object] Metadata associated with the entity
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 

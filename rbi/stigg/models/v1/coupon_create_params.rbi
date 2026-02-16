@@ -32,6 +32,10 @@ module Stigg
         sig { returns(T.nilable(Integer)) }
         attr_accessor :duration_in_months
 
+        # Metadata associated with the entity
+        sig { returns(T.nilable(T::Hash[Symbol, String])) }
+        attr_accessor :metadata
+
         # Name of the coupon
         sig { returns(String) }
         attr_accessor :name
@@ -39,13 +43,6 @@ module Stigg
         # Percentage discount off the original price
         sig { returns(T.nilable(Float)) }
         attr_accessor :percent_off
-
-        # Metadata associated with the entity
-        sig { returns(T.nilable(T.anything)) }
-        attr_reader :additional_meta_data
-
-        sig { params(additional_meta_data: T.anything).void }
-        attr_writer :additional_meta_data
 
         sig do
           params(
@@ -56,9 +53,9 @@ module Stigg
               ),
             description: T.nilable(String),
             duration_in_months: T.nilable(Integer),
+            metadata: T.nilable(T::Hash[Symbol, String]),
             name: String,
             percent_off: T.nilable(Float),
-            additional_meta_data: T.anything,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -71,12 +68,12 @@ module Stigg
           description:,
           # Duration of the coupon validity in months
           duration_in_months:,
+          # Metadata associated with the entity
+          metadata:,
           # Name of the coupon
           name:,
           # Percentage discount off the original price
           percent_off:,
-          # Metadata associated with the entity
-          additional_meta_data: nil,
           request_options: {}
         )
         end
@@ -89,9 +86,9 @@ module Stigg
                 T.nilable(T::Array[Stigg::V1::CouponCreateParams::AmountsOff]),
               description: T.nilable(String),
               duration_in_months: T.nilable(Integer),
+              metadata: T.nilable(T::Hash[Symbol, String]),
               name: String,
               percent_off: T.nilable(Float),
-              additional_meta_data: T.anything,
               request_options: Stigg::RequestOptions
             }
           )
