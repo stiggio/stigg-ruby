@@ -9,7 +9,7 @@ module Stigg
             created_at: Stigg::V1::Events::AddonListAddonsParams::CreatedAt,
             limit: Integer,
             product_id: String,
-            status: Stigg::Models::V1::Events::AddonListAddonsParams::status
+            status: String
           }
           & Stigg::Internal::Type::request_parameters
 
@@ -39,11 +39,9 @@ module Stigg
 
           def product_id=: (String) -> String
 
-          attr_reader status: Stigg::Models::V1::Events::AddonListAddonsParams::status?
+          attr_reader status: String?
 
-          def status=: (
-            Stigg::Models::V1::Events::AddonListAddonsParams::status
-          ) -> Stigg::Models::V1::Events::AddonListAddonsParams::status
+          def status=: (String) -> String
 
           def initialize: (
             ?after: String,
@@ -51,7 +49,7 @@ module Stigg
             ?created_at: Stigg::V1::Events::AddonListAddonsParams::CreatedAt,
             ?limit: Integer,
             ?product_id: String,
-            ?status: Stigg::Models::V1::Events::AddonListAddonsParams::status,
+            ?status: String,
             ?request_options: Stigg::request_opts
           ) -> void
 
@@ -61,7 +59,7 @@ module Stigg
             created_at: Stigg::V1::Events::AddonListAddonsParams::CreatedAt,
             limit: Integer,
             product_id: String,
-            status: Stigg::Models::V1::Events::AddonListAddonsParams::status,
+            status: String,
             request_options: Stigg::RequestOptions
           }
 
@@ -92,18 +90,6 @@ module Stigg
             ) -> void
 
             def to_hash: -> { gt: Time, gte: Time, lt: Time, lte: Time }
-          end
-
-          type status = :DRAFT | :PUBLISHED | :ARCHIVED
-
-          module Status
-            extend Stigg::Internal::Type::Enum
-
-            DRAFT: :DRAFT
-            PUBLISHED: :PUBLISHED
-            ARCHIVED: :ARCHIVED
-
-            def self?.values: -> ::Array[Stigg::Models::V1::Events::AddonListAddonsParams::status]
           end
         end
       end
