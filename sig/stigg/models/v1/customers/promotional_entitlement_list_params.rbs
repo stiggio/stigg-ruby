@@ -1,0 +1,91 @@
+module Stigg
+  module Models
+    module V1
+      module Customers
+        type promotional_entitlement_list_params =
+          {
+            after: String,
+            before: String,
+            created_at: Stigg::V1::Customers::PromotionalEntitlementListParams::CreatedAt,
+            limit: Integer,
+            status: String
+          }
+          & Stigg::Internal::Type::request_parameters
+
+        class PromotionalEntitlementListParams < Stigg::Internal::Type::BaseModel
+          extend Stigg::Internal::Type::RequestParameters::Converter
+          include Stigg::Internal::Type::RequestParameters
+
+          attr_reader after: String?
+
+          def after=: (String) -> String
+
+          attr_reader before: String?
+
+          def before=: (String) -> String
+
+          attr_reader created_at: Stigg::V1::Customers::PromotionalEntitlementListParams::CreatedAt?
+
+          def created_at=: (
+            Stigg::V1::Customers::PromotionalEntitlementListParams::CreatedAt
+          ) -> Stigg::V1::Customers::PromotionalEntitlementListParams::CreatedAt
+
+          attr_reader limit: Integer?
+
+          def limit=: (Integer) -> Integer
+
+          attr_reader status: String?
+
+          def status=: (String) -> String
+
+          def initialize: (
+            ?after: String,
+            ?before: String,
+            ?created_at: Stigg::V1::Customers::PromotionalEntitlementListParams::CreatedAt,
+            ?limit: Integer,
+            ?status: String,
+            ?request_options: Stigg::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            after: String,
+            before: String,
+            created_at: Stigg::V1::Customers::PromotionalEntitlementListParams::CreatedAt,
+            limit: Integer,
+            status: String,
+            request_options: Stigg::RequestOptions
+          }
+
+          type created_at = { gt: Time, gte: Time, lt: Time, lte: Time }
+
+          class CreatedAt < Stigg::Internal::Type::BaseModel
+            attr_reader gt: Time?
+
+            def gt=: (Time) -> Time
+
+            attr_reader gte: Time?
+
+            def gte=: (Time) -> Time
+
+            attr_reader lt: Time?
+
+            def lt=: (Time) -> Time
+
+            attr_reader lte: Time?
+
+            def lte=: (Time) -> Time
+
+            def initialize: (
+              ?gt: Time,
+              ?gte: Time,
+              ?lt: Time,
+              ?lte: Time
+            ) -> void
+
+            def to_hash: -> { gt: Time, gte: Time, lt: Time, lte: Time }
+          end
+        end
+      end
+    end
+  end
+end

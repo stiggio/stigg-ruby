@@ -7,6 +7,11 @@ module Stigg
         sig { returns(Stigg::Resources::V1::Customers::PaymentMethod) }
         attr_reader :payment_method
 
+        sig do
+          returns(Stigg::Resources::V1::Customers::PromotionalEntitlements)
+        end
+        attr_reader :promotional_entitlements
+
         # Retrieves a customer by their unique identifier, including billing information
         # and subscription status.
         sig do
