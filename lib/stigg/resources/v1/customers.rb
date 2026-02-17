@@ -7,9 +7,6 @@ module Stigg
         # @return [Stigg::Resources::V1::Customers::PaymentMethod]
         attr_reader :payment_method
 
-        # @return [Stigg::Resources::V1::Customers::PromotionalEntitlements]
-        attr_reader :promotional_entitlements
-
         # Retrieves a customer by their unique identifier, including billing information
         # and subscription status.
         #
@@ -231,7 +228,6 @@ module Stigg
         def initialize(client:)
           @client = client
           @payment_method = Stigg::Resources::V1::Customers::PaymentMethod.new(client: client)
-          @promotional_entitlements = Stigg::Resources::V1::Customers::PromotionalEntitlements.new(client: client)
         end
       end
     end
