@@ -61,20 +61,10 @@ module Stigg
           attr_writer :product_id
 
           # Filter by addon status. Supports comma-separated values for multiple statuses
-          sig do
-            returns(
-              T.nilable(
-                Stigg::V1::Events::AddonListAddonsParams::Status::OrSymbol
-              )
-            )
-          end
+          sig { returns(T.nilable(String)) }
           attr_reader :status
 
-          sig do
-            params(
-              status: Stigg::V1::Events::AddonListAddonsParams::Status::OrSymbol
-            ).void
-          end
+          sig { params(status: String).void }
           attr_writer :status
 
           sig do
@@ -85,8 +75,7 @@ module Stigg
                 Stigg::V1::Events::AddonListAddonsParams::CreatedAt::OrHash,
               limit: Integer,
               product_id: String,
-              status:
-                Stigg::V1::Events::AddonListAddonsParams::Status::OrSymbol,
+              status: String,
               request_options: Stigg::RequestOptions::OrHash
             ).returns(T.attached_class)
           end
@@ -115,8 +104,7 @@ module Stigg
                 created_at: Stigg::V1::Events::AddonListAddonsParams::CreatedAt,
                 limit: Integer,
                 product_id: String,
-                status:
-                  Stigg::V1::Events::AddonListAddonsParams::Status::OrSymbol,
+                status: String,
                 request_options: Stigg::RequestOptions
               }
             )
@@ -183,43 +171,6 @@ module Stigg
               override.returns({ gt: Time, gte: Time, lt: Time, lte: Time })
             end
             def to_hash
-            end
-          end
-
-          # Filter by addon status. Supports comma-separated values for multiple statuses
-          module Status
-            extend Stigg::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(Symbol, Stigg::V1::Events::AddonListAddonsParams::Status)
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            DRAFT =
-              T.let(
-                :DRAFT,
-                Stigg::V1::Events::AddonListAddonsParams::Status::TaggedSymbol
-              )
-            PUBLISHED =
-              T.let(
-                :PUBLISHED,
-                Stigg::V1::Events::AddonListAddonsParams::Status::TaggedSymbol
-              )
-            ARCHIVED =
-              T.let(
-                :ARCHIVED,
-                Stigg::V1::Events::AddonListAddonsParams::Status::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  Stigg::V1::Events::AddonListAddonsParams::Status::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
             end
           end
         end

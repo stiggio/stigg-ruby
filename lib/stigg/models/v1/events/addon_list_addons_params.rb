@@ -42,8 +42,8 @@ module Stigg
           # @!attribute status
           #   Filter by addon status. Supports comma-separated values for multiple statuses
           #
-          #   @return [Symbol, Stigg::Models::V1::Events::AddonListAddonsParams::Status, nil]
-          optional :status, enum: -> { Stigg::V1::Events::AddonListAddonsParams::Status }
+          #   @return [String, nil]
+          optional :status, String
 
           # @!method initialize(after: nil, before: nil, created_at: nil, limit: nil, product_id: nil, status: nil, request_options: {})
           #   @param after [String] Return items that come after this cursor
@@ -56,7 +56,7 @@ module Stigg
           #
           #   @param product_id [String] Filter by product ID
           #
-          #   @param status [Symbol, Stigg::Models::V1::Events::AddonListAddonsParams::Status] Filter by addon status. Supports comma-separated values for multiple statuses
+          #   @param status [String] Filter by addon status. Supports comma-separated values for multiple statuses
           #
           #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 
@@ -95,18 +95,6 @@ module Stigg
             #   @param lt [Time] Less than the specified createdAt value
             #
             #   @param lte [Time] Less than or equal to the specified createdAt value
-          end
-
-          # Filter by addon status. Supports comma-separated values for multiple statuses
-          module Status
-            extend Stigg::Internal::Type::Enum
-
-            DRAFT = :DRAFT
-            PUBLISHED = :PUBLISHED
-            ARCHIVED = :ARCHIVED
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
           end
         end
       end

@@ -71,8 +71,7 @@ module Stigg
                 Stigg::V1::Events::AddonListAddonsParams::CreatedAt::OrHash,
               limit: Integer,
               product_id: String,
-              status:
-                Stigg::V1::Events::AddonListAddonsParams::Status::OrSymbol,
+              status: String,
               request_options: Stigg::RequestOptions::OrHash
             ).returns(
               Stigg::Internal::MyCursorIDPage[
