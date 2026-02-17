@@ -1,0 +1,33 @@
+module Stigg
+  module Resources
+    class V1
+      class Customers
+        class PromotionalEntitlements
+          def create: (
+            String id,
+            promotional_entitlements: ::Array[Stigg::V1::Customers::PromotionalEntitlementCreateParams::PromotionalEntitlement],
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Customers::PromotionalEntitlementCreateResponse
+
+          def list: (
+            String id,
+            ?after: String,
+            ?before: String,
+            ?created_at: Stigg::V1::Customers::PromotionalEntitlementListParams::CreatedAt,
+            ?limit: Integer,
+            ?status: String,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::Customers::PromotionalEntitlementListResponse]
+
+          def revoke: (
+            String feature_id,
+            id: String,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Customers::PromotionalEntitlementRevokeResponse
+
+          def initialize: (client: Stigg::Client) -> void
+        end
+      end
+    end
+  end
+end
