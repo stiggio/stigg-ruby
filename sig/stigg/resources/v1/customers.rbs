@@ -4,8 +4,6 @@ module Stigg
       class Customers
         attr_reader payment_method: Stigg::Resources::V1::Customers::PaymentMethod
 
-        attr_reader promotional_entitlements: Stigg::Resources::V1::Customers::PromotionalEntitlements
-
         def retrieve: (
           String id,
           ?request_options: Stigg::request_opts
