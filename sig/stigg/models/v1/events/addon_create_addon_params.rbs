@@ -1,0 +1,110 @@
+module Stigg
+  module Models
+    module V1
+      module Events
+        type addon_create_addon_params =
+          {
+            id: String,
+            display_name: String,
+            product_id: String,
+            billing_id: String,
+            description: String,
+            max_quantity: Integer,
+            metadata: ::Hash[Symbol, String],
+            pricing_type: Stigg::Models::V1::Events::AddonCreateAddonParams::pricing_type,
+            status: Stigg::Models::V1::Events::AddonCreateAddonParams::status
+          }
+          & Stigg::Internal::Type::request_parameters
+
+        class AddonCreateAddonParams < Stigg::Internal::Type::BaseModel
+          extend Stigg::Internal::Type::RequestParameters::Converter
+          include Stigg::Internal::Type::RequestParameters
+
+          attr_accessor id: String
+
+          attr_accessor display_name: String
+
+          attr_accessor product_id: String
+
+          attr_reader billing_id: String?
+
+          def billing_id=: (String) -> String
+
+          attr_reader description: String?
+
+          def description=: (String) -> String
+
+          attr_reader max_quantity: Integer?
+
+          def max_quantity=: (Integer) -> Integer
+
+          attr_reader metadata: ::Hash[Symbol, String]?
+
+          def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+          attr_reader pricing_type: Stigg::Models::V1::Events::AddonCreateAddonParams::pricing_type?
+
+          def pricing_type=: (
+            Stigg::Models::V1::Events::AddonCreateAddonParams::pricing_type
+          ) -> Stigg::Models::V1::Events::AddonCreateAddonParams::pricing_type
+
+          attr_reader status: Stigg::Models::V1::Events::AddonCreateAddonParams::status?
+
+          def status=: (
+            Stigg::Models::V1::Events::AddonCreateAddonParams::status
+          ) -> Stigg::Models::V1::Events::AddonCreateAddonParams::status
+
+          def initialize: (
+            id: String,
+            display_name: String,
+            product_id: String,
+            ?billing_id: String,
+            ?description: String,
+            ?max_quantity: Integer,
+            ?metadata: ::Hash[Symbol, String],
+            ?pricing_type: Stigg::Models::V1::Events::AddonCreateAddonParams::pricing_type,
+            ?status: Stigg::Models::V1::Events::AddonCreateAddonParams::status,
+            ?request_options: Stigg::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            display_name: String,
+            product_id: String,
+            billing_id: String,
+            description: String,
+            max_quantity: Integer,
+            metadata: ::Hash[Symbol, String],
+            pricing_type: Stigg::Models::V1::Events::AddonCreateAddonParams::pricing_type,
+            status: Stigg::Models::V1::Events::AddonCreateAddonParams::status,
+            request_options: Stigg::RequestOptions
+          }
+
+          type pricing_type = :FREE | :PAID | :CUSTOM
+
+          module PricingType
+            extend Stigg::Internal::Type::Enum
+
+            FREE: :FREE
+            PAID: :PAID
+            CUSTOM: :CUSTOM
+
+            def self?.values: -> ::Array[Stigg::Models::V1::Events::AddonCreateAddonParams::pricing_type]
+          end
+
+          type status = :DRAFT | :PUBLISHED | :ARCHIVED
+
+          module Status
+            extend Stigg::Internal::Type::Enum
+
+            DRAFT: :DRAFT
+            PUBLISHED: :PUBLISHED
+            ARCHIVED: :ARCHIVED
+
+            def self?.values: -> ::Array[Stigg::Models::V1::Events::AddonCreateAddonParams::status]
+          end
+        end
+      end
+    end
+  end
+end

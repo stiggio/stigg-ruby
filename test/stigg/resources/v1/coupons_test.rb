@@ -78,4 +78,36 @@ class Stigg::Test::Resources::V1::CouponsTest < Stigg::Test::ResourceTest
       }
     end
   end
+
+  def test_archive_coupon
+    skip("Prism tests are disabled")
+
+    response = @stigg.v1.coupons.archive_coupon("x")
+
+    assert_pattern do
+      response => Stigg::V1::Coupon
+    end
+
+    assert_pattern do
+      response => {
+        data: Stigg::V1::Coupon::Data
+      }
+    end
+  end
+
+  def test_update_coupon
+    skip("Prism tests are disabled")
+
+    response = @stigg.v1.coupons.update_coupon("x")
+
+    assert_pattern do
+      response => Stigg::V1::Coupon
+    end
+
+    assert_pattern do
+      response => {
+        data: Stigg::V1::Coupon::Data
+      }
+    end
+  end
 end

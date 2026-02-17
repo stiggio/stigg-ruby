@@ -90,6 +90,43 @@ module Stigg
         )
         end
 
+        # Archives a coupon, preventing it from being applied to new subscriptions.
+        sig do
+          params(
+            id: String,
+            request_options: Stigg::RequestOptions::OrHash
+          ).returns(Stigg::V1::Coupon)
+        end
+        def archive_coupon(
+          # The unique identifier of the entity
+          id,
+          request_options: {}
+        )
+        end
+
+        # Updates an existing coupon's properties such as name, description, and metadata.
+        sig do
+          params(
+            id: String,
+            description: T.nilable(String),
+            metadata: T.nilable(T::Hash[Symbol, String]),
+            name: String,
+            request_options: Stigg::RequestOptions::OrHash
+          ).returns(Stigg::V1::Coupon)
+        end
+        def update_coupon(
+          # The unique identifier of the entity
+          id,
+          # Description of the coupon
+          description: nil,
+          # Metadata associated with the entity
+          metadata: nil,
+          # Name of the coupon
+          name: nil,
+          request_options: {}
+        )
+        end
+
         # @api private
         sig { params(client: Stigg::Client).returns(T.attached_class) }
         def self.new(client:)

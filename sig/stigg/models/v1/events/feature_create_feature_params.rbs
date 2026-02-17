@@ -1,0 +1,199 @@
+module Stigg
+  module Models
+    module V1
+      module Events
+        type feature_create_feature_params =
+          {
+            id: String,
+            display_name: String,
+            feature_type: Stigg::Models::V1::Events::FeatureCreateFeatureParams::feature_type,
+            description: String,
+            enum_configuration: ::Array[Stigg::V1::Events::FeatureCreateFeatureParams::EnumConfiguration],
+            feature_status: Stigg::Models::V1::Events::FeatureCreateFeatureParams::feature_status,
+            feature_units: String,
+            feature_units_plural: String,
+            metadata: ::Hash[Symbol, String],
+            meter_type: Stigg::Models::V1::Events::FeatureCreateFeatureParams::meter_type,
+            unit_transformation: Stigg::V1::Events::FeatureCreateFeatureParams::UnitTransformation?
+          }
+          & Stigg::Internal::Type::request_parameters
+
+        class FeatureCreateFeatureParams < Stigg::Internal::Type::BaseModel
+          extend Stigg::Internal::Type::RequestParameters::Converter
+          include Stigg::Internal::Type::RequestParameters
+
+          attr_accessor id: String
+
+          attr_accessor display_name: String
+
+          attr_accessor feature_type: Stigg::Models::V1::Events::FeatureCreateFeatureParams::feature_type
+
+          attr_reader description: String?
+
+          def description=: (String) -> String
+
+          attr_reader enum_configuration: ::Array[Stigg::V1::Events::FeatureCreateFeatureParams::EnumConfiguration]?
+
+          def enum_configuration=: (
+            ::Array[Stigg::V1::Events::FeatureCreateFeatureParams::EnumConfiguration]
+          ) -> ::Array[Stigg::V1::Events::FeatureCreateFeatureParams::EnumConfiguration]
+
+          attr_reader feature_status: Stigg::Models::V1::Events::FeatureCreateFeatureParams::feature_status?
+
+          def feature_status=: (
+            Stigg::Models::V1::Events::FeatureCreateFeatureParams::feature_status
+          ) -> Stigg::Models::V1::Events::FeatureCreateFeatureParams::feature_status
+
+          attr_reader feature_units: String?
+
+          def feature_units=: (String) -> String
+
+          attr_reader feature_units_plural: String?
+
+          def feature_units_plural=: (String) -> String
+
+          attr_reader metadata: ::Hash[Symbol, String]?
+
+          def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+          attr_reader meter_type: Stigg::Models::V1::Events::FeatureCreateFeatureParams::meter_type?
+
+          def meter_type=: (
+            Stigg::Models::V1::Events::FeatureCreateFeatureParams::meter_type
+          ) -> Stigg::Models::V1::Events::FeatureCreateFeatureParams::meter_type
+
+          attr_accessor unit_transformation: Stigg::V1::Events::FeatureCreateFeatureParams::UnitTransformation?
+
+          def initialize: (
+            id: String,
+            display_name: String,
+            feature_type: Stigg::Models::V1::Events::FeatureCreateFeatureParams::feature_type,
+            ?description: String,
+            ?enum_configuration: ::Array[Stigg::V1::Events::FeatureCreateFeatureParams::EnumConfiguration],
+            ?feature_status: Stigg::Models::V1::Events::FeatureCreateFeatureParams::feature_status,
+            ?feature_units: String,
+            ?feature_units_plural: String,
+            ?metadata: ::Hash[Symbol, String],
+            ?meter_type: Stigg::Models::V1::Events::FeatureCreateFeatureParams::meter_type,
+            ?unit_transformation: Stigg::V1::Events::FeatureCreateFeatureParams::UnitTransformation?,
+            ?request_options: Stigg::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            display_name: String,
+            feature_type: Stigg::Models::V1::Events::FeatureCreateFeatureParams::feature_type,
+            description: String,
+            enum_configuration: ::Array[Stigg::V1::Events::FeatureCreateFeatureParams::EnumConfiguration],
+            feature_status: Stigg::Models::V1::Events::FeatureCreateFeatureParams::feature_status,
+            feature_units: String,
+            feature_units_plural: String,
+            metadata: ::Hash[Symbol, String],
+            meter_type: Stigg::Models::V1::Events::FeatureCreateFeatureParams::meter_type,
+            unit_transformation: Stigg::V1::Events::FeatureCreateFeatureParams::UnitTransformation?,
+            request_options: Stigg::RequestOptions
+          }
+
+          type feature_type = :BOOLEAN | :NUMBER | :ENUM
+
+          module FeatureType
+            extend Stigg::Internal::Type::Enum
+
+            BOOLEAN: :BOOLEAN
+            NUMBER: :NUMBER
+            ENUM: :ENUM
+
+            def self?.values: -> ::Array[Stigg::Models::V1::Events::FeatureCreateFeatureParams::feature_type]
+          end
+
+          type enum_configuration = { display_name: String, value: String }
+
+          class EnumConfiguration < Stigg::Internal::Type::BaseModel
+            attr_accessor display_name: String
+
+            attr_accessor value: String
+
+            def initialize: (display_name: String, value: String) -> void
+
+            def to_hash: -> { display_name: String, value: String }
+          end
+
+          type feature_status = :NEW | :SUSPENDED | :ACTIVE
+
+          module FeatureStatus
+            extend Stigg::Internal::Type::Enum
+
+            NEW: :NEW
+            SUSPENDED: :SUSPENDED
+            ACTIVE: :ACTIVE
+
+            def self?.values: -> ::Array[Stigg::Models::V1::Events::FeatureCreateFeatureParams::feature_status]
+          end
+
+          type meter_type = :None | :FLUCTUATING | :INCREMENTAL
+
+          module MeterType
+            extend Stigg::Internal::Type::Enum
+
+            NONE: :None
+            FLUCTUATING: :FLUCTUATING
+            INCREMENTAL: :INCREMENTAL
+
+            def self?.values: -> ::Array[Stigg::Models::V1::Events::FeatureCreateFeatureParams::meter_type]
+          end
+
+          type unit_transformation =
+            {
+              divide: Integer,
+              feature_units: String,
+              feature_units_plural: String,
+              round: Stigg::Models::V1::Events::FeatureCreateFeatureParams::UnitTransformation::round
+            }
+
+          class UnitTransformation < Stigg::Internal::Type::BaseModel
+            attr_accessor divide: Integer
+
+            attr_reader feature_units: String?
+
+            def feature_units=: (String) -> String
+
+            attr_reader feature_units_plural: String?
+
+            def feature_units_plural=: (String) -> String
+
+            attr_reader round: Stigg::Models::V1::Events::FeatureCreateFeatureParams::UnitTransformation::round?
+
+            def round=: (
+              Stigg::Models::V1::Events::FeatureCreateFeatureParams::UnitTransformation::round
+            ) -> Stigg::Models::V1::Events::FeatureCreateFeatureParams::UnitTransformation::round
+
+            def initialize: (
+              divide: Integer,
+              ?feature_units: String,
+              ?feature_units_plural: String,
+              ?round: Stigg::Models::V1::Events::FeatureCreateFeatureParams::UnitTransformation::round
+            ) -> void
+
+            def to_hash: -> {
+              divide: Integer,
+              feature_units: String,
+              feature_units_plural: String,
+              round: Stigg::Models::V1::Events::FeatureCreateFeatureParams::UnitTransformation::round
+            }
+
+            type round = :UP | :DOWN
+
+            module Round
+              extend Stigg::Internal::Type::Enum
+
+              UP: :UP
+              DOWN: :DOWN
+
+              def self?.values: -> ::Array[Stigg::Models::V1::Events::FeatureCreateFeatureParams::UnitTransformation::round]
+            end
+          end
+        end
+      end
+    end
+  end
+end

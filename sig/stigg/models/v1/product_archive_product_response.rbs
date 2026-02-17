@@ -1,0 +1,172 @@
+module Stigg
+  module Models
+    module V1
+      type product_archive_product_response =
+        { data: Stigg::Models::V1::ProductArchiveProductResponse::Data }
+
+      class ProductArchiveProductResponse < Stigg::Internal::Type::BaseModel
+        attr_accessor data: Stigg::Models::V1::ProductArchiveProductResponse::Data
+
+        def initialize: (
+          data: Stigg::Models::V1::ProductArchiveProductResponse::Data
+        ) -> void
+
+        def to_hash: -> {
+          data: Stigg::Models::V1::ProductArchiveProductResponse::Data
+        }
+
+        type data =
+          {
+            id: String,
+            created_at: Time,
+            description: String?,
+            display_name: String,
+            metadata: ::Hash[Symbol, String],
+            multiple_subscriptions: bool,
+            status: Stigg::Models::V1::ProductArchiveProductResponse::Data::status,
+            updated_at: Time,
+            product_settings: Stigg::Models::V1::ProductArchiveProductResponse::Data::ProductSettings
+          }
+
+        class Data < Stigg::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor created_at: Time
+
+          attr_accessor description: String?
+
+          attr_accessor display_name: String
+
+          attr_accessor metadata: ::Hash[Symbol, String]
+
+          attr_accessor multiple_subscriptions: bool
+
+          attr_accessor status: Stigg::Models::V1::ProductArchiveProductResponse::Data::status
+
+          attr_accessor updated_at: Time
+
+          attr_reader product_settings: Stigg::Models::V1::ProductArchiveProductResponse::Data::ProductSettings?
+
+          def product_settings=: (
+            Stigg::Models::V1::ProductArchiveProductResponse::Data::ProductSettings
+          ) -> Stigg::Models::V1::ProductArchiveProductResponse::Data::ProductSettings
+
+          def initialize: (
+            id: String,
+            created_at: Time,
+            description: String?,
+            display_name: String,
+            metadata: ::Hash[Symbol, String],
+            multiple_subscriptions: bool,
+            status: Stigg::Models::V1::ProductArchiveProductResponse::Data::status,
+            updated_at: Time,
+            ?product_settings: Stigg::Models::V1::ProductArchiveProductResponse::Data::ProductSettings
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            created_at: Time,
+            description: String?,
+            display_name: String,
+            metadata: ::Hash[Symbol, String],
+            multiple_subscriptions: bool,
+            status: Stigg::Models::V1::ProductArchiveProductResponse::Data::status,
+            updated_at: Time,
+            product_settings: Stigg::Models::V1::ProductArchiveProductResponse::Data::ProductSettings
+          }
+
+          type status = :PUBLISHED | :ARCHIVED
+
+          module Status
+            extend Stigg::Internal::Type::Enum
+
+            PUBLISHED: :PUBLISHED
+            ARCHIVED: :ARCHIVED
+
+            def self?.values: -> ::Array[Stigg::Models::V1::ProductArchiveProductResponse::Data::status]
+          end
+
+          type product_settings =
+            {
+              subscription_cancellation_time: Stigg::Models::V1::ProductArchiveProductResponse::Data::ProductSettings::subscription_cancellation_time,
+              subscription_end_setup: Stigg::Models::V1::ProductArchiveProductResponse::Data::ProductSettings::subscription_end_setup,
+              subscription_start_setup: Stigg::Models::V1::ProductArchiveProductResponse::Data::ProductSettings::subscription_start_setup,
+              downgrade_plan_id: String?,
+              prorate_at_end_of_billing_period: bool?,
+              subscription_start_plan_id: String?
+            }
+
+          class ProductSettings < Stigg::Internal::Type::BaseModel
+            attr_accessor subscription_cancellation_time: Stigg::Models::V1::ProductArchiveProductResponse::Data::ProductSettings::subscription_cancellation_time
+
+            attr_accessor subscription_end_setup: Stigg::Models::V1::ProductArchiveProductResponse::Data::ProductSettings::subscription_end_setup
+
+            attr_accessor subscription_start_setup: Stigg::Models::V1::ProductArchiveProductResponse::Data::ProductSettings::subscription_start_setup
+
+            attr_accessor downgrade_plan_id: String?
+
+            attr_accessor prorate_at_end_of_billing_period: bool?
+
+            attr_accessor subscription_start_plan_id: String?
+
+            def initialize: (
+              subscription_cancellation_time: Stigg::Models::V1::ProductArchiveProductResponse::Data::ProductSettings::subscription_cancellation_time,
+              subscription_end_setup: Stigg::Models::V1::ProductArchiveProductResponse::Data::ProductSettings::subscription_end_setup,
+              subscription_start_setup: Stigg::Models::V1::ProductArchiveProductResponse::Data::ProductSettings::subscription_start_setup,
+              ?downgrade_plan_id: String?,
+              ?prorate_at_end_of_billing_period: bool?,
+              ?subscription_start_plan_id: String?
+            ) -> void
+
+            def to_hash: -> {
+              subscription_cancellation_time: Stigg::Models::V1::ProductArchiveProductResponse::Data::ProductSettings::subscription_cancellation_time,
+              subscription_end_setup: Stigg::Models::V1::ProductArchiveProductResponse::Data::ProductSettings::subscription_end_setup,
+              subscription_start_setup: Stigg::Models::V1::ProductArchiveProductResponse::Data::ProductSettings::subscription_start_setup,
+              downgrade_plan_id: String?,
+              prorate_at_end_of_billing_period: bool?,
+              subscription_start_plan_id: String?
+            }
+
+            type subscription_cancellation_time =
+              :END_OF_BILLING_PERIOD | :IMMEDIATE | :SPECIFIC_DATE
+
+            module SubscriptionCancellationTime
+              extend Stigg::Internal::Type::Enum
+
+              END_OF_BILLING_PERIOD: :END_OF_BILLING_PERIOD
+              IMMEDIATE: :IMMEDIATE
+              SPECIFIC_DATE: :SPECIFIC_DATE
+
+              def self?.values: -> ::Array[Stigg::Models::V1::ProductArchiveProductResponse::Data::ProductSettings::subscription_cancellation_time]
+            end
+
+            type subscription_end_setup =
+              :DOWNGRADE_TO_FREE | :CANCEL_SUBSCRIPTION
+
+            module SubscriptionEndSetup
+              extend Stigg::Internal::Type::Enum
+
+              DOWNGRADE_TO_FREE: :DOWNGRADE_TO_FREE
+              CANCEL_SUBSCRIPTION: :CANCEL_SUBSCRIPTION
+
+              def self?.values: -> ::Array[Stigg::Models::V1::ProductArchiveProductResponse::Data::ProductSettings::subscription_end_setup]
+            end
+
+            type subscription_start_setup =
+              :PLAN_SELECTION | :TRIAL_PERIOD | :FREE_PLAN
+
+            module SubscriptionStartSetup
+              extend Stigg::Internal::Type::Enum
+
+              PLAN_SELECTION: :PLAN_SELECTION
+              TRIAL_PERIOD: :TRIAL_PERIOD
+              FREE_PLAN: :FREE_PLAN
+
+              def self?.values: -> ::Array[Stigg::Models::V1::ProductArchiveProductResponse::Data::ProductSettings::subscription_start_setup]
+            end
+          end
+        end
+      end
+    end
+  end
+end

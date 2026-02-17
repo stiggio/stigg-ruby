@@ -1,0 +1,112 @@
+module Stigg
+  module Models
+    module V1
+      module Events
+        type addon_list_addons_params =
+          {
+            after: String,
+            before: String,
+            created_at: Stigg::V1::Events::AddonListAddonsParams::CreatedAt,
+            limit: Integer,
+            product_id: String,
+            status: Stigg::Models::V1::Events::AddonListAddonsParams::status
+          }
+          & Stigg::Internal::Type::request_parameters
+
+        class AddonListAddonsParams < Stigg::Internal::Type::BaseModel
+          extend Stigg::Internal::Type::RequestParameters::Converter
+          include Stigg::Internal::Type::RequestParameters
+
+          attr_reader after: String?
+
+          def after=: (String) -> String
+
+          attr_reader before: String?
+
+          def before=: (String) -> String
+
+          attr_reader created_at: Stigg::V1::Events::AddonListAddonsParams::CreatedAt?
+
+          def created_at=: (
+            Stigg::V1::Events::AddonListAddonsParams::CreatedAt
+          ) -> Stigg::V1::Events::AddonListAddonsParams::CreatedAt
+
+          attr_reader limit: Integer?
+
+          def limit=: (Integer) -> Integer
+
+          attr_reader product_id: String?
+
+          def product_id=: (String) -> String
+
+          attr_reader status: Stigg::Models::V1::Events::AddonListAddonsParams::status?
+
+          def status=: (
+            Stigg::Models::V1::Events::AddonListAddonsParams::status
+          ) -> Stigg::Models::V1::Events::AddonListAddonsParams::status
+
+          def initialize: (
+            ?after: String,
+            ?before: String,
+            ?created_at: Stigg::V1::Events::AddonListAddonsParams::CreatedAt,
+            ?limit: Integer,
+            ?product_id: String,
+            ?status: Stigg::Models::V1::Events::AddonListAddonsParams::status,
+            ?request_options: Stigg::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            after: String,
+            before: String,
+            created_at: Stigg::V1::Events::AddonListAddonsParams::CreatedAt,
+            limit: Integer,
+            product_id: String,
+            status: Stigg::Models::V1::Events::AddonListAddonsParams::status,
+            request_options: Stigg::RequestOptions
+          }
+
+          type created_at = { gt: Time, gte: Time, lt: Time, lte: Time }
+
+          class CreatedAt < Stigg::Internal::Type::BaseModel
+            attr_reader gt: Time?
+
+            def gt=: (Time) -> Time
+
+            attr_reader gte: Time?
+
+            def gte=: (Time) -> Time
+
+            attr_reader lt: Time?
+
+            def lt=: (Time) -> Time
+
+            attr_reader lte: Time?
+
+            def lte=: (Time) -> Time
+
+            def initialize: (
+              ?gt: Time,
+              ?gte: Time,
+              ?lt: Time,
+              ?lte: Time
+            ) -> void
+
+            def to_hash: -> { gt: Time, gte: Time, lt: Time, lte: Time }
+          end
+
+          type status = :DRAFT | :PUBLISHED | :ARCHIVED
+
+          module Status
+            extend Stigg::Internal::Type::Enum
+
+            DRAFT: :DRAFT
+            PUBLISHED: :PUBLISHED
+            ARCHIVED: :ARCHIVED
+
+            def self?.values: -> ::Array[Stigg::Models::V1::Events::AddonListAddonsParams::status]
+          end
+        end
+      end
+    end
+  end
+end

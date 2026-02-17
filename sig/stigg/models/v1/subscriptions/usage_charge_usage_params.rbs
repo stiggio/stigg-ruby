@@ -1,0 +1,29 @@
+module Stigg
+  module Models
+    module V1
+      module Subscriptions
+        type usage_charge_usage_params =
+          { until_date: Time } & Stigg::Internal::Type::request_parameters
+
+        class UsageChargeUsageParams < Stigg::Internal::Type::BaseModel
+          extend Stigg::Internal::Type::RequestParameters::Converter
+          include Stigg::Internal::Type::RequestParameters
+
+          attr_reader until_date: Time?
+
+          def until_date=: (Time) -> Time
+
+          def initialize: (
+            ?until_date: Time,
+            ?request_options: Stigg::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            until_date: Time,
+            request_options: Stigg::RequestOptions
+          }
+        end
+      end
+    end
+  end
+end

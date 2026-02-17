@@ -7,6 +7,12 @@ module Stigg
         # @return [Stigg::Resources::V1::Subscriptions::FutureUpdate]
         attr_reader :future_update
 
+        # @return [Stigg::Resources::V1::Subscriptions::Usage]
+        attr_reader :usage
+
+        # @return [Stigg::Resources::V1::Subscriptions::Invoice]
+        attr_reader :invoice
+
         # Retrieves a subscription by its unique identifier, including plan details,
         # billing period, status, and add-ons.
         #
@@ -390,6 +396,8 @@ module Stigg
         def initialize(client:)
           @client = client
           @future_update = Stigg::Resources::V1::Subscriptions::FutureUpdate.new(client: client)
+          @usage = Stigg::Resources::V1::Subscriptions::Usage.new(client: client)
+          @invoice = Stigg::Resources::V1::Subscriptions::Invoice.new(client: client)
         end
       end
     end

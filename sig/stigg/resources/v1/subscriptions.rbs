@@ -4,6 +4,10 @@ module Stigg
       class Subscriptions
         attr_reader future_update: Stigg::Resources::V1::Subscriptions::FutureUpdate
 
+        attr_reader usage: Stigg::Resources::V1::Subscriptions::Usage
+
+        attr_reader invoice: Stigg::Resources::V1::Subscriptions::Invoice
+
         def retrieve: (
           String id,
           ?request_options: Stigg::request_opts
