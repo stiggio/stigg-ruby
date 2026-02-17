@@ -2,6 +2,28 @@ module Stigg
   module Resources
     class V1
       class Products
+        def archive_product: (
+          String id,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::Models::V1::ProductArchiveProductResponse
+
+        def create_product: (
+          id: String,
+          ?description: String?,
+          ?display_name: String,
+          ?metadata: ::Hash[Symbol, String]?,
+          ?multiple_subscriptions: bool,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::Models::V1::ProductCreateProductResponse
+
+        def duplicate_product: (
+          String path_id,
+          body_id: String,
+          ?description: String?,
+          ?display_name: String,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::Models::V1::ProductDuplicateProductResponse
+
         def list_products: (
           ?id: String,
           ?after: String,
@@ -11,6 +33,22 @@ module Stigg
           ?status: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::ProductListProductsResponse]
+
+        def unarchive_product: (
+          String id,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::Models::V1::ProductUnarchiveProductResponse
+
+        def update_product: (
+          String id,
+          ?description: String?,
+          ?display_name: String,
+          ?metadata: ::Hash[Symbol, String]?,
+          ?multiple_subscriptions: bool,
+          ?product_settings: Stigg::V1::ProductUpdateProductParams::ProductSettings,
+          ?usage_reset_cutoff_rule: Stigg::V1::ProductUpdateProductParams::UsageResetCutoffRule,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::Models::V1::ProductUpdateProductResponse
 
         def initialize: (client: Stigg::Client) -> void
       end

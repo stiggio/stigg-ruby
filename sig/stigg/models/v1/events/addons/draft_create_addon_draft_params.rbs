@@ -1,0 +1,21 @@
+module Stigg
+  module Models
+    module V1
+      module Events
+        module Addons
+          type draft_create_addon_draft_params =
+            {  } & Stigg::Internal::Type::request_parameters
+
+          class DraftCreateAddonDraftParams < Stigg::Internal::Type::BaseModel
+            extend Stigg::Internal::Type::RequestParameters::Converter
+            include Stigg::Internal::Type::RequestParameters
+
+            def initialize: (?request_options: Stigg::request_opts) -> void
+
+            def to_hash: -> { request_options: Stigg::RequestOptions }
+          end
+        end
+      end
+    end
+  end
+end

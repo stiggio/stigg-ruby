@@ -7,6 +7,12 @@ module Stigg
         sig { returns(Stigg::Resources::V1::Subscriptions::FutureUpdate) }
         attr_reader :future_update
 
+        sig { returns(Stigg::Resources::V1::Subscriptions::Usage) }
+        attr_reader :usage
+
+        sig { returns(Stigg::Resources::V1::Subscriptions::Invoice) }
+        attr_reader :invoice
+
         # Retrieves a subscription by its unique identifier, including plan details,
         # billing period, status, and add-ons.
         sig do

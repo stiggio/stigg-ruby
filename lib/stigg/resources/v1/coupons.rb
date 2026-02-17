@@ -94,6 +94,54 @@ module Stigg
           )
         end
 
+        # Archives a coupon, preventing it from being applied to new subscriptions.
+        #
+        # @overload archive_coupon(id, request_options: {})
+        #
+        # @param id [String] The unique identifier of the entity
+        #
+        # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [Stigg::Models::V1::Coupon]
+        #
+        # @see Stigg::Models::V1::CouponArchiveCouponParams
+        def archive_coupon(id, params = {})
+          @client.request(
+            method: :post,
+            path: ["api/v1/coupons/%1$s/archive", id],
+            model: Stigg::V1::Coupon,
+            options: params[:request_options]
+          )
+        end
+
+        # Updates an existing coupon's properties such as name, description, and metadata.
+        #
+        # @overload update_coupon(id, description: nil, metadata: nil, name: nil, request_options: {})
+        #
+        # @param id [String] The unique identifier of the entity
+        #
+        # @param description [String, nil] Description of the coupon
+        #
+        # @param metadata [Hash{Symbol=>String}, nil] Metadata associated with the entity
+        #
+        # @param name [String] Name of the coupon
+        #
+        # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [Stigg::Models::V1::Coupon]
+        #
+        # @see Stigg::Models::V1::CouponUpdateCouponParams
+        def update_coupon(id, params = {})
+          parsed, options = Stigg::V1::CouponUpdateCouponParams.dump_request(params)
+          @client.request(
+            method: :patch,
+            path: ["api/v1/coupons/%1$s", id],
+            body: parsed,
+            model: Stigg::V1::Coupon,
+            options: options
+          )
+        end
+
         # @api private
         #
         # @param client [Stigg::Client]

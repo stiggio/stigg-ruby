@@ -1,0 +1,16 @@
+module Stigg
+  module Resources
+    class V1
+      class Subscriptions
+        class Invoice
+          def mark_as_paid: (
+            String id,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Subscriptions::InvoiceMarkAsPaidResponse
+
+          def initialize: (client: Stigg::Client) -> void
+        end
+      end
+    end
+  end
+end

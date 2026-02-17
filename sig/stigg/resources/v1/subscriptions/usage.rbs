@@ -1,0 +1,22 @@
+module Stigg
+  module Resources
+    class V1
+      class Subscriptions
+        class Usage
+          def charge_usage: (
+            String id,
+            ?until_date: Time,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Subscriptions::UsageChargeUsageResponse
+
+          def sync_usage: (
+            String id,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Subscriptions::UsageSyncUsageResponse
+
+          def initialize: (client: Stigg::Client) -> void
+        end
+      end
+    end
+  end
+end

@@ -29,6 +29,19 @@ module Stigg
           ?request_options: Stigg::request_opts
         ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::CouponListResponse]
 
+        def archive_coupon: (
+          String id,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::V1::Coupon
+
+        def update_coupon: (
+          String id,
+          ?description: String?,
+          ?metadata: ::Hash[Symbol, String]?,
+          ?name: String,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::V1::Coupon
+
         def initialize: (client: Stigg::Client) -> void
       end
     end

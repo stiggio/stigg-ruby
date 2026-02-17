@@ -1,0 +1,175 @@
+module Stigg
+  module Models
+    module V1
+      module Events
+        type feature_list_features_response =
+          {
+            id: String,
+            created_at: Time,
+            description: String?,
+            display_name: String,
+            enum_configuration: ::Array[Stigg::Models::V1::Events::FeatureListFeaturesResponse::EnumConfiguration]?,
+            feature_status: Stigg::Models::V1::Events::FeatureListFeaturesResponse::feature_status,
+            feature_type: Stigg::Models::V1::Events::FeatureListFeaturesResponse::feature_type,
+            feature_units: String?,
+            feature_units_plural: String?,
+            metadata: ::Hash[Symbol, String],
+            meter_type: Stigg::Models::V1::Events::FeatureListFeaturesResponse::meter_type,
+            unit_transformation: Stigg::Models::V1::Events::FeatureListFeaturesResponse::UnitTransformation?,
+            updated_at: Time
+          }
+
+        class FeatureListFeaturesResponse < Stigg::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor created_at: Time
+
+          attr_accessor description: String?
+
+          attr_accessor display_name: String
+
+          attr_accessor enum_configuration: ::Array[Stigg::Models::V1::Events::FeatureListFeaturesResponse::EnumConfiguration]?
+
+          attr_accessor feature_status: Stigg::Models::V1::Events::FeatureListFeaturesResponse::feature_status
+
+          attr_accessor feature_type: Stigg::Models::V1::Events::FeatureListFeaturesResponse::feature_type
+
+          attr_accessor feature_units: String?
+
+          attr_accessor feature_units_plural: String?
+
+          attr_accessor metadata: ::Hash[Symbol, String]
+
+          attr_accessor meter_type: Stigg::Models::V1::Events::FeatureListFeaturesResponse::meter_type
+
+          attr_accessor unit_transformation: Stigg::Models::V1::Events::FeatureListFeaturesResponse::UnitTransformation?
+
+          attr_accessor updated_at: Time
+
+          def initialize: (
+            id: String,
+            created_at: Time,
+            description: String?,
+            display_name: String,
+            enum_configuration: ::Array[Stigg::Models::V1::Events::FeatureListFeaturesResponse::EnumConfiguration]?,
+            feature_status: Stigg::Models::V1::Events::FeatureListFeaturesResponse::feature_status,
+            feature_type: Stigg::Models::V1::Events::FeatureListFeaturesResponse::feature_type,
+            feature_units: String?,
+            feature_units_plural: String?,
+            metadata: ::Hash[Symbol, String],
+            meter_type: Stigg::Models::V1::Events::FeatureListFeaturesResponse::meter_type,
+            unit_transformation: Stigg::Models::V1::Events::FeatureListFeaturesResponse::UnitTransformation?,
+            updated_at: Time
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            created_at: Time,
+            description: String?,
+            display_name: String,
+            enum_configuration: ::Array[Stigg::Models::V1::Events::FeatureListFeaturesResponse::EnumConfiguration]?,
+            feature_status: Stigg::Models::V1::Events::FeatureListFeaturesResponse::feature_status,
+            feature_type: Stigg::Models::V1::Events::FeatureListFeaturesResponse::feature_type,
+            feature_units: String?,
+            feature_units_plural: String?,
+            metadata: ::Hash[Symbol, String],
+            meter_type: Stigg::Models::V1::Events::FeatureListFeaturesResponse::meter_type,
+            unit_transformation: Stigg::Models::V1::Events::FeatureListFeaturesResponse::UnitTransformation?,
+            updated_at: Time
+          }
+
+          type enum_configuration = { display_name: String, value: String }
+
+          class EnumConfiguration < Stigg::Internal::Type::BaseModel
+            attr_accessor display_name: String
+
+            attr_accessor value: String
+
+            def initialize: (display_name: String, value: String) -> void
+
+            def to_hash: -> { display_name: String, value: String }
+          end
+
+          type feature_status = :NEW | :SUSPENDED | :ACTIVE
+
+          module FeatureStatus
+            extend Stigg::Internal::Type::Enum
+
+            NEW: :NEW
+            SUSPENDED: :SUSPENDED
+            ACTIVE: :ACTIVE
+
+            def self?.values: -> ::Array[Stigg::Models::V1::Events::FeatureListFeaturesResponse::feature_status]
+          end
+
+          type feature_type = :BOOLEAN | :NUMBER | :ENUM
+
+          module FeatureType
+            extend Stigg::Internal::Type::Enum
+
+            BOOLEAN: :BOOLEAN
+            NUMBER: :NUMBER
+            ENUM: :ENUM
+
+            def self?.values: -> ::Array[Stigg::Models::V1::Events::FeatureListFeaturesResponse::feature_type]
+          end
+
+          type meter_type = :None | :FLUCTUATING | :INCREMENTAL
+
+          module MeterType
+            extend Stigg::Internal::Type::Enum
+
+            NONE: :None
+            FLUCTUATING: :FLUCTUATING
+            INCREMENTAL: :INCREMENTAL
+
+            def self?.values: -> ::Array[Stigg::Models::V1::Events::FeatureListFeaturesResponse::meter_type]
+          end
+
+          type unit_transformation =
+            {
+              divide: Float,
+              feature_units: String?,
+              feature_units_plural: String?,
+              round: Stigg::Models::V1::Events::FeatureListFeaturesResponse::UnitTransformation::round
+            }
+
+          class UnitTransformation < Stigg::Internal::Type::BaseModel
+            attr_accessor divide: Float
+
+            attr_accessor feature_units: String?
+
+            attr_accessor feature_units_plural: String?
+
+            attr_accessor round: Stigg::Models::V1::Events::FeatureListFeaturesResponse::UnitTransformation::round
+
+            def initialize: (
+              divide: Float,
+              feature_units: String?,
+              feature_units_plural: String?,
+              round: Stigg::Models::V1::Events::FeatureListFeaturesResponse::UnitTransformation::round
+            ) -> void
+
+            def to_hash: -> {
+              divide: Float,
+              feature_units: String?,
+              feature_units_plural: String?,
+              round: Stigg::Models::V1::Events::FeatureListFeaturesResponse::UnitTransformation::round
+            }
+
+            type round = :UP | :DOWN
+
+            module Round
+              extend Stigg::Internal::Type::Enum
+
+              UP: :UP
+              DOWN: :DOWN
+
+              def self?.values: -> ::Array[Stigg::Models::V1::Events::FeatureListFeaturesResponse::UnitTransformation::round]
+            end
+          end
+        end
+      end
+    end
+  end
+end

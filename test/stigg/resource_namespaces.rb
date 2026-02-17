@@ -3,7 +3,15 @@
 module Stigg
   module Test
     module Resources
+      module Addons
+      end
+
       module Customers
+      end
+
+      module Events
+        module Addons
+        end
       end
 
       module Subscriptions
@@ -11,6 +19,11 @@ module Stigg
 
       module V1
         module Customers
+        end
+
+        module Events
+          module Addons
+          end
         end
 
         module Subscriptions
