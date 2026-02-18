@@ -8,12 +8,6 @@ module Stigg
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
-        # @!attribute body_id
-        #   The unique identifier for the entity
-        #
-        #   @return [String]
-        required :body_id, String, api_name: :id
-
         # @!attribute description
         #   Description of the product
         #
@@ -26,9 +20,7 @@ module Stigg
         #   @return [String, nil]
         optional :display_name, String, api_name: :displayName
 
-        # @!method initialize(body_id:, description: nil, display_name: nil, request_options: {})
-        #   @param body_id [String] The unique identifier for the entity
-        #
+        # @!method initialize(description: nil, display_name: nil, request_options: {})
         #   @param description [String, nil] Description of the product
         #
         #   @param display_name [String] Display name of the product
