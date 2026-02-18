@@ -35,10 +35,10 @@ class Stigg::Test::Resources::V1::ProductsTest < Stigg::Test::ResourceTest
     end
   end
 
-  def test_duplicate_product
+  def test_duplicate_product_required_params
     skip("Prism tests are disabled")
 
-    response = @stigg.v1.products.duplicate_product("x")
+    response = @stigg.v1.products.duplicate_product("x", body_id: "id")
 
     assert_pattern do
       response => Stigg::Models::V1::ProductDuplicateProductResponse

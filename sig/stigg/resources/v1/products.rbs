@@ -17,7 +17,8 @@ module Stigg
         ) -> Stigg::Models::V1::ProductCreateProductResponse
 
         def duplicate_product: (
-          String id,
+          String path_id,
+          body_id: String,
           ?description: String?,
           ?display_name: String,
           ?request_options: Stigg::request_opts

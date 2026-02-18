@@ -57,9 +57,11 @@ module Stigg
 
         # Duplicates an existing product, including its plans, addons, and configuration.
         #
-        # @overload duplicate_product(id, description: nil, display_name: nil, request_options: {})
+        # @overload duplicate_product(path_id, body_id:, description: nil, display_name: nil, request_options: {})
         #
-        # @param id [String] The unique identifier of the entity
+        # @param path_id [String] The unique identifier of the entity
+        #
+        # @param body_id [String] The unique identifier for the entity
         #
         # @param description [String, nil] Description of the product
         #
@@ -70,11 +72,11 @@ module Stigg
         # @return [Stigg::Models::V1::ProductDuplicateProductResponse]
         #
         # @see Stigg::Models::V1::ProductDuplicateProductParams
-        def duplicate_product(id, params = {})
+        def duplicate_product(path_id, params)
           parsed, options = Stigg::V1::ProductDuplicateProductParams.dump_request(params)
           @client.request(
             method: :post,
-            path: ["api/v1/products/%1$s/duplicate", id],
+            path: ["api/v1/products/%1$s/duplicate", path_id],
             body: parsed,
             model: Stigg::Models::V1::ProductDuplicateProductResponse,
             options: options
