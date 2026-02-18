@@ -6,6 +6,8 @@ module Stigg
 
         attr_reader addons: Stigg::Resources::V1::Events::Addons
 
+        attr_reader plans: Stigg::Resources::V1::Events::Plans
+
         def report: (
           events: ::Array[Stigg::V1::EventReportParams::Event],
           ?request_options: Stigg::request_opts

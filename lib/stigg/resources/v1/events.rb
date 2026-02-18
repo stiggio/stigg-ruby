@@ -10,6 +10,9 @@ module Stigg
         # @return [Stigg::Resources::V1::Events::Addons]
         attr_reader :addons
 
+        # @return [Stigg::Resources::V1::Events::Plans]
+        attr_reader :plans
+
         # Reports raw usage events for event-based metering. Events are ingested
         # asynchronously and aggregated into usage totals.
         #
@@ -40,6 +43,7 @@ module Stigg
           @client = client
           @features = Stigg::Resources::V1::Events::Features.new(client: client)
           @addons = Stigg::Resources::V1::Events::Addons.new(client: client)
+          @plans = Stigg::Resources::V1::Events::Plans.new(client: client)
         end
       end
     end
