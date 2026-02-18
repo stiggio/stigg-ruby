@@ -2,14 +2,12 @@ module Stigg
   module Models
     module V1
       type product_duplicate_product_params =
-        { body_id: String, description: String?, display_name: String }
+        { description: String?, display_name: String }
         & Stigg::Internal::Type::request_parameters
 
       class ProductDuplicateProductParams < Stigg::Internal::Type::BaseModel
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
-
-        attr_accessor body_id: String
 
         attr_accessor description: String?
 
@@ -18,14 +16,12 @@ module Stigg
         def display_name=: (String) -> String
 
         def initialize: (
-          body_id: String,
           ?description: String?,
           ?display_name: String,
           ?request_options: Stigg::request_opts
         ) -> void
 
         def to_hash: -> {
-          body_id: String,
           description: String?,
           display_name: String,
           request_options: Stigg::RequestOptions
