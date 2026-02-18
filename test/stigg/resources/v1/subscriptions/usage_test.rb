@@ -18,20 +18,4 @@ class Stigg::Test::Resources::V1::Subscriptions::UsageTest < Stigg::Test::Resour
       }
     end
   end
-
-  def test_sync_usage
-    skip("Prism tests are disabled")
-
-    response = @stigg.v1.subscriptions.usage.sync_usage("x")
-
-    assert_pattern do
-      response => Stigg::Models::V1::Subscriptions::UsageSyncUsageResponse
-    end
-
-    assert_pattern do
-      response => {
-        data: Stigg::Models::V1::Subscriptions::UsageSyncUsageResponse::Data
-      }
-    end
-  end
 end

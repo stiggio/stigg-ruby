@@ -25,21 +25,6 @@ module Stigg
           )
           end
 
-          # Triggers a usage sync for a subscription, reporting current usage to the billing
-          # provider.
-          sig do
-            params(
-              id: String,
-              request_options: Stigg::RequestOptions::OrHash
-            ).returns(Stigg::Models::V1::Subscriptions::UsageSyncUsageResponse)
-          end
-          def sync_usage(
-            # The unique identifier of the entity
-            id,
-            request_options: {}
-          )
-          end
-
           # @api private
           sig { params(client: Stigg::Client).returns(T.attached_class) }
           def self.new(client:)

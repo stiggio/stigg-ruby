@@ -30,27 +30,6 @@ module Stigg
             )
           end
 
-          # Triggers a usage sync for a subscription, reporting current usage to the billing
-          # provider.
-          #
-          # @overload sync_usage(id, request_options: {})
-          #
-          # @param id [String] The unique identifier of the entity
-          #
-          # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
-          #
-          # @return [Stigg::Models::V1::Subscriptions::UsageSyncUsageResponse]
-          #
-          # @see Stigg::Models::V1::Subscriptions::UsageSyncUsageParams
-          def sync_usage(id, params = {})
-            @client.request(
-              method: :post,
-              path: ["api/v1/subscriptions/%1$s/usage/sync", id],
-              model: Stigg::Models::V1::Subscriptions::UsageSyncUsageResponse,
-              options: params[:request_options]
-            )
-          end
-
           # @api private
           #
           # @param client [Stigg::Client]
