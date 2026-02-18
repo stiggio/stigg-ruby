@@ -7,9 +7,9 @@ module Stigg
           amounts_off: ::Array[Stigg::V1::CouponCreateParams::AmountsOff]?,
           description: String?,
           duration_in_months: Integer?,
+          metadata: ::Hash[Symbol, String]?,
           name: String,
-          percent_off: Float?,
-          additional_meta_data: top
+          percent_off: Float?
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -25,22 +25,20 @@ module Stigg
 
         attr_accessor duration_in_months: Integer?
 
+        attr_accessor metadata: ::Hash[Symbol, String]?
+
         attr_accessor name: String
 
         attr_accessor percent_off: Float?
-
-        attr_reader additional_meta_data: top?
-
-        def additional_meta_data=: (top) -> top
 
         def initialize: (
           id: String,
           amounts_off: ::Array[Stigg::V1::CouponCreateParams::AmountsOff]?,
           description: String?,
           duration_in_months: Integer?,
+          metadata: ::Hash[Symbol, String]?,
           name: String,
           percent_off: Float?,
-          ?additional_meta_data: top,
           ?request_options: Stigg::request_opts
         ) -> void
 
@@ -49,9 +47,9 @@ module Stigg
           amounts_off: ::Array[Stigg::V1::CouponCreateParams::AmountsOff]?,
           description: String?,
           duration_in_months: Integer?,
+          metadata: ::Hash[Symbol, String]?,
           name: String,
           percent_off: Float?,
-          additional_meta_data: top,
           request_options: Stigg::RequestOptions
         }
 

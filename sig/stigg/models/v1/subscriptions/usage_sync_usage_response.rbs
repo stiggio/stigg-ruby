@@ -1,0 +1,34 @@
+module Stigg
+  module Models
+    module V1
+      module Subscriptions
+        type usage_sync_usage_response =
+          {
+            data: Stigg::Models::V1::Subscriptions::UsageSyncUsageResponse::Data
+          }
+
+        class UsageSyncUsageResponse < Stigg::Internal::Type::BaseModel
+          attr_accessor data: Stigg::Models::V1::Subscriptions::UsageSyncUsageResponse::Data
+
+          def initialize: (
+            data: Stigg::Models::V1::Subscriptions::UsageSyncUsageResponse::Data
+          ) -> void
+
+          def to_hash: -> {
+            data: Stigg::Models::V1::Subscriptions::UsageSyncUsageResponse::Data
+          }
+
+          type data = { triggered: bool }
+
+          class Data < Stigg::Internal::Type::BaseModel
+            attr_accessor triggered: bool
+
+            def initialize: (triggered: bool) -> void
+
+            def to_hash: -> { triggered: bool }
+          end
+        end
+      end
+    end
+  end
+end

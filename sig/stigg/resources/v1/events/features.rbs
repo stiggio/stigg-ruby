@@ -1,0 +1,66 @@
+module Stigg
+  module Resources
+    class V1
+      class Events
+        class Features
+          def archive_feature: (
+            String id,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Events::FeatureArchiveFeatureResponse
+
+          def create_feature: (
+            id: String,
+            display_name: String,
+            feature_type: Stigg::Models::V1::Events::FeatureCreateFeatureParams::feature_type,
+            ?description: String,
+            ?enum_configuration: ::Array[Stigg::V1::Events::FeatureCreateFeatureParams::EnumConfiguration],
+            ?feature_status: Stigg::Models::V1::Events::FeatureCreateFeatureParams::feature_status,
+            ?feature_units: String,
+            ?feature_units_plural: String,
+            ?metadata: ::Hash[Symbol, String],
+            ?meter_type: Stigg::Models::V1::Events::FeatureCreateFeatureParams::meter_type,
+            ?unit_transformation: Stigg::V1::Events::FeatureCreateFeatureParams::UnitTransformation?,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Events::FeatureCreateFeatureResponse
+
+          def list_features: (
+            ?id: String,
+            ?after: String,
+            ?before: String,
+            ?created_at: Stigg::V1::Events::FeatureListFeaturesParams::CreatedAt,
+            ?feature_type: String,
+            ?limit: Integer,
+            ?meter_type: String,
+            ?status: String,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::Events::FeatureListFeaturesResponse]
+
+          def retrieve_feature: (
+            String id,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Events::FeatureRetrieveFeatureResponse
+
+          def unarchive_feature: (
+            String id,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Events::FeatureUnarchiveFeatureResponse
+
+          def update_feature: (
+            String id,
+            ?description: String,
+            ?display_name: String,
+            ?enum_configuration: ::Array[Stigg::V1::Events::FeatureUpdateFeatureParams::EnumConfiguration],
+            ?feature_units: String,
+            ?feature_units_plural: String,
+            ?metadata: ::Hash[Symbol, String],
+            ?meter: Stigg::V1::Events::FeatureUpdateFeatureParams::Meter,
+            ?unit_transformation: Stigg::V1::Events::FeatureUpdateFeatureParams::UnitTransformation?,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Events::FeatureUpdateFeatureResponse
+
+          def initialize: (client: Stigg::Client) -> void
+        end
+      end
+    end
+  end
+end

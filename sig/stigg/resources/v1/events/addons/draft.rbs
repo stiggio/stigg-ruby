@@ -1,0 +1,23 @@
+module Stigg
+  module Resources
+    class V1
+      class Events
+        class Addons
+          class Draft
+            def create_addon_draft: (
+              String id,
+              ?request_options: Stigg::request_opts
+            ) -> Stigg::Models::V1::Events::Addons::DraftCreateAddonDraftResponse
+
+            def remove_addon_draft: (
+              String id,
+              ?request_options: Stigg::request_opts
+            ) -> Stigg::Models::V1::Events::Addons::DraftRemoveAddonDraftResponse
+
+            def initialize: (client: Stigg::Client) -> void
+          end
+        end
+      end
+    end
+  end
+end

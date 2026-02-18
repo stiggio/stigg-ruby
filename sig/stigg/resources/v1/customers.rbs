@@ -24,7 +24,10 @@ module Stigg
         def list: (
           ?after: String,
           ?before: String,
+          ?created_at: Stigg::V1::CustomerListParams::CreatedAt,
+          ?email: String,
           ?limit: Integer,
+          ?name: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::CustomerListResponse]
 

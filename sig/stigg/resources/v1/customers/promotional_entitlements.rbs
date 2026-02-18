@@ -3,15 +3,25 @@ module Stigg
     class V1
       class Customers
         class PromotionalEntitlements
-          def grant: (
-            String customer_id,
-            promotional_entitlements: ::Array[Stigg::V1::Customers::PromotionalEntitlementGrantParams::PromotionalEntitlement],
+          def create: (
+            String id,
+            promotional_entitlements: ::Array[Stigg::V1::Customers::PromotionalEntitlementCreateParams::PromotionalEntitlement],
             ?request_options: Stigg::request_opts
-          ) -> Stigg::Models::V1::Customers::PromotionalEntitlementGrantResponse
+          ) -> Stigg::Models::V1::Customers::PromotionalEntitlementCreateResponse
+
+          def list: (
+            String id,
+            ?after: String,
+            ?before: String,
+            ?created_at: Stigg::V1::Customers::PromotionalEntitlementListParams::CreatedAt,
+            ?limit: Integer,
+            ?status: String,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::Customers::PromotionalEntitlementListResponse]
 
           def revoke: (
             String feature_id,
-            customer_id: String,
+            id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::Models::V1::Customers::PromotionalEntitlementRevokeResponse
 

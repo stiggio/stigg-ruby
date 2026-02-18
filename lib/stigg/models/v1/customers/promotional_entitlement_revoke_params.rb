@@ -9,13 +9,13 @@ module Stigg
           extend Stigg::Internal::Type::RequestParameters::Converter
           include Stigg::Internal::Type::RequestParameters
 
-          # @!attribute customer_id
+          # @!attribute id
           #
           #   @return [String]
-          required :customer_id, String
+          required :id, String
 
-          # @!method initialize(customer_id:, request_options: {})
-          #   @param customer_id [String]
+          # @!method initialize(id:, request_options: {})
+          #   @param id [String]
           #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
         end
       end

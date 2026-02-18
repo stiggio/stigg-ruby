@@ -1,0 +1,41 @@
+module Stigg
+  module Models
+    module V1
+      module Events
+        type addon_publish_addon_params =
+          {
+            migration_type: Stigg::Models::V1::Events::AddonPublishAddonParams::migration_type
+          }
+          & Stigg::Internal::Type::request_parameters
+
+        class AddonPublishAddonParams < Stigg::Internal::Type::BaseModel
+          extend Stigg::Internal::Type::RequestParameters::Converter
+          include Stigg::Internal::Type::RequestParameters
+
+          attr_accessor migration_type: Stigg::Models::V1::Events::AddonPublishAddonParams::migration_type
+
+          def initialize: (
+            migration_type: Stigg::Models::V1::Events::AddonPublishAddonParams::migration_type,
+            ?request_options: Stigg::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            migration_type: Stigg::Models::V1::Events::AddonPublishAddonParams::migration_type,
+            request_options: Stigg::RequestOptions
+          }
+
+          type migration_type = :NEW_CUSTOMERS | :ALL_CUSTOMERS
+
+          module MigrationType
+            extend Stigg::Internal::Type::Enum
+
+            NEW_CUSTOMERS: :NEW_CUSTOMERS
+            ALL_CUSTOMERS: :ALL_CUSTOMERS
+
+            def self?.values: -> ::Array[Stigg::Models::V1::Events::AddonPublishAddonParams::migration_type]
+          end
+        end
+      end
+    end
+  end
+end

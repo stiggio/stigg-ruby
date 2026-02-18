@@ -1,0 +1,146 @@
+module Stigg
+  module Models
+    module V1
+      module Events
+        type addon_list_addons_response =
+          {
+            id: String,
+            billing_id: String?,
+            created_at: Time,
+            dependencies: ::Array[String]?,
+            description: String?,
+            display_name: String,
+            entitlements: ::Array[Stigg::Models::V1::Events::AddonListAddonsResponse::Entitlement],
+            is_latest: bool?,
+            max_quantity: Integer?,
+            metadata: ::Hash[Symbol, String],
+            pricing_type: Stigg::Models::V1::Events::AddonListAddonsResponse::pricing_type?,
+            status: Stigg::Models::V1::Events::AddonListAddonsResponse::status,
+            updated_at: Time,
+            version_number: Integer
+          }
+
+        class AddonListAddonsResponse < Stigg::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor billing_id: String?
+
+          attr_accessor created_at: Time
+
+          attr_accessor dependencies: ::Array[String]?
+
+          attr_accessor description: String?
+
+          attr_accessor display_name: String
+
+          attr_accessor entitlements: ::Array[Stigg::Models::V1::Events::AddonListAddonsResponse::Entitlement]
+
+          attr_accessor is_latest: bool?
+
+          attr_accessor max_quantity: Integer?
+
+          attr_accessor metadata: ::Hash[Symbol, String]
+
+          attr_accessor pricing_type: Stigg::Models::V1::Events::AddonListAddonsResponse::pricing_type?
+
+          attr_accessor status: Stigg::Models::V1::Events::AddonListAddonsResponse::status
+
+          attr_accessor updated_at: Time
+
+          attr_accessor version_number: Integer
+
+          def initialize: (
+            id: String,
+            billing_id: String?,
+            created_at: Time,
+            dependencies: ::Array[String]?,
+            description: String?,
+            display_name: String,
+            entitlements: ::Array[Stigg::Models::V1::Events::AddonListAddonsResponse::Entitlement],
+            is_latest: bool?,
+            max_quantity: Integer?,
+            metadata: ::Hash[Symbol, String],
+            pricing_type: Stigg::Models::V1::Events::AddonListAddonsResponse::pricing_type?,
+            status: Stigg::Models::V1::Events::AddonListAddonsResponse::status,
+            updated_at: Time,
+            version_number: Integer
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            billing_id: String?,
+            created_at: Time,
+            dependencies: ::Array[String]?,
+            description: String?,
+            display_name: String,
+            entitlements: ::Array[Stigg::Models::V1::Events::AddonListAddonsResponse::Entitlement],
+            is_latest: bool?,
+            max_quantity: Integer?,
+            metadata: ::Hash[Symbol, String],
+            pricing_type: Stigg::Models::V1::Events::AddonListAddonsResponse::pricing_type?,
+            status: Stigg::Models::V1::Events::AddonListAddonsResponse::status,
+            updated_at: Time,
+            version_number: Integer
+          }
+
+          type entitlement =
+            {
+              id: String,
+              type: Stigg::Models::V1::Events::AddonListAddonsResponse::Entitlement::type_
+            }
+
+          class Entitlement < Stigg::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor type: Stigg::Models::V1::Events::AddonListAddonsResponse::Entitlement::type_
+
+            def initialize: (
+              id: String,
+              type: Stigg::Models::V1::Events::AddonListAddonsResponse::Entitlement::type_
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              type: Stigg::Models::V1::Events::AddonListAddonsResponse::Entitlement::type_
+            }
+
+            type type_ = :FEATURE | :CREDIT
+
+            module Type
+              extend Stigg::Internal::Type::Enum
+
+              FEATURE: :FEATURE
+              CREDIT: :CREDIT
+
+              def self?.values: -> ::Array[Stigg::Models::V1::Events::AddonListAddonsResponse::Entitlement::type_]
+            end
+          end
+
+          type pricing_type = :FREE | :PAID | :CUSTOM
+
+          module PricingType
+            extend Stigg::Internal::Type::Enum
+
+            FREE: :FREE
+            PAID: :PAID
+            CUSTOM: :CUSTOM
+
+            def self?.values: -> ::Array[Stigg::Models::V1::Events::AddonListAddonsResponse::pricing_type]
+          end
+
+          type status = :DRAFT | :PUBLISHED | :ARCHIVED
+
+          module Status
+            extend Stigg::Internal::Type::Enum
+
+            DRAFT: :DRAFT
+            PUBLISHED: :PUBLISHED
+            ARCHIVED: :ARCHIVED
+
+            def self?.values: -> ::Array[Stigg::Models::V1::Events::AddonListAddonsResponse::status]
+          end
+        end
+      end
+    end
+  end
+end

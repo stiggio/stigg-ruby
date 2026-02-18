@@ -1,0 +1,59 @@
+module Stigg
+  module Models
+    module V1
+      module Events
+        type addon_update_addon_params =
+          {
+            billing_id: String?,
+            dependencies: ::Array[String]?,
+            description: String?,
+            display_name: String,
+            max_quantity: Integer?,
+            metadata: ::Hash[Symbol, String]
+          }
+          & Stigg::Internal::Type::request_parameters
+
+        class AddonUpdateAddonParams < Stigg::Internal::Type::BaseModel
+          extend Stigg::Internal::Type::RequestParameters::Converter
+          include Stigg::Internal::Type::RequestParameters
+
+          attr_accessor billing_id: String?
+
+          attr_accessor dependencies: ::Array[String]?
+
+          attr_accessor description: String?
+
+          attr_reader display_name: String?
+
+          def display_name=: (String) -> String
+
+          attr_accessor max_quantity: Integer?
+
+          attr_reader metadata: ::Hash[Symbol, String]?
+
+          def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+          def initialize: (
+            ?billing_id: String?,
+            ?dependencies: ::Array[String]?,
+            ?description: String?,
+            ?display_name: String,
+            ?max_quantity: Integer?,
+            ?metadata: ::Hash[Symbol, String],
+            ?request_options: Stigg::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            billing_id: String?,
+            dependencies: ::Array[String]?,
+            description: String?,
+            display_name: String,
+            max_quantity: Integer?,
+            metadata: ::Hash[Symbol, String],
+            request_options: Stigg::RequestOptions
+          }
+        end
+      end
+    end
+  end
+end

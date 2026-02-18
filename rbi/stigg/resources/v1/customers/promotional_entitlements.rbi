@@ -9,21 +9,56 @@ module Stigg
           # their subscription. Entitlements can be time-limited or permanent.
           sig do
             params(
-              customer_id: String,
+              id: String,
               promotional_entitlements:
                 T::Array[
-                  Stigg::V1::Customers::PromotionalEntitlementGrantParams::PromotionalEntitlement::OrHash
+                  Stigg::V1::Customers::PromotionalEntitlementCreateParams::PromotionalEntitlement::OrHash
                 ],
               request_options: Stigg::RequestOptions::OrHash
             ).returns(
-              Stigg::Models::V1::Customers::PromotionalEntitlementGrantResponse
+              Stigg::Models::V1::Customers::PromotionalEntitlementCreateResponse
             )
           end
-          def grant(
-            # The unique identifier of the customer
-            customer_id,
+          def create(
+            # The unique identifier of the entity
+            id,
             # Promotional entitlements to grant
             promotional_entitlements:,
+            request_options: {}
+          )
+          end
+
+          # Retrieves a paginated list of a customer's promotional entitlements.
+          sig do
+            params(
+              id: String,
+              after: String,
+              before: String,
+              created_at:
+                Stigg::V1::Customers::PromotionalEntitlementListParams::CreatedAt::OrHash,
+              limit: Integer,
+              status: String,
+              request_options: Stigg::RequestOptions::OrHash
+            ).returns(
+              Stigg::Internal::MyCursorIDPage[
+                Stigg::Models::V1::Customers::PromotionalEntitlementListResponse
+              ]
+            )
+          end
+          def list(
+            # The unique identifier of the entity
+            id,
+            # Return items that come after this cursor
+            after: nil,
+            # Return items that come before this cursor
+            before: nil,
+            # Filter by creation date using range operators: gt, gte, lt, lte
+            created_at: nil,
+            # Maximum number of items to return
+            limit: nil,
+            # Filter by promotional entitlement status. Supports comma-separated values for
+            # multiple statuses
+            status: nil,
             request_options: {}
           )
           end
@@ -33,7 +68,7 @@ module Stigg
           sig do
             params(
               feature_id: String,
-              customer_id: String,
+              id: String,
               request_options: Stigg::RequestOptions::OrHash
             ).returns(
               Stigg::Models::V1::Customers::PromotionalEntitlementRevokeResponse
@@ -43,7 +78,7 @@ module Stigg
             # The unique identifier of the entitlement feature
             feature_id,
             # The unique identifier of the customer
-            customer_id:,
+            id:,
             request_options: {}
           )
           end

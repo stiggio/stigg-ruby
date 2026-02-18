@@ -12,6 +12,7 @@ class Stigg::Test::Resources::V1::CouponsTest < Stigg::Test::ResourceTest
         amounts_off: [{amount: 0, currency: :usd}],
         description: "description",
         duration_in_months: 1,
+        metadata: {foo: "string"},
         name: "name",
         percent_off: 1
       )
@@ -74,6 +75,38 @@ class Stigg::Test::Resources::V1::CouponsTest < Stigg::Test::ResourceTest
         status: Stigg::Models::V1::CouponListResponse::Status,
         type: Stigg::Models::V1::CouponListResponse::Type,
         updated_at: Time
+      }
+    end
+  end
+
+  def test_archive_coupon
+    skip("Prism tests are disabled")
+
+    response = @stigg.v1.coupons.archive_coupon("x")
+
+    assert_pattern do
+      response => Stigg::V1::Coupon
+    end
+
+    assert_pattern do
+      response => {
+        data: Stigg::V1::Coupon::Data
+      }
+    end
+  end
+
+  def test_update_coupon
+    skip("Prism tests are disabled")
+
+    response = @stigg.v1.coupons.update_coupon("x")
+
+    assert_pattern do
+      response => Stigg::V1::Coupon
+    end
+
+    assert_pattern do
+      response => {
+        data: Stigg::V1::Coupon::Data
       }
     end
   end

@@ -1,0 +1,293 @@
+module Stigg
+  module Models
+    module V1
+      module Events
+        type feature_update_feature_params =
+          {
+            description: String,
+            display_name: String,
+            enum_configuration: ::Array[Stigg::V1::Events::FeatureUpdateFeatureParams::EnumConfiguration],
+            feature_units: String,
+            feature_units_plural: String,
+            metadata: ::Hash[Symbol, String],
+            meter: Stigg::V1::Events::FeatureUpdateFeatureParams::Meter,
+            unit_transformation: Stigg::V1::Events::FeatureUpdateFeatureParams::UnitTransformation?
+          }
+          & Stigg::Internal::Type::request_parameters
+
+        class FeatureUpdateFeatureParams < Stigg::Internal::Type::BaseModel
+          extend Stigg::Internal::Type::RequestParameters::Converter
+          include Stigg::Internal::Type::RequestParameters
+
+          attr_reader description: String?
+
+          def description=: (String) -> String
+
+          attr_reader display_name: String?
+
+          def display_name=: (String) -> String
+
+          attr_reader enum_configuration: ::Array[Stigg::V1::Events::FeatureUpdateFeatureParams::EnumConfiguration]?
+
+          def enum_configuration=: (
+            ::Array[Stigg::V1::Events::FeatureUpdateFeatureParams::EnumConfiguration]
+          ) -> ::Array[Stigg::V1::Events::FeatureUpdateFeatureParams::EnumConfiguration]
+
+          attr_reader feature_units: String?
+
+          def feature_units=: (String) -> String
+
+          attr_reader feature_units_plural: String?
+
+          def feature_units_plural=: (String) -> String
+
+          attr_reader metadata: ::Hash[Symbol, String]?
+
+          def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+          attr_reader meter: Stigg::V1::Events::FeatureUpdateFeatureParams::Meter?
+
+          def meter=: (
+            Stigg::V1::Events::FeatureUpdateFeatureParams::Meter
+          ) -> Stigg::V1::Events::FeatureUpdateFeatureParams::Meter
+
+          attr_accessor unit_transformation: Stigg::V1::Events::FeatureUpdateFeatureParams::UnitTransformation?
+
+          def initialize: (
+            ?description: String,
+            ?display_name: String,
+            ?enum_configuration: ::Array[Stigg::V1::Events::FeatureUpdateFeatureParams::EnumConfiguration],
+            ?feature_units: String,
+            ?feature_units_plural: String,
+            ?metadata: ::Hash[Symbol, String],
+            ?meter: Stigg::V1::Events::FeatureUpdateFeatureParams::Meter,
+            ?unit_transformation: Stigg::V1::Events::FeatureUpdateFeatureParams::UnitTransformation?,
+            ?request_options: Stigg::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            description: String,
+            display_name: String,
+            enum_configuration: ::Array[Stigg::V1::Events::FeatureUpdateFeatureParams::EnumConfiguration],
+            feature_units: String,
+            feature_units_plural: String,
+            metadata: ::Hash[Symbol, String],
+            meter: Stigg::V1::Events::FeatureUpdateFeatureParams::Meter,
+            unit_transformation: Stigg::V1::Events::FeatureUpdateFeatureParams::UnitTransformation?,
+            request_options: Stigg::RequestOptions
+          }
+
+          type enum_configuration = { display_name: String, value: String }
+
+          class EnumConfiguration < Stigg::Internal::Type::BaseModel
+            attr_accessor display_name: String
+
+            attr_accessor value: String
+
+            def initialize: (display_name: String, value: String) -> void
+
+            def to_hash: -> { display_name: String, value: String }
+          end
+
+          type meter =
+            {
+              aggregation: Stigg::V1::Events::FeatureUpdateFeatureParams::Meter::Aggregation,
+              filters: ::Array[Stigg::V1::Events::FeatureUpdateFeatureParams::Meter::Filter]
+            }
+
+          class Meter < Stigg::Internal::Type::BaseModel
+            attr_accessor aggregation: Stigg::V1::Events::FeatureUpdateFeatureParams::Meter::Aggregation
+
+            attr_accessor filters: ::Array[Stigg::V1::Events::FeatureUpdateFeatureParams::Meter::Filter]
+
+            def initialize: (
+              aggregation: Stigg::V1::Events::FeatureUpdateFeatureParams::Meter::Aggregation,
+              filters: ::Array[Stigg::V1::Events::FeatureUpdateFeatureParams::Meter::Filter]
+            ) -> void
+
+            def to_hash: -> {
+              aggregation: Stigg::V1::Events::FeatureUpdateFeatureParams::Meter::Aggregation,
+              filters: ::Array[Stigg::V1::Events::FeatureUpdateFeatureParams::Meter::Filter]
+            }
+
+            type aggregation =
+              {
+                function: Stigg::Models::V1::Events::FeatureUpdateFeatureParams::Meter::Aggregation::function,
+                field: String
+              }
+
+            class Aggregation < Stigg::Internal::Type::BaseModel
+              attr_accessor function: Stigg::Models::V1::Events::FeatureUpdateFeatureParams::Meter::Aggregation::function
+
+              attr_reader field: String?
+
+              def field=: (String) -> String
+
+              def initialize: (
+                function: Stigg::Models::V1::Events::FeatureUpdateFeatureParams::Meter::Aggregation::function,
+                ?field: String
+              ) -> void
+
+              def to_hash: -> {
+                function: Stigg::Models::V1::Events::FeatureUpdateFeatureParams::Meter::Aggregation::function,
+                field: String
+              }
+
+              type function = :SUM | :MAX | :MIN | :AVG | :COUNT | :UNIQUE
+
+              module Function
+                extend Stigg::Internal::Type::Enum
+
+                SUM: :SUM
+                MAX: :MAX
+                MIN: :MIN
+                AVG: :AVG
+                COUNT: :COUNT
+                UNIQUE: :UNIQUE
+
+                def self?.values: -> ::Array[Stigg::Models::V1::Events::FeatureUpdateFeatureParams::Meter::Aggregation::function]
+              end
+            end
+
+            type filter =
+              {
+                conditions: ::Array[Stigg::V1::Events::FeatureUpdateFeatureParams::Meter::Filter::Condition]
+              }
+
+            class Filter < Stigg::Internal::Type::BaseModel
+              attr_accessor conditions: ::Array[Stigg::V1::Events::FeatureUpdateFeatureParams::Meter::Filter::Condition]
+
+              def initialize: (
+                conditions: ::Array[Stigg::V1::Events::FeatureUpdateFeatureParams::Meter::Filter::Condition]
+              ) -> void
+
+              def to_hash: -> {
+                conditions: ::Array[Stigg::V1::Events::FeatureUpdateFeatureParams::Meter::Filter::Condition]
+              }
+
+              type condition =
+                {
+                  field: String,
+                  operation: Stigg::Models::V1::Events::FeatureUpdateFeatureParams::Meter::Filter::Condition::operation,
+                  value: String,
+                  values: ::Array[String]
+                }
+
+              class Condition < Stigg::Internal::Type::BaseModel
+                attr_accessor field: String
+
+                attr_accessor operation: Stigg::Models::V1::Events::FeatureUpdateFeatureParams::Meter::Filter::Condition::operation
+
+                attr_reader value: String?
+
+                def value=: (String) -> String
+
+                attr_reader values: ::Array[String]?
+
+                def values=: (::Array[String]) -> ::Array[String]
+
+                def initialize: (
+                  field: String,
+                  operation: Stigg::Models::V1::Events::FeatureUpdateFeatureParams::Meter::Filter::Condition::operation,
+                  ?value: String,
+                  ?values: ::Array[String]
+                ) -> void
+
+                def to_hash: -> {
+                  field: String,
+                  operation: Stigg::Models::V1::Events::FeatureUpdateFeatureParams::Meter::Filter::Condition::operation,
+                  value: String,
+                  values: ::Array[String]
+                }
+
+                type operation =
+                  :EQUALS
+                  | :NOT_EQUALS
+                  | :GREATER_THAN
+                  | :GREATER_THAN_OR_EQUAL
+                  | :LESS_THAN
+                  | :LESS_THAN_OR_EQUAL
+                  | :IS_NULL
+                  | :IS_NOT_NULL
+                  | :CONTAINS
+                  | :STARTS_WITH
+                  | :ENDS_WITH
+                  | :IN
+
+                module Operation
+                  extend Stigg::Internal::Type::Enum
+
+                  EQUALS: :EQUALS
+                  NOT_EQUALS: :NOT_EQUALS
+                  GREATER_THAN: :GREATER_THAN
+                  GREATER_THAN_OR_EQUAL: :GREATER_THAN_OR_EQUAL
+                  LESS_THAN: :LESS_THAN
+                  LESS_THAN_OR_EQUAL: :LESS_THAN_OR_EQUAL
+                  IS_NULL: :IS_NULL
+                  IS_NOT_NULL: :IS_NOT_NULL
+                  CONTAINS: :CONTAINS
+                  STARTS_WITH: :STARTS_WITH
+                  ENDS_WITH: :ENDS_WITH
+                  IN: :IN
+
+                  def self?.values: -> ::Array[Stigg::Models::V1::Events::FeatureUpdateFeatureParams::Meter::Filter::Condition::operation]
+                end
+              end
+            end
+          end
+
+          type unit_transformation =
+            {
+              divide: Integer,
+              feature_units: String,
+              feature_units_plural: String,
+              round: Stigg::Models::V1::Events::FeatureUpdateFeatureParams::UnitTransformation::round
+            }
+
+          class UnitTransformation < Stigg::Internal::Type::BaseModel
+            attr_accessor divide: Integer
+
+            attr_reader feature_units: String?
+
+            def feature_units=: (String) -> String
+
+            attr_reader feature_units_plural: String?
+
+            def feature_units_plural=: (String) -> String
+
+            attr_reader round: Stigg::Models::V1::Events::FeatureUpdateFeatureParams::UnitTransformation::round?
+
+            def round=: (
+              Stigg::Models::V1::Events::FeatureUpdateFeatureParams::UnitTransformation::round
+            ) -> Stigg::Models::V1::Events::FeatureUpdateFeatureParams::UnitTransformation::round
+
+            def initialize: (
+              divide: Integer,
+              ?feature_units: String,
+              ?feature_units_plural: String,
+              ?round: Stigg::Models::V1::Events::FeatureUpdateFeatureParams::UnitTransformation::round
+            ) -> void
+
+            def to_hash: -> {
+              divide: Integer,
+              feature_units: String,
+              feature_units_plural: String,
+              round: Stigg::Models::V1::Events::FeatureUpdateFeatureParams::UnitTransformation::round
+            }
+
+            type round = :UP | :DOWN
+
+            module Round
+              extend Stigg::Internal::Type::Enum
+
+              UP: :UP
+              DOWN: :DOWN
+
+              def self?.values: -> ::Array[Stigg::Models::V1::Events::FeatureUpdateFeatureParams::UnitTransformation::round]
+            end
+          end
+        end
+      end
+    end
+  end
+end

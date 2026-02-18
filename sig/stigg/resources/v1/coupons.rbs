@@ -7,9 +7,9 @@ module Stigg
           amounts_off: ::Array[Stigg::V1::CouponCreateParams::AmountsOff]?,
           description: String?,
           duration_in_months: Integer?,
+          metadata: ::Hash[Symbol, String]?,
           name: String,
           percent_off: Float?,
-          ?additional_meta_data: top,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Coupon
 
@@ -19,11 +19,28 @@ module Stigg
         ) -> Stigg::V1::Coupon
 
         def list: (
+          ?id: String,
           ?after: String,
           ?before: String,
+          ?created_at: Stigg::V1::CouponListParams::CreatedAt,
           ?limit: Integer,
+          ?status: String,
+          ?type: Stigg::Models::V1::CouponListParams::type_,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::CouponListResponse]
+
+        def archive_coupon: (
+          String id,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::V1::Coupon
+
+        def update_coupon: (
+          String id,
+          ?description: String?,
+          ?metadata: ::Hash[Symbol, String]?,
+          ?name: String,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::V1::Coupon
 
         def initialize: (client: Stigg::Client) -> void
       end

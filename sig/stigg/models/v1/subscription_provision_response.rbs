@@ -68,22 +68,22 @@ module Stigg
           }
 
           type entitlement =
-            Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement
-            | Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement
+            Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0
+            | Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1
 
           module Entitlement
             extend Stigg::Internal::Type::Union
 
-            type subscription_feature_entitlement =
+            type union_member0 =
               {
-                access_denied_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::access_denied_reason?,
+                access_denied_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::access_denied_reason?,
                 is_granted: bool,
-                type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::type_,
+                type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::type_,
                 current_usage: Float,
                 entitlement_updated_at: Time,
-                feature: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature,
+                feature: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature,
                 has_unlimited_usage: bool,
-                reset_period: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::reset_period?,
+                reset_period: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::reset_period?,
                 usage_limit: Float?,
                 usage_period_anchor: Time,
                 usage_period_end: Time,
@@ -91,12 +91,12 @@ module Stigg
                 valid_until: Time
               }
 
-            class SubscriptionFeatureEntitlement < Stigg::Internal::Type::BaseModel
-              attr_accessor access_denied_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::access_denied_reason?
+            class UnionMember0 < Stigg::Internal::Type::BaseModel
+              attr_accessor access_denied_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::access_denied_reason?
 
               attr_accessor is_granted: bool
 
-              attr_accessor type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::type_
+              attr_accessor type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::type_
 
               attr_reader current_usage: Float?
 
@@ -106,17 +106,17 @@ module Stigg
 
               def entitlement_updated_at=: (Time) -> Time
 
-              attr_reader feature: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature?
+              attr_reader feature: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature?
 
               def feature=: (
-                Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature
-              ) -> Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature
+                Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature
+              ) -> Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature
 
               attr_reader has_unlimited_usage: bool?
 
               def has_unlimited_usage=: (bool) -> bool
 
-              attr_accessor reset_period: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::reset_period?
+              attr_accessor reset_period: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::reset_period?
 
               attr_accessor usage_limit: Float?
 
@@ -137,14 +137,14 @@ module Stigg
               def valid_until=: (Time) -> Time
 
               def initialize: (
-                access_denied_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::access_denied_reason?,
+                access_denied_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::access_denied_reason?,
                 is_granted: bool,
-                type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::type_,
+                type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::type_,
                 ?current_usage: Float,
                 ?entitlement_updated_at: Time,
-                ?feature: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature,
+                ?feature: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature,
                 ?has_unlimited_usage: bool,
-                ?reset_period: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::reset_period?,
+                ?reset_period: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::reset_period?,
                 ?usage_limit: Float?,
                 ?usage_period_anchor: Time,
                 ?usage_period_end: Time,
@@ -153,14 +153,14 @@ module Stigg
               ) -> void
 
               def to_hash: -> {
-                access_denied_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::access_denied_reason?,
+                access_denied_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::access_denied_reason?,
                 is_granted: bool,
-                type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::type_,
+                type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::type_,
                 current_usage: Float,
                 entitlement_updated_at: Time,
-                feature: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature,
+                feature: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature,
                 has_unlimited_usage: bool,
-                reset_period: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::reset_period?,
+                reset_period: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::reset_period?,
                 usage_limit: Float?,
                 usage_period_anchor: Time,
                 usage_period_end: Time,
@@ -202,7 +202,7 @@ module Stigg
                 INSUFFICIENT_CREDITS: :InsufficientCredits
                 ENTITLEMENT_NOT_FOUND: :EntitlementNotFound
 
-                def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::access_denied_reason]
+                def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::access_denied_reason]
               end
 
               type type_ = :FEATURE
@@ -212,37 +212,37 @@ module Stigg
 
                 FEATURE: :FEATURE
 
-                def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::type_]
+                def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::type_]
               end
 
               type feature =
                 {
                   display_name: String,
-                  feature_status: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::feature_status,
-                  feature_type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::feature_type,
+                  feature_status: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::feature_status,
+                  feature_type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::feature_type,
                   ref_id: String
                 }
 
               class Feature < Stigg::Internal::Type::BaseModel
                 attr_accessor display_name: String
 
-                attr_accessor feature_status: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::feature_status
+                attr_accessor feature_status: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::feature_status
 
-                attr_accessor feature_type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::feature_type
+                attr_accessor feature_type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::feature_type
 
                 attr_accessor ref_id: String
 
                 def initialize: (
                   display_name: String,
-                  feature_status: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::feature_status,
-                  feature_type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::feature_type,
+                  feature_status: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::feature_status,
+                  feature_type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::feature_type,
                   ref_id: String
                 ) -> void
 
                 def to_hash: -> {
                   display_name: String,
-                  feature_status: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::feature_status,
-                  feature_type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::feature_type,
+                  feature_status: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::feature_status,
+                  feature_type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::feature_type,
                   ref_id: String
                 }
 
@@ -255,7 +255,7 @@ module Stigg
                   SUSPENDED: :SUSPENDED
                   ACTIVE: :ACTIVE
 
-                  def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::feature_status]
+                  def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::feature_status]
                 end
 
                 type feature_type = :BOOLEAN | :NUMBER | :ENUM
@@ -267,7 +267,7 @@ module Stigg
                   NUMBER: :NUMBER
                   ENUM: :ENUM
 
-                  def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::Feature::feature_type]
+                  def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::Feature::feature_type]
                 end
               end
 
@@ -282,33 +282,34 @@ module Stigg
                 DAY: :DAY
                 HOUR: :HOUR
 
-                def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionFeatureEntitlement::reset_period]
+                def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember0::reset_period]
               end
             end
 
-            type subscription_credit_entitlement =
+            type union_member1 =
               {
-                access_denied_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::access_denied_reason?,
-                currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Currency,
+                access_denied_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::access_denied_reason?,
+                currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::Currency,
                 current_usage: Float,
                 is_granted: bool,
-                type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::type_,
+                type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::type_,
                 usage_limit: Float,
                 usage_updated_at: Time,
                 entitlement_updated_at: Time,
+                usage_period_end: Time,
                 valid_until: Time
               }
 
-            class SubscriptionCreditEntitlement < Stigg::Internal::Type::BaseModel
-              attr_accessor access_denied_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::access_denied_reason?
+            class UnionMember1 < Stigg::Internal::Type::BaseModel
+              attr_accessor access_denied_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::access_denied_reason?
 
-              attr_accessor currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Currency
+              attr_accessor currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::Currency
 
               attr_accessor current_usage: Float
 
               attr_accessor is_granted: bool
 
-              attr_accessor type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::type_
+              attr_accessor type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::type_
 
               attr_accessor usage_limit: Float
 
@@ -318,31 +319,37 @@ module Stigg
 
               def entitlement_updated_at=: (Time) -> Time
 
+              attr_reader usage_period_end: Time?
+
+              def usage_period_end=: (Time) -> Time
+
               attr_reader valid_until: Time?
 
               def valid_until=: (Time) -> Time
 
               def initialize: (
-                access_denied_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::access_denied_reason?,
-                currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Currency,
+                access_denied_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::access_denied_reason?,
+                currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::Currency,
                 current_usage: Float,
                 is_granted: bool,
-                type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::type_,
+                type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::type_,
                 usage_limit: Float,
                 usage_updated_at: Time,
                 ?entitlement_updated_at: Time,
+                ?usage_period_end: Time,
                 ?valid_until: Time
               ) -> void
 
               def to_hash: -> {
-                access_denied_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::access_denied_reason?,
-                currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::Currency,
+                access_denied_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::access_denied_reason?,
+                currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::Currency,
                 current_usage: Float,
                 is_granted: bool,
-                type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::type_,
+                type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::type_,
                 usage_limit: Float,
                 usage_updated_at: Time,
                 entitlement_updated_at: Time,
+                usage_period_end: Time,
                 valid_until: Time
               }
 
@@ -380,7 +387,7 @@ module Stigg
                 INSUFFICIENT_CREDITS: :InsufficientCredits
                 ENTITLEMENT_NOT_FOUND: :EntitlementNotFound
 
-                def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::access_denied_reason]
+                def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::access_denied_reason]
               end
 
               type currency = { currency_id: String }
@@ -400,7 +407,7 @@ module Stigg
 
                 CREDIT: :CREDIT
 
-                def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::SubscriptionCreditEntitlement::type_]
+                def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionMember1::type_]
               end
             end
 

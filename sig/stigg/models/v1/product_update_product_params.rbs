@@ -1,0 +1,174 @@
+module Stigg
+  module Models
+    module V1
+      type product_update_product_params =
+        {
+          description: String?,
+          display_name: String,
+          metadata: ::Hash[Symbol, String]?,
+          multiple_subscriptions: bool,
+          product_settings: Stigg::V1::ProductUpdateProductParams::ProductSettings,
+          usage_reset_cutoff_rule: Stigg::V1::ProductUpdateProductParams::UsageResetCutoffRule
+        }
+        & Stigg::Internal::Type::request_parameters
+
+      class ProductUpdateProductParams < Stigg::Internal::Type::BaseModel
+        extend Stigg::Internal::Type::RequestParameters::Converter
+        include Stigg::Internal::Type::RequestParameters
+
+        attr_accessor description: String?
+
+        attr_reader display_name: String?
+
+        def display_name=: (String) -> String
+
+        attr_accessor metadata: ::Hash[Symbol, String]?
+
+        attr_reader multiple_subscriptions: bool?
+
+        def multiple_subscriptions=: (bool) -> bool
+
+        attr_reader product_settings: Stigg::V1::ProductUpdateProductParams::ProductSettings?
+
+        def product_settings=: (
+          Stigg::V1::ProductUpdateProductParams::ProductSettings
+        ) -> Stigg::V1::ProductUpdateProductParams::ProductSettings
+
+        attr_reader usage_reset_cutoff_rule: Stigg::V1::ProductUpdateProductParams::UsageResetCutoffRule?
+
+        def usage_reset_cutoff_rule=: (
+          Stigg::V1::ProductUpdateProductParams::UsageResetCutoffRule
+        ) -> Stigg::V1::ProductUpdateProductParams::UsageResetCutoffRule
+
+        def initialize: (
+          ?description: String?,
+          ?display_name: String,
+          ?metadata: ::Hash[Symbol, String]?,
+          ?multiple_subscriptions: bool,
+          ?product_settings: Stigg::V1::ProductUpdateProductParams::ProductSettings,
+          ?usage_reset_cutoff_rule: Stigg::V1::ProductUpdateProductParams::UsageResetCutoffRule,
+          ?request_options: Stigg::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          description: String?,
+          display_name: String,
+          metadata: ::Hash[Symbol, String]?,
+          multiple_subscriptions: bool,
+          product_settings: Stigg::V1::ProductUpdateProductParams::ProductSettings,
+          usage_reset_cutoff_rule: Stigg::V1::ProductUpdateProductParams::UsageResetCutoffRule,
+          request_options: Stigg::RequestOptions
+        }
+
+        type product_settings =
+          {
+            subscription_cancellation_time: Stigg::Models::V1::ProductUpdateProductParams::ProductSettings::subscription_cancellation_time,
+            subscription_end_setup: Stigg::Models::V1::ProductUpdateProductParams::ProductSettings::subscription_end_setup,
+            subscription_start_setup: Stigg::Models::V1::ProductUpdateProductParams::ProductSettings::subscription_start_setup,
+            downgrade_plan_id: String?,
+            prorate_at_end_of_billing_period: bool?,
+            subscription_start_plan_id: String?
+          }
+
+        class ProductSettings < Stigg::Internal::Type::BaseModel
+          attr_accessor subscription_cancellation_time: Stigg::Models::V1::ProductUpdateProductParams::ProductSettings::subscription_cancellation_time
+
+          attr_accessor subscription_end_setup: Stigg::Models::V1::ProductUpdateProductParams::ProductSettings::subscription_end_setup
+
+          attr_accessor subscription_start_setup: Stigg::Models::V1::ProductUpdateProductParams::ProductSettings::subscription_start_setup
+
+          attr_accessor downgrade_plan_id: String?
+
+          attr_accessor prorate_at_end_of_billing_period: bool?
+
+          attr_accessor subscription_start_plan_id: String?
+
+          def initialize: (
+            subscription_cancellation_time: Stigg::Models::V1::ProductUpdateProductParams::ProductSettings::subscription_cancellation_time,
+            subscription_end_setup: Stigg::Models::V1::ProductUpdateProductParams::ProductSettings::subscription_end_setup,
+            subscription_start_setup: Stigg::Models::V1::ProductUpdateProductParams::ProductSettings::subscription_start_setup,
+            ?downgrade_plan_id: String?,
+            ?prorate_at_end_of_billing_period: bool?,
+            ?subscription_start_plan_id: String?
+          ) -> void
+
+          def to_hash: -> {
+            subscription_cancellation_time: Stigg::Models::V1::ProductUpdateProductParams::ProductSettings::subscription_cancellation_time,
+            subscription_end_setup: Stigg::Models::V1::ProductUpdateProductParams::ProductSettings::subscription_end_setup,
+            subscription_start_setup: Stigg::Models::V1::ProductUpdateProductParams::ProductSettings::subscription_start_setup,
+            downgrade_plan_id: String?,
+            prorate_at_end_of_billing_period: bool?,
+            subscription_start_plan_id: String?
+          }
+
+          type subscription_cancellation_time =
+            :END_OF_BILLING_PERIOD | :IMMEDIATE | :SPECIFIC_DATE
+
+          module SubscriptionCancellationTime
+            extend Stigg::Internal::Type::Enum
+
+            END_OF_BILLING_PERIOD: :END_OF_BILLING_PERIOD
+            IMMEDIATE: :IMMEDIATE
+            SPECIFIC_DATE: :SPECIFIC_DATE
+
+            def self?.values: -> ::Array[Stigg::Models::V1::ProductUpdateProductParams::ProductSettings::subscription_cancellation_time]
+          end
+
+          type subscription_end_setup =
+            :DOWNGRADE_TO_FREE | :CANCEL_SUBSCRIPTION
+
+          module SubscriptionEndSetup
+            extend Stigg::Internal::Type::Enum
+
+            DOWNGRADE_TO_FREE: :DOWNGRADE_TO_FREE
+            CANCEL_SUBSCRIPTION: :CANCEL_SUBSCRIPTION
+
+            def self?.values: -> ::Array[Stigg::Models::V1::ProductUpdateProductParams::ProductSettings::subscription_end_setup]
+          end
+
+          type subscription_start_setup =
+            :PLAN_SELECTION | :TRIAL_PERIOD | :FREE_PLAN
+
+          module SubscriptionStartSetup
+            extend Stigg::Internal::Type::Enum
+
+            PLAN_SELECTION: :PLAN_SELECTION
+            TRIAL_PERIOD: :TRIAL_PERIOD
+            FREE_PLAN: :FREE_PLAN
+
+            def self?.values: -> ::Array[Stigg::Models::V1::ProductUpdateProductParams::ProductSettings::subscription_start_setup]
+          end
+        end
+
+        type usage_reset_cutoff_rule =
+          {
+            behavior: Stigg::Models::V1::ProductUpdateProductParams::UsageResetCutoffRule::behavior
+          }
+
+        class UsageResetCutoffRule < Stigg::Internal::Type::BaseModel
+          attr_accessor behavior: Stigg::Models::V1::ProductUpdateProductParams::UsageResetCutoffRule::behavior
+
+          def initialize: (
+            behavior: Stigg::Models::V1::ProductUpdateProductParams::UsageResetCutoffRule::behavior
+          ) -> void
+
+          def to_hash: -> {
+            behavior: Stigg::Models::V1::ProductUpdateProductParams::UsageResetCutoffRule::behavior
+          }
+
+          type behavior = :NEVER_RESET | :ALWAYS_RESET | :BILLING_PERIOD_CHANGE
+
+          module Behavior
+            extend Stigg::Internal::Type::Enum
+
+            NEVER_RESET: :NEVER_RESET
+            ALWAYS_RESET: :ALWAYS_RESET
+            BILLING_PERIOD_CHANGE: :BILLING_PERIOD_CHANGE
+
+            def self?.values: -> ::Array[Stigg::Models::V1::ProductUpdateProductParams::UsageResetCutoffRule::behavior]
+          end
+        end
+      end
+    end
+  end
+end

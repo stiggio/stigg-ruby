@@ -4,6 +4,12 @@ module Stigg
   module Resources
     class V1
       class Events
+        sig { returns(Stigg::Resources::V1::Events::Features) }
+        attr_reader :features
+
+        sig { returns(Stigg::Resources::V1::Events::Addons) }
+        attr_reader :addons
+
         # Reports raw usage events for event-based metering. Events are ingested
         # asynchronously and aggregated into usage totals.
         sig do

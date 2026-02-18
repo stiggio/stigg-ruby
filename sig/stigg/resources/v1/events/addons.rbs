@@ -1,0 +1,63 @@
+module Stigg
+  module Resources
+    class V1
+      class Events
+        class Addons
+          attr_reader draft: Stigg::Resources::V1::Events::Addons::Draft
+
+          def archive_addon: (
+            String id,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Events::AddonArchiveAddonResponse
+
+          def create_addon: (
+            id: String,
+            display_name: String,
+            product_id: String,
+            ?billing_id: String,
+            ?description: String,
+            ?max_quantity: Integer,
+            ?metadata: ::Hash[Symbol, String],
+            ?pricing_type: Stigg::Models::V1::Events::AddonCreateAddonParams::pricing_type,
+            ?status: Stigg::Models::V1::Events::AddonCreateAddonParams::status,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Events::AddonCreateAddonResponse
+
+          def list_addons: (
+            ?after: String,
+            ?before: String,
+            ?created_at: Stigg::V1::Events::AddonListAddonsParams::CreatedAt,
+            ?limit: Integer,
+            ?product_id: String,
+            ?status: String,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::Events::AddonListAddonsResponse]
+
+          def publish_addon: (
+            String id,
+            migration_type: Stigg::Models::V1::Events::AddonPublishAddonParams::migration_type,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Events::AddonPublishAddonResponse
+
+          def retrieve_addon: (
+            String id,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Events::AddonRetrieveAddonResponse
+
+          def update_addon: (
+            String id,
+            ?billing_id: String?,
+            ?dependencies: ::Array[String]?,
+            ?description: String?,
+            ?display_name: String,
+            ?max_quantity: Integer?,
+            ?metadata: ::Hash[Symbol, String],
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Events::AddonUpdateAddonResponse
+
+          def initialize: (client: Stigg::Client) -> void
+        end
+      end
+    end
+  end
+end
