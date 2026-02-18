@@ -9,6 +9,11 @@ module Stigg
             ?request_options: Stigg::request_opts
           ) -> Stigg::Models::V1::Subscriptions::UsageChargeUsageResponse
 
+          def sync: (
+            String id,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Subscriptions::UsageSyncResponse
+
           def initialize: (client: Stigg::Client) -> void
         end
       end
