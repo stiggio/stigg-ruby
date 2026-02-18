@@ -1,0 +1,39 @@
+module Stigg
+  module Resources
+    class V1
+      class Events
+        class Plans
+          def create: (
+            id: String,
+            display_name: String,
+            product_id: String,
+            ?billing_id: String?,
+            ?description: String?,
+            ?metadata: ::Hash[Symbol, String],
+            ?parent_plan_id: String?,
+            ?pricing_type: Stigg::Models::V1::Events::PlanCreateParams::pricing_type?,
+            ?status: Stigg::Models::V1::Events::PlanCreateParams::status,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Events::PlanCreateResponse
+
+          def retrieve: (
+            String id,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Events::PlanRetrieveResponse
+
+          def list: (
+            ?after: String,
+            ?before: String,
+            ?created_at: Stigg::V1::Events::PlanListParams::CreatedAt,
+            ?limit: Integer,
+            ?product_id: String,
+            ?status: String,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::Events::PlanListResponse]
+
+          def initialize: (client: Stigg::Client) -> void
+        end
+      end
+    end
+  end
+end
