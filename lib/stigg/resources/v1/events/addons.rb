@@ -36,17 +36,17 @@ module Stigg
           #
           # @param display_name [String] The display name of the package
           #
-          # @param product_id [String] The product ID to associate the addon with
+          # @param product_id [String] The product id of the package
           #
-          # @param billing_id [String] The unique identifier for the entity in the billing provider
+          # @param billing_id [String, nil] The unique identifier for the entity in the billing provider
           #
-          # @param description [String] The description of the package
+          # @param description [String, nil] The description of the package
           #
-          # @param max_quantity [Integer] The maximum quantity of this addon that can be added to a subscription
+          # @param max_quantity [Integer, nil] The maximum quantity of this addon that can be added to a subscription
           #
           # @param metadata [Hash{Symbol=>String}] Metadata associated with the entity
           #
-          # @param pricing_type [Symbol, Stigg::Models::V1::Events::AddonCreateAddonParams::PricingType] The pricing type of the package
+          # @param pricing_type [Symbol, Stigg::Models::V1::Events::AddonCreateAddonParams::PricingType, nil] The pricing type of the package
           #
           # @param status [Symbol, Stigg::Models::V1::Events::AddonCreateAddonParams::Status] The status of the package
           #
@@ -80,7 +80,7 @@ module Stigg
           #
           # @param product_id [String] Filter by product ID
           #
-          # @param status [String] Filter by addon status. Supports comma-separated values for multiple statuses
+          # @param status [String] Filter by status. Supports comma-separated values for multiple statuses
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #

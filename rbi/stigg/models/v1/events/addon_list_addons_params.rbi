@@ -60,7 +60,7 @@ module Stigg
           sig { params(product_id: String).void }
           attr_writer :product_id
 
-          # Filter by addon status. Supports comma-separated values for multiple statuses
+          # Filter by status. Supports comma-separated values for multiple statuses
           sig { returns(T.nilable(String)) }
           attr_reader :status
 
@@ -90,7 +90,7 @@ module Stigg
             limit: nil,
             # Filter by product ID
             product_id: nil,
-            # Filter by addon status. Supports comma-separated values for multiple statuses
+            # Filter by status. Supports comma-separated values for multiple statuses
             status: nil,
             request_options: {}
           )

@@ -24,30 +24,21 @@ module Stigg
           sig { returns(String) }
           attr_accessor :display_name
 
-          # The product ID to associate the addon with
+          # The product id of the package
           sig { returns(String) }
           attr_accessor :product_id
 
           # The unique identifier for the entity in the billing provider
           sig { returns(T.nilable(String)) }
-          attr_reader :billing_id
-
-          sig { params(billing_id: String).void }
-          attr_writer :billing_id
+          attr_accessor :billing_id
 
           # The description of the package
           sig { returns(T.nilable(String)) }
-          attr_reader :description
-
-          sig { params(description: String).void }
-          attr_writer :description
+          attr_accessor :description
 
           # The maximum quantity of this addon that can be added to a subscription
           sig { returns(T.nilable(Integer)) }
-          attr_reader :max_quantity
-
-          sig { params(max_quantity: Integer).void }
-          attr_writer :max_quantity
+          attr_accessor :max_quantity
 
           # Metadata associated with the entity
           sig { returns(T.nilable(T::Hash[Symbol, String])) }
@@ -64,15 +55,7 @@ module Stigg
               )
             )
           end
-          attr_reader :pricing_type
-
-          sig do
-            params(
-              pricing_type:
-                Stigg::V1::Events::AddonCreateAddonParams::PricingType::OrSymbol
-            ).void
-          end
-          attr_writer :pricing_type
+          attr_accessor :pricing_type
 
           # The status of the package
           sig do
@@ -97,12 +80,14 @@ module Stigg
               id: String,
               display_name: String,
               product_id: String,
-              billing_id: String,
-              description: String,
-              max_quantity: Integer,
+              billing_id: T.nilable(String),
+              description: T.nilable(String),
+              max_quantity: T.nilable(Integer),
               metadata: T::Hash[Symbol, String],
               pricing_type:
-                Stigg::V1::Events::AddonCreateAddonParams::PricingType::OrSymbol,
+                T.nilable(
+                  Stigg::V1::Events::AddonCreateAddonParams::PricingType::OrSymbol
+                ),
               status:
                 Stigg::V1::Events::AddonCreateAddonParams::Status::OrSymbol,
               request_options: Stigg::RequestOptions::OrHash
@@ -113,7 +98,7 @@ module Stigg
             id:,
             # The display name of the package
             display_name:,
-            # The product ID to associate the addon with
+            # The product id of the package
             product_id:,
             # The unique identifier for the entity in the billing provider
             billing_id: nil,
@@ -137,12 +122,14 @@ module Stigg
                 id: String,
                 display_name: String,
                 product_id: String,
-                billing_id: String,
-                description: String,
-                max_quantity: Integer,
+                billing_id: T.nilable(String),
+                description: T.nilable(String),
+                max_quantity: T.nilable(Integer),
                 metadata: T::Hash[Symbol, String],
                 pricing_type:
-                  Stigg::V1::Events::AddonCreateAddonParams::PricingType::OrSymbol,
+                  T.nilable(
+                    Stigg::V1::Events::AddonCreateAddonParams::PricingType::OrSymbol
+                  ),
                 status:
                   Stigg::V1::Events::AddonCreateAddonParams::Status::OrSymbol,
                 request_options: Stigg::RequestOptions
