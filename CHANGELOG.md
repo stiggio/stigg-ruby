@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.7 (2026-02-18)
+
+Full Changelog: [v0.1.0-alpha.6...v0.1.0-alpha.7](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.6...v0.1.0-alpha.7)
+
+### Features
+
+* **api:** Add missing endpoints ([5718d7d](https://github.com/stiggio/stigg-ruby/commit/5718d7d4d7fc34062a4ec6989ded44e4a1e372f2))
+* **api:** add plans endpoints, add product_id to addons, update addon/product params ([c11e306](https://github.com/stiggio/stigg-ruby/commit/c11e306ebd5075e7bb2cbbf0263352b73f7a2728))
+* **api:** add plans resource, product_id to addon types, remove product duplicate body_id ([e7051c5](https://github.com/stiggio/stigg-ruby/commit/e7051c5680f295dec6db02b169e8d2ab87421c76))
+* **api:** api update ([9cca141](https://github.com/stiggio/stigg-ruby/commit/9cca141fa0fe6d740a6b8877b098fb37968ac2a0))
+* **api:** api update ([1c17067](https://github.com/stiggio/stigg-ruby/commit/1c17067799ce2cb13ee0783ce7d26223c7023173))
+* **api:** api update ([1d6a841](https://github.com/stiggio/stigg-ruby/commit/1d6a8414e23883cdfd8ec0016d4e5e28e4eb87e8))
+
 ## 0.1.0-alpha.6 (2026-02-18)
 
 Full Changelog: [v0.1.0-alpha.5...v0.1.0-alpha.6](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.5...v0.1.0-alpha.6)
