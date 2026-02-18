@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.1.0-alpha.5 (2026-02-18)
+
+Full Changelog: [v0.1.0-alpha.4...v0.1.0-alpha.5](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.4...v0.1.0-alpha.5)
+
+### Features
+
+* **api:** api update ([0bef237](https://github.com/stiggio/stigg-ruby/commit/0bef2378434fdc6927b6ae047273b1c34fb547a1))
+* **api:** api update ([d4ba688](https://github.com/stiggio/stigg-ruby/commit/d4ba6885238b5bf3ec0437e1133190c5ae3c5355))
+* **api:** api update ([903d4e3](https://github.com/stiggio/stigg-ruby/commit/903d4e337eee0223e1ee44612ca777f9de7118c2))
+* **api:** api update ([4af0ac7](https://github.com/stiggio/stigg-ruby/commit/4af0ac745f7adef0c5b66e4f9265af9e740348a5))
+* **api:** api update ([718a775](https://github.com/stiggio/stigg-ruby/commit/718a775adccaff2476c669e85ee2772f85d03e1f))
+* **api:** api update ([1f3eea8](https://github.com/stiggio/stigg-ruby/commit/1f3eea8b8ab126fa0a12bf5e82ab39d824a57e63))
+* **api:** api update ([0a0a227](https://github.com/stiggio/stigg-ruby/commit/0a0a227db0c6fa21e7f56bfe8711e6ba07561726))
+* **api:** api update ([04cfb6e](https://github.com/stiggio/stigg-ruby/commit/04cfb6e36aa1e58887120bec4c4fb6d6094d0ec3))
+* **api:** manual updates ([9d0c129](https://github.com/stiggio/stigg-ruby/commit/9d0c129cdf0cfb1b066b5e319449cd9084be1cc6))
+* **api:** manual updates ([b39a21d](https://github.com/stiggio/stigg-ruby/commit/b39a21d8b6c8cec17888438066d754c6ffe7e261))
+* **api:** manual updates ([9561b08](https://github.com/stiggio/stigg-ruby/commit/9561b082df85dd182f3bf37502bc4062ca4db186))
+* **api:** updated the production environment ([fb01745](https://github.com/stiggio/stigg-ruby/commit/fb0174573ad2d4d7e0deb17481ca1c8a31974dfb))
+
+
+### Chores
+
+* configure new SDK language ([25f1ad3](https://github.com/stiggio/stigg-ruby/commit/25f1ad3a78d40633f7a8fb911799cabf10f6c21f))
+
 ## 0.1.0-alpha.4 (2026-02-08)
 
 Full Changelog: [v0.1.0-alpha.3...v0.1.0-alpha.4](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
