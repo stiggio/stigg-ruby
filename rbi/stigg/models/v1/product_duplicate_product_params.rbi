@@ -15,10 +15,6 @@ module Stigg
             )
           end
 
-        # The unique identifier for the entity
-        sig { returns(String) }
-        attr_accessor :body_id
-
         # Description of the product
         sig { returns(T.nilable(String)) }
         attr_accessor :description
@@ -32,15 +28,12 @@ module Stigg
 
         sig do
           params(
-            body_id: String,
             description: T.nilable(String),
             display_name: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
-          # The unique identifier for the entity
-          body_id:,
           # Description of the product
           description: nil,
           # Display name of the product
@@ -52,7 +45,6 @@ module Stigg
         sig do
           override.returns(
             {
-              body_id: String,
               description: T.nilable(String),
               display_name: String,
               request_options: Stigg::RequestOptions
