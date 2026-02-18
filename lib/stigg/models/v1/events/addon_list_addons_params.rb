@@ -40,7 +40,7 @@ module Stigg
           optional :product_id, String
 
           # @!attribute status
-          #   Filter by addon status. Supports comma-separated values for multiple statuses
+          #   Filter by status. Supports comma-separated values for multiple statuses
           #
           #   @return [String, nil]
           optional :status, String
@@ -56,7 +56,7 @@ module Stigg
           #
           #   @param product_id [String] Filter by product ID
           #
-          #   @param status [String] Filter by addon status. Supports comma-separated values for multiple statuses
+          #   @param status [String] Filter by status. Supports comma-separated values for multiple statuses
           #
           #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 

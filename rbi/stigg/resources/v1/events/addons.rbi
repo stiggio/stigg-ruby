@@ -28,12 +28,14 @@ module Stigg
               id: String,
               display_name: String,
               product_id: String,
-              billing_id: String,
-              description: String,
-              max_quantity: Integer,
+              billing_id: T.nilable(String),
+              description: T.nilable(String),
+              max_quantity: T.nilable(Integer),
               metadata: T::Hash[Symbol, String],
               pricing_type:
-                Stigg::V1::Events::AddonCreateAddonParams::PricingType::OrSymbol,
+                T.nilable(
+                  Stigg::V1::Events::AddonCreateAddonParams::PricingType::OrSymbol
+                ),
               status:
                 Stigg::V1::Events::AddonCreateAddonParams::Status::OrSymbol,
               request_options: Stigg::RequestOptions::OrHash
@@ -44,7 +46,7 @@ module Stigg
             id:,
             # The display name of the package
             display_name:,
-            # The product ID to associate the addon with
+            # The product id of the package
             product_id:,
             # The unique identifier for the entity in the billing provider
             billing_id: nil,
@@ -90,7 +92,7 @@ module Stigg
             limit: nil,
             # Filter by product ID
             product_id: nil,
-            # Filter by addon status. Supports comma-separated values for multiple statuses
+            # Filter by status. Supports comma-separated values for multiple statuses
             status: nil,
             request_options: {}
           )

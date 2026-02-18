@@ -37,7 +37,7 @@ module Stigg
           sig { returns(String) }
           attr_accessor :display_name
 
-          # List of entitlements for the addon
+          # List of entitlements of the package
           sig do
             returns(
               T::Array[
@@ -68,6 +68,10 @@ module Stigg
             )
           end
           attr_accessor :pricing_type
+
+          # The product id of the package
+          sig { returns(String) }
+          attr_accessor :product_id
 
           # The status of the package
           sig do
@@ -105,6 +109,7 @@ module Stigg
                 T.nilable(
                   Stigg::Models::V1::Events::AddonListAddonsResponse::PricingType::OrSymbol
                 ),
+              product_id: String,
               status:
                 Stigg::Models::V1::Events::AddonListAddonsResponse::Status::OrSymbol,
               updated_at: Time,
@@ -124,7 +129,7 @@ module Stigg
             description:,
             # The display name of the package
             display_name:,
-            # List of entitlements for the addon
+            # List of entitlements of the package
             entitlements:,
             # Indicates if the package is the latest version
             is_latest:,
@@ -134,6 +139,8 @@ module Stigg
             metadata:,
             # The pricing type of the package
             pricing_type:,
+            # The product id of the package
+            product_id:,
             # The status of the package
             status:,
             # Timestamp of when the record was last updated
@@ -163,6 +170,7 @@ module Stigg
                   T.nilable(
                     Stigg::Models::V1::Events::AddonListAddonsResponse::PricingType::TaggedSymbol
                   ),
+                product_id: String,
                 status:
                   Stigg::Models::V1::Events::AddonListAddonsResponse::Status::TaggedSymbol,
                 updated_at: Time,

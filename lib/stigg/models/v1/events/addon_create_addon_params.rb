@@ -22,7 +22,7 @@ module Stigg
           required :display_name, String, api_name: :displayName
 
           # @!attribute product_id
-          #   The product ID to associate the addon with
+          #   The product id of the package
           #
           #   @return [String]
           required :product_id, String, api_name: :productId
@@ -31,19 +31,19 @@ module Stigg
           #   The unique identifier for the entity in the billing provider
           #
           #   @return [String, nil]
-          optional :billing_id, String, api_name: :billingId
+          optional :billing_id, String, api_name: :billingId, nil?: true
 
           # @!attribute description
           #   The description of the package
           #
           #   @return [String, nil]
-          optional :description, String
+          optional :description, String, nil?: true
 
           # @!attribute max_quantity
           #   The maximum quantity of this addon that can be added to a subscription
           #
           #   @return [Integer, nil]
-          optional :max_quantity, Integer, api_name: :maxQuantity
+          optional :max_quantity, Integer, api_name: :maxQuantity, nil?: true
 
           # @!attribute metadata
           #   Metadata associated with the entity
@@ -57,7 +57,8 @@ module Stigg
           #   @return [Symbol, Stigg::Models::V1::Events::AddonCreateAddonParams::PricingType, nil]
           optional :pricing_type,
                    enum: -> { Stigg::V1::Events::AddonCreateAddonParams::PricingType },
-                   api_name: :pricingType
+                   api_name: :pricingType,
+                   nil?: true
 
           # @!attribute status
           #   The status of the package
@@ -70,17 +71,17 @@ module Stigg
           #
           #   @param display_name [String] The display name of the package
           #
-          #   @param product_id [String] The product ID to associate the addon with
+          #   @param product_id [String] The product id of the package
           #
-          #   @param billing_id [String] The unique identifier for the entity in the billing provider
+          #   @param billing_id [String, nil] The unique identifier for the entity in the billing provider
           #
-          #   @param description [String] The description of the package
+          #   @param description [String, nil] The description of the package
           #
-          #   @param max_quantity [Integer] The maximum quantity of this addon that can be added to a subscription
+          #   @param max_quantity [Integer, nil] The maximum quantity of this addon that can be added to a subscription
           #
           #   @param metadata [Hash{Symbol=>String}] Metadata associated with the entity
           #
-          #   @param pricing_type [Symbol, Stigg::Models::V1::Events::AddonCreateAddonParams::PricingType] The pricing type of the package
+          #   @param pricing_type [Symbol, Stigg::Models::V1::Events::AddonCreateAddonParams::PricingType, nil] The pricing type of the package
           #
           #   @param status [Symbol, Stigg::Models::V1::Events::AddonCreateAddonParams::Status] The status of the package
           #

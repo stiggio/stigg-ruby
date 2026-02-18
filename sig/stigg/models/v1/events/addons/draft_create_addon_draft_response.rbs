@@ -32,6 +32,7 @@ module Stigg
                 max_quantity: Integer?,
                 metadata: ::Hash[Symbol, String],
                 pricing_type: Stigg::Models::V1::Events::Addons::DraftCreateAddonDraftResponse::Data::pricing_type?,
+                product_id: String,
                 status: Stigg::Models::V1::Events::Addons::DraftCreateAddonDraftResponse::Data::status,
                 updated_at: Time,
                 version_number: Integer
@@ -60,6 +61,8 @@ module Stigg
 
               attr_accessor pricing_type: Stigg::Models::V1::Events::Addons::DraftCreateAddonDraftResponse::Data::pricing_type?
 
+              attr_accessor product_id: String
+
               attr_accessor status: Stigg::Models::V1::Events::Addons::DraftCreateAddonDraftResponse::Data::status
 
               attr_accessor updated_at: Time
@@ -78,6 +81,7 @@ module Stigg
                 max_quantity: Integer?,
                 metadata: ::Hash[Symbol, String],
                 pricing_type: Stigg::Models::V1::Events::Addons::DraftCreateAddonDraftResponse::Data::pricing_type?,
+                product_id: String,
                 status: Stigg::Models::V1::Events::Addons::DraftCreateAddonDraftResponse::Data::status,
                 updated_at: Time,
                 version_number: Integer
@@ -95,6 +99,7 @@ module Stigg
                 max_quantity: Integer?,
                 metadata: ::Hash[Symbol, String],
                 pricing_type: Stigg::Models::V1::Events::Addons::DraftCreateAddonDraftResponse::Data::pricing_type?,
+                product_id: String,
                 status: Stigg::Models::V1::Events::Addons::DraftCreateAddonDraftResponse::Data::status,
                 updated_at: Time,
                 version_number: Integer

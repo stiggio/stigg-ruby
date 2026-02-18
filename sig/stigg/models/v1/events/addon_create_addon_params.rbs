@@ -7,11 +7,11 @@ module Stigg
             id: String,
             display_name: String,
             product_id: String,
-            billing_id: String,
-            description: String,
-            max_quantity: Integer,
+            billing_id: String?,
+            description: String?,
+            max_quantity: Integer?,
             metadata: ::Hash[Symbol, String],
-            pricing_type: Stigg::Models::V1::Events::AddonCreateAddonParams::pricing_type,
+            pricing_type: Stigg::Models::V1::Events::AddonCreateAddonParams::pricing_type?,
             status: Stigg::Models::V1::Events::AddonCreateAddonParams::status
           }
           & Stigg::Internal::Type::request_parameters
@@ -26,27 +26,17 @@ module Stigg
 
           attr_accessor product_id: String
 
-          attr_reader billing_id: String?
+          attr_accessor billing_id: String?
 
-          def billing_id=: (String) -> String
+          attr_accessor description: String?
 
-          attr_reader description: String?
-
-          def description=: (String) -> String
-
-          attr_reader max_quantity: Integer?
-
-          def max_quantity=: (Integer) -> Integer
+          attr_accessor max_quantity: Integer?
 
           attr_reader metadata: ::Hash[Symbol, String]?
 
           def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
 
-          attr_reader pricing_type: Stigg::Models::V1::Events::AddonCreateAddonParams::pricing_type?
-
-          def pricing_type=: (
-            Stigg::Models::V1::Events::AddonCreateAddonParams::pricing_type
-          ) -> Stigg::Models::V1::Events::AddonCreateAddonParams::pricing_type
+          attr_accessor pricing_type: Stigg::Models::V1::Events::AddonCreateAddonParams::pricing_type?
 
           attr_reader status: Stigg::Models::V1::Events::AddonCreateAddonParams::status?
 
@@ -58,11 +48,11 @@ module Stigg
             id: String,
             display_name: String,
             product_id: String,
-            ?billing_id: String,
-            ?description: String,
-            ?max_quantity: Integer,
+            ?billing_id: String?,
+            ?description: String?,
+            ?max_quantity: Integer?,
             ?metadata: ::Hash[Symbol, String],
-            ?pricing_type: Stigg::Models::V1::Events::AddonCreateAddonParams::pricing_type,
+            ?pricing_type: Stigg::Models::V1::Events::AddonCreateAddonParams::pricing_type?,
             ?status: Stigg::Models::V1::Events::AddonCreateAddonParams::status,
             ?request_options: Stigg::request_opts
           ) -> void
@@ -71,11 +61,11 @@ module Stigg
             id: String,
             display_name: String,
             product_id: String,
-            billing_id: String,
-            description: String,
-            max_quantity: Integer,
+            billing_id: String?,
+            description: String?,
+            max_quantity: Integer?,
             metadata: ::Hash[Symbol, String],
-            pricing_type: Stigg::Models::V1::Events::AddonCreateAddonParams::pricing_type,
+            pricing_type: Stigg::Models::V1::Events::AddonCreateAddonParams::pricing_type?,
             status: Stigg::Models::V1::Events::AddonCreateAddonParams::status,
             request_options: Stigg::RequestOptions
           }
