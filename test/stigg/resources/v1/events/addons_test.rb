@@ -65,6 +65,7 @@ class Stigg::Test::Resources::V1::Events::AddonsTest < Stigg::Test::ResourceTest
         max_quantity: Integer | nil,
         metadata: ^(Stigg::Internal::Type::HashOf[String]),
         pricing_type: Stigg::Models::V1::Events::AddonListAddonsResponse::PricingType | nil,
+        product_id: String,
         status: Stigg::Models::V1::Events::AddonListAddonsResponse::Status,
         updated_at: Time,
         version_number: Integer

@@ -14,11 +14,11 @@ module Stigg
             id: String,
             display_name: String,
             product_id: String,
-            ?billing_id: String,
-            ?description: String,
-            ?max_quantity: Integer,
+            ?billing_id: String?,
+            ?description: String?,
+            ?max_quantity: Integer?,
             ?metadata: ::Hash[Symbol, String],
-            ?pricing_type: Stigg::Models::V1::Events::AddonCreateAddonParams::pricing_type,
+            ?pricing_type: Stigg::Models::V1::Events::AddonCreateAddonParams::pricing_type?,
             ?status: Stigg::Models::V1::Events::AddonCreateAddonParams::status,
             ?request_options: Stigg::request_opts
           ) -> Stigg::Models::V1::Events::AddonCreateAddonResponse

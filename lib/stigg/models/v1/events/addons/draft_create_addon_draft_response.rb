@@ -57,7 +57,7 @@ module Stigg
               required :display_name, String, api_name: :displayName
 
               # @!attribute entitlements
-              #   List of entitlements for the addon
+              #   List of entitlements of the package
               #
               #   @return [Array<Stigg::Models::V1::Events::Addons::DraftCreateAddonDraftResponse::Data::Entitlement>]
               required :entitlements,
@@ -90,6 +90,12 @@ module Stigg
                        api_name: :pricingType,
                        nil?: true
 
+              # @!attribute product_id
+              #   The product id of the package
+              #
+              #   @return [String]
+              required :product_id, String, api_name: :productId
+
               # @!attribute status
               #   The status of the package
               #
@@ -109,7 +115,7 @@ module Stigg
               #   @return [Integer]
               required :version_number, Integer, api_name: :versionNumber
 
-              # @!method initialize(id:, billing_id:, created_at:, dependencies:, description:, display_name:, entitlements:, is_latest:, max_quantity:, metadata:, pricing_type:, status:, updated_at:, version_number:)
+              # @!method initialize(id:, billing_id:, created_at:, dependencies:, description:, display_name:, entitlements:, is_latest:, max_quantity:, metadata:, pricing_type:, product_id:, status:, updated_at:, version_number:)
               #   Addon configuration object
               #
               #   @param id [String] The unique identifier for the entity
@@ -124,7 +130,7 @@ module Stigg
               #
               #   @param display_name [String] The display name of the package
               #
-              #   @param entitlements [Array<Stigg::Models::V1::Events::Addons::DraftCreateAddonDraftResponse::Data::Entitlement>] List of entitlements for the addon
+              #   @param entitlements [Array<Stigg::Models::V1::Events::Addons::DraftCreateAddonDraftResponse::Data::Entitlement>] List of entitlements of the package
               #
               #   @param is_latest [Boolean, nil] Indicates if the package is the latest version
               #
@@ -133,6 +139,8 @@ module Stigg
               #   @param metadata [Hash{Symbol=>String}] Metadata associated with the entity
               #
               #   @param pricing_type [Symbol, Stigg::Models::V1::Events::Addons::DraftCreateAddonDraftResponse::Data::PricingType, nil] The pricing type of the package
+              #
+              #   @param product_id [String] The product id of the package
               #
               #   @param status [Symbol, Stigg::Models::V1::Events::Addons::DraftCreateAddonDraftResponse::Data::Status] The status of the package
               #
