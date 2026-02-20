@@ -4,7 +4,7 @@ require_relative "../../../test_helper"
 
 class Stigg::Test::Resources::V1::Events::AddonsTest < Stigg::Test::ResourceTest
   def test_archive_addon
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.events.addons.archive_addon("x")
 
@@ -20,7 +20,7 @@ class Stigg::Test::Resources::V1::Events::AddonsTest < Stigg::Test::ResourceTest
   end
 
   def test_create_addon_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @stigg.v1.events.addons.create_addon(id: "id", display_name: "displayName", product_id: "productId")
@@ -37,7 +37,7 @@ class Stigg::Test::Resources::V1::Events::AddonsTest < Stigg::Test::ResourceTest
   end
 
   def test_list_addons
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.events.addons.list_addons
 
@@ -74,7 +74,7 @@ class Stigg::Test::Resources::V1::Events::AddonsTest < Stigg::Test::ResourceTest
   end
 
   def test_publish_addon_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.events.addons.publish_addon("x", migration_type: :NEW_CUSTOMERS)
 
@@ -90,7 +90,7 @@ class Stigg::Test::Resources::V1::Events::AddonsTest < Stigg::Test::ResourceTest
   end
 
   def test_retrieve_addon
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.events.addons.retrieve_addon("x")
 
@@ -106,7 +106,7 @@ class Stigg::Test::Resources::V1::Events::AddonsTest < Stigg::Test::ResourceTest
   end
 
   def test_update_addon
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.events.addons.update_addon("x")
 

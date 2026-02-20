@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class Stigg::Test::Resources::V1::CustomersTest < Stigg::Test::ResourceTest
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.customers.retrieve("x")
 
@@ -20,7 +20,7 @@ class Stigg::Test::Resources::V1::CustomersTest < Stigg::Test::ResourceTest
   end
 
   def test_update
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.customers.update("x")
 
@@ -36,7 +36,7 @@ class Stigg::Test::Resources::V1::CustomersTest < Stigg::Test::ResourceTest
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.customers.list
 
@@ -68,7 +68,7 @@ class Stigg::Test::Resources::V1::CustomersTest < Stigg::Test::ResourceTest
   end
 
   def test_archive
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.customers.archive("x")
 
@@ -84,7 +84,7 @@ class Stigg::Test::Resources::V1::CustomersTest < Stigg::Test::ResourceTest
   end
 
   def test_import_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.customers.import(customers: [{id: "id", email: "dev@stainless.com", name: "name"}])
 
@@ -100,7 +100,7 @@ class Stigg::Test::Resources::V1::CustomersTest < Stigg::Test::ResourceTest
   end
 
   def test_list_resources
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.customers.list_resources("x")
 
@@ -125,7 +125,7 @@ class Stigg::Test::Resources::V1::CustomersTest < Stigg::Test::ResourceTest
   end
 
   def test_provision_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.customers.provision(id: "id")
 
@@ -141,7 +141,7 @@ class Stigg::Test::Resources::V1::CustomersTest < Stigg::Test::ResourceTest
   end
 
   def test_unarchive
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.customers.unarchive("x")
 

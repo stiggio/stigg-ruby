@@ -4,7 +4,7 @@ require_relative "../../../test_helper"
 
 class Stigg::Test::Resources::V1::Events::PlansTest < Stigg::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.events.plans.create(id: "id", display_name: "displayName", product_id: "productId")
 
@@ -20,7 +20,7 @@ class Stigg::Test::Resources::V1::Events::PlansTest < Stigg::Test::ResourceTest
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.events.plans.retrieve("x")
 
@@ -36,7 +36,7 @@ class Stigg::Test::Resources::V1::Events::PlansTest < Stigg::Test::ResourceTest
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.events.plans.list
 

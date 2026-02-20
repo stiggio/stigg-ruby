@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class Stigg::Test::Resources::V1::CouponsTest < Stigg::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @stigg.v1.coupons.create(
@@ -29,7 +29,7 @@ class Stigg::Test::Resources::V1::CouponsTest < Stigg::Test::ResourceTest
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.coupons.retrieve("x")
 
@@ -45,7 +45,7 @@ class Stigg::Test::Resources::V1::CouponsTest < Stigg::Test::ResourceTest
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.coupons.list
 
@@ -80,7 +80,7 @@ class Stigg::Test::Resources::V1::CouponsTest < Stigg::Test::ResourceTest
   end
 
   def test_archive_coupon
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.coupons.archive_coupon("x")
 
@@ -96,7 +96,7 @@ class Stigg::Test::Resources::V1::CouponsTest < Stigg::Test::ResourceTest
   end
 
   def test_update_coupon
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.coupons.update_coupon("x")
 

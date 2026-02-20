@@ -4,7 +4,7 @@ require_relative "../../../test_helper"
 
 class Stigg::Test::Resources::V1::Subscriptions::FutureUpdateTest < Stigg::Test::ResourceTest
   def test_cancel_pending_payment
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.subscriptions.future_update.cancel_pending_payment("x")
 
@@ -20,7 +20,7 @@ class Stigg::Test::Resources::V1::Subscriptions::FutureUpdateTest < Stigg::Test:
   end
 
   def test_cancel_schedule
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.subscriptions.future_update.cancel_schedule("x")
 

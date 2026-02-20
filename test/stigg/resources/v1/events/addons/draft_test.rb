@@ -4,7 +4,7 @@ require_relative "../../../../test_helper"
 
 class Stigg::Test::Resources::V1::Events::Addons::DraftTest < Stigg::Test::ResourceTest
   def test_create_addon_draft
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.events.addons.draft.create_addon_draft("x")
 
@@ -20,7 +20,7 @@ class Stigg::Test::Resources::V1::Events::Addons::DraftTest < Stigg::Test::Resou
   end
 
   def test_remove_addon_draft
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.events.addons.draft.remove_addon_draft("x")
 
