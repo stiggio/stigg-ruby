@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class Stigg::Test::Resources::V1::SubscriptionsTest < Stigg::Test::ResourceTest
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.subscriptions.retrieve("x")
 
@@ -20,7 +20,7 @@ class Stigg::Test::Resources::V1::SubscriptionsTest < Stigg::Test::ResourceTest
   end
 
   def test_update
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.subscriptions.update("x")
 
@@ -36,7 +36,7 @@ class Stigg::Test::Resources::V1::SubscriptionsTest < Stigg::Test::ResourceTest
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.subscriptions.list
 
@@ -79,7 +79,7 @@ class Stigg::Test::Resources::V1::SubscriptionsTest < Stigg::Test::ResourceTest
   end
 
   def test_cancel
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.subscriptions.cancel("x")
 
@@ -95,7 +95,7 @@ class Stigg::Test::Resources::V1::SubscriptionsTest < Stigg::Test::ResourceTest
   end
 
   def test_delegate_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.subscriptions.delegate("x", target_customer_id: "targetCustomerId")
 
@@ -111,7 +111,7 @@ class Stigg::Test::Resources::V1::SubscriptionsTest < Stigg::Test::ResourceTest
   end
 
   def test_import_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @stigg.v1.subscriptions.import(subscriptions: [{id: "id", customerId: "customerId", planId: "planId"}])
@@ -128,7 +128,7 @@ class Stigg::Test::Resources::V1::SubscriptionsTest < Stigg::Test::ResourceTest
   end
 
   def test_migrate
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.subscriptions.migrate("x")
 
@@ -144,7 +144,7 @@ class Stigg::Test::Resources::V1::SubscriptionsTest < Stigg::Test::ResourceTest
   end
 
   def test_preview_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.subscriptions.preview(customer_id: "customerId", plan_id: "planId")
 
@@ -160,7 +160,7 @@ class Stigg::Test::Resources::V1::SubscriptionsTest < Stigg::Test::ResourceTest
   end
 
   def test_provision_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.subscriptions.provision(customer_id: "customerId", plan_id: "planId")
 
@@ -176,7 +176,7 @@ class Stigg::Test::Resources::V1::SubscriptionsTest < Stigg::Test::ResourceTest
   end
 
   def test_transfer_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.subscriptions.transfer("x", destination_resource_id: "destinationResourceId")
 

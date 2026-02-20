@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class Stigg::Test::Resources::V1::UsageTest < Stigg::Test::ResourceTest
   def test_history_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @stigg.v1.usage.history("featureId", customer_id: "customerId", start_date: "2019-12-27T18:11:19.117Z")
@@ -21,7 +21,7 @@ class Stigg::Test::Resources::V1::UsageTest < Stigg::Test::ResourceTest
   end
 
   def test_report_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @stigg.v1.usage.report(

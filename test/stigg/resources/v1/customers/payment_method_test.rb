@@ -4,7 +4,7 @@ require_relative "../../../test_helper"
 
 class Stigg::Test::Resources::V1::Customers::PaymentMethodTest < Stigg::Test::ResourceTest
   def test_attach_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @stigg.v1.customers.payment_method.attach(
@@ -26,7 +26,7 @@ class Stigg::Test::Resources::V1::Customers::PaymentMethodTest < Stigg::Test::Re
   end
 
   def test_detach
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.customers.payment_method.detach("x")
 

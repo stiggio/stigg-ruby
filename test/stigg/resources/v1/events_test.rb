@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class Stigg::Test::Resources::V1::EventsTest < Stigg::Test::ResourceTest
   def test_report_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @stigg.v1.events.report(events: [{customerId: "customerId", eventName: "x", idempotencyKey: "x"}])
