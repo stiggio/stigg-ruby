@@ -4,7 +4,7 @@ require_relative "../../../test_helper"
 
 class Stigg::Test::Resources::V1::Subscriptions::UsageTest < Stigg::Test::ResourceTest
   def test_charge_usage
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.subscriptions.usage.charge_usage("x")
 
@@ -20,7 +20,7 @@ class Stigg::Test::Resources::V1::Subscriptions::UsageTest < Stigg::Test::Resour
   end
 
   def test_sync
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.subscriptions.usage.sync("x")
 

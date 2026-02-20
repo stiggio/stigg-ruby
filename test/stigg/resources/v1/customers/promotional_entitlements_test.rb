@@ -4,7 +4,7 @@ require_relative "../../../test_helper"
 
 class Stigg::Test::Resources::V1::Customers::PromotionalEntitlementsTest < Stigg::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @stigg.v1.customers.promotional_entitlements.create(
@@ -39,7 +39,7 @@ class Stigg::Test::Resources::V1::Customers::PromotionalEntitlementsTest < Stigg
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.customers.promotional_entitlements.list("x")
 
@@ -79,7 +79,7 @@ class Stigg::Test::Resources::V1::Customers::PromotionalEntitlementsTest < Stigg
   end
 
   def test_revoke_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.customers.promotional_entitlements.revoke("featureId", id: "id")
 

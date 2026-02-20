@@ -4,7 +4,7 @@ require_relative "../../../test_helper"
 
 class Stigg::Test::Resources::V1::Events::FeaturesTest < Stigg::Test::ResourceTest
   def test_archive_feature
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.events.features.archive_feature("x")
 
@@ -20,7 +20,7 @@ class Stigg::Test::Resources::V1::Events::FeaturesTest < Stigg::Test::ResourceTe
   end
 
   def test_create_feature_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @stigg.v1.events.features.create_feature(id: "id", display_name: "displayName", feature_type: :BOOLEAN)
@@ -37,7 +37,7 @@ class Stigg::Test::Resources::V1::Events::FeaturesTest < Stigg::Test::ResourceTe
   end
 
   def test_list_features
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.events.features.list_features
 
@@ -72,7 +72,7 @@ class Stigg::Test::Resources::V1::Events::FeaturesTest < Stigg::Test::ResourceTe
   end
 
   def test_retrieve_feature
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.events.features.retrieve_feature("x")
 
@@ -88,7 +88,7 @@ class Stigg::Test::Resources::V1::Events::FeaturesTest < Stigg::Test::ResourceTe
   end
 
   def test_unarchive_feature
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.events.features.unarchive_feature("x")
 
@@ -104,7 +104,7 @@ class Stigg::Test::Resources::V1::Events::FeaturesTest < Stigg::Test::ResourceTe
   end
 
   def test_update_feature
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.events.features.update_feature("x")
 

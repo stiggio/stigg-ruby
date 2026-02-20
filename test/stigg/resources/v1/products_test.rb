@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class Stigg::Test::Resources::V1::ProductsTest < Stigg::Test::ResourceTest
   def test_archive_product
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.products.archive_product("x")
 
@@ -20,7 +20,7 @@ class Stigg::Test::Resources::V1::ProductsTest < Stigg::Test::ResourceTest
   end
 
   def test_create_product_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.products.create_product(id: "id")
 
@@ -36,7 +36,7 @@ class Stigg::Test::Resources::V1::ProductsTest < Stigg::Test::ResourceTest
   end
 
   def test_duplicate_product_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.products.duplicate_product("x", body_id: "id")
 
@@ -52,7 +52,7 @@ class Stigg::Test::Resources::V1::ProductsTest < Stigg::Test::ResourceTest
   end
 
   def test_list_products
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.products.list_products
 
@@ -83,7 +83,7 @@ class Stigg::Test::Resources::V1::ProductsTest < Stigg::Test::ResourceTest
   end
 
   def test_unarchive_product
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.products.unarchive_product("x")
 
@@ -99,7 +99,7 @@ class Stigg::Test::Resources::V1::ProductsTest < Stigg::Test::ResourceTest
   end
 
   def test_update_product
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.products.update_product("x")
 

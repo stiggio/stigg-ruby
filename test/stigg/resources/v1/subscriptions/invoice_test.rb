@@ -4,7 +4,7 @@ require_relative "../../../test_helper"
 
 class Stigg::Test::Resources::V1::Subscriptions::InvoiceTest < Stigg::Test::ResourceTest
   def test_mark_as_paid
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @stigg.v1.subscriptions.invoice.mark_as_paid("x")
 
