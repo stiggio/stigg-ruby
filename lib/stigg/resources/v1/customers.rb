@@ -141,7 +141,7 @@ module Stigg
           )
         end
 
-        # Get a list of customerresources
+        # Retrieves a paginated list of resources within the same customer.
         #
         # @overload list_resources(id, after: nil, before: nil, limit: nil, request_options: {})
         #
