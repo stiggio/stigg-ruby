@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.8 (2026-02-22)
+
+Full Changelog: [v0.1.0-alpha.7...v0.1.0-alpha.8](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.7...v0.1.0-alpha.8)
+
+### Features
+
+* **api:** api update ([26a6fe9](https://github.com/stiggio/stigg-ruby/commit/26a6fe90c9c0791b6146c3f38d1e32dc1fdf9be6))
+
+
+### Chores
+
+* **internal:** remove mock server code ([32e2c8b](https://github.com/stiggio/stigg-ruby/commit/32e2c8b13ba65c8ef30d465af8e8a482f6454428))
+* update mock server docs ([ce8f6f6](https://github.com/stiggio/stigg-ruby/commit/ce8f6f6bf9c074f8fd187c4b71acb11eadda9170))
+
 ## 0.1.0-alpha.7 (2026-02-18)
 
 Full Changelog: [v0.1.0-alpha.6...v0.1.0-alpha.7](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.6...v0.1.0-alpha.7)
