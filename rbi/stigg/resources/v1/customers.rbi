@@ -122,7 +122,7 @@ module Stigg
         )
         end
 
-        # Get a list of customerresources
+        # Retrieves a paginated list of resources within the same customer.
         sig do
           params(
             id: String,
