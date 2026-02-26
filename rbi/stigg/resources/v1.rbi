@@ -15,6 +15,15 @@ module Stigg
       sig { returns(Stigg::Resources::V1::Events) }
       attr_reader :events
 
+      sig { returns(Stigg::Resources::V1::Features) }
+      attr_reader :features
+
+      sig { returns(Stigg::Resources::V1::Addons) }
+      attr_reader :addons
+
+      sig { returns(Stigg::Resources::V1::Plans) }
+      attr_reader :plans
+
       sig { returns(Stigg::Resources::V1::Usage) }
       attr_reader :usage
 

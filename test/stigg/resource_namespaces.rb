@@ -9,14 +9,6 @@ module Stigg
       module Customers
       end
 
-      module Events
-        module Addons
-        end
-
-        module Plans
-        end
-      end
-
       module Plans
       end
 
@@ -24,15 +16,13 @@ module Stigg
       end
 
       module V1
+        module Addons
+        end
+
         module Customers
         end
 
-        module Events
-          module Addons
-          end
-
-          module Plans
-          end
+        module Plans
         end
 
         module Subscriptions
