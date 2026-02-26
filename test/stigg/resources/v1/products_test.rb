@@ -9,12 +9,12 @@ class Stigg::Test::Resources::V1::ProductsTest < Stigg::Test::ResourceTest
     response = @stigg.v1.products.archive_product("x")
 
     assert_pattern do
-      response => Stigg::Models::V1::ProductArchiveProductResponse
+      response => Stigg::V1::Product
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::ProductArchiveProductResponse::Data
+        data: Stigg::V1::Product::Data
       }
     end
   end
@@ -25,12 +25,12 @@ class Stigg::Test::Resources::V1::ProductsTest < Stigg::Test::ResourceTest
     response = @stigg.v1.products.create_product(id: "id")
 
     assert_pattern do
-      response => Stigg::Models::V1::ProductCreateProductResponse
+      response => Stigg::V1::Product
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::ProductCreateProductResponse::Data
+        data: Stigg::V1::Product::Data
       }
     end
   end
@@ -41,12 +41,12 @@ class Stigg::Test::Resources::V1::ProductsTest < Stigg::Test::ResourceTest
     response = @stigg.v1.products.duplicate_product("x", body_id: "id")
 
     assert_pattern do
-      response => Stigg::Models::V1::ProductDuplicateProductResponse
+      response => Stigg::V1::Product
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::ProductDuplicateProductResponse::Data
+        data: Stigg::V1::Product::Data
       }
     end
   end
@@ -88,12 +88,12 @@ class Stigg::Test::Resources::V1::ProductsTest < Stigg::Test::ResourceTest
     response = @stigg.v1.products.unarchive_product("x")
 
     assert_pattern do
-      response => Stigg::Models::V1::ProductUnarchiveProductResponse
+      response => Stigg::V1::Product
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::ProductUnarchiveProductResponse::Data
+        data: Stigg::V1::Product::Data
       }
     end
   end
@@ -104,12 +104,12 @@ class Stigg::Test::Resources::V1::ProductsTest < Stigg::Test::ResourceTest
     response = @stigg.v1.products.update_product("x")
 
     assert_pattern do
-      response => Stigg::Models::V1::ProductUpdateProductResponse
+      response => Stigg::V1::Product
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::ProductUpdateProductResponse::Data
+        data: Stigg::V1::Product::Data
       }
     end
   end

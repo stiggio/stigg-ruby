@@ -1,0 +1,70 @@
+# frozen_string_literal: true
+
+require_relative "../../../../test_helper"
+
+class Stigg::Test::Resources::V1::Events::Plans::EntitlementsTest < Stigg::Test::ResourceTest
+  def test_create_required_params
+    skip("Mock server tests are disabled")
+
+    response = @stigg.v1.events.plans.entitlements.create("planId", entitlements: [{}])
+
+    assert_pattern do
+      response => Stigg::Models::V1::Events::Plans::EntitlementCreateResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::Events::Plans::EntitlementCreateResponse::Data])
+      }
+    end
+  end
+
+  def test_update_required_params
+    skip("Mock server tests are disabled")
+
+    response = @stigg.v1.events.plans.entitlements.update("id", plan_id: "planId")
+
+    assert_pattern do
+      response => Stigg::V1::Events::Plans::PlanEntitlement
+    end
+
+    assert_pattern do
+      response => {
+        data: Stigg::V1::Events::Plans::PlanEntitlement::Data
+      }
+    end
+  end
+
+  def test_list
+    skip("Mock server tests are disabled")
+
+    response = @stigg.v1.events.plans.entitlements.list("planId")
+
+    assert_pattern do
+      response => Stigg::Models::V1::Events::Plans::EntitlementListResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::Events::Plans::EntitlementListResponse::Data]),
+        pagination: Stigg::Models::V1::Events::Plans::EntitlementListResponse::Pagination
+      }
+    end
+  end
+
+  def test_delete_required_params
+    skip("Mock server tests are disabled")
+
+    response = @stigg.v1.events.plans.entitlements.delete("id", plan_id: "planId")
+
+    assert_pattern do
+      response => Stigg::V1::Events::Plans::PlanEntitlement
+    end
+
+    assert_pattern do
+      response => {
+        data: Stigg::V1::Events::Plans::PlanEntitlement::Data
+      }
+    end
+  end
+end

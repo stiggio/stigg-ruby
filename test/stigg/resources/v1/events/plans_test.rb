@@ -9,12 +9,12 @@ class Stigg::Test::Resources::V1::Events::PlansTest < Stigg::Test::ResourceTest
     response = @stigg.v1.events.plans.create(id: "id", display_name: "displayName", product_id: "productId")
 
     assert_pattern do
-      response => Stigg::Models::V1::Events::PlanCreateResponse
+      response => Stigg::V1::Events::Plan
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::Events::PlanCreateResponse::Data
+        data: Stigg::V1::Events::Plan::Data
       }
     end
   end
@@ -25,12 +25,28 @@ class Stigg::Test::Resources::V1::Events::PlansTest < Stigg::Test::ResourceTest
     response = @stigg.v1.events.plans.retrieve("x")
 
     assert_pattern do
-      response => Stigg::Models::V1::Events::PlanRetrieveResponse
+      response => Stigg::V1::Events::Plan
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::Events::PlanRetrieveResponse::Data
+        data: Stigg::V1::Events::Plan::Data
+      }
+    end
+  end
+
+  def test_update
+    skip("Mock server tests are disabled")
+
+    response = @stigg.v1.events.plans.update("x")
+
+    assert_pattern do
+      response => Stigg::V1::Events::Plan
+    end
+
+    assert_pattern do
+      response => {
+        data: Stigg::V1::Events::Plan::Data
       }
     end
   end
@@ -69,6 +85,54 @@ class Stigg::Test::Resources::V1::Events::PlansTest < Stigg::Test::ResourceTest
         status: Stigg::Models::V1::Events::PlanListResponse::Status,
         updated_at: Time,
         version_number: Integer
+      }
+    end
+  end
+
+  def test_archive
+    skip("Mock server tests are disabled")
+
+    response = @stigg.v1.events.plans.archive("x")
+
+    assert_pattern do
+      response => Stigg::V1::Events::Plan
+    end
+
+    assert_pattern do
+      response => {
+        data: Stigg::V1::Events::Plan::Data
+      }
+    end
+  end
+
+  def test_publish_required_params
+    skip("Mock server tests are disabled")
+
+    response = @stigg.v1.events.plans.publish("x", migration_type: :NEW_CUSTOMERS)
+
+    assert_pattern do
+      response => Stigg::Models::V1::Events::PlanPublishResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: Stigg::Models::V1::Events::PlanPublishResponse::Data
+      }
+    end
+  end
+
+  def test_set_pricing_required_params
+    skip("Mock server tests are disabled")
+
+    response = @stigg.v1.events.plans.set_pricing("x", pricing_type: :FREE)
+
+    assert_pattern do
+      response => Stigg::V1::Events::SetPackagePricingResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: Stigg::V1::Events::SetPackagePricingResponse::Data
       }
     end
   end

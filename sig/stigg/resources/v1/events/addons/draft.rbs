@@ -7,7 +7,7 @@ module Stigg
             def create_addon_draft: (
               String id,
               ?request_options: Stigg::request_opts
-            ) -> Stigg::Models::V1::Events::Addons::DraftCreateAddonDraftResponse
+            ) -> Stigg::V1::Events::Addon
 
             def remove_addon_draft: (
               String id,

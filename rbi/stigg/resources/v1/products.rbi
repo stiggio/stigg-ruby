@@ -10,7 +10,7 @@ module Stigg
           params(
             id: String,
             request_options: Stigg::RequestOptions::OrHash
-          ).returns(Stigg::Models::V1::ProductArchiveProductResponse)
+          ).returns(Stigg::V1::Product)
         end
         def archive_product(
           # The unique identifier of the entity
@@ -28,7 +28,7 @@ module Stigg
             metadata: T.nilable(T::Hash[Symbol, String]),
             multiple_subscriptions: T::Boolean,
             request_options: Stigg::RequestOptions::OrHash
-          ).returns(Stigg::Models::V1::ProductCreateProductResponse)
+          ).returns(Stigg::V1::Product)
         end
         def create_product(
           # The unique identifier for the entity
@@ -53,7 +53,7 @@ module Stigg
             description: T.nilable(String),
             display_name: String,
             request_options: Stigg::RequestOptions::OrHash
-          ).returns(Stigg::Models::V1::ProductDuplicateProductResponse)
+          ).returns(Stigg::V1::Product)
         end
         def duplicate_product(
           # The unique identifier of the entity
@@ -106,7 +106,7 @@ module Stigg
           params(
             id: String,
             request_options: Stigg::RequestOptions::OrHash
-          ).returns(Stigg::Models::V1::ProductUnarchiveProductResponse)
+          ).returns(Stigg::V1::Product)
         end
         def unarchive_product(
           # The unique identifier of the entity
@@ -129,7 +129,7 @@ module Stigg
             usage_reset_cutoff_rule:
               Stigg::V1::ProductUpdateProductParams::UsageResetCutoffRule::OrHash,
             request_options: Stigg::RequestOptions::OrHash
-          ).returns(Stigg::Models::V1::ProductUpdateProductResponse)
+          ).returns(Stigg::V1::Product)
         end
         def update_product(
           # The unique identifier of the entity

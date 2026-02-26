@@ -9,12 +9,12 @@ class Stigg::Test::Resources::V1::Events::AddonsTest < Stigg::Test::ResourceTest
     response = @stigg.v1.events.addons.archive_addon("x")
 
     assert_pattern do
-      response => Stigg::Models::V1::Events::AddonArchiveAddonResponse
+      response => Stigg::V1::Events::Addon
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::Events::AddonArchiveAddonResponse::Data
+        data: Stigg::V1::Events::Addon::Data
       }
     end
   end
@@ -26,12 +26,12 @@ class Stigg::Test::Resources::V1::Events::AddonsTest < Stigg::Test::ResourceTest
       @stigg.v1.events.addons.create_addon(id: "id", display_name: "displayName", product_id: "productId")
 
     assert_pattern do
-      response => Stigg::Models::V1::Events::AddonCreateAddonResponse
+      response => Stigg::V1::Events::Addon
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::Events::AddonCreateAddonResponse::Data
+        data: Stigg::V1::Events::Addon::Data
       }
     end
   end
@@ -95,12 +95,28 @@ class Stigg::Test::Resources::V1::Events::AddonsTest < Stigg::Test::ResourceTest
     response = @stigg.v1.events.addons.retrieve_addon("x")
 
     assert_pattern do
-      response => Stigg::Models::V1::Events::AddonRetrieveAddonResponse
+      response => Stigg::V1::Events::Addon
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::Events::AddonRetrieveAddonResponse::Data
+        data: Stigg::V1::Events::Addon::Data
+      }
+    end
+  end
+
+  def test_set_pricing_required_params
+    skip("Mock server tests are disabled")
+
+    response = @stigg.v1.events.addons.set_pricing("x", pricing_type: :FREE)
+
+    assert_pattern do
+      response => Stigg::V1::Events::SetPackagePricingResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: Stigg::V1::Events::SetPackagePricingResponse::Data
       }
     end
   end
@@ -111,12 +127,12 @@ class Stigg::Test::Resources::V1::Events::AddonsTest < Stigg::Test::ResourceTest
     response = @stigg.v1.events.addons.update_addon("x")
 
     assert_pattern do
-      response => Stigg::Models::V1::Events::AddonUpdateAddonResponse
+      response => Stigg::V1::Events::Addon
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::Events::AddonUpdateAddonResponse::Data
+        data: Stigg::V1::Events::Addon::Data
       }
     end
   end

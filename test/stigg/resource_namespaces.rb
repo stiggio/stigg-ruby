@@ -12,6 +12,12 @@ module Stigg
       module Events
         module Addons
         end
+
+        module Plans
+        end
+      end
+
+      module Plans
       end
 
       module Subscriptions
@@ -23,6 +29,9 @@ module Stigg
 
         module Events
           module Addons
+          end
+
+          module Plans
           end
         end
 

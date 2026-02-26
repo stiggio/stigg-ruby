@@ -11,9 +11,7 @@ module Stigg
               params(
                 id: String,
                 request_options: Stigg::RequestOptions::OrHash
-              ).returns(
-                Stigg::Models::V1::Events::Addons::DraftCreateAddonDraftResponse
-              )
+              ).returns(Stigg::V1::Events::Addon)
             end
             def create_addon_draft(
               # The unique identifier of the entity

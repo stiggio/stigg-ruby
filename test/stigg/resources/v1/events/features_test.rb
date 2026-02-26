@@ -9,12 +9,12 @@ class Stigg::Test::Resources::V1::Events::FeaturesTest < Stigg::Test::ResourceTe
     response = @stigg.v1.events.features.archive_feature("x")
 
     assert_pattern do
-      response => Stigg::Models::V1::Events::FeatureArchiveFeatureResponse
+      response => Stigg::V1::Events::Feature
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::Events::FeatureArchiveFeatureResponse::Data
+        data: Stigg::V1::Events::Feature::Data
       }
     end
   end
@@ -26,12 +26,12 @@ class Stigg::Test::Resources::V1::Events::FeaturesTest < Stigg::Test::ResourceTe
       @stigg.v1.events.features.create_feature(id: "id", display_name: "displayName", feature_type: :BOOLEAN)
 
     assert_pattern do
-      response => Stigg::Models::V1::Events::FeatureCreateFeatureResponse
+      response => Stigg::V1::Events::Feature
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::Events::FeatureCreateFeatureResponse::Data
+        data: Stigg::V1::Events::Feature::Data
       }
     end
   end
@@ -77,12 +77,12 @@ class Stigg::Test::Resources::V1::Events::FeaturesTest < Stigg::Test::ResourceTe
     response = @stigg.v1.events.features.retrieve_feature("x")
 
     assert_pattern do
-      response => Stigg::Models::V1::Events::FeatureRetrieveFeatureResponse
+      response => Stigg::V1::Events::Feature
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::Events::FeatureRetrieveFeatureResponse::Data
+        data: Stigg::V1::Events::Feature::Data
       }
     end
   end
@@ -93,12 +93,12 @@ class Stigg::Test::Resources::V1::Events::FeaturesTest < Stigg::Test::ResourceTe
     response = @stigg.v1.events.features.unarchive_feature("x")
 
     assert_pattern do
-      response => Stigg::Models::V1::Events::FeatureUnarchiveFeatureResponse
+      response => Stigg::V1::Events::Feature
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::Events::FeatureUnarchiveFeatureResponse::Data
+        data: Stigg::V1::Events::Feature::Data
       }
     end
   end
@@ -109,12 +109,12 @@ class Stigg::Test::Resources::V1::Events::FeaturesTest < Stigg::Test::ResourceTe
     response = @stigg.v1.events.features.update_feature("x")
 
     assert_pattern do
-      response => Stigg::Models::V1::Events::FeatureUpdateFeatureResponse
+      response => Stigg::V1::Events::Feature
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::Events::FeatureUpdateFeatureResponse::Data
+        data: Stigg::V1::Events::Feature::Data
       }
     end
   end

@@ -9,12 +9,12 @@ class Stigg::Test::Resources::V1::Events::Addons::DraftTest < Stigg::Test::Resou
     response = @stigg.v1.events.addons.draft.create_addon_draft("x")
 
     assert_pattern do
-      response => Stigg::Models::V1::Events::Addons::DraftCreateAddonDraftResponse
+      response => Stigg::V1::Events::Addon
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::Events::Addons::DraftCreateAddonDraftResponse::Data
+        data: Stigg::V1::Events::Addon::Data
       }
     end
   end
