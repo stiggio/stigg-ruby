@@ -1,0 +1,2813 @@
+module Stigg
+  module Models
+    module V1
+      type set_package_pricing =
+        {
+          pricing_type: Stigg::Models::V1::SetPackagePricing::pricing_type,
+          billing_id: String,
+          minimum_spend: ::Array[Stigg::V1::SetPackagePricing::MinimumSpend]?,
+          overage_billing_period: Stigg::Models::V1::SetPackagePricing::overage_billing_period,
+          overage_pricing_models: ::Array[Stigg::V1::SetPackagePricing::OveragePricingModel],
+          pricing_models: ::Array[Stigg::V1::SetPackagePricing::PricingModel]
+        }
+
+      class SetPackagePricing < Stigg::Internal::Type::BaseModel
+        attr_accessor pricing_type: Stigg::Models::V1::SetPackagePricing::pricing_type
+
+        attr_reader billing_id: String?
+
+        def billing_id=: (String) -> String
+
+        attr_accessor minimum_spend: ::Array[Stigg::V1::SetPackagePricing::MinimumSpend]?
+
+        attr_reader overage_billing_period: Stigg::Models::V1::SetPackagePricing::overage_billing_period?
+
+        def overage_billing_period=: (
+          Stigg::Models::V1::SetPackagePricing::overage_billing_period
+        ) -> Stigg::Models::V1::SetPackagePricing::overage_billing_period
+
+        attr_reader overage_pricing_models: ::Array[Stigg::V1::SetPackagePricing::OveragePricingModel]?
+
+        def overage_pricing_models=: (
+          ::Array[Stigg::V1::SetPackagePricing::OveragePricingModel]
+        ) -> ::Array[Stigg::V1::SetPackagePricing::OveragePricingModel]
+
+        attr_reader pricing_models: ::Array[Stigg::V1::SetPackagePricing::PricingModel]?
+
+        def pricing_models=: (
+          ::Array[Stigg::V1::SetPackagePricing::PricingModel]
+        ) -> ::Array[Stigg::V1::SetPackagePricing::PricingModel]
+
+        def initialize: (
+          pricing_type: Stigg::Models::V1::SetPackagePricing::pricing_type,
+          ?billing_id: String,
+          ?minimum_spend: ::Array[Stigg::V1::SetPackagePricing::MinimumSpend]?,
+          ?overage_billing_period: Stigg::Models::V1::SetPackagePricing::overage_billing_period,
+          ?overage_pricing_models: ::Array[Stigg::V1::SetPackagePricing::OveragePricingModel],
+          ?pricing_models: ::Array[Stigg::V1::SetPackagePricing::PricingModel]
+        ) -> void
+
+        def to_hash: -> {
+          pricing_type: Stigg::Models::V1::SetPackagePricing::pricing_type,
+          billing_id: String,
+          minimum_spend: ::Array[Stigg::V1::SetPackagePricing::MinimumSpend]?,
+          overage_billing_period: Stigg::Models::V1::SetPackagePricing::overage_billing_period,
+          overage_pricing_models: ::Array[Stigg::V1::SetPackagePricing::OveragePricingModel],
+          pricing_models: ::Array[Stigg::V1::SetPackagePricing::PricingModel]
+        }
+
+        type pricing_type = :FREE | :PAID | :CUSTOM
+
+        module PricingType
+          extend Stigg::Internal::Type::Enum
+
+          FREE: :FREE
+          PAID: :PAID
+          CUSTOM: :CUSTOM
+
+          def self?.values: -> ::Array[Stigg::Models::V1::SetPackagePricing::pricing_type]
+        end
+
+        type minimum_spend =
+          {
+            billing_period: Stigg::Models::V1::SetPackagePricing::MinimumSpend::billing_period,
+            minimum: Stigg::V1::SetPackagePricing::MinimumSpend::Minimum
+          }
+
+        class MinimumSpend < Stigg::Internal::Type::BaseModel
+          attr_accessor billing_period: Stigg::Models::V1::SetPackagePricing::MinimumSpend::billing_period
+
+          attr_accessor minimum: Stigg::V1::SetPackagePricing::MinimumSpend::Minimum
+
+          def initialize: (
+            billing_period: Stigg::Models::V1::SetPackagePricing::MinimumSpend::billing_period,
+            minimum: Stigg::V1::SetPackagePricing::MinimumSpend::Minimum
+          ) -> void
+
+          def to_hash: -> {
+            billing_period: Stigg::Models::V1::SetPackagePricing::MinimumSpend::billing_period,
+            minimum: Stigg::V1::SetPackagePricing::MinimumSpend::Minimum
+          }
+
+          type billing_period = :MONTHLY | :ANNUALLY
+
+          module BillingPeriod
+            extend Stigg::Internal::Type::Enum
+
+            MONTHLY: :MONTHLY
+            ANNUALLY: :ANNUALLY
+
+            def self?.values: -> ::Array[Stigg::Models::V1::SetPackagePricing::MinimumSpend::billing_period]
+          end
+
+          type minimum =
+            {
+              amount: Float,
+              currency: Stigg::Models::V1::SetPackagePricing::MinimumSpend::Minimum::currency
+            }
+
+          class Minimum < Stigg::Internal::Type::BaseModel
+            attr_accessor amount: Float
+
+            attr_reader currency: Stigg::Models::V1::SetPackagePricing::MinimumSpend::Minimum::currency?
+
+            def currency=: (
+              Stigg::Models::V1::SetPackagePricing::MinimumSpend::Minimum::currency
+            ) -> Stigg::Models::V1::SetPackagePricing::MinimumSpend::Minimum::currency
+
+            def initialize: (
+              amount: Float,
+              ?currency: Stigg::Models::V1::SetPackagePricing::MinimumSpend::Minimum::currency
+            ) -> void
+
+            def to_hash: -> {
+              amount: Float,
+              currency: Stigg::Models::V1::SetPackagePricing::MinimumSpend::Minimum::currency
+            }
+
+            type currency =
+              :usd
+              | :aed
+              | :all
+              | :amd
+              | :ang
+              | :aud
+              | :awg
+              | :azn
+              | :bam
+              | :bbd
+              | :bdt
+              | :bgn
+              | :bif
+              | :bmd
+              | :bnd
+              | :bsd
+              | :bwp
+              | :byn
+              | :bzd
+              | :brl
+              | :cad
+              | :cdf
+              | :chf
+              | :cny
+              | :czk
+              | :dkk
+              | :dop
+              | :dzd
+              | :egp
+              | :etb
+              | :eur
+              | :fjd
+              | :gbp
+              | :gel
+              | :gip
+              | :gmd
+              | :gyd
+              | :hkd
+              | :hrk
+              | :htg
+              | :idr
+              | :ils
+              | :inr
+              | :isk
+              | :jmd
+              | :jpy
+              | :kes
+              | :kgs
+              | :khr
+              | :kmf
+              | :krw
+              | :kyd
+              | :kzt
+              | :lbp
+              | :lkr
+              | :lrd
+              | :lsl
+              | :mad
+              | :mdl
+              | :mga
+              | :mkd
+              | :mmk
+              | :mnt
+              | :mop
+              | :mro
+              | :mvr
+              | :mwk
+              | :mxn
+              | :myr
+              | :mzn
+              | :nad
+              | :ngn
+              | :nok
+              | :npr
+              | :nzd
+              | :pgk
+              | :php
+              | :pkr
+              | :pln
+              | :qar
+              | :ron
+              | :rsd
+              | :rub
+              | :rwf
+              | :sar
+              | :sbd
+              | :scr
+              | :sek
+              | :sgd
+              | :sle
+              | :sll
+              | :sos
+              | :szl
+              | :thb
+              | :tjs
+              | :top
+              | :try
+              | :ttd
+              | :tzs
+              | :uah
+              | :uzs
+              | :vnd
+              | :vuv
+              | :wst
+              | :xaf
+              | :xcd
+              | :yer
+              | :zar
+              | :zmw
+              | :clp
+              | :djf
+              | :gnf
+              | :ugx
+              | :pyg
+              | :xof
+              | :xpf
+
+            module Currency
+              extend Stigg::Internal::Type::Enum
+
+              USD: :usd
+              AED: :aed
+              ALL: :all
+              AMD: :amd
+              ANG: :ang
+              AUD: :aud
+              AWG: :awg
+              AZN: :azn
+              BAM: :bam
+              BBD: :bbd
+              BDT: :bdt
+              BGN: :bgn
+              BIF: :bif
+              BMD: :bmd
+              BND: :bnd
+              BSD: :bsd
+              BWP: :bwp
+              BYN: :byn
+              BZD: :bzd
+              BRL: :brl
+              CAD: :cad
+              CDF: :cdf
+              CHF: :chf
+              CNY: :cny
+              CZK: :czk
+              DKK: :dkk
+              DOP: :dop
+              DZD: :dzd
+              EGP: :egp
+              ETB: :etb
+              EUR: :eur
+              FJD: :fjd
+              GBP: :gbp
+              GEL: :gel
+              GIP: :gip
+              GMD: :gmd
+              GYD: :gyd
+              HKD: :hkd
+              HRK: :hrk
+              HTG: :htg
+              IDR: :idr
+              ILS: :ils
+              INR: :inr
+              ISK: :isk
+              JMD: :jmd
+              JPY: :jpy
+              KES: :kes
+              KGS: :kgs
+              KHR: :khr
+              KMF: :kmf
+              KRW: :krw
+              KYD: :kyd
+              KZT: :kzt
+              LBP: :lbp
+              LKR: :lkr
+              LRD: :lrd
+              LSL: :lsl
+              MAD: :mad
+              MDL: :mdl
+              MGA: :mga
+              MKD: :mkd
+              MMK: :mmk
+              MNT: :mnt
+              MOP: :mop
+              MRO: :mro
+              MVR: :mvr
+              MWK: :mwk
+              MXN: :mxn
+              MYR: :myr
+              MZN: :mzn
+              NAD: :nad
+              NGN: :ngn
+              NOK: :nok
+              NPR: :npr
+              NZD: :nzd
+              PGK: :pgk
+              PHP: :php
+              PKR: :pkr
+              PLN: :pln
+              QAR: :qar
+              RON: :ron
+              RSD: :rsd
+              RUB: :rub
+              RWF: :rwf
+              SAR: :sar
+              SBD: :sbd
+              SCR: :scr
+              SEK: :sek
+              SGD: :sgd
+              SLE: :sle
+              SLL: :sll
+              SOS: :sos
+              SZL: :szl
+              THB: :thb
+              TJS: :tjs
+              TOP: :top
+              TRY: :try
+              TTD: :ttd
+              TZS: :tzs
+              UAH: :uah
+              UZS: :uzs
+              VND: :vnd
+              VUV: :vuv
+              WST: :wst
+              XAF: :xaf
+              XCD: :xcd
+              YER: :yer
+              ZAR: :zar
+              ZMW: :zmw
+              CLP: :clp
+              DJF: :djf
+              GNF: :gnf
+              UGX: :ugx
+              PYG: :pyg
+              XOF: :xof
+              XPF: :xpf
+
+              def self?.values: -> ::Array[Stigg::Models::V1::SetPackagePricing::MinimumSpend::Minimum::currency]
+            end
+          end
+        end
+
+        type overage_billing_period = :ON_SUBSCRIPTION_RENEWAL | :MONTHLY
+
+        module OverageBillingPeriod
+          extend Stigg::Internal::Type::Enum
+
+          ON_SUBSCRIPTION_RENEWAL: :ON_SUBSCRIPTION_RENEWAL
+          MONTHLY: :MONTHLY
+
+          def self?.values: -> ::Array[Stigg::Models::V1::SetPackagePricing::overage_billing_period]
+        end
+
+        type overage_pricing_model =
+          {
+            billing_model: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::billing_model,
+            price_periods: ::Array[Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod],
+            billing_cadence: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::billing_cadence,
+            entitlement: Stigg::V1::SetPackagePricing::OveragePricingModel::Entitlement,
+            feature_id: String,
+            top_up_custom_currency_id: String
+          }
+
+        class OveragePricingModel < Stigg::Internal::Type::BaseModel
+          attr_accessor billing_model: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::billing_model
+
+          attr_accessor price_periods: ::Array[Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod]
+
+          attr_reader billing_cadence: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::billing_cadence?
+
+          def billing_cadence=: (
+            Stigg::Models::V1::SetPackagePricing::OveragePricingModel::billing_cadence
+          ) -> Stigg::Models::V1::SetPackagePricing::OveragePricingModel::billing_cadence
+
+          attr_reader entitlement: Stigg::V1::SetPackagePricing::OveragePricingModel::Entitlement?
+
+          def entitlement=: (
+            Stigg::V1::SetPackagePricing::OveragePricingModel::Entitlement
+          ) -> Stigg::V1::SetPackagePricing::OveragePricingModel::Entitlement
+
+          attr_reader feature_id: String?
+
+          def feature_id=: (String) -> String
+
+          attr_reader top_up_custom_currency_id: String?
+
+          def top_up_custom_currency_id=: (String) -> String
+
+          def initialize: (
+            billing_model: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::billing_model,
+            price_periods: ::Array[Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod],
+            ?billing_cadence: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::billing_cadence,
+            ?entitlement: Stigg::V1::SetPackagePricing::OveragePricingModel::Entitlement,
+            ?feature_id: String,
+            ?top_up_custom_currency_id: String
+          ) -> void
+
+          def to_hash: -> {
+            billing_model: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::billing_model,
+            price_periods: ::Array[Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod],
+            billing_cadence: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::billing_cadence,
+            entitlement: Stigg::V1::SetPackagePricing::OveragePricingModel::Entitlement,
+            feature_id: String,
+            top_up_custom_currency_id: String
+          }
+
+          type billing_model =
+            :FLAT_FEE
+            | :MINIMUM_SPEND
+            | :PER_UNIT
+            | :USAGE_BASED
+            | :CREDIT_BASED
+
+          module BillingModel
+            extend Stigg::Internal::Type::Enum
+
+            FLAT_FEE: :FLAT_FEE
+            MINIMUM_SPEND: :MINIMUM_SPEND
+            PER_UNIT: :PER_UNIT
+            USAGE_BASED: :USAGE_BASED
+            CREDIT_BASED: :CREDIT_BASED
+
+            def self?.values: -> ::Array[Stigg::Models::V1::SetPackagePricing::OveragePricingModel::billing_model]
+          end
+
+          type price_period =
+            {
+              billing_period: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::billing_period,
+              billing_country_code: String,
+              block_size: Float,
+              credit_grant_cadence: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::credit_grant_cadence,
+              credit_rate: Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::CreditRate,
+              price: Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Price,
+              tiers: ::Array[Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier]
+            }
+
+          class PricePeriod < Stigg::Internal::Type::BaseModel
+            attr_accessor billing_period: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::billing_period
+
+            attr_reader billing_country_code: String?
+
+            def billing_country_code=: (String) -> String
+
+            attr_reader block_size: Float?
+
+            def block_size=: (Float) -> Float
+
+            attr_reader credit_grant_cadence: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::credit_grant_cadence?
+
+            def credit_grant_cadence=: (
+              Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::credit_grant_cadence
+            ) -> Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::credit_grant_cadence
+
+            attr_reader credit_rate: Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::CreditRate?
+
+            def credit_rate=: (
+              Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::CreditRate
+            ) -> Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::CreditRate
+
+            attr_reader price: Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Price?
+
+            def price=: (
+              Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Price
+            ) -> Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Price
+
+            attr_reader tiers: ::Array[Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier]?
+
+            def tiers=: (
+              ::Array[Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier]
+            ) -> ::Array[Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier]
+
+            def initialize: (
+              billing_period: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::billing_period,
+              ?billing_country_code: String,
+              ?block_size: Float,
+              ?credit_grant_cadence: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::credit_grant_cadence,
+              ?credit_rate: Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::CreditRate,
+              ?price: Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Price,
+              ?tiers: ::Array[Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier]
+            ) -> void
+
+            def to_hash: -> {
+              billing_period: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::billing_period,
+              billing_country_code: String,
+              block_size: Float,
+              credit_grant_cadence: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::credit_grant_cadence,
+              credit_rate: Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::CreditRate,
+              price: Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Price,
+              tiers: ::Array[Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier]
+            }
+
+            type billing_period = :MONTHLY | :ANNUALLY
+
+            module BillingPeriod
+              extend Stigg::Internal::Type::Enum
+
+              MONTHLY: :MONTHLY
+              ANNUALLY: :ANNUALLY
+
+              def self?.values: -> ::Array[Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::billing_period]
+            end
+
+            type credit_grant_cadence = :BEGINNING_OF_BILLING_PERIOD | :MONTHLY
+
+            module CreditGrantCadence
+              extend Stigg::Internal::Type::Enum
+
+              BEGINNING_OF_BILLING_PERIOD: :BEGINNING_OF_BILLING_PERIOD
+              MONTHLY: :MONTHLY
+
+              def self?.values: -> ::Array[Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::credit_grant_cadence]
+            end
+
+            type credit_rate =
+              { amount: Float, currency_id: String, cost_formula: String }
+
+            class CreditRate < Stigg::Internal::Type::BaseModel
+              attr_accessor amount: Float
+
+              attr_accessor currency_id: String
+
+              attr_reader cost_formula: String?
+
+              def cost_formula=: (String) -> String
+
+              def initialize: (
+                amount: Float,
+                currency_id: String,
+                ?cost_formula: String
+              ) -> void
+
+              def to_hash: -> {
+                amount: Float,
+                currency_id: String,
+                cost_formula: String
+              }
+            end
+
+            type price =
+              {
+                amount: Float,
+                currency: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Price::currency
+              }
+
+            class Price < Stigg::Internal::Type::BaseModel
+              attr_accessor amount: Float
+
+              attr_reader currency: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Price::currency?
+
+              def currency=: (
+                Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Price::currency
+              ) -> Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Price::currency
+
+              def initialize: (
+                amount: Float,
+                ?currency: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Price::currency
+              ) -> void
+
+              def to_hash: -> {
+                amount: Float,
+                currency: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Price::currency
+              }
+
+              type currency =
+                :usd
+                | :aed
+                | :all
+                | :amd
+                | :ang
+                | :aud
+                | :awg
+                | :azn
+                | :bam
+                | :bbd
+                | :bdt
+                | :bgn
+                | :bif
+                | :bmd
+                | :bnd
+                | :bsd
+                | :bwp
+                | :byn
+                | :bzd
+                | :brl
+                | :cad
+                | :cdf
+                | :chf
+                | :cny
+                | :czk
+                | :dkk
+                | :dop
+                | :dzd
+                | :egp
+                | :etb
+                | :eur
+                | :fjd
+                | :gbp
+                | :gel
+                | :gip
+                | :gmd
+                | :gyd
+                | :hkd
+                | :hrk
+                | :htg
+                | :idr
+                | :ils
+                | :inr
+                | :isk
+                | :jmd
+                | :jpy
+                | :kes
+                | :kgs
+                | :khr
+                | :kmf
+                | :krw
+                | :kyd
+                | :kzt
+                | :lbp
+                | :lkr
+                | :lrd
+                | :lsl
+                | :mad
+                | :mdl
+                | :mga
+                | :mkd
+                | :mmk
+                | :mnt
+                | :mop
+                | :mro
+                | :mvr
+                | :mwk
+                | :mxn
+                | :myr
+                | :mzn
+                | :nad
+                | :ngn
+                | :nok
+                | :npr
+                | :nzd
+                | :pgk
+                | :php
+                | :pkr
+                | :pln
+                | :qar
+                | :ron
+                | :rsd
+                | :rub
+                | :rwf
+                | :sar
+                | :sbd
+                | :scr
+                | :sek
+                | :sgd
+                | :sle
+                | :sll
+                | :sos
+                | :szl
+                | :thb
+                | :tjs
+                | :top
+                | :try
+                | :ttd
+                | :tzs
+                | :uah
+                | :uzs
+                | :vnd
+                | :vuv
+                | :wst
+                | :xaf
+                | :xcd
+                | :yer
+                | :zar
+                | :zmw
+                | :clp
+                | :djf
+                | :gnf
+                | :ugx
+                | :pyg
+                | :xof
+                | :xpf
+
+              module Currency
+                extend Stigg::Internal::Type::Enum
+
+                USD: :usd
+                AED: :aed
+                ALL: :all
+                AMD: :amd
+                ANG: :ang
+                AUD: :aud
+                AWG: :awg
+                AZN: :azn
+                BAM: :bam
+                BBD: :bbd
+                BDT: :bdt
+                BGN: :bgn
+                BIF: :bif
+                BMD: :bmd
+                BND: :bnd
+                BSD: :bsd
+                BWP: :bwp
+                BYN: :byn
+                BZD: :bzd
+                BRL: :brl
+                CAD: :cad
+                CDF: :cdf
+                CHF: :chf
+                CNY: :cny
+                CZK: :czk
+                DKK: :dkk
+                DOP: :dop
+                DZD: :dzd
+                EGP: :egp
+                ETB: :etb
+                EUR: :eur
+                FJD: :fjd
+                GBP: :gbp
+                GEL: :gel
+                GIP: :gip
+                GMD: :gmd
+                GYD: :gyd
+                HKD: :hkd
+                HRK: :hrk
+                HTG: :htg
+                IDR: :idr
+                ILS: :ils
+                INR: :inr
+                ISK: :isk
+                JMD: :jmd
+                JPY: :jpy
+                KES: :kes
+                KGS: :kgs
+                KHR: :khr
+                KMF: :kmf
+                KRW: :krw
+                KYD: :kyd
+                KZT: :kzt
+                LBP: :lbp
+                LKR: :lkr
+                LRD: :lrd
+                LSL: :lsl
+                MAD: :mad
+                MDL: :mdl
+                MGA: :mga
+                MKD: :mkd
+                MMK: :mmk
+                MNT: :mnt
+                MOP: :mop
+                MRO: :mro
+                MVR: :mvr
+                MWK: :mwk
+                MXN: :mxn
+                MYR: :myr
+                MZN: :mzn
+                NAD: :nad
+                NGN: :ngn
+                NOK: :nok
+                NPR: :npr
+                NZD: :nzd
+                PGK: :pgk
+                PHP: :php
+                PKR: :pkr
+                PLN: :pln
+                QAR: :qar
+                RON: :ron
+                RSD: :rsd
+                RUB: :rub
+                RWF: :rwf
+                SAR: :sar
+                SBD: :sbd
+                SCR: :scr
+                SEK: :sek
+                SGD: :sgd
+                SLE: :sle
+                SLL: :sll
+                SOS: :sos
+                SZL: :szl
+                THB: :thb
+                TJS: :tjs
+                TOP: :top
+                TRY: :try
+                TTD: :ttd
+                TZS: :tzs
+                UAH: :uah
+                UZS: :uzs
+                VND: :vnd
+                VUV: :vuv
+                WST: :wst
+                XAF: :xaf
+                XCD: :xcd
+                YER: :yer
+                ZAR: :zar
+                ZMW: :zmw
+                CLP: :clp
+                DJF: :djf
+                GNF: :gnf
+                UGX: :ugx
+                PYG: :pyg
+                XOF: :xof
+                XPF: :xpf
+
+                def self?.values: -> ::Array[Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Price::currency]
+              end
+            end
+
+            type tier =
+              {
+                flat_price: Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier::FlatPrice,
+                unit_price: Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier::UnitPrice,
+                up_to: Float
+              }
+
+            class Tier < Stigg::Internal::Type::BaseModel
+              attr_reader flat_price: Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier::FlatPrice?
+
+              def flat_price=: (
+                Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier::FlatPrice
+              ) -> Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier::FlatPrice
+
+              attr_reader unit_price: Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier::UnitPrice?
+
+              def unit_price=: (
+                Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier::UnitPrice
+              ) -> Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier::UnitPrice
+
+              attr_reader up_to: Float?
+
+              def up_to=: (Float) -> Float
+
+              def initialize: (
+                ?flat_price: Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier::FlatPrice,
+                ?unit_price: Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier::UnitPrice,
+                ?up_to: Float
+              ) -> void
+
+              def to_hash: -> {
+                flat_price: Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier::FlatPrice,
+                unit_price: Stigg::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier::UnitPrice,
+                up_to: Float
+              }
+
+              type flat_price =
+                {
+                  amount: Float,
+                  currency: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier::FlatPrice::currency
+                }
+
+              class FlatPrice < Stigg::Internal::Type::BaseModel
+                attr_accessor amount: Float
+
+                attr_reader currency: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier::FlatPrice::currency?
+
+                def currency=: (
+                  Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier::FlatPrice::currency
+                ) -> Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier::FlatPrice::currency
+
+                def initialize: (
+                  amount: Float,
+                  ?currency: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier::FlatPrice::currency
+                ) -> void
+
+                def to_hash: -> {
+                  amount: Float,
+                  currency: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier::FlatPrice::currency
+                }
+
+                type currency =
+                  :usd
+                  | :aed
+                  | :all
+                  | :amd
+                  | :ang
+                  | :aud
+                  | :awg
+                  | :azn
+                  | :bam
+                  | :bbd
+                  | :bdt
+                  | :bgn
+                  | :bif
+                  | :bmd
+                  | :bnd
+                  | :bsd
+                  | :bwp
+                  | :byn
+                  | :bzd
+                  | :brl
+                  | :cad
+                  | :cdf
+                  | :chf
+                  | :cny
+                  | :czk
+                  | :dkk
+                  | :dop
+                  | :dzd
+                  | :egp
+                  | :etb
+                  | :eur
+                  | :fjd
+                  | :gbp
+                  | :gel
+                  | :gip
+                  | :gmd
+                  | :gyd
+                  | :hkd
+                  | :hrk
+                  | :htg
+                  | :idr
+                  | :ils
+                  | :inr
+                  | :isk
+                  | :jmd
+                  | :jpy
+                  | :kes
+                  | :kgs
+                  | :khr
+                  | :kmf
+                  | :krw
+                  | :kyd
+                  | :kzt
+                  | :lbp
+                  | :lkr
+                  | :lrd
+                  | :lsl
+                  | :mad
+                  | :mdl
+                  | :mga
+                  | :mkd
+                  | :mmk
+                  | :mnt
+                  | :mop
+                  | :mro
+                  | :mvr
+                  | :mwk
+                  | :mxn
+                  | :myr
+                  | :mzn
+                  | :nad
+                  | :ngn
+                  | :nok
+                  | :npr
+                  | :nzd
+                  | :pgk
+                  | :php
+                  | :pkr
+                  | :pln
+                  | :qar
+                  | :ron
+                  | :rsd
+                  | :rub
+                  | :rwf
+                  | :sar
+                  | :sbd
+                  | :scr
+                  | :sek
+                  | :sgd
+                  | :sle
+                  | :sll
+                  | :sos
+                  | :szl
+                  | :thb
+                  | :tjs
+                  | :top
+                  | :try
+                  | :ttd
+                  | :tzs
+                  | :uah
+                  | :uzs
+                  | :vnd
+                  | :vuv
+                  | :wst
+                  | :xaf
+                  | :xcd
+                  | :yer
+                  | :zar
+                  | :zmw
+                  | :clp
+                  | :djf
+                  | :gnf
+                  | :ugx
+                  | :pyg
+                  | :xof
+                  | :xpf
+
+                module Currency
+                  extend Stigg::Internal::Type::Enum
+
+                  USD: :usd
+                  AED: :aed
+                  ALL: :all
+                  AMD: :amd
+                  ANG: :ang
+                  AUD: :aud
+                  AWG: :awg
+                  AZN: :azn
+                  BAM: :bam
+                  BBD: :bbd
+                  BDT: :bdt
+                  BGN: :bgn
+                  BIF: :bif
+                  BMD: :bmd
+                  BND: :bnd
+                  BSD: :bsd
+                  BWP: :bwp
+                  BYN: :byn
+                  BZD: :bzd
+                  BRL: :brl
+                  CAD: :cad
+                  CDF: :cdf
+                  CHF: :chf
+                  CNY: :cny
+                  CZK: :czk
+                  DKK: :dkk
+                  DOP: :dop
+                  DZD: :dzd
+                  EGP: :egp
+                  ETB: :etb
+                  EUR: :eur
+                  FJD: :fjd
+                  GBP: :gbp
+                  GEL: :gel
+                  GIP: :gip
+                  GMD: :gmd
+                  GYD: :gyd
+                  HKD: :hkd
+                  HRK: :hrk
+                  HTG: :htg
+                  IDR: :idr
+                  ILS: :ils
+                  INR: :inr
+                  ISK: :isk
+                  JMD: :jmd
+                  JPY: :jpy
+                  KES: :kes
+                  KGS: :kgs
+                  KHR: :khr
+                  KMF: :kmf
+                  KRW: :krw
+                  KYD: :kyd
+                  KZT: :kzt
+                  LBP: :lbp
+                  LKR: :lkr
+                  LRD: :lrd
+                  LSL: :lsl
+                  MAD: :mad
+                  MDL: :mdl
+                  MGA: :mga
+                  MKD: :mkd
+                  MMK: :mmk
+                  MNT: :mnt
+                  MOP: :mop
+                  MRO: :mro
+                  MVR: :mvr
+                  MWK: :mwk
+                  MXN: :mxn
+                  MYR: :myr
+                  MZN: :mzn
+                  NAD: :nad
+                  NGN: :ngn
+                  NOK: :nok
+                  NPR: :npr
+                  NZD: :nzd
+                  PGK: :pgk
+                  PHP: :php
+                  PKR: :pkr
+                  PLN: :pln
+                  QAR: :qar
+                  RON: :ron
+                  RSD: :rsd
+                  RUB: :rub
+                  RWF: :rwf
+                  SAR: :sar
+                  SBD: :sbd
+                  SCR: :scr
+                  SEK: :sek
+                  SGD: :sgd
+                  SLE: :sle
+                  SLL: :sll
+                  SOS: :sos
+                  SZL: :szl
+                  THB: :thb
+                  TJS: :tjs
+                  TOP: :top
+                  TRY: :try
+                  TTD: :ttd
+                  TZS: :tzs
+                  UAH: :uah
+                  UZS: :uzs
+                  VND: :vnd
+                  VUV: :vuv
+                  WST: :wst
+                  XAF: :xaf
+                  XCD: :xcd
+                  YER: :yer
+                  ZAR: :zar
+                  ZMW: :zmw
+                  CLP: :clp
+                  DJF: :djf
+                  GNF: :gnf
+                  UGX: :ugx
+                  PYG: :pyg
+                  XOF: :xof
+                  XPF: :xpf
+
+                  def self?.values: -> ::Array[Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier::FlatPrice::currency]
+                end
+              end
+
+              type unit_price =
+                {
+                  amount: Float,
+                  currency: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier::UnitPrice::currency
+                }
+
+              class UnitPrice < Stigg::Internal::Type::BaseModel
+                attr_accessor amount: Float
+
+                attr_reader currency: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier::UnitPrice::currency?
+
+                def currency=: (
+                  Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier::UnitPrice::currency
+                ) -> Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier::UnitPrice::currency
+
+                def initialize: (
+                  amount: Float,
+                  ?currency: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier::UnitPrice::currency
+                ) -> void
+
+                def to_hash: -> {
+                  amount: Float,
+                  currency: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier::UnitPrice::currency
+                }
+
+                type currency =
+                  :usd
+                  | :aed
+                  | :all
+                  | :amd
+                  | :ang
+                  | :aud
+                  | :awg
+                  | :azn
+                  | :bam
+                  | :bbd
+                  | :bdt
+                  | :bgn
+                  | :bif
+                  | :bmd
+                  | :bnd
+                  | :bsd
+                  | :bwp
+                  | :byn
+                  | :bzd
+                  | :brl
+                  | :cad
+                  | :cdf
+                  | :chf
+                  | :cny
+                  | :czk
+                  | :dkk
+                  | :dop
+                  | :dzd
+                  | :egp
+                  | :etb
+                  | :eur
+                  | :fjd
+                  | :gbp
+                  | :gel
+                  | :gip
+                  | :gmd
+                  | :gyd
+                  | :hkd
+                  | :hrk
+                  | :htg
+                  | :idr
+                  | :ils
+                  | :inr
+                  | :isk
+                  | :jmd
+                  | :jpy
+                  | :kes
+                  | :kgs
+                  | :khr
+                  | :kmf
+                  | :krw
+                  | :kyd
+                  | :kzt
+                  | :lbp
+                  | :lkr
+                  | :lrd
+                  | :lsl
+                  | :mad
+                  | :mdl
+                  | :mga
+                  | :mkd
+                  | :mmk
+                  | :mnt
+                  | :mop
+                  | :mro
+                  | :mvr
+                  | :mwk
+                  | :mxn
+                  | :myr
+                  | :mzn
+                  | :nad
+                  | :ngn
+                  | :nok
+                  | :npr
+                  | :nzd
+                  | :pgk
+                  | :php
+                  | :pkr
+                  | :pln
+                  | :qar
+                  | :ron
+                  | :rsd
+                  | :rub
+                  | :rwf
+                  | :sar
+                  | :sbd
+                  | :scr
+                  | :sek
+                  | :sgd
+                  | :sle
+                  | :sll
+                  | :sos
+                  | :szl
+                  | :thb
+                  | :tjs
+                  | :top
+                  | :try
+                  | :ttd
+                  | :tzs
+                  | :uah
+                  | :uzs
+                  | :vnd
+                  | :vuv
+                  | :wst
+                  | :xaf
+                  | :xcd
+                  | :yer
+                  | :zar
+                  | :zmw
+                  | :clp
+                  | :djf
+                  | :gnf
+                  | :ugx
+                  | :pyg
+                  | :xof
+                  | :xpf
+
+                module Currency
+                  extend Stigg::Internal::Type::Enum
+
+                  USD: :usd
+                  AED: :aed
+                  ALL: :all
+                  AMD: :amd
+                  ANG: :ang
+                  AUD: :aud
+                  AWG: :awg
+                  AZN: :azn
+                  BAM: :bam
+                  BBD: :bbd
+                  BDT: :bdt
+                  BGN: :bgn
+                  BIF: :bif
+                  BMD: :bmd
+                  BND: :bnd
+                  BSD: :bsd
+                  BWP: :bwp
+                  BYN: :byn
+                  BZD: :bzd
+                  BRL: :brl
+                  CAD: :cad
+                  CDF: :cdf
+                  CHF: :chf
+                  CNY: :cny
+                  CZK: :czk
+                  DKK: :dkk
+                  DOP: :dop
+                  DZD: :dzd
+                  EGP: :egp
+                  ETB: :etb
+                  EUR: :eur
+                  FJD: :fjd
+                  GBP: :gbp
+                  GEL: :gel
+                  GIP: :gip
+                  GMD: :gmd
+                  GYD: :gyd
+                  HKD: :hkd
+                  HRK: :hrk
+                  HTG: :htg
+                  IDR: :idr
+                  ILS: :ils
+                  INR: :inr
+                  ISK: :isk
+                  JMD: :jmd
+                  JPY: :jpy
+                  KES: :kes
+                  KGS: :kgs
+                  KHR: :khr
+                  KMF: :kmf
+                  KRW: :krw
+                  KYD: :kyd
+                  KZT: :kzt
+                  LBP: :lbp
+                  LKR: :lkr
+                  LRD: :lrd
+                  LSL: :lsl
+                  MAD: :mad
+                  MDL: :mdl
+                  MGA: :mga
+                  MKD: :mkd
+                  MMK: :mmk
+                  MNT: :mnt
+                  MOP: :mop
+                  MRO: :mro
+                  MVR: :mvr
+                  MWK: :mwk
+                  MXN: :mxn
+                  MYR: :myr
+                  MZN: :mzn
+                  NAD: :nad
+                  NGN: :ngn
+                  NOK: :nok
+                  NPR: :npr
+                  NZD: :nzd
+                  PGK: :pgk
+                  PHP: :php
+                  PKR: :pkr
+                  PLN: :pln
+                  QAR: :qar
+                  RON: :ron
+                  RSD: :rsd
+                  RUB: :rub
+                  RWF: :rwf
+                  SAR: :sar
+                  SBD: :sbd
+                  SCR: :scr
+                  SEK: :sek
+                  SGD: :sgd
+                  SLE: :sle
+                  SLL: :sll
+                  SOS: :sos
+                  SZL: :szl
+                  THB: :thb
+                  TJS: :tjs
+                  TOP: :top
+                  TRY: :try
+                  TTD: :ttd
+                  TZS: :tzs
+                  UAH: :uah
+                  UZS: :uzs
+                  VND: :vnd
+                  VUV: :vuv
+                  WST: :wst
+                  XAF: :xaf
+                  XCD: :xcd
+                  YER: :yer
+                  ZAR: :zar
+                  ZMW: :zmw
+                  CLP: :clp
+                  DJF: :djf
+                  GNF: :gnf
+                  UGX: :ugx
+                  PYG: :pyg
+                  XOF: :xof
+                  XPF: :xpf
+
+                  def self?.values: -> ::Array[Stigg::Models::V1::SetPackagePricing::OveragePricingModel::PricePeriod::Tier::UnitPrice::currency]
+                end
+              end
+            end
+          end
+
+          type billing_cadence = :RECURRING | :ONE_OFF
+
+          module BillingCadence
+            extend Stigg::Internal::Type::Enum
+
+            RECURRING: :RECURRING
+            ONE_OFF: :ONE_OFF
+
+            def self?.values: -> ::Array[Stigg::Models::V1::SetPackagePricing::OveragePricingModel::billing_cadence]
+          end
+
+          type entitlement =
+            {
+              feature_id: String,
+              has_soft_limit: bool,
+              has_unlimited_usage: bool,
+              monthly_reset_period_configuration: Stigg::V1::SetPackagePricing::OveragePricingModel::Entitlement::MonthlyResetPeriodConfiguration,
+              reset_period: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::Entitlement::reset_period,
+              usage_limit: Float,
+              weekly_reset_period_configuration: Stigg::V1::SetPackagePricing::OveragePricingModel::Entitlement::WeeklyResetPeriodConfiguration,
+              yearly_reset_period_configuration: Stigg::V1::SetPackagePricing::OveragePricingModel::Entitlement::YearlyResetPeriodConfiguration
+            }
+
+          class Entitlement < Stigg::Internal::Type::BaseModel
+            attr_accessor feature_id: String
+
+            attr_reader has_soft_limit: bool?
+
+            def has_soft_limit=: (bool) -> bool
+
+            attr_reader has_unlimited_usage: bool?
+
+            def has_unlimited_usage=: (bool) -> bool
+
+            attr_reader monthly_reset_period_configuration: Stigg::V1::SetPackagePricing::OveragePricingModel::Entitlement::MonthlyResetPeriodConfiguration?
+
+            def monthly_reset_period_configuration=: (
+              Stigg::V1::SetPackagePricing::OveragePricingModel::Entitlement::MonthlyResetPeriodConfiguration
+            ) -> Stigg::V1::SetPackagePricing::OveragePricingModel::Entitlement::MonthlyResetPeriodConfiguration
+
+            attr_reader reset_period: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::Entitlement::reset_period?
+
+            def reset_period=: (
+              Stigg::Models::V1::SetPackagePricing::OveragePricingModel::Entitlement::reset_period
+            ) -> Stigg::Models::V1::SetPackagePricing::OveragePricingModel::Entitlement::reset_period
+
+            attr_reader usage_limit: Float?
+
+            def usage_limit=: (Float) -> Float
+
+            attr_reader weekly_reset_period_configuration: Stigg::V1::SetPackagePricing::OveragePricingModel::Entitlement::WeeklyResetPeriodConfiguration?
+
+            def weekly_reset_period_configuration=: (
+              Stigg::V1::SetPackagePricing::OveragePricingModel::Entitlement::WeeklyResetPeriodConfiguration
+            ) -> Stigg::V1::SetPackagePricing::OveragePricingModel::Entitlement::WeeklyResetPeriodConfiguration
+
+            attr_reader yearly_reset_period_configuration: Stigg::V1::SetPackagePricing::OveragePricingModel::Entitlement::YearlyResetPeriodConfiguration?
+
+            def yearly_reset_period_configuration=: (
+              Stigg::V1::SetPackagePricing::OveragePricingModel::Entitlement::YearlyResetPeriodConfiguration
+            ) -> Stigg::V1::SetPackagePricing::OveragePricingModel::Entitlement::YearlyResetPeriodConfiguration
+
+            def initialize: (
+              feature_id: String,
+              ?has_soft_limit: bool,
+              ?has_unlimited_usage: bool,
+              ?monthly_reset_period_configuration: Stigg::V1::SetPackagePricing::OveragePricingModel::Entitlement::MonthlyResetPeriodConfiguration,
+              ?reset_period: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::Entitlement::reset_period,
+              ?usage_limit: Float,
+              ?weekly_reset_period_configuration: Stigg::V1::SetPackagePricing::OveragePricingModel::Entitlement::WeeklyResetPeriodConfiguration,
+              ?yearly_reset_period_configuration: Stigg::V1::SetPackagePricing::OveragePricingModel::Entitlement::YearlyResetPeriodConfiguration
+            ) -> void
+
+            def to_hash: -> {
+              feature_id: String,
+              has_soft_limit: bool,
+              has_unlimited_usage: bool,
+              monthly_reset_period_configuration: Stigg::V1::SetPackagePricing::OveragePricingModel::Entitlement::MonthlyResetPeriodConfiguration,
+              reset_period: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::Entitlement::reset_period,
+              usage_limit: Float,
+              weekly_reset_period_configuration: Stigg::V1::SetPackagePricing::OveragePricingModel::Entitlement::WeeklyResetPeriodConfiguration,
+              yearly_reset_period_configuration: Stigg::V1::SetPackagePricing::OveragePricingModel::Entitlement::YearlyResetPeriodConfiguration
+            }
+
+            type monthly_reset_period_configuration =
+              {
+                according_to: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::Entitlement::MonthlyResetPeriodConfiguration::according_to
+              }
+
+            class MonthlyResetPeriodConfiguration < Stigg::Internal::Type::BaseModel
+              attr_accessor according_to: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::Entitlement::MonthlyResetPeriodConfiguration::according_to
+
+              def initialize: (
+                according_to: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::Entitlement::MonthlyResetPeriodConfiguration::according_to
+              ) -> void
+
+              def to_hash: -> {
+                according_to: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::Entitlement::MonthlyResetPeriodConfiguration::according_to
+              }
+
+              type according_to = :SubscriptionStart | :StartOfTheMonth
+
+              module AccordingTo
+                extend Stigg::Internal::Type::Enum
+
+                SUBSCRIPTION_START: :SubscriptionStart
+                START_OF_THE_MONTH: :StartOfTheMonth
+
+                def self?.values: -> ::Array[Stigg::Models::V1::SetPackagePricing::OveragePricingModel::Entitlement::MonthlyResetPeriodConfiguration::according_to]
+              end
+            end
+
+            type reset_period = :YEAR | :MONTH | :WEEK | :DAY | :HOUR
+
+            module ResetPeriod
+              extend Stigg::Internal::Type::Enum
+
+              YEAR: :YEAR
+              MONTH: :MONTH
+              WEEK: :WEEK
+              DAY: :DAY
+              HOUR: :HOUR
+
+              def self?.values: -> ::Array[Stigg::Models::V1::SetPackagePricing::OveragePricingModel::Entitlement::reset_period]
+            end
+
+            type weekly_reset_period_configuration =
+              {
+                according_to: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::Entitlement::WeeklyResetPeriodConfiguration::according_to
+              }
+
+            class WeeklyResetPeriodConfiguration < Stigg::Internal::Type::BaseModel
+              attr_accessor according_to: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::Entitlement::WeeklyResetPeriodConfiguration::according_to
+
+              def initialize: (
+                according_to: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::Entitlement::WeeklyResetPeriodConfiguration::according_to
+              ) -> void
+
+              def to_hash: -> {
+                according_to: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::Entitlement::WeeklyResetPeriodConfiguration::according_to
+              }
+
+              type according_to =
+                :SubscriptionStart
+                | :EverySunday
+                | :EveryMonday
+                | :EveryTuesday
+                | :EveryWednesday
+                | :EveryThursday
+                | :EveryFriday
+                | :EverySaturday
+
+              module AccordingTo
+                extend Stigg::Internal::Type::Enum
+
+                SUBSCRIPTION_START: :SubscriptionStart
+                EVERY_SUNDAY: :EverySunday
+                EVERY_MONDAY: :EveryMonday
+                EVERY_TUESDAY: :EveryTuesday
+                EVERY_WEDNESDAY: :EveryWednesday
+                EVERY_THURSDAY: :EveryThursday
+                EVERY_FRIDAY: :EveryFriday
+                EVERY_SATURDAY: :EverySaturday
+
+                def self?.values: -> ::Array[Stigg::Models::V1::SetPackagePricing::OveragePricingModel::Entitlement::WeeklyResetPeriodConfiguration::according_to]
+              end
+            end
+
+            type yearly_reset_period_configuration =
+              {
+                according_to: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::Entitlement::YearlyResetPeriodConfiguration::according_to
+              }
+
+            class YearlyResetPeriodConfiguration < Stigg::Internal::Type::BaseModel
+              attr_accessor according_to: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::Entitlement::YearlyResetPeriodConfiguration::according_to
+
+              def initialize: (
+                according_to: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::Entitlement::YearlyResetPeriodConfiguration::according_to
+              ) -> void
+
+              def to_hash: -> {
+                according_to: Stigg::Models::V1::SetPackagePricing::OveragePricingModel::Entitlement::YearlyResetPeriodConfiguration::according_to
+              }
+
+              type according_to = :SubscriptionStart
+
+              module AccordingTo
+                extend Stigg::Internal::Type::Enum
+
+                SUBSCRIPTION_START: :SubscriptionStart
+
+                def self?.values: -> ::Array[Stigg::Models::V1::SetPackagePricing::OveragePricingModel::Entitlement::YearlyResetPeriodConfiguration::according_to]
+              end
+            end
+          end
+        end
+
+        type pricing_model =
+          {
+            billing_model: Stigg::Models::V1::SetPackagePricing::PricingModel::billing_model,
+            price_periods: ::Array[Stigg::V1::SetPackagePricing::PricingModel::PricePeriod],
+            billing_cadence: Stigg::Models::V1::SetPackagePricing::PricingModel::billing_cadence,
+            feature_id: String,
+            max_unit_quantity: Integer,
+            min_unit_quantity: Integer,
+            monthly_reset_period_configuration: Stigg::V1::SetPackagePricing::PricingModel::MonthlyResetPeriodConfiguration,
+            reset_period: Stigg::Models::V1::SetPackagePricing::PricingModel::reset_period,
+            tiers_mode: Stigg::Models::V1::SetPackagePricing::PricingModel::tiers_mode,
+            top_up_custom_currency_id: String,
+            weekly_reset_period_configuration: Stigg::V1::SetPackagePricing::PricingModel::WeeklyResetPeriodConfiguration,
+            yearly_reset_period_configuration: Stigg::V1::SetPackagePricing::PricingModel::YearlyResetPeriodConfiguration
+          }
+
+        class PricingModel < Stigg::Internal::Type::BaseModel
+          attr_accessor billing_model: Stigg::Models::V1::SetPackagePricing::PricingModel::billing_model
+
+          attr_accessor price_periods: ::Array[Stigg::V1::SetPackagePricing::PricingModel::PricePeriod]
+
+          attr_reader billing_cadence: Stigg::Models::V1::SetPackagePricing::PricingModel::billing_cadence?
+
+          def billing_cadence=: (
+            Stigg::Models::V1::SetPackagePricing::PricingModel::billing_cadence
+          ) -> Stigg::Models::V1::SetPackagePricing::PricingModel::billing_cadence
+
+          attr_reader feature_id: String?
+
+          def feature_id=: (String) -> String
+
+          attr_reader max_unit_quantity: Integer?
+
+          def max_unit_quantity=: (Integer) -> Integer
+
+          attr_reader min_unit_quantity: Integer?
+
+          def min_unit_quantity=: (Integer) -> Integer
+
+          attr_reader monthly_reset_period_configuration: Stigg::V1::SetPackagePricing::PricingModel::MonthlyResetPeriodConfiguration?
+
+          def monthly_reset_period_configuration=: (
+            Stigg::V1::SetPackagePricing::PricingModel::MonthlyResetPeriodConfiguration
+          ) -> Stigg::V1::SetPackagePricing::PricingModel::MonthlyResetPeriodConfiguration
+
+          attr_reader reset_period: Stigg::Models::V1::SetPackagePricing::PricingModel::reset_period?
+
+          def reset_period=: (
+            Stigg::Models::V1::SetPackagePricing::PricingModel::reset_period
+          ) -> Stigg::Models::V1::SetPackagePricing::PricingModel::reset_period
+
+          attr_reader tiers_mode: Stigg::Models::V1::SetPackagePricing::PricingModel::tiers_mode?
+
+          def tiers_mode=: (
+            Stigg::Models::V1::SetPackagePricing::PricingModel::tiers_mode
+          ) -> Stigg::Models::V1::SetPackagePricing::PricingModel::tiers_mode
+
+          attr_reader top_up_custom_currency_id: String?
+
+          def top_up_custom_currency_id=: (String) -> String
+
+          attr_reader weekly_reset_period_configuration: Stigg::V1::SetPackagePricing::PricingModel::WeeklyResetPeriodConfiguration?
+
+          def weekly_reset_period_configuration=: (
+            Stigg::V1::SetPackagePricing::PricingModel::WeeklyResetPeriodConfiguration
+          ) -> Stigg::V1::SetPackagePricing::PricingModel::WeeklyResetPeriodConfiguration
+
+          attr_reader yearly_reset_period_configuration: Stigg::V1::SetPackagePricing::PricingModel::YearlyResetPeriodConfiguration?
+
+          def yearly_reset_period_configuration=: (
+            Stigg::V1::SetPackagePricing::PricingModel::YearlyResetPeriodConfiguration
+          ) -> Stigg::V1::SetPackagePricing::PricingModel::YearlyResetPeriodConfiguration
+
+          def initialize: (
+            billing_model: Stigg::Models::V1::SetPackagePricing::PricingModel::billing_model,
+            price_periods: ::Array[Stigg::V1::SetPackagePricing::PricingModel::PricePeriod],
+            ?billing_cadence: Stigg::Models::V1::SetPackagePricing::PricingModel::billing_cadence,
+            ?feature_id: String,
+            ?max_unit_quantity: Integer,
+            ?min_unit_quantity: Integer,
+            ?monthly_reset_period_configuration: Stigg::V1::SetPackagePricing::PricingModel::MonthlyResetPeriodConfiguration,
+            ?reset_period: Stigg::Models::V1::SetPackagePricing::PricingModel::reset_period,
+            ?tiers_mode: Stigg::Models::V1::SetPackagePricing::PricingModel::tiers_mode,
+            ?top_up_custom_currency_id: String,
+            ?weekly_reset_period_configuration: Stigg::V1::SetPackagePricing::PricingModel::WeeklyResetPeriodConfiguration,
+            ?yearly_reset_period_configuration: Stigg::V1::SetPackagePricing::PricingModel::YearlyResetPeriodConfiguration
+          ) -> void
+
+          def to_hash: -> {
+            billing_model: Stigg::Models::V1::SetPackagePricing::PricingModel::billing_model,
+            price_periods: ::Array[Stigg::V1::SetPackagePricing::PricingModel::PricePeriod],
+            billing_cadence: Stigg::Models::V1::SetPackagePricing::PricingModel::billing_cadence,
+            feature_id: String,
+            max_unit_quantity: Integer,
+            min_unit_quantity: Integer,
+            monthly_reset_period_configuration: Stigg::V1::SetPackagePricing::PricingModel::MonthlyResetPeriodConfiguration,
+            reset_period: Stigg::Models::V1::SetPackagePricing::PricingModel::reset_period,
+            tiers_mode: Stigg::Models::V1::SetPackagePricing::PricingModel::tiers_mode,
+            top_up_custom_currency_id: String,
+            weekly_reset_period_configuration: Stigg::V1::SetPackagePricing::PricingModel::WeeklyResetPeriodConfiguration,
+            yearly_reset_period_configuration: Stigg::V1::SetPackagePricing::PricingModel::YearlyResetPeriodConfiguration
+          }
+
+          type billing_model =
+            :FLAT_FEE
+            | :MINIMUM_SPEND
+            | :PER_UNIT
+            | :USAGE_BASED
+            | :CREDIT_BASED
+
+          module BillingModel
+            extend Stigg::Internal::Type::Enum
+
+            FLAT_FEE: :FLAT_FEE
+            MINIMUM_SPEND: :MINIMUM_SPEND
+            PER_UNIT: :PER_UNIT
+            USAGE_BASED: :USAGE_BASED
+            CREDIT_BASED: :CREDIT_BASED
+
+            def self?.values: -> ::Array[Stigg::Models::V1::SetPackagePricing::PricingModel::billing_model]
+          end
+
+          type price_period =
+            {
+              billing_period: Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::billing_period,
+              billing_country_code: String,
+              block_size: Float,
+              credit_grant_cadence: Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::credit_grant_cadence,
+              credit_rate: Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::CreditRate,
+              price: Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::Price,
+              tiers: ::Array[Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::Tier]
+            }
+
+          class PricePeriod < Stigg::Internal::Type::BaseModel
+            attr_accessor billing_period: Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::billing_period
+
+            attr_reader billing_country_code: String?
+
+            def billing_country_code=: (String) -> String
+
+            attr_reader block_size: Float?
+
+            def block_size=: (Float) -> Float
+
+            attr_reader credit_grant_cadence: Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::credit_grant_cadence?
+
+            def credit_grant_cadence=: (
+              Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::credit_grant_cadence
+            ) -> Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::credit_grant_cadence
+
+            attr_reader credit_rate: Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::CreditRate?
+
+            def credit_rate=: (
+              Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::CreditRate
+            ) -> Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::CreditRate
+
+            attr_reader price: Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::Price?
+
+            def price=: (
+              Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::Price
+            ) -> Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::Price
+
+            attr_reader tiers: ::Array[Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::Tier]?
+
+            def tiers=: (
+              ::Array[Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::Tier]
+            ) -> ::Array[Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::Tier]
+
+            def initialize: (
+              billing_period: Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::billing_period,
+              ?billing_country_code: String,
+              ?block_size: Float,
+              ?credit_grant_cadence: Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::credit_grant_cadence,
+              ?credit_rate: Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::CreditRate,
+              ?price: Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::Price,
+              ?tiers: ::Array[Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::Tier]
+            ) -> void
+
+            def to_hash: -> {
+              billing_period: Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::billing_period,
+              billing_country_code: String,
+              block_size: Float,
+              credit_grant_cadence: Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::credit_grant_cadence,
+              credit_rate: Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::CreditRate,
+              price: Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::Price,
+              tiers: ::Array[Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::Tier]
+            }
+
+            type billing_period = :MONTHLY | :ANNUALLY
+
+            module BillingPeriod
+              extend Stigg::Internal::Type::Enum
+
+              MONTHLY: :MONTHLY
+              ANNUALLY: :ANNUALLY
+
+              def self?.values: -> ::Array[Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::billing_period]
+            end
+
+            type credit_grant_cadence = :BEGINNING_OF_BILLING_PERIOD | :MONTHLY
+
+            module CreditGrantCadence
+              extend Stigg::Internal::Type::Enum
+
+              BEGINNING_OF_BILLING_PERIOD: :BEGINNING_OF_BILLING_PERIOD
+              MONTHLY: :MONTHLY
+
+              def self?.values: -> ::Array[Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::credit_grant_cadence]
+            end
+
+            type credit_rate =
+              { amount: Float, currency_id: String, cost_formula: String }
+
+            class CreditRate < Stigg::Internal::Type::BaseModel
+              attr_accessor amount: Float
+
+              attr_accessor currency_id: String
+
+              attr_reader cost_formula: String?
+
+              def cost_formula=: (String) -> String
+
+              def initialize: (
+                amount: Float,
+                currency_id: String,
+                ?cost_formula: String
+              ) -> void
+
+              def to_hash: -> {
+                amount: Float,
+                currency_id: String,
+                cost_formula: String
+              }
+            end
+
+            type price =
+              {
+                amount: Float,
+                currency: Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::Price::currency
+              }
+
+            class Price < Stigg::Internal::Type::BaseModel
+              attr_accessor amount: Float
+
+              attr_reader currency: Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::Price::currency?
+
+              def currency=: (
+                Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::Price::currency
+              ) -> Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::Price::currency
+
+              def initialize: (
+                amount: Float,
+                ?currency: Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::Price::currency
+              ) -> void
+
+              def to_hash: -> {
+                amount: Float,
+                currency: Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::Price::currency
+              }
+
+              type currency =
+                :usd
+                | :aed
+                | :all
+                | :amd
+                | :ang
+                | :aud
+                | :awg
+                | :azn
+                | :bam
+                | :bbd
+                | :bdt
+                | :bgn
+                | :bif
+                | :bmd
+                | :bnd
+                | :bsd
+                | :bwp
+                | :byn
+                | :bzd
+                | :brl
+                | :cad
+                | :cdf
+                | :chf
+                | :cny
+                | :czk
+                | :dkk
+                | :dop
+                | :dzd
+                | :egp
+                | :etb
+                | :eur
+                | :fjd
+                | :gbp
+                | :gel
+                | :gip
+                | :gmd
+                | :gyd
+                | :hkd
+                | :hrk
+                | :htg
+                | :idr
+                | :ils
+                | :inr
+                | :isk
+                | :jmd
+                | :jpy
+                | :kes
+                | :kgs
+                | :khr
+                | :kmf
+                | :krw
+                | :kyd
+                | :kzt
+                | :lbp
+                | :lkr
+                | :lrd
+                | :lsl
+                | :mad
+                | :mdl
+                | :mga
+                | :mkd
+                | :mmk
+                | :mnt
+                | :mop
+                | :mro
+                | :mvr
+                | :mwk
+                | :mxn
+                | :myr
+                | :mzn
+                | :nad
+                | :ngn
+                | :nok
+                | :npr
+                | :nzd
+                | :pgk
+                | :php
+                | :pkr
+                | :pln
+                | :qar
+                | :ron
+                | :rsd
+                | :rub
+                | :rwf
+                | :sar
+                | :sbd
+                | :scr
+                | :sek
+                | :sgd
+                | :sle
+                | :sll
+                | :sos
+                | :szl
+                | :thb
+                | :tjs
+                | :top
+                | :try
+                | :ttd
+                | :tzs
+                | :uah
+                | :uzs
+                | :vnd
+                | :vuv
+                | :wst
+                | :xaf
+                | :xcd
+                | :yer
+                | :zar
+                | :zmw
+                | :clp
+                | :djf
+                | :gnf
+                | :ugx
+                | :pyg
+                | :xof
+                | :xpf
+
+              module Currency
+                extend Stigg::Internal::Type::Enum
+
+                USD: :usd
+                AED: :aed
+                ALL: :all
+                AMD: :amd
+                ANG: :ang
+                AUD: :aud
+                AWG: :awg
+                AZN: :azn
+                BAM: :bam
+                BBD: :bbd
+                BDT: :bdt
+                BGN: :bgn
+                BIF: :bif
+                BMD: :bmd
+                BND: :bnd
+                BSD: :bsd
+                BWP: :bwp
+                BYN: :byn
+                BZD: :bzd
+                BRL: :brl
+                CAD: :cad
+                CDF: :cdf
+                CHF: :chf
+                CNY: :cny
+                CZK: :czk
+                DKK: :dkk
+                DOP: :dop
+                DZD: :dzd
+                EGP: :egp
+                ETB: :etb
+                EUR: :eur
+                FJD: :fjd
+                GBP: :gbp
+                GEL: :gel
+                GIP: :gip
+                GMD: :gmd
+                GYD: :gyd
+                HKD: :hkd
+                HRK: :hrk
+                HTG: :htg
+                IDR: :idr
+                ILS: :ils
+                INR: :inr
+                ISK: :isk
+                JMD: :jmd
+                JPY: :jpy
+                KES: :kes
+                KGS: :kgs
+                KHR: :khr
+                KMF: :kmf
+                KRW: :krw
+                KYD: :kyd
+                KZT: :kzt
+                LBP: :lbp
+                LKR: :lkr
+                LRD: :lrd
+                LSL: :lsl
+                MAD: :mad
+                MDL: :mdl
+                MGA: :mga
+                MKD: :mkd
+                MMK: :mmk
+                MNT: :mnt
+                MOP: :mop
+                MRO: :mro
+                MVR: :mvr
+                MWK: :mwk
+                MXN: :mxn
+                MYR: :myr
+                MZN: :mzn
+                NAD: :nad
+                NGN: :ngn
+                NOK: :nok
+                NPR: :npr
+                NZD: :nzd
+                PGK: :pgk
+                PHP: :php
+                PKR: :pkr
+                PLN: :pln
+                QAR: :qar
+                RON: :ron
+                RSD: :rsd
+                RUB: :rub
+                RWF: :rwf
+                SAR: :sar
+                SBD: :sbd
+                SCR: :scr
+                SEK: :sek
+                SGD: :sgd
+                SLE: :sle
+                SLL: :sll
+                SOS: :sos
+                SZL: :szl
+                THB: :thb
+                TJS: :tjs
+                TOP: :top
+                TRY: :try
+                TTD: :ttd
+                TZS: :tzs
+                UAH: :uah
+                UZS: :uzs
+                VND: :vnd
+                VUV: :vuv
+                WST: :wst
+                XAF: :xaf
+                XCD: :xcd
+                YER: :yer
+                ZAR: :zar
+                ZMW: :zmw
+                CLP: :clp
+                DJF: :djf
+                GNF: :gnf
+                UGX: :ugx
+                PYG: :pyg
+                XOF: :xof
+                XPF: :xpf
+
+                def self?.values: -> ::Array[Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::Price::currency]
+              end
+            end
+
+            type tier =
+              {
+                flat_price: Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::Tier::FlatPrice,
+                unit_price: Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::Tier::UnitPrice,
+                up_to: Float
+              }
+
+            class Tier < Stigg::Internal::Type::BaseModel
+              attr_reader flat_price: Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::Tier::FlatPrice?
+
+              def flat_price=: (
+                Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::Tier::FlatPrice
+              ) -> Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::Tier::FlatPrice
+
+              attr_reader unit_price: Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::Tier::UnitPrice?
+
+              def unit_price=: (
+                Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::Tier::UnitPrice
+              ) -> Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::Tier::UnitPrice
+
+              attr_reader up_to: Float?
+
+              def up_to=: (Float) -> Float
+
+              def initialize: (
+                ?flat_price: Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::Tier::FlatPrice,
+                ?unit_price: Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::Tier::UnitPrice,
+                ?up_to: Float
+              ) -> void
+
+              def to_hash: -> {
+                flat_price: Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::Tier::FlatPrice,
+                unit_price: Stigg::V1::SetPackagePricing::PricingModel::PricePeriod::Tier::UnitPrice,
+                up_to: Float
+              }
+
+              type flat_price =
+                {
+                  amount: Float,
+                  currency: Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::Tier::FlatPrice::currency
+                }
+
+              class FlatPrice < Stigg::Internal::Type::BaseModel
+                attr_accessor amount: Float
+
+                attr_reader currency: Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::Tier::FlatPrice::currency?
+
+                def currency=: (
+                  Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::Tier::FlatPrice::currency
+                ) -> Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::Tier::FlatPrice::currency
+
+                def initialize: (
+                  amount: Float,
+                  ?currency: Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::Tier::FlatPrice::currency
+                ) -> void
+
+                def to_hash: -> {
+                  amount: Float,
+                  currency: Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::Tier::FlatPrice::currency
+                }
+
+                type currency =
+                  :usd
+                  | :aed
+                  | :all
+                  | :amd
+                  | :ang
+                  | :aud
+                  | :awg
+                  | :azn
+                  | :bam
+                  | :bbd
+                  | :bdt
+                  | :bgn
+                  | :bif
+                  | :bmd
+                  | :bnd
+                  | :bsd
+                  | :bwp
+                  | :byn
+                  | :bzd
+                  | :brl
+                  | :cad
+                  | :cdf
+                  | :chf
+                  | :cny
+                  | :czk
+                  | :dkk
+                  | :dop
+                  | :dzd
+                  | :egp
+                  | :etb
+                  | :eur
+                  | :fjd
+                  | :gbp
+                  | :gel
+                  | :gip
+                  | :gmd
+                  | :gyd
+                  | :hkd
+                  | :hrk
+                  | :htg
+                  | :idr
+                  | :ils
+                  | :inr
+                  | :isk
+                  | :jmd
+                  | :jpy
+                  | :kes
+                  | :kgs
+                  | :khr
+                  | :kmf
+                  | :krw
+                  | :kyd
+                  | :kzt
+                  | :lbp
+                  | :lkr
+                  | :lrd
+                  | :lsl
+                  | :mad
+                  | :mdl
+                  | :mga
+                  | :mkd
+                  | :mmk
+                  | :mnt
+                  | :mop
+                  | :mro
+                  | :mvr
+                  | :mwk
+                  | :mxn
+                  | :myr
+                  | :mzn
+                  | :nad
+                  | :ngn
+                  | :nok
+                  | :npr
+                  | :nzd
+                  | :pgk
+                  | :php
+                  | :pkr
+                  | :pln
+                  | :qar
+                  | :ron
+                  | :rsd
+                  | :rub
+                  | :rwf
+                  | :sar
+                  | :sbd
+                  | :scr
+                  | :sek
+                  | :sgd
+                  | :sle
+                  | :sll
+                  | :sos
+                  | :szl
+                  | :thb
+                  | :tjs
+                  | :top
+                  | :try
+                  | :ttd
+                  | :tzs
+                  | :uah
+                  | :uzs
+                  | :vnd
+                  | :vuv
+                  | :wst
+                  | :xaf
+                  | :xcd
+                  | :yer
+                  | :zar
+                  | :zmw
+                  | :clp
+                  | :djf
+                  | :gnf
+                  | :ugx
+                  | :pyg
+                  | :xof
+                  | :xpf
+
+                module Currency
+                  extend Stigg::Internal::Type::Enum
+
+                  USD: :usd
+                  AED: :aed
+                  ALL: :all
+                  AMD: :amd
+                  ANG: :ang
+                  AUD: :aud
+                  AWG: :awg
+                  AZN: :azn
+                  BAM: :bam
+                  BBD: :bbd
+                  BDT: :bdt
+                  BGN: :bgn
+                  BIF: :bif
+                  BMD: :bmd
+                  BND: :bnd
+                  BSD: :bsd
+                  BWP: :bwp
+                  BYN: :byn
+                  BZD: :bzd
+                  BRL: :brl
+                  CAD: :cad
+                  CDF: :cdf
+                  CHF: :chf
+                  CNY: :cny
+                  CZK: :czk
+                  DKK: :dkk
+                  DOP: :dop
+                  DZD: :dzd
+                  EGP: :egp
+                  ETB: :etb
+                  EUR: :eur
+                  FJD: :fjd
+                  GBP: :gbp
+                  GEL: :gel
+                  GIP: :gip
+                  GMD: :gmd
+                  GYD: :gyd
+                  HKD: :hkd
+                  HRK: :hrk
+                  HTG: :htg
+                  IDR: :idr
+                  ILS: :ils
+                  INR: :inr
+                  ISK: :isk
+                  JMD: :jmd
+                  JPY: :jpy
+                  KES: :kes
+                  KGS: :kgs
+                  KHR: :khr
+                  KMF: :kmf
+                  KRW: :krw
+                  KYD: :kyd
+                  KZT: :kzt
+                  LBP: :lbp
+                  LKR: :lkr
+                  LRD: :lrd
+                  LSL: :lsl
+                  MAD: :mad
+                  MDL: :mdl
+                  MGA: :mga
+                  MKD: :mkd
+                  MMK: :mmk
+                  MNT: :mnt
+                  MOP: :mop
+                  MRO: :mro
+                  MVR: :mvr
+                  MWK: :mwk
+                  MXN: :mxn
+                  MYR: :myr
+                  MZN: :mzn
+                  NAD: :nad
+                  NGN: :ngn
+                  NOK: :nok
+                  NPR: :npr
+                  NZD: :nzd
+                  PGK: :pgk
+                  PHP: :php
+                  PKR: :pkr
+                  PLN: :pln
+                  QAR: :qar
+                  RON: :ron
+                  RSD: :rsd
+                  RUB: :rub
+                  RWF: :rwf
+                  SAR: :sar
+                  SBD: :sbd
+                  SCR: :scr
+                  SEK: :sek
+                  SGD: :sgd
+                  SLE: :sle
+                  SLL: :sll
+                  SOS: :sos
+                  SZL: :szl
+                  THB: :thb
+                  TJS: :tjs
+                  TOP: :top
+                  TRY: :try
+                  TTD: :ttd
+                  TZS: :tzs
+                  UAH: :uah
+                  UZS: :uzs
+                  VND: :vnd
+                  VUV: :vuv
+                  WST: :wst
+                  XAF: :xaf
+                  XCD: :xcd
+                  YER: :yer
+                  ZAR: :zar
+                  ZMW: :zmw
+                  CLP: :clp
+                  DJF: :djf
+                  GNF: :gnf
+                  UGX: :ugx
+                  PYG: :pyg
+                  XOF: :xof
+                  XPF: :xpf
+
+                  def self?.values: -> ::Array[Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::Tier::FlatPrice::currency]
+                end
+              end
+
+              type unit_price =
+                {
+                  amount: Float,
+                  currency: Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::Tier::UnitPrice::currency
+                }
+
+              class UnitPrice < Stigg::Internal::Type::BaseModel
+                attr_accessor amount: Float
+
+                attr_reader currency: Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::Tier::UnitPrice::currency?
+
+                def currency=: (
+                  Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::Tier::UnitPrice::currency
+                ) -> Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::Tier::UnitPrice::currency
+
+                def initialize: (
+                  amount: Float,
+                  ?currency: Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::Tier::UnitPrice::currency
+                ) -> void
+
+                def to_hash: -> {
+                  amount: Float,
+                  currency: Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::Tier::UnitPrice::currency
+                }
+
+                type currency =
+                  :usd
+                  | :aed
+                  | :all
+                  | :amd
+                  | :ang
+                  | :aud
+                  | :awg
+                  | :azn
+                  | :bam
+                  | :bbd
+                  | :bdt
+                  | :bgn
+                  | :bif
+                  | :bmd
+                  | :bnd
+                  | :bsd
+                  | :bwp
+                  | :byn
+                  | :bzd
+                  | :brl
+                  | :cad
+                  | :cdf
+                  | :chf
+                  | :cny
+                  | :czk
+                  | :dkk
+                  | :dop
+                  | :dzd
+                  | :egp
+                  | :etb
+                  | :eur
+                  | :fjd
+                  | :gbp
+                  | :gel
+                  | :gip
+                  | :gmd
+                  | :gyd
+                  | :hkd
+                  | :hrk
+                  | :htg
+                  | :idr
+                  | :ils
+                  | :inr
+                  | :isk
+                  | :jmd
+                  | :jpy
+                  | :kes
+                  | :kgs
+                  | :khr
+                  | :kmf
+                  | :krw
+                  | :kyd
+                  | :kzt
+                  | :lbp
+                  | :lkr
+                  | :lrd
+                  | :lsl
+                  | :mad
+                  | :mdl
+                  | :mga
+                  | :mkd
+                  | :mmk
+                  | :mnt
+                  | :mop
+                  | :mro
+                  | :mvr
+                  | :mwk
+                  | :mxn
+                  | :myr
+                  | :mzn
+                  | :nad
+                  | :ngn
+                  | :nok
+                  | :npr
+                  | :nzd
+                  | :pgk
+                  | :php
+                  | :pkr
+                  | :pln
+                  | :qar
+                  | :ron
+                  | :rsd
+                  | :rub
+                  | :rwf
+                  | :sar
+                  | :sbd
+                  | :scr
+                  | :sek
+                  | :sgd
+                  | :sle
+                  | :sll
+                  | :sos
+                  | :szl
+                  | :thb
+                  | :tjs
+                  | :top
+                  | :try
+                  | :ttd
+                  | :tzs
+                  | :uah
+                  | :uzs
+                  | :vnd
+                  | :vuv
+                  | :wst
+                  | :xaf
+                  | :xcd
+                  | :yer
+                  | :zar
+                  | :zmw
+                  | :clp
+                  | :djf
+                  | :gnf
+                  | :ugx
+                  | :pyg
+                  | :xof
+                  | :xpf
+
+                module Currency
+                  extend Stigg::Internal::Type::Enum
+
+                  USD: :usd
+                  AED: :aed
+                  ALL: :all
+                  AMD: :amd
+                  ANG: :ang
+                  AUD: :aud
+                  AWG: :awg
+                  AZN: :azn
+                  BAM: :bam
+                  BBD: :bbd
+                  BDT: :bdt
+                  BGN: :bgn
+                  BIF: :bif
+                  BMD: :bmd
+                  BND: :bnd
+                  BSD: :bsd
+                  BWP: :bwp
+                  BYN: :byn
+                  BZD: :bzd
+                  BRL: :brl
+                  CAD: :cad
+                  CDF: :cdf
+                  CHF: :chf
+                  CNY: :cny
+                  CZK: :czk
+                  DKK: :dkk
+                  DOP: :dop
+                  DZD: :dzd
+                  EGP: :egp
+                  ETB: :etb
+                  EUR: :eur
+                  FJD: :fjd
+                  GBP: :gbp
+                  GEL: :gel
+                  GIP: :gip
+                  GMD: :gmd
+                  GYD: :gyd
+                  HKD: :hkd
+                  HRK: :hrk
+                  HTG: :htg
+                  IDR: :idr
+                  ILS: :ils
+                  INR: :inr
+                  ISK: :isk
+                  JMD: :jmd
+                  JPY: :jpy
+                  KES: :kes
+                  KGS: :kgs
+                  KHR: :khr
+                  KMF: :kmf
+                  KRW: :krw
+                  KYD: :kyd
+                  KZT: :kzt
+                  LBP: :lbp
+                  LKR: :lkr
+                  LRD: :lrd
+                  LSL: :lsl
+                  MAD: :mad
+                  MDL: :mdl
+                  MGA: :mga
+                  MKD: :mkd
+                  MMK: :mmk
+                  MNT: :mnt
+                  MOP: :mop
+                  MRO: :mro
+                  MVR: :mvr
+                  MWK: :mwk
+                  MXN: :mxn
+                  MYR: :myr
+                  MZN: :mzn
+                  NAD: :nad
+                  NGN: :ngn
+                  NOK: :nok
+                  NPR: :npr
+                  NZD: :nzd
+                  PGK: :pgk
+                  PHP: :php
+                  PKR: :pkr
+                  PLN: :pln
+                  QAR: :qar
+                  RON: :ron
+                  RSD: :rsd
+                  RUB: :rub
+                  RWF: :rwf
+                  SAR: :sar
+                  SBD: :sbd
+                  SCR: :scr
+                  SEK: :sek
+                  SGD: :sgd
+                  SLE: :sle
+                  SLL: :sll
+                  SOS: :sos
+                  SZL: :szl
+                  THB: :thb
+                  TJS: :tjs
+                  TOP: :top
+                  TRY: :try
+                  TTD: :ttd
+                  TZS: :tzs
+                  UAH: :uah
+                  UZS: :uzs
+                  VND: :vnd
+                  VUV: :vuv
+                  WST: :wst
+                  XAF: :xaf
+                  XCD: :xcd
+                  YER: :yer
+                  ZAR: :zar
+                  ZMW: :zmw
+                  CLP: :clp
+                  DJF: :djf
+                  GNF: :gnf
+                  UGX: :ugx
+                  PYG: :pyg
+                  XOF: :xof
+                  XPF: :xpf
+
+                  def self?.values: -> ::Array[Stigg::Models::V1::SetPackagePricing::PricingModel::PricePeriod::Tier::UnitPrice::currency]
+                end
+              end
+            end
+          end
+
+          type billing_cadence = :RECURRING | :ONE_OFF
+
+          module BillingCadence
+            extend Stigg::Internal::Type::Enum
+
+            RECURRING: :RECURRING
+            ONE_OFF: :ONE_OFF
+
+            def self?.values: -> ::Array[Stigg::Models::V1::SetPackagePricing::PricingModel::billing_cadence]
+          end
+
+          type monthly_reset_period_configuration =
+            {
+              according_to: Stigg::Models::V1::SetPackagePricing::PricingModel::MonthlyResetPeriodConfiguration::according_to
+            }
+
+          class MonthlyResetPeriodConfiguration < Stigg::Internal::Type::BaseModel
+            attr_accessor according_to: Stigg::Models::V1::SetPackagePricing::PricingModel::MonthlyResetPeriodConfiguration::according_to
+
+            def initialize: (
+              according_to: Stigg::Models::V1::SetPackagePricing::PricingModel::MonthlyResetPeriodConfiguration::according_to
+            ) -> void
+
+            def to_hash: -> {
+              according_to: Stigg::Models::V1::SetPackagePricing::PricingModel::MonthlyResetPeriodConfiguration::according_to
+            }
+
+            type according_to = :SubscriptionStart | :StartOfTheMonth
+
+            module AccordingTo
+              extend Stigg::Internal::Type::Enum
+
+              SUBSCRIPTION_START: :SubscriptionStart
+              START_OF_THE_MONTH: :StartOfTheMonth
+
+              def self?.values: -> ::Array[Stigg::Models::V1::SetPackagePricing::PricingModel::MonthlyResetPeriodConfiguration::according_to]
+            end
+          end
+
+          type reset_period = :YEAR | :MONTH | :WEEK | :DAY | :HOUR
+
+          module ResetPeriod
+            extend Stigg::Internal::Type::Enum
+
+            YEAR: :YEAR
+            MONTH: :MONTH
+            WEEK: :WEEK
+            DAY: :DAY
+            HOUR: :HOUR
+
+            def self?.values: -> ::Array[Stigg::Models::V1::SetPackagePricing::PricingModel::reset_period]
+          end
+
+          type tiers_mode = :VOLUME | :GRADUATED
+
+          module TiersMode
+            extend Stigg::Internal::Type::Enum
+
+            VOLUME: :VOLUME
+            GRADUATED: :GRADUATED
+
+            def self?.values: -> ::Array[Stigg::Models::V1::SetPackagePricing::PricingModel::tiers_mode]
+          end
+
+          type weekly_reset_period_configuration =
+            {
+              according_to: Stigg::Models::V1::SetPackagePricing::PricingModel::WeeklyResetPeriodConfiguration::according_to
+            }
+
+          class WeeklyResetPeriodConfiguration < Stigg::Internal::Type::BaseModel
+            attr_accessor according_to: Stigg::Models::V1::SetPackagePricing::PricingModel::WeeklyResetPeriodConfiguration::according_to
+
+            def initialize: (
+              according_to: Stigg::Models::V1::SetPackagePricing::PricingModel::WeeklyResetPeriodConfiguration::according_to
+            ) -> void
+
+            def to_hash: -> {
+              according_to: Stigg::Models::V1::SetPackagePricing::PricingModel::WeeklyResetPeriodConfiguration::according_to
+            }
+
+            type according_to =
+              :SubscriptionStart
+              | :EverySunday
+              | :EveryMonday
+              | :EveryTuesday
+              | :EveryWednesday
+              | :EveryThursday
+              | :EveryFriday
+              | :EverySaturday
+
+            module AccordingTo
+              extend Stigg::Internal::Type::Enum
+
+              SUBSCRIPTION_START: :SubscriptionStart
+              EVERY_SUNDAY: :EverySunday
+              EVERY_MONDAY: :EveryMonday
+              EVERY_TUESDAY: :EveryTuesday
+              EVERY_WEDNESDAY: :EveryWednesday
+              EVERY_THURSDAY: :EveryThursday
+              EVERY_FRIDAY: :EveryFriday
+              EVERY_SATURDAY: :EverySaturday
+
+              def self?.values: -> ::Array[Stigg::Models::V1::SetPackagePricing::PricingModel::WeeklyResetPeriodConfiguration::according_to]
+            end
+          end
+
+          type yearly_reset_period_configuration =
+            {
+              according_to: Stigg::Models::V1::SetPackagePricing::PricingModel::YearlyResetPeriodConfiguration::according_to
+            }
+
+          class YearlyResetPeriodConfiguration < Stigg::Internal::Type::BaseModel
+            attr_accessor according_to: Stigg::Models::V1::SetPackagePricing::PricingModel::YearlyResetPeriodConfiguration::according_to
+
+            def initialize: (
+              according_to: Stigg::Models::V1::SetPackagePricing::PricingModel::YearlyResetPeriodConfiguration::according_to
+            ) -> void
+
+            def to_hash: -> {
+              according_to: Stigg::Models::V1::SetPackagePricing::PricingModel::YearlyResetPeriodConfiguration::according_to
+            }
+
+            type according_to = :SubscriptionStart
+
+            module AccordingTo
+              extend Stigg::Internal::Type::Enum
+
+              SUBSCRIPTION_START: :SubscriptionStart
+
+              def self?.values: -> ::Array[Stigg::Models::V1::SetPackagePricing::PricingModel::YearlyResetPeriodConfiguration::according_to]
+            end
+          end
+        end
+      end
+    end
+  end
+end

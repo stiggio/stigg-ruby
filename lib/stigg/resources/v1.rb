@@ -15,6 +15,15 @@ module Stigg
       # @return [Stigg::Resources::V1::Events]
       attr_reader :events
 
+      # @return [Stigg::Resources::V1::Features]
+      attr_reader :features
+
+      # @return [Stigg::Resources::V1::Addons]
+      attr_reader :addons
+
+      # @return [Stigg::Resources::V1::Plans]
+      attr_reader :plans
+
       # @return [Stigg::Resources::V1::Usage]
       attr_reader :usage
 
@@ -30,6 +39,9 @@ module Stigg
         @subscriptions = Stigg::Resources::V1::Subscriptions.new(client: client)
         @coupons = Stigg::Resources::V1::Coupons.new(client: client)
         @events = Stigg::Resources::V1::Events.new(client: client)
+        @features = Stigg::Resources::V1::Features.new(client: client)
+        @addons = Stigg::Resources::V1::Addons.new(client: client)
+        @plans = Stigg::Resources::V1::Plans.new(client: client)
         @usage = Stigg::Resources::V1::Usage.new(client: client)
         @products = Stigg::Resources::V1::Products.new(client: client)
       end

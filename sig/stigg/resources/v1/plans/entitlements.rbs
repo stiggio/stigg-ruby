@@ -1,0 +1,36 @@
+module Stigg
+  module Resources
+    class V1
+      class Plans
+        class Entitlements
+          def create: (
+            String plan_id,
+            entitlements: ::Array[Stigg::V1::Plans::EntitlementCreateParams::Entitlement],
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Plans::EntitlementCreateResponse
+
+          def update: (
+            String id,
+            plan_id: String,
+            ?credit: Stigg::V1::Plans::EntitlementUpdateParams::Credit,
+            ?feature: Stigg::V1::Plans::EntitlementUpdateParams::Feature,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::V1::Plans::PlanEntitlement
+
+          def list: (
+            String plan_id,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Plans::EntitlementListResponse
+
+          def delete: (
+            String id,
+            plan_id: String,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::V1::Plans::PlanEntitlement
+
+          def initialize: (client: Stigg::Client) -> void
+        end
+      end
+    end
+  end
+end

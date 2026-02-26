@@ -9,6 +9,12 @@ module Stigg
 
       attr_reader events: Stigg::Resources::V1::Events
 
+      attr_reader features: Stigg::Resources::V1::Features
+
+      attr_reader addons: Stigg::Resources::V1::Addons
+
+      attr_reader plans: Stigg::Resources::V1::Plans
+
       attr_reader usage: Stigg::Resources::V1::Usage
 
       attr_reader products: Stigg::Resources::V1::Products
