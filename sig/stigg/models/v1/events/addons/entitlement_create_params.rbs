@@ -1,0 +1,432 @@
+module Stigg
+  module Models
+    module V1
+      module Events
+        module Addons
+          type entitlement_create_params =
+            {
+              entitlements: ::Array[Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement]
+            }
+            & Stigg::Internal::Type::request_parameters
+
+          class EntitlementCreateParams < Stigg::Internal::Type::BaseModel
+            extend Stigg::Internal::Type::RequestParameters::Converter
+            include Stigg::Internal::Type::RequestParameters
+
+            attr_accessor entitlements: ::Array[Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement]
+
+            def initialize: (
+              entitlements: ::Array[Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement],
+              ?request_options: Stigg::request_opts
+            ) -> void
+
+            def to_hash: -> {
+              entitlements: ::Array[Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement],
+              request_options: Stigg::RequestOptions
+            }
+
+            type entitlement =
+              {
+                credit: Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement::Credit,
+                feature: Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature
+              }
+
+            class Entitlement < Stigg::Internal::Type::BaseModel
+              attr_reader credit: Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement::Credit?
+
+              def credit=: (
+                Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement::Credit
+              ) -> Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement::Credit
+
+              attr_reader feature: Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature?
+
+              def feature=: (
+                Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature
+              ) -> Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature
+
+              def initialize: (
+                ?credit: Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement::Credit,
+                ?feature: Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature
+              ) -> void
+
+              def to_hash: -> {
+                credit: Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement::Credit,
+                feature: Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature
+              }
+
+              type credit =
+                {
+                  amount: Float?,
+                  cadence: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Credit::cadence,
+                  custom_currency_id: String,
+                  behavior: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Credit::behavior,
+                  description: String,
+                  display_name_override: String,
+                  hidden_from_widgets: ::Array[Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget],
+                  is_custom: bool,
+                  is_granted: bool,
+                  order: Float
+                }
+
+              class Credit < Stigg::Internal::Type::BaseModel
+                attr_accessor amount: Float?
+
+                attr_accessor cadence: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Credit::cadence
+
+                attr_accessor custom_currency_id: String
+
+                attr_reader behavior: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Credit::behavior?
+
+                def behavior=: (
+                  Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Credit::behavior
+                ) -> Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Credit::behavior
+
+                attr_reader description: String?
+
+                def description=: (String) -> String
+
+                attr_reader display_name_override: String?
+
+                def display_name_override=: (String) -> String
+
+                attr_reader hidden_from_widgets: ::Array[Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget]?
+
+                def hidden_from_widgets=: (
+                  ::Array[Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget]
+                ) -> ::Array[Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget]
+
+                attr_reader is_custom: bool?
+
+                def is_custom=: (bool) -> bool
+
+                attr_reader is_granted: bool?
+
+                def is_granted=: (bool) -> bool
+
+                attr_reader order: Float?
+
+                def order=: (Float) -> Float
+
+                def initialize: (
+                  amount: Float?,
+                  cadence: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Credit::cadence,
+                  custom_currency_id: String,
+                  ?behavior: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Credit::behavior,
+                  ?description: String,
+                  ?display_name_override: String,
+                  ?hidden_from_widgets: ::Array[Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget],
+                  ?is_custom: bool,
+                  ?is_granted: bool,
+                  ?order: Float
+                ) -> void
+
+                def to_hash: -> {
+                  amount: Float?,
+                  cadence: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Credit::cadence,
+                  custom_currency_id: String,
+                  behavior: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Credit::behavior,
+                  description: String,
+                  display_name_override: String,
+                  hidden_from_widgets: ::Array[Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget],
+                  is_custom: bool,
+                  is_granted: bool,
+                  order: Float
+                }
+
+                type cadence = :MONTH | :YEAR
+
+                module Cadence
+                  extend Stigg::Internal::Type::Enum
+
+                  MONTH: :MONTH
+                  YEAR: :YEAR
+
+                  def self?.values: -> ::Array[Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Credit::cadence]
+                end
+
+                type behavior = :Increment | :Override
+
+                module Behavior
+                  extend Stigg::Internal::Type::Enum
+
+                  INCREMENT: :Increment
+                  OVERRIDE: :Override
+
+                  def self?.values: -> ::Array[Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Credit::behavior]
+                end
+
+                type hidden_from_widget =
+                  :PAYWALL | :CUSTOMER_PORTAL | :CHECKOUT
+
+                module HiddenFromWidget
+                  extend Stigg::Internal::Type::Enum
+
+                  PAYWALL: :PAYWALL
+                  CUSTOMER_PORTAL: :CUSTOMER_PORTAL
+                  CHECKOUT: :CHECKOUT
+
+                  def self?.values: -> ::Array[Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget]
+                end
+              end
+
+              type feature =
+                {
+                  feature_id: String,
+                  behavior: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::behavior,
+                  description: String,
+                  display_name_override: String,
+                  enum_values: ::Array[String],
+                  has_soft_limit: bool,
+                  has_unlimited_usage: bool,
+                  hidden_from_widgets: ::Array[Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::hidden_from_widget],
+                  is_custom: bool,
+                  is_granted: bool,
+                  monthly_reset_period_configuration: Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::MonthlyResetPeriodConfiguration?,
+                  order: Float,
+                  reset_period: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::reset_period,
+                  usage_limit: Integer?,
+                  weekly_reset_period_configuration: Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::WeeklyResetPeriodConfiguration?,
+                  yearly_reset_period_configuration: Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::YearlyResetPeriodConfiguration?
+                }
+
+              class Feature < Stigg::Internal::Type::BaseModel
+                attr_accessor feature_id: String
+
+                attr_reader behavior: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::behavior?
+
+                def behavior=: (
+                  Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::behavior
+                ) -> Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::behavior
+
+                attr_reader description: String?
+
+                def description=: (String) -> String
+
+                attr_reader display_name_override: String?
+
+                def display_name_override=: (String) -> String
+
+                attr_reader enum_values: ::Array[String]?
+
+                def enum_values=: (::Array[String]) -> ::Array[String]
+
+                attr_reader has_soft_limit: bool?
+
+                def has_soft_limit=: (bool) -> bool
+
+                attr_reader has_unlimited_usage: bool?
+
+                def has_unlimited_usage=: (bool) -> bool
+
+                attr_reader hidden_from_widgets: ::Array[Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::hidden_from_widget]?
+
+                def hidden_from_widgets=: (
+                  ::Array[Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::hidden_from_widget]
+                ) -> ::Array[Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::hidden_from_widget]
+
+                attr_reader is_custom: bool?
+
+                def is_custom=: (bool) -> bool
+
+                attr_reader is_granted: bool?
+
+                def is_granted=: (bool) -> bool
+
+                attr_accessor monthly_reset_period_configuration: Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::MonthlyResetPeriodConfiguration?
+
+                attr_reader order: Float?
+
+                def order=: (Float) -> Float
+
+                attr_reader reset_period: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::reset_period?
+
+                def reset_period=: (
+                  Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::reset_period
+                ) -> Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::reset_period
+
+                attr_accessor usage_limit: Integer?
+
+                attr_accessor weekly_reset_period_configuration: Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::WeeklyResetPeriodConfiguration?
+
+                attr_accessor yearly_reset_period_configuration: Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::YearlyResetPeriodConfiguration?
+
+                def initialize: (
+                  feature_id: String,
+                  ?behavior: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::behavior,
+                  ?description: String,
+                  ?display_name_override: String,
+                  ?enum_values: ::Array[String],
+                  ?has_soft_limit: bool,
+                  ?has_unlimited_usage: bool,
+                  ?hidden_from_widgets: ::Array[Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::hidden_from_widget],
+                  ?is_custom: bool,
+                  ?is_granted: bool,
+                  ?monthly_reset_period_configuration: Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::MonthlyResetPeriodConfiguration?,
+                  ?order: Float,
+                  ?reset_period: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::reset_period,
+                  ?usage_limit: Integer?,
+                  ?weekly_reset_period_configuration: Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::WeeklyResetPeriodConfiguration?,
+                  ?yearly_reset_period_configuration: Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::YearlyResetPeriodConfiguration?
+                ) -> void
+
+                def to_hash: -> {
+                  feature_id: String,
+                  behavior: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::behavior,
+                  description: String,
+                  display_name_override: String,
+                  enum_values: ::Array[String],
+                  has_soft_limit: bool,
+                  has_unlimited_usage: bool,
+                  hidden_from_widgets: ::Array[Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::hidden_from_widget],
+                  is_custom: bool,
+                  is_granted: bool,
+                  monthly_reset_period_configuration: Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::MonthlyResetPeriodConfiguration?,
+                  order: Float,
+                  reset_period: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::reset_period,
+                  usage_limit: Integer?,
+                  weekly_reset_period_configuration: Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::WeeklyResetPeriodConfiguration?,
+                  yearly_reset_period_configuration: Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::YearlyResetPeriodConfiguration?
+                }
+
+                type behavior = :Increment | :Override
+
+                module Behavior
+                  extend Stigg::Internal::Type::Enum
+
+                  INCREMENT: :Increment
+                  OVERRIDE: :Override
+
+                  def self?.values: -> ::Array[Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::behavior]
+                end
+
+                type hidden_from_widget =
+                  :PAYWALL | :CUSTOMER_PORTAL | :CHECKOUT
+
+                module HiddenFromWidget
+                  extend Stigg::Internal::Type::Enum
+
+                  PAYWALL: :PAYWALL
+                  CUSTOMER_PORTAL: :CUSTOMER_PORTAL
+                  CHECKOUT: :CHECKOUT
+
+                  def self?.values: -> ::Array[Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::hidden_from_widget]
+                end
+
+                type monthly_reset_period_configuration =
+                  {
+                    according_to: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::MonthlyResetPeriodConfiguration::according_to
+                  }
+
+                class MonthlyResetPeriodConfiguration < Stigg::Internal::Type::BaseModel
+                  attr_accessor according_to: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::MonthlyResetPeriodConfiguration::according_to
+
+                  def initialize: (
+                    according_to: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::MonthlyResetPeriodConfiguration::according_to
+                  ) -> void
+
+                  def to_hash: -> {
+                    according_to: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::MonthlyResetPeriodConfiguration::according_to
+                  }
+
+                  type according_to = :SubscriptionStart | :StartOfTheMonth
+
+                  module AccordingTo
+                    extend Stigg::Internal::Type::Enum
+
+                    SUBSCRIPTION_START: :SubscriptionStart
+                    START_OF_THE_MONTH: :StartOfTheMonth
+
+                    def self?.values: -> ::Array[Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::MonthlyResetPeriodConfiguration::according_to]
+                  end
+                end
+
+                type reset_period = :YEAR | :MONTH | :WEEK | :DAY | :HOUR
+
+                module ResetPeriod
+                  extend Stigg::Internal::Type::Enum
+
+                  YEAR: :YEAR
+                  MONTH: :MONTH
+                  WEEK: :WEEK
+                  DAY: :DAY
+                  HOUR: :HOUR
+
+                  def self?.values: -> ::Array[Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::reset_period]
+                end
+
+                type weekly_reset_period_configuration =
+                  {
+                    according_to: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::according_to
+                  }
+
+                class WeeklyResetPeriodConfiguration < Stigg::Internal::Type::BaseModel
+                  attr_accessor according_to: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::according_to
+
+                  def initialize: (
+                    according_to: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::according_to
+                  ) -> void
+
+                  def to_hash: -> {
+                    according_to: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::according_to
+                  }
+
+                  type according_to =
+                    :SubscriptionStart
+                    | :EverySunday
+                    | :EveryMonday
+                    | :EveryTuesday
+                    | :EveryWednesday
+                    | :EveryThursday
+                    | :EveryFriday
+                    | :EverySaturday
+
+                  module AccordingTo
+                    extend Stigg::Internal::Type::Enum
+
+                    SUBSCRIPTION_START: :SubscriptionStart
+                    EVERY_SUNDAY: :EverySunday
+                    EVERY_MONDAY: :EveryMonday
+                    EVERY_TUESDAY: :EveryTuesday
+                    EVERY_WEDNESDAY: :EveryWednesday
+                    EVERY_THURSDAY: :EveryThursday
+                    EVERY_FRIDAY: :EveryFriday
+                    EVERY_SATURDAY: :EverySaturday
+
+                    def self?.values: -> ::Array[Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::according_to]
+                  end
+                end
+
+                type yearly_reset_period_configuration =
+                  {
+                    according_to: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::YearlyResetPeriodConfiguration::according_to
+                  }
+
+                class YearlyResetPeriodConfiguration < Stigg::Internal::Type::BaseModel
+                  attr_accessor according_to: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::YearlyResetPeriodConfiguration::according_to
+
+                  def initialize: (
+                    according_to: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::YearlyResetPeriodConfiguration::according_to
+                  ) -> void
+
+                  def to_hash: -> {
+                    according_to: Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::YearlyResetPeriodConfiguration::according_to
+                  }
+
+                  type according_to = :SubscriptionStart
+
+                  module AccordingTo
+                    extend Stigg::Internal::Type::Enum
+
+                    SUBSCRIPTION_START: :SubscriptionStart
+
+                    def self?.values: -> ::Array[Stigg::Models::V1::Events::Addons::EntitlementCreateParams::Entitlement::Feature::YearlyResetPeriodConfiguration::according_to]
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end

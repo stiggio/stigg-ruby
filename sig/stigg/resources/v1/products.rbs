@@ -5,7 +5,7 @@ module Stigg
         def archive_product: (
           String id,
           ?request_options: Stigg::request_opts
-        ) -> Stigg::Models::V1::ProductArchiveProductResponse
+        ) -> Stigg::V1::Product
 
         def create_product: (
           id: String,
@@ -14,7 +14,7 @@ module Stigg
           ?metadata: ::Hash[Symbol, String]?,
           ?multiple_subscriptions: bool,
           ?request_options: Stigg::request_opts
-        ) -> Stigg::Models::V1::ProductCreateProductResponse
+        ) -> Stigg::V1::Product
 
         def duplicate_product: (
           String path_id,
@@ -22,7 +22,7 @@ module Stigg
           ?description: String?,
           ?display_name: String,
           ?request_options: Stigg::request_opts
-        ) -> Stigg::Models::V1::ProductDuplicateProductResponse
+        ) -> Stigg::V1::Product
 
         def list_products: (
           ?id: String,
@@ -37,7 +37,7 @@ module Stigg
         def unarchive_product: (
           String id,
           ?request_options: Stigg::request_opts
-        ) -> Stigg::Models::V1::ProductUnarchiveProductResponse
+        ) -> Stigg::V1::Product
 
         def update_product: (
           String id,
@@ -48,7 +48,7 @@ module Stigg
           ?product_settings: Stigg::V1::ProductUpdateProductParams::ProductSettings,
           ?usage_reset_cutoff_rule: Stigg::V1::ProductUpdateProductParams::UsageResetCutoffRule,
           ?request_options: Stigg::request_opts
-        ) -> Stigg::Models::V1::ProductUpdateProductResponse
+        ) -> Stigg::V1::Product
 
         def initialize: (client: Stigg::Client) -> void
       end

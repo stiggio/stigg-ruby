@@ -1,0 +1,38 @@
+module Stigg
+  module Resources
+    class V1
+      class Events
+        class Addons
+          class Entitlements
+            def create: (
+              String addon_id,
+              entitlements: ::Array[Stigg::V1::Events::Addons::EntitlementCreateParams::Entitlement],
+              ?request_options: Stigg::request_opts
+            ) -> Stigg::Models::V1::Events::Addons::EntitlementCreateResponse
+
+            def update: (
+              String id,
+              addon_id: String,
+              ?credit: Stigg::V1::Events::Addons::EntitlementUpdateParams::Credit,
+              ?feature: Stigg::V1::Events::Addons::EntitlementUpdateParams::Feature,
+              ?request_options: Stigg::request_opts
+            ) -> Stigg::V1::Events::Addons::AddonPackageEntitlement
+
+            def list: (
+              String addon_id,
+              ?request_options: Stigg::request_opts
+            ) -> Stigg::Models::V1::Events::Addons::EntitlementListResponse
+
+            def delete: (
+              String id,
+              addon_id: String,
+              ?request_options: Stigg::request_opts
+            ) -> Stigg::V1::Events::Addons::AddonPackageEntitlement
+
+            def initialize: (client: Stigg::Client) -> void
+          end
+        end
+      end
+    end
+  end
+end

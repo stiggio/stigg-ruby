@@ -1,0 +1,327 @@
+module Stigg
+  module Models
+    module V1
+      module Events
+        module Addons
+          type entitlement_list_response =
+            {
+              data: ::Array[Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data],
+              pagination: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Pagination
+            }
+
+          class EntitlementListResponse < Stigg::Internal::Type::BaseModel
+            attr_accessor data: ::Array[Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data]
+
+            attr_accessor pagination: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Pagination
+
+            def initialize: (
+              data: ::Array[Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data],
+              pagination: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Pagination
+            ) -> void
+
+            def to_hash: -> {
+              data: ::Array[Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data],
+              pagination: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Pagination
+            }
+
+            type data =
+              {
+                id: String,
+                amount: Float?,
+                behavior: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::behavior,
+                cadence: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::cadence?,
+                created_at: Time,
+                custom_currency_id: String?,
+                description: String?,
+                display_name_override: String?,
+                enum_values: ::Array[String]?,
+                feature_id: String?,
+                has_soft_limit: bool?,
+                has_unlimited_usage: bool?,
+                hidden_from_widgets: ::Array[Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::hidden_from_widget],
+                is_custom: bool?,
+                is_granted: bool,
+                order: Float?,
+                reset_period: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::reset_period?,
+                reset_period_configuration: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::reset_period_configuration?,
+                type: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::type_,
+                updated_at: Time,
+                usage_limit: Float?
+              }
+
+            class Data < Stigg::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              attr_accessor amount: Float?
+
+              attr_accessor behavior: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::behavior
+
+              attr_accessor cadence: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::cadence?
+
+              attr_accessor created_at: Time
+
+              attr_accessor custom_currency_id: String?
+
+              attr_accessor description: String?
+
+              attr_accessor display_name_override: String?
+
+              attr_accessor enum_values: ::Array[String]?
+
+              attr_accessor feature_id: String?
+
+              attr_accessor has_soft_limit: bool?
+
+              attr_accessor has_unlimited_usage: bool?
+
+              attr_accessor hidden_from_widgets: ::Array[Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::hidden_from_widget]
+
+              attr_accessor is_custom: bool?
+
+              attr_accessor is_granted: bool
+
+              attr_accessor order: Float?
+
+              attr_accessor reset_period: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::reset_period?
+
+              attr_accessor reset_period_configuration: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::reset_period_configuration?
+
+              attr_accessor type: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::type_
+
+              attr_accessor updated_at: Time
+
+              attr_accessor usage_limit: Float?
+
+              def initialize: (
+                id: String,
+                amount: Float?,
+                behavior: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::behavior,
+                cadence: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::cadence?,
+                created_at: Time,
+                custom_currency_id: String?,
+                description: String?,
+                display_name_override: String?,
+                enum_values: ::Array[String]?,
+                feature_id: String?,
+                has_soft_limit: bool?,
+                has_unlimited_usage: bool?,
+                hidden_from_widgets: ::Array[Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::hidden_from_widget],
+                is_custom: bool?,
+                is_granted: bool,
+                order: Float?,
+                reset_period: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::reset_period?,
+                reset_period_configuration: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::reset_period_configuration?,
+                type: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::type_,
+                updated_at: Time,
+                usage_limit: Float?
+              ) -> void
+
+              def to_hash: -> {
+                id: String,
+                amount: Float?,
+                behavior: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::behavior,
+                cadence: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::cadence?,
+                created_at: Time,
+                custom_currency_id: String?,
+                description: String?,
+                display_name_override: String?,
+                enum_values: ::Array[String]?,
+                feature_id: String?,
+                has_soft_limit: bool?,
+                has_unlimited_usage: bool?,
+                hidden_from_widgets: ::Array[Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::hidden_from_widget],
+                is_custom: bool?,
+                is_granted: bool,
+                order: Float?,
+                reset_period: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::reset_period?,
+                reset_period_configuration: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::reset_period_configuration?,
+                type: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::type_,
+                updated_at: Time,
+                usage_limit: Float?
+              }
+
+              type behavior = :Increment | :Override
+
+              module Behavior
+                extend Stigg::Internal::Type::Enum
+
+                INCREMENT: :Increment
+                OVERRIDE: :Override
+
+                def self?.values: -> ::Array[Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::behavior]
+              end
+
+              type cadence = :MONTH | :YEAR
+
+              module Cadence
+                extend Stigg::Internal::Type::Enum
+
+                MONTH: :MONTH
+                YEAR: :YEAR
+
+                def self?.values: -> ::Array[Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::cadence]
+              end
+
+              type hidden_from_widget = :PAYWALL | :CUSTOMER_PORTAL | :CHECKOUT
+
+              module HiddenFromWidget
+                extend Stigg::Internal::Type::Enum
+
+                PAYWALL: :PAYWALL
+                CUSTOMER_PORTAL: :CUSTOMER_PORTAL
+                CHECKOUT: :CHECKOUT
+
+                def self?.values: -> ::Array[Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::hidden_from_widget]
+              end
+
+              type reset_period = :YEAR | :MONTH | :WEEK | :DAY | :HOUR
+
+              module ResetPeriod
+                extend Stigg::Internal::Type::Enum
+
+                YEAR: :YEAR
+                MONTH: :MONTH
+                WEEK: :WEEK
+                DAY: :DAY
+                HOUR: :HOUR
+
+                def self?.values: -> ::Array[Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::reset_period]
+              end
+
+              type reset_period_configuration =
+                Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::ResetPeriodConfiguration::YearlyResetPeriodConfig
+                | Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::ResetPeriodConfiguration::MonthlyResetPeriodConfig
+                | Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::ResetPeriodConfiguration::WeeklyResetPeriodConfig
+
+              module ResetPeriodConfiguration
+                extend Stigg::Internal::Type::Union
+
+                type yearly_reset_period_config =
+                  {
+                    according_to: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::ResetPeriodConfiguration::YearlyResetPeriodConfig::according_to
+                  }
+
+                class YearlyResetPeriodConfig < Stigg::Internal::Type::BaseModel
+                  attr_accessor according_to: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::ResetPeriodConfiguration::YearlyResetPeriodConfig::according_to
+
+                  def initialize: (
+                    according_to: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::ResetPeriodConfiguration::YearlyResetPeriodConfig::according_to
+                  ) -> void
+
+                  def to_hash: -> {
+                    according_to: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::ResetPeriodConfiguration::YearlyResetPeriodConfig::according_to
+                  }
+
+                  type according_to = :SubscriptionStart
+
+                  module AccordingTo
+                    extend Stigg::Internal::Type::Enum
+
+                    SUBSCRIPTION_START: :SubscriptionStart
+
+                    def self?.values: -> ::Array[Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::ResetPeriodConfiguration::YearlyResetPeriodConfig::according_to]
+                  end
+                end
+
+                type monthly_reset_period_config =
+                  {
+                    according_to: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::ResetPeriodConfiguration::MonthlyResetPeriodConfig::according_to
+                  }
+
+                class MonthlyResetPeriodConfig < Stigg::Internal::Type::BaseModel
+                  attr_accessor according_to: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::ResetPeriodConfiguration::MonthlyResetPeriodConfig::according_to
+
+                  def initialize: (
+                    according_to: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::ResetPeriodConfiguration::MonthlyResetPeriodConfig::according_to
+                  ) -> void
+
+                  def to_hash: -> {
+                    according_to: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::ResetPeriodConfiguration::MonthlyResetPeriodConfig::according_to
+                  }
+
+                  type according_to = :SubscriptionStart | :StartOfTheMonth
+
+                  module AccordingTo
+                    extend Stigg::Internal::Type::Enum
+
+                    SUBSCRIPTION_START: :SubscriptionStart
+                    START_OF_THE_MONTH: :StartOfTheMonth
+
+                    def self?.values: -> ::Array[Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::ResetPeriodConfiguration::MonthlyResetPeriodConfig::according_to]
+                  end
+                end
+
+                type weekly_reset_period_config =
+                  {
+                    according_to: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::ResetPeriodConfiguration::WeeklyResetPeriodConfig::according_to
+                  }
+
+                class WeeklyResetPeriodConfig < Stigg::Internal::Type::BaseModel
+                  attr_accessor according_to: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::ResetPeriodConfiguration::WeeklyResetPeriodConfig::according_to
+
+                  def initialize: (
+                    according_to: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::ResetPeriodConfiguration::WeeklyResetPeriodConfig::according_to
+                  ) -> void
+
+                  def to_hash: -> {
+                    according_to: Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::ResetPeriodConfiguration::WeeklyResetPeriodConfig::according_to
+                  }
+
+                  type according_to =
+                    :SubscriptionStart
+                    | :EverySunday
+                    | :EveryMonday
+                    | :EveryTuesday
+                    | :EveryWednesday
+                    | :EveryThursday
+                    | :EveryFriday
+                    | :EverySaturday
+
+                  module AccordingTo
+                    extend Stigg::Internal::Type::Enum
+
+                    SUBSCRIPTION_START: :SubscriptionStart
+                    EVERY_SUNDAY: :EverySunday
+                    EVERY_MONDAY: :EveryMonday
+                    EVERY_TUESDAY: :EveryTuesday
+                    EVERY_WEDNESDAY: :EveryWednesday
+                    EVERY_THURSDAY: :EveryThursday
+                    EVERY_FRIDAY: :EveryFriday
+                    EVERY_SATURDAY: :EverySaturday
+
+                    def self?.values: -> ::Array[Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::ResetPeriodConfiguration::WeeklyResetPeriodConfig::according_to]
+                  end
+                end
+
+                def self?.variants: -> ::Array[Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::reset_period_configuration]
+              end
+
+              type type_ = :FEATURE | :CREDIT
+
+              module Type
+                extend Stigg::Internal::Type::Enum
+
+                FEATURE: :FEATURE
+                CREDIT: :CREDIT
+
+                def self?.values: -> ::Array[Stigg::Models::V1::Events::Addons::EntitlementListResponse::Data::type_]
+              end
+            end
+
+            type pagination = { next_: String?, prev: String? }
+
+            class Pagination < Stigg::Internal::Type::BaseModel
+              attr_accessor next_: String?
+
+              attr_accessor prev: String?
+
+              def initialize: (next_: String?, prev: String?) -> void
+
+              def to_hash: -> { next_: String?, prev: String? }
+            end
+          end
+        end
+      end
+    end
+  end
+end

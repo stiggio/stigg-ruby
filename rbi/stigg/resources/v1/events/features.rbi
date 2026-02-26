@@ -10,7 +10,7 @@ module Stigg
             params(
               id: String,
               request_options: Stigg::RequestOptions::OrHash
-            ).returns(Stigg::Models::V1::Events::FeatureArchiveFeatureResponse)
+            ).returns(Stigg::V1::Events::Feature)
           end
           def archive_feature(
             # The unique identifier of the entity
@@ -43,7 +43,7 @@ module Stigg
                   Stigg::V1::Events::FeatureCreateFeatureParams::UnitTransformation::OrHash
                 ),
               request_options: Stigg::RequestOptions::OrHash
-            ).returns(Stigg::Models::V1::Events::FeatureCreateFeatureResponse)
+            ).returns(Stigg::V1::Events::Feature)
           end
           def create_feature(
             # The unique identifier for the feature
@@ -117,7 +117,7 @@ module Stigg
             params(
               id: String,
               request_options: Stigg::RequestOptions::OrHash
-            ).returns(Stigg::Models::V1::Events::FeatureRetrieveFeatureResponse)
+            ).returns(Stigg::V1::Events::Feature)
           end
           def retrieve_feature(
             # The unique identifier of the entity
@@ -131,9 +131,7 @@ module Stigg
             params(
               id: String,
               request_options: Stigg::RequestOptions::OrHash
-            ).returns(
-              Stigg::Models::V1::Events::FeatureUnarchiveFeatureResponse
-            )
+            ).returns(Stigg::V1::Events::Feature)
           end
           def unarchive_feature(
             # The unique identifier of the entity
@@ -163,7 +161,7 @@ module Stigg
                   Stigg::V1::Events::FeatureUpdateFeatureParams::UnitTransformation::OrHash
                 ),
               request_options: Stigg::RequestOptions::OrHash
-            ).returns(Stigg::Models::V1::Events::FeatureUpdateFeatureResponse)
+            ).returns(Stigg::V1::Events::Feature)
           end
           def update_feature(
             # The unique identifier of the entity

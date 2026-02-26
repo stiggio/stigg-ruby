@@ -13,14 +13,14 @@ module Stigg
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Stigg::Models::V1::ProductArchiveProductResponse]
+        # @return [Stigg::Models::V1::Product]
         #
         # @see Stigg::Models::V1::ProductArchiveProductParams
         def archive_product(id, params = {})
           @client.request(
             method: :post,
             path: ["api/v1/products/%1$s/archive", id],
-            model: Stigg::Models::V1::ProductArchiveProductResponse,
+            model: Stigg::V1::Product,
             options: params[:request_options]
           )
         end
@@ -41,7 +41,7 @@ module Stigg
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Stigg::Models::V1::ProductCreateProductResponse]
+        # @return [Stigg::Models::V1::Product]
         #
         # @see Stigg::Models::V1::ProductCreateProductParams
         def create_product(params)
@@ -50,7 +50,7 @@ module Stigg
             method: :post,
             path: "api/v1/products",
             body: parsed,
-            model: Stigg::Models::V1::ProductCreateProductResponse,
+            model: Stigg::V1::Product,
             options: options
           )
         end
@@ -69,7 +69,7 @@ module Stigg
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Stigg::Models::V1::ProductDuplicateProductResponse]
+        # @return [Stigg::Models::V1::Product]
         #
         # @see Stigg::Models::V1::ProductDuplicateProductParams
         def duplicate_product(path_id, params)
@@ -78,7 +78,7 @@ module Stigg
             method: :post,
             path: ["api/v1/products/%1$s/duplicate", path_id],
             body: parsed,
-            model: Stigg::Models::V1::ProductDuplicateProductResponse,
+            model: Stigg::V1::Product,
             options: options
           )
         end
@@ -124,14 +124,14 @@ module Stigg
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Stigg::Models::V1::ProductUnarchiveProductResponse]
+        # @return [Stigg::Models::V1::Product]
         #
         # @see Stigg::Models::V1::ProductUnarchiveProductParams
         def unarchive_product(id, params = {})
           @client.request(
             method: :post,
             path: ["api/v1/products/%1$s/unarchive", id],
-            model: Stigg::Models::V1::ProductUnarchiveProductResponse,
+            model: Stigg::V1::Product,
             options: params[:request_options]
           )
         end
@@ -157,7 +157,7 @@ module Stigg
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Stigg::Models::V1::ProductUpdateProductResponse]
+        # @return [Stigg::Models::V1::Product]
         #
         # @see Stigg::Models::V1::ProductUpdateProductParams
         def update_product(id, params = {})
@@ -166,7 +166,7 @@ module Stigg
             method: :patch,
             path: ["api/v1/products/%1$s", id],
             body: parsed,
-            model: Stigg::Models::V1::ProductUpdateProductResponse,
+            model: Stigg::V1::Product,
             options: options
           )
         end

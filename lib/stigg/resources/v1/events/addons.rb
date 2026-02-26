@@ -8,6 +8,9 @@ module Stigg
           # @return [Stigg::Resources::V1::Events::Addons::Draft]
           attr_reader :draft
 
+          # @return [Stigg::Resources::V1::Events::Addons::Entitlements]
+          attr_reader :entitlements
+
           # Archives an addon, preventing it from being used in new subscriptions.
           #
           # @overload archive_addon(id, request_options: {})
@@ -16,14 +19,14 @@ module Stigg
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
-          # @return [Stigg::Models::V1::Events::AddonArchiveAddonResponse]
+          # @return [Stigg::Models::V1::Events::Addon]
           #
           # @see Stigg::Models::V1::Events::AddonArchiveAddonParams
           def archive_addon(id, params = {})
             @client.request(
               method: :post,
               path: ["api/v1/addons/%1$s/archive", id],
-              model: Stigg::Models::V1::Events::AddonArchiveAddonResponse,
+              model: Stigg::V1::Events::Addon,
               options: params[:request_options]
             )
           end
@@ -52,7 +55,7 @@ module Stigg
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
-          # @return [Stigg::Models::V1::Events::AddonCreateAddonResponse]
+          # @return [Stigg::Models::V1::Events::Addon]
           #
           # @see Stigg::Models::V1::Events::AddonCreateAddonParams
           def create_addon(params)
@@ -61,7 +64,7 @@ module Stigg
               method: :post,
               path: "api/v1/addons",
               body: parsed,
-              model: Stigg::Models::V1::Events::AddonCreateAddonResponse,
+              model: Stigg::V1::Events::Addon,
               options: options
             )
           end
@@ -132,15 +135,49 @@ module Stigg
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
-          # @return [Stigg::Models::V1::Events::AddonRetrieveAddonResponse]
+          # @return [Stigg::Models::V1::Events::Addon]
           #
           # @see Stigg::Models::V1::Events::AddonRetrieveAddonParams
           def retrieve_addon(id, params = {})
             @client.request(
               method: :get,
               path: ["api/v1/addons/%1$s", id],
-              model: Stigg::Models::V1::Events::AddonRetrieveAddonResponse,
+              model: Stigg::V1::Events::Addon,
               options: params[:request_options]
+            )
+          end
+
+          # Sets the pricing configuration for an addon.
+          #
+          # @overload set_pricing(id, pricing_type:, billing_id: nil, minimum_spend: nil, overage_billing_period: nil, overage_pricing_models: nil, pricing_models: nil, request_options: {})
+          #
+          # @param id [String] The unique identifier of the entity
+          #
+          # @param pricing_type [Symbol, Stigg::Models::V1::Events::SetPackagePricing::PricingType] The pricing type (FREE, PAID, or CUSTOM)
+          #
+          # @param billing_id [String] Deprecated: billing integration ID
+          #
+          # @param minimum_spend [Array<Stigg::Models::V1::Events::SetPackagePricing::MinimumSpend>, nil] Minimum spend configuration per billing period
+          #
+          # @param overage_billing_period [Symbol, Stigg::Models::V1::Events::SetPackagePricing::OverageBillingPeriod] When overage charges are billed
+          #
+          # @param overage_pricing_models [Array<Stigg::Models::V1::Events::SetPackagePricing::OveragePricingModel>] Array of overage pricing model configurations
+          #
+          # @param pricing_models [Array<Stigg::Models::V1::Events::SetPackagePricing::PricingModel>] Array of pricing model configurations
+          #
+          # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
+          #
+          # @return [Stigg::Models::V1::Events::SetPackagePricingResponse]
+          #
+          # @see Stigg::Models::V1::Events::AddonSetPricingParams
+          def set_pricing(id, params)
+            parsed, options = Stigg::V1::Events::AddonSetPricingParams.dump_request(params)
+            @client.request(
+              method: :put,
+              path: ["api/v1/addons/%1$s/charges", id],
+              body: parsed,
+              model: Stigg::V1::Events::SetPackagePricingResponse,
+              options: options
             )
           end
 
@@ -165,7 +202,7 @@ module Stigg
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
-          # @return [Stigg::Models::V1::Events::AddonUpdateAddonResponse]
+          # @return [Stigg::Models::V1::Events::Addon]
           #
           # @see Stigg::Models::V1::Events::AddonUpdateAddonParams
           def update_addon(id, params = {})
@@ -174,7 +211,7 @@ module Stigg
               method: :patch,
               path: ["api/v1/addons/%1$s", id],
               body: parsed,
-              model: Stigg::Models::V1::Events::AddonUpdateAddonResponse,
+              model: Stigg::V1::Events::Addon,
               options: options
             )
           end
@@ -185,6 +222,7 @@ module Stigg
           def initialize(client:)
             @client = client
             @draft = Stigg::Resources::V1::Events::Addons::Draft.new(client: client)
+            @entitlements = Stigg::Resources::V1::Events::Addons::Entitlements.new(client: client)
           end
         end
       end

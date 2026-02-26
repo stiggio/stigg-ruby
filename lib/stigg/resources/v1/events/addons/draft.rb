@@ -14,14 +14,14 @@ module Stigg
             #
             # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
             #
-            # @return [Stigg::Models::V1::Events::Addons::DraftCreateAddonDraftResponse]
+            # @return [Stigg::Models::V1::Events::Addon]
             #
             # @see Stigg::Models::V1::Events::Addons::DraftCreateAddonDraftParams
             def create_addon_draft(id, params = {})
               @client.request(
                 method: :post,
                 path: ["api/v1/addons/%1$s/draft", id],
-                model: Stigg::Models::V1::Events::Addons::DraftCreateAddonDraftResponse,
+                model: Stigg::V1::Events::Addon,
                 options: params[:request_options]
               )
             end
