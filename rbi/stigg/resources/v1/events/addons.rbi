@@ -8,12 +8,15 @@ module Stigg
           sig { returns(Stigg::Resources::V1::Events::Addons::Draft) }
           attr_reader :draft
 
+          sig { returns(Stigg::Resources::V1::Events::Addons::Entitlements) }
+          attr_reader :entitlements
+
           # Archives an addon, preventing it from being used in new subscriptions.
           sig do
             params(
               id: String,
               request_options: Stigg::RequestOptions::OrHash
-            ).returns(Stigg::Models::V1::Events::AddonArchiveAddonResponse)
+            ).returns(Stigg::V1::Events::Addon)
           end
           def archive_addon(
             # The unique identifier of the entity
@@ -39,7 +42,7 @@ module Stigg
               status:
                 Stigg::V1::Events::AddonCreateAddonParams::Status::OrSymbol,
               request_options: Stigg::RequestOptions::OrHash
-            ).returns(Stigg::Models::V1::Events::AddonCreateAddonResponse)
+            ).returns(Stigg::V1::Events::Addon)
           end
           def create_addon(
             # The unique identifier for the entity
@@ -122,11 +125,56 @@ module Stigg
             params(
               id: String,
               request_options: Stigg::RequestOptions::OrHash
-            ).returns(Stigg::Models::V1::Events::AddonRetrieveAddonResponse)
+            ).returns(Stigg::V1::Events::Addon)
           end
           def retrieve_addon(
             # The unique identifier of the entity
             id,
+            request_options: {}
+          )
+          end
+
+          # Sets the pricing configuration for an addon.
+          sig do
+            params(
+              id: String,
+              pricing_type:
+                Stigg::V1::Events::SetPackagePricing::PricingType::OrSymbol,
+              billing_id: String,
+              minimum_spend:
+                T.nilable(
+                  T::Array[
+                    Stigg::V1::Events::SetPackagePricing::MinimumSpend::OrHash
+                  ]
+                ),
+              overage_billing_period:
+                Stigg::V1::Events::SetPackagePricing::OverageBillingPeriod::OrSymbol,
+              overage_pricing_models:
+                T::Array[
+                  Stigg::V1::Events::SetPackagePricing::OveragePricingModel::OrHash
+                ],
+              pricing_models:
+                T::Array[
+                  Stigg::V1::Events::SetPackagePricing::PricingModel::OrHash
+                ],
+              request_options: Stigg::RequestOptions::OrHash
+            ).returns(Stigg::V1::Events::SetPackagePricingResponse)
+          end
+          def set_pricing(
+            # The unique identifier of the entity
+            id,
+            # The pricing type (FREE, PAID, or CUSTOM)
+            pricing_type:,
+            # Deprecated: billing integration ID
+            billing_id: nil,
+            # Minimum spend configuration per billing period
+            minimum_spend: nil,
+            # When overage charges are billed
+            overage_billing_period: nil,
+            # Array of overage pricing model configurations
+            overage_pricing_models: nil,
+            # Array of pricing model configurations
+            pricing_models: nil,
             request_options: {}
           )
           end
@@ -143,7 +191,7 @@ module Stigg
               max_quantity: T.nilable(Integer),
               metadata: T::Hash[Symbol, String],
               request_options: Stigg::RequestOptions::OrHash
-            ).returns(Stigg::Models::V1::Events::AddonUpdateAddonResponse)
+            ).returns(Stigg::V1::Events::Addon)
           end
           def update_addon(
             # The unique identifier of the entity

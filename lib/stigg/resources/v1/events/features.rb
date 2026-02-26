@@ -13,14 +13,14 @@ module Stigg
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
-          # @return [Stigg::Models::V1::Events::FeatureArchiveFeatureResponse]
+          # @return [Stigg::Models::V1::Events::Feature]
           #
           # @see Stigg::Models::V1::Events::FeatureArchiveFeatureParams
           def archive_feature(id, params = {})
             @client.request(
               method: :post,
               path: ["api/v1/features/%1$s/archive", id],
-              model: Stigg::Models::V1::Events::FeatureArchiveFeatureResponse,
+              model: Stigg::V1::Events::Feature,
               options: params[:request_options]
             )
           end
@@ -53,7 +53,7 @@ module Stigg
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
-          # @return [Stigg::Models::V1::Events::FeatureCreateFeatureResponse]
+          # @return [Stigg::Models::V1::Events::Feature]
           #
           # @see Stigg::Models::V1::Events::FeatureCreateFeatureParams
           def create_feature(params)
@@ -62,7 +62,7 @@ module Stigg
               method: :post,
               path: "api/v1/features",
               body: parsed,
-              model: Stigg::Models::V1::Events::FeatureCreateFeatureResponse,
+              model: Stigg::V1::Events::Feature,
               options: options
             )
           end
@@ -116,14 +116,14 @@ module Stigg
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
-          # @return [Stigg::Models::V1::Events::FeatureRetrieveFeatureResponse]
+          # @return [Stigg::Models::V1::Events::Feature]
           #
           # @see Stigg::Models::V1::Events::FeatureRetrieveFeatureParams
           def retrieve_feature(id, params = {})
             @client.request(
               method: :get,
               path: ["api/v1/features/%1$s", id],
-              model: Stigg::Models::V1::Events::FeatureRetrieveFeatureResponse,
+              model: Stigg::V1::Events::Feature,
               options: params[:request_options]
             )
           end
@@ -136,14 +136,14 @@ module Stigg
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
-          # @return [Stigg::Models::V1::Events::FeatureUnarchiveFeatureResponse]
+          # @return [Stigg::Models::V1::Events::Feature]
           #
           # @see Stigg::Models::V1::Events::FeatureUnarchiveFeatureParams
           def unarchive_feature(id, params = {})
             @client.request(
               method: :post,
               path: ["api/v1/features/%1$s/unarchive", id],
-              model: Stigg::Models::V1::Events::FeatureUnarchiveFeatureResponse,
+              model: Stigg::V1::Events::Feature,
               options: params[:request_options]
             )
           end
@@ -173,7 +173,7 @@ module Stigg
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
-          # @return [Stigg::Models::V1::Events::FeatureUpdateFeatureResponse]
+          # @return [Stigg::Models::V1::Events::Feature]
           #
           # @see Stigg::Models::V1::Events::FeatureUpdateFeatureParams
           def update_feature(id, params = {})
@@ -182,7 +182,7 @@ module Stigg
               method: :patch,
               path: ["api/v1/features/%1$s", id],
               body: parsed,
-              model: Stigg::Models::V1::Events::FeatureUpdateFeatureResponse,
+              model: Stigg::V1::Events::Feature,
               options: options
             )
           end

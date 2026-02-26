@@ -6,7 +6,7 @@ module Stigg
           def archive_feature: (
             String id,
             ?request_options: Stigg::request_opts
-          ) -> Stigg::Models::V1::Events::FeatureArchiveFeatureResponse
+          ) -> Stigg::V1::Events::Feature
 
           def create_feature: (
             id: String,
@@ -21,7 +21,7 @@ module Stigg
             ?meter_type: Stigg::Models::V1::Events::FeatureCreateFeatureParams::meter_type,
             ?unit_transformation: Stigg::V1::Events::FeatureCreateFeatureParams::UnitTransformation?,
             ?request_options: Stigg::request_opts
-          ) -> Stigg::Models::V1::Events::FeatureCreateFeatureResponse
+          ) -> Stigg::V1::Events::Feature
 
           def list_features: (
             ?id: String,
@@ -38,12 +38,12 @@ module Stigg
           def retrieve_feature: (
             String id,
             ?request_options: Stigg::request_opts
-          ) -> Stigg::Models::V1::Events::FeatureRetrieveFeatureResponse
+          ) -> Stigg::V1::Events::Feature
 
           def unarchive_feature: (
             String id,
             ?request_options: Stigg::request_opts
-          ) -> Stigg::Models::V1::Events::FeatureUnarchiveFeatureResponse
+          ) -> Stigg::V1::Events::Feature
 
           def update_feature: (
             String id,
@@ -56,7 +56,7 @@ module Stigg
             ?meter: Stigg::V1::Events::FeatureUpdateFeatureParams::Meter,
             ?unit_transformation: Stigg::V1::Events::FeatureUpdateFeatureParams::UnitTransformation?,
             ?request_options: Stigg::request_opts
-          ) -> Stigg::Models::V1::Events::FeatureUpdateFeatureResponse
+          ) -> Stigg::V1::Events::Feature
 
           def initialize: (client: Stigg::Client) -> void
         end

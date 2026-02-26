@@ -5,10 +5,12 @@ module Stigg
         class Addons
           attr_reader draft: Stigg::Resources::V1::Events::Addons::Draft
 
+          attr_reader entitlements: Stigg::Resources::V1::Events::Addons::Entitlements
+
           def archive_addon: (
             String id,
             ?request_options: Stigg::request_opts
-          ) -> Stigg::Models::V1::Events::AddonArchiveAddonResponse
+          ) -> Stigg::V1::Events::Addon
 
           def create_addon: (
             id: String,
@@ -21,7 +23,7 @@ module Stigg
             ?pricing_type: Stigg::Models::V1::Events::AddonCreateAddonParams::pricing_type?,
             ?status: Stigg::Models::V1::Events::AddonCreateAddonParams::status,
             ?request_options: Stigg::request_opts
-          ) -> Stigg::Models::V1::Events::AddonCreateAddonResponse
+          ) -> Stigg::V1::Events::Addon
 
           def list_addons: (
             ?after: String,
@@ -42,7 +44,18 @@ module Stigg
           def retrieve_addon: (
             String id,
             ?request_options: Stigg::request_opts
-          ) -> Stigg::Models::V1::Events::AddonRetrieveAddonResponse
+          ) -> Stigg::V1::Events::Addon
+
+          def set_pricing: (
+            String id,
+            pricing_type: Stigg::Models::V1::Events::SetPackagePricing::pricing_type,
+            ?billing_id: String,
+            ?minimum_spend: ::Array[Stigg::V1::Events::SetPackagePricing::MinimumSpend]?,
+            ?overage_billing_period: Stigg::Models::V1::Events::SetPackagePricing::overage_billing_period,
+            ?overage_pricing_models: ::Array[Stigg::V1::Events::SetPackagePricing::OveragePricingModel],
+            ?pricing_models: ::Array[Stigg::V1::Events::SetPackagePricing::PricingModel],
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::V1::Events::SetPackagePricingResponse
 
           def update_addon: (
             String id,
@@ -53,7 +66,7 @@ module Stigg
             ?max_quantity: Integer?,
             ?metadata: ::Hash[Symbol, String],
             ?request_options: Stigg::request_opts
-          ) -> Stigg::Models::V1::Events::AddonUpdateAddonResponse
+          ) -> Stigg::V1::Events::Addon
 
           def initialize: (client: Stigg::Client) -> void
         end
