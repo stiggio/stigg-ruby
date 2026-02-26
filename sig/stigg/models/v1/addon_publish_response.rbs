@@ -1,0 +1,28 @@
+module Stigg
+  module Models
+    module V1
+      type addon_publish_response =
+        { data: Stigg::Models::V1::AddonPublishResponse::Data }
+
+      class AddonPublishResponse < Stigg::Internal::Type::BaseModel
+        attr_accessor data: Stigg::Models::V1::AddonPublishResponse::Data
+
+        def initialize: (
+          data: Stigg::Models::V1::AddonPublishResponse::Data
+        ) -> void
+
+        def to_hash: -> { data: Stigg::Models::V1::AddonPublishResponse::Data }
+
+        type data = { task_id: String? }
+
+        class Data < Stigg::Internal::Type::BaseModel
+          attr_accessor task_id: String?
+
+          def initialize: (task_id: String?) -> void
+
+          def to_hash: -> { task_id: String? }
+        end
+      end
+    end
+  end
+end
