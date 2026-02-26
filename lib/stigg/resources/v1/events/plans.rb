@@ -7,7 +7,7 @@ module Stigg
         class Plans
           # Creates a new plan in draft status.
           #
-          # @overload create(id:, display_name:, product_id:, billing_id: nil, description: nil, metadata: nil, parent_plan_id: nil, pricing_type: nil, status: nil, request_options: {})
+          # @overload create(id:, display_name:, product_id:, billing_id: nil, default_trial_config: nil, description: nil, metadata: nil, parent_plan_id: nil, pricing_type: nil, status: nil, request_options: {})
           #
           # @param id [String] The unique identifier for the entity
           #
@@ -16,6 +16,8 @@ module Stigg
           # @param product_id [String] The product ID to associate the plan with
           #
           # @param billing_id [String, nil] The unique identifier for the entity in the billing provider
+          #
+          # @param default_trial_config [Stigg::Models::V1::Events::PlanCreateParams::DefaultTrialConfig, nil] Default trial configuration for the plan
           #
           # @param description [String, nil] The description of the package
           #
