@@ -55,7 +55,9 @@ class Stigg::Test::Resources::V1::Events::PlansTest < Stigg::Test::ResourceTest
       row => {
         id: String,
         billing_id: String | nil,
+        compatible_addon_ids: ^(Stigg::Internal::Type::ArrayOf[String]) | nil,
         created_at: Time,
+        default_trial_config: Stigg::Models::V1::Events::PlanListResponse::DefaultTrialConfig | nil,
         description: String | nil,
         display_name: String,
         entitlements: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::Events::PlanListResponse::Entitlement]),

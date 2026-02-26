@@ -8,6 +8,7 @@ module Stigg
             display_name: String,
             product_id: String,
             ?billing_id: String?,
+            ?default_trial_config: Stigg::V1::Events::PlanCreateParams::DefaultTrialConfig?,
             ?description: String?,
             ?metadata: ::Hash[Symbol, String],
             ?parent_plan_id: String?,

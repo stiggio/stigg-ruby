@@ -20,7 +20,9 @@ module Stigg
             {
               id: String,
               billing_id: String?,
+              compatible_addon_ids: ::Array[String]?,
               created_at: Time,
+              default_trial_config: Stigg::Models::V1::Events::PlanCreateResponse::Data::DefaultTrialConfig?,
               description: String?,
               display_name: String,
               entitlements: ::Array[Stigg::Models::V1::Events::PlanCreateResponse::Data::Entitlement],
@@ -39,7 +41,11 @@ module Stigg
 
             attr_accessor billing_id: String?
 
+            attr_accessor compatible_addon_ids: ::Array[String]?
+
             attr_accessor created_at: Time
+
+            attr_accessor default_trial_config: Stigg::Models::V1::Events::PlanCreateResponse::Data::DefaultTrialConfig?
 
             attr_accessor description: String?
 
@@ -66,7 +72,9 @@ module Stigg
             def initialize: (
               id: String,
               billing_id: String?,
+              compatible_addon_ids: ::Array[String]?,
               created_at: Time,
+              default_trial_config: Stigg::Models::V1::Events::PlanCreateResponse::Data::DefaultTrialConfig?,
               description: String?,
               display_name: String,
               entitlements: ::Array[Stigg::Models::V1::Events::PlanCreateResponse::Data::Entitlement],
@@ -83,7 +91,9 @@ module Stigg
             def to_hash: -> {
               id: String,
               billing_id: String?,
+              compatible_addon_ids: ::Array[String]?,
               created_at: Time,
+              default_trial_config: Stigg::Models::V1::Events::PlanCreateResponse::Data::DefaultTrialConfig?,
               description: String?,
               display_name: String,
               entitlements: ::Array[Stigg::Models::V1::Events::PlanCreateResponse::Data::Entitlement],
@@ -96,6 +106,72 @@ module Stigg
               updated_at: Time,
               version_number: Integer
             }
+
+            type default_trial_config =
+              {
+                duration: Float,
+                units: Stigg::Models::V1::Events::PlanCreateResponse::Data::DefaultTrialConfig::units,
+                budget: Stigg::Models::V1::Events::PlanCreateResponse::Data::DefaultTrialConfig::Budget?,
+                trial_end_behavior: Stigg::Models::V1::Events::PlanCreateResponse::Data::DefaultTrialConfig::trial_end_behavior?
+              }
+
+            class DefaultTrialConfig < Stigg::Internal::Type::BaseModel
+              attr_accessor duration: Float
+
+              attr_accessor units: Stigg::Models::V1::Events::PlanCreateResponse::Data::DefaultTrialConfig::units
+
+              attr_accessor budget: Stigg::Models::V1::Events::PlanCreateResponse::Data::DefaultTrialConfig::Budget?
+
+              attr_accessor trial_end_behavior: Stigg::Models::V1::Events::PlanCreateResponse::Data::DefaultTrialConfig::trial_end_behavior?
+
+              def initialize: (
+                duration: Float,
+                units: Stigg::Models::V1::Events::PlanCreateResponse::Data::DefaultTrialConfig::units,
+                ?budget: Stigg::Models::V1::Events::PlanCreateResponse::Data::DefaultTrialConfig::Budget?,
+                ?trial_end_behavior: Stigg::Models::V1::Events::PlanCreateResponse::Data::DefaultTrialConfig::trial_end_behavior?
+              ) -> void
+
+              def to_hash: -> {
+                duration: Float,
+                units: Stigg::Models::V1::Events::PlanCreateResponse::Data::DefaultTrialConfig::units,
+                budget: Stigg::Models::V1::Events::PlanCreateResponse::Data::DefaultTrialConfig::Budget?,
+                trial_end_behavior: Stigg::Models::V1::Events::PlanCreateResponse::Data::DefaultTrialConfig::trial_end_behavior?
+              }
+
+              type units = :DAY | :MONTH
+
+              module Units
+                extend Stigg::Internal::Type::Enum
+
+                DAY: :DAY
+                MONTH: :MONTH
+
+                def self?.values: -> ::Array[Stigg::Models::V1::Events::PlanCreateResponse::Data::DefaultTrialConfig::units]
+              end
+
+              type budget = { has_soft_limit: bool, limit: Float }
+
+              class Budget < Stigg::Internal::Type::BaseModel
+                attr_accessor has_soft_limit: bool
+
+                attr_accessor limit: Float
+
+                def initialize: (has_soft_limit: bool, limit: Float) -> void
+
+                def to_hash: -> { has_soft_limit: bool, limit: Float }
+              end
+
+              type trial_end_behavior = :CONVERT_TO_PAID | :CANCEL_SUBSCRIPTION
+
+              module TrialEndBehavior
+                extend Stigg::Internal::Type::Enum
+
+                CONVERT_TO_PAID: :CONVERT_TO_PAID
+                CANCEL_SUBSCRIPTION: :CANCEL_SUBSCRIPTION
+
+                def self?.values: -> ::Array[Stigg::Models::V1::Events::PlanCreateResponse::Data::DefaultTrialConfig::trial_end_behavior]
+              end
+            end
 
             type entitlement =
               {

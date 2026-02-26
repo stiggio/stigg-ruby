@@ -948,15 +948,68 @@ module Stigg
                 sig { returns(String) }
                 attr_accessor :currency_id
 
+                # The display name of the currency.
+                sig { returns(String) }
+                attr_accessor :display_name
+
+                # Additional metadata associated with the currency.
+                sig { returns(T.nilable(T.anything)) }
+                attr_reader :additional_meta_data
+
+                sig { params(additional_meta_data: T.anything).void }
+                attr_writer :additional_meta_data
+
+                # A description of the currency.
+                sig { returns(T.nilable(String)) }
+                attr_accessor :description
+
+                # The plural form of the currency unit.
+                sig { returns(T.nilable(String)) }
+                attr_accessor :unit_plural
+
+                # The singular form of the currency unit.
+                sig { returns(T.nilable(String)) }
+                attr_accessor :unit_singular
+
                 # The currency associated with a credit entitlement.
-                sig { params(currency_id: String).returns(T.attached_class) }
+                sig do
+                  params(
+                    currency_id: String,
+                    display_name: String,
+                    additional_meta_data: T.anything,
+                    description: T.nilable(String),
+                    unit_plural: T.nilable(String),
+                    unit_singular: T.nilable(String)
+                  ).returns(T.attached_class)
+                end
                 def self.new(
                   # The unique identifier of the custom currency.
-                  currency_id:
+                  currency_id:,
+                  # The display name of the currency.
+                  display_name:,
+                  # Additional metadata associated with the currency.
+                  additional_meta_data: nil,
+                  # A description of the currency.
+                  description: nil,
+                  # The plural form of the currency unit.
+                  unit_plural: nil,
+                  # The singular form of the currency unit.
+                  unit_singular: nil
                 )
                 end
 
-                sig { override.returns({ currency_id: String }) }
+                sig do
+                  override.returns(
+                    {
+                      currency_id: String,
+                      display_name: String,
+                      additional_meta_data: T.anything,
+                      description: T.nilable(String),
+                      unit_plural: T.nilable(String),
+                      unit_singular: T.nilable(String)
+                    }
+                  )
+                end
                 def to_hash
                 end
               end
