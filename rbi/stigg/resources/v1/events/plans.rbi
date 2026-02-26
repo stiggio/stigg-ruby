@@ -12,6 +12,10 @@ module Stigg
               display_name: String,
               product_id: String,
               billing_id: T.nilable(String),
+              default_trial_config:
+                T.nilable(
+                  Stigg::V1::Events::PlanCreateParams::DefaultTrialConfig::OrHash
+                ),
               description: T.nilable(String),
               metadata: T::Hash[Symbol, String],
               parent_plan_id: T.nilable(String),
@@ -32,6 +36,8 @@ module Stigg
             product_id:,
             # The unique identifier for the entity in the billing provider
             billing_id: nil,
+            # Default trial configuration for the plan
+            default_trial_config: nil,
             # The description of the package
             description: nil,
             # Metadata associated with the entity

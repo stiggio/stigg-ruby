@@ -390,14 +390,48 @@ module Stigg
                 def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionObjectVariant1::access_denied_reason]
               end
 
-              type currency = { currency_id: String }
+              type currency =
+                {
+                  currency_id: String,
+                  display_name: String,
+                  additional_meta_data: top,
+                  description: String?,
+                  unit_plural: String?,
+                  unit_singular: String?
+                }
 
               class Currency < Stigg::Internal::Type::BaseModel
                 attr_accessor currency_id: String
 
-                def initialize: (currency_id: String) -> void
+                attr_accessor display_name: String
 
-                def to_hash: -> { currency_id: String }
+                attr_reader additional_meta_data: top?
+
+                def additional_meta_data=: (top) -> top
+
+                attr_accessor description: String?
+
+                attr_accessor unit_plural: String?
+
+                attr_accessor unit_singular: String?
+
+                def initialize: (
+                  currency_id: String,
+                  display_name: String,
+                  ?additional_meta_data: top,
+                  ?description: String?,
+                  ?unit_plural: String?,
+                  ?unit_singular: String?
+                ) -> void
+
+                def to_hash: -> {
+                  currency_id: String,
+                  display_name: String,
+                  additional_meta_data: top,
+                  description: String?,
+                  unit_plural: String?,
+                  unit_singular: String?
+                }
               end
 
               type type_ = :CREDIT
