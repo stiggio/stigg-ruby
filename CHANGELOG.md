@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.10 (2026-02-27)
+
+Full Changelog: [v0.1.0-alpha.9...v0.1.0-alpha.10](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.9...v0.1.0-alpha.10)
+
+### Features
+
+* **api:** stainless config updates ([284d27e](https://github.com/stiggio/stigg-ruby/commit/284d27e9a9aafae98308077150fd6e52a87d1f79))
+* **api:** update endpoints and models ([d66e0ab](https://github.com/stiggio/stigg-ruby/commit/d66e0ab83327d49bf46e5176d039887fe62167b4))
+
+
+### Bug Fixes
+
+* properly mock time in ruby ci tests ([d8380cf](https://github.com/stiggio/stigg-ruby/commit/d8380cf43eb12cba1abb6ce9b4ff246095bcecfd))
+
 ## 0.1.0-alpha.9 (2026-02-26)
 
 Full Changelog: [v0.1.0-alpha.8...v0.1.0-alpha.9](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.8...v0.1.0-alpha.9)
