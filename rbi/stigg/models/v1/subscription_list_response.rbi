@@ -60,6 +60,25 @@ module Stigg
         end
         attr_accessor :status
 
+        sig do
+          returns(
+            T.nilable(
+              T::Array[Stigg::Models::V1::SubscriptionListResponse::Addon]
+            )
+          )
+        end
+        attr_reader :addons
+
+        sig do
+          params(
+            addons:
+              T::Array[
+                Stigg::Models::V1::SubscriptionListResponse::Addon::OrHash
+              ]
+          ).void
+        end
+        attr_writer :addons
+
         # Subscription cancellation date
         sig { returns(T.nilable(Time)) }
         attr_accessor :cancellation_date
@@ -153,6 +172,10 @@ module Stigg
             start_date: Time,
             status:
               Stigg::Models::V1::SubscriptionListResponse::Status::OrSymbol,
+            addons:
+              T::Array[
+                Stigg::Models::V1::SubscriptionListResponse::Addon::OrHash
+              ],
             cancellation_date: T.nilable(Time),
             cancel_reason:
               T.nilable(
@@ -195,6 +218,7 @@ module Stigg
           start_date:,
           # Subscription status
           status:,
+          addons: nil,
           # Subscription cancellation date
           cancellation_date: nil,
           # Subscription cancel reason
@@ -236,6 +260,8 @@ module Stigg
               start_date: Time,
               status:
                 Stigg::Models::V1::SubscriptionListResponse::Status::TaggedSymbol,
+              addons:
+                T::Array[Stigg::Models::V1::SubscriptionListResponse::Addon],
               cancellation_date: T.nilable(Time),
               cancel_reason:
                 T.nilable(
@@ -395,6 +421,40 @@ module Stigg
             )
           end
           def self.values
+          end
+        end
+
+        class Addon < Stigg::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Stigg::Models::V1::SubscriptionListResponse::Addon,
+                Stigg::Internal::AnyHash
+              )
+            end
+
+          # Addon ID
+          sig { returns(String) }
+          attr_accessor :id
+
+          # Number of addon instances
+          sig { returns(Integer) }
+          attr_accessor :quantity
+
+          # Addon configuration
+          sig do
+            params(id: String, quantity: Integer).returns(T.attached_class)
+          end
+          def self.new(
+            # Addon ID
+            id:,
+            # Number of addon instances
+            quantity:
+          )
+          end
+
+          sig { override.returns({ id: String, quantity: Integer }) }
+          def to_hash
           end
         end
 

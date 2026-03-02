@@ -47,11 +47,31 @@ module Stigg
           #   @return [String]
           required :plan_id, String, api_name: :planId
 
+          # @!attribute addons
+          #
+          #   @return [Array<Stigg::Models::V1::SubscriptionImportParams::Subscription::Addon>, nil]
+          optional :addons,
+                   -> { Stigg::Internal::Type::ArrayOf[Stigg::V1::SubscriptionImportParams::Subscription::Addon] }
+
           # @!attribute billing_id
           #   Billing ID
           #
           #   @return [String, nil]
           optional :billing_id, String, api_name: :billingId, nil?: true
+
+          # @!attribute billing_period
+          #   Billing period (MONTHLY or ANNUALLY)
+          #
+          #   @return [Symbol, Stigg::Models::V1::SubscriptionImportParams::Subscription::BillingPeriod, nil]
+          optional :billing_period,
+                   enum: -> { Stigg::V1::SubscriptionImportParams::Subscription::BillingPeriod },
+                   api_name: :billingPeriod
+
+          # @!attribute charges
+          #
+          #   @return [Array<Stigg::Models::V1::SubscriptionImportParams::Subscription::Charge>, nil]
+          optional :charges,
+                   -> { Stigg::Internal::Type::ArrayOf[Stigg::V1::SubscriptionImportParams::Subscription::Charge] }
 
           # @!attribute end_date
           #   Subscription end date
@@ -77,14 +97,20 @@ module Stigg
           #   @return [Time, nil]
           optional :start_date, Time, api_name: :startDate
 
-          # @!method initialize(id:, customer_id:, plan_id:, billing_id: nil, end_date: nil, metadata: nil, resource_id: nil, start_date: nil)
+          # @!method initialize(id:, customer_id:, plan_id:, addons: nil, billing_id: nil, billing_period: nil, charges: nil, end_date: nil, metadata: nil, resource_id: nil, start_date: nil)
           #   @param id [String] Subscription ID
           #
           #   @param customer_id [String] Customer ID
           #
           #   @param plan_id [String] Plan ID
           #
+          #   @param addons [Array<Stigg::Models::V1::SubscriptionImportParams::Subscription::Addon>]
+          #
           #   @param billing_id [String, nil] Billing ID
+          #
+          #   @param billing_period [Symbol, Stigg::Models::V1::SubscriptionImportParams::Subscription::BillingPeriod] Billing period (MONTHLY or ANNUALLY)
+          #
+          #   @param charges [Array<Stigg::Models::V1::SubscriptionImportParams::Subscription::Charge>]
           #
           #   @param end_date [Time, nil] Subscription end date
           #
@@ -93,6 +119,82 @@ module Stigg
           #   @param resource_id [String, nil] Resource ID
           #
           #   @param start_date [Time] Subscription start date
+
+          class Addon < Stigg::Internal::Type::BaseModel
+            # @!attribute id
+            #   Addon ID
+            #
+            #   @return [String]
+            required :id, String
+
+            # @!attribute quantity
+            #   Number of addon instances
+            #
+            #   @return [Integer]
+            required :quantity, Integer
+
+            # @!method initialize(id:, quantity:)
+            #   Addon configuration
+            #
+            #   @param id [String] Addon ID
+            #
+            #   @param quantity [Integer] Number of addon instances
+          end
+
+          # Billing period (MONTHLY or ANNUALLY)
+          #
+          # @see Stigg::Models::V1::SubscriptionImportParams::Subscription#billing_period
+          module BillingPeriod
+            extend Stigg::Internal::Type::Enum
+
+            MONTHLY = :MONTHLY
+            ANNUALLY = :ANNUALLY
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          class Charge < Stigg::Internal::Type::BaseModel
+            # @!attribute id
+            #   Charge ID
+            #
+            #   @return [String]
+            required :id, String
+
+            # @!attribute quantity
+            #   Charge quantity
+            #
+            #   @return [Float]
+            required :quantity, Float
+
+            # @!attribute type
+            #   Charge type
+            #
+            #   @return [Symbol, Stigg::Models::V1::SubscriptionImportParams::Subscription::Charge::Type]
+            required :type, enum: -> { Stigg::V1::SubscriptionImportParams::Subscription::Charge::Type }
+
+            # @!method initialize(id:, quantity:, type:)
+            #   Charge item
+            #
+            #   @param id [String] Charge ID
+            #
+            #   @param quantity [Float] Charge quantity
+            #
+            #   @param type [Symbol, Stigg::Models::V1::SubscriptionImportParams::Subscription::Charge::Type] Charge type
+
+            # Charge type
+            #
+            # @see Stigg::Models::V1::SubscriptionImportParams::Subscription::Charge#type
+            module Type
+              extend Stigg::Internal::Type::Enum
+
+              FEATURE = :FEATURE
+              CREDIT = :CREDIT
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+          end
         end
       end
     end

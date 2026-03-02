@@ -33,7 +33,10 @@ module Stigg
             id: String,
             customer_id: String,
             plan_id: String,
+            addons: ::Array[Stigg::V1::SubscriptionImportParams::Subscription::Addon],
             billing_id: String?,
+            billing_period: Stigg::Models::V1::SubscriptionImportParams::Subscription::billing_period,
+            charges: ::Array[Stigg::V1::SubscriptionImportParams::Subscription::Charge],
             end_date: Time?,
             metadata: ::Hash[Symbol, String],
             resource_id: String?,
@@ -47,7 +50,25 @@ module Stigg
 
           attr_accessor plan_id: String
 
+          attr_reader addons: ::Array[Stigg::V1::SubscriptionImportParams::Subscription::Addon]?
+
+          def addons=: (
+            ::Array[Stigg::V1::SubscriptionImportParams::Subscription::Addon]
+          ) -> ::Array[Stigg::V1::SubscriptionImportParams::Subscription::Addon]
+
           attr_accessor billing_id: String?
+
+          attr_reader billing_period: Stigg::Models::V1::SubscriptionImportParams::Subscription::billing_period?
+
+          def billing_period=: (
+            Stigg::Models::V1::SubscriptionImportParams::Subscription::billing_period
+          ) -> Stigg::Models::V1::SubscriptionImportParams::Subscription::billing_period
+
+          attr_reader charges: ::Array[Stigg::V1::SubscriptionImportParams::Subscription::Charge]?
+
+          def charges=: (
+            ::Array[Stigg::V1::SubscriptionImportParams::Subscription::Charge]
+          ) -> ::Array[Stigg::V1::SubscriptionImportParams::Subscription::Charge]
 
           attr_accessor end_date: Time?
 
@@ -65,7 +86,10 @@ module Stigg
             id: String,
             customer_id: String,
             plan_id: String,
+            ?addons: ::Array[Stigg::V1::SubscriptionImportParams::Subscription::Addon],
             ?billing_id: String?,
+            ?billing_period: Stigg::Models::V1::SubscriptionImportParams::Subscription::billing_period,
+            ?charges: ::Array[Stigg::V1::SubscriptionImportParams::Subscription::Charge],
             ?end_date: Time?,
             ?metadata: ::Hash[Symbol, String],
             ?resource_id: String?,
@@ -76,12 +100,76 @@ module Stigg
             id: String,
             customer_id: String,
             plan_id: String,
+            addons: ::Array[Stigg::V1::SubscriptionImportParams::Subscription::Addon],
             billing_id: String?,
+            billing_period: Stigg::Models::V1::SubscriptionImportParams::Subscription::billing_period,
+            charges: ::Array[Stigg::V1::SubscriptionImportParams::Subscription::Charge],
             end_date: Time?,
             metadata: ::Hash[Symbol, String],
             resource_id: String?,
             start_date: Time
           }
+
+          type addon = { id: String, quantity: Integer }
+
+          class Addon < Stigg::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor quantity: Integer
+
+            def initialize: (id: String, quantity: Integer) -> void
+
+            def to_hash: -> { id: String, quantity: Integer }
+          end
+
+          type billing_period = :MONTHLY | :ANNUALLY
+
+          module BillingPeriod
+            extend Stigg::Internal::Type::Enum
+
+            MONTHLY: :MONTHLY
+            ANNUALLY: :ANNUALLY
+
+            def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionImportParams::Subscription::billing_period]
+          end
+
+          type charge =
+            {
+              id: String,
+              quantity: Float,
+              type: Stigg::Models::V1::SubscriptionImportParams::Subscription::Charge::type_
+            }
+
+          class Charge < Stigg::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor quantity: Float
+
+            attr_accessor type: Stigg::Models::V1::SubscriptionImportParams::Subscription::Charge::type_
+
+            def initialize: (
+              id: String,
+              quantity: Float,
+              type: Stigg::Models::V1::SubscriptionImportParams::Subscription::Charge::type_
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              quantity: Float,
+              type: Stigg::Models::V1::SubscriptionImportParams::Subscription::Charge::type_
+            }
+
+            type type_ = :FEATURE | :CREDIT
+
+            module Type
+              extend Stigg::Internal::Type::Enum
+
+              FEATURE: :FEATURE
+              CREDIT: :CREDIT
+
+              def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionImportParams::Subscription::Charge::type_]
+            end
+          end
         end
       end
     end

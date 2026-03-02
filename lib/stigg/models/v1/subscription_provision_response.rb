@@ -564,6 +564,12 @@ module Stigg
             required :status,
                      enum: -> { Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Status }
 
+            # @!attribute addons
+            #
+            #   @return [Array<Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Addon>, nil]
+            optional :addons,
+                     -> { Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Addon] }
+
             # @!attribute cancellation_date
             #   Subscription cancellation date
             #
@@ -642,7 +648,7 @@ module Stigg
             #   @return [Time, nil]
             optional :trial_end_date, Time, api_name: :trialEndDate, nil?: true
 
-            # @!method initialize(id:, billing_id:, created_at:, customer_id:, payment_collection:, plan_id:, pricing_type:, start_date:, status:, cancellation_date: nil, cancel_reason: nil, current_billing_period_end: nil, current_billing_period_start: nil, effective_end_date: nil, end_date: nil, metadata: nil, paying_customer_id: nil, payment_collection_method: nil, prices: nil, resource_id: nil, trial_end_date: nil)
+            # @!method initialize(id:, billing_id:, created_at:, customer_id:, payment_collection:, plan_id:, pricing_type:, start_date:, status:, addons: nil, cancellation_date: nil, cancel_reason: nil, current_billing_period_end: nil, current_billing_period_start: nil, effective_end_date: nil, end_date: nil, metadata: nil, paying_customer_id: nil, payment_collection_method: nil, prices: nil, resource_id: nil, trial_end_date: nil)
             #   Created subscription (when status is SUCCESS)
             #
             #   @param id [String] Subscription ID
@@ -662,6 +668,8 @@ module Stigg
             #   @param start_date [Time] Subscription start date
             #
             #   @param status [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Status] Subscription status
+            #
+            #   @param addons [Array<Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Addon>]
             #
             #   @param cancellation_date [Time, nil] Subscription cancellation date
             #
@@ -731,6 +739,27 @@ module Stigg
 
               # @!method self.values
               #   @return [Array<Symbol>]
+            end
+
+            class Addon < Stigg::Internal::Type::BaseModel
+              # @!attribute id
+              #   Addon ID
+              #
+              #   @return [String]
+              required :id, String
+
+              # @!attribute quantity
+              #   Number of addon instances
+              #
+              #   @return [Integer]
+              required :quantity, Integer
+
+              # @!method initialize(id:, quantity:)
+              #   Addon configuration
+              #
+              #   @param id [String] Addon ID
+              #
+              #   @param quantity [Integer] Number of addon instances
             end
 
             # Subscription cancel reason

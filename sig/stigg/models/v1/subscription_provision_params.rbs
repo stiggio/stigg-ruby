@@ -197,18 +197,16 @@ module Stigg
           request_options: Stigg::RequestOptions
         }
 
-        type addon = { addon_id: String, quantity: Integer }
+        type addon = { id: String, quantity: Integer }
 
         class Addon < Stigg::Internal::Type::BaseModel
-          attr_accessor addon_id: String
+          attr_accessor id: String
 
-          attr_reader quantity: Integer?
+          attr_accessor quantity: Integer
 
-          def quantity=: (Integer) -> Integer
+          def initialize: (id: String, quantity: Integer) -> void
 
-          def initialize: (addon_id: String, ?quantity: Integer) -> void
-
-          def to_hash: -> { addon_id: String, quantity: Integer }
+          def to_hash: -> { id: String, quantity: Integer }
         end
 
         type applied_coupon =
