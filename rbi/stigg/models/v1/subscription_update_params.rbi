@@ -47,6 +47,23 @@ module Stigg
 
         sig do
           returns(
+            T.nilable(
+              Stigg::V1::SubscriptionUpdateParams::BillingCycleAnchor::OrSymbol
+            )
+          )
+        end
+        attr_reader :billing_cycle_anchor
+
+        sig do
+          params(
+            billing_cycle_anchor:
+              Stigg::V1::SubscriptionUpdateParams::BillingCycleAnchor::OrSymbol
+          ).void
+        end
+        attr_writer :billing_cycle_anchor
+
+        sig do
+          returns(
             T.nilable(Stigg::V1::SubscriptionUpdateParams::BillingInformation)
           )
         end
@@ -202,6 +219,8 @@ module Stigg
             applied_coupon:
               Stigg::V1::SubscriptionUpdateParams::AppliedCoupon::OrHash,
             await_payment_confirmation: T::Boolean,
+            billing_cycle_anchor:
+              Stigg::V1::SubscriptionUpdateParams::BillingCycleAnchor::OrSymbol,
             billing_information:
               Stigg::V1::SubscriptionUpdateParams::BillingInformation::OrHash,
             billing_period:
@@ -234,6 +253,7 @@ module Stigg
           addons: nil,
           applied_coupon: nil,
           await_payment_confirmation: nil,
+          billing_cycle_anchor: nil,
           billing_information: nil,
           billing_period: nil,
           budget: nil,
@@ -258,6 +278,8 @@ module Stigg
               applied_coupon:
                 Stigg::V1::SubscriptionUpdateParams::AppliedCoupon,
               await_payment_confirmation: T::Boolean,
+              billing_cycle_anchor:
+                Stigg::V1::SubscriptionUpdateParams::BillingCycleAnchor::OrSymbol,
               billing_information:
                 Stigg::V1::SubscriptionUpdateParams::BillingInformation,
               billing_period:
@@ -1181,6 +1203,40 @@ module Stigg
                 end
               end
             end
+          end
+        end
+
+        module BillingCycleAnchor
+          extend Stigg::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Stigg::V1::SubscriptionUpdateParams::BillingCycleAnchor
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          UNCHANGED =
+            T.let(
+              :UNCHANGED,
+              Stigg::V1::SubscriptionUpdateParams::BillingCycleAnchor::TaggedSymbol
+            )
+          NOW =
+            T.let(
+              :NOW,
+              Stigg::V1::SubscriptionUpdateParams::BillingCycleAnchor::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Stigg::V1::SubscriptionUpdateParams::BillingCycleAnchor::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
           end
         end
 

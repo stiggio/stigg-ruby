@@ -38,6 +38,8 @@ module Stigg
             applied_coupon:
               Stigg::V1::SubscriptionUpdateParams::AppliedCoupon::OrHash,
             await_payment_confirmation: T::Boolean,
+            billing_cycle_anchor:
+              Stigg::V1::SubscriptionUpdateParams::BillingCycleAnchor::OrSymbol,
             billing_information:
               Stigg::V1::SubscriptionUpdateParams::BillingInformation::OrHash,
             billing_period:
@@ -72,6 +74,7 @@ module Stigg
           addons: nil,
           applied_coupon: nil,
           await_payment_confirmation: nil,
+          billing_cycle_anchor: nil,
           billing_information: nil,
           billing_period: nil,
           budget: nil,
@@ -237,6 +240,8 @@ module Stigg
                 Stigg::V1::SubscriptionPreviewParams::BillableFeature::OrHash
               ],
             billing_country_code: String,
+            billing_cycle_anchor:
+              Stigg::V1::SubscriptionPreviewParams::BillingCycleAnchor::OrSymbol,
             billing_information:
               Stigg::V1::SubscriptionPreviewParams::BillingInformation::OrHash,
             billing_period:
@@ -267,6 +272,8 @@ module Stigg
           billable_features: nil,
           # ISO 3166-1 country code for localization
           billing_country_code: nil,
+          # Billing cycle anchor behavior for the subscription
+          billing_cycle_anchor: nil,
           # Billing and tax configuration
           billing_information: nil,
           # Billing period (MONTHLY or ANNUALLY)
@@ -302,6 +309,8 @@ module Stigg
               Stigg::V1::SubscriptionProvisionParams::AppliedCoupon::OrHash,
             await_payment_confirmation: T::Boolean,
             billing_country_code: T.nilable(String),
+            billing_cycle_anchor:
+              Stigg::V1::SubscriptionProvisionParams::BillingCycleAnchor::OrSymbol,
             billing_id: T.nilable(String),
             billing_information:
               Stigg::V1::SubscriptionProvisionParams::BillingInformation::OrHash,
@@ -354,6 +363,8 @@ module Stigg
           await_payment_confirmation: nil,
           # The ISO 3166-1 alpha-2 country code for billing
           billing_country_code: nil,
+          # Billing cycle anchor behavior for the subscription
+          billing_cycle_anchor: nil,
           # External billing system identifier
           billing_id: nil,
           billing_information: nil,
