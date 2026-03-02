@@ -48,6 +48,14 @@ module Stigg
         #   @return [String, nil]
         optional :billing_country_code, String, api_name: :billingCountryCode
 
+        # @!attribute billing_cycle_anchor
+        #   Billing cycle anchor behavior for the subscription
+        #
+        #   @return [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::BillingCycleAnchor, nil]
+        optional :billing_cycle_anchor,
+                 enum: -> { Stigg::V1::SubscriptionPreviewParams::BillingCycleAnchor },
+                 api_name: :billingCycleAnchor
+
         # @!attribute billing_information
         #   Billing and tax configuration
         #
@@ -110,7 +118,7 @@ module Stigg
         #   @return [Float, nil]
         optional :unit_quantity, Float, api_name: :unitQuantity
 
-        # @!method initialize(customer_id:, plan_id:, addons: nil, applied_coupon: nil, billable_features: nil, billing_country_code: nil, billing_information: nil, billing_period: nil, charges: nil, paying_customer_id: nil, resource_id: nil, schedule_strategy: nil, start_date: nil, trial_override_configuration: nil, unit_quantity: nil, request_options: {})
+        # @!method initialize(customer_id:, plan_id:, addons: nil, applied_coupon: nil, billable_features: nil, billing_country_code: nil, billing_cycle_anchor: nil, billing_information: nil, billing_period: nil, charges: nil, paying_customer_id: nil, resource_id: nil, schedule_strategy: nil, start_date: nil, trial_override_configuration: nil, unit_quantity: nil, request_options: {})
         #   @param customer_id [String] Customer ID
         #
         #   @param plan_id [String] Plan ID
@@ -122,6 +130,8 @@ module Stigg
         #   @param billable_features [Array<Stigg::Models::V1::SubscriptionPreviewParams::BillableFeature>] Billable features with quantities
         #
         #   @param billing_country_code [String] ISO 3166-1 country code for localization
+        #
+        #   @param billing_cycle_anchor [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::BillingCycleAnchor] Billing cycle anchor behavior for the subscription
         #
         #   @param billing_information [Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation] Billing and tax configuration
         #
@@ -440,6 +450,17 @@ module Stigg
           #   @param feature_id [String] Feature ID
           #
           #   @param quantity [Float] Quantity of feature units
+        end
+
+        # Billing cycle anchor behavior for the subscription
+        module BillingCycleAnchor
+          extend Stigg::Internal::Type::Enum
+
+          UNCHANGED = :UNCHANGED
+          NOW = :NOW
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
 
         class BillingInformation < Stigg::Internal::Type::BaseModel

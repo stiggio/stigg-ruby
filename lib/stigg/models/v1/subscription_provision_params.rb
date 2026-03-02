@@ -53,6 +53,14 @@ module Stigg
         #   @return [String, nil]
         optional :billing_country_code, String, api_name: :billingCountryCode, nil?: true
 
+        # @!attribute billing_cycle_anchor
+        #   Billing cycle anchor behavior for the subscription
+        #
+        #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::BillingCycleAnchor, nil]
+        optional :billing_cycle_anchor,
+                 enum: -> { Stigg::V1::SubscriptionProvisionParams::BillingCycleAnchor },
+                 api_name: :billingCycleAnchor
+
         # @!attribute billing_id
         #   External billing system identifier
         #
@@ -175,7 +183,7 @@ module Stigg
         #   @return [Float, nil]
         optional :unit_quantity, Float, api_name: :unitQuantity
 
-        # @!method initialize(customer_id:, plan_id:, id: nil, addons: nil, applied_coupon: nil, await_payment_confirmation: nil, billing_country_code: nil, billing_id: nil, billing_information: nil, billing_period: nil, budget: nil, charges: nil, checkout_options: nil, metadata: nil, minimum_spend: nil, paying_customer_id: nil, payment_collection_method: nil, price_overrides: nil, resource_id: nil, salesforce_id: nil, schedule_strategy: nil, start_date: nil, subscription_entitlements: nil, trial_override_configuration: nil, unit_quantity: nil, request_options: {})
+        # @!method initialize(customer_id:, plan_id:, id: nil, addons: nil, applied_coupon: nil, await_payment_confirmation: nil, billing_country_code: nil, billing_cycle_anchor: nil, billing_id: nil, billing_information: nil, billing_period: nil, budget: nil, charges: nil, checkout_options: nil, metadata: nil, minimum_spend: nil, paying_customer_id: nil, payment_collection_method: nil, price_overrides: nil, resource_id: nil, salesforce_id: nil, schedule_strategy: nil, start_date: nil, subscription_entitlements: nil, trial_override_configuration: nil, unit_quantity: nil, request_options: {})
         #   @param customer_id [String] Customer ID to provision the subscription for
         #
         #   @param plan_id [String] Plan ID to provision
@@ -189,6 +197,8 @@ module Stigg
         #   @param await_payment_confirmation [Boolean] Whether to wait for payment confirmation before returning the subscription
         #
         #   @param billing_country_code [String, nil] The ISO 3166-1 alpha-2 country code for billing
+        #
+        #   @param billing_cycle_anchor [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::BillingCycleAnchor] Billing cycle anchor behavior for the subscription
         #
         #   @param billing_id [String, nil] External billing system identifier
         #
@@ -504,6 +514,17 @@ module Stigg
               end
             end
           end
+        end
+
+        # Billing cycle anchor behavior for the subscription
+        module BillingCycleAnchor
+          extend Stigg::Internal::Type::Enum
+
+          UNCHANGED = :UNCHANGED
+          NOW = :NOW
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
 
         class BillingInformation < Stigg::Internal::Type::BaseModel

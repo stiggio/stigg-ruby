@@ -10,6 +10,7 @@ module Stigg
           applied_coupon: Stigg::V1::SubscriptionProvisionParams::AppliedCoupon,
           await_payment_confirmation: bool,
           billing_country_code: String?,
+          billing_cycle_anchor: Stigg::Models::V1::SubscriptionProvisionParams::billing_cycle_anchor,
           billing_id: String?,
           billing_information: Stigg::V1::SubscriptionProvisionParams::BillingInformation,
           billing_period: Stigg::Models::V1::SubscriptionProvisionParams::billing_period,
@@ -60,6 +61,12 @@ module Stigg
         def await_payment_confirmation=: (bool) -> bool
 
         attr_accessor billing_country_code: String?
+
+        attr_reader billing_cycle_anchor: Stigg::Models::V1::SubscriptionProvisionParams::billing_cycle_anchor?
+
+        def billing_cycle_anchor=: (
+          Stigg::Models::V1::SubscriptionProvisionParams::billing_cycle_anchor
+        ) -> Stigg::Models::V1::SubscriptionProvisionParams::billing_cycle_anchor
 
         attr_accessor billing_id: String?
 
@@ -147,6 +154,7 @@ module Stigg
           ?applied_coupon: Stigg::V1::SubscriptionProvisionParams::AppliedCoupon,
           ?await_payment_confirmation: bool,
           ?billing_country_code: String?,
+          ?billing_cycle_anchor: Stigg::Models::V1::SubscriptionProvisionParams::billing_cycle_anchor,
           ?billing_id: String?,
           ?billing_information: Stigg::V1::SubscriptionProvisionParams::BillingInformation,
           ?billing_period: Stigg::Models::V1::SubscriptionProvisionParams::billing_period,
@@ -176,6 +184,7 @@ module Stigg
           applied_coupon: Stigg::V1::SubscriptionProvisionParams::AppliedCoupon,
           await_payment_confirmation: bool,
           billing_country_code: String?,
+          billing_cycle_anchor: Stigg::Models::V1::SubscriptionProvisionParams::billing_cycle_anchor,
           billing_id: String?,
           billing_information: Stigg::V1::SubscriptionProvisionParams::BillingInformation,
           billing_period: Stigg::Models::V1::SubscriptionProvisionParams::billing_period,
@@ -578,6 +587,17 @@ module Stigg
               end
             end
           end
+        end
+
+        type billing_cycle_anchor = :UNCHANGED | :NOW
+
+        module BillingCycleAnchor
+          extend Stigg::Internal::Type::Enum
+
+          UNCHANGED: :UNCHANGED
+          NOW: :NOW
+
+          def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionParams::billing_cycle_anchor]
         end
 
         type billing_information =

@@ -27,6 +27,13 @@ module Stigg
                  Stigg::Internal::Type::Boolean,
                  api_name: :awaitPaymentConfirmation
 
+        # @!attribute billing_cycle_anchor
+        #
+        #   @return [Symbol, Stigg::Models::V1::SubscriptionUpdateParams::BillingCycleAnchor, nil]
+        optional :billing_cycle_anchor,
+                 enum: -> { Stigg::V1::SubscriptionUpdateParams::BillingCycleAnchor },
+                 api_name: :billingCycleAnchor
+
         # @!attribute billing_information
         #
         #   @return [Stigg::Models::V1::SubscriptionUpdateParams::BillingInformation, nil]
@@ -99,12 +106,14 @@ module Stigg
         #   @return [Time, nil]
         optional :trial_end_date, Time, api_name: :trialEndDate
 
-        # @!method initialize(addons: nil, applied_coupon: nil, await_payment_confirmation: nil, billing_information: nil, billing_period: nil, budget: nil, charges: nil, metadata: nil, minimum_spend: nil, price_overrides: nil, promotion_code: nil, schedule_strategy: nil, subscription_entitlements: nil, trial_end_date: nil, request_options: {})
+        # @!method initialize(addons: nil, applied_coupon: nil, await_payment_confirmation: nil, billing_cycle_anchor: nil, billing_information: nil, billing_period: nil, budget: nil, charges: nil, metadata: nil, minimum_spend: nil, price_overrides: nil, promotion_code: nil, schedule_strategy: nil, subscription_entitlements: nil, trial_end_date: nil, request_options: {})
         #   @param addons [Array<Stigg::Models::V1::SubscriptionUpdateParams::Addon>]
         #
         #   @param applied_coupon [Stigg::Models::V1::SubscriptionUpdateParams::AppliedCoupon]
         #
         #   @param await_payment_confirmation [Boolean]
+        #
+        #   @param billing_cycle_anchor [Symbol, Stigg::Models::V1::SubscriptionUpdateParams::BillingCycleAnchor]
         #
         #   @param billing_information [Stigg::Models::V1::SubscriptionUpdateParams::BillingInformation]
         #
@@ -377,6 +386,16 @@ module Stigg
               end
             end
           end
+        end
+
+        module BillingCycleAnchor
+          extend Stigg::Internal::Type::Enum
+
+          UNCHANGED = :UNCHANGED
+          NOW = :NOW
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
 
         class BillingInformation < Stigg::Internal::Type::BaseModel

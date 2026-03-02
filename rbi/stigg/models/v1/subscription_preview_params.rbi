@@ -82,6 +82,24 @@ module Stigg
         sig { params(billing_country_code: String).void }
         attr_writer :billing_country_code
 
+        # Billing cycle anchor behavior for the subscription
+        sig do
+          returns(
+            T.nilable(
+              Stigg::V1::SubscriptionPreviewParams::BillingCycleAnchor::OrSymbol
+            )
+          )
+        end
+        attr_reader :billing_cycle_anchor
+
+        sig do
+          params(
+            billing_cycle_anchor:
+              Stigg::V1::SubscriptionPreviewParams::BillingCycleAnchor::OrSymbol
+          ).void
+        end
+        attr_writer :billing_cycle_anchor
+
         # Billing and tax configuration
         sig do
           returns(
@@ -209,6 +227,8 @@ module Stigg
                 Stigg::V1::SubscriptionPreviewParams::BillableFeature::OrHash
               ],
             billing_country_code: String,
+            billing_cycle_anchor:
+              Stigg::V1::SubscriptionPreviewParams::BillingCycleAnchor::OrSymbol,
             billing_information:
               Stigg::V1::SubscriptionPreviewParams::BillingInformation::OrHash,
             billing_period:
@@ -239,6 +259,8 @@ module Stigg
           billable_features: nil,
           # ISO 3166-1 country code for localization
           billing_country_code: nil,
+          # Billing cycle anchor behavior for the subscription
+          billing_cycle_anchor: nil,
           # Billing and tax configuration
           billing_information: nil,
           # Billing period (MONTHLY or ANNUALLY)
@@ -272,6 +294,8 @@ module Stigg
               billable_features:
                 T::Array[Stigg::V1::SubscriptionPreviewParams::BillableFeature],
               billing_country_code: String,
+              billing_cycle_anchor:
+                Stigg::V1::SubscriptionPreviewParams::BillingCycleAnchor::OrSymbol,
               billing_information:
                 Stigg::V1::SubscriptionPreviewParams::BillingInformation,
               billing_period:
@@ -1249,6 +1273,41 @@ module Stigg
 
           sig { override.returns({ feature_id: String, quantity: Float }) }
           def to_hash
+          end
+        end
+
+        # Billing cycle anchor behavior for the subscription
+        module BillingCycleAnchor
+          extend Stigg::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Stigg::V1::SubscriptionPreviewParams::BillingCycleAnchor
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          UNCHANGED =
+            T.let(
+              :UNCHANGED,
+              Stigg::V1::SubscriptionPreviewParams::BillingCycleAnchor::TaggedSymbol
+            )
+          NOW =
+            T.let(
+              :NOW,
+              Stigg::V1::SubscriptionPreviewParams::BillingCycleAnchor::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Stigg::V1::SubscriptionPreviewParams::BillingCycleAnchor::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
           end
         end
 

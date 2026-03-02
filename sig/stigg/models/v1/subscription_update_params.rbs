@@ -6,6 +6,7 @@ module Stigg
           addons: ::Array[Stigg::V1::SubscriptionUpdateParams::Addon],
           applied_coupon: Stigg::V1::SubscriptionUpdateParams::AppliedCoupon,
           await_payment_confirmation: bool,
+          billing_cycle_anchor: Stigg::Models::V1::SubscriptionUpdateParams::billing_cycle_anchor,
           billing_information: Stigg::V1::SubscriptionUpdateParams::BillingInformation,
           billing_period: Stigg::Models::V1::SubscriptionUpdateParams::billing_period,
           budget: Stigg::V1::SubscriptionUpdateParams::Budget?,
@@ -39,6 +40,12 @@ module Stigg
         attr_reader await_payment_confirmation: bool?
 
         def await_payment_confirmation=: (bool) -> bool
+
+        attr_reader billing_cycle_anchor: Stigg::Models::V1::SubscriptionUpdateParams::billing_cycle_anchor?
+
+        def billing_cycle_anchor=: (
+          Stigg::Models::V1::SubscriptionUpdateParams::billing_cycle_anchor
+        ) -> Stigg::Models::V1::SubscriptionUpdateParams::billing_cycle_anchor
 
         attr_reader billing_information: Stigg::V1::SubscriptionUpdateParams::BillingInformation?
 
@@ -96,6 +103,7 @@ module Stigg
           ?addons: ::Array[Stigg::V1::SubscriptionUpdateParams::Addon],
           ?applied_coupon: Stigg::V1::SubscriptionUpdateParams::AppliedCoupon,
           ?await_payment_confirmation: bool,
+          ?billing_cycle_anchor: Stigg::Models::V1::SubscriptionUpdateParams::billing_cycle_anchor,
           ?billing_information: Stigg::V1::SubscriptionUpdateParams::BillingInformation,
           ?billing_period: Stigg::Models::V1::SubscriptionUpdateParams::billing_period,
           ?budget: Stigg::V1::SubscriptionUpdateParams::Budget?,
@@ -114,6 +122,7 @@ module Stigg
           addons: ::Array[Stigg::V1::SubscriptionUpdateParams::Addon],
           applied_coupon: Stigg::V1::SubscriptionUpdateParams::AppliedCoupon,
           await_payment_confirmation: bool,
+          billing_cycle_anchor: Stigg::Models::V1::SubscriptionUpdateParams::billing_cycle_anchor,
           billing_information: Stigg::V1::SubscriptionUpdateParams::BillingInformation,
           billing_period: Stigg::Models::V1::SubscriptionUpdateParams::billing_period,
           budget: Stigg::V1::SubscriptionUpdateParams::Budget?,
@@ -511,6 +520,17 @@ module Stigg
               end
             end
           end
+        end
+
+        type billing_cycle_anchor = :UNCHANGED | :NOW
+
+        module BillingCycleAnchor
+          extend Stigg::Internal::Type::Enum
+
+          UNCHANGED: :UNCHANGED
+          NOW: :NOW
+
+          def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionUpdateParams::billing_cycle_anchor]
         end
 
         type billing_information =
