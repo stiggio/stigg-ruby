@@ -131,21 +131,24 @@ module Stigg
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 
         class Addon < Stigg::Internal::Type::BaseModel
-          # @!attribute addon_id
+          # @!attribute id
           #   Addon ID
           #
           #   @return [String]
-          required :addon_id, String, api_name: :addonId
+          required :id, String
 
           # @!attribute quantity
+          #   Number of addon instances
           #
-          #   @return [Float]
-          required :quantity, Float
+          #   @return [Integer]
+          required :quantity, Integer
 
-          # @!method initialize(addon_id:, quantity:)
-          #   @param addon_id [String] Addon ID
+          # @!method initialize(id:, quantity:)
+          #   Addon configuration
           #
-          #   @param quantity [Float]
+          #   @param id [String] Addon ID
+          #
+          #   @param quantity [Integer] Number of addon instances
         end
 
         class AppliedCoupon < Stigg::Internal::Type::BaseModel

@@ -21,6 +21,7 @@ module Stigg
             pricing_type: Stigg::Models::V1::Subscription::Data::pricing_type,
             start_date: Time,
             status: Stigg::Models::V1::Subscription::Data::status,
+            addons: ::Array[Stigg::V1::Subscription::Data::Addon],
             cancellation_date: Time?,
             cancel_reason: Stigg::Models::V1::Subscription::Data::cancel_reason?,
             current_billing_period_end: Time?,
@@ -53,6 +54,12 @@ module Stigg
           attr_accessor start_date: Time
 
           attr_accessor status: Stigg::Models::V1::Subscription::Data::status
+
+          attr_reader addons: ::Array[Stigg::V1::Subscription::Data::Addon]?
+
+          def addons=: (
+            ::Array[Stigg::V1::Subscription::Data::Addon]
+          ) -> ::Array[Stigg::V1::Subscription::Data::Addon]
 
           attr_accessor cancellation_date: Time?
 
@@ -94,6 +101,7 @@ module Stigg
             pricing_type: Stigg::Models::V1::Subscription::Data::pricing_type,
             start_date: Time,
             status: Stigg::Models::V1::Subscription::Data::status,
+            ?addons: ::Array[Stigg::V1::Subscription::Data::Addon],
             ?cancellation_date: Time?,
             ?cancel_reason: Stigg::Models::V1::Subscription::Data::cancel_reason?,
             ?current_billing_period_end: Time?,
@@ -118,6 +126,7 @@ module Stigg
             pricing_type: Stigg::Models::V1::Subscription::Data::pricing_type,
             start_date: Time,
             status: Stigg::Models::V1::Subscription::Data::status,
+            addons: ::Array[Stigg::V1::Subscription::Data::Addon],
             cancellation_date: Time?,
             cancel_reason: Stigg::Models::V1::Subscription::Data::cancel_reason?,
             current_billing_period_end: Time?,
@@ -177,6 +186,18 @@ module Stigg
             NOT_STARTED: :NOT_STARTED
 
             def self?.values: -> ::Array[Stigg::Models::V1::Subscription::Data::status]
+          end
+
+          type addon = { id: String, quantity: Integer }
+
+          class Addon < Stigg::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor quantity: Integer
+
+            def initialize: (id: String, quantity: Integer) -> void
+
+            def to_hash: -> { id: String, quantity: Integer }
           end
 
           type cancel_reason =
