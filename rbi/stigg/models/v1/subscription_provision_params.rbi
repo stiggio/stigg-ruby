@@ -72,6 +72,24 @@ module Stigg
         sig { returns(T.nilable(String)) }
         attr_accessor :billing_country_code
 
+        # Billing cycle anchor behavior for the subscription
+        sig do
+          returns(
+            T.nilable(
+              Stigg::V1::SubscriptionProvisionParams::BillingCycleAnchor::OrSymbol
+            )
+          )
+        end
+        attr_reader :billing_cycle_anchor
+
+        sig do
+          params(
+            billing_cycle_anchor:
+              Stigg::V1::SubscriptionProvisionParams::BillingCycleAnchor::OrSymbol
+          ).void
+        end
+        attr_writer :billing_cycle_anchor
+
         # External billing system identifier
         sig { returns(T.nilable(String)) }
         attr_accessor :billing_id
@@ -309,6 +327,8 @@ module Stigg
               Stigg::V1::SubscriptionProvisionParams::AppliedCoupon::OrHash,
             await_payment_confirmation: T::Boolean,
             billing_country_code: T.nilable(String),
+            billing_cycle_anchor:
+              Stigg::V1::SubscriptionProvisionParams::BillingCycleAnchor::OrSymbol,
             billing_id: T.nilable(String),
             billing_information:
               Stigg::V1::SubscriptionProvisionParams::BillingInformation::OrHash,
@@ -361,6 +381,8 @@ module Stigg
           await_payment_confirmation: nil,
           # The ISO 3166-1 alpha-2 country code for billing
           billing_country_code: nil,
+          # Billing cycle anchor behavior for the subscription
+          billing_cycle_anchor: nil,
           # External billing system identifier
           billing_id: nil,
           billing_information: nil,
@@ -405,6 +427,8 @@ module Stigg
                 Stigg::V1::SubscriptionProvisionParams::AppliedCoupon,
               await_payment_confirmation: T::Boolean,
               billing_country_code: T.nilable(String),
+              billing_cycle_anchor:
+                Stigg::V1::SubscriptionProvisionParams::BillingCycleAnchor::OrSymbol,
               billing_id: T.nilable(String),
               billing_information:
                 Stigg::V1::SubscriptionProvisionParams::BillingInformation,
@@ -1362,6 +1386,41 @@ module Stigg
                 end
               end
             end
+          end
+        end
+
+        # Billing cycle anchor behavior for the subscription
+        module BillingCycleAnchor
+          extend Stigg::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Stigg::V1::SubscriptionProvisionParams::BillingCycleAnchor
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          UNCHANGED =
+            T.let(
+              :UNCHANGED,
+              Stigg::V1::SubscriptionProvisionParams::BillingCycleAnchor::TaggedSymbol
+            )
+          NOW =
+            T.let(
+              :NOW,
+              Stigg::V1::SubscriptionProvisionParams::BillingCycleAnchor::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Stigg::V1::SubscriptionProvisionParams::BillingCycleAnchor::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
           end
         end
 

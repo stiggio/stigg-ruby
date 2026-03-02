@@ -37,7 +37,7 @@ module Stigg
         # Updates an active subscription's properties including billing period, add-ons,
         # unit quantities, and discounts.
         #
-        # @overload update(id, addons: nil, applied_coupon: nil, await_payment_confirmation: nil, billing_information: nil, billing_period: nil, budget: nil, charges: nil, metadata: nil, minimum_spend: nil, price_overrides: nil, promotion_code: nil, schedule_strategy: nil, subscription_entitlements: nil, trial_end_date: nil, request_options: {})
+        # @overload update(id, addons: nil, applied_coupon: nil, await_payment_confirmation: nil, billing_cycle_anchor: nil, billing_information: nil, billing_period: nil, budget: nil, charges: nil, metadata: nil, minimum_spend: nil, price_overrides: nil, promotion_code: nil, schedule_strategy: nil, subscription_entitlements: nil, trial_end_date: nil, request_options: {})
         #
         # @param id [String] The unique identifier of the entity
         #
@@ -46,6 +46,8 @@ module Stigg
         # @param applied_coupon [Stigg::Models::V1::SubscriptionUpdateParams::AppliedCoupon]
         #
         # @param await_payment_confirmation [Boolean]
+        #
+        # @param billing_cycle_anchor [Symbol, Stigg::Models::V1::SubscriptionUpdateParams::BillingCycleAnchor]
         #
         # @param billing_information [Stigg::Models::V1::SubscriptionUpdateParams::BillingInformation]
         #
@@ -246,7 +248,7 @@ module Stigg
         # Previews the pricing impact of creating or updating a subscription without
         # making changes. Returns estimated costs, taxes, and proration details.
         #
-        # @overload preview(customer_id:, plan_id:, addons: nil, applied_coupon: nil, billable_features: nil, billing_country_code: nil, billing_information: nil, billing_period: nil, charges: nil, paying_customer_id: nil, resource_id: nil, schedule_strategy: nil, start_date: nil, trial_override_configuration: nil, unit_quantity: nil, request_options: {})
+        # @overload preview(customer_id:, plan_id:, addons: nil, applied_coupon: nil, billable_features: nil, billing_country_code: nil, billing_cycle_anchor: nil, billing_information: nil, billing_period: nil, charges: nil, paying_customer_id: nil, resource_id: nil, schedule_strategy: nil, start_date: nil, trial_override_configuration: nil, unit_quantity: nil, request_options: {})
         #
         # @param customer_id [String] Customer ID
         #
@@ -259,6 +261,8 @@ module Stigg
         # @param billable_features [Array<Stigg::Models::V1::SubscriptionPreviewParams::BillableFeature>] Billable features with quantities
         #
         # @param billing_country_code [String] ISO 3166-1 country code for localization
+        #
+        # @param billing_cycle_anchor [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::BillingCycleAnchor] Billing cycle anchor behavior for the subscription
         #
         # @param billing_information [Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation] Billing and tax configuration
         #
@@ -297,7 +301,7 @@ module Stigg
         # Creates a new subscription for an existing customer. When payment is required
         # and no payment method exists, returns a checkout URL.
         #
-        # @overload provision(customer_id:, plan_id:, id: nil, addons: nil, applied_coupon: nil, await_payment_confirmation: nil, billing_country_code: nil, billing_id: nil, billing_information: nil, billing_period: nil, budget: nil, charges: nil, checkout_options: nil, metadata: nil, minimum_spend: nil, paying_customer_id: nil, payment_collection_method: nil, price_overrides: nil, resource_id: nil, salesforce_id: nil, schedule_strategy: nil, start_date: nil, subscription_entitlements: nil, trial_override_configuration: nil, unit_quantity: nil, request_options: {})
+        # @overload provision(customer_id:, plan_id:, id: nil, addons: nil, applied_coupon: nil, await_payment_confirmation: nil, billing_country_code: nil, billing_cycle_anchor: nil, billing_id: nil, billing_information: nil, billing_period: nil, budget: nil, charges: nil, checkout_options: nil, metadata: nil, minimum_spend: nil, paying_customer_id: nil, payment_collection_method: nil, price_overrides: nil, resource_id: nil, salesforce_id: nil, schedule_strategy: nil, start_date: nil, subscription_entitlements: nil, trial_override_configuration: nil, unit_quantity: nil, request_options: {})
         #
         # @param customer_id [String] Customer ID to provision the subscription for
         #
@@ -312,6 +316,8 @@ module Stigg
         # @param await_payment_confirmation [Boolean] Whether to wait for payment confirmation before returning the subscription
         #
         # @param billing_country_code [String, nil] The ISO 3166-1 alpha-2 country code for billing
+        #
+        # @param billing_cycle_anchor [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::BillingCycleAnchor] Billing cycle anchor behavior for the subscription
         #
         # @param billing_id [String, nil] External billing system identifier
         #
