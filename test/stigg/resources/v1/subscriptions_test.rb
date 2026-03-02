@@ -62,6 +62,7 @@ class Stigg::Test::Resources::V1::SubscriptionsTest < Stigg::Test::ResourceTest
         pricing_type: Stigg::Models::V1::SubscriptionListResponse::PricingType,
         start_date: Time,
         status: Stigg::Models::V1::SubscriptionListResponse::Status,
+        addons: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::SubscriptionListResponse::Addon]) | nil,
         cancellation_date: Time | nil,
         cancel_reason: Stigg::Models::V1::SubscriptionListResponse::CancelReason | nil,
         current_billing_period_end: Time | nil,

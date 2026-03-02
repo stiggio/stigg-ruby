@@ -310,24 +310,24 @@ module Stigg
           end
 
           class FreeItem < Stigg::Internal::Type::BaseModel
-            # @!attribute addon_id
+            # @!attribute id
             #   Addon ID
             #
             #   @return [String]
-            required :addon_id, String, api_name: :addonId
+            required :id, String
 
             # @!attribute quantity
-            #   Quantity
+            #   Number of addon instances
             #
-            #   @return [Float]
-            required :quantity, Float
+            #   @return [Integer]
+            required :quantity, Integer
 
-            # @!method initialize(addon_id:, quantity:)
-            #   Free item in subscription
+            # @!method initialize(id:, quantity:)
+            #   Addon configuration
             #
-            #   @param addon_id [String] Addon ID
+            #   @param id [String] Addon ID
             #
-            #   @param quantity [Float] Quantity
+            #   @param quantity [Integer] Number of addon instances
           end
 
           # @see Stigg::Models::V1::SubscriptionPreviewResponse::Data#recurring_invoice

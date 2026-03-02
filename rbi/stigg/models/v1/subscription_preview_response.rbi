@@ -637,27 +637,25 @@ module Stigg
 
             # Addon ID
             sig { returns(String) }
-            attr_accessor :addon_id
+            attr_accessor :id
 
-            # Quantity
-            sig { returns(Float) }
+            # Number of addon instances
+            sig { returns(Integer) }
             attr_accessor :quantity
 
-            # Free item in subscription
+            # Addon configuration
             sig do
-              params(addon_id: String, quantity: Float).returns(
-                T.attached_class
-              )
+              params(id: String, quantity: Integer).returns(T.attached_class)
             end
             def self.new(
               # Addon ID
-              addon_id:,
-              # Quantity
+              id:,
+              # Number of addon instances
               quantity:
             )
             end
 
-            sig { override.returns({ addon_id: String, quantity: Float }) }
+            sig { override.returns({ id: String, quantity: Integer }) }
             def to_hash
             end
           end
