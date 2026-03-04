@@ -3,6 +3,7 @@
 module Stigg
   module Resources
     class V1
+      # Operations related to products
       class Products
         # Archives a product, preventing new subscriptions. All plans and addons are
         # archived.

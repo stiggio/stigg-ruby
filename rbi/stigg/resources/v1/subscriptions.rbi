@@ -4,12 +4,15 @@ module Stigg
   module Resources
     class V1
       class Subscriptions
+        # Operations related to subscriptions
         sig { returns(Stigg::Resources::V1::Subscriptions::FutureUpdate) }
         attr_reader :future_update
 
+        # Operations related to subscriptions
         sig { returns(Stigg::Resources::V1::Subscriptions::Usage) }
         attr_reader :usage
 
+        # Operations related to subscriptions
         sig { returns(Stigg::Resources::V1::Subscriptions::Invoice) }
         attr_reader :invoice
 

@@ -3,6 +3,7 @@
 module Stigg
   module Resources
     class V1
+      # Operations related to plans
       class Plans
         sig { returns(Stigg::Resources::V1::Plans::Entitlements) }
         attr_reader :entitlements

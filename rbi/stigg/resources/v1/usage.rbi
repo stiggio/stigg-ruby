@@ -3,6 +3,7 @@
 module Stigg
   module Resources
     class V1
+      # Operations related to usage & metering
       class Usage
         # Retrieves historical usage data for a customer's metered feature over time.
         sig do
