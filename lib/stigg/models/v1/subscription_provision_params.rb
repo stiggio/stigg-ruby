@@ -107,6 +107,7 @@ module Stigg
         optional :metadata, Stigg::Internal::Type::HashOf[String]
 
         # @!attribute minimum_spend
+        #   Minimum spend amount
         #
         #   @return [Stigg::Models::V1::SubscriptionProvisionParams::MinimumSpend, nil]
         optional :minimum_spend,
@@ -214,7 +215,7 @@ module Stigg
         #
         #   @param metadata [Hash{Symbol=>String}] Additional metadata for the subscription
         #
-        #   @param minimum_spend [Stigg::Models::V1::SubscriptionProvisionParams::MinimumSpend, nil]
+        #   @param minimum_spend [Stigg::Models::V1::SubscriptionProvisionParams::MinimumSpend, nil] Minimum spend amount
         #
         #   @param paying_customer_id [String, nil] Optional paying customer ID for split billing scenarios
         #
@@ -836,170 +837,150 @@ module Stigg
         end
 
         class MinimumSpend < Stigg::Internal::Type::BaseModel
-          # @!attribute minimum
+          # @!attribute amount
+          #   The price amount
+          #
+          #   @return [Float, nil]
+          optional :amount, Float
+
+          # @!attribute currency
+          #   The price currency
+          #
+          #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::MinimumSpend::Currency, nil]
+          optional :currency, enum: -> { Stigg::V1::SubscriptionProvisionParams::MinimumSpend::Currency }
+
+          # @!method initialize(amount: nil, currency: nil)
           #   Minimum spend amount
           #
-          #   @return [Stigg::Models::V1::SubscriptionProvisionParams::MinimumSpend::Minimum, nil]
-          optional :minimum, -> { Stigg::V1::SubscriptionProvisionParams::MinimumSpend::Minimum }, nil?: true
+          #   @param amount [Float] The price amount
+          #
+          #   @param currency [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::MinimumSpend::Currency] The price currency
 
-          # @!method initialize(minimum: nil)
-          #   @param minimum [Stigg::Models::V1::SubscriptionProvisionParams::MinimumSpend::Minimum, nil] Minimum spend amount
+          # The price currency
+          #
+          # @see Stigg::Models::V1::SubscriptionProvisionParams::MinimumSpend#currency
+          module Currency
+            extend Stigg::Internal::Type::Enum
 
-          # @see Stigg::Models::V1::SubscriptionProvisionParams::MinimumSpend#minimum
-          class Minimum < Stigg::Internal::Type::BaseModel
-            # @!attribute amount
-            #   The price amount
-            #
-            #   @return [Float, nil]
-            optional :amount, Float
+            USD = :usd
+            AED = :aed
+            ALL = :all
+            AMD = :amd
+            ANG = :ang
+            AUD = :aud
+            AWG = :awg
+            AZN = :azn
+            BAM = :bam
+            BBD = :bbd
+            BDT = :bdt
+            BGN = :bgn
+            BIF = :bif
+            BMD = :bmd
+            BND = :bnd
+            BSD = :bsd
+            BWP = :bwp
+            BYN = :byn
+            BZD = :bzd
+            BRL = :brl
+            CAD = :cad
+            CDF = :cdf
+            CHF = :chf
+            CNY = :cny
+            CZK = :czk
+            DKK = :dkk
+            DOP = :dop
+            DZD = :dzd
+            EGP = :egp
+            ETB = :etb
+            EUR = :eur
+            FJD = :fjd
+            GBP = :gbp
+            GEL = :gel
+            GIP = :gip
+            GMD = :gmd
+            GYD = :gyd
+            HKD = :hkd
+            HRK = :hrk
+            HTG = :htg
+            IDR = :idr
+            ILS = :ils
+            INR = :inr
+            ISK = :isk
+            JMD = :jmd
+            JPY = :jpy
+            KES = :kes
+            KGS = :kgs
+            KHR = :khr
+            KMF = :kmf
+            KRW = :krw
+            KYD = :kyd
+            KZT = :kzt
+            LBP = :lbp
+            LKR = :lkr
+            LRD = :lrd
+            LSL = :lsl
+            MAD = :mad
+            MDL = :mdl
+            MGA = :mga
+            MKD = :mkd
+            MMK = :mmk
+            MNT = :mnt
+            MOP = :mop
+            MRO = :mro
+            MVR = :mvr
+            MWK = :mwk
+            MXN = :mxn
+            MYR = :myr
+            MZN = :mzn
+            NAD = :nad
+            NGN = :ngn
+            NOK = :nok
+            NPR = :npr
+            NZD = :nzd
+            PGK = :pgk
+            PHP = :php
+            PKR = :pkr
+            PLN = :pln
+            QAR = :qar
+            RON = :ron
+            RSD = :rsd
+            RUB = :rub
+            RWF = :rwf
+            SAR = :sar
+            SBD = :sbd
+            SCR = :scr
+            SEK = :sek
+            SGD = :sgd
+            SLE = :sle
+            SLL = :sll
+            SOS = :sos
+            SZL = :szl
+            THB = :thb
+            TJS = :tjs
+            TOP = :top
+            TRY = :try
+            TTD = :ttd
+            TZS = :tzs
+            UAH = :uah
+            UZS = :uzs
+            VND = :vnd
+            VUV = :vuv
+            WST = :wst
+            XAF = :xaf
+            XCD = :xcd
+            YER = :yer
+            ZAR = :zar
+            ZMW = :zmw
+            CLP = :clp
+            DJF = :djf
+            GNF = :gnf
+            UGX = :ugx
+            PYG = :pyg
+            XOF = :xof
+            XPF = :xpf
 
-            # @!attribute billing_country_code
-            #   The billing country code of the price
-            #
-            #   @return [String, nil]
-            optional :billing_country_code, String, api_name: :billingCountryCode, nil?: true
-
-            # @!attribute currency
-            #   The price currency
-            #
-            #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::MinimumSpend::Minimum::Currency, nil]
-            optional :currency, enum: -> { Stigg::V1::SubscriptionProvisionParams::MinimumSpend::Minimum::Currency }
-
-            # @!method initialize(amount: nil, billing_country_code: nil, currency: nil)
-            #   Minimum spend amount
-            #
-            #   @param amount [Float] The price amount
-            #
-            #   @param billing_country_code [String, nil] The billing country code of the price
-            #
-            #   @param currency [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::MinimumSpend::Minimum::Currency] The price currency
-
-            # The price currency
-            #
-            # @see Stigg::Models::V1::SubscriptionProvisionParams::MinimumSpend::Minimum#currency
-            module Currency
-              extend Stigg::Internal::Type::Enum
-
-              USD = :usd
-              AED = :aed
-              ALL = :all
-              AMD = :amd
-              ANG = :ang
-              AUD = :aud
-              AWG = :awg
-              AZN = :azn
-              BAM = :bam
-              BBD = :bbd
-              BDT = :bdt
-              BGN = :bgn
-              BIF = :bif
-              BMD = :bmd
-              BND = :bnd
-              BSD = :bsd
-              BWP = :bwp
-              BYN = :byn
-              BZD = :bzd
-              BRL = :brl
-              CAD = :cad
-              CDF = :cdf
-              CHF = :chf
-              CNY = :cny
-              CZK = :czk
-              DKK = :dkk
-              DOP = :dop
-              DZD = :dzd
-              EGP = :egp
-              ETB = :etb
-              EUR = :eur
-              FJD = :fjd
-              GBP = :gbp
-              GEL = :gel
-              GIP = :gip
-              GMD = :gmd
-              GYD = :gyd
-              HKD = :hkd
-              HRK = :hrk
-              HTG = :htg
-              IDR = :idr
-              ILS = :ils
-              INR = :inr
-              ISK = :isk
-              JMD = :jmd
-              JPY = :jpy
-              KES = :kes
-              KGS = :kgs
-              KHR = :khr
-              KMF = :kmf
-              KRW = :krw
-              KYD = :kyd
-              KZT = :kzt
-              LBP = :lbp
-              LKR = :lkr
-              LRD = :lrd
-              LSL = :lsl
-              MAD = :mad
-              MDL = :mdl
-              MGA = :mga
-              MKD = :mkd
-              MMK = :mmk
-              MNT = :mnt
-              MOP = :mop
-              MRO = :mro
-              MVR = :mvr
-              MWK = :mwk
-              MXN = :mxn
-              MYR = :myr
-              MZN = :mzn
-              NAD = :nad
-              NGN = :ngn
-              NOK = :nok
-              NPR = :npr
-              NZD = :nzd
-              PGK = :pgk
-              PHP = :php
-              PKR = :pkr
-              PLN = :pln
-              QAR = :qar
-              RON = :ron
-              RSD = :rsd
-              RUB = :rub
-              RWF = :rwf
-              SAR = :sar
-              SBD = :sbd
-              SCR = :scr
-              SEK = :sek
-              SGD = :sgd
-              SLE = :sle
-              SLL = :sll
-              SOS = :sos
-              SZL = :szl
-              THB = :thb
-              TJS = :tjs
-              TOP = :top
-              TRY = :try
-              TTD = :ttd
-              TZS = :tzs
-              UAH = :uah
-              UZS = :uzs
-              VND = :vnd
-              VUV = :vuv
-              WST = :wst
-              XAF = :xaf
-              XCD = :xcd
-              YER = :yer
-              ZAR = :zar
-              ZMW = :zmw
-              CLP = :clp
-              DJF = :djf
-              GNF = :gnf
-              UGX = :ugx
-              PYG = :pyg
-              XOF = :xof
-              XPF = :xpf
-
-              # @!method self.values
-              #   @return [Array<Symbol>]
-            end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
 
@@ -1022,11 +1003,23 @@ module Stigg
           #   @return [String, nil]
           optional :addon_id, String, api_name: :addonId, nil?: true
 
+          # @!attribute amount
+          #   The price amount
+          #
+          #   @return [Float, nil]
+          optional :amount, Float
+
           # @!attribute base_charge
           #   Whether this is a base charge override
           #
           #   @return [Boolean, nil]
           optional :base_charge, Stigg::Internal::Type::Boolean, api_name: :baseCharge
+
+          # @!attribute billing_country_code
+          #   The billing country code of the price
+          #
+          #   @return [String, nil]
+          optional :billing_country_code, String, api_name: :billingCountryCode
 
           # @!attribute block_size
           #   Block size for pricing
@@ -1048,17 +1041,17 @@ module Stigg
                    -> { Stigg::V1::SubscriptionProvisionParams::PriceOverride::CreditRate },
                    api_name: :creditRate
 
+          # @!attribute currency
+          #   The price currency
+          #
+          #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::PriceOverride::Currency, nil]
+          optional :currency, enum: -> { Stigg::V1::SubscriptionProvisionParams::PriceOverride::Currency }
+
           # @!attribute feature_id
           #   Feature identifier for the price override
           #
           #   @return [String, nil]
           optional :feature_id, String, api_name: :featureId, nil?: true
-
-          # @!attribute price
-          #   Override price amount
-          #
-          #   @return [Stigg::Models::V1::SubscriptionProvisionParams::PriceOverride::Price, nil]
-          optional :price, -> { Stigg::V1::SubscriptionProvisionParams::PriceOverride::Price }
 
           # @!attribute tiers
           #   Pricing tiers configuration
@@ -1067,10 +1060,14 @@ module Stigg
           optional :tiers,
                    -> { Stigg::Internal::Type::ArrayOf[Stigg::V1::SubscriptionProvisionParams::PriceOverride::Tier] }
 
-          # @!method initialize(addon_id: nil, base_charge: nil, block_size: nil, credit_grant_cadence: nil, credit_rate: nil, feature_id: nil, price: nil, tiers: nil)
+          # @!method initialize(addon_id: nil, amount: nil, base_charge: nil, billing_country_code: nil, block_size: nil, credit_grant_cadence: nil, credit_rate: nil, currency: nil, feature_id: nil, tiers: nil)
           #   @param addon_id [String, nil] Addon identifier for the price override
           #
+          #   @param amount [Float] The price amount
+          #
           #   @param base_charge [Boolean] Whether this is a base charge override
+          #
+          #   @param billing_country_code [String] The billing country code of the price
           #
           #   @param block_size [Float] Block size for pricing
           #
@@ -1078,9 +1075,9 @@ module Stigg
           #
           #   @param credit_rate [Stigg::Models::V1::SubscriptionProvisionParams::PriceOverride::CreditRate]
           #
-          #   @param feature_id [String, nil] Feature identifier for the price override
+          #   @param currency [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::PriceOverride::Currency] The price currency
           #
-          #   @param price [Stigg::Models::V1::SubscriptionProvisionParams::PriceOverride::Price] Override price amount
+          #   @param feature_id [String, nil] Feature identifier for the price override
           #
           #   @param tiers [Array<Stigg::Models::V1::SubscriptionProvisionParams::PriceOverride::Tier>] Pricing tiers configuration
 
@@ -1123,161 +1120,131 @@ module Stigg
             #   @param cost_formula [String, nil] A custom formula for calculating cost based on single event dimensions
           end
 
-          # @see Stigg::Models::V1::SubscriptionProvisionParams::PriceOverride#price
-          class Price < Stigg::Internal::Type::BaseModel
-            # @!attribute amount
-            #   The price amount
-            #
-            #   @return [Float, nil]
-            optional :amount, Float
+          # The price currency
+          #
+          # @see Stigg::Models::V1::SubscriptionProvisionParams::PriceOverride#currency
+          module Currency
+            extend Stigg::Internal::Type::Enum
 
-            # @!attribute billing_country_code
-            #   The billing country code of the price
-            #
-            #   @return [String, nil]
-            optional :billing_country_code, String, api_name: :billingCountryCode, nil?: true
+            USD = :usd
+            AED = :aed
+            ALL = :all
+            AMD = :amd
+            ANG = :ang
+            AUD = :aud
+            AWG = :awg
+            AZN = :azn
+            BAM = :bam
+            BBD = :bbd
+            BDT = :bdt
+            BGN = :bgn
+            BIF = :bif
+            BMD = :bmd
+            BND = :bnd
+            BSD = :bsd
+            BWP = :bwp
+            BYN = :byn
+            BZD = :bzd
+            BRL = :brl
+            CAD = :cad
+            CDF = :cdf
+            CHF = :chf
+            CNY = :cny
+            CZK = :czk
+            DKK = :dkk
+            DOP = :dop
+            DZD = :dzd
+            EGP = :egp
+            ETB = :etb
+            EUR = :eur
+            FJD = :fjd
+            GBP = :gbp
+            GEL = :gel
+            GIP = :gip
+            GMD = :gmd
+            GYD = :gyd
+            HKD = :hkd
+            HRK = :hrk
+            HTG = :htg
+            IDR = :idr
+            ILS = :ils
+            INR = :inr
+            ISK = :isk
+            JMD = :jmd
+            JPY = :jpy
+            KES = :kes
+            KGS = :kgs
+            KHR = :khr
+            KMF = :kmf
+            KRW = :krw
+            KYD = :kyd
+            KZT = :kzt
+            LBP = :lbp
+            LKR = :lkr
+            LRD = :lrd
+            LSL = :lsl
+            MAD = :mad
+            MDL = :mdl
+            MGA = :mga
+            MKD = :mkd
+            MMK = :mmk
+            MNT = :mnt
+            MOP = :mop
+            MRO = :mro
+            MVR = :mvr
+            MWK = :mwk
+            MXN = :mxn
+            MYR = :myr
+            MZN = :mzn
+            NAD = :nad
+            NGN = :ngn
+            NOK = :nok
+            NPR = :npr
+            NZD = :nzd
+            PGK = :pgk
+            PHP = :php
+            PKR = :pkr
+            PLN = :pln
+            QAR = :qar
+            RON = :ron
+            RSD = :rsd
+            RUB = :rub
+            RWF = :rwf
+            SAR = :sar
+            SBD = :sbd
+            SCR = :scr
+            SEK = :sek
+            SGD = :sgd
+            SLE = :sle
+            SLL = :sll
+            SOS = :sos
+            SZL = :szl
+            THB = :thb
+            TJS = :tjs
+            TOP = :top
+            TRY = :try
+            TTD = :ttd
+            TZS = :tzs
+            UAH = :uah
+            UZS = :uzs
+            VND = :vnd
+            VUV = :vuv
+            WST = :wst
+            XAF = :xaf
+            XCD = :xcd
+            YER = :yer
+            ZAR = :zar
+            ZMW = :zmw
+            CLP = :clp
+            DJF = :djf
+            GNF = :gnf
+            UGX = :ugx
+            PYG = :pyg
+            XOF = :xof
+            XPF = :xpf
 
-            # @!attribute currency
-            #   The price currency
-            #
-            #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::PriceOverride::Price::Currency, nil]
-            optional :currency, enum: -> { Stigg::V1::SubscriptionProvisionParams::PriceOverride::Price::Currency }
-
-            # @!method initialize(amount: nil, billing_country_code: nil, currency: nil)
-            #   Override price amount
-            #
-            #   @param amount [Float] The price amount
-            #
-            #   @param billing_country_code [String, nil] The billing country code of the price
-            #
-            #   @param currency [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::PriceOverride::Price::Currency] The price currency
-
-            # The price currency
-            #
-            # @see Stigg::Models::V1::SubscriptionProvisionParams::PriceOverride::Price#currency
-            module Currency
-              extend Stigg::Internal::Type::Enum
-
-              USD = :usd
-              AED = :aed
-              ALL = :all
-              AMD = :amd
-              ANG = :ang
-              AUD = :aud
-              AWG = :awg
-              AZN = :azn
-              BAM = :bam
-              BBD = :bbd
-              BDT = :bdt
-              BGN = :bgn
-              BIF = :bif
-              BMD = :bmd
-              BND = :bnd
-              BSD = :bsd
-              BWP = :bwp
-              BYN = :byn
-              BZD = :bzd
-              BRL = :brl
-              CAD = :cad
-              CDF = :cdf
-              CHF = :chf
-              CNY = :cny
-              CZK = :czk
-              DKK = :dkk
-              DOP = :dop
-              DZD = :dzd
-              EGP = :egp
-              ETB = :etb
-              EUR = :eur
-              FJD = :fjd
-              GBP = :gbp
-              GEL = :gel
-              GIP = :gip
-              GMD = :gmd
-              GYD = :gyd
-              HKD = :hkd
-              HRK = :hrk
-              HTG = :htg
-              IDR = :idr
-              ILS = :ils
-              INR = :inr
-              ISK = :isk
-              JMD = :jmd
-              JPY = :jpy
-              KES = :kes
-              KGS = :kgs
-              KHR = :khr
-              KMF = :kmf
-              KRW = :krw
-              KYD = :kyd
-              KZT = :kzt
-              LBP = :lbp
-              LKR = :lkr
-              LRD = :lrd
-              LSL = :lsl
-              MAD = :mad
-              MDL = :mdl
-              MGA = :mga
-              MKD = :mkd
-              MMK = :mmk
-              MNT = :mnt
-              MOP = :mop
-              MRO = :mro
-              MVR = :mvr
-              MWK = :mwk
-              MXN = :mxn
-              MYR = :myr
-              MZN = :mzn
-              NAD = :nad
-              NGN = :ngn
-              NOK = :nok
-              NPR = :npr
-              NZD = :nzd
-              PGK = :pgk
-              PHP = :php
-              PKR = :pkr
-              PLN = :pln
-              QAR = :qar
-              RON = :ron
-              RSD = :rsd
-              RUB = :rub
-              RWF = :rwf
-              SAR = :sar
-              SBD = :sbd
-              SCR = :scr
-              SEK = :sek
-              SGD = :sgd
-              SLE = :sle
-              SLL = :sll
-              SOS = :sos
-              SZL = :szl
-              THB = :thb
-              TJS = :tjs
-              TOP = :top
-              TRY = :try
-              TTD = :ttd
-              TZS = :tzs
-              UAH = :uah
-              UZS = :uzs
-              VND = :vnd
-              VUV = :vuv
-              WST = :wst
-              XAF = :xaf
-              XCD = :xcd
-              YER = :yer
-              ZAR = :zar
-              ZMW = :zmw
-              CLP = :clp
-              DJF = :djf
-              GNF = :gnf
-              UGX = :ugx
-              PYG = :pyg
-              XOF = :xof
-              XPF = :xpf
-
-              # @!method self.values
-              #   @return [Array<Symbol>]
-            end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
 
           class Tier < Stigg::Internal::Type::BaseModel
@@ -1315,28 +1282,20 @@ module Stigg
               # @!attribute amount
               #   The price amount
               #
-              #   @return [Float, nil]
-              optional :amount, Float
-
-              # @!attribute billing_country_code
-              #   The billing country code of the price
-              #
-              #   @return [String, nil]
-              optional :billing_country_code, String, api_name: :billingCountryCode, nil?: true
+              #   @return [Float]
+              required :amount, Float
 
               # @!attribute currency
               #   The price currency
               #
-              #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::PriceOverride::Tier::FlatPrice::Currency, nil]
-              optional :currency,
+              #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::PriceOverride::Tier::FlatPrice::Currency]
+              required :currency,
                        enum: -> { Stigg::V1::SubscriptionProvisionParams::PriceOverride::Tier::FlatPrice::Currency }
 
-              # @!method initialize(amount: nil, billing_country_code: nil, currency: nil)
+              # @!method initialize(amount:, currency:)
               #   The flat fee price of the price tier
               #
               #   @param amount [Float] The price amount
-              #
-              #   @param billing_country_code [String, nil] The billing country code of the price
               #
               #   @param currency [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::PriceOverride::Tier::FlatPrice::Currency] The price currency
 
@@ -1473,28 +1432,20 @@ module Stigg
               # @!attribute amount
               #   The price amount
               #
-              #   @return [Float, nil]
-              optional :amount, Float
-
-              # @!attribute billing_country_code
-              #   The billing country code of the price
-              #
-              #   @return [String, nil]
-              optional :billing_country_code, String, api_name: :billingCountryCode, nil?: true
+              #   @return [Float]
+              required :amount, Float
 
               # @!attribute currency
               #   The price currency
               #
-              #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::PriceOverride::Tier::UnitPrice::Currency, nil]
-              optional :currency,
+              #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::PriceOverride::Tier::UnitPrice::Currency]
+              required :currency,
                        enum: -> { Stigg::V1::SubscriptionProvisionParams::PriceOverride::Tier::UnitPrice::Currency }
 
-              # @!method initialize(amount: nil, billing_country_code: nil, currency: nil)
+              # @!method initialize(amount:, currency:)
               #   The unit price of the price tier
               #
               #   @param amount [Float] The price amount
-              #
-              #   @param billing_country_code [String, nil] The billing country code of the price
               #
               #   @param currency [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::PriceOverride::Tier::UnitPrice::Currency] The price currency
 

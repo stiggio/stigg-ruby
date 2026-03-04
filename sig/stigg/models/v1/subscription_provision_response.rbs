@@ -471,17 +471,25 @@ module Stigg
               start_date: Time,
               status: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::status,
               addons: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Addon],
+              billing_cycle_anchor: Time?,
+              budget: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Budget?,
               cancellation_date: Time?,
               cancel_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::cancel_reason?,
+              coupons: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Coupon],
               current_billing_period_end: Time?,
               current_billing_period_start: Time?,
               effective_end_date: Time?,
               end_date: Time?,
+              future_updates: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::FutureUpdate],
+              latest_invoice: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::LatestInvoice?,
               metadata: ::Hash[Symbol, String],
+              minimum_spend: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::MinimumSpend?,
               paying_customer_id: String?,
               payment_collection_method: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::payment_collection_method?,
               prices: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price],
               resource_id: String?,
+              subscription_entitlements: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::SubscriptionEntitlement],
+              trial: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Trial?,
               trial_end_date: Time?
             }
 
@@ -510,9 +518,19 @@ module Stigg
               ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Addon]
             ) -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Addon]
 
+            attr_accessor billing_cycle_anchor: Time?
+
+            attr_accessor budget: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Budget?
+
             attr_accessor cancellation_date: Time?
 
             attr_accessor cancel_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::cancel_reason?
+
+            attr_reader coupons: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Coupon]?
+
+            def coupons=: (
+              ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Coupon]
+            ) -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Coupon]
 
             attr_accessor current_billing_period_end: Time?
 
@@ -522,9 +540,19 @@ module Stigg
 
             attr_accessor end_date: Time?
 
+            attr_reader future_updates: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::FutureUpdate]?
+
+            def future_updates=: (
+              ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::FutureUpdate]
+            ) -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::FutureUpdate]
+
+            attr_accessor latest_invoice: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::LatestInvoice?
+
             attr_reader metadata: ::Hash[Symbol, String]?
 
             def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+            attr_accessor minimum_spend: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::MinimumSpend?
 
             attr_accessor paying_customer_id: String?
 
@@ -537,6 +565,14 @@ module Stigg
             ) -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price]
 
             attr_accessor resource_id: String?
+
+            attr_reader subscription_entitlements: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::SubscriptionEntitlement]?
+
+            def subscription_entitlements=: (
+              ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::SubscriptionEntitlement]
+            ) -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::SubscriptionEntitlement]
+
+            attr_accessor trial: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Trial?
 
             attr_accessor trial_end_date: Time?
 
@@ -551,17 +587,25 @@ module Stigg
               start_date: Time,
               status: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::status,
               ?addons: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Addon],
+              ?billing_cycle_anchor: Time?,
+              ?budget: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Budget?,
               ?cancellation_date: Time?,
               ?cancel_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::cancel_reason?,
+              ?coupons: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Coupon],
               ?current_billing_period_end: Time?,
               ?current_billing_period_start: Time?,
               ?effective_end_date: Time?,
               ?end_date: Time?,
+              ?future_updates: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::FutureUpdate],
+              ?latest_invoice: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::LatestInvoice?,
               ?metadata: ::Hash[Symbol, String],
+              ?minimum_spend: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::MinimumSpend?,
               ?paying_customer_id: String?,
               ?payment_collection_method: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::payment_collection_method?,
               ?prices: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price],
               ?resource_id: String?,
+              ?subscription_entitlements: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::SubscriptionEntitlement],
+              ?trial: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Trial?,
               ?trial_end_date: Time?
             ) -> void
 
@@ -576,17 +620,25 @@ module Stigg
               start_date: Time,
               status: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::status,
               addons: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Addon],
+              billing_cycle_anchor: Time?,
+              budget: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Budget?,
               cancellation_date: Time?,
               cancel_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::cancel_reason?,
+              coupons: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Coupon],
               current_billing_period_end: Time?,
               current_billing_period_start: Time?,
               effective_end_date: Time?,
               end_date: Time?,
+              future_updates: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::FutureUpdate],
+              latest_invoice: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::LatestInvoice?,
               metadata: ::Hash[Symbol, String],
+              minimum_spend: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::MinimumSpend?,
               paying_customer_id: String?,
               payment_collection_method: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::payment_collection_method?,
               prices: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price],
               resource_id: String?,
+              subscription_entitlements: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::SubscriptionEntitlement],
+              trial: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Trial?,
               trial_end_date: Time?
             }
 
@@ -649,6 +701,18 @@ module Stigg
               def to_hash: -> { id: String, quantity: Integer }
             end
 
+            type budget = { has_soft_limit: bool, limit: Float }
+
+            class Budget < Stigg::Internal::Type::BaseModel
+              attr_accessor has_soft_limit: bool
+
+              attr_accessor limit: Float
+
+              def initialize: (has_soft_limit: bool, limit: Float) -> void
+
+              def to_hash: -> { has_soft_limit: bool, limit: Float }
+            end
+
             type cancel_reason =
               :UPGRADE_OR_DOWNGRADE
               | :CANCELLED_BY_BILLING
@@ -680,101 +744,79 @@ module Stigg
               def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::cancel_reason]
             end
 
-            type payment_collection_method = :CHARGE | :INVOICE | :NONE
-
-            module PaymentCollectionMethod
-              extend Stigg::Internal::Type::Enum
-
-              CHARGE: :CHARGE
-              INVOICE: :INVOICE
-              NONE: :NONE
-
-              def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::payment_collection_method]
-            end
-
-            type price =
+            type coupon =
               {
-                addon_id: String?,
-                base_charge: bool,
-                block_size: Float,
-                feature_id: String?,
-                price: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Price,
-                tiers: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier]
+                id: String,
+                name: String,
+                status: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Coupon::status,
+                amounts_off: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Coupon::AmountsOff]?,
+                percent_off: Float?
               }
 
-            class Price < Stigg::Internal::Type::BaseModel
-              attr_accessor addon_id: String?
+            class Coupon < Stigg::Internal::Type::BaseModel
+              attr_accessor id: String
 
-              attr_reader base_charge: bool?
+              attr_accessor name: String
 
-              def base_charge=: (bool) -> bool
+              attr_accessor status: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Coupon::status
 
-              attr_reader block_size: Float?
+              attr_accessor amounts_off: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Coupon::AmountsOff]?
 
-              def block_size=: (Float) -> Float
-
-              attr_accessor feature_id: String?
-
-              attr_reader price: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Price?
-
-              def price=: (
-                Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Price
-              ) -> Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Price
-
-              attr_reader tiers: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier]?
-
-              def tiers=: (
-                ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier]
-              ) -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier]
+              attr_accessor percent_off: Float?
 
               def initialize: (
-                ?addon_id: String?,
-                ?base_charge: bool,
-                ?block_size: Float,
-                ?feature_id: String?,
-                ?price: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Price,
-                ?tiers: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier]
+                id: String,
+                name: String,
+                status: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Coupon::status,
+                ?amounts_off: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Coupon::AmountsOff]?,
+                ?percent_off: Float?
               ) -> void
 
               def to_hash: -> {
-                addon_id: String?,
-                base_charge: bool,
-                block_size: Float,
-                feature_id: String?,
-                price: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Price,
-                tiers: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier]
+                id: String,
+                name: String,
+                status: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Coupon::status,
+                amounts_off: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Coupon::AmountsOff]?,
+                percent_off: Float?
               }
 
-              type price =
+              type status = :ACTIVE | :EXPIRED | :REMOVED
+
+              module Status
+                extend Stigg::Internal::Type::Enum
+
+                ACTIVE: :ACTIVE
+                EXPIRED: :EXPIRED
+                REMOVED: :REMOVED
+
+                def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Coupon::status]
+              end
+
+              type amounts_off =
                 {
                   amount: Float,
-                  billing_country_code: String?,
-                  currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Price::currency
+                  currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Coupon::AmountsOff::currency
                 }
 
-              class Price < Stigg::Internal::Type::BaseModel
+              class AmountsOff < Stigg::Internal::Type::BaseModel
                 attr_reader amount: Float?
 
                 def amount=: (Float) -> Float
 
-                attr_accessor billing_country_code: String?
-
-                attr_reader currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Price::currency?
+                attr_reader currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Coupon::AmountsOff::currency?
 
                 def currency=: (
-                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Price::currency
-                ) -> Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Price::currency
+                  Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Coupon::AmountsOff::currency
+                ) -> Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Coupon::AmountsOff::currency
 
                 def initialize: (
                   ?amount: Float,
-                  ?billing_country_code: String?,
-                  ?currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Price::currency
+                  ?currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Coupon::AmountsOff::currency
                 ) -> void
 
                 def to_hash: -> {
                   amount: Float,
-                  billing_country_code: String?,
-                  currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Price::currency
+                  currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Coupon::AmountsOff::currency
                 }
 
                 type currency =
@@ -1015,8 +1057,776 @@ module Stigg
                   XOF: :xof
                   XPF: :xpf
 
-                  def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Price::currency]
+                  def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Coupon::AmountsOff::currency]
                 end
+              end
+            end
+
+            type future_update =
+              {
+                scheduled_execution_time: Time,
+                schedule_status: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::FutureUpdate::schedule_status,
+                subscription_schedule_type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::FutureUpdate::subscription_schedule_type,
+                target_package: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::FutureUpdate::TargetPackage?
+              }
+
+            class FutureUpdate < Stigg::Internal::Type::BaseModel
+              attr_accessor scheduled_execution_time: Time
+
+              attr_accessor schedule_status: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::FutureUpdate::schedule_status
+
+              attr_accessor subscription_schedule_type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::FutureUpdate::subscription_schedule_type
+
+              attr_accessor target_package: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::FutureUpdate::TargetPackage?
+
+              def initialize: (
+                scheduled_execution_time: Time,
+                schedule_status: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::FutureUpdate::schedule_status,
+                subscription_schedule_type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::FutureUpdate::subscription_schedule_type,
+                ?target_package: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::FutureUpdate::TargetPackage?
+              ) -> void
+
+              def to_hash: -> {
+                scheduled_execution_time: Time,
+                schedule_status: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::FutureUpdate::schedule_status,
+                subscription_schedule_type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::FutureUpdate::subscription_schedule_type,
+                target_package: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::FutureUpdate::TargetPackage?
+              }
+
+              type schedule_status =
+                :PENDING_PAYMENT | :SCHEDULED | :CANCELED | :DONE | :FAILED
+
+              module ScheduleStatus
+                extend Stigg::Internal::Type::Enum
+
+                PENDING_PAYMENT: :PENDING_PAYMENT
+                SCHEDULED: :SCHEDULED
+                CANCELED: :CANCELED
+                DONE: :DONE
+                FAILED: :FAILED
+
+                def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::FutureUpdate::schedule_status]
+              end
+
+              type subscription_schedule_type =
+                :DOWNGRADE
+                | :PLAN
+                | :BILLING_PERIOD
+                | :UNIT_AMOUNT
+                | :RECURRING_CREDITS
+                | :PRICE_OVERRIDE
+                | :ADDON
+                | :COUPON
+                | :MIGRATE_TO_LATEST
+                | :ADDITIONAL_META_DATA
+                | :BILLING_INFO_METADATA
+
+              module SubscriptionScheduleType
+                extend Stigg::Internal::Type::Enum
+
+                DOWNGRADE: :DOWNGRADE
+                PLAN: :PLAN
+                BILLING_PERIOD: :BILLING_PERIOD
+                UNIT_AMOUNT: :UNIT_AMOUNT
+                RECURRING_CREDITS: :RECURRING_CREDITS
+                PRICE_OVERRIDE: :PRICE_OVERRIDE
+                ADDON: :ADDON
+                COUPON: :COUPON
+                MIGRATE_TO_LATEST: :MIGRATE_TO_LATEST
+                ADDITIONAL_META_DATA: :ADDITIONAL_META_DATA
+                BILLING_INFO_METADATA: :BILLING_INFO_METADATA
+
+                def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::FutureUpdate::subscription_schedule_type]
+              end
+
+              type target_package = { id: String }
+
+              class TargetPackage < Stigg::Internal::Type::BaseModel
+                attr_accessor id: String
+
+                def initialize: (id: String) -> void
+
+                def to_hash: -> { id: String }
+              end
+            end
+
+            type latest_invoice =
+              {
+                billing_id: String,
+                created_at: Time,
+                requires_action: bool,
+                status: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::LatestInvoice::status,
+                amount_due: Float?,
+                billing_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::LatestInvoice::billing_reason?,
+                currency: String?,
+                pdf_url: String?,
+                total: Float?
+              }
+
+            class LatestInvoice < Stigg::Internal::Type::BaseModel
+              attr_accessor billing_id: String
+
+              attr_accessor created_at: Time
+
+              attr_accessor requires_action: bool
+
+              attr_accessor status: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::LatestInvoice::status
+
+              attr_accessor amount_due: Float?
+
+              attr_accessor billing_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::LatestInvoice::billing_reason?
+
+              attr_accessor currency: String?
+
+              attr_accessor pdf_url: String?
+
+              attr_accessor total: Float?
+
+              def initialize: (
+                billing_id: String,
+                created_at: Time,
+                requires_action: bool,
+                status: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::LatestInvoice::status,
+                ?amount_due: Float?,
+                ?billing_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::LatestInvoice::billing_reason?,
+                ?currency: String?,
+                ?pdf_url: String?,
+                ?total: Float?
+              ) -> void
+
+              def to_hash: -> {
+                billing_id: String,
+                created_at: Time,
+                requires_action: bool,
+                status: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::LatestInvoice::status,
+                amount_due: Float?,
+                billing_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::LatestInvoice::billing_reason?,
+                currency: String?,
+                pdf_url: String?,
+                total: Float?
+              }
+
+              type status = :OPEN | :CANCELED | :PAID
+
+              module Status
+                extend Stigg::Internal::Type::Enum
+
+                OPEN: :OPEN
+                CANCELED: :CANCELED
+                PAID: :PAID
+
+                def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::LatestInvoice::status]
+              end
+
+              type billing_reason =
+                :BILLING_CYCLE
+                | :SUBSCRIPTION_CREATION
+                | :SUBSCRIPTION_UPDATE
+                | :MANUAL
+                | :MINIMUM_INVOICE_AMOUNT_EXCEEDED
+                | :OTHER
+
+              module BillingReason
+                extend Stigg::Internal::Type::Enum
+
+                BILLING_CYCLE: :BILLING_CYCLE
+                SUBSCRIPTION_CREATION: :SUBSCRIPTION_CREATION
+                SUBSCRIPTION_UPDATE: :SUBSCRIPTION_UPDATE
+                MANUAL: :MANUAL
+                MINIMUM_INVOICE_AMOUNT_EXCEEDED: :MINIMUM_INVOICE_AMOUNT_EXCEEDED
+                OTHER: :OTHER
+
+                def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::LatestInvoice::billing_reason]
+              end
+            end
+
+            type minimum_spend =
+              {
+                amount: Float,
+                currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::MinimumSpend::currency
+              }
+
+            class MinimumSpend < Stigg::Internal::Type::BaseModel
+              attr_reader amount: Float?
+
+              def amount=: (Float) -> Float
+
+              attr_reader currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::MinimumSpend::currency?
+
+              def currency=: (
+                Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::MinimumSpend::currency
+              ) -> Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::MinimumSpend::currency
+
+              def initialize: (
+                ?amount: Float,
+                ?currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::MinimumSpend::currency
+              ) -> void
+
+              def to_hash: -> {
+                amount: Float,
+                currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::MinimumSpend::currency
+              }
+
+              type currency =
+                :usd
+                | :aed
+                | :all
+                | :amd
+                | :ang
+                | :aud
+                | :awg
+                | :azn
+                | :bam
+                | :bbd
+                | :bdt
+                | :bgn
+                | :bif
+                | :bmd
+                | :bnd
+                | :bsd
+                | :bwp
+                | :byn
+                | :bzd
+                | :brl
+                | :cad
+                | :cdf
+                | :chf
+                | :cny
+                | :czk
+                | :dkk
+                | :dop
+                | :dzd
+                | :egp
+                | :etb
+                | :eur
+                | :fjd
+                | :gbp
+                | :gel
+                | :gip
+                | :gmd
+                | :gyd
+                | :hkd
+                | :hrk
+                | :htg
+                | :idr
+                | :ils
+                | :inr
+                | :isk
+                | :jmd
+                | :jpy
+                | :kes
+                | :kgs
+                | :khr
+                | :kmf
+                | :krw
+                | :kyd
+                | :kzt
+                | :lbp
+                | :lkr
+                | :lrd
+                | :lsl
+                | :mad
+                | :mdl
+                | :mga
+                | :mkd
+                | :mmk
+                | :mnt
+                | :mop
+                | :mro
+                | :mvr
+                | :mwk
+                | :mxn
+                | :myr
+                | :mzn
+                | :nad
+                | :ngn
+                | :nok
+                | :npr
+                | :nzd
+                | :pgk
+                | :php
+                | :pkr
+                | :pln
+                | :qar
+                | :ron
+                | :rsd
+                | :rub
+                | :rwf
+                | :sar
+                | :sbd
+                | :scr
+                | :sek
+                | :sgd
+                | :sle
+                | :sll
+                | :sos
+                | :szl
+                | :thb
+                | :tjs
+                | :top
+                | :try
+                | :ttd
+                | :tzs
+                | :uah
+                | :uzs
+                | :vnd
+                | :vuv
+                | :wst
+                | :xaf
+                | :xcd
+                | :yer
+                | :zar
+                | :zmw
+                | :clp
+                | :djf
+                | :gnf
+                | :ugx
+                | :pyg
+                | :xof
+                | :xpf
+
+              module Currency
+                extend Stigg::Internal::Type::Enum
+
+                USD: :usd
+                AED: :aed
+                ALL: :all
+                AMD: :amd
+                ANG: :ang
+                AUD: :aud
+                AWG: :awg
+                AZN: :azn
+                BAM: :bam
+                BBD: :bbd
+                BDT: :bdt
+                BGN: :bgn
+                BIF: :bif
+                BMD: :bmd
+                BND: :bnd
+                BSD: :bsd
+                BWP: :bwp
+                BYN: :byn
+                BZD: :bzd
+                BRL: :brl
+                CAD: :cad
+                CDF: :cdf
+                CHF: :chf
+                CNY: :cny
+                CZK: :czk
+                DKK: :dkk
+                DOP: :dop
+                DZD: :dzd
+                EGP: :egp
+                ETB: :etb
+                EUR: :eur
+                FJD: :fjd
+                GBP: :gbp
+                GEL: :gel
+                GIP: :gip
+                GMD: :gmd
+                GYD: :gyd
+                HKD: :hkd
+                HRK: :hrk
+                HTG: :htg
+                IDR: :idr
+                ILS: :ils
+                INR: :inr
+                ISK: :isk
+                JMD: :jmd
+                JPY: :jpy
+                KES: :kes
+                KGS: :kgs
+                KHR: :khr
+                KMF: :kmf
+                KRW: :krw
+                KYD: :kyd
+                KZT: :kzt
+                LBP: :lbp
+                LKR: :lkr
+                LRD: :lrd
+                LSL: :lsl
+                MAD: :mad
+                MDL: :mdl
+                MGA: :mga
+                MKD: :mkd
+                MMK: :mmk
+                MNT: :mnt
+                MOP: :mop
+                MRO: :mro
+                MVR: :mvr
+                MWK: :mwk
+                MXN: :mxn
+                MYR: :myr
+                MZN: :mzn
+                NAD: :nad
+                NGN: :ngn
+                NOK: :nok
+                NPR: :npr
+                NZD: :nzd
+                PGK: :pgk
+                PHP: :php
+                PKR: :pkr
+                PLN: :pln
+                QAR: :qar
+                RON: :ron
+                RSD: :rsd
+                RUB: :rub
+                RWF: :rwf
+                SAR: :sar
+                SBD: :sbd
+                SCR: :scr
+                SEK: :sek
+                SGD: :sgd
+                SLE: :sle
+                SLL: :sll
+                SOS: :sos
+                SZL: :szl
+                THB: :thb
+                TJS: :tjs
+                TOP: :top
+                TRY: :try
+                TTD: :ttd
+                TZS: :tzs
+                UAH: :uah
+                UZS: :uzs
+                VND: :vnd
+                VUV: :vuv
+                WST: :wst
+                XAF: :xaf
+                XCD: :xcd
+                YER: :yer
+                ZAR: :zar
+                ZMW: :zmw
+                CLP: :clp
+                DJF: :djf
+                GNF: :gnf
+                UGX: :ugx
+                PYG: :pyg
+                XOF: :xof
+                XPF: :xpf
+
+                def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::MinimumSpend::currency]
+              end
+            end
+
+            type payment_collection_method = :CHARGE | :INVOICE | :NONE
+
+            module PaymentCollectionMethod
+              extend Stigg::Internal::Type::Enum
+
+              CHARGE: :CHARGE
+              INVOICE: :INVOICE
+              NONE: :NONE
+
+              def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::payment_collection_method]
+            end
+
+            type price =
+              {
+                addon_id: String?,
+                amount: Float,
+                base_charge: bool,
+                billing_country_code: String,
+                block_size: Float,
+                currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::currency,
+                feature_id: String?,
+                tiers: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier]
+              }
+
+            class Price < Stigg::Internal::Type::BaseModel
+              attr_accessor addon_id: String?
+
+              attr_reader amount: Float?
+
+              def amount=: (Float) -> Float
+
+              attr_reader base_charge: bool?
+
+              def base_charge=: (bool) -> bool
+
+              attr_reader billing_country_code: String?
+
+              def billing_country_code=: (String) -> String
+
+              attr_reader block_size: Float?
+
+              def block_size=: (Float) -> Float
+
+              attr_reader currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::currency?
+
+              def currency=: (
+                Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::currency
+              ) -> Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::currency
+
+              attr_accessor feature_id: String?
+
+              attr_reader tiers: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier]?
+
+              def tiers=: (
+                ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier]
+              ) -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier]
+
+              def initialize: (
+                ?addon_id: String?,
+                ?amount: Float,
+                ?base_charge: bool,
+                ?billing_country_code: String,
+                ?block_size: Float,
+                ?currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::currency,
+                ?feature_id: String?,
+                ?tiers: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier]
+              ) -> void
+
+              def to_hash: -> {
+                addon_id: String?,
+                amount: Float,
+                base_charge: bool,
+                billing_country_code: String,
+                block_size: Float,
+                currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::currency,
+                feature_id: String?,
+                tiers: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier]
+              }
+
+              type currency =
+                :usd
+                | :aed
+                | :all
+                | :amd
+                | :ang
+                | :aud
+                | :awg
+                | :azn
+                | :bam
+                | :bbd
+                | :bdt
+                | :bgn
+                | :bif
+                | :bmd
+                | :bnd
+                | :bsd
+                | :bwp
+                | :byn
+                | :bzd
+                | :brl
+                | :cad
+                | :cdf
+                | :chf
+                | :cny
+                | :czk
+                | :dkk
+                | :dop
+                | :dzd
+                | :egp
+                | :etb
+                | :eur
+                | :fjd
+                | :gbp
+                | :gel
+                | :gip
+                | :gmd
+                | :gyd
+                | :hkd
+                | :hrk
+                | :htg
+                | :idr
+                | :ils
+                | :inr
+                | :isk
+                | :jmd
+                | :jpy
+                | :kes
+                | :kgs
+                | :khr
+                | :kmf
+                | :krw
+                | :kyd
+                | :kzt
+                | :lbp
+                | :lkr
+                | :lrd
+                | :lsl
+                | :mad
+                | :mdl
+                | :mga
+                | :mkd
+                | :mmk
+                | :mnt
+                | :mop
+                | :mro
+                | :mvr
+                | :mwk
+                | :mxn
+                | :myr
+                | :mzn
+                | :nad
+                | :ngn
+                | :nok
+                | :npr
+                | :nzd
+                | :pgk
+                | :php
+                | :pkr
+                | :pln
+                | :qar
+                | :ron
+                | :rsd
+                | :rub
+                | :rwf
+                | :sar
+                | :sbd
+                | :scr
+                | :sek
+                | :sgd
+                | :sle
+                | :sll
+                | :sos
+                | :szl
+                | :thb
+                | :tjs
+                | :top
+                | :try
+                | :ttd
+                | :tzs
+                | :uah
+                | :uzs
+                | :vnd
+                | :vuv
+                | :wst
+                | :xaf
+                | :xcd
+                | :yer
+                | :zar
+                | :zmw
+                | :clp
+                | :djf
+                | :gnf
+                | :ugx
+                | :pyg
+                | :xof
+                | :xpf
+
+              module Currency
+                extend Stigg::Internal::Type::Enum
+
+                USD: :usd
+                AED: :aed
+                ALL: :all
+                AMD: :amd
+                ANG: :ang
+                AUD: :aud
+                AWG: :awg
+                AZN: :azn
+                BAM: :bam
+                BBD: :bbd
+                BDT: :bdt
+                BGN: :bgn
+                BIF: :bif
+                BMD: :bmd
+                BND: :bnd
+                BSD: :bsd
+                BWP: :bwp
+                BYN: :byn
+                BZD: :bzd
+                BRL: :brl
+                CAD: :cad
+                CDF: :cdf
+                CHF: :chf
+                CNY: :cny
+                CZK: :czk
+                DKK: :dkk
+                DOP: :dop
+                DZD: :dzd
+                EGP: :egp
+                ETB: :etb
+                EUR: :eur
+                FJD: :fjd
+                GBP: :gbp
+                GEL: :gel
+                GIP: :gip
+                GMD: :gmd
+                GYD: :gyd
+                HKD: :hkd
+                HRK: :hrk
+                HTG: :htg
+                IDR: :idr
+                ILS: :ils
+                INR: :inr
+                ISK: :isk
+                JMD: :jmd
+                JPY: :jpy
+                KES: :kes
+                KGS: :kgs
+                KHR: :khr
+                KMF: :kmf
+                KRW: :krw
+                KYD: :kyd
+                KZT: :kzt
+                LBP: :lbp
+                LKR: :lkr
+                LRD: :lrd
+                LSL: :lsl
+                MAD: :mad
+                MDL: :mdl
+                MGA: :mga
+                MKD: :mkd
+                MMK: :mmk
+                MNT: :mnt
+                MOP: :mop
+                MRO: :mro
+                MVR: :mvr
+                MWK: :mwk
+                MXN: :mxn
+                MYR: :myr
+                MZN: :mzn
+                NAD: :nad
+                NGN: :ngn
+                NOK: :nok
+                NPR: :npr
+                NZD: :nzd
+                PGK: :pgk
+                PHP: :php
+                PKR: :pkr
+                PLN: :pln
+                QAR: :qar
+                RON: :ron
+                RSD: :rsd
+                RUB: :rub
+                RWF: :rwf
+                SAR: :sar
+                SBD: :sbd
+                SCR: :scr
+                SEK: :sek
+                SGD: :sgd
+                SLE: :sle
+                SLL: :sll
+                SOS: :sos
+                SZL: :szl
+                THB: :thb
+                TJS: :tjs
+                TOP: :top
+                TRY: :try
+                TTD: :ttd
+                TZS: :tzs
+                UAH: :uah
+                UZS: :uzs
+                VND: :vnd
+                VUV: :vuv
+                WST: :wst
+                XAF: :xaf
+                XCD: :xcd
+                YER: :yer
+                ZAR: :zar
+                ZMW: :zmw
+                CLP: :clp
+                DJF: :djf
+                GNF: :gnf
+                UGX: :ugx
+                PYG: :pyg
+                XOF: :xof
+                XPF: :xpf
+
+                def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::currency]
               end
 
               type tier =
@@ -1058,32 +1868,21 @@ module Stigg
                 type flat_price =
                   {
                     amount: Float,
-                    billing_country_code: String?,
                     currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier::FlatPrice::currency
                   }
 
                 class FlatPrice < Stigg::Internal::Type::BaseModel
-                  attr_reader amount: Float?
+                  attr_accessor amount: Float
 
-                  def amount=: (Float) -> Float
-
-                  attr_accessor billing_country_code: String?
-
-                  attr_reader currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier::FlatPrice::currency?
-
-                  def currency=: (
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier::FlatPrice::currency
-                  ) -> Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier::FlatPrice::currency
+                  attr_accessor currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier::FlatPrice::currency
 
                   def initialize: (
-                    ?amount: Float,
-                    ?billing_country_code: String?,
-                    ?currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier::FlatPrice::currency
+                    amount: Float,
+                    currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier::FlatPrice::currency
                   ) -> void
 
                   def to_hash: -> {
                     amount: Float,
-                    billing_country_code: String?,
                     currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier::FlatPrice::currency
                   }
 
@@ -1332,32 +2131,21 @@ module Stigg
                 type unit_price =
                   {
                     amount: Float,
-                    billing_country_code: String?,
                     currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier::UnitPrice::currency
                   }
 
                 class UnitPrice < Stigg::Internal::Type::BaseModel
-                  attr_reader amount: Float?
+                  attr_accessor amount: Float
 
-                  def amount=: (Float) -> Float
-
-                  attr_accessor billing_country_code: String?
-
-                  attr_reader currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier::UnitPrice::currency?
-
-                  def currency=: (
-                    Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier::UnitPrice::currency
-                  ) -> Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier::UnitPrice::currency
+                  attr_accessor currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier::UnitPrice::currency
 
                   def initialize: (
-                    ?amount: Float,
-                    ?billing_country_code: String?,
-                    ?currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier::UnitPrice::currency
+                    amount: Float,
+                    currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier::UnitPrice::currency
                   ) -> void
 
                   def to_hash: -> {
                     amount: Float,
-                    billing_country_code: String?,
                     currency: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier::UnitPrice::currency
                   }
 
@@ -1602,6 +2390,67 @@ module Stigg
                     def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier::UnitPrice::currency]
                   end
                 end
+              end
+            end
+
+            type subscription_entitlement =
+              {
+                id: String,
+                type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::SubscriptionEntitlement::type_
+              }
+
+            class SubscriptionEntitlement < Stigg::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              attr_accessor type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::SubscriptionEntitlement::type_
+
+              def initialize: (
+                id: String,
+                type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::SubscriptionEntitlement::type_
+              ) -> void
+
+              def to_hash: -> {
+                id: String,
+                type: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::SubscriptionEntitlement::type_
+              }
+
+              type type_ = :FEATURE | :CREDIT
+
+              module Type
+                extend Stigg::Internal::Type::Enum
+
+                FEATURE: :FEATURE
+                CREDIT: :CREDIT
+
+                def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::SubscriptionEntitlement::type_]
+              end
+            end
+
+            type trial =
+              {
+                trial_end_behavior: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Trial::trial_end_behavior
+              }
+
+            class Trial < Stigg::Internal::Type::BaseModel
+              attr_accessor trial_end_behavior: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Trial::trial_end_behavior
+
+              def initialize: (
+                trial_end_behavior: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Trial::trial_end_behavior
+              ) -> void
+
+              def to_hash: -> {
+                trial_end_behavior: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Trial::trial_end_behavior
+              }
+
+              type trial_end_behavior = :CONVERT_TO_PAID | :CANCEL_SUBSCRIPTION
+
+              module TrialEndBehavior
+                extend Stigg::Internal::Type::Enum
+
+                CONVERT_TO_PAID: :CONVERT_TO_PAID
+                CANCEL_SUBSCRIPTION: :CANCEL_SUBSCRIPTION
+
+                def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Trial::trial_end_behavior]
               end
             end
           end

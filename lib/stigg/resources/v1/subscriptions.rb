@@ -62,7 +62,7 @@ module Stigg
         #
         # @param metadata [Hash{Symbol=>String}] Additional metadata for the subscription
         #
-        # @param minimum_spend [Stigg::Models::V1::SubscriptionUpdateParams::MinimumSpend, nil]
+        # @param minimum_spend [Stigg::Models::V1::SubscriptionUpdateParams::MinimumSpend, nil] Minimum spend amount
         #
         # @param price_overrides [Array<Stigg::Models::V1::SubscriptionUpdateParams::PriceOverride>]
         #
@@ -337,7 +337,7 @@ module Stigg
         #
         # @param metadata [Hash{Symbol=>String}] Additional metadata for the subscription
         #
-        # @param minimum_spend [Stigg::Models::V1::SubscriptionProvisionParams::MinimumSpend, nil]
+        # @param minimum_spend [Stigg::Models::V1::SubscriptionProvisionParams::MinimumSpend, nil] Minimum spend amount
         #
         # @param paying_customer_id [String, nil] Optional paying customer ID for split billing scenarios
         #

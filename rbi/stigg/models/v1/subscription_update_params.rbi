@@ -127,6 +127,7 @@ module Stigg
         sig { params(metadata: T::Hash[Symbol, String]).void }
         attr_writer :metadata
 
+        # Minimum spend amount
         sig do
           returns(T.nilable(Stigg::V1::SubscriptionUpdateParams::MinimumSpend))
         end
@@ -260,6 +261,7 @@ module Stigg
           charges: nil,
           # Additional metadata for the subscription
           metadata: nil,
+          # Minimum spend amount
           minimum_spend: nil,
           price_overrides: nil,
           promotion_code: nil,
@@ -557,26 +559,19 @@ module Stigg
                   )
                 end
 
+              # The price amount
               sig { returns(Float) }
               attr_accessor :amount
 
+              # The price currency
               sig do
                 returns(
-                  T.nilable(
-                    Stigg::V1::SubscriptionUpdateParams::AppliedCoupon::Discount::AmountsOff::Currency::OrSymbol
-                  )
+                  Stigg::V1::SubscriptionUpdateParams::AppliedCoupon::Discount::AmountsOff::Currency::OrSymbol
                 )
               end
-              attr_reader :currency
+              attr_accessor :currency
 
-              sig do
-                params(
-                  currency:
-                    Stigg::V1::SubscriptionUpdateParams::AppliedCoupon::Discount::AmountsOff::Currency::OrSymbol
-                ).void
-              end
-              attr_writer :currency
-
+              # Monetary amount with currency
               sig do
                 params(
                   amount: Float,
@@ -584,7 +579,12 @@ module Stigg
                     Stigg::V1::SubscriptionUpdateParams::AppliedCoupon::Discount::AmountsOff::Currency::OrSymbol
                 ).returns(T.attached_class)
               end
-              def self.new(amount:, currency: nil)
+              def self.new(
+                # The price amount
+                amount:,
+                # The price currency
+                currency:
+              )
               end
 
               sig do
@@ -599,6 +599,7 @@ module Stigg
               def to_hash
               end
 
+              # The price currency
               module Currency
                 extend Stigg::Internal::Type::Enum
 
@@ -1625,9 +1626,11 @@ module Stigg
               )
             end
 
+          # Whether the budget is a soft limit
           sig { returns(T::Boolean) }
           attr_accessor :has_soft_limit
 
+          # Maximum spending limit
           sig { returns(Float) }
           attr_accessor :limit
 
@@ -1636,7 +1639,12 @@ module Stigg
               T.attached_class
             )
           end
-          def self.new(has_soft_limit:, limit:)
+          def self.new(
+            # Whether the budget is a soft limit
+            has_soft_limit:,
+            # Maximum spending limit
+            limit:
+          )
           end
 
           sig { override.returns({ has_soft_limit: T::Boolean, limit: Float }) }
@@ -1734,702 +1742,661 @@ module Stigg
               )
             end
 
+          # The price amount
+          sig { returns(T.nilable(Float)) }
+          attr_reader :amount
+
+          sig { params(amount: Float).void }
+          attr_writer :amount
+
+          # The price currency
           sig do
             returns(
               T.nilable(
-                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::OrSymbol
               )
             )
           end
-          attr_reader :minimum
+          attr_reader :currency
 
           sig do
             params(
-              minimum:
-                T.nilable(
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::OrHash
-                )
+              currency:
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::OrSymbol
             ).void
           end
-          attr_writer :minimum
+          attr_writer :currency
 
+          # Minimum spend amount
           sig do
             params(
-              minimum:
-                T.nilable(
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::OrHash
-                )
+              amount: Float,
+              currency:
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::OrSymbol
             ).returns(T.attached_class)
           end
-          def self.new(minimum: nil)
+          def self.new(
+            # The price amount
+            amount: nil,
+            # The price currency
+            currency: nil
+          )
           end
 
           sig do
             override.returns(
               {
-                minimum:
-                  T.nilable(
-                    Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum
-                  )
+                amount: Float,
+                currency:
+                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::OrSymbol
               }
             )
           end
           def to_hash
           end
 
-          class Minimum < Stigg::Internal::Type::BaseModel
-            OrHash =
+          # The price currency
+          module Currency
+            extend Stigg::Internal::Type::Enum
+
+            TaggedSymbol =
               T.type_alias do
-                T.any(
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum,
-                  Stigg::Internal::AnyHash
+                T.all(
+                  Symbol,
+                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency
                 )
               end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-            sig { returns(Float) }
-            attr_accessor :amount
-
-            sig do
-              returns(
-                T.nilable(
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::OrSymbol
-                )
+            USD =
+              T.let(
+                :usd,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
               )
-            end
-            attr_reader :currency
-
-            sig do
-              params(
-                currency:
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::OrSymbol
-              ).void
-            end
-            attr_writer :currency
-
-            sig do
-              params(
-                amount: Float,
-                currency:
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::OrSymbol
-              ).returns(T.attached_class)
-            end
-            def self.new(amount:, currency: nil)
-            end
+            AED =
+              T.let(
+                :aed,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            ALL =
+              T.let(
+                :all,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            AMD =
+              T.let(
+                :amd,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            ANG =
+              T.let(
+                :ang,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            AUD =
+              T.let(
+                :aud,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            AWG =
+              T.let(
+                :awg,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            AZN =
+              T.let(
+                :azn,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            BAM =
+              T.let(
+                :bam,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            BBD =
+              T.let(
+                :bbd,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            BDT =
+              T.let(
+                :bdt,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            BGN =
+              T.let(
+                :bgn,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            BIF =
+              T.let(
+                :bif,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            BMD =
+              T.let(
+                :bmd,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            BND =
+              T.let(
+                :bnd,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            BSD =
+              T.let(
+                :bsd,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            BWP =
+              T.let(
+                :bwp,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            BYN =
+              T.let(
+                :byn,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            BZD =
+              T.let(
+                :bzd,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            BRL =
+              T.let(
+                :brl,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            CAD =
+              T.let(
+                :cad,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            CDF =
+              T.let(
+                :cdf,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            CHF =
+              T.let(
+                :chf,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            CNY =
+              T.let(
+                :cny,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            CZK =
+              T.let(
+                :czk,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            DKK =
+              T.let(
+                :dkk,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            DOP =
+              T.let(
+                :dop,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            DZD =
+              T.let(
+                :dzd,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            EGP =
+              T.let(
+                :egp,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            ETB =
+              T.let(
+                :etb,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            EUR =
+              T.let(
+                :eur,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            FJD =
+              T.let(
+                :fjd,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            GBP =
+              T.let(
+                :gbp,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            GEL =
+              T.let(
+                :gel,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            GIP =
+              T.let(
+                :gip,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            GMD =
+              T.let(
+                :gmd,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            GYD =
+              T.let(
+                :gyd,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            HKD =
+              T.let(
+                :hkd,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            HRK =
+              T.let(
+                :hrk,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            HTG =
+              T.let(
+                :htg,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            IDR =
+              T.let(
+                :idr,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            ILS =
+              T.let(
+                :ils,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            INR =
+              T.let(
+                :inr,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            ISK =
+              T.let(
+                :isk,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            JMD =
+              T.let(
+                :jmd,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            JPY =
+              T.let(
+                :jpy,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            KES =
+              T.let(
+                :kes,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            KGS =
+              T.let(
+                :kgs,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            KHR =
+              T.let(
+                :khr,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            KMF =
+              T.let(
+                :kmf,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            KRW =
+              T.let(
+                :krw,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            KYD =
+              T.let(
+                :kyd,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            KZT =
+              T.let(
+                :kzt,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            LBP =
+              T.let(
+                :lbp,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            LKR =
+              T.let(
+                :lkr,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            LRD =
+              T.let(
+                :lrd,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            LSL =
+              T.let(
+                :lsl,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            MAD =
+              T.let(
+                :mad,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            MDL =
+              T.let(
+                :mdl,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            MGA =
+              T.let(
+                :mga,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            MKD =
+              T.let(
+                :mkd,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            MMK =
+              T.let(
+                :mmk,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            MNT =
+              T.let(
+                :mnt,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            MOP =
+              T.let(
+                :mop,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            MRO =
+              T.let(
+                :mro,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            MVR =
+              T.let(
+                :mvr,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            MWK =
+              T.let(
+                :mwk,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            MXN =
+              T.let(
+                :mxn,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            MYR =
+              T.let(
+                :myr,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            MZN =
+              T.let(
+                :mzn,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            NAD =
+              T.let(
+                :nad,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            NGN =
+              T.let(
+                :ngn,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            NOK =
+              T.let(
+                :nok,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            NPR =
+              T.let(
+                :npr,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            NZD =
+              T.let(
+                :nzd,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            PGK =
+              T.let(
+                :pgk,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            PHP =
+              T.let(
+                :php,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            PKR =
+              T.let(
+                :pkr,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            PLN =
+              T.let(
+                :pln,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            QAR =
+              T.let(
+                :qar,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            RON =
+              T.let(
+                :ron,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            RSD =
+              T.let(
+                :rsd,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            RUB =
+              T.let(
+                :rub,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            RWF =
+              T.let(
+                :rwf,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            SAR =
+              T.let(
+                :sar,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            SBD =
+              T.let(
+                :sbd,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            SCR =
+              T.let(
+                :scr,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            SEK =
+              T.let(
+                :sek,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            SGD =
+              T.let(
+                :sgd,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            SLE =
+              T.let(
+                :sle,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            SLL =
+              T.let(
+                :sll,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            SOS =
+              T.let(
+                :sos,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            SZL =
+              T.let(
+                :szl,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            THB =
+              T.let(
+                :thb,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            TJS =
+              T.let(
+                :tjs,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            TOP =
+              T.let(
+                :top,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            TRY =
+              T.let(
+                :try,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            TTD =
+              T.let(
+                :ttd,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            TZS =
+              T.let(
+                :tzs,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            UAH =
+              T.let(
+                :uah,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            UZS =
+              T.let(
+                :uzs,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            VND =
+              T.let(
+                :vnd,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            VUV =
+              T.let(
+                :vuv,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            WST =
+              T.let(
+                :wst,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            XAF =
+              T.let(
+                :xaf,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            XCD =
+              T.let(
+                :xcd,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            YER =
+              T.let(
+                :yer,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            ZAR =
+              T.let(
+                :zar,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            ZMW =
+              T.let(
+                :zmw,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            CLP =
+              T.let(
+                :clp,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            DJF =
+              T.let(
+                :djf,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            GNF =
+              T.let(
+                :gnf,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            UGX =
+              T.let(
+                :ugx,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            PYG =
+              T.let(
+                :pyg,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            XOF =
+              T.let(
+                :xof,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
+            XPF =
+              T.let(
+                :xpf,
+                Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+              )
 
             sig do
               override.returns(
-                {
-                  amount: Float,
-                  currency:
-                    Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::OrSymbol
-                }
+                T::Array[
+                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency::TaggedSymbol
+                ]
               )
             end
-            def to_hash
-            end
-
-            module Currency
-              extend Stigg::Internal::Type::Enum
-
-              TaggedSymbol =
-                T.type_alias do
-                  T.all(
-                    Symbol,
-                    Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency
-                  )
-                end
-              OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-              USD =
-                T.let(
-                  :usd,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              AED =
-                T.let(
-                  :aed,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              ALL =
-                T.let(
-                  :all,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              AMD =
-                T.let(
-                  :amd,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              ANG =
-                T.let(
-                  :ang,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              AUD =
-                T.let(
-                  :aud,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              AWG =
-                T.let(
-                  :awg,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              AZN =
-                T.let(
-                  :azn,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              BAM =
-                T.let(
-                  :bam,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              BBD =
-                T.let(
-                  :bbd,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              BDT =
-                T.let(
-                  :bdt,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              BGN =
-                T.let(
-                  :bgn,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              BIF =
-                T.let(
-                  :bif,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              BMD =
-                T.let(
-                  :bmd,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              BND =
-                T.let(
-                  :bnd,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              BSD =
-                T.let(
-                  :bsd,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              BWP =
-                T.let(
-                  :bwp,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              BYN =
-                T.let(
-                  :byn,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              BZD =
-                T.let(
-                  :bzd,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              BRL =
-                T.let(
-                  :brl,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              CAD =
-                T.let(
-                  :cad,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              CDF =
-                T.let(
-                  :cdf,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              CHF =
-                T.let(
-                  :chf,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              CNY =
-                T.let(
-                  :cny,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              CZK =
-                T.let(
-                  :czk,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              DKK =
-                T.let(
-                  :dkk,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              DOP =
-                T.let(
-                  :dop,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              DZD =
-                T.let(
-                  :dzd,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              EGP =
-                T.let(
-                  :egp,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              ETB =
-                T.let(
-                  :etb,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              EUR =
-                T.let(
-                  :eur,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              FJD =
-                T.let(
-                  :fjd,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              GBP =
-                T.let(
-                  :gbp,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              GEL =
-                T.let(
-                  :gel,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              GIP =
-                T.let(
-                  :gip,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              GMD =
-                T.let(
-                  :gmd,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              GYD =
-                T.let(
-                  :gyd,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              HKD =
-                T.let(
-                  :hkd,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              HRK =
-                T.let(
-                  :hrk,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              HTG =
-                T.let(
-                  :htg,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              IDR =
-                T.let(
-                  :idr,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              ILS =
-                T.let(
-                  :ils,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              INR =
-                T.let(
-                  :inr,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              ISK =
-                T.let(
-                  :isk,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              JMD =
-                T.let(
-                  :jmd,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              JPY =
-                T.let(
-                  :jpy,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              KES =
-                T.let(
-                  :kes,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              KGS =
-                T.let(
-                  :kgs,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              KHR =
-                T.let(
-                  :khr,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              KMF =
-                T.let(
-                  :kmf,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              KRW =
-                T.let(
-                  :krw,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              KYD =
-                T.let(
-                  :kyd,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              KZT =
-                T.let(
-                  :kzt,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              LBP =
-                T.let(
-                  :lbp,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              LKR =
-                T.let(
-                  :lkr,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              LRD =
-                T.let(
-                  :lrd,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              LSL =
-                T.let(
-                  :lsl,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              MAD =
-                T.let(
-                  :mad,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              MDL =
-                T.let(
-                  :mdl,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              MGA =
-                T.let(
-                  :mga,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              MKD =
-                T.let(
-                  :mkd,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              MMK =
-                T.let(
-                  :mmk,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              MNT =
-                T.let(
-                  :mnt,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              MOP =
-                T.let(
-                  :mop,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              MRO =
-                T.let(
-                  :mro,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              MVR =
-                T.let(
-                  :mvr,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              MWK =
-                T.let(
-                  :mwk,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              MXN =
-                T.let(
-                  :mxn,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              MYR =
-                T.let(
-                  :myr,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              MZN =
-                T.let(
-                  :mzn,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              NAD =
-                T.let(
-                  :nad,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              NGN =
-                T.let(
-                  :ngn,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              NOK =
-                T.let(
-                  :nok,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              NPR =
-                T.let(
-                  :npr,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              NZD =
-                T.let(
-                  :nzd,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              PGK =
-                T.let(
-                  :pgk,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              PHP =
-                T.let(
-                  :php,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              PKR =
-                T.let(
-                  :pkr,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              PLN =
-                T.let(
-                  :pln,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              QAR =
-                T.let(
-                  :qar,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              RON =
-                T.let(
-                  :ron,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              RSD =
-                T.let(
-                  :rsd,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              RUB =
-                T.let(
-                  :rub,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              RWF =
-                T.let(
-                  :rwf,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              SAR =
-                T.let(
-                  :sar,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              SBD =
-                T.let(
-                  :sbd,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              SCR =
-                T.let(
-                  :scr,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              SEK =
-                T.let(
-                  :sek,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              SGD =
-                T.let(
-                  :sgd,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              SLE =
-                T.let(
-                  :sle,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              SLL =
-                T.let(
-                  :sll,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              SOS =
-                T.let(
-                  :sos,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              SZL =
-                T.let(
-                  :szl,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              THB =
-                T.let(
-                  :thb,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              TJS =
-                T.let(
-                  :tjs,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              TOP =
-                T.let(
-                  :top,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              TRY =
-                T.let(
-                  :try,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              TTD =
-                T.let(
-                  :ttd,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              TZS =
-                T.let(
-                  :tzs,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              UAH =
-                T.let(
-                  :uah,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              UZS =
-                T.let(
-                  :uzs,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              VND =
-                T.let(
-                  :vnd,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              VUV =
-                T.let(
-                  :vuv,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              WST =
-                T.let(
-                  :wst,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              XAF =
-                T.let(
-                  :xaf,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              XCD =
-                T.let(
-                  :xcd,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              YER =
-                T.let(
-                  :yer,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              ZAR =
-                T.let(
-                  :zar,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              ZMW =
-                T.let(
-                  :zmw,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              CLP =
-                T.let(
-                  :clp,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              DJF =
-                T.let(
-                  :djf,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              GNF =
-                T.let(
-                  :gnf,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              UGX =
-                T.let(
-                  :ugx,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              PYG =
-                T.let(
-                  :pyg,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              XOF =
-                T.let(
-                  :xof,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-              XPF =
-                T.let(
-                  :xpf,
-                  Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                )
-
-              sig do
-                override.returns(
-                  T::Array[
-                    Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency::TaggedSymbol
-                  ]
-                )
-              end
-              def self.values
-              end
+            def self.values
             end
           end
         end
@@ -2450,12 +2417,37 @@ module Stigg
           sig { params(addon_id: String).void }
           attr_writer :addon_id
 
+          # The price amount
+          sig { returns(T.nilable(Float)) }
+          attr_reader :amount
+
+          sig { params(amount: Float).void }
+          attr_writer :amount
+
           # Whether this is a base charge override
           sig { returns(T.nilable(T::Boolean)) }
           attr_reader :base_charge
 
           sig { params(base_charge: T::Boolean).void }
           attr_writer :base_charge
+
+          # The price currency
+          sig do
+            returns(
+              T.nilable(
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::OrSymbol
+              )
+            )
+          end
+          attr_reader :currency
+
+          sig do
+            params(
+              currency:
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::OrSymbol
+            ).void
+          end
+          attr_writer :currency
 
           # The corresponding custom currency id of the recurring credits price
           sig { returns(T.nilable(String)) }
@@ -2472,42 +2464,29 @@ module Stigg
           attr_writer :feature_id
 
           sig do
-            returns(
-              T.nilable(
-                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price
-              )
-            )
-          end
-          attr_reader :price
-
-          sig do
-            params(
-              price:
-                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::OrHash
-            ).void
-          end
-          attr_writer :price
-
-          sig do
             params(
               addon_id: String,
+              amount: Float,
               base_charge: T::Boolean,
+              currency:
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::OrSymbol,
               currency_id: String,
-              feature_id: String,
-              price:
-                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::OrHash
+              feature_id: String
             ).returns(T.attached_class)
           end
           def self.new(
             # Addon ID
             addon_id: nil,
+            # The price amount
+            amount: nil,
             # Whether this is a base charge override
             base_charge: nil,
+            # The price currency
+            currency: nil,
             # The corresponding custom currency id of the recurring credits price
             currency_id: nil,
             # Feature ID
-            feature_id: nil,
-            price: nil
+            feature_id: nil
           )
           end
 
@@ -2515,669 +2494,620 @@ module Stigg
             override.returns(
               {
                 addon_id: String,
+                amount: Float,
                 base_charge: T::Boolean,
+                currency:
+                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::OrSymbol,
                 currency_id: String,
-                feature_id: String,
-                price: Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price
+                feature_id: String
               }
             )
           end
           def to_hash
           end
 
-          class Price < Stigg::Internal::Type::BaseModel
-            OrHash =
+          # The price currency
+          module Currency
+            extend Stigg::Internal::Type::Enum
+
+            TaggedSymbol =
               T.type_alias do
-                T.any(
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price,
-                  Stigg::Internal::AnyHash
+                T.all(
+                  Symbol,
+                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency
                 )
               end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-            sig { returns(Float) }
-            attr_accessor :amount
-
-            sig do
-              returns(
-                T.nilable(
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::OrSymbol
-                )
+            USD =
+              T.let(
+                :usd,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
               )
-            end
-            attr_reader :currency
-
-            sig do
-              params(
-                currency:
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::OrSymbol
-              ).void
-            end
-            attr_writer :currency
-
-            sig do
-              params(
-                amount: Float,
-                currency:
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::OrSymbol
-              ).returns(T.attached_class)
-            end
-            def self.new(amount:, currency: nil)
-            end
+            AED =
+              T.let(
+                :aed,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            ALL =
+              T.let(
+                :all,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            AMD =
+              T.let(
+                :amd,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            ANG =
+              T.let(
+                :ang,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            AUD =
+              T.let(
+                :aud,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            AWG =
+              T.let(
+                :awg,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            AZN =
+              T.let(
+                :azn,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            BAM =
+              T.let(
+                :bam,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            BBD =
+              T.let(
+                :bbd,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            BDT =
+              T.let(
+                :bdt,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            BGN =
+              T.let(
+                :bgn,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            BIF =
+              T.let(
+                :bif,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            BMD =
+              T.let(
+                :bmd,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            BND =
+              T.let(
+                :bnd,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            BSD =
+              T.let(
+                :bsd,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            BWP =
+              T.let(
+                :bwp,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            BYN =
+              T.let(
+                :byn,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            BZD =
+              T.let(
+                :bzd,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            BRL =
+              T.let(
+                :brl,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            CAD =
+              T.let(
+                :cad,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            CDF =
+              T.let(
+                :cdf,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            CHF =
+              T.let(
+                :chf,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            CNY =
+              T.let(
+                :cny,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            CZK =
+              T.let(
+                :czk,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            DKK =
+              T.let(
+                :dkk,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            DOP =
+              T.let(
+                :dop,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            DZD =
+              T.let(
+                :dzd,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            EGP =
+              T.let(
+                :egp,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            ETB =
+              T.let(
+                :etb,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            EUR =
+              T.let(
+                :eur,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            FJD =
+              T.let(
+                :fjd,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            GBP =
+              T.let(
+                :gbp,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            GEL =
+              T.let(
+                :gel,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            GIP =
+              T.let(
+                :gip,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            GMD =
+              T.let(
+                :gmd,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            GYD =
+              T.let(
+                :gyd,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            HKD =
+              T.let(
+                :hkd,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            HRK =
+              T.let(
+                :hrk,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            HTG =
+              T.let(
+                :htg,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            IDR =
+              T.let(
+                :idr,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            ILS =
+              T.let(
+                :ils,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            INR =
+              T.let(
+                :inr,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            ISK =
+              T.let(
+                :isk,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            JMD =
+              T.let(
+                :jmd,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            JPY =
+              T.let(
+                :jpy,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            KES =
+              T.let(
+                :kes,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            KGS =
+              T.let(
+                :kgs,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            KHR =
+              T.let(
+                :khr,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            KMF =
+              T.let(
+                :kmf,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            KRW =
+              T.let(
+                :krw,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            KYD =
+              T.let(
+                :kyd,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            KZT =
+              T.let(
+                :kzt,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            LBP =
+              T.let(
+                :lbp,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            LKR =
+              T.let(
+                :lkr,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            LRD =
+              T.let(
+                :lrd,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            LSL =
+              T.let(
+                :lsl,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            MAD =
+              T.let(
+                :mad,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            MDL =
+              T.let(
+                :mdl,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            MGA =
+              T.let(
+                :mga,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            MKD =
+              T.let(
+                :mkd,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            MMK =
+              T.let(
+                :mmk,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            MNT =
+              T.let(
+                :mnt,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            MOP =
+              T.let(
+                :mop,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            MRO =
+              T.let(
+                :mro,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            MVR =
+              T.let(
+                :mvr,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            MWK =
+              T.let(
+                :mwk,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            MXN =
+              T.let(
+                :mxn,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            MYR =
+              T.let(
+                :myr,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            MZN =
+              T.let(
+                :mzn,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            NAD =
+              T.let(
+                :nad,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            NGN =
+              T.let(
+                :ngn,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            NOK =
+              T.let(
+                :nok,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            NPR =
+              T.let(
+                :npr,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            NZD =
+              T.let(
+                :nzd,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            PGK =
+              T.let(
+                :pgk,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            PHP =
+              T.let(
+                :php,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            PKR =
+              T.let(
+                :pkr,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            PLN =
+              T.let(
+                :pln,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            QAR =
+              T.let(
+                :qar,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            RON =
+              T.let(
+                :ron,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            RSD =
+              T.let(
+                :rsd,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            RUB =
+              T.let(
+                :rub,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            RWF =
+              T.let(
+                :rwf,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            SAR =
+              T.let(
+                :sar,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            SBD =
+              T.let(
+                :sbd,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            SCR =
+              T.let(
+                :scr,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            SEK =
+              T.let(
+                :sek,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            SGD =
+              T.let(
+                :sgd,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            SLE =
+              T.let(
+                :sle,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            SLL =
+              T.let(
+                :sll,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            SOS =
+              T.let(
+                :sos,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            SZL =
+              T.let(
+                :szl,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            THB =
+              T.let(
+                :thb,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            TJS =
+              T.let(
+                :tjs,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            TOP =
+              T.let(
+                :top,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            TRY =
+              T.let(
+                :try,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            TTD =
+              T.let(
+                :ttd,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            TZS =
+              T.let(
+                :tzs,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            UAH =
+              T.let(
+                :uah,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            UZS =
+              T.let(
+                :uzs,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            VND =
+              T.let(
+                :vnd,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            VUV =
+              T.let(
+                :vuv,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            WST =
+              T.let(
+                :wst,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            XAF =
+              T.let(
+                :xaf,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            XCD =
+              T.let(
+                :xcd,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            YER =
+              T.let(
+                :yer,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            ZAR =
+              T.let(
+                :zar,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            ZMW =
+              T.let(
+                :zmw,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            CLP =
+              T.let(
+                :clp,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            DJF =
+              T.let(
+                :djf,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            GNF =
+              T.let(
+                :gnf,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            UGX =
+              T.let(
+                :ugx,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            PYG =
+              T.let(
+                :pyg,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            XOF =
+              T.let(
+                :xof,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
+            XPF =
+              T.let(
+                :xpf,
+                Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+              )
 
             sig do
               override.returns(
-                {
-                  amount: Float,
-                  currency:
-                    Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::OrSymbol
-                }
+                T::Array[
+                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency::TaggedSymbol
+                ]
               )
             end
-            def to_hash
-            end
-
-            module Currency
-              extend Stigg::Internal::Type::Enum
-
-              TaggedSymbol =
-                T.type_alias do
-                  T.all(
-                    Symbol,
-                    Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency
-                  )
-                end
-              OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-              USD =
-                T.let(
-                  :usd,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              AED =
-                T.let(
-                  :aed,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              ALL =
-                T.let(
-                  :all,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              AMD =
-                T.let(
-                  :amd,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              ANG =
-                T.let(
-                  :ang,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              AUD =
-                T.let(
-                  :aud,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              AWG =
-                T.let(
-                  :awg,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              AZN =
-                T.let(
-                  :azn,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              BAM =
-                T.let(
-                  :bam,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              BBD =
-                T.let(
-                  :bbd,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              BDT =
-                T.let(
-                  :bdt,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              BGN =
-                T.let(
-                  :bgn,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              BIF =
-                T.let(
-                  :bif,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              BMD =
-                T.let(
-                  :bmd,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              BND =
-                T.let(
-                  :bnd,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              BSD =
-                T.let(
-                  :bsd,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              BWP =
-                T.let(
-                  :bwp,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              BYN =
-                T.let(
-                  :byn,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              BZD =
-                T.let(
-                  :bzd,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              BRL =
-                T.let(
-                  :brl,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              CAD =
-                T.let(
-                  :cad,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              CDF =
-                T.let(
-                  :cdf,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              CHF =
-                T.let(
-                  :chf,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              CNY =
-                T.let(
-                  :cny,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              CZK =
-                T.let(
-                  :czk,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              DKK =
-                T.let(
-                  :dkk,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              DOP =
-                T.let(
-                  :dop,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              DZD =
-                T.let(
-                  :dzd,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              EGP =
-                T.let(
-                  :egp,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              ETB =
-                T.let(
-                  :etb,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              EUR =
-                T.let(
-                  :eur,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              FJD =
-                T.let(
-                  :fjd,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              GBP =
-                T.let(
-                  :gbp,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              GEL =
-                T.let(
-                  :gel,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              GIP =
-                T.let(
-                  :gip,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              GMD =
-                T.let(
-                  :gmd,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              GYD =
-                T.let(
-                  :gyd,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              HKD =
-                T.let(
-                  :hkd,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              HRK =
-                T.let(
-                  :hrk,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              HTG =
-                T.let(
-                  :htg,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              IDR =
-                T.let(
-                  :idr,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              ILS =
-                T.let(
-                  :ils,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              INR =
-                T.let(
-                  :inr,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              ISK =
-                T.let(
-                  :isk,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              JMD =
-                T.let(
-                  :jmd,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              JPY =
-                T.let(
-                  :jpy,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              KES =
-                T.let(
-                  :kes,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              KGS =
-                T.let(
-                  :kgs,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              KHR =
-                T.let(
-                  :khr,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              KMF =
-                T.let(
-                  :kmf,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              KRW =
-                T.let(
-                  :krw,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              KYD =
-                T.let(
-                  :kyd,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              KZT =
-                T.let(
-                  :kzt,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              LBP =
-                T.let(
-                  :lbp,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              LKR =
-                T.let(
-                  :lkr,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              LRD =
-                T.let(
-                  :lrd,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              LSL =
-                T.let(
-                  :lsl,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              MAD =
-                T.let(
-                  :mad,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              MDL =
-                T.let(
-                  :mdl,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              MGA =
-                T.let(
-                  :mga,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              MKD =
-                T.let(
-                  :mkd,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              MMK =
-                T.let(
-                  :mmk,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              MNT =
-                T.let(
-                  :mnt,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              MOP =
-                T.let(
-                  :mop,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              MRO =
-                T.let(
-                  :mro,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              MVR =
-                T.let(
-                  :mvr,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              MWK =
-                T.let(
-                  :mwk,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              MXN =
-                T.let(
-                  :mxn,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              MYR =
-                T.let(
-                  :myr,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              MZN =
-                T.let(
-                  :mzn,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              NAD =
-                T.let(
-                  :nad,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              NGN =
-                T.let(
-                  :ngn,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              NOK =
-                T.let(
-                  :nok,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              NPR =
-                T.let(
-                  :npr,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              NZD =
-                T.let(
-                  :nzd,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              PGK =
-                T.let(
-                  :pgk,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              PHP =
-                T.let(
-                  :php,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              PKR =
-                T.let(
-                  :pkr,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              PLN =
-                T.let(
-                  :pln,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              QAR =
-                T.let(
-                  :qar,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              RON =
-                T.let(
-                  :ron,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              RSD =
-                T.let(
-                  :rsd,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              RUB =
-                T.let(
-                  :rub,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              RWF =
-                T.let(
-                  :rwf,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              SAR =
-                T.let(
-                  :sar,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              SBD =
-                T.let(
-                  :sbd,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              SCR =
-                T.let(
-                  :scr,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              SEK =
-                T.let(
-                  :sek,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              SGD =
-                T.let(
-                  :sgd,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              SLE =
-                T.let(
-                  :sle,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              SLL =
-                T.let(
-                  :sll,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              SOS =
-                T.let(
-                  :sos,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              SZL =
-                T.let(
-                  :szl,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              THB =
-                T.let(
-                  :thb,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              TJS =
-                T.let(
-                  :tjs,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              TOP =
-                T.let(
-                  :top,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              TRY =
-                T.let(
-                  :try,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              TTD =
-                T.let(
-                  :ttd,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              TZS =
-                T.let(
-                  :tzs,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              UAH =
-                T.let(
-                  :uah,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              UZS =
-                T.let(
-                  :uzs,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              VND =
-                T.let(
-                  :vnd,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              VUV =
-                T.let(
-                  :vuv,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              WST =
-                T.let(
-                  :wst,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              XAF =
-                T.let(
-                  :xaf,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              XCD =
-                T.let(
-                  :xcd,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              YER =
-                T.let(
-                  :yer,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              ZAR =
-                T.let(
-                  :zar,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              ZMW =
-                T.let(
-                  :zmw,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              CLP =
-                T.let(
-                  :clp,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              DJF =
-                T.let(
-                  :djf,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              GNF =
-                T.let(
-                  :gnf,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              UGX =
-                T.let(
-                  :ugx,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              PYG =
-                T.let(
-                  :pyg,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              XOF =
-                T.let(
-                  :xof,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-              XPF =
-                T.let(
-                  :xpf,
-                  Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                )
-
-              sig do
-                override.returns(
-                  T::Array[
-                    Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency::TaggedSymbol
-                  ]
-                )
-              end
-              def self.values
-              end
+            def self.values
             end
           end
         end
