@@ -4,12 +4,15 @@ module Stigg
   module Resources
     class V1
       class Subscriptions
+        # Operations related to subscriptions
         # @return [Stigg::Resources::V1::Subscriptions::FutureUpdate]
         attr_reader :future_update
 
+        # Operations related to subscriptions
         # @return [Stigg::Resources::V1::Subscriptions::Usage]
         attr_reader :usage
 
+        # Operations related to subscriptions
         # @return [Stigg::Resources::V1::Subscriptions::Invoice]
         attr_reader :invoice
 
@@ -120,10 +123,11 @@ module Stigg
         # @see Stigg::Models::V1::SubscriptionListParams
         def list(params = {})
           parsed, options = Stigg::V1::SubscriptionListParams.dump_request(params)
+          query = Stigg::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :get,
             path: "api/v1/subscriptions",
-            query: parsed.transform_keys(
+            query: query.transform_keys(
               created_at: "createdAt",
               customer_id: "customerId",
               plan_id: "planId",

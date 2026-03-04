@@ -3,6 +3,7 @@
 module Stigg
   module Resources
     class V1
+      # Operations related to features
       class Features
         # Archives a feature, preventing it from being used in new entitlements.
         #
@@ -93,10 +94,11 @@ module Stigg
         # @see Stigg::Models::V1::FeatureListFeaturesParams
         def list_features(params = {})
           parsed, options = Stigg::V1::FeatureListFeaturesParams.dump_request(params)
+          query = Stigg::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :get,
             path: "api/v1/features",
-            query: parsed.transform_keys(
+            query: query.transform_keys(
               created_at: "createdAt",
               feature_type: "featureType",
               meter_type: "meterType"

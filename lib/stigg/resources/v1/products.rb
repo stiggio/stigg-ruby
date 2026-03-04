@@ -3,6 +3,7 @@
 module Stigg
   module Resources
     class V1
+      # Operations related to products
       class Products
         # Archives a product, preventing new subscriptions. All plans and addons are
         # archived.
@@ -106,10 +107,11 @@ module Stigg
         # @see Stigg::Models::V1::ProductListProductsParams
         def list_products(params = {})
           parsed, options = Stigg::V1::ProductListProductsParams.dump_request(params)
+          query = Stigg::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :get,
             path: "api/v1/products",
-            query: parsed.transform_keys(created_at: "createdAt"),
+            query: query.transform_keys(created_at: "createdAt"),
             page: Stigg::Internal::MyCursorIDPage,
             model: Stigg::Models::V1::ProductListProductsResponse,
             options: options

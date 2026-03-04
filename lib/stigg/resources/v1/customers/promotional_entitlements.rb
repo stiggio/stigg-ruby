@@ -4,6 +4,7 @@ module Stigg
   module Resources
     class V1
       class Customers
+        # Operations related to promotional entitlements
         class PromotionalEntitlements
           # Grants promotional entitlements to a customer, providing feature access outside
           # their subscription. Entitlements can be time-limited or permanent.
@@ -57,10 +58,11 @@ module Stigg
           # @see Stigg::Models::V1::Customers::PromotionalEntitlementListParams
           def list(id, params = {})
             parsed, options = Stigg::V1::Customers::PromotionalEntitlementListParams.dump_request(params)
+            query = Stigg::Internal::Util.encode_query_params(parsed)
             @client.request(
               method: :get,
               path: ["api/v1/customers/%1$s/promotional-entitlements", id],
-              query: parsed.transform_keys(created_at: "createdAt"),
+              query: query.transform_keys(created_at: "createdAt"),
               page: Stigg::Internal::MyCursorIDPage,
               model: Stigg::Models::V1::Customers::PromotionalEntitlementListResponse,
               options: options

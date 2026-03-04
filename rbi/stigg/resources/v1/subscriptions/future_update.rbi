@@ -4,6 +4,7 @@ module Stigg
   module Resources
     class V1
       class Subscriptions
+        # Operations related to subscriptions
         class FutureUpdate
           # Cancels a subscription update that is pending payment completion.
           sig do

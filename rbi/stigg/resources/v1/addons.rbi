@@ -3,6 +3,7 @@
 module Stigg
   module Resources
     class V1
+      # Operations related to addons
       class Addons
         sig { returns(Stigg::Resources::V1::Addons::Entitlements) }
         attr_reader :entitlements

@@ -4,6 +4,7 @@ module Stigg
   module Resources
     class V1
       class Customers
+        # Operations related to promotional entitlements
         class PromotionalEntitlements
           # Grants promotional entitlements to a customer, providing feature access outside
           # their subscription. Entitlements can be time-limited or permanent.

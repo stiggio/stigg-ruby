@@ -4,9 +4,11 @@ module Stigg
   module Resources
     class V1
       class Customers
+        # Operations related to customers
         # @return [Stigg::Resources::V1::Customers::PaymentMethod]
         attr_reader :payment_method
 
+        # Operations related to promotional entitlements
         # @return [Stigg::Resources::V1::Customers::PromotionalEntitlements]
         attr_reader :promotional_entitlements
 
@@ -87,10 +89,11 @@ module Stigg
         # @see Stigg::Models::V1::CustomerListParams
         def list(params = {})
           parsed, options = Stigg::V1::CustomerListParams.dump_request(params)
+          query = Stigg::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :get,
             path: "api/v1/customers",
-            query: parsed.transform_keys(created_at: "createdAt"),
+            query: query.transform_keys(created_at: "createdAt"),
             page: Stigg::Internal::MyCursorIDPage,
             model: Stigg::Models::V1::CustomerListResponse,
             options: options
@@ -160,10 +163,11 @@ module Stigg
         # @see Stigg::Models::V1::CustomerListResourcesParams
         def list_resources(id, params = {})
           parsed, options = Stigg::V1::CustomerListResourcesParams.dump_request(params)
+          query = Stigg::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :get,
             path: ["api/v1/customers/%1$s/resources", id],
-            query: parsed,
+            query: query,
             page: Stigg::Internal::MyCursorIDPage,
             model: Stigg::Models::V1::CustomerListResourcesResponse,
             options: options

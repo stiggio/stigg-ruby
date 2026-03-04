@@ -3,6 +3,7 @@
 module Stigg
   module Resources
     class V1
+      # Operations related to coupons
       class Coupons
         # Creates a new discount coupon with percentage or fixed amount off, applicable to
         # customer subscriptions.
@@ -84,10 +85,11 @@ module Stigg
         # @see Stigg::Models::V1::CouponListParams
         def list(params = {})
           parsed, options = Stigg::V1::CouponListParams.dump_request(params)
+          query = Stigg::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :get,
             path: "api/v1/coupons",
-            query: parsed.transform_keys(created_at: "createdAt"),
+            query: query.transform_keys(created_at: "createdAt"),
             page: Stigg::Internal::MyCursorIDPage,
             model: Stigg::Models::V1::CouponListResponse,
             options: options

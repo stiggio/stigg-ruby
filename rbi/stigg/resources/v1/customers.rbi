@@ -4,9 +4,11 @@ module Stigg
   module Resources
     class V1
       class Customers
+        # Operations related to customers
         sig { returns(Stigg::Resources::V1::Customers::PaymentMethod) }
         attr_reader :payment_method
 
+        # Operations related to promotional entitlements
         sig do
           returns(Stigg::Resources::V1::Customers::PromotionalEntitlements)
         end
