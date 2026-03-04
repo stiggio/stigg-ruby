@@ -4,6 +4,7 @@ module Stigg
   module Resources
     class V1
       class Customers
+        # Operations related to customers
         class PaymentMethod
           # Attaches a payment method to a customer for billing. Required for paid
           # subscriptions when integrated with a billing provider.

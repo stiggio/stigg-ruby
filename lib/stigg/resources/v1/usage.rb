@@ -3,6 +3,7 @@
 module Stigg
   module Resources
     class V1
+      # Operations related to usage & metering
       class Usage
         # Retrieves historical usage data for a customer's metered feature over time.
         #
@@ -27,6 +28,7 @@ module Stigg
         # @see Stigg::Models::V1::UsageHistoryParams
         def history(feature_id, params)
           parsed, options = Stigg::V1::UsageHistoryParams.dump_request(params)
+          query = Stigg::Internal::Util.encode_query_params(parsed)
           customer_id =
             parsed.delete(:customer_id) do
               raise ArgumentError.new("missing required path argument #{_1}")
@@ -34,7 +36,7 @@ module Stigg
           @client.request(
             method: :get,
             path: ["api/v1/usage/%1$s/history/%2$s", customer_id, feature_id],
-            query: parsed.transform_keys(
+            query: query.transform_keys(
               start_date: "startDate",
               end_date: "endDate",
               group_by: "groupBy",

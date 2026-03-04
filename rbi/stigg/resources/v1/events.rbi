@@ -3,6 +3,7 @@
 module Stigg
   module Resources
     class V1
+      # Operations related to usage & metering
       class Events
         # Reports raw usage events for event-based metering. Events are ingested
         # asynchronously and aggregated into usage totals.

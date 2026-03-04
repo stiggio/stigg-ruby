@@ -4,6 +4,7 @@ module Stigg
   module Resources
     class V1
       class Subscriptions
+        # Operations related to subscriptions
         class Invoice
           # Marks the latest invoice of a subscription as paid in the billing provider. The
           # invoice must exist and have an OPEN status.

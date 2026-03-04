@@ -3,6 +3,7 @@
 module Stigg
   module Resources
     class V1
+      # Operations related to plans
       class Plans
         # @return [Stigg::Resources::V1::Plans::Entitlements]
         attr_reader :entitlements
@@ -128,10 +129,11 @@ module Stigg
         # @see Stigg::Models::V1::PlanListParams
         def list(params = {})
           parsed, options = Stigg::V1::PlanListParams.dump_request(params)
+          query = Stigg::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :get,
             path: "api/v1/plans",
-            query: parsed.transform_keys(created_at: "createdAt", product_id: "productId"),
+            query: query.transform_keys(created_at: "createdAt", product_id: "productId"),
             page: Stigg::Internal::MyCursorIDPage,
             model: Stigg::Models::V1::PlanListResponse,
             options: options

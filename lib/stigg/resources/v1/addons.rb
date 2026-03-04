@@ -3,6 +3,7 @@
 module Stigg
   module Resources
     class V1
+      # Operations related to addons
       class Addons
         # @return [Stigg::Resources::V1::Addons::Entitlements]
         attr_reader :entitlements
@@ -124,10 +125,11 @@ module Stigg
         # @see Stigg::Models::V1::AddonListParams
         def list(params = {})
           parsed, options = Stigg::V1::AddonListParams.dump_request(params)
+          query = Stigg::Internal::Util.encode_query_params(parsed)
           @client.request(
             method: :get,
             path: "api/v1/addons",
-            query: parsed.transform_keys(created_at: "createdAt", product_id: "productId"),
+            query: query.transform_keys(created_at: "createdAt", product_id: "productId"),
             page: Stigg::Internal::MyCursorIDPage,
             model: Stigg::Models::V1::AddonListResponse,
             options: options

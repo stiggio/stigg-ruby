@@ -3,6 +3,7 @@
 module Stigg
   module Resources
     class V1
+      # Operations related to features
       class Features
         # Archives a feature, preventing it from being used in new entitlements.
         sig do

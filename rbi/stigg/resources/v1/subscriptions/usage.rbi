@@ -4,6 +4,7 @@ module Stigg
   module Resources
     class V1
       class Subscriptions
+        # Operations related to subscriptions
         class Usage
           # Immediately charges usage for a subscription via the billing integration.
           # Calculates usage since the last charge and creates an invoice.

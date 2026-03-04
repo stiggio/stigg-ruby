@@ -3,6 +3,7 @@
 module Stigg
   module Resources
     class V1
+      # Operations related to coupons
       class Coupons
         # Creates a new discount coupon with percentage or fixed amount off, applicable to
         # customer subscriptions.
