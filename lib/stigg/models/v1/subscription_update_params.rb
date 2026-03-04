@@ -65,6 +65,7 @@ module Stigg
         optional :metadata, Stigg::Internal::Type::HashOf[String]
 
         # @!attribute minimum_spend
+        #   Minimum spend amount
         #
         #   @return [Stigg::Models::V1::SubscriptionUpdateParams::MinimumSpend, nil]
         optional :minimum_spend,
@@ -125,7 +126,7 @@ module Stigg
         #
         #   @param metadata [Hash{Symbol=>String}] Additional metadata for the subscription
         #
-        #   @param minimum_spend [Stigg::Models::V1::SubscriptionUpdateParams::MinimumSpend, nil]
+        #   @param minimum_spend [Stigg::Models::V1::SubscriptionUpdateParams::MinimumSpend, nil] Minimum spend amount
         #
         #   @param price_overrides [Array<Stigg::Models::V1::SubscriptionUpdateParams::PriceOverride>]
         #
@@ -246,20 +247,27 @@ module Stigg
 
             class AmountsOff < Stigg::Internal::Type::BaseModel
               # @!attribute amount
+              #   The price amount
               #
               #   @return [Float]
               required :amount, Float
 
               # @!attribute currency
+              #   The price currency
               #
-              #   @return [Symbol, Stigg::Models::V1::SubscriptionUpdateParams::AppliedCoupon::Discount::AmountsOff::Currency, nil]
-              optional :currency,
+              #   @return [Symbol, Stigg::Models::V1::SubscriptionUpdateParams::AppliedCoupon::Discount::AmountsOff::Currency]
+              required :currency,
                        enum: -> { Stigg::V1::SubscriptionUpdateParams::AppliedCoupon::Discount::AmountsOff::Currency }
 
-              # @!method initialize(amount:, currency: nil)
-              #   @param amount [Float]
-              #   @param currency [Symbol, Stigg::Models::V1::SubscriptionUpdateParams::AppliedCoupon::Discount::AmountsOff::Currency]
+              # @!method initialize(amount:, currency:)
+              #   Monetary amount with currency
+              #
+              #   @param amount [Float] The price amount
+              #
+              #   @param currency [Symbol, Stigg::Models::V1::SubscriptionUpdateParams::AppliedCoupon::Discount::AmountsOff::Currency] The price currency
 
+              # The price currency
+              #
               # @see Stigg::Models::V1::SubscriptionUpdateParams::AppliedCoupon::Discount::AmountsOff#currency
               module Currency
                 extend Stigg::Internal::Type::Enum
@@ -589,18 +597,21 @@ module Stigg
 
         class Budget < Stigg::Internal::Type::BaseModel
           # @!attribute has_soft_limit
+          #   Whether the budget is a soft limit
           #
           #   @return [Boolean]
           required :has_soft_limit, Stigg::Internal::Type::Boolean, api_name: :hasSoftLimit
 
           # @!attribute limit
+          #   Maximum spending limit
           #
           #   @return [Float]
           required :limit, Float
 
           # @!method initialize(has_soft_limit:, limit:)
-          #   @param has_soft_limit [Boolean]
-          #   @param limit [Float]
+          #   @param has_soft_limit [Boolean] Whether the budget is a soft limit
+          #
+          #   @param limit [Float] Maximum spending limit
         end
 
         class Charge < Stigg::Internal::Type::BaseModel
@@ -640,154 +651,150 @@ module Stigg
         end
 
         class MinimumSpend < Stigg::Internal::Type::BaseModel
-          # @!attribute minimum
+          # @!attribute amount
+          #   The price amount
           #
-          #   @return [Stigg::Models::V1::SubscriptionUpdateParams::MinimumSpend::Minimum, nil]
-          optional :minimum, -> { Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum }, nil?: true
+          #   @return [Float, nil]
+          optional :amount, Float
 
-          # @!method initialize(minimum: nil)
-          #   @param minimum [Stigg::Models::V1::SubscriptionUpdateParams::MinimumSpend::Minimum, nil]
+          # @!attribute currency
+          #   The price currency
+          #
+          #   @return [Symbol, Stigg::Models::V1::SubscriptionUpdateParams::MinimumSpend::Currency, nil]
+          optional :currency, enum: -> { Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Currency }
 
-          # @see Stigg::Models::V1::SubscriptionUpdateParams::MinimumSpend#minimum
-          class Minimum < Stigg::Internal::Type::BaseModel
-            # @!attribute amount
-            #
-            #   @return [Float]
-            required :amount, Float
+          # @!method initialize(amount: nil, currency: nil)
+          #   Minimum spend amount
+          #
+          #   @param amount [Float] The price amount
+          #
+          #   @param currency [Symbol, Stigg::Models::V1::SubscriptionUpdateParams::MinimumSpend::Currency] The price currency
 
-            # @!attribute currency
-            #
-            #   @return [Symbol, Stigg::Models::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency, nil]
-            optional :currency, enum: -> { Stigg::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency }
+          # The price currency
+          #
+          # @see Stigg::Models::V1::SubscriptionUpdateParams::MinimumSpend#currency
+          module Currency
+            extend Stigg::Internal::Type::Enum
 
-            # @!method initialize(amount:, currency: nil)
-            #   @param amount [Float]
-            #   @param currency [Symbol, Stigg::Models::V1::SubscriptionUpdateParams::MinimumSpend::Minimum::Currency]
+            USD = :usd
+            AED = :aed
+            ALL = :all
+            AMD = :amd
+            ANG = :ang
+            AUD = :aud
+            AWG = :awg
+            AZN = :azn
+            BAM = :bam
+            BBD = :bbd
+            BDT = :bdt
+            BGN = :bgn
+            BIF = :bif
+            BMD = :bmd
+            BND = :bnd
+            BSD = :bsd
+            BWP = :bwp
+            BYN = :byn
+            BZD = :bzd
+            BRL = :brl
+            CAD = :cad
+            CDF = :cdf
+            CHF = :chf
+            CNY = :cny
+            CZK = :czk
+            DKK = :dkk
+            DOP = :dop
+            DZD = :dzd
+            EGP = :egp
+            ETB = :etb
+            EUR = :eur
+            FJD = :fjd
+            GBP = :gbp
+            GEL = :gel
+            GIP = :gip
+            GMD = :gmd
+            GYD = :gyd
+            HKD = :hkd
+            HRK = :hrk
+            HTG = :htg
+            IDR = :idr
+            ILS = :ils
+            INR = :inr
+            ISK = :isk
+            JMD = :jmd
+            JPY = :jpy
+            KES = :kes
+            KGS = :kgs
+            KHR = :khr
+            KMF = :kmf
+            KRW = :krw
+            KYD = :kyd
+            KZT = :kzt
+            LBP = :lbp
+            LKR = :lkr
+            LRD = :lrd
+            LSL = :lsl
+            MAD = :mad
+            MDL = :mdl
+            MGA = :mga
+            MKD = :mkd
+            MMK = :mmk
+            MNT = :mnt
+            MOP = :mop
+            MRO = :mro
+            MVR = :mvr
+            MWK = :mwk
+            MXN = :mxn
+            MYR = :myr
+            MZN = :mzn
+            NAD = :nad
+            NGN = :ngn
+            NOK = :nok
+            NPR = :npr
+            NZD = :nzd
+            PGK = :pgk
+            PHP = :php
+            PKR = :pkr
+            PLN = :pln
+            QAR = :qar
+            RON = :ron
+            RSD = :rsd
+            RUB = :rub
+            RWF = :rwf
+            SAR = :sar
+            SBD = :sbd
+            SCR = :scr
+            SEK = :sek
+            SGD = :sgd
+            SLE = :sle
+            SLL = :sll
+            SOS = :sos
+            SZL = :szl
+            THB = :thb
+            TJS = :tjs
+            TOP = :top
+            TRY = :try
+            TTD = :ttd
+            TZS = :tzs
+            UAH = :uah
+            UZS = :uzs
+            VND = :vnd
+            VUV = :vuv
+            WST = :wst
+            XAF = :xaf
+            XCD = :xcd
+            YER = :yer
+            ZAR = :zar
+            ZMW = :zmw
+            CLP = :clp
+            DJF = :djf
+            GNF = :gnf
+            UGX = :ugx
+            PYG = :pyg
+            XOF = :xof
+            XPF = :xpf
 
-            # @see Stigg::Models::V1::SubscriptionUpdateParams::MinimumSpend::Minimum#currency
-            module Currency
-              extend Stigg::Internal::Type::Enum
-
-              USD = :usd
-              AED = :aed
-              ALL = :all
-              AMD = :amd
-              ANG = :ang
-              AUD = :aud
-              AWG = :awg
-              AZN = :azn
-              BAM = :bam
-              BBD = :bbd
-              BDT = :bdt
-              BGN = :bgn
-              BIF = :bif
-              BMD = :bmd
-              BND = :bnd
-              BSD = :bsd
-              BWP = :bwp
-              BYN = :byn
-              BZD = :bzd
-              BRL = :brl
-              CAD = :cad
-              CDF = :cdf
-              CHF = :chf
-              CNY = :cny
-              CZK = :czk
-              DKK = :dkk
-              DOP = :dop
-              DZD = :dzd
-              EGP = :egp
-              ETB = :etb
-              EUR = :eur
-              FJD = :fjd
-              GBP = :gbp
-              GEL = :gel
-              GIP = :gip
-              GMD = :gmd
-              GYD = :gyd
-              HKD = :hkd
-              HRK = :hrk
-              HTG = :htg
-              IDR = :idr
-              ILS = :ils
-              INR = :inr
-              ISK = :isk
-              JMD = :jmd
-              JPY = :jpy
-              KES = :kes
-              KGS = :kgs
-              KHR = :khr
-              KMF = :kmf
-              KRW = :krw
-              KYD = :kyd
-              KZT = :kzt
-              LBP = :lbp
-              LKR = :lkr
-              LRD = :lrd
-              LSL = :lsl
-              MAD = :mad
-              MDL = :mdl
-              MGA = :mga
-              MKD = :mkd
-              MMK = :mmk
-              MNT = :mnt
-              MOP = :mop
-              MRO = :mro
-              MVR = :mvr
-              MWK = :mwk
-              MXN = :mxn
-              MYR = :myr
-              MZN = :mzn
-              NAD = :nad
-              NGN = :ngn
-              NOK = :nok
-              NPR = :npr
-              NZD = :nzd
-              PGK = :pgk
-              PHP = :php
-              PKR = :pkr
-              PLN = :pln
-              QAR = :qar
-              RON = :ron
-              RSD = :rsd
-              RUB = :rub
-              RWF = :rwf
-              SAR = :sar
-              SBD = :sbd
-              SCR = :scr
-              SEK = :sek
-              SGD = :sgd
-              SLE = :sle
-              SLL = :sll
-              SOS = :sos
-              SZL = :szl
-              THB = :thb
-              TJS = :tjs
-              TOP = :top
-              TRY = :try
-              TTD = :ttd
-              TZS = :tzs
-              UAH = :uah
-              UZS = :uzs
-              VND = :vnd
-              VUV = :vuv
-              WST = :wst
-              XAF = :xaf
-              XCD = :xcd
-              YER = :yer
-              ZAR = :zar
-              ZMW = :zmw
-              CLP = :clp
-              DJF = :djf
-              GNF = :gnf
-              UGX = :ugx
-              PYG = :pyg
-              XOF = :xof
-              XPF = :xpf
-
-              # @!method self.values
-              #   @return [Array<Symbol>]
-            end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
 
@@ -798,11 +805,23 @@ module Stigg
           #   @return [String, nil]
           optional :addon_id, String, api_name: :addonId
 
+          # @!attribute amount
+          #   The price amount
+          #
+          #   @return [Float, nil]
+          optional :amount, Float
+
           # @!attribute base_charge
           #   Whether this is a base charge override
           #
           #   @return [Boolean, nil]
           optional :base_charge, Stigg::Internal::Type::Boolean, api_name: :baseCharge
+
+          # @!attribute currency
+          #   The price currency
+          #
+          #   @return [Symbol, Stigg::Models::V1::SubscriptionUpdateParams::PriceOverride::Currency, nil]
+          optional :currency, enum: -> { Stigg::V1::SubscriptionUpdateParams::PriceOverride::Currency }
 
           # @!attribute currency_id
           #   The corresponding custom currency id of the recurring credits price
@@ -816,162 +835,144 @@ module Stigg
           #   @return [String, nil]
           optional :feature_id, String, api_name: :featureId
 
-          # @!attribute price
-          #
-          #   @return [Stigg::Models::V1::SubscriptionUpdateParams::PriceOverride::Price, nil]
-          optional :price, -> { Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price }
-
-          # @!method initialize(addon_id: nil, base_charge: nil, currency_id: nil, feature_id: nil, price: nil)
+          # @!method initialize(addon_id: nil, amount: nil, base_charge: nil, currency: nil, currency_id: nil, feature_id: nil)
           #   @param addon_id [String] Addon ID
           #
+          #   @param amount [Float] The price amount
+          #
           #   @param base_charge [Boolean] Whether this is a base charge override
+          #
+          #   @param currency [Symbol, Stigg::Models::V1::SubscriptionUpdateParams::PriceOverride::Currency] The price currency
           #
           #   @param currency_id [String] The corresponding custom currency id of the recurring credits price
           #
           #   @param feature_id [String] Feature ID
+
+          # The price currency
           #
-          #   @param price [Stigg::Models::V1::SubscriptionUpdateParams::PriceOverride::Price]
+          # @see Stigg::Models::V1::SubscriptionUpdateParams::PriceOverride#currency
+          module Currency
+            extend Stigg::Internal::Type::Enum
 
-          # @see Stigg::Models::V1::SubscriptionUpdateParams::PriceOverride#price
-          class Price < Stigg::Internal::Type::BaseModel
-            # @!attribute amount
-            #
-            #   @return [Float]
-            required :amount, Float
+            USD = :usd
+            AED = :aed
+            ALL = :all
+            AMD = :amd
+            ANG = :ang
+            AUD = :aud
+            AWG = :awg
+            AZN = :azn
+            BAM = :bam
+            BBD = :bbd
+            BDT = :bdt
+            BGN = :bgn
+            BIF = :bif
+            BMD = :bmd
+            BND = :bnd
+            BSD = :bsd
+            BWP = :bwp
+            BYN = :byn
+            BZD = :bzd
+            BRL = :brl
+            CAD = :cad
+            CDF = :cdf
+            CHF = :chf
+            CNY = :cny
+            CZK = :czk
+            DKK = :dkk
+            DOP = :dop
+            DZD = :dzd
+            EGP = :egp
+            ETB = :etb
+            EUR = :eur
+            FJD = :fjd
+            GBP = :gbp
+            GEL = :gel
+            GIP = :gip
+            GMD = :gmd
+            GYD = :gyd
+            HKD = :hkd
+            HRK = :hrk
+            HTG = :htg
+            IDR = :idr
+            ILS = :ils
+            INR = :inr
+            ISK = :isk
+            JMD = :jmd
+            JPY = :jpy
+            KES = :kes
+            KGS = :kgs
+            KHR = :khr
+            KMF = :kmf
+            KRW = :krw
+            KYD = :kyd
+            KZT = :kzt
+            LBP = :lbp
+            LKR = :lkr
+            LRD = :lrd
+            LSL = :lsl
+            MAD = :mad
+            MDL = :mdl
+            MGA = :mga
+            MKD = :mkd
+            MMK = :mmk
+            MNT = :mnt
+            MOP = :mop
+            MRO = :mro
+            MVR = :mvr
+            MWK = :mwk
+            MXN = :mxn
+            MYR = :myr
+            MZN = :mzn
+            NAD = :nad
+            NGN = :ngn
+            NOK = :nok
+            NPR = :npr
+            NZD = :nzd
+            PGK = :pgk
+            PHP = :php
+            PKR = :pkr
+            PLN = :pln
+            QAR = :qar
+            RON = :ron
+            RSD = :rsd
+            RUB = :rub
+            RWF = :rwf
+            SAR = :sar
+            SBD = :sbd
+            SCR = :scr
+            SEK = :sek
+            SGD = :sgd
+            SLE = :sle
+            SLL = :sll
+            SOS = :sos
+            SZL = :szl
+            THB = :thb
+            TJS = :tjs
+            TOP = :top
+            TRY = :try
+            TTD = :ttd
+            TZS = :tzs
+            UAH = :uah
+            UZS = :uzs
+            VND = :vnd
+            VUV = :vuv
+            WST = :wst
+            XAF = :xaf
+            XCD = :xcd
+            YER = :yer
+            ZAR = :zar
+            ZMW = :zmw
+            CLP = :clp
+            DJF = :djf
+            GNF = :gnf
+            UGX = :ugx
+            PYG = :pyg
+            XOF = :xof
+            XPF = :xpf
 
-            # @!attribute currency
-            #
-            #   @return [Symbol, Stigg::Models::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency, nil]
-            optional :currency, enum: -> { Stigg::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency }
-
-            # @!method initialize(amount:, currency: nil)
-            #   @param amount [Float]
-            #   @param currency [Symbol, Stigg::Models::V1::SubscriptionUpdateParams::PriceOverride::Price::Currency]
-
-            # @see Stigg::Models::V1::SubscriptionUpdateParams::PriceOverride::Price#currency
-            module Currency
-              extend Stigg::Internal::Type::Enum
-
-              USD = :usd
-              AED = :aed
-              ALL = :all
-              AMD = :amd
-              ANG = :ang
-              AUD = :aud
-              AWG = :awg
-              AZN = :azn
-              BAM = :bam
-              BBD = :bbd
-              BDT = :bdt
-              BGN = :bgn
-              BIF = :bif
-              BMD = :bmd
-              BND = :bnd
-              BSD = :bsd
-              BWP = :bwp
-              BYN = :byn
-              BZD = :bzd
-              BRL = :brl
-              CAD = :cad
-              CDF = :cdf
-              CHF = :chf
-              CNY = :cny
-              CZK = :czk
-              DKK = :dkk
-              DOP = :dop
-              DZD = :dzd
-              EGP = :egp
-              ETB = :etb
-              EUR = :eur
-              FJD = :fjd
-              GBP = :gbp
-              GEL = :gel
-              GIP = :gip
-              GMD = :gmd
-              GYD = :gyd
-              HKD = :hkd
-              HRK = :hrk
-              HTG = :htg
-              IDR = :idr
-              ILS = :ils
-              INR = :inr
-              ISK = :isk
-              JMD = :jmd
-              JPY = :jpy
-              KES = :kes
-              KGS = :kgs
-              KHR = :khr
-              KMF = :kmf
-              KRW = :krw
-              KYD = :kyd
-              KZT = :kzt
-              LBP = :lbp
-              LKR = :lkr
-              LRD = :lrd
-              LSL = :lsl
-              MAD = :mad
-              MDL = :mdl
-              MGA = :mga
-              MKD = :mkd
-              MMK = :mmk
-              MNT = :mnt
-              MOP = :mop
-              MRO = :mro
-              MVR = :mvr
-              MWK = :mwk
-              MXN = :mxn
-              MYR = :myr
-              MZN = :mzn
-              NAD = :nad
-              NGN = :ngn
-              NOK = :nok
-              NPR = :npr
-              NZD = :nzd
-              PGK = :pgk
-              PHP = :php
-              PKR = :pkr
-              PLN = :pln
-              QAR = :qar
-              RON = :ron
-              RSD = :rsd
-              RUB = :rub
-              RWF = :rwf
-              SAR = :sar
-              SBD = :sbd
-              SCR = :scr
-              SEK = :sek
-              SGD = :sgd
-              SLE = :sle
-              SLL = :sll
-              SOS = :sos
-              SZL = :szl
-              THB = :thb
-              TJS = :tjs
-              TOP = :top
-              TRY = :try
-              TTD = :ttd
-              TZS = :tzs
-              UAH = :uah
-              UZS = :uzs
-              VND = :vnd
-              VUV = :vuv
-              WST = :wst
-              XAF = :xaf
-              XCD = :xcd
-              YER = :yer
-              ZAR = :zar
-              ZMW = :zmw
-              CLP = :clp
-              DJF = :djf
-              GNF = :gnf
-              UGX = :ugx
-              PYG = :pyg
-              XOF = :xof
-              XPF = :xpf
-
-              # @!method self.values
-              #   @return [Array<Symbol>]
-            end
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
 

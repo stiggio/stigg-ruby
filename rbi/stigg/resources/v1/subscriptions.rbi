@@ -84,6 +84,7 @@ module Stigg
           charges: nil,
           # Additional metadata for the subscription
           metadata: nil,
+          # Minimum spend amount
           minimum_spend: nil,
           price_overrides: nil,
           promotion_code: nil,
@@ -379,6 +380,7 @@ module Stigg
           checkout_options: nil,
           # Additional metadata for the subscription
           metadata: nil,
+          # Minimum spend amount
           minimum_spend: nil,
           # Optional paying customer ID for split billing scenarios
           paying_customer_id: nil,
