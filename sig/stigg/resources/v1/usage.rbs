@@ -8,6 +8,7 @@ module Stigg
           start_date: Time,
           ?end_date: Time,
           ?group_by: String,
+          ?include_historical_usage: bool,
           ?resource_id: String?,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Models::V1::UsageHistoryResponse
