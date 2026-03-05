@@ -42,6 +42,17 @@ module Stigg
         sig { params(metadata: T::Hash[Symbol, String]).void }
         attr_writer :metadata
 
+        # The status of the package
+        sig do
+          returns(T.nilable(Stigg::V1::AddonUpdateParams::Status::OrSymbol))
+        end
+        attr_reader :status
+
+        sig do
+          params(status: Stigg::V1::AddonUpdateParams::Status::OrSymbol).void
+        end
+        attr_writer :status
+
         sig do
           params(
             billing_id: T.nilable(String),
@@ -50,6 +61,7 @@ module Stigg
             display_name: String,
             max_quantity: T.nilable(Integer),
             metadata: T::Hash[Symbol, String],
+            status: Stigg::V1::AddonUpdateParams::Status::OrSymbol,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -66,6 +78,8 @@ module Stigg
           max_quantity: nil,
           # Metadata associated with the entity
           metadata: nil,
+          # The status of the package
+          status: nil,
           request_options: {}
         )
         end
@@ -79,11 +93,39 @@ module Stigg
               display_name: String,
               max_quantity: T.nilable(Integer),
               metadata: T::Hash[Symbol, String],
+              status: Stigg::V1::AddonUpdateParams::Status::OrSymbol,
               request_options: Stigg::RequestOptions
             }
           )
         end
         def to_hash
+        end
+
+        # The status of the package
+        module Status
+          extend Stigg::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias { T.all(Symbol, Stigg::V1::AddonUpdateParams::Status) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          DRAFT =
+            T.let(:DRAFT, Stigg::V1::AddonUpdateParams::Status::TaggedSymbol)
+          PUBLISHED =
+            T.let(
+              :PUBLISHED,
+              Stigg::V1::AddonUpdateParams::Status::TaggedSymbol
+            )
+          ARCHIVED =
+            T.let(:ARCHIVED, Stigg::V1::AddonUpdateParams::Status::TaggedSymbol)
+
+          sig do
+            override.returns(
+              T::Array[Stigg::V1::AddonUpdateParams::Status::TaggedSymbol]
+            )
+          end
+          def self.values
+          end
         end
       end
     end

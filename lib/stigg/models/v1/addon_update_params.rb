@@ -44,7 +44,13 @@ module Stigg
         #   @return [Hash{Symbol=>String}, nil]
         optional :metadata, Stigg::Internal::Type::HashOf[String]
 
-        # @!method initialize(billing_id: nil, dependencies: nil, description: nil, display_name: nil, max_quantity: nil, metadata: nil, request_options: {})
+        # @!attribute status
+        #   The status of the package
+        #
+        #   @return [Symbol, Stigg::Models::V1::AddonUpdateParams::Status, nil]
+        optional :status, enum: -> { Stigg::V1::AddonUpdateParams::Status }
+
+        # @!method initialize(billing_id: nil, dependencies: nil, description: nil, display_name: nil, max_quantity: nil, metadata: nil, status: nil, request_options: {})
         #   @param billing_id [String, nil] The unique identifier for the entity in the billing provider
         #
         #   @param dependencies [Array<String>, nil] List of addons the addon is dependant on
@@ -57,7 +63,21 @@ module Stigg
         #
         #   @param metadata [Hash{Symbol=>String}] Metadata associated with the entity
         #
+        #   @param status [Symbol, Stigg::Models::V1::AddonUpdateParams::Status] The status of the package
+        #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
+
+        # The status of the package
+        module Status
+          extend Stigg::Internal::Type::Enum
+
+          DRAFT = :DRAFT
+          PUBLISHED = :PUBLISHED
+          ARCHIVED = :ARCHIVED
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
     end
   end

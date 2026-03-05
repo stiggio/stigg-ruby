@@ -8,7 +8,8 @@ module Stigg
           description: String?,
           display_name: String,
           max_quantity: Integer?,
-          metadata: ::Hash[Symbol, String]
+          metadata: ::Hash[Symbol, String],
+          status: Stigg::Models::V1::AddonUpdateParams::status
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -32,6 +33,12 @@ module Stigg
 
         def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
 
+        attr_reader status: Stigg::Models::V1::AddonUpdateParams::status?
+
+        def status=: (
+          Stigg::Models::V1::AddonUpdateParams::status
+        ) -> Stigg::Models::V1::AddonUpdateParams::status
+
         def initialize: (
           ?billing_id: String?,
           ?dependencies: ::Array[String]?,
@@ -39,6 +46,7 @@ module Stigg
           ?display_name: String,
           ?max_quantity: Integer?,
           ?metadata: ::Hash[Symbol, String],
+          ?status: Stigg::Models::V1::AddonUpdateParams::status,
           ?request_options: Stigg::request_opts
         ) -> void
 
@@ -49,8 +57,21 @@ module Stigg
           display_name: String,
           max_quantity: Integer?,
           metadata: ::Hash[Symbol, String],
+          status: Stigg::Models::V1::AddonUpdateParams::status,
           request_options: Stigg::RequestOptions
         }
+
+        type status = :DRAFT | :PUBLISHED | :ARCHIVED
+
+        module Status
+          extend Stigg::Internal::Type::Enum
+
+          DRAFT: :DRAFT
+          PUBLISHED: :PUBLISHED
+          ARCHIVED: :ARCHIVED
+
+          def self?.values: -> ::Array[Stigg::Models::V1::AddonUpdateParams::status]
+        end
       end
     end
   end
