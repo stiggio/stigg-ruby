@@ -7,6 +7,7 @@ module Stigg
           start_date: Time,
           end_date: Time,
           group_by: String,
+          include_historical_usage: bool,
           resource_id: String?
         }
         & Stigg::Internal::Type::request_parameters
@@ -27,6 +28,10 @@ module Stigg
 
         def group_by=: (String) -> String
 
+        attr_reader include_historical_usage: bool?
+
+        def include_historical_usage=: (bool) -> bool
+
         attr_accessor resource_id: String?
 
         def initialize: (
@@ -34,6 +39,7 @@ module Stigg
           start_date: Time,
           ?end_date: Time,
           ?group_by: String,
+          ?include_historical_usage: bool,
           ?resource_id: String?,
           ?request_options: Stigg::request_opts
         ) -> void
@@ -43,6 +49,7 @@ module Stigg
           start_date: Time,
           end_date: Time,
           group_by: String,
+          include_historical_usage: bool,
           resource_id: String?,
           request_options: Stigg::RequestOptions
         }
