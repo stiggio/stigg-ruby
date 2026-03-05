@@ -70,7 +70,7 @@ module Stigg
         # Updates an existing addon's properties such as display name, description, and
         # metadata.
         #
-        # @overload update(id, billing_id: nil, dependencies: nil, description: nil, display_name: nil, max_quantity: nil, metadata: nil, request_options: {})
+        # @overload update(id, billing_id: nil, dependencies: nil, description: nil, display_name: nil, max_quantity: nil, metadata: nil, status: nil, request_options: {})
         #
         # @param id [String] The unique identifier of the entity
         #
@@ -85,6 +85,8 @@ module Stigg
         # @param max_quantity [Integer, nil] The maximum quantity of this addon that can be added to a subscription
         #
         # @param metadata [Hash{Symbol=>String}] Metadata associated with the entity
+        #
+        # @param status [Symbol, Stigg::Models::V1::AddonUpdateParams::Status] The status of the package
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #

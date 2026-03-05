@@ -30,6 +30,7 @@ module Stigg
           ?display_name: String,
           ?max_quantity: Integer?,
           ?metadata: ::Hash[Symbol, String],
+          ?status: Stigg::Models::V1::AddonUpdateParams::status,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Addon
 
