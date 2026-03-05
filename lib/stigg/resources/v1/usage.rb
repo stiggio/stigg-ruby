@@ -5,9 +5,12 @@ module Stigg
     class V1
       # Operations related to usage & metering
       class Usage
+        # Some parameter documentations has been truncated, see
+        # {Stigg::Models::V1::UsageHistoryParams} for more details.
+        #
         # Retrieves historical usage data for a customer's metered feature over time.
         #
-        # @overload history(feature_id, customer_id:, start_date:, end_date: nil, group_by: nil, resource_id: nil, request_options: {})
+        # @overload history(feature_id, customer_id:, start_date:, end_date: nil, group_by: nil, include_historical_usage: nil, resource_id: nil, request_options: {})
         #
         # @param feature_id [String] Path param: Feature id
         #
@@ -18,6 +21,8 @@ module Stigg
         # @param end_date [Time] Query param: The end date of the range
         #
         # @param group_by [String] Query param
+        #
+        # @param include_historical_usage [Boolean] Query param: When true, includes usage data from the most recent cancelled or ex
         #
         # @param resource_id [String, nil] Query param: Resource id
         #
@@ -40,6 +45,7 @@ module Stigg
               start_date: "startDate",
               end_date: "endDate",
               group_by: "groupBy",
+              include_historical_usage: "includeHistoricalUsage",
               resource_id: "resourceId"
             ),
             model: Stigg::Models::V1::UsageHistoryResponse,

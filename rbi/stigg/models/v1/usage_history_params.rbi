@@ -32,6 +32,14 @@ module Stigg
         sig { params(group_by: String).void }
         attr_writer :group_by
 
+        # When true, includes usage data from the most recent cancelled or expired
+        # subscription
+        sig { returns(T.nilable(T::Boolean)) }
+        attr_reader :include_historical_usage
+
+        sig { params(include_historical_usage: T::Boolean).void }
+        attr_writer :include_historical_usage
+
         # Resource id
         sig { returns(T.nilable(String)) }
         attr_accessor :resource_id
@@ -42,6 +50,7 @@ module Stigg
             start_date: Time,
             end_date: Time,
             group_by: String,
+            include_historical_usage: T::Boolean,
             resource_id: T.nilable(String),
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
@@ -53,6 +62,9 @@ module Stigg
           # The end date of the range
           end_date: nil,
           group_by: nil,
+          # When true, includes usage data from the most recent cancelled or expired
+          # subscription
+          include_historical_usage: nil,
           # Resource id
           resource_id: nil,
           request_options: {}
@@ -66,6 +78,7 @@ module Stigg
               start_date: Time,
               end_date: Time,
               group_by: String,
+              include_historical_usage: T::Boolean,
               resource_id: T.nilable(String),
               request_options: Stigg::RequestOptions
             }
