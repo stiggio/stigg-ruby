@@ -73,6 +73,7 @@ module Stigg
             display_name: String,
             max_quantity: T.nilable(Integer),
             metadata: T::Hash[Symbol, String],
+            status: Stigg::V1::AddonUpdateParams::Status::OrSymbol,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Addon)
         end
@@ -91,6 +92,8 @@ module Stigg
           max_quantity: nil,
           # Metadata associated with the entity
           metadata: nil,
+          # The status of the package
+          status: nil,
           request_options: {}
         )
         end
