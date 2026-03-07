@@ -12,6 +12,9 @@ module Stigg
             T.any(Stigg::V1::SubscriptionCancelParams, Stigg::Internal::AnyHash)
           end
 
+        sig { returns(String) }
+        attr_accessor :id
+
         # Action on cancellation (downgrade or revoke)
         sig do
           returns(
@@ -64,6 +67,7 @@ module Stigg
 
         sig do
           params(
+            id: String,
             cancellation_action:
               Stigg::V1::SubscriptionCancelParams::CancellationAction::OrSymbol,
             cancellation_time:
@@ -74,6 +78,7 @@ module Stigg
           ).returns(T.attached_class)
         end
         def self.new(
+          id:,
           # Action on cancellation (downgrade or revoke)
           cancellation_action: nil,
           # When to cancel (immediate, period end, or date)
@@ -89,6 +94,7 @@ module Stigg
         sig do
           override.returns(
             {
+              id: String,
               cancellation_action:
                 Stigg::V1::SubscriptionCancelParams::CancellationAction::OrSymbol,
               cancellation_time:

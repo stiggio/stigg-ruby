@@ -9,6 +9,11 @@ module Stigg
           extend Stigg::Internal::Type::RequestParameters::Converter
           include Stigg::Internal::Type::RequestParameters
 
+          # @!attribute id
+          #
+          #   @return [String]
+          required :id, String
+
           # @!attribute integration_id
           #   Integration details
           #
@@ -38,7 +43,9 @@ module Stigg
                    api_name: :billingCurrency,
                    nil?: true
 
-          # @!method initialize(integration_id:, payment_method_id:, vendor_identifier:, billing_currency: nil, request_options: {})
+          # @!method initialize(id:, integration_id:, payment_method_id:, vendor_identifier:, billing_currency: nil, request_options: {})
+          #   @param id [String]
+          #
           #   @param integration_id [String] Integration details
           #
           #   @param payment_method_id [String] Billing provider payment method id

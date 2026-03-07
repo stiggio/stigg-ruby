@@ -9,7 +9,13 @@ module Stigg
           extend Stigg::Internal::Type::RequestParameters::Converter
           include Stigg::Internal::Type::RequestParameters
 
-          # @!method initialize(request_options: {})
+          # @!attribute addon_id
+          #
+          #   @return [String]
+          required :addon_id, String
+
+          # @!method initialize(addon_id:, request_options: {})
+          #   @param addon_id [String]
           #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
         end
       end

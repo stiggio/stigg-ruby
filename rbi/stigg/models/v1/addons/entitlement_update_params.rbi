@@ -19,6 +19,9 @@ module Stigg
           sig { returns(String) }
           attr_accessor :addon_id
 
+          sig { returns(String) }
+          attr_accessor :id
+
           # Credit entitlement fields to update
           sig do
             returns(
@@ -53,6 +56,7 @@ module Stigg
           sig do
             params(
               addon_id: String,
+              id: String,
               credit:
                 Stigg::V1::Addons::EntitlementUpdateParams::Credit::OrHash,
               feature:
@@ -62,6 +66,7 @@ module Stigg
           end
           def self.new(
             addon_id:,
+            id:,
             # Credit entitlement fields to update
             credit: nil,
             # Feature entitlement fields to update
@@ -74,6 +79,7 @@ module Stigg
             override.returns(
               {
                 addon_id: String,
+                id: String,
                 credit: Stigg::V1::Addons::EntitlementUpdateParams::Credit,
                 feature: Stigg::V1::Addons::EntitlementUpdateParams::Feature,
                 request_options: Stigg::RequestOptions

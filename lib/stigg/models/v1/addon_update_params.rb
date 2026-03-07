@@ -8,6 +8,11 @@ module Stigg
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
+        # @!attribute id
+        #
+        #   @return [String]
+        required :id, String
+
         # @!attribute billing_id
         #   The unique identifier for the entity in the billing provider
         #
@@ -50,7 +55,9 @@ module Stigg
         #   @return [Symbol, Stigg::Models::V1::AddonUpdateParams::Status, nil]
         optional :status, enum: -> { Stigg::V1::AddonUpdateParams::Status }
 
-        # @!method initialize(billing_id: nil, dependencies: nil, description: nil, display_name: nil, max_quantity: nil, metadata: nil, status: nil, request_options: {})
+        # @!method initialize(id:, billing_id: nil, dependencies: nil, description: nil, display_name: nil, max_quantity: nil, metadata: nil, status: nil, request_options: {})
+        #   @param id [String]
+        #
         #   @param billing_id [String, nil] The unique identifier for the entity in the billing provider
         #
         #   @param dependencies [Array<String>, nil] List of addons the addon is dependant on

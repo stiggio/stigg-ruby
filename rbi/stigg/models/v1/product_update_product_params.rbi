@@ -15,6 +15,9 @@ module Stigg
             )
           end
 
+        sig { returns(String) }
+        attr_accessor :id
+
         # Description of the product
         sig { returns(T.nilable(String)) }
         attr_accessor :description
@@ -72,6 +75,7 @@ module Stigg
 
         sig do
           params(
+            id: String,
             description: T.nilable(String),
             display_name: String,
             metadata: T.nilable(T::Hash[Symbol, String]),
@@ -84,6 +88,7 @@ module Stigg
           ).returns(T.attached_class)
         end
         def self.new(
+          id:,
           # Description of the product
           description: nil,
           # Display name of the product
@@ -102,6 +107,7 @@ module Stigg
         sig do
           override.returns(
             {
+              id: String,
               description: T.nilable(String),
               display_name: String,
               metadata: T.nilable(T::Hash[Symbol, String]),

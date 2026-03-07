@@ -14,8 +14,14 @@ module Stigg
           #   @return [String]
           required :plan_id, String
 
-          # @!method initialize(plan_id:, request_options: {})
+          # @!attribute id
+          #
+          #   @return [String]
+          required :id, String
+
+          # @!method initialize(plan_id:, id:, request_options: {})
           #   @param plan_id [String]
+          #   @param id [String]
           #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
         end
       end

@@ -12,6 +12,9 @@ module Stigg
             T.any(Stigg::V1::SubscriptionUpdateParams, Stigg::Internal::AnyHash)
           end
 
+        sig { returns(String) }
+        attr_accessor :id
+
         sig do
           returns(
             T.nilable(T::Array[Stigg::V1::SubscriptionUpdateParams::Addon])
@@ -215,6 +218,7 @@ module Stigg
 
         sig do
           params(
+            id: String,
             addons:
               T::Array[Stigg::V1::SubscriptionUpdateParams::Addon::OrHash],
             applied_coupon:
@@ -251,6 +255,7 @@ module Stigg
           ).returns(T.attached_class)
         end
         def self.new(
+          id:,
           addons: nil,
           applied_coupon: nil,
           await_payment_confirmation: nil,
@@ -276,6 +281,7 @@ module Stigg
         sig do
           override.returns(
             {
+              id: String,
               addons: T::Array[Stigg::V1::SubscriptionUpdateParams::Addon],
               applied_coupon:
                 Stigg::V1::SubscriptionUpdateParams::AppliedCoupon,

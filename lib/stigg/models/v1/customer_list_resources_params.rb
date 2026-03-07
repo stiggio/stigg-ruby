@@ -8,6 +8,11 @@ module Stigg
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
+        # @!attribute id
+        #
+        #   @return [String]
+        required :id, String
+
         # @!attribute after
         #   Return items that come after this cursor
         #
@@ -26,7 +31,9 @@ module Stigg
         #   @return [Integer, nil]
         optional :limit, Integer
 
-        # @!method initialize(after: nil, before: nil, limit: nil, request_options: {})
+        # @!method initialize(id:, after: nil, before: nil, limit: nil, request_options: {})
+        #   @param id [String]
+        #
         #   @param after [String] Return items that come after this cursor
         #
         #   @param before [String] Return items that come before this cursor

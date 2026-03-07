@@ -8,6 +8,11 @@ module Stigg
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
+        # @!attribute id
+        #
+        #   @return [String]
+        required :id, String
+
         # @!attribute addons
         #
         #   @return [Array<Stigg::Models::V1::SubscriptionUpdateParams::Addon>, nil]
@@ -107,7 +112,9 @@ module Stigg
         #   @return [Time, nil]
         optional :trial_end_date, Time, api_name: :trialEndDate
 
-        # @!method initialize(addons: nil, applied_coupon: nil, await_payment_confirmation: nil, billing_cycle_anchor: nil, billing_information: nil, billing_period: nil, budget: nil, charges: nil, metadata: nil, minimum_spend: nil, price_overrides: nil, promotion_code: nil, schedule_strategy: nil, subscription_entitlements: nil, trial_end_date: nil, request_options: {})
+        # @!method initialize(id:, addons: nil, applied_coupon: nil, await_payment_confirmation: nil, billing_cycle_anchor: nil, billing_information: nil, billing_period: nil, budget: nil, charges: nil, metadata: nil, minimum_spend: nil, price_overrides: nil, promotion_code: nil, schedule_strategy: nil, subscription_entitlements: nil, trial_end_date: nil, request_options: {})
+        #   @param id [String]
+        #
         #   @param addons [Array<Stigg::Models::V1::SubscriptionUpdateParams::Addon>]
         #
         #   @param applied_coupon [Stigg::Models::V1::SubscriptionUpdateParams::AppliedCoupon]

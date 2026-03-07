@@ -2,15 +2,20 @@ module Stigg
   module Models
     module V1
       type addon_create_draft_params =
-        {  } & Stigg::Internal::Type::request_parameters
+        { id: String } & Stigg::Internal::Type::request_parameters
 
       class AddonCreateDraftParams < Stigg::Internal::Type::BaseModel
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
-        def initialize: (?request_options: Stigg::request_opts) -> void
+        attr_accessor id: String
 
-        def to_hash: -> { request_options: Stigg::RequestOptions }
+        def initialize: (
+          id: String,
+          ?request_options: Stigg::request_opts
+        ) -> void
+
+        def to_hash: -> { id: String, request_options: Stigg::RequestOptions }
       end
     end
   end

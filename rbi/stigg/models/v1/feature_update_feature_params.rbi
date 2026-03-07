@@ -15,6 +15,9 @@ module Stigg
             )
           end
 
+        sig { returns(String) }
+        attr_accessor :id
+
         # The description for the feature
         sig { returns(T.nilable(String)) }
         attr_reader :description
@@ -100,6 +103,7 @@ module Stigg
 
         sig do
           params(
+            id: String,
             description: String,
             display_name: String,
             enum_configuration:
@@ -118,6 +122,7 @@ module Stigg
           ).returns(T.attached_class)
         end
         def self.new(
+          id:,
           # The description for the feature
           description: nil,
           # The display name for the feature
@@ -140,6 +145,7 @@ module Stigg
         sig do
           override.returns(
             {
+              id: String,
               description: String,
               display_name: String,
               enum_configuration:

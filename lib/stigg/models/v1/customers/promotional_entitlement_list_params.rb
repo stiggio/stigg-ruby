@@ -9,6 +9,11 @@ module Stigg
           extend Stigg::Internal::Type::RequestParameters::Converter
           include Stigg::Internal::Type::RequestParameters
 
+          # @!attribute id
+          #
+          #   @return [String]
+          required :id, String
+
           # @!attribute after
           #   Return items that come after this cursor
           #
@@ -40,10 +45,12 @@ module Stigg
           #   @return [String, nil]
           optional :status, String
 
-          # @!method initialize(after: nil, before: nil, created_at: nil, limit: nil, status: nil, request_options: {})
+          # @!method initialize(id:, after: nil, before: nil, created_at: nil, limit: nil, status: nil, request_options: {})
           #   Some parameter documentations has been truncated, see
           #   {Stigg::Models::V1::Customers::PromotionalEntitlementListParams} for more
           #   details.
+          #
+          #   @param id [String]
           #
           #   @param after [String] Return items that come after this cursor
           #

@@ -14,8 +14,14 @@ module Stigg
           #   @return [String]
           required :id, String
 
-          # @!method initialize(id:, request_options: {})
+          # @!attribute feature_id
+          #
+          #   @return [String]
+          required :feature_id, String
+
+          # @!method initialize(id:, feature_id:, request_options: {})
           #   @param id [String]
+          #   @param feature_id [String]
           #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
         end
       end

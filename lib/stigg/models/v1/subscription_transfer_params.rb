@@ -8,13 +8,20 @@ module Stigg
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
+        # @!attribute id
+        #
+        #   @return [String]
+        required :id, String
+
         # @!attribute destination_resource_id
         #   Resource ID to transfer the subscription to
         #
         #   @return [String]
         required :destination_resource_id, String, api_name: :destinationResourceId
 
-        # @!method initialize(destination_resource_id:, request_options: {})
+        # @!method initialize(id:, destination_resource_id:, request_options: {})
+        #   @param id [String]
+        #
         #   @param destination_resource_id [String] Resource ID to transfer the subscription to
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]

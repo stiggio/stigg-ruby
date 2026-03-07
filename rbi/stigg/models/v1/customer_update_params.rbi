@@ -12,6 +12,9 @@ module Stigg
             T.any(Stigg::V1::CustomerUpdateParams, Stigg::Internal::AnyHash)
           end
 
+        sig { returns(String) }
+        attr_accessor :id
+
         # Customer level coupon
         sig { returns(T.nilable(String)) }
         attr_accessor :coupon_id
@@ -49,6 +52,7 @@ module Stigg
 
         sig do
           params(
+            id: String,
             coupon_id: T.nilable(String),
             email: T.nilable(String),
             integrations:
@@ -59,6 +63,7 @@ module Stigg
           ).returns(T.attached_class)
         end
         def self.new(
+          id:,
           # Customer level coupon
           coupon_id: nil,
           # The email of the customer
@@ -76,6 +81,7 @@ module Stigg
         sig do
           override.returns(
             {
+              id: String,
               coupon_id: T.nilable(String),
               email: T.nilable(String),
               integrations:

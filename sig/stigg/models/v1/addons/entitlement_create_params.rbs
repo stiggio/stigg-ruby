@@ -4,6 +4,7 @@ module Stigg
       module Addons
         type entitlement_create_params =
           {
+            addon_id: String,
             entitlements: ::Array[Stigg::V1::Addons::EntitlementCreateParams::Entitlement]
           }
           & Stigg::Internal::Type::request_parameters
@@ -12,14 +13,18 @@ module Stigg
           extend Stigg::Internal::Type::RequestParameters::Converter
           include Stigg::Internal::Type::RequestParameters
 
+          attr_accessor addon_id: String
+
           attr_accessor entitlements: ::Array[Stigg::V1::Addons::EntitlementCreateParams::Entitlement]
 
           def initialize: (
+            addon_id: String,
             entitlements: ::Array[Stigg::V1::Addons::EntitlementCreateParams::Entitlement],
             ?request_options: Stigg::request_opts
           ) -> void
 
           def to_hash: -> {
+            addon_id: String,
             entitlements: ::Array[Stigg::V1::Addons::EntitlementCreateParams::Entitlement],
             request_options: Stigg::RequestOptions
           }

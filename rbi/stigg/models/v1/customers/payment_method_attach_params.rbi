@@ -16,6 +16,9 @@ module Stigg
               )
             end
 
+          sig { returns(String) }
+          attr_accessor :id
+
           # Integration details
           sig { returns(String) }
           attr_accessor :integration_id
@@ -44,6 +47,7 @@ module Stigg
 
           sig do
             params(
+              id: String,
               integration_id: String,
               payment_method_id: String,
               vendor_identifier:
@@ -56,6 +60,7 @@ module Stigg
             ).returns(T.attached_class)
           end
           def self.new(
+            id:,
             # Integration details
             integration_id:,
             # Billing provider payment method id
@@ -71,6 +76,7 @@ module Stigg
           sig do
             override.returns(
               {
+                id: String,
                 integration_id: String,
                 payment_method_id: String,
                 vendor_identifier:

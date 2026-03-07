@@ -3,6 +3,7 @@ module Stigg
     module V1
       type subscription_update_params =
         {
+          id: String,
           addons: ::Array[Stigg::V1::SubscriptionUpdateParams::Addon],
           applied_coupon: Stigg::V1::SubscriptionUpdateParams::AppliedCoupon,
           await_payment_confirmation: bool,
@@ -24,6 +25,8 @@ module Stigg
       class SubscriptionUpdateParams < Stigg::Internal::Type::BaseModel
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
+
+        attr_accessor id: String
 
         attr_reader addons: ::Array[Stigg::V1::SubscriptionUpdateParams::Addon]?
 
@@ -100,6 +103,7 @@ module Stigg
         def trial_end_date=: (Time) -> Time
 
         def initialize: (
+          id: String,
           ?addons: ::Array[Stigg::V1::SubscriptionUpdateParams::Addon],
           ?applied_coupon: Stigg::V1::SubscriptionUpdateParams::AppliedCoupon,
           ?await_payment_confirmation: bool,
@@ -119,6 +123,7 @@ module Stigg
         ) -> void
 
         def to_hash: -> {
+          id: String,
           addons: ::Array[Stigg::V1::SubscriptionUpdateParams::Addon],
           applied_coupon: Stigg::V1::SubscriptionUpdateParams::AppliedCoupon,
           await_payment_confirmation: bool,

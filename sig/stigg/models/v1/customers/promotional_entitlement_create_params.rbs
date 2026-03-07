@@ -4,6 +4,7 @@ module Stigg
       module Customers
         type promotional_entitlement_create_params =
           {
+            id: String,
             promotional_entitlements: ::Array[Stigg::V1::Customers::PromotionalEntitlementCreateParams::PromotionalEntitlement]
           }
           & Stigg::Internal::Type::request_parameters
@@ -12,14 +13,18 @@ module Stigg
           extend Stigg::Internal::Type::RequestParameters::Converter
           include Stigg::Internal::Type::RequestParameters
 
+          attr_accessor id: String
+
           attr_accessor promotional_entitlements: ::Array[Stigg::V1::Customers::PromotionalEntitlementCreateParams::PromotionalEntitlement]
 
           def initialize: (
+            id: String,
             promotional_entitlements: ::Array[Stigg::V1::Customers::PromotionalEntitlementCreateParams::PromotionalEntitlement],
             ?request_options: Stigg::request_opts
           ) -> void
 
           def to_hash: -> {
+            id: String,
             promotional_entitlements: ::Array[Stigg::V1::Customers::PromotionalEntitlementCreateParams::PromotionalEntitlement],
             request_options: Stigg::RequestOptions
           }

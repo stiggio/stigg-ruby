@@ -4,6 +4,7 @@ module Stigg
       module Customers
         type payment_method_attach_params =
           {
+            id: String,
             integration_id: String,
             payment_method_id: String,
             vendor_identifier: Stigg::Models::V1::Customers::PaymentMethodAttachParams::vendor_identifier,
@@ -15,6 +16,8 @@ module Stigg
           extend Stigg::Internal::Type::RequestParameters::Converter
           include Stigg::Internal::Type::RequestParameters
 
+          attr_accessor id: String
+
           attr_accessor integration_id: String
 
           attr_accessor payment_method_id: String
@@ -24,6 +27,7 @@ module Stigg
           attr_accessor billing_currency: Stigg::Models::V1::Customers::PaymentMethodAttachParams::billing_currency?
 
           def initialize: (
+            id: String,
             integration_id: String,
             payment_method_id: String,
             vendor_identifier: Stigg::Models::V1::Customers::PaymentMethodAttachParams::vendor_identifier,
@@ -32,6 +36,7 @@ module Stigg
           ) -> void
 
           def to_hash: -> {
+            id: String,
             integration_id: String,
             payment_method_id: String,
             vendor_identifier: Stigg::Models::V1::Customers::PaymentMethodAttachParams::vendor_identifier,
