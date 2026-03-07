@@ -12,18 +12,23 @@ module Stigg
             T.any(Stigg::V1::AddonPublishParams, Stigg::Internal::AnyHash)
           end
 
+        sig { returns(String) }
+        attr_accessor :id
+
         # The migration type of the package
         sig { returns(Stigg::V1::AddonPublishParams::MigrationType::OrSymbol) }
         attr_accessor :migration_type
 
         sig do
           params(
+            id: String,
             migration_type:
               Stigg::V1::AddonPublishParams::MigrationType::OrSymbol,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
+          id:,
           # The migration type of the package
           migration_type:,
           request_options: {}
@@ -33,6 +38,7 @@ module Stigg
         sig do
           override.returns(
             {
+              id: String,
               migration_type:
                 Stigg::V1::AddonPublishParams::MigrationType::OrSymbol,
               request_options: Stigg::RequestOptions

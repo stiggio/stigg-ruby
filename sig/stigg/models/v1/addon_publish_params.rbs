@@ -3,6 +3,7 @@ module Stigg
     module V1
       type addon_publish_params =
         {
+          id: String,
           migration_type: Stigg::Models::V1::AddonPublishParams::migration_type
         }
         & Stigg::Internal::Type::request_parameters
@@ -11,14 +12,18 @@ module Stigg
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
+        attr_accessor id: String
+
         attr_accessor migration_type: Stigg::Models::V1::AddonPublishParams::migration_type
 
         def initialize: (
+          id: String,
           migration_type: Stigg::Models::V1::AddonPublishParams::migration_type,
           ?request_options: Stigg::request_opts
         ) -> void
 
         def to_hash: -> {
+          id: String,
           migration_type: Stigg::Models::V1::AddonPublishParams::migration_type,
           request_options: Stigg::RequestOptions
         }

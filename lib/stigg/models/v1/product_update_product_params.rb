@@ -8,6 +8,11 @@ module Stigg
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
+        # @!attribute id
+        #
+        #   @return [String]
+        required :id, String
+
         # @!attribute description
         #   Description of the product
         #
@@ -47,7 +52,9 @@ module Stigg
                  -> { Stigg::V1::ProductUpdateProductParams::UsageResetCutoffRule },
                  api_name: :usageResetCutoffRule
 
-        # @!method initialize(description: nil, display_name: nil, metadata: nil, multiple_subscriptions: nil, product_settings: nil, usage_reset_cutoff_rule: nil, request_options: {})
+        # @!method initialize(id:, description: nil, display_name: nil, metadata: nil, multiple_subscriptions: nil, product_settings: nil, usage_reset_cutoff_rule: nil, request_options: {})
+        #   @param id [String]
+        #
         #   @param description [String, nil] Description of the product
         #
         #   @param display_name [String] Display name of the product

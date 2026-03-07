@@ -19,6 +19,9 @@ module Stigg
           sig { returns(String) }
           attr_accessor :plan_id
 
+          sig { returns(String) }
+          attr_accessor :id
+
           # Credit entitlement fields to update
           sig do
             returns(
@@ -53,6 +56,7 @@ module Stigg
           sig do
             params(
               plan_id: String,
+              id: String,
               credit: Stigg::V1::Plans::EntitlementUpdateParams::Credit::OrHash,
               feature:
                 Stigg::V1::Plans::EntitlementUpdateParams::Feature::OrHash,
@@ -61,6 +65,7 @@ module Stigg
           end
           def self.new(
             plan_id:,
+            id:,
             # Credit entitlement fields to update
             credit: nil,
             # Feature entitlement fields to update
@@ -73,6 +78,7 @@ module Stigg
             override.returns(
               {
                 plan_id: String,
+                id: String,
                 credit: Stigg::V1::Plans::EntitlementUpdateParams::Credit,
                 feature: Stigg::V1::Plans::EntitlementUpdateParams::Feature,
                 request_options: Stigg::RequestOptions

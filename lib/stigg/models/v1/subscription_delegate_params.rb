@@ -8,6 +8,11 @@ module Stigg
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
+        # @!attribute id
+        #
+        #   @return [String]
+        required :id, String
+
         # @!attribute target_customer_id
         #   The unique identifier of the customer who will assume payment responsibility for
         #   this subscription. This customer must already exist in your Stigg account and
@@ -16,9 +21,11 @@ module Stigg
         #   @return [String]
         required :target_customer_id, String, api_name: :targetCustomerId
 
-        # @!method initialize(target_customer_id:, request_options: {})
+        # @!method initialize(id:, target_customer_id:, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {Stigg::Models::V1::SubscriptionDelegateParams} for more details.
+        #
+        #   @param id [String]
         #
         #   @param target_customer_id [String] The unique identifier of the customer who will assume payment responsibility for
         #

@@ -12,6 +12,9 @@ module Stigg
             T.any(Stigg::V1::AddonUpdateParams, Stigg::Internal::AnyHash)
           end
 
+        sig { returns(String) }
+        attr_accessor :id
+
         # The unique identifier for the entity in the billing provider
         sig { returns(T.nilable(String)) }
         attr_accessor :billing_id
@@ -55,6 +58,7 @@ module Stigg
 
         sig do
           params(
+            id: String,
             billing_id: T.nilable(String),
             dependencies: T.nilable(T::Array[String]),
             description: T.nilable(String),
@@ -66,6 +70,7 @@ module Stigg
           ).returns(T.attached_class)
         end
         def self.new(
+          id:,
           # The unique identifier for the entity in the billing provider
           billing_id: nil,
           # List of addons the addon is dependant on
@@ -87,6 +92,7 @@ module Stigg
         sig do
           override.returns(
             {
+              id: String,
               billing_id: T.nilable(String),
               dependencies: T.nilable(T::Array[String]),
               description: T.nilable(String),

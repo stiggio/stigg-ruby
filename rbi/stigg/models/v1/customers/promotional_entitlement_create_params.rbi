@@ -16,6 +16,9 @@ module Stigg
               )
             end
 
+          sig { returns(String) }
+          attr_accessor :id
+
           # Promotional entitlements to grant
           sig do
             returns(
@@ -28,6 +31,7 @@ module Stigg
 
           sig do
             params(
+              id: String,
               promotional_entitlements:
                 T::Array[
                   Stigg::V1::Customers::PromotionalEntitlementCreateParams::PromotionalEntitlement::OrHash
@@ -36,6 +40,7 @@ module Stigg
             ).returns(T.attached_class)
           end
           def self.new(
+            id:,
             # Promotional entitlements to grant
             promotional_entitlements:,
             request_options: {}
@@ -45,6 +50,7 @@ module Stigg
           sig do
             override.returns(
               {
+                id: String,
                 promotional_entitlements:
                   T::Array[
                     Stigg::V1::Customers::PromotionalEntitlementCreateParams::PromotionalEntitlement

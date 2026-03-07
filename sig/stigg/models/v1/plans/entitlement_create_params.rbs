@@ -4,6 +4,7 @@ module Stigg
       module Plans
         type entitlement_create_params =
           {
+            plan_id: String,
             entitlements: ::Array[Stigg::V1::Plans::EntitlementCreateParams::Entitlement]
           }
           & Stigg::Internal::Type::request_parameters
@@ -12,14 +13,18 @@ module Stigg
           extend Stigg::Internal::Type::RequestParameters::Converter
           include Stigg::Internal::Type::RequestParameters
 
+          attr_accessor plan_id: String
+
           attr_accessor entitlements: ::Array[Stigg::V1::Plans::EntitlementCreateParams::Entitlement]
 
           def initialize: (
+            plan_id: String,
             entitlements: ::Array[Stigg::V1::Plans::EntitlementCreateParams::Entitlement],
             ?request_options: Stigg::request_opts
           ) -> void
 
           def to_hash: -> {
+            plan_id: String,
             entitlements: ::Array[Stigg::V1::Plans::EntitlementCreateParams::Entitlement],
             request_options: Stigg::RequestOptions
           }

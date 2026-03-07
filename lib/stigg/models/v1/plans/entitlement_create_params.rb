@@ -9,6 +9,11 @@ module Stigg
           extend Stigg::Internal::Type::RequestParameters::Converter
           include Stigg::Internal::Type::RequestParameters
 
+          # @!attribute plan_id
+          #
+          #   @return [String]
+          required :plan_id, String
+
           # @!attribute entitlements
           #   Entitlements to create
           #
@@ -16,7 +21,9 @@ module Stigg
           required :entitlements,
                    -> { Stigg::Internal::Type::ArrayOf[Stigg::V1::Plans::EntitlementCreateParams::Entitlement] }
 
-          # @!method initialize(entitlements:, request_options: {})
+          # @!method initialize(plan_id:, entitlements:, request_options: {})
+          #   @param plan_id [String]
+          #
           #   @param entitlements [Array<Stigg::Models::V1::Plans::EntitlementCreateParams::Entitlement>] Entitlements to create
           #
           #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]

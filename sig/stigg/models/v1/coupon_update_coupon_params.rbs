@@ -3,6 +3,7 @@ module Stigg
     module V1
       type coupon_update_coupon_params =
         {
+          id: String,
           description: String?,
           metadata: ::Hash[Symbol, String]?,
           name: String
@@ -13,6 +14,8 @@ module Stigg
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
+        attr_accessor id: String
+
         attr_accessor description: String?
 
         attr_accessor metadata: ::Hash[Symbol, String]?
@@ -22,6 +25,7 @@ module Stigg
         def name=: (String) -> String
 
         def initialize: (
+          id: String,
           ?description: String?,
           ?metadata: ::Hash[Symbol, String]?,
           ?name: String,
@@ -29,6 +33,7 @@ module Stigg
         ) -> void
 
         def to_hash: -> {
+          id: String,
           description: String?,
           metadata: ::Hash[Symbol, String]?,
           name: String,

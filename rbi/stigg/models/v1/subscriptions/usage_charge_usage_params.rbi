@@ -16,6 +16,9 @@ module Stigg
               )
             end
 
+          sig { returns(String) }
+          attr_accessor :id
+
           # Cutoff date for usage calculation. If not provided, the current time is used.
           sig { returns(T.nilable(Time)) }
           attr_reader :until_date
@@ -25,11 +28,13 @@ module Stigg
 
           sig do
             params(
+              id: String,
               until_date: Time,
               request_options: Stigg::RequestOptions::OrHash
             ).returns(T.attached_class)
           end
           def self.new(
+            id:,
             # Cutoff date for usage calculation. If not provided, the current time is used.
             until_date: nil,
             request_options: {}
@@ -38,7 +43,11 @@ module Stigg
 
           sig do
             override.returns(
-              { until_date: Time, request_options: Stigg::RequestOptions }
+              {
+                id: String,
+                until_date: Time,
+                request_options: Stigg::RequestOptions
+              }
             )
           end
           def to_hash

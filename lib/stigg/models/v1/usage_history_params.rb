@@ -13,6 +13,11 @@ module Stigg
         #   @return [String]
         required :customer_id, String
 
+        # @!attribute feature_id
+        #
+        #   @return [String]
+        required :feature_id, String
+
         # @!attribute start_date
         #   The start date of the range
         #
@@ -43,11 +48,13 @@ module Stigg
         #   @return [String, nil]
         optional :resource_id, String, nil?: true
 
-        # @!method initialize(customer_id:, start_date:, end_date: nil, group_by: nil, include_historical_usage: nil, resource_id: nil, request_options: {})
+        # @!method initialize(customer_id:, feature_id:, start_date:, end_date: nil, group_by: nil, include_historical_usage: nil, resource_id: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {Stigg::Models::V1::UsageHistoryParams} for more details.
         #
         #   @param customer_id [String]
+        #
+        #   @param feature_id [String]
         #
         #   @param start_date [Time] The start date of the range
         #
