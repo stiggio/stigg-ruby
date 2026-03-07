@@ -19,18 +19,26 @@ module Stigg
           sig { returns(String) }
           attr_accessor :addon_id
 
+          sig { returns(String) }
+          attr_accessor :id
+
           sig do
             params(
               addon_id: String,
+              id: String,
               request_options: Stigg::RequestOptions::OrHash
             ).returns(T.attached_class)
           end
-          def self.new(addon_id:, request_options: {})
+          def self.new(addon_id:, id:, request_options: {})
           end
 
           sig do
             override.returns(
-              { addon_id: String, request_options: Stigg::RequestOptions }
+              {
+                addon_id: String,
+                id: String,
+                request_options: Stigg::RequestOptions
+              }
             )
           end
           def to_hash

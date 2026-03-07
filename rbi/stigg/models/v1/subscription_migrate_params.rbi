@@ -15,6 +15,9 @@ module Stigg
             )
           end
 
+        sig { returns(String) }
+        attr_accessor :id
+
         # When to migrate (immediate or period end)
         sig do
           returns(
@@ -35,12 +38,14 @@ module Stigg
 
         sig do
           params(
+            id: String,
             subscription_migration_time:
               Stigg::V1::SubscriptionMigrateParams::SubscriptionMigrationTime::OrSymbol,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
+          id:,
           # When to migrate (immediate or period end)
           subscription_migration_time: nil,
           request_options: {}
@@ -50,6 +55,7 @@ module Stigg
         sig do
           override.returns(
             {
+              id: String,
               subscription_migration_time:
                 Stigg::V1::SubscriptionMigrateParams::SubscriptionMigrationTime::OrSymbol,
               request_options: Stigg::RequestOptions

@@ -3,7 +3,8 @@ module Stigg
     module V1
       module Customers
         type promotional_entitlement_revoke_params =
-          { id: String } & Stigg::Internal::Type::request_parameters
+          { id: String, feature_id: String }
+          & Stigg::Internal::Type::request_parameters
 
         class PromotionalEntitlementRevokeParams < Stigg::Internal::Type::BaseModel
           extend Stigg::Internal::Type::RequestParameters::Converter
@@ -11,12 +12,19 @@ module Stigg
 
           attr_accessor id: String
 
+          attr_accessor feature_id: String
+
           def initialize: (
             id: String,
+            feature_id: String,
             ?request_options: Stigg::request_opts
           ) -> void
 
-          def to_hash: -> { id: String, request_options: Stigg::RequestOptions }
+          def to_hash: -> {
+            id: String,
+            feature_id: String,
+            request_options: Stigg::RequestOptions
+          }
         end
       end
     end

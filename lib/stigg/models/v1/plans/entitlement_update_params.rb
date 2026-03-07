@@ -14,6 +14,11 @@ module Stigg
           #   @return [String]
           required :plan_id, String
 
+          # @!attribute id
+          #
+          #   @return [String]
+          required :id, String
+
           # @!attribute credit
           #   Credit entitlement fields to update
           #
@@ -26,8 +31,10 @@ module Stigg
           #   @return [Stigg::Models::V1::Plans::EntitlementUpdateParams::Feature, nil]
           optional :feature, -> { Stigg::V1::Plans::EntitlementUpdateParams::Feature }
 
-          # @!method initialize(plan_id:, credit: nil, feature: nil, request_options: {})
+          # @!method initialize(plan_id:, id:, credit: nil, feature: nil, request_options: {})
           #   @param plan_id [String]
+          #
+          #   @param id [String]
           #
           #   @param credit [Stigg::Models::V1::Plans::EntitlementUpdateParams::Credit] Credit entitlement fields to update
           #

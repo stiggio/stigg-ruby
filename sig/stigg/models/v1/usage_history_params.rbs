@@ -4,6 +4,7 @@ module Stigg
       type usage_history_params =
         {
           customer_id: String,
+          feature_id: String,
           start_date: Time,
           end_date: Time,
           group_by: String,
@@ -17,6 +18,8 @@ module Stigg
         include Stigg::Internal::Type::RequestParameters
 
         attr_accessor customer_id: String
+
+        attr_accessor feature_id: String
 
         attr_accessor start_date: Time
 
@@ -36,6 +39,7 @@ module Stigg
 
         def initialize: (
           customer_id: String,
+          feature_id: String,
           start_date: Time,
           ?end_date: Time,
           ?group_by: String,
@@ -46,6 +50,7 @@ module Stigg
 
         def to_hash: -> {
           customer_id: String,
+          feature_id: String,
           start_date: Time,
           end_date: Time,
           group_by: String,

@@ -2,21 +2,28 @@ module Stigg
   module Models
     module V1
       type plan_publish_params =
-        { migration_type: Stigg::Models::V1::PlanPublishParams::migration_type }
+        {
+          id: String,
+          migration_type: Stigg::Models::V1::PlanPublishParams::migration_type
+        }
         & Stigg::Internal::Type::request_parameters
 
       class PlanPublishParams < Stigg::Internal::Type::BaseModel
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
+        attr_accessor id: String
+
         attr_accessor migration_type: Stigg::Models::V1::PlanPublishParams::migration_type
 
         def initialize: (
+          id: String,
           migration_type: Stigg::Models::V1::PlanPublishParams::migration_type,
           ?request_options: Stigg::request_opts
         ) -> void
 
         def to_hash: -> {
+          id: String,
           migration_type: Stigg::Models::V1::PlanPublishParams::migration_type,
           request_options: Stigg::RequestOptions
         }

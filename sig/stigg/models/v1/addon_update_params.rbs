@@ -3,6 +3,7 @@ module Stigg
     module V1
       type addon_update_params =
         {
+          id: String,
           billing_id: String?,
           dependencies: ::Array[String]?,
           description: String?,
@@ -16,6 +17,8 @@ module Stigg
       class AddonUpdateParams < Stigg::Internal::Type::BaseModel
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
+
+        attr_accessor id: String
 
         attr_accessor billing_id: String?
 
@@ -40,6 +43,7 @@ module Stigg
         ) -> Stigg::Models::V1::AddonUpdateParams::status
 
         def initialize: (
+          id: String,
           ?billing_id: String?,
           ?dependencies: ::Array[String]?,
           ?description: String?,
@@ -51,6 +55,7 @@ module Stigg
         ) -> void
 
         def to_hash: -> {
+          id: String,
           billing_id: String?,
           dependencies: ::Array[String]?,
           description: String?,

@@ -8,6 +8,11 @@ module Stigg
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
+        # @!attribute id
+        #
+        #   @return [String]
+        required :id, String
+
         # @!attribute cancellation_action
         #   Action on cancellation (downgrade or revoke)
         #
@@ -36,7 +41,9 @@ module Stigg
         #   @return [Boolean, nil]
         optional :prorate, Stigg::Internal::Type::Boolean
 
-        # @!method initialize(cancellation_action: nil, cancellation_time: nil, end_date: nil, prorate: nil, request_options: {})
+        # @!method initialize(id:, cancellation_action: nil, cancellation_time: nil, end_date: nil, prorate: nil, request_options: {})
+        #   @param id [String]
+        #
         #   @param cancellation_action [Symbol, Stigg::Models::V1::SubscriptionCancelParams::CancellationAction] Action on cancellation (downgrade or revoke)
         #
         #   @param cancellation_time [Symbol, Stigg::Models::V1::SubscriptionCancelParams::CancellationTime] When to cancel (immediate, period end, or date)

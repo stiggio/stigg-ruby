@@ -9,6 +9,11 @@ module Stigg
           extend Stigg::Internal::Type::RequestParameters::Converter
           include Stigg::Internal::Type::RequestParameters
 
+          # @!attribute id
+          #
+          #   @return [String]
+          required :id, String
+
           # @!attribute promotional_entitlements
           #   Promotional entitlements to grant
           #
@@ -19,7 +24,9 @@ module Stigg
                    },
                    api_name: :promotionalEntitlements
 
-          # @!method initialize(promotional_entitlements:, request_options: {})
+          # @!method initialize(id:, promotional_entitlements:, request_options: {})
+          #   @param id [String]
+          #
           #   @param promotional_entitlements [Array<Stigg::Models::V1::Customers::PromotionalEntitlementCreateParams::PromotionalEntitlement>] Promotional entitlements to grant
           #
           #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]

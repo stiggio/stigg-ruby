@@ -12,6 +12,9 @@ module Stigg
             T.any(Stigg::V1::CouponUpdateCouponParams, Stigg::Internal::AnyHash)
           end
 
+        sig { returns(String) }
+        attr_accessor :id
+
         # Description of the coupon
         sig { returns(T.nilable(String)) }
         attr_accessor :description
@@ -29,6 +32,7 @@ module Stigg
 
         sig do
           params(
+            id: String,
             description: T.nilable(String),
             metadata: T.nilable(T::Hash[Symbol, String]),
             name: String,
@@ -36,6 +40,7 @@ module Stigg
           ).returns(T.attached_class)
         end
         def self.new(
+          id:,
           # Description of the coupon
           description: nil,
           # Metadata associated with the entity
@@ -49,6 +54,7 @@ module Stigg
         sig do
           override.returns(
             {
+              id: String,
               description: T.nilable(String),
               metadata: T.nilable(T::Hash[Symbol, String]),
               name: String,

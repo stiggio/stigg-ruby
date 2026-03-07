@@ -16,6 +16,9 @@ module Stigg
               )
             end
 
+          sig { returns(String) }
+          attr_accessor :id
+
           # Return items that come after this cursor
           sig { returns(T.nilable(String)) }
           attr_reader :after
@@ -65,6 +68,7 @@ module Stigg
 
           sig do
             params(
+              id: String,
               after: String,
               before: String,
               created_at:
@@ -75,6 +79,7 @@ module Stigg
             ).returns(T.attached_class)
           end
           def self.new(
+            id:,
             # Return items that come after this cursor
             after: nil,
             # Return items that come before this cursor
@@ -93,6 +98,7 @@ module Stigg
           sig do
             override.returns(
               {
+                id: String,
                 after: String,
                 before: String,
                 created_at:

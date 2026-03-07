@@ -3,7 +3,8 @@ module Stigg
     module V1
       module Plans
         type entitlement_delete_params =
-          { plan_id: String } & Stigg::Internal::Type::request_parameters
+          { plan_id: String, id: String }
+          & Stigg::Internal::Type::request_parameters
 
         class EntitlementDeleteParams < Stigg::Internal::Type::BaseModel
           extend Stigg::Internal::Type::RequestParameters::Converter
@@ -11,13 +12,17 @@ module Stigg
 
           attr_accessor plan_id: String
 
+          attr_accessor id: String
+
           def initialize: (
             plan_id: String,
+            id: String,
             ?request_options: Stigg::request_opts
           ) -> void
 
           def to_hash: -> {
             plan_id: String,
+            id: String,
             request_options: Stigg::RequestOptions
           }
         end

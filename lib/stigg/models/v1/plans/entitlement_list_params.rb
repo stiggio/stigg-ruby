@@ -9,7 +9,13 @@ module Stigg
           extend Stigg::Internal::Type::RequestParameters::Converter
           include Stigg::Internal::Type::RequestParameters
 
-          # @!method initialize(request_options: {})
+          # @!attribute plan_id
+          #
+          #   @return [String]
+          required :plan_id, String
+
+          # @!method initialize(plan_id:, request_options: {})
+          #   @param plan_id [String]
           #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
         end
       end

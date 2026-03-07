@@ -8,6 +8,11 @@ module Stigg
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
+        # @!attribute id
+        #
+        #   @return [String]
+        required :id, String
+
         # @!attribute subscription_migration_time
         #   When to migrate (immediate or period end)
         #
@@ -16,7 +21,9 @@ module Stigg
                  enum: -> { Stigg::V1::SubscriptionMigrateParams::SubscriptionMigrationTime },
                  api_name: :subscriptionMigrationTime
 
-        # @!method initialize(subscription_migration_time: nil, request_options: {})
+        # @!method initialize(id:, subscription_migration_time: nil, request_options: {})
+        #   @param id [String]
+        #
         #   @param subscription_migration_time [Symbol, Stigg::Models::V1::SubscriptionMigrateParams::SubscriptionMigrationTime] When to migrate (immediate or period end)
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]

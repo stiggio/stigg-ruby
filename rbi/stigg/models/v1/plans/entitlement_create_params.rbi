@@ -16,6 +16,9 @@ module Stigg
               )
             end
 
+          sig { returns(String) }
+          attr_accessor :plan_id
+
           # Entitlements to create
           sig do
             returns(
@@ -26,6 +29,7 @@ module Stigg
 
           sig do
             params(
+              plan_id: String,
               entitlements:
                 T::Array[
                   Stigg::V1::Plans::EntitlementCreateParams::Entitlement::OrHash
@@ -34,6 +38,7 @@ module Stigg
             ).returns(T.attached_class)
           end
           def self.new(
+            plan_id:,
             # Entitlements to create
             entitlements:,
             request_options: {}
@@ -43,6 +48,7 @@ module Stigg
           sig do
             override.returns(
               {
+                plan_id: String,
                 entitlements:
                   T::Array[
                     Stigg::V1::Plans::EntitlementCreateParams::Entitlement
