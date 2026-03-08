@@ -100,6 +100,12 @@ module Stigg
                  -> { Stigg::V1::SubscriptionProvisionParams::CheckoutOptions },
                  api_name: :checkoutOptions
 
+        # @!attribute entitlements
+        #
+        #   @return [Array<Stigg::Models::V1::SubscriptionProvisionParams::Entitlement>, nil]
+        optional :entitlements,
+                 -> { Stigg::Internal::Type::ArrayOf[Stigg::V1::SubscriptionProvisionParams::Entitlement] }
+
         # @!attribute metadata
         #   Additional metadata for the subscription
         #
@@ -162,15 +168,6 @@ module Stigg
         #   @return [Time, nil]
         optional :start_date, Time, api_name: :startDate
 
-        # @!attribute subscription_entitlements
-        #
-        #   @return [Array<Stigg::Models::V1::SubscriptionProvisionParams::SubscriptionEntitlement>, nil]
-        optional :subscription_entitlements,
-                 -> {
-                   Stigg::Internal::Type::ArrayOf[Stigg::V1::SubscriptionProvisionParams::SubscriptionEntitlement]
-                 },
-                 api_name: :subscriptionEntitlements
-
         # @!attribute trial_override_configuration
         #   Trial period override settings
         #
@@ -184,7 +181,7 @@ module Stigg
         #   @return [Float, nil]
         optional :unit_quantity, Float, api_name: :unitQuantity
 
-        # @!method initialize(customer_id:, plan_id:, id: nil, addons: nil, applied_coupon: nil, await_payment_confirmation: nil, billing_country_code: nil, billing_cycle_anchor: nil, billing_id: nil, billing_information: nil, billing_period: nil, budget: nil, charges: nil, checkout_options: nil, metadata: nil, minimum_spend: nil, paying_customer_id: nil, payment_collection_method: nil, price_overrides: nil, resource_id: nil, salesforce_id: nil, schedule_strategy: nil, start_date: nil, subscription_entitlements: nil, trial_override_configuration: nil, unit_quantity: nil, request_options: {})
+        # @!method initialize(customer_id:, plan_id:, id: nil, addons: nil, applied_coupon: nil, await_payment_confirmation: nil, billing_country_code: nil, billing_cycle_anchor: nil, billing_id: nil, billing_information: nil, billing_period: nil, budget: nil, charges: nil, checkout_options: nil, entitlements: nil, metadata: nil, minimum_spend: nil, paying_customer_id: nil, payment_collection_method: nil, price_overrides: nil, resource_id: nil, salesforce_id: nil, schedule_strategy: nil, start_date: nil, trial_override_configuration: nil, unit_quantity: nil, request_options: {})
         #   @param customer_id [String] Customer ID to provision the subscription for
         #
         #   @param plan_id [String] Plan ID to provision
@@ -213,6 +210,8 @@ module Stigg
         #
         #   @param checkout_options [Stigg::Models::V1::SubscriptionProvisionParams::CheckoutOptions] Checkout page configuration for payment collection
         #
+        #   @param entitlements [Array<Stigg::Models::V1::SubscriptionProvisionParams::Entitlement>]
+        #
         #   @param metadata [Hash{Symbol=>String}] Additional metadata for the subscription
         #
         #   @param minimum_spend [Stigg::Models::V1::SubscriptionProvisionParams::MinimumSpend, nil] Minimum spend amount
@@ -230,8 +229,6 @@ module Stigg
         #   @param schedule_strategy [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::ScheduleStrategy] Strategy for scheduling subscription changes
         #
         #   @param start_date [Time] Subscription start date
-        #
-        #   @param subscription_entitlements [Array<Stigg::Models::V1::SubscriptionProvisionParams::SubscriptionEntitlement>]
         #
         #   @param trial_override_configuration [Stigg::Models::V1::SubscriptionProvisionParams::TrialOverrideConfiguration] Trial period override settings
         #
@@ -834,6 +831,271 @@ module Stigg
           #   @param collect_phone_number [Boolean] Collect phone number during checkout
           #
           #   @param reference_id [String, nil] Optional reference ID for the checkout session
+        end
+
+        class Entitlement < Stigg::Internal::Type::BaseModel
+          # @!attribute credit
+          #   Credit entitlement configuration
+          #
+          #   @return [Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit, nil]
+          optional :credit, -> { Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit }
+
+          # @!attribute feature
+          #   Feature entitlement configuration
+          #
+          #   @return [Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature, nil]
+          optional :feature, -> { Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature }
+
+          # @!method initialize(credit: nil, feature: nil)
+          #   A single subscription entitlement. Provide exactly one of feature or credit.
+          #
+          #   @param credit [Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit] Credit entitlement configuration
+          #
+          #   @param feature [Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature] Feature entitlement configuration
+
+          # @see Stigg::Models::V1::SubscriptionProvisionParams::Entitlement#credit
+          class Credit < Stigg::Internal::Type::BaseModel
+            # @!attribute amount
+            #   Credit grant amount
+            #
+            #   @return [Float]
+            required :amount, Float
+
+            # @!attribute cadence
+            #   Credit grant cadence (MONTH or YEAR)
+            #
+            #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence]
+            required :cadence, enum: -> { Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence }
+
+            # @!attribute currency_id
+            #   The custom currency ID for the credit entitlement
+            #
+            #   @return [String]
+            required :currency_id, String, api_name: :currencyId
+
+            # @!method initialize(amount:, cadence:, currency_id:)
+            #   Credit entitlement configuration
+            #
+            #   @param amount [Float] Credit grant amount
+            #
+            #   @param cadence [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence] Credit grant cadence (MONTH or YEAR)
+            #
+            #   @param currency_id [String] The custom currency ID for the credit entitlement
+
+            # Credit grant cadence (MONTH or YEAR)
+            #
+            # @see Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit#cadence
+            module Cadence
+              extend Stigg::Internal::Type::Enum
+
+              MONTH = :MONTH
+              YEAR = :YEAR
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+          end
+
+          # @see Stigg::Models::V1::SubscriptionProvisionParams::Entitlement#feature
+          class Feature < Stigg::Internal::Type::BaseModel
+            # @!attribute feature_id
+            #   The feature ID to attach the entitlement to
+            #
+            #   @return [String]
+            required :feature_id, String, api_name: :featureId
+
+            # @!attribute has_soft_limit
+            #   Whether the usage limit is a soft limit
+            #
+            #   @return [Boolean, nil]
+            optional :has_soft_limit, Stigg::Internal::Type::Boolean, api_name: :hasSoftLimit
+
+            # @!attribute has_unlimited_usage
+            #   Whether usage is unlimited
+            #
+            #   @return [Boolean, nil]
+            optional :has_unlimited_usage, Stigg::Internal::Type::Boolean, api_name: :hasUnlimitedUsage
+
+            # @!attribute monthly_reset_period_configuration
+            #   Configuration for monthly reset period
+            #
+            #   @return [Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration, nil]
+            optional :monthly_reset_period_configuration,
+                     -> {
+                       Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration
+                     },
+                     api_name: :monthlyResetPeriodConfiguration,
+                     nil?: true
+
+            # @!attribute reset_period
+            #   Period at which usage resets
+            #
+            #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::ResetPeriod, nil]
+            optional :reset_period,
+                     enum: -> { Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::ResetPeriod },
+                     api_name: :resetPeriod
+
+            # @!attribute usage_limit
+            #   Maximum allowed usage for the feature
+            #
+            #   @return [Integer, nil]
+            optional :usage_limit, Integer, api_name: :usageLimit
+
+            # @!attribute weekly_reset_period_configuration
+            #   Configuration for weekly reset period
+            #
+            #   @return [Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration, nil]
+            optional :weekly_reset_period_configuration,
+                     -> {
+                       Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration
+                     },
+                     api_name: :weeklyResetPeriodConfiguration,
+                     nil?: true
+
+            # @!attribute yearly_reset_period_configuration
+            #   Configuration for yearly reset period
+            #
+            #   @return [Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration, nil]
+            optional :yearly_reset_period_configuration,
+                     -> {
+                       Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration
+                     },
+                     api_name: :yearlyResetPeriodConfiguration,
+                     nil?: true
+
+            # @!method initialize(feature_id:, has_soft_limit: nil, has_unlimited_usage: nil, monthly_reset_period_configuration: nil, reset_period: nil, usage_limit: nil, weekly_reset_period_configuration: nil, yearly_reset_period_configuration: nil)
+            #   Feature entitlement configuration
+            #
+            #   @param feature_id [String] The feature ID to attach the entitlement to
+            #
+            #   @param has_soft_limit [Boolean] Whether the usage limit is a soft limit
+            #
+            #   @param has_unlimited_usage [Boolean] Whether usage is unlimited
+            #
+            #   @param monthly_reset_period_configuration [Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration, nil] Configuration for monthly reset period
+            #
+            #   @param reset_period [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::ResetPeriod] Period at which usage resets
+            #
+            #   @param usage_limit [Integer] Maximum allowed usage for the feature
+            #
+            #   @param weekly_reset_period_configuration [Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration, nil] Configuration for weekly reset period
+            #
+            #   @param yearly_reset_period_configuration [Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration, nil] Configuration for yearly reset period
+
+            # @see Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature#monthly_reset_period_configuration
+            class MonthlyResetPeriodConfiguration < Stigg::Internal::Type::BaseModel
+              # @!attribute according_to
+              #   Reset anchor (SubscriptionStart or StartOfTheMonth)
+              #
+              #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration::AccordingTo]
+              required :according_to,
+                       enum: -> {
+                         Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration::AccordingTo
+                       },
+                       api_name: :accordingTo
+
+              # @!method initialize(according_to:)
+              #   Configuration for monthly reset period
+              #
+              #   @param according_to [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration::AccordingTo] Reset anchor (SubscriptionStart or StartOfTheMonth)
+
+              # Reset anchor (SubscriptionStart or StartOfTheMonth)
+              #
+              # @see Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration#according_to
+              module AccordingTo
+                extend Stigg::Internal::Type::Enum
+
+                SUBSCRIPTION_START = :SubscriptionStart
+                START_OF_THE_MONTH = :StartOfTheMonth
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
+            end
+
+            # Period at which usage resets
+            #
+            # @see Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature#reset_period
+            module ResetPeriod
+              extend Stigg::Internal::Type::Enum
+
+              YEAR = :YEAR
+              MONTH = :MONTH
+              WEEK = :WEEK
+              DAY = :DAY
+              HOUR = :HOUR
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+
+            # @see Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature#weekly_reset_period_configuration
+            class WeeklyResetPeriodConfiguration < Stigg::Internal::Type::BaseModel
+              # @!attribute according_to
+              #   Reset anchor (SubscriptionStart or specific day)
+              #
+              #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::AccordingTo]
+              required :according_to,
+                       enum: -> {
+                         Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::AccordingTo
+                       },
+                       api_name: :accordingTo
+
+              # @!method initialize(according_to:)
+              #   Configuration for weekly reset period
+              #
+              #   @param according_to [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::AccordingTo] Reset anchor (SubscriptionStart or specific day)
+
+              # Reset anchor (SubscriptionStart or specific day)
+              #
+              # @see Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration#according_to
+              module AccordingTo
+                extend Stigg::Internal::Type::Enum
+
+                SUBSCRIPTION_START = :SubscriptionStart
+                EVERY_SUNDAY = :EverySunday
+                EVERY_MONDAY = :EveryMonday
+                EVERY_TUESDAY = :EveryTuesday
+                EVERY_WEDNESDAY = :EveryWednesday
+                EVERY_THURSDAY = :EveryThursday
+                EVERY_FRIDAY = :EveryFriday
+                EVERY_SATURDAY = :EverySaturday
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
+            end
+
+            # @see Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature#yearly_reset_period_configuration
+            class YearlyResetPeriodConfiguration < Stigg::Internal::Type::BaseModel
+              # @!attribute according_to
+              #   Reset anchor (SubscriptionStart)
+              #
+              #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration::AccordingTo]
+              required :according_to,
+                       enum: -> {
+                         Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration::AccordingTo
+                       },
+                       api_name: :accordingTo
+
+              # @!method initialize(according_to:)
+              #   Configuration for yearly reset period
+              #
+              #   @param according_to [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration::AccordingTo] Reset anchor (SubscriptionStart)
+
+              # Reset anchor (SubscriptionStart)
+              #
+              # @see Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration#according_to
+              module AccordingTo
+                extend Stigg::Internal::Type::Enum
+
+                SUBSCRIPTION_START = :SubscriptionStart
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
+            end
+          end
         end
 
         class MinimumSpend < Stigg::Internal::Type::BaseModel
@@ -1589,31 +1851,6 @@ module Stigg
 
           # @!method self.values
           #   @return [Array<Symbol>]
-        end
-
-        class SubscriptionEntitlement < Stigg::Internal::Type::BaseModel
-          # @!attribute feature_id
-          #   Feature ID
-          #
-          #   @return [String]
-          required :feature_id, String, api_name: :featureId
-
-          # @!attribute usage_limit
-          #
-          #   @return [Float]
-          required :usage_limit, Float, api_name: :usageLimit
-
-          # @!attribute is_granted
-          #
-          #   @return [Boolean, nil]
-          optional :is_granted, Stigg::Internal::Type::Boolean, api_name: :isGranted
-
-          # @!method initialize(feature_id:, usage_limit:, is_granted: nil)
-          #   @param feature_id [String] Feature ID
-          #
-          #   @param usage_limit [Float]
-          #
-          #   @param is_granted [Boolean]
         end
 
         class TrialOverrideConfiguration < Stigg::Internal::Type::BaseModel

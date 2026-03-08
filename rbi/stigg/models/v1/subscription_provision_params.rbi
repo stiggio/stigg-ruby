@@ -173,6 +173,25 @@ module Stigg
         end
         attr_writer :checkout_options
 
+        sig do
+          returns(
+            T.nilable(
+              T::Array[Stigg::V1::SubscriptionProvisionParams::Entitlement]
+            )
+          )
+        end
+        attr_reader :entitlements
+
+        sig do
+          params(
+            entitlements:
+              T::Array[
+                Stigg::V1::SubscriptionProvisionParams::Entitlement::OrHash
+              ]
+          ).void
+        end
+        attr_writer :entitlements
+
         # Additional metadata for the subscription
         sig { returns(T.nilable(T::Hash[Symbol, String])) }
         attr_reader :metadata
@@ -272,27 +291,6 @@ module Stigg
         sig { params(start_date: Time).void }
         attr_writer :start_date
 
-        sig do
-          returns(
-            T.nilable(
-              T::Array[
-                Stigg::V1::SubscriptionProvisionParams::SubscriptionEntitlement
-              ]
-            )
-          )
-        end
-        attr_reader :subscription_entitlements
-
-        sig do
-          params(
-            subscription_entitlements:
-              T::Array[
-                Stigg::V1::SubscriptionProvisionParams::SubscriptionEntitlement::OrHash
-              ]
-          ).void
-        end
-        attr_writer :subscription_entitlements
-
         # Trial period override settings
         sig do
           returns(
@@ -341,6 +339,10 @@ module Stigg
               T::Array[Stigg::V1::SubscriptionProvisionParams::Charge::OrHash],
             checkout_options:
               Stigg::V1::SubscriptionProvisionParams::CheckoutOptions::OrHash,
+            entitlements:
+              T::Array[
+                Stigg::V1::SubscriptionProvisionParams::Entitlement::OrHash
+              ],
             metadata: T::Hash[Symbol, String],
             minimum_spend:
               T.nilable(
@@ -358,10 +360,6 @@ module Stigg
             schedule_strategy:
               Stigg::V1::SubscriptionProvisionParams::ScheduleStrategy::OrSymbol,
             start_date: Time,
-            subscription_entitlements:
-              T::Array[
-                Stigg::V1::SubscriptionProvisionParams::SubscriptionEntitlement::OrHash
-              ],
             trial_override_configuration:
               Stigg::V1::SubscriptionProvisionParams::TrialOverrideConfiguration::OrHash,
             unit_quantity: Float,
@@ -393,6 +391,7 @@ module Stigg
           charges: nil,
           # Checkout page configuration for payment collection
           checkout_options: nil,
+          entitlements: nil,
           # Additional metadata for the subscription
           metadata: nil,
           # Minimum spend amount
@@ -410,7 +409,6 @@ module Stigg
           schedule_strategy: nil,
           # Subscription start date
           start_date: nil,
-          subscription_entitlements: nil,
           # Trial period override settings
           trial_override_configuration: nil,
           unit_quantity: nil,
@@ -440,6 +438,8 @@ module Stigg
               charges: T::Array[Stigg::V1::SubscriptionProvisionParams::Charge],
               checkout_options:
                 Stigg::V1::SubscriptionProvisionParams::CheckoutOptions,
+              entitlements:
+                T::Array[Stigg::V1::SubscriptionProvisionParams::Entitlement],
               metadata: T::Hash[Symbol, String],
               minimum_spend:
                 T.nilable(Stigg::V1::SubscriptionProvisionParams::MinimumSpend),
@@ -453,10 +453,6 @@ module Stigg
               schedule_strategy:
                 Stigg::V1::SubscriptionProvisionParams::ScheduleStrategy::OrSymbol,
               start_date: Time,
-              subscription_entitlements:
-                T::Array[
-                  Stigg::V1::SubscriptionProvisionParams::SubscriptionEntitlement
-                ],
               trial_override_configuration:
                 Stigg::V1::SubscriptionProvisionParams::TrialOverrideConfiguration,
               unit_quantity: Float,
@@ -2026,6 +2022,664 @@ module Stigg
             )
           end
           def to_hash
+          end
+        end
+
+        class Entitlement < Stigg::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Stigg::V1::SubscriptionProvisionParams::Entitlement,
+                Stigg::Internal::AnyHash
+              )
+            end
+
+          # Credit entitlement configuration
+          sig do
+            returns(
+              T.nilable(
+                Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit
+              )
+            )
+          end
+          attr_reader :credit
+
+          sig do
+            params(
+              credit:
+                Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::OrHash
+            ).void
+          end
+          attr_writer :credit
+
+          # Feature entitlement configuration
+          sig do
+            returns(
+              T.nilable(
+                Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature
+              )
+            )
+          end
+          attr_reader :feature
+
+          sig do
+            params(
+              feature:
+                Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::OrHash
+            ).void
+          end
+          attr_writer :feature
+
+          # A single subscription entitlement. Provide exactly one of feature or credit.
+          sig do
+            params(
+              credit:
+                Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::OrHash,
+              feature:
+                Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::OrHash
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Credit entitlement configuration
+            credit: nil,
+            # Feature entitlement configuration
+            feature: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                credit:
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit,
+                feature:
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class Credit < Stigg::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit,
+                  Stigg::Internal::AnyHash
+                )
+              end
+
+            # Credit grant amount
+            sig { returns(Float) }
+            attr_accessor :amount
+
+            # Credit grant cadence (MONTH or YEAR)
+            sig do
+              returns(
+                Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence::OrSymbol
+              )
+            end
+            attr_accessor :cadence
+
+            # The custom currency ID for the credit entitlement
+            sig { returns(String) }
+            attr_accessor :currency_id
+
+            # Credit entitlement configuration
+            sig do
+              params(
+                amount: Float,
+                cadence:
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence::OrSymbol,
+                currency_id: String
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # Credit grant amount
+              amount:,
+              # Credit grant cadence (MONTH or YEAR)
+              cadence:,
+              # The custom currency ID for the credit entitlement
+              currency_id:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  amount: Float,
+                  cadence:
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence::OrSymbol,
+                  currency_id: String
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # Credit grant cadence (MONTH or YEAR)
+            module Cadence
+              extend Stigg::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              MONTH =
+                T.let(
+                  :MONTH,
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence::TaggedSymbol
+                )
+              YEAR =
+                T.let(
+                  :YEAR,
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
+          class Feature < Stigg::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature,
+                  Stigg::Internal::AnyHash
+                )
+              end
+
+            # The feature ID to attach the entitlement to
+            sig { returns(String) }
+            attr_accessor :feature_id
+
+            # Whether the usage limit is a soft limit
+            sig { returns(T.nilable(T::Boolean)) }
+            attr_reader :has_soft_limit
+
+            sig { params(has_soft_limit: T::Boolean).void }
+            attr_writer :has_soft_limit
+
+            # Whether usage is unlimited
+            sig { returns(T.nilable(T::Boolean)) }
+            attr_reader :has_unlimited_usage
+
+            sig { params(has_unlimited_usage: T::Boolean).void }
+            attr_writer :has_unlimited_usage
+
+            # Configuration for monthly reset period
+            sig do
+              returns(
+                T.nilable(
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration
+                )
+              )
+            end
+            attr_reader :monthly_reset_period_configuration
+
+            sig do
+              params(
+                monthly_reset_period_configuration:
+                  T.nilable(
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration::OrHash
+                  )
+              ).void
+            end
+            attr_writer :monthly_reset_period_configuration
+
+            # Period at which usage resets
+            sig do
+              returns(
+                T.nilable(
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::ResetPeriod::OrSymbol
+                )
+              )
+            end
+            attr_reader :reset_period
+
+            sig do
+              params(
+                reset_period:
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::ResetPeriod::OrSymbol
+              ).void
+            end
+            attr_writer :reset_period
+
+            # Maximum allowed usage for the feature
+            sig { returns(T.nilable(Integer)) }
+            attr_reader :usage_limit
+
+            sig { params(usage_limit: Integer).void }
+            attr_writer :usage_limit
+
+            # Configuration for weekly reset period
+            sig do
+              returns(
+                T.nilable(
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration
+                )
+              )
+            end
+            attr_reader :weekly_reset_period_configuration
+
+            sig do
+              params(
+                weekly_reset_period_configuration:
+                  T.nilable(
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::OrHash
+                  )
+              ).void
+            end
+            attr_writer :weekly_reset_period_configuration
+
+            # Configuration for yearly reset period
+            sig do
+              returns(
+                T.nilable(
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration
+                )
+              )
+            end
+            attr_reader :yearly_reset_period_configuration
+
+            sig do
+              params(
+                yearly_reset_period_configuration:
+                  T.nilable(
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration::OrHash
+                  )
+              ).void
+            end
+            attr_writer :yearly_reset_period_configuration
+
+            # Feature entitlement configuration
+            sig do
+              params(
+                feature_id: String,
+                has_soft_limit: T::Boolean,
+                has_unlimited_usage: T::Boolean,
+                monthly_reset_period_configuration:
+                  T.nilable(
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration::OrHash
+                  ),
+                reset_period:
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::ResetPeriod::OrSymbol,
+                usage_limit: Integer,
+                weekly_reset_period_configuration:
+                  T.nilable(
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::OrHash
+                  ),
+                yearly_reset_period_configuration:
+                  T.nilable(
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration::OrHash
+                  )
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The feature ID to attach the entitlement to
+              feature_id:,
+              # Whether the usage limit is a soft limit
+              has_soft_limit: nil,
+              # Whether usage is unlimited
+              has_unlimited_usage: nil,
+              # Configuration for monthly reset period
+              monthly_reset_period_configuration: nil,
+              # Period at which usage resets
+              reset_period: nil,
+              # Maximum allowed usage for the feature
+              usage_limit: nil,
+              # Configuration for weekly reset period
+              weekly_reset_period_configuration: nil,
+              # Configuration for yearly reset period
+              yearly_reset_period_configuration: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  feature_id: String,
+                  has_soft_limit: T::Boolean,
+                  has_unlimited_usage: T::Boolean,
+                  monthly_reset_period_configuration:
+                    T.nilable(
+                      Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration
+                    ),
+                  reset_period:
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::ResetPeriod::OrSymbol,
+                  usage_limit: Integer,
+                  weekly_reset_period_configuration:
+                    T.nilable(
+                      Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration
+                    ),
+                  yearly_reset_period_configuration:
+                    T.nilable(
+                      Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration
+                    )
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class MonthlyResetPeriodConfiguration < Stigg::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration,
+                    Stigg::Internal::AnyHash
+                  )
+                end
+
+              # Reset anchor (SubscriptionStart or StartOfTheMonth)
+              sig do
+                returns(
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration::AccordingTo::OrSymbol
+                )
+              end
+              attr_accessor :according_to
+
+              # Configuration for monthly reset period
+              sig do
+                params(
+                  according_to:
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration::AccordingTo::OrSymbol
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Reset anchor (SubscriptionStart or StartOfTheMonth)
+                according_to:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    according_to:
+                      Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration::AccordingTo::OrSymbol
+                  }
+                )
+              end
+              def to_hash
+              end
+
+              # Reset anchor (SubscriptionStart or StartOfTheMonth)
+              module AccordingTo
+                extend Stigg::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration::AccordingTo
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                SUBSCRIPTION_START =
+                  T.let(
+                    :SubscriptionStart,
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration::AccordingTo::TaggedSymbol
+                  )
+                START_OF_THE_MONTH =
+                  T.let(
+                    :StartOfTheMonth,
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration::AccordingTo::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration::AccordingTo::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+            end
+
+            # Period at which usage resets
+            module ResetPeriod
+              extend Stigg::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::ResetPeriod
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              YEAR =
+                T.let(
+                  :YEAR,
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::ResetPeriod::TaggedSymbol
+                )
+              MONTH =
+                T.let(
+                  :MONTH,
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::ResetPeriod::TaggedSymbol
+                )
+              WEEK =
+                T.let(
+                  :WEEK,
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::ResetPeriod::TaggedSymbol
+                )
+              DAY =
+                T.let(
+                  :DAY,
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::ResetPeriod::TaggedSymbol
+                )
+              HOUR =
+                T.let(
+                  :HOUR,
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::ResetPeriod::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::ResetPeriod::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            class WeeklyResetPeriodConfiguration < Stigg::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration,
+                    Stigg::Internal::AnyHash
+                  )
+                end
+
+              # Reset anchor (SubscriptionStart or specific day)
+              sig do
+                returns(
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::AccordingTo::OrSymbol
+                )
+              end
+              attr_accessor :according_to
+
+              # Configuration for weekly reset period
+              sig do
+                params(
+                  according_to:
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::AccordingTo::OrSymbol
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Reset anchor (SubscriptionStart or specific day)
+                according_to:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    according_to:
+                      Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::AccordingTo::OrSymbol
+                  }
+                )
+              end
+              def to_hash
+              end
+
+              # Reset anchor (SubscriptionStart or specific day)
+              module AccordingTo
+                extend Stigg::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::AccordingTo
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                SUBSCRIPTION_START =
+                  T.let(
+                    :SubscriptionStart,
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::AccordingTo::TaggedSymbol
+                  )
+                EVERY_SUNDAY =
+                  T.let(
+                    :EverySunday,
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::AccordingTo::TaggedSymbol
+                  )
+                EVERY_MONDAY =
+                  T.let(
+                    :EveryMonday,
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::AccordingTo::TaggedSymbol
+                  )
+                EVERY_TUESDAY =
+                  T.let(
+                    :EveryTuesday,
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::AccordingTo::TaggedSymbol
+                  )
+                EVERY_WEDNESDAY =
+                  T.let(
+                    :EveryWednesday,
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::AccordingTo::TaggedSymbol
+                  )
+                EVERY_THURSDAY =
+                  T.let(
+                    :EveryThursday,
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::AccordingTo::TaggedSymbol
+                  )
+                EVERY_FRIDAY =
+                  T.let(
+                    :EveryFriday,
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::AccordingTo::TaggedSymbol
+                  )
+                EVERY_SATURDAY =
+                  T.let(
+                    :EverySaturday,
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::AccordingTo::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::AccordingTo::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+            end
+
+            class YearlyResetPeriodConfiguration < Stigg::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration,
+                    Stigg::Internal::AnyHash
+                  )
+                end
+
+              # Reset anchor (SubscriptionStart)
+              sig do
+                returns(
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration::AccordingTo::OrSymbol
+                )
+              end
+              attr_accessor :according_to
+
+              # Configuration for yearly reset period
+              sig do
+                params(
+                  according_to:
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration::AccordingTo::OrSymbol
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Reset anchor (SubscriptionStart)
+                according_to:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    according_to:
+                      Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration::AccordingTo::OrSymbol
+                  }
+                )
+              end
+              def to_hash
+              end
+
+              # Reset anchor (SubscriptionStart)
+              module AccordingTo
+                extend Stigg::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration::AccordingTo
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                SUBSCRIPTION_START =
+                  T.let(
+                    :SubscriptionStart,
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration::AccordingTo::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration::AccordingTo::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+            end
           end
         end
 
@@ -5047,52 +5701,6 @@ module Stigg
             )
           end
           def self.values
-          end
-        end
-
-        class SubscriptionEntitlement < Stigg::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                Stigg::V1::SubscriptionProvisionParams::SubscriptionEntitlement,
-                Stigg::Internal::AnyHash
-              )
-            end
-
-          # Feature ID
-          sig { returns(String) }
-          attr_accessor :feature_id
-
-          sig { returns(Float) }
-          attr_accessor :usage_limit
-
-          sig { returns(T.nilable(T::Boolean)) }
-          attr_reader :is_granted
-
-          sig { params(is_granted: T::Boolean).void }
-          attr_writer :is_granted
-
-          sig do
-            params(
-              feature_id: String,
-              usage_limit: Float,
-              is_granted: T::Boolean
-            ).returns(T.attached_class)
-          end
-          def self.new(
-            # Feature ID
-            feature_id:,
-            usage_limit:,
-            is_granted: nil
-          )
-          end
-
-          sig do
-            override.returns(
-              { feature_id: String, usage_limit: Float, is_granted: T::Boolean }
-            )
-          end
-          def to_hash
           end
         end
 

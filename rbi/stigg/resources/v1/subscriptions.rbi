@@ -51,6 +51,10 @@ module Stigg
               T.nilable(Stigg::V1::SubscriptionUpdateParams::Budget::OrHash),
             charges:
               T::Array[Stigg::V1::SubscriptionUpdateParams::Charge::OrHash],
+            entitlements:
+              T::Array[
+                Stigg::V1::SubscriptionUpdateParams::Entitlement::OrHash
+              ],
             metadata: T::Hash[Symbol, String],
             minimum_spend:
               T.nilable(
@@ -63,10 +67,6 @@ module Stigg
             promotion_code: String,
             schedule_strategy:
               Stigg::V1::SubscriptionUpdateParams::ScheduleStrategy::OrSymbol,
-            subscription_entitlements:
-              T::Array[
-                Stigg::V1::SubscriptionUpdateParams::SubscriptionEntitlement::OrHash
-              ],
             trial_end_date: Time,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Subscription)
@@ -82,6 +82,7 @@ module Stigg
           billing_period: nil,
           budget: nil,
           charges: nil,
+          entitlements: nil,
           # Additional metadata for the subscription
           metadata: nil,
           # Minimum spend amount
@@ -89,7 +90,6 @@ module Stigg
           price_overrides: nil,
           promotion_code: nil,
           schedule_strategy: nil,
-          subscription_entitlements: nil,
           # Subscription trial end date
           trial_end_date: nil,
           request_options: {}
@@ -326,6 +326,10 @@ module Stigg
               T::Array[Stigg::V1::SubscriptionProvisionParams::Charge::OrHash],
             checkout_options:
               Stigg::V1::SubscriptionProvisionParams::CheckoutOptions::OrHash,
+            entitlements:
+              T::Array[
+                Stigg::V1::SubscriptionProvisionParams::Entitlement::OrHash
+              ],
             metadata: T::Hash[Symbol, String],
             minimum_spend:
               T.nilable(
@@ -343,10 +347,6 @@ module Stigg
             schedule_strategy:
               Stigg::V1::SubscriptionProvisionParams::ScheduleStrategy::OrSymbol,
             start_date: Time,
-            subscription_entitlements:
-              T::Array[
-                Stigg::V1::SubscriptionProvisionParams::SubscriptionEntitlement::OrHash
-              ],
             trial_override_configuration:
               Stigg::V1::SubscriptionProvisionParams::TrialOverrideConfiguration::OrHash,
             unit_quantity: Float,
@@ -378,6 +378,7 @@ module Stigg
           charges: nil,
           # Checkout page configuration for payment collection
           checkout_options: nil,
+          entitlements: nil,
           # Additional metadata for the subscription
           metadata: nil,
           # Minimum spend amount
@@ -395,7 +396,6 @@ module Stigg
           schedule_strategy: nil,
           # Subscription start date
           start_date: nil,
-          subscription_entitlements: nil,
           # Trial period override settings
           trial_override_configuration: nil,
           unit_quantity: nil,

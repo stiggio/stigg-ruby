@@ -17,6 +17,7 @@ module Stigg
           budget: Stigg::V1::SubscriptionProvisionParams::Budget?,
           charges: ::Array[Stigg::V1::SubscriptionProvisionParams::Charge],
           checkout_options: Stigg::V1::SubscriptionProvisionParams::CheckoutOptions,
+          entitlements: ::Array[Stigg::V1::SubscriptionProvisionParams::Entitlement],
           metadata: ::Hash[Symbol, String],
           minimum_spend: Stigg::V1::SubscriptionProvisionParams::MinimumSpend?,
           paying_customer_id: String?,
@@ -26,7 +27,6 @@ module Stigg
           salesforce_id: String?,
           schedule_strategy: Stigg::Models::V1::SubscriptionProvisionParams::schedule_strategy,
           start_date: Time,
-          subscription_entitlements: ::Array[Stigg::V1::SubscriptionProvisionParams::SubscriptionEntitlement],
           trial_override_configuration: Stigg::V1::SubscriptionProvisionParams::TrialOverrideConfiguration,
           unit_quantity: Float
         }
@@ -96,6 +96,12 @@ module Stigg
           Stigg::V1::SubscriptionProvisionParams::CheckoutOptions
         ) -> Stigg::V1::SubscriptionProvisionParams::CheckoutOptions
 
+        attr_reader entitlements: ::Array[Stigg::V1::SubscriptionProvisionParams::Entitlement]?
+
+        def entitlements=: (
+          ::Array[Stigg::V1::SubscriptionProvisionParams::Entitlement]
+        ) -> ::Array[Stigg::V1::SubscriptionProvisionParams::Entitlement]
+
         attr_reader metadata: ::Hash[Symbol, String]?
 
         def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
@@ -130,12 +136,6 @@ module Stigg
 
         def start_date=: (Time) -> Time
 
-        attr_reader subscription_entitlements: ::Array[Stigg::V1::SubscriptionProvisionParams::SubscriptionEntitlement]?
-
-        def subscription_entitlements=: (
-          ::Array[Stigg::V1::SubscriptionProvisionParams::SubscriptionEntitlement]
-        ) -> ::Array[Stigg::V1::SubscriptionProvisionParams::SubscriptionEntitlement]
-
         attr_reader trial_override_configuration: Stigg::V1::SubscriptionProvisionParams::TrialOverrideConfiguration?
 
         def trial_override_configuration=: (
@@ -161,6 +161,7 @@ module Stigg
           ?budget: Stigg::V1::SubscriptionProvisionParams::Budget?,
           ?charges: ::Array[Stigg::V1::SubscriptionProvisionParams::Charge],
           ?checkout_options: Stigg::V1::SubscriptionProvisionParams::CheckoutOptions,
+          ?entitlements: ::Array[Stigg::V1::SubscriptionProvisionParams::Entitlement],
           ?metadata: ::Hash[Symbol, String],
           ?minimum_spend: Stigg::V1::SubscriptionProvisionParams::MinimumSpend?,
           ?paying_customer_id: String?,
@@ -170,7 +171,6 @@ module Stigg
           ?salesforce_id: String?,
           ?schedule_strategy: Stigg::Models::V1::SubscriptionProvisionParams::schedule_strategy,
           ?start_date: Time,
-          ?subscription_entitlements: ::Array[Stigg::V1::SubscriptionProvisionParams::SubscriptionEntitlement],
           ?trial_override_configuration: Stigg::V1::SubscriptionProvisionParams::TrialOverrideConfiguration,
           ?unit_quantity: Float,
           ?request_options: Stigg::request_opts
@@ -191,6 +191,7 @@ module Stigg
           budget: Stigg::V1::SubscriptionProvisionParams::Budget?,
           charges: ::Array[Stigg::V1::SubscriptionProvisionParams::Charge],
           checkout_options: Stigg::V1::SubscriptionProvisionParams::CheckoutOptions,
+          entitlements: ::Array[Stigg::V1::SubscriptionProvisionParams::Entitlement],
           metadata: ::Hash[Symbol, String],
           minimum_spend: Stigg::V1::SubscriptionProvisionParams::MinimumSpend?,
           paying_customer_id: String?,
@@ -200,7 +201,6 @@ module Stigg
           salesforce_id: String?,
           schedule_strategy: Stigg::Models::V1::SubscriptionProvisionParams::schedule_strategy,
           start_date: Time,
-          subscription_entitlements: ::Array[Stigg::V1::SubscriptionProvisionParams::SubscriptionEntitlement],
           trial_override_configuration: Stigg::V1::SubscriptionProvisionParams::TrialOverrideConfiguration,
           unit_quantity: Float,
           request_options: Stigg::RequestOptions
@@ -884,6 +884,247 @@ module Stigg
             collect_phone_number: bool,
             reference_id: String?
           }
+        end
+
+        type entitlement =
+          {
+            credit: Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit,
+            feature: Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature
+          }
+
+        class Entitlement < Stigg::Internal::Type::BaseModel
+          attr_reader credit: Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit?
+
+          def credit=: (
+            Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit
+          ) -> Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit
+
+          attr_reader feature: Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature?
+
+          def feature=: (
+            Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature
+          ) -> Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature
+
+          def initialize: (
+            ?credit: Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit,
+            ?feature: Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature
+          ) -> void
+
+          def to_hash: -> {
+            credit: Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit,
+            feature: Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature
+          }
+
+          type credit =
+            {
+              amount: Float,
+              cadence: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit::cadence,
+              currency_id: String
+            }
+
+          class Credit < Stigg::Internal::Type::BaseModel
+            attr_accessor amount: Float
+
+            attr_accessor cadence: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit::cadence
+
+            attr_accessor currency_id: String
+
+            def initialize: (
+              amount: Float,
+              cadence: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit::cadence,
+              currency_id: String
+            ) -> void
+
+            def to_hash: -> {
+              amount: Float,
+              cadence: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit::cadence,
+              currency_id: String
+            }
+
+            type cadence = :MONTH | :YEAR
+
+            module Cadence
+              extend Stigg::Internal::Type::Enum
+
+              MONTH: :MONTH
+              YEAR: :YEAR
+
+              def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit::cadence]
+            end
+          end
+
+          type feature =
+            {
+              feature_id: String,
+              has_soft_limit: bool,
+              has_unlimited_usage: bool,
+              monthly_reset_period_configuration: Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration?,
+              reset_period: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::reset_period,
+              usage_limit: Integer,
+              weekly_reset_period_configuration: Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration?,
+              yearly_reset_period_configuration: Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration?
+            }
+
+          class Feature < Stigg::Internal::Type::BaseModel
+            attr_accessor feature_id: String
+
+            attr_reader has_soft_limit: bool?
+
+            def has_soft_limit=: (bool) -> bool
+
+            attr_reader has_unlimited_usage: bool?
+
+            def has_unlimited_usage=: (bool) -> bool
+
+            attr_accessor monthly_reset_period_configuration: Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration?
+
+            attr_reader reset_period: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::reset_period?
+
+            def reset_period=: (
+              Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::reset_period
+            ) -> Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::reset_period
+
+            attr_reader usage_limit: Integer?
+
+            def usage_limit=: (Integer) -> Integer
+
+            attr_accessor weekly_reset_period_configuration: Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration?
+
+            attr_accessor yearly_reset_period_configuration: Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration?
+
+            def initialize: (
+              feature_id: String,
+              ?has_soft_limit: bool,
+              ?has_unlimited_usage: bool,
+              ?monthly_reset_period_configuration: Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration?,
+              ?reset_period: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::reset_period,
+              ?usage_limit: Integer,
+              ?weekly_reset_period_configuration: Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration?,
+              ?yearly_reset_period_configuration: Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration?
+            ) -> void
+
+            def to_hash: -> {
+              feature_id: String,
+              has_soft_limit: bool,
+              has_unlimited_usage: bool,
+              monthly_reset_period_configuration: Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration?,
+              reset_period: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::reset_period,
+              usage_limit: Integer,
+              weekly_reset_period_configuration: Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration?,
+              yearly_reset_period_configuration: Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration?
+            }
+
+            type monthly_reset_period_configuration =
+              {
+                according_to: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration::according_to
+              }
+
+            class MonthlyResetPeriodConfiguration < Stigg::Internal::Type::BaseModel
+              attr_accessor according_to: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration::according_to
+
+              def initialize: (
+                according_to: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration::according_to
+              ) -> void
+
+              def to_hash: -> {
+                according_to: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration::according_to
+              }
+
+              type according_to = :SubscriptionStart | :StartOfTheMonth
+
+              module AccordingTo
+                extend Stigg::Internal::Type::Enum
+
+                SUBSCRIPTION_START: :SubscriptionStart
+                START_OF_THE_MONTH: :StartOfTheMonth
+
+                def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration::according_to]
+              end
+            end
+
+            type reset_period = :YEAR | :MONTH | :WEEK | :DAY | :HOUR
+
+            module ResetPeriod
+              extend Stigg::Internal::Type::Enum
+
+              YEAR: :YEAR
+              MONTH: :MONTH
+              WEEK: :WEEK
+              DAY: :DAY
+              HOUR: :HOUR
+
+              def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::reset_period]
+            end
+
+            type weekly_reset_period_configuration =
+              {
+                according_to: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::according_to
+              }
+
+            class WeeklyResetPeriodConfiguration < Stigg::Internal::Type::BaseModel
+              attr_accessor according_to: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::according_to
+
+              def initialize: (
+                according_to: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::according_to
+              ) -> void
+
+              def to_hash: -> {
+                according_to: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::according_to
+              }
+
+              type according_to =
+                :SubscriptionStart
+                | :EverySunday
+                | :EveryMonday
+                | :EveryTuesday
+                | :EveryWednesday
+                | :EveryThursday
+                | :EveryFriday
+                | :EverySaturday
+
+              module AccordingTo
+                extend Stigg::Internal::Type::Enum
+
+                SUBSCRIPTION_START: :SubscriptionStart
+                EVERY_SUNDAY: :EverySunday
+                EVERY_MONDAY: :EveryMonday
+                EVERY_TUESDAY: :EveryTuesday
+                EVERY_WEDNESDAY: :EveryWednesday
+                EVERY_THURSDAY: :EveryThursday
+                EVERY_FRIDAY: :EveryFriday
+                EVERY_SATURDAY: :EverySaturday
+
+                def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration::according_to]
+              end
+            end
+
+            type yearly_reset_period_configuration =
+              {
+                according_to: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration::according_to
+              }
+
+            class YearlyResetPeriodConfiguration < Stigg::Internal::Type::BaseModel
+              attr_accessor according_to: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration::according_to
+
+              def initialize: (
+                according_to: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration::according_to
+              ) -> void
+
+              def to_hash: -> {
+                according_to: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration::according_to
+              }
+
+              type according_to = :SubscriptionStart
+
+              module AccordingTo
+                extend Stigg::Internal::Type::Enum
+
+                SUBSCRIPTION_START: :SubscriptionStart
+
+                def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration::according_to]
+              end
+            end
+          end
         end
 
         type minimum_spend =
@@ -2102,31 +2343,6 @@ module Stigg
           IMMEDIATE: :IMMEDIATE
 
           def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionParams::schedule_strategy]
-        end
-
-        type subscription_entitlement =
-          { feature_id: String, usage_limit: Float, is_granted: bool }
-
-        class SubscriptionEntitlement < Stigg::Internal::Type::BaseModel
-          attr_accessor feature_id: String
-
-          attr_accessor usage_limit: Float
-
-          attr_reader is_granted: bool?
-
-          def is_granted=: (bool) -> bool
-
-          def initialize: (
-            feature_id: String,
-            usage_limit: Float,
-            ?is_granted: bool
-          ) -> void
-
-          def to_hash: -> {
-            feature_id: String,
-            usage_limit: Float,
-            is_granted: bool
-          }
         end
 
         type trial_override_configuration =
