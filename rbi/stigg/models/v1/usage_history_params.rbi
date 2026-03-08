@@ -15,6 +15,9 @@ module Stigg
         sig { returns(String) }
         attr_accessor :customer_id
 
+        sig { returns(String) }
+        attr_accessor :feature_id
+
         # The start date of the range
         sig { returns(Time) }
         attr_accessor :start_date
@@ -47,6 +50,7 @@ module Stigg
         sig do
           params(
             customer_id: String,
+            feature_id: String,
             start_date: Time,
             end_date: Time,
             group_by: String,
@@ -57,6 +61,7 @@ module Stigg
         end
         def self.new(
           customer_id:,
+          feature_id:,
           # The start date of the range
           start_date:,
           # The end date of the range
@@ -75,6 +80,7 @@ module Stigg
           override.returns(
             {
               customer_id: String,
+              feature_id: String,
               start_date: Time,
               end_date: Time,
               group_by: String,

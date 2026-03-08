@@ -16,6 +16,9 @@ module Stigg
               )
             end
 
+          sig { returns(String) }
+          attr_accessor :addon_id
+
           # Entitlements to create
           sig do
             returns(
@@ -26,6 +29,7 @@ module Stigg
 
           sig do
             params(
+              addon_id: String,
               entitlements:
                 T::Array[
                   Stigg::V1::Addons::EntitlementCreateParams::Entitlement::OrHash
@@ -34,6 +38,7 @@ module Stigg
             ).returns(T.attached_class)
           end
           def self.new(
+            addon_id:,
             # Entitlements to create
             entitlements:,
             request_options: {}
@@ -43,6 +48,7 @@ module Stigg
           sig do
             override.returns(
               {
+                addon_id: String,
                 entitlements:
                   T::Array[
                     Stigg::V1::Addons::EntitlementCreateParams::Entitlement

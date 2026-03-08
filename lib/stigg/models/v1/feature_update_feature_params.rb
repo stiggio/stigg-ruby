@@ -8,6 +8,11 @@ module Stigg
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
+        # @!attribute id
+        #
+        #   @return [String]
+        required :id, String
+
         # @!attribute description
         #   The description for the feature
         #
@@ -62,7 +67,9 @@ module Stigg
                  api_name: :unitTransformation,
                  nil?: true
 
-        # @!method initialize(description: nil, display_name: nil, enum_configuration: nil, feature_units: nil, feature_units_plural: nil, metadata: nil, meter: nil, unit_transformation: nil, request_options: {})
+        # @!method initialize(id:, description: nil, display_name: nil, enum_configuration: nil, feature_units: nil, feature_units_plural: nil, metadata: nil, meter: nil, unit_transformation: nil, request_options: {})
+        #   @param id [String]
+        #
         #   @param description [String] The description for the feature
         #
         #   @param display_name [String] The display name for the feature

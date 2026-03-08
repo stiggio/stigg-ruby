@@ -15,6 +15,9 @@ module Stigg
             )
           end
 
+        sig { returns(String) }
+        attr_accessor :id
+
         # The unique identifier of the customer who will assume payment responsibility for
         # this subscription. This customer must already exist in your Stigg account and
         # have a valid payment method if the subscription requires payment.
@@ -23,11 +26,13 @@ module Stigg
 
         sig do
           params(
+            id: String,
             target_customer_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
+          id:,
           # The unique identifier of the customer who will assume payment responsibility for
           # this subscription. This customer must already exist in your Stigg account and
           # have a valid payment method if the subscription requires payment.
@@ -39,6 +44,7 @@ module Stigg
         sig do
           override.returns(
             {
+              id: String,
               target_customer_id: String,
               request_options: Stigg::RequestOptions
             }

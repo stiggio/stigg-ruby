@@ -8,6 +8,11 @@ module Stigg
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
+        # @!attribute id
+        #
+        #   @return [String]
+        required :id, String
+
         # @!attribute description
         #   Description of the coupon
         #
@@ -26,7 +31,9 @@ module Stigg
         #   @return [String, nil]
         optional :name, String
 
-        # @!method initialize(description: nil, metadata: nil, name: nil, request_options: {})
+        # @!method initialize(id:, description: nil, metadata: nil, name: nil, request_options: {})
+        #   @param id [String]
+        #
         #   @param description [String, nil] Description of the coupon
         #
         #   @param metadata [Hash{Symbol=>String}, nil] Metadata associated with the entity

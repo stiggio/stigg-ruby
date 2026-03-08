@@ -12,6 +12,9 @@ module Stigg
             T.any(Stigg::V1::PlanUpdateParams, Stigg::Internal::AnyHash)
           end
 
+        sig { returns(String) }
+        attr_accessor :id
+
         # The unique identifier for the entity in the billing provider
         sig { returns(T.nilable(String)) }
         attr_accessor :billing_id
@@ -57,6 +60,7 @@ module Stigg
 
         sig do
           params(
+            id: String,
             billing_id: T.nilable(String),
             compatible_addon_ids: T.nilable(T::Array[String]),
             default_trial_config:
@@ -71,6 +75,7 @@ module Stigg
           ).returns(T.attached_class)
         end
         def self.new(
+          id:,
           # The unique identifier for the entity in the billing provider
           billing_id: nil,
           compatible_addon_ids: nil,
@@ -91,6 +96,7 @@ module Stigg
         sig do
           override.returns(
             {
+              id: String,
               billing_id: T.nilable(String),
               compatible_addon_ids: T.nilable(T::Array[String]),
               default_trial_config:

@@ -15,17 +15,22 @@ module Stigg
             )
           end
 
+        sig { returns(String) }
+        attr_accessor :id
+
         # Resource ID to transfer the subscription to
         sig { returns(String) }
         attr_accessor :destination_resource_id
 
         sig do
           params(
+            id: String,
             destination_resource_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
+          id:,
           # Resource ID to transfer the subscription to
           destination_resource_id:,
           request_options: {}
@@ -35,6 +40,7 @@ module Stigg
         sig do
           override.returns(
             {
+              id: String,
               destination_resource_id: String,
               request_options: Stigg::RequestOptions
             }

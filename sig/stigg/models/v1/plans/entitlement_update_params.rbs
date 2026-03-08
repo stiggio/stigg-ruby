@@ -5,6 +5,7 @@ module Stigg
         type entitlement_update_params =
           {
             plan_id: String,
+            id: String,
             credit: Stigg::V1::Plans::EntitlementUpdateParams::Credit,
             feature: Stigg::V1::Plans::EntitlementUpdateParams::Feature
           }
@@ -15,6 +16,8 @@ module Stigg
           include Stigg::Internal::Type::RequestParameters
 
           attr_accessor plan_id: String
+
+          attr_accessor id: String
 
           attr_reader credit: Stigg::V1::Plans::EntitlementUpdateParams::Credit?
 
@@ -30,6 +33,7 @@ module Stigg
 
           def initialize: (
             plan_id: String,
+            id: String,
             ?credit: Stigg::V1::Plans::EntitlementUpdateParams::Credit,
             ?feature: Stigg::V1::Plans::EntitlementUpdateParams::Feature,
             ?request_options: Stigg::request_opts
@@ -37,6 +41,7 @@ module Stigg
 
           def to_hash: -> {
             plan_id: String,
+            id: String,
             credit: Stigg::V1::Plans::EntitlementUpdateParams::Credit,
             feature: Stigg::V1::Plans::EntitlementUpdateParams::Feature,
             request_options: Stigg::RequestOptions

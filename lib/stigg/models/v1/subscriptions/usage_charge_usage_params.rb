@@ -9,13 +9,20 @@ module Stigg
           extend Stigg::Internal::Type::RequestParameters::Converter
           include Stigg::Internal::Type::RequestParameters
 
+          # @!attribute id
+          #
+          #   @return [String]
+          required :id, String
+
           # @!attribute until_date
           #   Cutoff date for usage calculation. If not provided, the current time is used.
           #
           #   @return [Time, nil]
           optional :until_date, Time, api_name: :untilDate
 
-          # @!method initialize(until_date: nil, request_options: {})
+          # @!method initialize(id:, until_date: nil, request_options: {})
+          #   @param id [String]
+          #
           #   @param until_date [Time] Cutoff date for usage calculation. If not provided, the current time is used.
           #
           #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]

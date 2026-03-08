@@ -8,6 +8,11 @@ module Stigg
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
+        # @!attribute id
+        #
+        #   @return [String]
+        required :id, String
+
         # @!attribute billing_id
         #   The unique identifier for the entity in the billing provider
         #
@@ -55,7 +60,9 @@ module Stigg
         #   @return [String, nil]
         optional :parent_plan_id, String, api_name: :parentPlanId, nil?: true
 
-        # @!method initialize(billing_id: nil, compatible_addon_ids: nil, default_trial_config: nil, description: nil, display_name: nil, metadata: nil, parent_plan_id: nil, request_options: {})
+        # @!method initialize(id:, billing_id: nil, compatible_addon_ids: nil, default_trial_config: nil, description: nil, display_name: nil, metadata: nil, parent_plan_id: nil, request_options: {})
+        #   @param id [String]
+        #
         #   @param billing_id [String, nil] The unique identifier for the entity in the billing provider
         #
         #   @param compatible_addon_ids [Array<String>, nil]

@@ -15,6 +15,9 @@ module Stigg
             )
           end
 
+        sig { returns(String) }
+        attr_accessor :path_id
+
         # The unique identifier for the entity
         sig { returns(String) }
         attr_accessor :body_id
@@ -32,6 +35,7 @@ module Stigg
 
         sig do
           params(
+            path_id: String,
             body_id: String,
             description: T.nilable(String),
             display_name: String,
@@ -39,6 +43,7 @@ module Stigg
           ).returns(T.attached_class)
         end
         def self.new(
+          path_id:,
           # The unique identifier for the entity
           body_id:,
           # Description of the product
@@ -52,6 +57,7 @@ module Stigg
         sig do
           override.returns(
             {
+              path_id: String,
               body_id: String,
               description: T.nilable(String),
               display_name: String,

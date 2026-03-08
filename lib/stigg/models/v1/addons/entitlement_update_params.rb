@@ -14,6 +14,11 @@ module Stigg
           #   @return [String]
           required :addon_id, String
 
+          # @!attribute id
+          #
+          #   @return [String]
+          required :id, String
+
           # @!attribute credit
           #   Credit entitlement fields to update
           #
@@ -26,8 +31,10 @@ module Stigg
           #   @return [Stigg::Models::V1::Addons::EntitlementUpdateParams::Feature, nil]
           optional :feature, -> { Stigg::V1::Addons::EntitlementUpdateParams::Feature }
 
-          # @!method initialize(addon_id:, credit: nil, feature: nil, request_options: {})
+          # @!method initialize(addon_id:, id:, credit: nil, feature: nil, request_options: {})
           #   @param addon_id [String]
+          #
+          #   @param id [String]
           #
           #   @param credit [Stigg::Models::V1::Addons::EntitlementUpdateParams::Credit] Credit entitlement fields to update
           #

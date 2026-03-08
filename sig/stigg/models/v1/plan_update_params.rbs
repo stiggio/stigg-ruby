@@ -3,6 +3,7 @@ module Stigg
     module V1
       type plan_update_params =
         {
+          id: String,
           billing_id: String?,
           compatible_addon_ids: ::Array[String]?,
           default_trial_config: Stigg::V1::PlanUpdateParams::DefaultTrialConfig?,
@@ -16,6 +17,8 @@ module Stigg
       class PlanUpdateParams < Stigg::Internal::Type::BaseModel
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
+
+        attr_accessor id: String
 
         attr_accessor billing_id: String?
 
@@ -36,6 +39,7 @@ module Stigg
         attr_accessor parent_plan_id: String?
 
         def initialize: (
+          id: String,
           ?billing_id: String?,
           ?compatible_addon_ids: ::Array[String]?,
           ?default_trial_config: Stigg::V1::PlanUpdateParams::DefaultTrialConfig?,
@@ -47,6 +51,7 @@ module Stigg
         ) -> void
 
         def to_hash: -> {
+          id: String,
           billing_id: String?,
           compatible_addon_ids: ::Array[String]?,
           default_trial_config: Stigg::V1::PlanUpdateParams::DefaultTrialConfig?,

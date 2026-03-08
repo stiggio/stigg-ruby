@@ -3,15 +3,20 @@ module Stigg
     module V1
       module Subscriptions
         type future_update_cancel_schedule_params =
-          {  } & Stigg::Internal::Type::request_parameters
+          { id: String } & Stigg::Internal::Type::request_parameters
 
         class FutureUpdateCancelScheduleParams < Stigg::Internal::Type::BaseModel
           extend Stigg::Internal::Type::RequestParameters::Converter
           include Stigg::Internal::Type::RequestParameters
 
-          def initialize: (?request_options: Stigg::request_opts) -> void
+          attr_accessor id: String
 
-          def to_hash: -> { request_options: Stigg::RequestOptions }
+          def initialize: (
+            id: String,
+            ?request_options: Stigg::request_opts
+          ) -> void
+
+          def to_hash: -> { id: String, request_options: Stigg::RequestOptions }
         end
       end
     end

@@ -8,6 +8,11 @@ module Stigg
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
+        # @!attribute id
+        #
+        #   @return [String]
+        required :id, String
+
         # @!attribute migration_type
         #   The migration type of the package
         #
@@ -16,7 +21,9 @@ module Stigg
                  enum: -> { Stigg::V1::AddonPublishParams::MigrationType },
                  api_name: :migrationType
 
-        # @!method initialize(migration_type:, request_options: {})
+        # @!method initialize(id:, migration_type:, request_options: {})
+        #   @param id [String]
+        #
         #   @param migration_type [Symbol, Stigg::Models::V1::AddonPublishParams::MigrationType] The migration type of the package
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]

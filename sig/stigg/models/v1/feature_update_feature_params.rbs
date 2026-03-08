@@ -3,6 +3,7 @@ module Stigg
     module V1
       type feature_update_feature_params =
         {
+          id: String,
           description: String,
           display_name: String,
           enum_configuration: ::Array[Stigg::V1::FeatureUpdateFeatureParams::EnumConfiguration],
@@ -17,6 +18,8 @@ module Stigg
       class FeatureUpdateFeatureParams < Stigg::Internal::Type::BaseModel
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
+
+        attr_accessor id: String
 
         attr_reader description: String?
 
@@ -53,6 +56,7 @@ module Stigg
         attr_accessor unit_transformation: Stigg::V1::FeatureUpdateFeatureParams::UnitTransformation?
 
         def initialize: (
+          id: String,
           ?description: String,
           ?display_name: String,
           ?enum_configuration: ::Array[Stigg::V1::FeatureUpdateFeatureParams::EnumConfiguration],
@@ -65,6 +69,7 @@ module Stigg
         ) -> void
 
         def to_hash: -> {
+          id: String,
           description: String,
           display_name: String,
           enum_configuration: ::Array[Stigg::V1::FeatureUpdateFeatureParams::EnumConfiguration],
