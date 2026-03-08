@@ -23,12 +23,12 @@ module Stigg
           ?billing_period: Stigg::Models::V1::SubscriptionUpdateParams::billing_period,
           ?budget: Stigg::V1::SubscriptionUpdateParams::Budget?,
           ?charges: ::Array[Stigg::V1::SubscriptionUpdateParams::Charge],
+          ?entitlements: ::Array[Stigg::V1::SubscriptionUpdateParams::Entitlement],
           ?metadata: ::Hash[Symbol, String],
           ?minimum_spend: Stigg::V1::SubscriptionUpdateParams::MinimumSpend?,
           ?price_overrides: ::Array[Stigg::V1::SubscriptionUpdateParams::PriceOverride],
           ?promotion_code: String,
           ?schedule_strategy: Stigg::Models::V1::SubscriptionUpdateParams::schedule_strategy,
-          ?subscription_entitlements: ::Array[Stigg::V1::SubscriptionUpdateParams::SubscriptionEntitlement],
           ?trial_end_date: Time,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Subscription
@@ -108,6 +108,7 @@ module Stigg
           ?budget: Stigg::V1::SubscriptionProvisionParams::Budget?,
           ?charges: ::Array[Stigg::V1::SubscriptionProvisionParams::Charge],
           ?checkout_options: Stigg::V1::SubscriptionProvisionParams::CheckoutOptions,
+          ?entitlements: ::Array[Stigg::V1::SubscriptionProvisionParams::Entitlement],
           ?metadata: ::Hash[Symbol, String],
           ?minimum_spend: Stigg::V1::SubscriptionProvisionParams::MinimumSpend?,
           ?paying_customer_id: String?,
@@ -117,7 +118,6 @@ module Stigg
           ?salesforce_id: String?,
           ?schedule_strategy: Stigg::Models::V1::SubscriptionProvisionParams::schedule_strategy,
           ?start_date: Time,
-          ?subscription_entitlements: ::Array[Stigg::V1::SubscriptionProvisionParams::SubscriptionEntitlement],
           ?trial_override_configuration: Stigg::V1::SubscriptionProvisionParams::TrialOverrideConfiguration,
           ?unit_quantity: Float,
           ?request_options: Stigg::request_opts
