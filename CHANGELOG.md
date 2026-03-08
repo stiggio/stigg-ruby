@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.16 (2026-03-08)
+
+Full Changelog: [v0.1.0-alpha.15...v0.1.0-alpha.16](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.15...v0.1.0-alpha.16)
+
+### Features
+
+* **api:** api update ([e6c7200](https://github.com/stiggio/stigg-ruby/commit/e6c720005b1985d6e0f9bd39adbbf340794d3ed7))
+
+
+### Chores
+
+* **ci:** skip uploading artifacts on stainless-internal branches ([68ac72b](https://github.com/stiggio/stigg-ruby/commit/68ac72b7571fb1c169831b37a6e26354507640b2))
+* **internal:** codegen related update ([1fc5d86](https://github.com/stiggio/stigg-ruby/commit/1fc5d8641e621aa9d02e8a8e91ded525768e01e8))
+
 ## 0.1.0-alpha.15 (2026-03-05)
 
 Full Changelog: [v0.1.0-alpha.14...v0.1.0-alpha.15](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.14...v0.1.0-alpha.15)
