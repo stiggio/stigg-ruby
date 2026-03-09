@@ -42,6 +42,12 @@ module Stigg
           #   @return [Time]
           required :updated_at, Time, api_name: :updatedAt
 
+          # @!attribute billing_id
+          #   The unique identifier for the entity in the billing provider
+          #
+          #   @return [String, nil]
+          optional :billing_id, String, api_name: :billingId, nil?: true
+
           # @!attribute coupon_id
           #   Customer level coupon
           #
@@ -82,7 +88,7 @@ module Stigg
           #   @return [String, nil]
           optional :name, String, nil?: true
 
-          # @!method initialize(id:, archived_at:, created_at:, updated_at:, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil)
+          # @!method initialize(id:, archived_at:, created_at:, updated_at:, billing_id: nil, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil)
           #   A customer can be either an organization or an individual
           #
           #   @param id [String] Customer slug
@@ -92,6 +98,8 @@ module Stigg
           #   @param created_at [Time] Timestamp of when the record was created
           #
           #   @param updated_at [Time] Timestamp of when the record was last updated
+          #
+          #   @param billing_id [String, nil] The unique identifier for the entity in the billing provider
           #
           #   @param coupon_id [String, nil] Customer level coupon
           #

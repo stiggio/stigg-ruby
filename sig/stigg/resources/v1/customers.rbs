@@ -13,6 +13,7 @@ module Stigg
 
         def update: (
           String id,
+          ?billing_id: String?,
           ?coupon_id: String?,
           ?email: String?,
           ?integrations: ::Array[Stigg::V1::CustomerUpdateParams::Integration],
@@ -51,6 +52,7 @@ module Stigg
 
         def provision: (
           id: String,
+          ?billing_id: String?,
           ?coupon_id: String?,
           ?default_payment_method: Stigg::V1::CustomerProvisionParams::DefaultPaymentMethod?,
           ?email: String?,

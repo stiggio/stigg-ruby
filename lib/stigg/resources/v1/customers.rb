@@ -36,9 +36,11 @@ module Stigg
         # Updates an existing customer's properties such as name, email, and billing
         # information.
         #
-        # @overload update(id, coupon_id: nil, email: nil, integrations: nil, metadata: nil, name: nil, request_options: {})
+        # @overload update(id, billing_id: nil, coupon_id: nil, email: nil, integrations: nil, metadata: nil, name: nil, request_options: {})
         #
         # @param id [String] The unique identifier of the entity
+        #
+        # @param billing_id [String, nil] The unique identifier for the entity in the billing provider
         #
         # @param coupon_id [String, nil] Customer level coupon
         #
@@ -177,9 +179,11 @@ module Stigg
         # Creates a new customer and optionally provisions an initial subscription in a
         # single operation.
         #
-        # @overload provision(id:, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil, request_options: {})
+        # @overload provision(id:, billing_id: nil, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil, request_options: {})
         #
         # @param id [String] Customer slug
+        #
+        # @param billing_id [String, nil] The unique identifier for the entity in the billing provider
         #
         # @param coupon_id [String, nil] Customer level coupon
         #
