@@ -41,7 +41,7 @@ module Stigg
         attr_accessor :name
 
         # Percentage discount off the original price
-        sig { returns(T.nilable(Float)) }
+        sig { returns(T.nilable(Integer)) }
         attr_accessor :percent_off
 
         sig do
@@ -55,7 +55,7 @@ module Stigg
             duration_in_months: T.nilable(Integer),
             metadata: T.nilable(T::Hash[Symbol, String]),
             name: String,
-            percent_off: T.nilable(Float),
+            percent_off: T.nilable(Integer),
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -88,7 +88,7 @@ module Stigg
               duration_in_months: T.nilable(Integer),
               metadata: T.nilable(T::Hash[Symbol, String]),
               name: String,
-              percent_off: T.nilable(Float),
+              percent_off: T.nilable(Integer),
               request_options: Stigg::RequestOptions
             }
           )
