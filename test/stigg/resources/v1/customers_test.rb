@@ -57,6 +57,7 @@ class Stigg::Test::Resources::V1::CustomersTest < Stigg::Test::ResourceTest
         archived_at: Time | nil,
         created_at: Time,
         updated_at: Time,
+        billing_id: String | nil,
         coupon_id: String | nil,
         default_payment_method: Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod | nil,
         email: String | nil,

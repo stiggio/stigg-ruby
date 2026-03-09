@@ -54,6 +54,10 @@ module Stigg
           sig { returns(Time) }
           attr_accessor :updated_at
 
+          # The unique identifier for the entity in the billing provider
+          sig { returns(T.nilable(String)) }
+          attr_accessor :billing_id
+
           # Customer level coupon
           sig { returns(T.nilable(String)) }
           attr_accessor :coupon_id
@@ -116,6 +120,7 @@ module Stigg
               archived_at: T.nilable(Time),
               created_at: Time,
               updated_at: Time,
+              billing_id: T.nilable(String),
               coupon_id: T.nilable(String),
               default_payment_method:
                 T.nilable(
@@ -139,6 +144,8 @@ module Stigg
             created_at:,
             # Timestamp of when the record was last updated
             updated_at:,
+            # The unique identifier for the entity in the billing provider
+            billing_id: nil,
             # Customer level coupon
             coupon_id: nil,
             # The default payment method details
@@ -161,6 +168,7 @@ module Stigg
                 archived_at: T.nilable(Time),
                 created_at: Time,
                 updated_at: Time,
+                billing_id: T.nilable(String),
                 coupon_id: T.nilable(String),
                 default_payment_method:
                   T.nilable(
