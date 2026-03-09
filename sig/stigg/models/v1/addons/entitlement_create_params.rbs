@@ -5,7 +5,7 @@ module Stigg
         type entitlement_create_params =
           {
             addon_id: String,
-            entitlements: ::Array[Stigg::V1::Addons::EntitlementCreateParams::Entitlement]
+            entitlements: ::Array[Stigg::Models::V1::Addons::EntitlementCreateParams::entitlement]
           }
           & Stigg::Internal::Type::request_parameters
 
@@ -15,166 +15,31 @@ module Stigg
 
           attr_accessor addon_id: String
 
-          attr_accessor entitlements: ::Array[Stigg::V1::Addons::EntitlementCreateParams::Entitlement]
+          attr_accessor entitlements: ::Array[Stigg::Models::V1::Addons::EntitlementCreateParams::entitlement]
 
           def initialize: (
             addon_id: String,
-            entitlements: ::Array[Stigg::V1::Addons::EntitlementCreateParams::Entitlement],
+            entitlements: ::Array[Stigg::Models::V1::Addons::EntitlementCreateParams::entitlement],
             ?request_options: Stigg::request_opts
           ) -> void
 
           def to_hash: -> {
             addon_id: String,
-            entitlements: ::Array[Stigg::V1::Addons::EntitlementCreateParams::Entitlement],
+            entitlements: ::Array[Stigg::Models::V1::Addons::EntitlementCreateParams::entitlement],
             request_options: Stigg::RequestOptions
           }
 
           type entitlement =
-            {
-              credit: Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Credit,
-              feature: Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Feature
-            }
+            Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Feature
+            | Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Credit
 
-          class Entitlement < Stigg::Internal::Type::BaseModel
-            attr_reader credit: Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Credit?
-
-            def credit=: (
-              Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Credit
-            ) -> Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Credit
-
-            attr_reader feature: Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Feature?
-
-            def feature=: (
-              Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Feature
-            ) -> Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Feature
-
-            def initialize: (
-              ?credit: Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Credit,
-              ?feature: Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Feature
-            ) -> void
-
-            def to_hash: -> {
-              credit: Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Credit,
-              feature: Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Feature
-            }
-
-            type credit =
-              {
-                amount: Float?,
-                cadence: Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::cadence,
-                custom_currency_id: String,
-                behavior: Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::behavior,
-                description: String,
-                display_name_override: String,
-                hidden_from_widgets: ::Array[Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget],
-                is_custom: bool,
-                is_granted: bool,
-                order: Float
-              }
-
-            class Credit < Stigg::Internal::Type::BaseModel
-              attr_accessor amount: Float?
-
-              attr_accessor cadence: Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::cadence
-
-              attr_accessor custom_currency_id: String
-
-              attr_reader behavior: Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::behavior?
-
-              def behavior=: (
-                Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::behavior
-              ) -> Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::behavior
-
-              attr_reader description: String?
-
-              def description=: (String) -> String
-
-              attr_reader display_name_override: String?
-
-              def display_name_override=: (String) -> String
-
-              attr_reader hidden_from_widgets: ::Array[Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget]?
-
-              def hidden_from_widgets=: (
-                ::Array[Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget]
-              ) -> ::Array[Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget]
-
-              attr_reader is_custom: bool?
-
-              def is_custom=: (bool) -> bool
-
-              attr_reader is_granted: bool?
-
-              def is_granted=: (bool) -> bool
-
-              attr_reader order: Float?
-
-              def order=: (Float) -> Float
-
-              def initialize: (
-                amount: Float?,
-                cadence: Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::cadence,
-                custom_currency_id: String,
-                ?behavior: Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::behavior,
-                ?description: String,
-                ?display_name_override: String,
-                ?hidden_from_widgets: ::Array[Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget],
-                ?is_custom: bool,
-                ?is_granted: bool,
-                ?order: Float
-              ) -> void
-
-              def to_hash: -> {
-                amount: Float?,
-                cadence: Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::cadence,
-                custom_currency_id: String,
-                behavior: Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::behavior,
-                description: String,
-                display_name_override: String,
-                hidden_from_widgets: ::Array[Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget],
-                is_custom: bool,
-                is_granted: bool,
-                order: Float
-              }
-
-              type cadence = :MONTH | :YEAR
-
-              module Cadence
-                extend Stigg::Internal::Type::Enum
-
-                MONTH: :MONTH
-                YEAR: :YEAR
-
-                def self?.values: -> ::Array[Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::cadence]
-              end
-
-              type behavior = :Increment | :Override
-
-              module Behavior
-                extend Stigg::Internal::Type::Enum
-
-                INCREMENT: :Increment
-                OVERRIDE: :Override
-
-                def self?.values: -> ::Array[Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::behavior]
-              end
-
-              type hidden_from_widget = :PAYWALL | :CUSTOMER_PORTAL | :CHECKOUT
-
-              module HiddenFromWidget
-                extend Stigg::Internal::Type::Enum
-
-                PAYWALL: :PAYWALL
-                CUSTOMER_PORTAL: :CUSTOMER_PORTAL
-                CHECKOUT: :CHECKOUT
-
-                def self?.values: -> ::Array[Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget]
-              end
-            end
+          module Entitlement
+            extend Stigg::Internal::Type::Union
 
             type feature =
               {
-                feature_id: String,
+                id: String,
+                type: :FEATURE,
                 behavior: Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Feature::behavior,
                 description: String,
                 display_name_override: String,
@@ -193,7 +58,9 @@ module Stigg
               }
 
             class Feature < Stigg::Internal::Type::BaseModel
-              attr_accessor feature_id: String
+              attr_accessor id: String
+
+              attr_accessor type: :FEATURE
 
               attr_reader behavior: Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Feature::behavior?
 
@@ -254,7 +121,7 @@ module Stigg
               attr_accessor yearly_reset_period_configuration: Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Feature::YearlyResetPeriodConfiguration?
 
               def initialize: (
-                feature_id: String,
+                id: String,
                 ?behavior: Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Feature::behavior,
                 ?description: String,
                 ?display_name_override: String,
@@ -269,11 +136,13 @@ module Stigg
                 ?reset_period: Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Feature::reset_period,
                 ?usage_limit: Integer?,
                 ?weekly_reset_period_configuration: Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Feature::WeeklyResetPeriodConfiguration?,
-                ?yearly_reset_period_configuration: Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Feature::YearlyResetPeriodConfiguration?
+                ?yearly_reset_period_configuration: Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Feature::YearlyResetPeriodConfiguration?,
+                ?type: :FEATURE
               ) -> void
 
               def to_hash: -> {
-                feature_id: String,
+                id: String,
+                type: :FEATURE,
                 behavior: Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Feature::behavior,
                 description: String,
                 display_name_override: String,
@@ -425,6 +294,127 @@ module Stigg
                 end
               end
             end
+
+            type credit =
+              {
+                id: String,
+                amount: Float?,
+                cadence: Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::cadence,
+                type: :CREDIT,
+                behavior: Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::behavior,
+                description: String,
+                display_name_override: String,
+                hidden_from_widgets: ::Array[Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget],
+                is_custom: bool,
+                is_granted: bool,
+                order: Float
+              }
+
+            class Credit < Stigg::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              attr_accessor amount: Float?
+
+              attr_accessor cadence: Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::cadence
+
+              attr_accessor type: :CREDIT
+
+              attr_reader behavior: Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::behavior?
+
+              def behavior=: (
+                Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::behavior
+              ) -> Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::behavior
+
+              attr_reader description: String?
+
+              def description=: (String) -> String
+
+              attr_reader display_name_override: String?
+
+              def display_name_override=: (String) -> String
+
+              attr_reader hidden_from_widgets: ::Array[Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget]?
+
+              def hidden_from_widgets=: (
+                ::Array[Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget]
+              ) -> ::Array[Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget]
+
+              attr_reader is_custom: bool?
+
+              def is_custom=: (bool) -> bool
+
+              attr_reader is_granted: bool?
+
+              def is_granted=: (bool) -> bool
+
+              attr_reader order: Float?
+
+              def order=: (Float) -> Float
+
+              def initialize: (
+                id: String,
+                amount: Float?,
+                cadence: Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::cadence,
+                ?behavior: Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::behavior,
+                ?description: String,
+                ?display_name_override: String,
+                ?hidden_from_widgets: ::Array[Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget],
+                ?is_custom: bool,
+                ?is_granted: bool,
+                ?order: Float,
+                ?type: :CREDIT
+              ) -> void
+
+              def to_hash: -> {
+                id: String,
+                amount: Float?,
+                cadence: Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::cadence,
+                type: :CREDIT,
+                behavior: Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::behavior,
+                description: String,
+                display_name_override: String,
+                hidden_from_widgets: ::Array[Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget],
+                is_custom: bool,
+                is_granted: bool,
+                order: Float
+              }
+
+              type cadence = :MONTH | :YEAR
+
+              module Cadence
+                extend Stigg::Internal::Type::Enum
+
+                MONTH: :MONTH
+                YEAR: :YEAR
+
+                def self?.values: -> ::Array[Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::cadence]
+              end
+
+              type behavior = :Increment | :Override
+
+              module Behavior
+                extend Stigg::Internal::Type::Enum
+
+                INCREMENT: :Increment
+                OVERRIDE: :Override
+
+                def self?.values: -> ::Array[Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::behavior]
+              end
+
+              type hidden_from_widget = :PAYWALL | :CUSTOMER_PORTAL | :CHECKOUT
+
+              module HiddenFromWidget
+                extend Stigg::Internal::Type::Enum
+
+                PAYWALL: :PAYWALL
+                CUSTOMER_PORTAL: :CUSTOMER_PORTAL
+                CHECKOUT: :CHECKOUT
+
+                def self?.values: -> ::Array[Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget]
+              end
+            end
+
+            def self?.variants: -> ::Array[Stigg::Models::V1::Addons::EntitlementCreateParams::entitlement]
           end
         end
       end

@@ -102,9 +102,9 @@ module Stigg
 
         # @!attribute entitlements
         #
-        #   @return [Array<Stigg::Models::V1::SubscriptionProvisionParams::Entitlement>, nil]
+        #   @return [Array<Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature, Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit>, nil]
         optional :entitlements,
-                 -> { Stigg::Internal::Type::ArrayOf[Stigg::V1::SubscriptionProvisionParams::Entitlement] }
+                 -> { Stigg::Internal::Type::ArrayOf[union: Stigg::V1::SubscriptionProvisionParams::Entitlement] }
 
         # @!attribute metadata
         #   Additional metadata for the subscription
@@ -210,7 +210,7 @@ module Stigg
         #
         #   @param checkout_options [Stigg::Models::V1::SubscriptionProvisionParams::CheckoutOptions] Checkout page configuration for payment collection
         #
-        #   @param entitlements [Array<Stigg::Models::V1::SubscriptionProvisionParams::Entitlement>]
+        #   @param entitlements [Array<Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature, Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit>]
         #
         #   @param metadata [Hash{Symbol=>String}] Additional metadata for the subscription
         #
@@ -833,76 +833,30 @@ module Stigg
           #   @param reference_id [String, nil] Optional reference ID for the checkout session
         end
 
-        class Entitlement < Stigg::Internal::Type::BaseModel
-          # @!attribute credit
-          #   Credit entitlement configuration
-          #
-          #   @return [Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit, nil]
-          optional :credit, -> { Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit }
+        # Feature entitlement configuration for a subscription
+        module Entitlement
+          extend Stigg::Internal::Type::Union
 
-          # @!attribute feature
-          #   Feature entitlement configuration
-          #
-          #   @return [Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature, nil]
-          optional :feature, -> { Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature }
+          discriminator :type
 
-          # @!method initialize(credit: nil, feature: nil)
-          #   A single subscription entitlement. Provide exactly one of feature or credit.
-          #
-          #   @param credit [Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit] Credit entitlement configuration
-          #
-          #   @param feature [Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature] Feature entitlement configuration
+          # Feature entitlement configuration for a subscription
+          variant :FEATURE, -> { Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature }
 
-          # @see Stigg::Models::V1::SubscriptionProvisionParams::Entitlement#credit
-          class Credit < Stigg::Internal::Type::BaseModel
-            # @!attribute amount
-            #   Credit grant amount
-            #
-            #   @return [Float]
-            required :amount, Float
+          # Credit entitlement configuration for a subscription
+          variant :CREDIT, -> { Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit }
 
-            # @!attribute cadence
-            #   Credit grant cadence (MONTH or YEAR)
-            #
-            #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence]
-            required :cadence, enum: -> { Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence }
-
-            # @!attribute currency_id
-            #   The custom currency ID for the credit entitlement
-            #
-            #   @return [String]
-            required :currency_id, String, api_name: :currencyId
-
-            # @!method initialize(amount:, cadence:, currency_id:)
-            #   Credit entitlement configuration
-            #
-            #   @param amount [Float] Credit grant amount
-            #
-            #   @param cadence [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence] Credit grant cadence (MONTH or YEAR)
-            #
-            #   @param currency_id [String] The custom currency ID for the credit entitlement
-
-            # Credit grant cadence (MONTH or YEAR)
-            #
-            # @see Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit#cadence
-            module Cadence
-              extend Stigg::Internal::Type::Enum
-
-              MONTH = :MONTH
-              YEAR = :YEAR
-
-              # @!method self.values
-              #   @return [Array<Symbol>]
-            end
-          end
-
-          # @see Stigg::Models::V1::SubscriptionProvisionParams::Entitlement#feature
           class Feature < Stigg::Internal::Type::BaseModel
-            # @!attribute feature_id
+            # @!attribute id
             #   The feature ID to attach the entitlement to
             #
             #   @return [String]
-            required :feature_id, String, api_name: :featureId
+            required :id, String
+
+            # @!attribute type
+            #   SubscriptionFeatureEntitlementRequest
+            #
+            #   @return [Symbol, :FEATURE]
+            required :type, const: :FEATURE
 
             # @!attribute has_soft_limit
             #   Whether the usage limit is a soft limit
@@ -963,10 +917,10 @@ module Stigg
                      api_name: :yearlyResetPeriodConfiguration,
                      nil?: true
 
-            # @!method initialize(feature_id:, has_soft_limit: nil, has_unlimited_usage: nil, monthly_reset_period_configuration: nil, reset_period: nil, usage_limit: nil, weekly_reset_period_configuration: nil, yearly_reset_period_configuration: nil)
-            #   Feature entitlement configuration
+            # @!method initialize(id:, has_soft_limit: nil, has_unlimited_usage: nil, monthly_reset_period_configuration: nil, reset_period: nil, usage_limit: nil, weekly_reset_period_configuration: nil, yearly_reset_period_configuration: nil, type: :FEATURE)
+            #   Feature entitlement configuration for a subscription
             #
-            #   @param feature_id [String] The feature ID to attach the entitlement to
+            #   @param id [String] The feature ID to attach the entitlement to
             #
             #   @param has_soft_limit [Boolean] Whether the usage limit is a soft limit
             #
@@ -981,6 +935,8 @@ module Stigg
             #   @param weekly_reset_period_configuration [Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration, nil] Configuration for weekly reset period
             #
             #   @param yearly_reset_period_configuration [Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration, nil] Configuration for yearly reset period
+            #
+            #   @param type [Symbol, :FEATURE] SubscriptionFeatureEntitlementRequest
 
             # @see Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature#monthly_reset_period_configuration
             class MonthlyResetPeriodConfiguration < Stigg::Internal::Type::BaseModel
@@ -1096,6 +1052,59 @@ module Stigg
               end
             end
           end
+
+          class Credit < Stigg::Internal::Type::BaseModel
+            # @!attribute id
+            #   The custom currency ID for the credit entitlement
+            #
+            #   @return [String]
+            required :id, String
+
+            # @!attribute amount
+            #   Credit grant amount
+            #
+            #   @return [Float]
+            required :amount, Float
+
+            # @!attribute cadence
+            #   Credit grant cadence (MONTH or YEAR)
+            #
+            #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence]
+            required :cadence, enum: -> { Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence }
+
+            # @!attribute type
+            #   SubscriptionCreditEntitlementRequest
+            #
+            #   @return [Symbol, :CREDIT]
+            required :type, const: :CREDIT
+
+            # @!method initialize(id:, amount:, cadence:, type: :CREDIT)
+            #   Credit entitlement configuration for a subscription
+            #
+            #   @param id [String] The custom currency ID for the credit entitlement
+            #
+            #   @param amount [Float] Credit grant amount
+            #
+            #   @param cadence [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence] Credit grant cadence (MONTH or YEAR)
+            #
+            #   @param type [Symbol, :CREDIT] SubscriptionCreditEntitlementRequest
+
+            # Credit grant cadence (MONTH or YEAR)
+            #
+            # @see Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit#cadence
+            module Cadence
+              extend Stigg::Internal::Type::Enum
+
+              MONTH = :MONTH
+              YEAR = :YEAR
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+          end
+
+          # @!method self.variants
+          #   @return [Array(Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature, Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit)]
         end
 
         class MinimumSpend < Stigg::Internal::Type::BaseModel

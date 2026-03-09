@@ -11,7 +11,10 @@ module Stigg
               plan_id: String,
               entitlements:
                 T::Array[
-                  Stigg::V1::Plans::EntitlementCreateParams::Entitlement::OrHash
+                  T.any(
+                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Feature::OrHash,
+                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::OrHash
+                  )
                 ],
               request_options: Stigg::RequestOptions::OrHash
             ).returns(Stigg::Models::V1::Plans::EntitlementCreateResponse)
@@ -30,9 +33,11 @@ module Stigg
             params(
               id: String,
               plan_id: String,
-              credit: Stigg::V1::Plans::EntitlementUpdateParams::Credit::OrHash,
-              feature:
-                Stigg::V1::Plans::EntitlementUpdateParams::Feature::OrHash,
+              body:
+                T.any(
+                  Stigg::V1::Plans::EntitlementUpdateParams::Body::Feature::OrHash,
+                  Stigg::V1::Plans::EntitlementUpdateParams::Body::Credit::OrHash
+                ),
               request_options: Stigg::RequestOptions::OrHash
             ).returns(Stigg::V1::Plans::PlanEntitlement)
           end
@@ -41,10 +46,8 @@ module Stigg
             id,
             # Path param: The plan ID
             plan_id:,
-            # Body param: Credit entitlement fields to update
-            credit: nil,
-            # Body param: Feature entitlement fields to update
-            feature: nil,
+            # Body param: Request to update a plan entitlement
+            body:,
             request_options: {}
           )
           end

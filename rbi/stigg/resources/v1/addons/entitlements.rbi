@@ -11,7 +11,10 @@ module Stigg
               addon_id: String,
               entitlements:
                 T::Array[
-                  Stigg::V1::Addons::EntitlementCreateParams::Entitlement::OrHash
+                  T.any(
+                    Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Feature::OrHash,
+                    Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Credit::OrHash
+                  )
                 ],
               request_options: Stigg::RequestOptions::OrHash
             ).returns(Stigg::Models::V1::Addons::EntitlementCreateResponse)
@@ -30,10 +33,11 @@ module Stigg
             params(
               id: String,
               addon_id: String,
-              credit:
-                Stigg::V1::Addons::EntitlementUpdateParams::Credit::OrHash,
-              feature:
-                Stigg::V1::Addons::EntitlementUpdateParams::Feature::OrHash,
+              body:
+                T.any(
+                  Stigg::V1::Addons::EntitlementUpdateParams::Body::Feature::OrHash,
+                  Stigg::V1::Addons::EntitlementUpdateParams::Body::Credit::OrHash
+                ),
               request_options: Stigg::RequestOptions::OrHash
             ).returns(Stigg::V1::Addons::AddonPackageEntitlement)
           end
@@ -42,10 +46,8 @@ module Stigg
             id,
             # Path param: The addon ID
             addon_id:,
-            # Body param: Credit entitlement fields to update
-            credit: nil,
-            # Body param: Feature entitlement fields to update
-            feature: nil,
+            # Body param: Request to update an addon entitlement
+            body:,
             request_options: {}
           )
           end

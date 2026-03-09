@@ -176,7 +176,12 @@ module Stigg
         sig do
           returns(
             T.nilable(
-              T::Array[Stigg::V1::SubscriptionProvisionParams::Entitlement]
+              T::Array[
+                T.any(
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature,
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit
+                )
+              ]
             )
           )
         end
@@ -186,7 +191,10 @@ module Stigg
           params(
             entitlements:
               T::Array[
-                Stigg::V1::SubscriptionProvisionParams::Entitlement::OrHash
+                T.any(
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::OrHash,
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::OrHash
+                )
               ]
           ).void
         end
@@ -341,7 +349,10 @@ module Stigg
               Stigg::V1::SubscriptionProvisionParams::CheckoutOptions::OrHash,
             entitlements:
               T::Array[
-                Stigg::V1::SubscriptionProvisionParams::Entitlement::OrHash
+                T.any(
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::OrHash,
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::OrHash
+                )
               ],
             metadata: T::Hash[Symbol, String],
             minimum_spend:
@@ -439,7 +450,12 @@ module Stigg
               checkout_options:
                 Stigg::V1::SubscriptionProvisionParams::CheckoutOptions,
               entitlements:
-                T::Array[Stigg::V1::SubscriptionProvisionParams::Entitlement],
+                T::Array[
+                  T.any(
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature,
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit
+                  )
+                ],
               metadata: T::Hash[Symbol, String],
               minimum_spend:
                 T.nilable(Stigg::V1::SubscriptionProvisionParams::MinimumSpend),
@@ -2025,173 +2041,17 @@ module Stigg
           end
         end
 
-        class Entitlement < Stigg::Internal::Type::BaseModel
-          OrHash =
+        # Feature entitlement configuration for a subscription
+        module Entitlement
+          extend Stigg::Internal::Type::Union
+
+          Variants =
             T.type_alias do
               T.any(
-                Stigg::V1::SubscriptionProvisionParams::Entitlement,
-                Stigg::Internal::AnyHash
-              )
-            end
-
-          # Credit entitlement configuration
-          sig do
-            returns(
-              T.nilable(
+                Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature,
                 Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit
               )
-            )
-          end
-          attr_reader :credit
-
-          sig do
-            params(
-              credit:
-                Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::OrHash
-            ).void
-          end
-          attr_writer :credit
-
-          # Feature entitlement configuration
-          sig do
-            returns(
-              T.nilable(
-                Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature
-              )
-            )
-          end
-          attr_reader :feature
-
-          sig do
-            params(
-              feature:
-                Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::OrHash
-            ).void
-          end
-          attr_writer :feature
-
-          # A single subscription entitlement. Provide exactly one of feature or credit.
-          sig do
-            params(
-              credit:
-                Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::OrHash,
-              feature:
-                Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::OrHash
-            ).returns(T.attached_class)
-          end
-          def self.new(
-            # Credit entitlement configuration
-            credit: nil,
-            # Feature entitlement configuration
-            feature: nil
-          )
-          end
-
-          sig do
-            override.returns(
-              {
-                credit:
-                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit,
-                feature:
-                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature
-              }
-            )
-          end
-          def to_hash
-          end
-
-          class Credit < Stigg::Internal::Type::BaseModel
-            OrHash =
-              T.type_alias do
-                T.any(
-                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit,
-                  Stigg::Internal::AnyHash
-                )
-              end
-
-            # Credit grant amount
-            sig { returns(Float) }
-            attr_accessor :amount
-
-            # Credit grant cadence (MONTH or YEAR)
-            sig do
-              returns(
-                Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence::OrSymbol
-              )
             end
-            attr_accessor :cadence
-
-            # The custom currency ID for the credit entitlement
-            sig { returns(String) }
-            attr_accessor :currency_id
-
-            # Credit entitlement configuration
-            sig do
-              params(
-                amount: Float,
-                cadence:
-                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence::OrSymbol,
-                currency_id: String
-              ).returns(T.attached_class)
-            end
-            def self.new(
-              # Credit grant amount
-              amount:,
-              # Credit grant cadence (MONTH or YEAR)
-              cadence:,
-              # The custom currency ID for the credit entitlement
-              currency_id:
-            )
-            end
-
-            sig do
-              override.returns(
-                {
-                  amount: Float,
-                  cadence:
-                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence::OrSymbol,
-                  currency_id: String
-                }
-              )
-            end
-            def to_hash
-            end
-
-            # Credit grant cadence (MONTH or YEAR)
-            module Cadence
-              extend Stigg::Internal::Type::Enum
-
-              TaggedSymbol =
-                T.type_alias do
-                  T.all(
-                    Symbol,
-                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence
-                  )
-                end
-              OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-              MONTH =
-                T.let(
-                  :MONTH,
-                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence::TaggedSymbol
-                )
-              YEAR =
-                T.let(
-                  :YEAR,
-                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence::TaggedSymbol
-                )
-
-              sig do
-                override.returns(
-                  T::Array[
-                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence::TaggedSymbol
-                  ]
-                )
-              end
-              def self.values
-              end
-            end
-          end
 
           class Feature < Stigg::Internal::Type::BaseModel
             OrHash =
@@ -2204,7 +2064,11 @@ module Stigg
 
             # The feature ID to attach the entitlement to
             sig { returns(String) }
-            attr_accessor :feature_id
+            attr_accessor :id
+
+            # SubscriptionFeatureEntitlementRequest
+            sig { returns(Symbol) }
+            attr_accessor :type
 
             # Whether the usage limit is a soft limit
             sig { returns(T.nilable(T::Boolean)) }
@@ -2305,10 +2169,10 @@ module Stigg
             end
             attr_writer :yearly_reset_period_configuration
 
-            # Feature entitlement configuration
+            # Feature entitlement configuration for a subscription
             sig do
               params(
-                feature_id: String,
+                id: String,
                 has_soft_limit: T::Boolean,
                 has_unlimited_usage: T::Boolean,
                 monthly_reset_period_configuration:
@@ -2325,12 +2189,13 @@ module Stigg
                 yearly_reset_period_configuration:
                   T.nilable(
                     Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration::OrHash
-                  )
+                  ),
+                type: Symbol
               ).returns(T.attached_class)
             end
             def self.new(
               # The feature ID to attach the entitlement to
-              feature_id:,
+              id:,
               # Whether the usage limit is a soft limit
               has_soft_limit: nil,
               # Whether usage is unlimited
@@ -2344,14 +2209,17 @@ module Stigg
               # Configuration for weekly reset period
               weekly_reset_period_configuration: nil,
               # Configuration for yearly reset period
-              yearly_reset_period_configuration: nil
+              yearly_reset_period_configuration: nil,
+              # SubscriptionFeatureEntitlementRequest
+              type: :FEATURE
             )
             end
 
             sig do
               override.returns(
                 {
-                  feature_id: String,
+                  id: String,
+                  type: Symbol,
                   has_soft_limit: T::Boolean,
                   has_unlimited_usage: T::Boolean,
                   monthly_reset_period_configuration:
@@ -2680,6 +2548,117 @@ module Stigg
                 end
               end
             end
+          end
+
+          class Credit < Stigg::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit,
+                  Stigg::Internal::AnyHash
+                )
+              end
+
+            # The custom currency ID for the credit entitlement
+            sig { returns(String) }
+            attr_accessor :id
+
+            # Credit grant amount
+            sig { returns(Float) }
+            attr_accessor :amount
+
+            # Credit grant cadence (MONTH or YEAR)
+            sig do
+              returns(
+                Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence::OrSymbol
+              )
+            end
+            attr_accessor :cadence
+
+            # SubscriptionCreditEntitlementRequest
+            sig { returns(Symbol) }
+            attr_accessor :type
+
+            # Credit entitlement configuration for a subscription
+            sig do
+              params(
+                id: String,
+                amount: Float,
+                cadence:
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence::OrSymbol,
+                type: Symbol
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The custom currency ID for the credit entitlement
+              id:,
+              # Credit grant amount
+              amount:,
+              # Credit grant cadence (MONTH or YEAR)
+              cadence:,
+              # SubscriptionCreditEntitlementRequest
+              type: :CREDIT
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  id: String,
+                  amount: Float,
+                  cadence:
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence::OrSymbol,
+                  type: Symbol
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # Credit grant cadence (MONTH or YEAR)
+            module Cadence
+              extend Stigg::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              MONTH =
+                T.let(
+                  :MONTH,
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence::TaggedSymbol
+                )
+              YEAR =
+                T.let(
+                  :YEAR,
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
+          sig do
+            override.returns(
+              T::Array[
+                Stigg::V1::SubscriptionProvisionParams::Entitlement::Variants
+              ]
+            )
+          end
+          def self.variants
           end
         end
 
