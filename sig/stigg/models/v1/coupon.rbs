@@ -18,9 +18,10 @@ module Stigg
             billing_link_url: String?,
             created_at: Time,
             description: String?,
-            duration_in_months: Float?,
+            duration_in_months: Integer?,
+            metadata: ::Hash[Symbol, String]?,
             name: String,
-            percent_off: Float?,
+            percent_off: Integer?,
             source: Stigg::Models::V1::Coupon::Data::source?,
             status: Stigg::Models::V1::Coupon::Data::status,
             type: Stigg::Models::V1::Coupon::Data::type_,
@@ -40,11 +41,13 @@ module Stigg
 
           attr_accessor description: String?
 
-          attr_accessor duration_in_months: Float?
+          attr_accessor duration_in_months: Integer?
+
+          attr_accessor metadata: ::Hash[Symbol, String]?
 
           attr_accessor name: String
 
-          attr_accessor percent_off: Float?
+          attr_accessor percent_off: Integer?
 
           attr_accessor source: Stigg::Models::V1::Coupon::Data::source?
 
@@ -61,9 +64,10 @@ module Stigg
             billing_link_url: String?,
             created_at: Time,
             description: String?,
-            duration_in_months: Float?,
+            duration_in_months: Integer?,
+            metadata: ::Hash[Symbol, String]?,
             name: String,
-            percent_off: Float?,
+            percent_off: Integer?,
             source: Stigg::Models::V1::Coupon::Data::source?,
             status: Stigg::Models::V1::Coupon::Data::status,
             type: Stigg::Models::V1::Coupon::Data::type_,
@@ -77,9 +81,10 @@ module Stigg
             billing_link_url: String?,
             created_at: Time,
             description: String?,
-            duration_in_months: Float?,
+            duration_in_months: Integer?,
+            metadata: ::Hash[Symbol, String]?,
             name: String,
-            percent_off: Float?,
+            percent_off: Integer?,
             source: Stigg::Models::V1::Coupon::Data::source?,
             status: Stigg::Models::V1::Coupon::Data::status,
             type: Stigg::Models::V1::Coupon::Data::type_,
