@@ -53,7 +53,10 @@ module Stigg
               T::Array[Stigg::V1::SubscriptionUpdateParams::Charge::OrHash],
             entitlements:
               T::Array[
-                Stigg::V1::SubscriptionUpdateParams::Entitlement::OrHash
+                T.any(
+                  Stigg::V1::SubscriptionUpdateParams::Entitlement::Feature::OrHash,
+                  Stigg::V1::SubscriptionUpdateParams::Entitlement::Credit::OrHash
+                )
               ],
             metadata: T::Hash[Symbol, String],
             minimum_spend:
@@ -328,7 +331,10 @@ module Stigg
               Stigg::V1::SubscriptionProvisionParams::CheckoutOptions::OrHash,
             entitlements:
               T::Array[
-                Stigg::V1::SubscriptionProvisionParams::Entitlement::OrHash
+                T.any(
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::OrHash,
+                  Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit::OrHash
+                )
               ],
             metadata: T::Hash[Symbol, String],
             minimum_spend:

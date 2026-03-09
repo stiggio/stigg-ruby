@@ -60,7 +60,7 @@ module Stigg
         #
         # @param charges [Array<Stigg::Models::V1::SubscriptionUpdateParams::Charge>]
         #
-        # @param entitlements [Array<Stigg::Models::V1::SubscriptionUpdateParams::Entitlement>]
+        # @param entitlements [Array<Stigg::Models::V1::SubscriptionUpdateParams::Entitlement::Feature, Stigg::Models::V1::SubscriptionUpdateParams::Entitlement::Credit>]
         #
         # @param metadata [Hash{Symbol=>String}] Additional metadata for the subscription
         #
@@ -335,7 +335,7 @@ module Stigg
         #
         # @param checkout_options [Stigg::Models::V1::SubscriptionProvisionParams::CheckoutOptions] Checkout page configuration for payment collection
         #
-        # @param entitlements [Array<Stigg::Models::V1::SubscriptionProvisionParams::Entitlement>]
+        # @param entitlements [Array<Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature, Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit>]
         #
         # @param metadata [Hash{Symbol=>String}] Additional metadata for the subscription
         #

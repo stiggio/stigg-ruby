@@ -17,171 +17,41 @@ module Stigg
           # @!attribute entitlements
           #   Entitlements to create
           #
-          #   @return [Array<Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement>]
+          #   @return [Array<Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Feature, Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit>]
           required :entitlements,
-                   -> { Stigg::Internal::Type::ArrayOf[Stigg::V1::Addons::EntitlementCreateParams::Entitlement] }
+                   -> { Stigg::Internal::Type::ArrayOf[union: Stigg::V1::Addons::EntitlementCreateParams::Entitlement] }
 
           # @!method initialize(addon_id:, entitlements:, request_options: {})
           #   @param addon_id [String]
           #
-          #   @param entitlements [Array<Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement>] Entitlements to create
+          #   @param entitlements [Array<Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Feature, Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit>] Entitlements to create
           #
           #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 
-          class Entitlement < Stigg::Internal::Type::BaseModel
-            # @!attribute credit
-            #   Credit entitlement to create
-            #
-            #   @return [Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit, nil]
-            optional :credit, -> { Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Credit }
+          # Request to create a feature entitlement
+          module Entitlement
+            extend Stigg::Internal::Type::Union
 
-            # @!attribute feature
-            #   Feature entitlement to create
-            #
-            #   @return [Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Feature, nil]
-            optional :feature, -> { Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Feature }
+            discriminator :type
 
-            # @!method initialize(credit: nil, feature: nil)
-            #   A single entitlement to create. Provide exactly one of feature or credit.
-            #
-            #   @param credit [Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit] Credit entitlement to create
-            #
-            #   @param feature [Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Feature] Feature entitlement to create
+            # Request to create a feature entitlement
+            variant :FEATURE, -> { Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Feature }
 
-            # @see Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement#credit
-            class Credit < Stigg::Internal::Type::BaseModel
-              # @!attribute amount
-              #   Credit grant amount
-              #
-              #   @return [Float, nil]
-              required :amount, Float, nil?: true
+            # Request to create a credit entitlement
+            variant :CREDIT, -> { Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Credit }
 
-              # @!attribute cadence
-              #   Credit grant cadence (MONTH or YEAR)
-              #
-              #   @return [Symbol, Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::Cadence]
-              required :cadence, enum: -> { Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Credit::Cadence }
-
-              # @!attribute custom_currency_id
-              #   The custom currency ID for the credit entitlement
-              #
-              #   @return [String]
-              required :custom_currency_id, String, api_name: :customCurrencyId
-
-              # @!attribute behavior
-              #   Entitlement behavior (Increment or Override)
-              #
-              #   @return [Symbol, Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::Behavior, nil]
-              optional :behavior, enum: -> { Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Credit::Behavior }
-
-              # @!attribute description
-              #   Description of the entitlement
-              #
-              #   @return [String, nil]
-              optional :description, String
-
-              # @!attribute display_name_override
-              #   Override display name for the entitlement
-              #
-              #   @return [String, nil]
-              optional :display_name_override, String, api_name: :displayNameOverride
-
-              # @!attribute hidden_from_widgets
-              #   Widget types where this entitlement is hidden
-              #
-              #   @return [Array<Symbol, Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::HiddenFromWidget>, nil]
-              optional :hidden_from_widgets,
-                       -> {
-                         Stigg::Internal::Type::ArrayOf[enum: Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Credit::HiddenFromWidget]
-                       },
-                       api_name: :hiddenFromWidgets
-
-              # @!attribute is_custom
-              #   Whether this is a custom entitlement
-              #
-              #   @return [Boolean, nil]
-              optional :is_custom, Stigg::Internal::Type::Boolean, api_name: :isCustom
-
-              # @!attribute is_granted
-              #   Whether the entitlement is granted
-              #
-              #   @return [Boolean, nil]
-              optional :is_granted, Stigg::Internal::Type::Boolean, api_name: :isGranted
-
-              # @!attribute order
-              #   Display order of the entitlement
-              #
-              #   @return [Float, nil]
-              optional :order, Float
-
-              # @!method initialize(amount:, cadence:, custom_currency_id:, behavior: nil, description: nil, display_name_override: nil, hidden_from_widgets: nil, is_custom: nil, is_granted: nil, order: nil)
-              #   Credit entitlement to create
-              #
-              #   @param amount [Float, nil] Credit grant amount
-              #
-              #   @param cadence [Symbol, Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::Cadence] Credit grant cadence (MONTH or YEAR)
-              #
-              #   @param custom_currency_id [String] The custom currency ID for the credit entitlement
-              #
-              #   @param behavior [Symbol, Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::Behavior] Entitlement behavior (Increment or Override)
-              #
-              #   @param description [String] Description of the entitlement
-              #
-              #   @param display_name_override [String] Override display name for the entitlement
-              #
-              #   @param hidden_from_widgets [Array<Symbol, Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::HiddenFromWidget>] Widget types where this entitlement is hidden
-              #
-              #   @param is_custom [Boolean] Whether this is a custom entitlement
-              #
-              #   @param is_granted [Boolean] Whether the entitlement is granted
-              #
-              #   @param order [Float] Display order of the entitlement
-
-              # Credit grant cadence (MONTH or YEAR)
-              #
-              # @see Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit#cadence
-              module Cadence
-                extend Stigg::Internal::Type::Enum
-
-                MONTH = :MONTH
-                YEAR = :YEAR
-
-                # @!method self.values
-                #   @return [Array<Symbol>]
-              end
-
-              # Entitlement behavior (Increment or Override)
-              #
-              # @see Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit#behavior
-              module Behavior
-                extend Stigg::Internal::Type::Enum
-
-                INCREMENT = :Increment
-                OVERRIDE = :Override
-
-                # @!method self.values
-                #   @return [Array<Symbol>]
-              end
-
-              module HiddenFromWidget
-                extend Stigg::Internal::Type::Enum
-
-                PAYWALL = :PAYWALL
-                CUSTOMER_PORTAL = :CUSTOMER_PORTAL
-                CHECKOUT = :CHECKOUT
-
-                # @!method self.values
-                #   @return [Array<Symbol>]
-              end
-            end
-
-            # @see Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement#feature
             class Feature < Stigg::Internal::Type::BaseModel
-              # @!attribute feature_id
+              # @!attribute id
               #   The feature ID to attach the entitlement to
               #
               #   @return [String]
-              required :feature_id, String, api_name: :featureId
+              required :id, String
+
+              # @!attribute type
+              #   CreateFeatureEntitlementRequest
+              #
+              #   @return [Symbol, :FEATURE]
+              required :type, const: :FEATURE
 
               # @!attribute behavior
               #   Entitlement behavior (Increment or Override)
@@ -297,10 +167,10 @@ module Stigg
                        api_name: :yearlyResetPeriodConfiguration,
                        nil?: true
 
-              # @!method initialize(feature_id:, behavior: nil, description: nil, display_name_override: nil, enum_values: nil, has_soft_limit: nil, has_unlimited_usage: nil, hidden_from_widgets: nil, is_custom: nil, is_granted: nil, monthly_reset_period_configuration: nil, order: nil, reset_period: nil, usage_limit: nil, weekly_reset_period_configuration: nil, yearly_reset_period_configuration: nil)
-              #   Feature entitlement to create
+              # @!method initialize(id:, behavior: nil, description: nil, display_name_override: nil, enum_values: nil, has_soft_limit: nil, has_unlimited_usage: nil, hidden_from_widgets: nil, is_custom: nil, is_granted: nil, monthly_reset_period_configuration: nil, order: nil, reset_period: nil, usage_limit: nil, weekly_reset_period_configuration: nil, yearly_reset_period_configuration: nil, type: :FEATURE)
+              #   Request to create a feature entitlement
               #
-              #   @param feature_id [String] The feature ID to attach the entitlement to
+              #   @param id [String] The feature ID to attach the entitlement to
               #
               #   @param behavior [Symbol, Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Feature::Behavior] Entitlement behavior (Increment or Override)
               #
@@ -331,6 +201,8 @@ module Stigg
               #   @param weekly_reset_period_configuration [Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Feature::WeeklyResetPeriodConfiguration, nil] Configuration for weekly reset period
               #
               #   @param yearly_reset_period_configuration [Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Feature::YearlyResetPeriodConfiguration, nil] Configuration for yearly reset period
+              #
+              #   @param type [Symbol, :FEATURE] CreateFeatureEntitlementRequest
 
               # Entitlement behavior (Increment or Override)
               #
@@ -470,6 +342,143 @@ module Stigg
                 end
               end
             end
+
+            class Credit < Stigg::Internal::Type::BaseModel
+              # @!attribute id
+              #   The custom currency ID for the credit entitlement
+              #
+              #   @return [String]
+              required :id, String
+
+              # @!attribute amount
+              #   Credit grant amount
+              #
+              #   @return [Float, nil]
+              required :amount, Float, nil?: true
+
+              # @!attribute cadence
+              #   Credit grant cadence (MONTH or YEAR)
+              #
+              #   @return [Symbol, Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::Cadence]
+              required :cadence, enum: -> { Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Credit::Cadence }
+
+              # @!attribute type
+              #   CreateCreditEntitlementRequest
+              #
+              #   @return [Symbol, :CREDIT]
+              required :type, const: :CREDIT
+
+              # @!attribute behavior
+              #   Entitlement behavior (Increment or Override)
+              #
+              #   @return [Symbol, Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::Behavior, nil]
+              optional :behavior, enum: -> { Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Credit::Behavior }
+
+              # @!attribute description
+              #   Description of the entitlement
+              #
+              #   @return [String, nil]
+              optional :description, String
+
+              # @!attribute display_name_override
+              #   Override display name for the entitlement
+              #
+              #   @return [String, nil]
+              optional :display_name_override, String, api_name: :displayNameOverride
+
+              # @!attribute hidden_from_widgets
+              #   Widget types where this entitlement is hidden
+              #
+              #   @return [Array<Symbol, Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::HiddenFromWidget>, nil]
+              optional :hidden_from_widgets,
+                       -> {
+                         Stigg::Internal::Type::ArrayOf[enum: Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Credit::HiddenFromWidget]
+                       },
+                       api_name: :hiddenFromWidgets
+
+              # @!attribute is_custom
+              #   Whether this is a custom entitlement
+              #
+              #   @return [Boolean, nil]
+              optional :is_custom, Stigg::Internal::Type::Boolean, api_name: :isCustom
+
+              # @!attribute is_granted
+              #   Whether the entitlement is granted
+              #
+              #   @return [Boolean, nil]
+              optional :is_granted, Stigg::Internal::Type::Boolean, api_name: :isGranted
+
+              # @!attribute order
+              #   Display order of the entitlement
+              #
+              #   @return [Float, nil]
+              optional :order, Float
+
+              # @!method initialize(id:, amount:, cadence:, behavior: nil, description: nil, display_name_override: nil, hidden_from_widgets: nil, is_custom: nil, is_granted: nil, order: nil, type: :CREDIT)
+              #   Request to create a credit entitlement
+              #
+              #   @param id [String] The custom currency ID for the credit entitlement
+              #
+              #   @param amount [Float, nil] Credit grant amount
+              #
+              #   @param cadence [Symbol, Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::Cadence] Credit grant cadence (MONTH or YEAR)
+              #
+              #   @param behavior [Symbol, Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::Behavior] Entitlement behavior (Increment or Override)
+              #
+              #   @param description [String] Description of the entitlement
+              #
+              #   @param display_name_override [String] Override display name for the entitlement
+              #
+              #   @param hidden_from_widgets [Array<Symbol, Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::HiddenFromWidget>] Widget types where this entitlement is hidden
+              #
+              #   @param is_custom [Boolean] Whether this is a custom entitlement
+              #
+              #   @param is_granted [Boolean] Whether the entitlement is granted
+              #
+              #   @param order [Float] Display order of the entitlement
+              #
+              #   @param type [Symbol, :CREDIT] CreateCreditEntitlementRequest
+
+              # Credit grant cadence (MONTH or YEAR)
+              #
+              # @see Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit#cadence
+              module Cadence
+                extend Stigg::Internal::Type::Enum
+
+                MONTH = :MONTH
+                YEAR = :YEAR
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
+
+              # Entitlement behavior (Increment or Override)
+              #
+              # @see Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit#behavior
+              module Behavior
+                extend Stigg::Internal::Type::Enum
+
+                INCREMENT = :Increment
+                OVERRIDE = :Override
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
+
+              module HiddenFromWidget
+                extend Stigg::Internal::Type::Enum
+
+                PAYWALL = :PAYWALL
+                CUSTOMER_PORTAL = :CUSTOMER_PORTAL
+                CHECKOUT = :CHECKOUT
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
+            end
+
+            # @!method self.variants
+            #   @return [Array(Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Feature, Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit)]
           end
         end
       end

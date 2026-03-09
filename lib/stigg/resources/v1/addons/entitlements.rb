@@ -11,7 +11,7 @@ module Stigg
           #
           # @param addon_id [String] The addon ID
           #
-          # @param entitlements [Array<Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement>] Entitlements to create
+          # @param entitlements [Array<Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Feature, Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit>] Entitlements to create
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
@@ -31,15 +31,13 @@ module Stigg
 
           # Updates an existing entitlement on a draft addon.
           #
-          # @overload update(id, addon_id:, credit: nil, feature: nil, request_options: {})
+          # @overload update(id, addon_id:, body:, request_options: {})
           #
           # @param id [String] Path param: The feature ID or custom currency ID of the entitlement
           #
           # @param addon_id [String] Path param: The addon ID
           #
-          # @param credit [Stigg::Models::V1::Addons::EntitlementUpdateParams::Credit] Body param: Credit entitlement fields to update
-          #
-          # @param feature [Stigg::Models::V1::Addons::EntitlementUpdateParams::Feature] Body param: Feature entitlement fields to update
+          # @param body [Stigg::Models::V1::Addons::EntitlementUpdateParams::Body::Feature, Stigg::Models::V1::Addons::EntitlementUpdateParams::Body::Credit] Body param: Request to update an addon entitlement
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
@@ -55,7 +53,7 @@ module Stigg
             @client.request(
               method: :patch,
               path: ["api/v1/addons/%1$s/entitlements/%2$s", addon_id, id],
-              body: parsed,
+              body: parsed[:body],
               model: Stigg::V1::Addons::AddonPackageEntitlement,
               options: options
             )

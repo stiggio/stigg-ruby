@@ -6,7 +6,7 @@ class Stigg::Test::Resources::V1::Addons::EntitlementsTest < Stigg::Test::Resour
   def test_create_required_params
     skip("Mock server tests are disabled")
 
-    response = @stigg.v1.addons.entitlements.create("addonId", entitlements: [{}])
+    response = @stigg.v1.addons.entitlements.create("addonId", entitlements: [{id: "id", type: :FEATURE}])
 
     assert_pattern do
       response => Stigg::Models::V1::Addons::EntitlementCreateResponse
@@ -14,7 +14,7 @@ class Stigg::Test::Resources::V1::Addons::EntitlementsTest < Stigg::Test::Resour
 
     assert_pattern do
       response => {
-        data: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::Addons::EntitlementCreateResponse::Data])
+        data: ^(Stigg::Internal::Type::ArrayOf[union: Stigg::Models::V1::Addons::EntitlementCreateResponse::Data])
       }
     end
   end
@@ -22,7 +22,7 @@ class Stigg::Test::Resources::V1::Addons::EntitlementsTest < Stigg::Test::Resour
   def test_update_required_params
     skip("Mock server tests are disabled")
 
-    response = @stigg.v1.addons.entitlements.update("id", addon_id: "addonId")
+    response = @stigg.v1.addons.entitlements.update("id", addon_id: "addonId", body: {type: :FEATURE})
 
     assert_pattern do
       response => Stigg::V1::Addons::AddonPackageEntitlement
@@ -46,7 +46,7 @@ class Stigg::Test::Resources::V1::Addons::EntitlementsTest < Stigg::Test::Resour
 
     assert_pattern do
       response => {
-        data: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::Addons::EntitlementListResponse::Data]),
+        data: ^(Stigg::Internal::Type::ArrayOf[union: Stigg::Models::V1::Addons::EntitlementListResponse::Data]),
         pagination: Stigg::Models::V1::Addons::EntitlementListResponse::Pagination
       }
     end

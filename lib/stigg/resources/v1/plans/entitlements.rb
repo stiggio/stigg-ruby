@@ -11,7 +11,7 @@ module Stigg
           #
           # @param plan_id [String] The plan ID
           #
-          # @param entitlements [Array<Stigg::Models::V1::Plans::EntitlementCreateParams::Entitlement>] Entitlements to create
+          # @param entitlements [Array<Stigg::Models::V1::Plans::EntitlementCreateParams::Entitlement::Feature, Stigg::Models::V1::Plans::EntitlementCreateParams::Entitlement::Credit>] Entitlements to create
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
@@ -31,15 +31,13 @@ module Stigg
 
           # Updates an existing entitlement on a draft plan.
           #
-          # @overload update(id, plan_id:, credit: nil, feature: nil, request_options: {})
+          # @overload update(id, plan_id:, body:, request_options: {})
           #
           # @param id [String] Path param: The feature ID or custom currency ID of the entitlement
           #
           # @param plan_id [String] Path param: The plan ID
           #
-          # @param credit [Stigg::Models::V1::Plans::EntitlementUpdateParams::Credit] Body param: Credit entitlement fields to update
-          #
-          # @param feature [Stigg::Models::V1::Plans::EntitlementUpdateParams::Feature] Body param: Feature entitlement fields to update
+          # @param body [Stigg::Models::V1::Plans::EntitlementUpdateParams::Body::Feature, Stigg::Models::V1::Plans::EntitlementUpdateParams::Body::Credit] Body param: Request to update a plan entitlement
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
@@ -55,7 +53,7 @@ module Stigg
             @client.request(
               method: :patch,
               path: ["api/v1/plans/%1$s/entitlements/%2$s", plan_id, id],
-              body: parsed,
+              body: parsed[:body],
               model: Stigg::V1::Plans::PlanEntitlement,
               options: options
             )

@@ -6,7 +6,7 @@ class Stigg::Test::Resources::V1::Plans::EntitlementsTest < Stigg::Test::Resourc
   def test_create_required_params
     skip("Mock server tests are disabled")
 
-    response = @stigg.v1.plans.entitlements.create("planId", entitlements: [{}])
+    response = @stigg.v1.plans.entitlements.create("planId", entitlements: [{id: "id", type: :FEATURE}])
 
     assert_pattern do
       response => Stigg::Models::V1::Plans::EntitlementCreateResponse
@@ -14,7 +14,7 @@ class Stigg::Test::Resources::V1::Plans::EntitlementsTest < Stigg::Test::Resourc
 
     assert_pattern do
       response => {
-        data: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::Plans::EntitlementCreateResponse::Data])
+        data: ^(Stigg::Internal::Type::ArrayOf[union: Stigg::Models::V1::Plans::EntitlementCreateResponse::Data])
       }
     end
   end
@@ -22,7 +22,7 @@ class Stigg::Test::Resources::V1::Plans::EntitlementsTest < Stigg::Test::Resourc
   def test_update_required_params
     skip("Mock server tests are disabled")
 
-    response = @stigg.v1.plans.entitlements.update("id", plan_id: "planId")
+    response = @stigg.v1.plans.entitlements.update("id", plan_id: "planId", body: {type: :FEATURE})
 
     assert_pattern do
       response => Stigg::V1::Plans::PlanEntitlement
@@ -46,7 +46,7 @@ class Stigg::Test::Resources::V1::Plans::EntitlementsTest < Stigg::Test::Resourc
 
     assert_pattern do
       response => {
-        data: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::Plans::EntitlementListResponse::Data]),
+        data: ^(Stigg::Internal::Type::ArrayOf[union: Stigg::Models::V1::Plans::EntitlementListResponse::Data]),
         pagination: Stigg::Models::V1::Plans::EntitlementListResponse::Pagination
       }
     end

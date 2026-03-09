@@ -17,7 +17,7 @@ module Stigg
           budget: Stigg::V1::SubscriptionProvisionParams::Budget?,
           charges: ::Array[Stigg::V1::SubscriptionProvisionParams::Charge],
           checkout_options: Stigg::V1::SubscriptionProvisionParams::CheckoutOptions,
-          entitlements: ::Array[Stigg::V1::SubscriptionProvisionParams::Entitlement],
+          entitlements: ::Array[Stigg::Models::V1::SubscriptionProvisionParams::entitlement],
           metadata: ::Hash[Symbol, String],
           minimum_spend: Stigg::V1::SubscriptionProvisionParams::MinimumSpend?,
           paying_customer_id: String?,
@@ -96,11 +96,11 @@ module Stigg
           Stigg::V1::SubscriptionProvisionParams::CheckoutOptions
         ) -> Stigg::V1::SubscriptionProvisionParams::CheckoutOptions
 
-        attr_reader entitlements: ::Array[Stigg::V1::SubscriptionProvisionParams::Entitlement]?
+        attr_reader entitlements: ::Array[Stigg::Models::V1::SubscriptionProvisionParams::entitlement]?
 
         def entitlements=: (
-          ::Array[Stigg::V1::SubscriptionProvisionParams::Entitlement]
-        ) -> ::Array[Stigg::V1::SubscriptionProvisionParams::Entitlement]
+          ::Array[Stigg::Models::V1::SubscriptionProvisionParams::entitlement]
+        ) -> ::Array[Stigg::Models::V1::SubscriptionProvisionParams::entitlement]
 
         attr_reader metadata: ::Hash[Symbol, String]?
 
@@ -161,7 +161,7 @@ module Stigg
           ?budget: Stigg::V1::SubscriptionProvisionParams::Budget?,
           ?charges: ::Array[Stigg::V1::SubscriptionProvisionParams::Charge],
           ?checkout_options: Stigg::V1::SubscriptionProvisionParams::CheckoutOptions,
-          ?entitlements: ::Array[Stigg::V1::SubscriptionProvisionParams::Entitlement],
+          ?entitlements: ::Array[Stigg::Models::V1::SubscriptionProvisionParams::entitlement],
           ?metadata: ::Hash[Symbol, String],
           ?minimum_spend: Stigg::V1::SubscriptionProvisionParams::MinimumSpend?,
           ?paying_customer_id: String?,
@@ -191,7 +191,7 @@ module Stigg
           budget: Stigg::V1::SubscriptionProvisionParams::Budget?,
           charges: ::Array[Stigg::V1::SubscriptionProvisionParams::Charge],
           checkout_options: Stigg::V1::SubscriptionProvisionParams::CheckoutOptions,
-          entitlements: ::Array[Stigg::V1::SubscriptionProvisionParams::Entitlement],
+          entitlements: ::Array[Stigg::Models::V1::SubscriptionProvisionParams::entitlement],
           metadata: ::Hash[Symbol, String],
           minimum_spend: Stigg::V1::SubscriptionProvisionParams::MinimumSpend?,
           paying_customer_id: String?,
@@ -887,75 +887,16 @@ module Stigg
         end
 
         type entitlement =
-          {
-            credit: Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit,
-            feature: Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature
-          }
+          Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature
+          | Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit
 
-        class Entitlement < Stigg::Internal::Type::BaseModel
-          attr_reader credit: Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit?
-
-          def credit=: (
-            Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit
-          ) -> Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit
-
-          attr_reader feature: Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature?
-
-          def feature=: (
-            Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature
-          ) -> Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature
-
-          def initialize: (
-            ?credit: Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit,
-            ?feature: Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature
-          ) -> void
-
-          def to_hash: -> {
-            credit: Stigg::V1::SubscriptionProvisionParams::Entitlement::Credit,
-            feature: Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature
-          }
-
-          type credit =
-            {
-              amount: Float,
-              cadence: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit::cadence,
-              currency_id: String
-            }
-
-          class Credit < Stigg::Internal::Type::BaseModel
-            attr_accessor amount: Float
-
-            attr_accessor cadence: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit::cadence
-
-            attr_accessor currency_id: String
-
-            def initialize: (
-              amount: Float,
-              cadence: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit::cadence,
-              currency_id: String
-            ) -> void
-
-            def to_hash: -> {
-              amount: Float,
-              cadence: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit::cadence,
-              currency_id: String
-            }
-
-            type cadence = :MONTH | :YEAR
-
-            module Cadence
-              extend Stigg::Internal::Type::Enum
-
-              MONTH: :MONTH
-              YEAR: :YEAR
-
-              def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit::cadence]
-            end
-          end
+        module Entitlement
+          extend Stigg::Internal::Type::Union
 
           type feature =
             {
-              feature_id: String,
+              id: String,
+              type: :FEATURE,
               has_soft_limit: bool,
               has_unlimited_usage: bool,
               monthly_reset_period_configuration: Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration?,
@@ -966,7 +907,9 @@ module Stigg
             }
 
           class Feature < Stigg::Internal::Type::BaseModel
-            attr_accessor feature_id: String
+            attr_accessor id: String
+
+            attr_accessor type: :FEATURE
 
             attr_reader has_soft_limit: bool?
 
@@ -993,18 +936,20 @@ module Stigg
             attr_accessor yearly_reset_period_configuration: Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration?
 
             def initialize: (
-              feature_id: String,
+              id: String,
               ?has_soft_limit: bool,
               ?has_unlimited_usage: bool,
               ?monthly_reset_period_configuration: Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration?,
               ?reset_period: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature::reset_period,
               ?usage_limit: Integer,
               ?weekly_reset_period_configuration: Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::WeeklyResetPeriodConfiguration?,
-              ?yearly_reset_period_configuration: Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration?
+              ?yearly_reset_period_configuration: Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::YearlyResetPeriodConfiguration?,
+              ?type: :FEATURE
             ) -> void
 
             def to_hash: -> {
-              feature_id: String,
+              id: String,
+              type: :FEATURE,
               has_soft_limit: bool,
               has_unlimited_usage: bool,
               monthly_reset_period_configuration: Stigg::V1::SubscriptionProvisionParams::Entitlement::Feature::MonthlyResetPeriodConfiguration?,
@@ -1125,6 +1070,51 @@ module Stigg
               end
             end
           end
+
+          type credit =
+            {
+              id: String,
+              amount: Float,
+              cadence: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit::cadence,
+              type: :CREDIT
+            }
+
+          class Credit < Stigg::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor amount: Float
+
+            attr_accessor cadence: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit::cadence
+
+            attr_accessor type: :CREDIT
+
+            def initialize: (
+              id: String,
+              amount: Float,
+              cadence: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit::cadence,
+              ?type: :CREDIT
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              amount: Float,
+              cadence: Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit::cadence,
+              type: :CREDIT
+            }
+
+            type cadence = :MONTH | :YEAR
+
+            module Cadence
+              extend Stigg::Internal::Type::Enum
+
+              MONTH: :MONTH
+              YEAR: :YEAR
+
+              def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit::cadence]
+            end
+          end
+
+          def self?.variants: -> ::Array[Stigg::Models::V1::SubscriptionProvisionParams::entitlement]
         end
 
         type minimum_spend =

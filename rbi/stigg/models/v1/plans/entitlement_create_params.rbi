@@ -22,7 +22,12 @@ module Stigg
           # Entitlements to create
           sig do
             returns(
-              T::Array[Stigg::V1::Plans::EntitlementCreateParams::Entitlement]
+              T::Array[
+                T.any(
+                  Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Feature,
+                  Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit
+                )
+              ]
             )
           end
           attr_accessor :entitlements
@@ -32,7 +37,10 @@ module Stigg
               plan_id: String,
               entitlements:
                 T::Array[
-                  Stigg::V1::Plans::EntitlementCreateParams::Entitlement::OrHash
+                  T.any(
+                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Feature::OrHash,
+                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::OrHash
+                  )
                 ],
               request_options: Stigg::RequestOptions::OrHash
             ).returns(T.attached_class)
@@ -51,7 +59,10 @@ module Stigg
                 plan_id: String,
                 entitlements:
                   T::Array[
-                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement
+                    T.any(
+                      Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Feature,
+                      Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit
+                    )
                   ],
                 request_options: Stigg::RequestOptions
               }
@@ -60,358 +71,17 @@ module Stigg
           def to_hash
           end
 
-          class Entitlement < Stigg::Internal::Type::BaseModel
-            OrHash =
+          # Request to create a feature entitlement
+          module Entitlement
+            extend Stigg::Internal::Type::Union
+
+            Variants =
               T.type_alias do
                 T.any(
-                  Stigg::V1::Plans::EntitlementCreateParams::Entitlement,
-                  Stigg::Internal::AnyHash
-                )
-              end
-
-            # Credit entitlement to create
-            sig do
-              returns(
-                T.nilable(
+                  Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Feature,
                   Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit
                 )
-              )
-            end
-            attr_reader :credit
-
-            sig do
-              params(
-                credit:
-                  Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::OrHash
-              ).void
-            end
-            attr_writer :credit
-
-            # Feature entitlement to create
-            sig do
-              returns(
-                T.nilable(
-                  Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Feature
-                )
-              )
-            end
-            attr_reader :feature
-
-            sig do
-              params(
-                feature:
-                  Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Feature::OrHash
-              ).void
-            end
-            attr_writer :feature
-
-            # A single entitlement to create. Provide exactly one of feature or credit.
-            sig do
-              params(
-                credit:
-                  Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::OrHash,
-                feature:
-                  Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Feature::OrHash
-              ).returns(T.attached_class)
-            end
-            def self.new(
-              # Credit entitlement to create
-              credit: nil,
-              # Feature entitlement to create
-              feature: nil
-            )
-            end
-
-            sig do
-              override.returns(
-                {
-                  credit:
-                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit,
-                  feature:
-                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Feature
-                }
-              )
-            end
-            def to_hash
-            end
-
-            class Credit < Stigg::Internal::Type::BaseModel
-              OrHash =
-                T.type_alias do
-                  T.any(
-                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit,
-                    Stigg::Internal::AnyHash
-                  )
-                end
-
-              # Credit grant amount
-              sig { returns(T.nilable(Float)) }
-              attr_accessor :amount
-
-              # Credit grant cadence (MONTH or YEAR)
-              sig do
-                returns(
-                  Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Cadence::OrSymbol
-                )
               end
-              attr_accessor :cadence
-
-              # The custom currency ID for the credit entitlement
-              sig { returns(String) }
-              attr_accessor :custom_currency_id
-
-              # Entitlement behavior (Increment or Override)
-              sig do
-                returns(
-                  T.nilable(
-                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Behavior::OrSymbol
-                  )
-                )
-              end
-              attr_reader :behavior
-
-              sig do
-                params(
-                  behavior:
-                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Behavior::OrSymbol
-                ).void
-              end
-              attr_writer :behavior
-
-              # Description of the entitlement
-              sig { returns(T.nilable(String)) }
-              attr_reader :description
-
-              sig { params(description: String).void }
-              attr_writer :description
-
-              # Override display name for the entitlement
-              sig { returns(T.nilable(String)) }
-              attr_reader :display_name_override
-
-              sig { params(display_name_override: String).void }
-              attr_writer :display_name_override
-
-              # Widget types where this entitlement is hidden
-              sig do
-                returns(
-                  T.nilable(
-                    T::Array[
-                      Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::HiddenFromWidget::OrSymbol
-                    ]
-                  )
-                )
-              end
-              attr_reader :hidden_from_widgets
-
-              sig do
-                params(
-                  hidden_from_widgets:
-                    T::Array[
-                      Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::HiddenFromWidget::OrSymbol
-                    ]
-                ).void
-              end
-              attr_writer :hidden_from_widgets
-
-              # Whether this is a custom entitlement
-              sig { returns(T.nilable(T::Boolean)) }
-              attr_reader :is_custom
-
-              sig { params(is_custom: T::Boolean).void }
-              attr_writer :is_custom
-
-              # Whether the entitlement is granted
-              sig { returns(T.nilable(T::Boolean)) }
-              attr_reader :is_granted
-
-              sig { params(is_granted: T::Boolean).void }
-              attr_writer :is_granted
-
-              # Display order of the entitlement
-              sig { returns(T.nilable(Float)) }
-              attr_reader :order
-
-              sig { params(order: Float).void }
-              attr_writer :order
-
-              # Credit entitlement to create
-              sig do
-                params(
-                  amount: T.nilable(Float),
-                  cadence:
-                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Cadence::OrSymbol,
-                  custom_currency_id: String,
-                  behavior:
-                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Behavior::OrSymbol,
-                  description: String,
-                  display_name_override: String,
-                  hidden_from_widgets:
-                    T::Array[
-                      Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::HiddenFromWidget::OrSymbol
-                    ],
-                  is_custom: T::Boolean,
-                  is_granted: T::Boolean,
-                  order: Float
-                ).returns(T.attached_class)
-              end
-              def self.new(
-                # Credit grant amount
-                amount:,
-                # Credit grant cadence (MONTH or YEAR)
-                cadence:,
-                # The custom currency ID for the credit entitlement
-                custom_currency_id:,
-                # Entitlement behavior (Increment or Override)
-                behavior: nil,
-                # Description of the entitlement
-                description: nil,
-                # Override display name for the entitlement
-                display_name_override: nil,
-                # Widget types where this entitlement is hidden
-                hidden_from_widgets: nil,
-                # Whether this is a custom entitlement
-                is_custom: nil,
-                # Whether the entitlement is granted
-                is_granted: nil,
-                # Display order of the entitlement
-                order: nil
-              )
-              end
-
-              sig do
-                override.returns(
-                  {
-                    amount: T.nilable(Float),
-                    cadence:
-                      Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Cadence::OrSymbol,
-                    custom_currency_id: String,
-                    behavior:
-                      Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Behavior::OrSymbol,
-                    description: String,
-                    display_name_override: String,
-                    hidden_from_widgets:
-                      T::Array[
-                        Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::HiddenFromWidget::OrSymbol
-                      ],
-                    is_custom: T::Boolean,
-                    is_granted: T::Boolean,
-                    order: Float
-                  }
-                )
-              end
-              def to_hash
-              end
-
-              # Credit grant cadence (MONTH or YEAR)
-              module Cadence
-                extend Stigg::Internal::Type::Enum
-
-                TaggedSymbol =
-                  T.type_alias do
-                    T.all(
-                      Symbol,
-                      Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Cadence
-                    )
-                  end
-                OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-                MONTH =
-                  T.let(
-                    :MONTH,
-                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Cadence::TaggedSymbol
-                  )
-                YEAR =
-                  T.let(
-                    :YEAR,
-                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Cadence::TaggedSymbol
-                  )
-
-                sig do
-                  override.returns(
-                    T::Array[
-                      Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Cadence::TaggedSymbol
-                    ]
-                  )
-                end
-                def self.values
-                end
-              end
-
-              # Entitlement behavior (Increment or Override)
-              module Behavior
-                extend Stigg::Internal::Type::Enum
-
-                TaggedSymbol =
-                  T.type_alias do
-                    T.all(
-                      Symbol,
-                      Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Behavior
-                    )
-                  end
-                OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-                INCREMENT =
-                  T.let(
-                    :Increment,
-                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Behavior::TaggedSymbol
-                  )
-                OVERRIDE =
-                  T.let(
-                    :Override,
-                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Behavior::TaggedSymbol
-                  )
-
-                sig do
-                  override.returns(
-                    T::Array[
-                      Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Behavior::TaggedSymbol
-                    ]
-                  )
-                end
-                def self.values
-                end
-              end
-
-              module HiddenFromWidget
-                extend Stigg::Internal::Type::Enum
-
-                TaggedSymbol =
-                  T.type_alias do
-                    T.all(
-                      Symbol,
-                      Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::HiddenFromWidget
-                    )
-                  end
-                OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-                PAYWALL =
-                  T.let(
-                    :PAYWALL,
-                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::HiddenFromWidget::TaggedSymbol
-                  )
-                CUSTOMER_PORTAL =
-                  T.let(
-                    :CUSTOMER_PORTAL,
-                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::HiddenFromWidget::TaggedSymbol
-                  )
-                CHECKOUT =
-                  T.let(
-                    :CHECKOUT,
-                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::HiddenFromWidget::TaggedSymbol
-                  )
-
-                sig do
-                  override.returns(
-                    T::Array[
-                      Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::HiddenFromWidget::TaggedSymbol
-                    ]
-                  )
-                end
-                def self.values
-                end
-              end
-            end
 
             class Feature < Stigg::Internal::Type::BaseModel
               OrHash =
@@ -424,7 +94,11 @@ module Stigg
 
               # The feature ID to attach the entitlement to
               sig { returns(String) }
-              attr_accessor :feature_id
+              attr_accessor :id
+
+              # CreateFeatureEntitlementRequest
+              sig { returns(Symbol) }
+              attr_accessor :type
 
               # Entitlement behavior (Increment or Override)
               sig do
@@ -604,10 +278,10 @@ module Stigg
               end
               attr_writer :yearly_reset_period_configuration
 
-              # Feature entitlement to create
+              # Request to create a feature entitlement
               sig do
                 params(
-                  feature_id: String,
+                  id: String,
                   behavior:
                     Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Feature::Behavior::OrSymbol,
                   description: String,
@@ -636,12 +310,13 @@ module Stigg
                   yearly_reset_period_configuration:
                     T.nilable(
                       Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Feature::YearlyResetPeriodConfiguration::OrHash
-                    )
+                    ),
+                  type: Symbol
                 ).returns(T.attached_class)
               end
               def self.new(
                 # The feature ID to attach the entitlement to
-                feature_id:,
+                id:,
                 # Entitlement behavior (Increment or Override)
                 behavior: nil,
                 # Description of the entitlement
@@ -671,14 +346,17 @@ module Stigg
                 # Configuration for weekly reset period
                 weekly_reset_period_configuration: nil,
                 # Configuration for yearly reset period
-                yearly_reset_period_configuration: nil
+                yearly_reset_period_configuration: nil,
+                # CreateFeatureEntitlementRequest
+                type: :FEATURE
               )
               end
 
               sig do
                 override.returns(
                   {
-                    feature_id: String,
+                    id: String,
+                    type: Symbol,
                     behavior:
                       Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Feature::Behavior::OrSymbol,
                     description: String,
@@ -1093,6 +771,302 @@ module Stigg
                   end
                 end
               end
+            end
+
+            class Credit < Stigg::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit,
+                    Stigg::Internal::AnyHash
+                  )
+                end
+
+              # The custom currency ID for the credit entitlement
+              sig { returns(String) }
+              attr_accessor :id
+
+              # Credit grant amount
+              sig { returns(T.nilable(Float)) }
+              attr_accessor :amount
+
+              # Credit grant cadence (MONTH or YEAR)
+              sig do
+                returns(
+                  Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Cadence::OrSymbol
+                )
+              end
+              attr_accessor :cadence
+
+              # CreateCreditEntitlementRequest
+              sig { returns(Symbol) }
+              attr_accessor :type
+
+              # Entitlement behavior (Increment or Override)
+              sig do
+                returns(
+                  T.nilable(
+                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Behavior::OrSymbol
+                  )
+                )
+              end
+              attr_reader :behavior
+
+              sig do
+                params(
+                  behavior:
+                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Behavior::OrSymbol
+                ).void
+              end
+              attr_writer :behavior
+
+              # Description of the entitlement
+              sig { returns(T.nilable(String)) }
+              attr_reader :description
+
+              sig { params(description: String).void }
+              attr_writer :description
+
+              # Override display name for the entitlement
+              sig { returns(T.nilable(String)) }
+              attr_reader :display_name_override
+
+              sig { params(display_name_override: String).void }
+              attr_writer :display_name_override
+
+              # Widget types where this entitlement is hidden
+              sig do
+                returns(
+                  T.nilable(
+                    T::Array[
+                      Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::HiddenFromWidget::OrSymbol
+                    ]
+                  )
+                )
+              end
+              attr_reader :hidden_from_widgets
+
+              sig do
+                params(
+                  hidden_from_widgets:
+                    T::Array[
+                      Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::HiddenFromWidget::OrSymbol
+                    ]
+                ).void
+              end
+              attr_writer :hidden_from_widgets
+
+              # Whether this is a custom entitlement
+              sig { returns(T.nilable(T::Boolean)) }
+              attr_reader :is_custom
+
+              sig { params(is_custom: T::Boolean).void }
+              attr_writer :is_custom
+
+              # Whether the entitlement is granted
+              sig { returns(T.nilable(T::Boolean)) }
+              attr_reader :is_granted
+
+              sig { params(is_granted: T::Boolean).void }
+              attr_writer :is_granted
+
+              # Display order of the entitlement
+              sig { returns(T.nilable(Float)) }
+              attr_reader :order
+
+              sig { params(order: Float).void }
+              attr_writer :order
+
+              # Request to create a credit entitlement
+              sig do
+                params(
+                  id: String,
+                  amount: T.nilable(Float),
+                  cadence:
+                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Cadence::OrSymbol,
+                  behavior:
+                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Behavior::OrSymbol,
+                  description: String,
+                  display_name_override: String,
+                  hidden_from_widgets:
+                    T::Array[
+                      Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::HiddenFromWidget::OrSymbol
+                    ],
+                  is_custom: T::Boolean,
+                  is_granted: T::Boolean,
+                  order: Float,
+                  type: Symbol
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # The custom currency ID for the credit entitlement
+                id:,
+                # Credit grant amount
+                amount:,
+                # Credit grant cadence (MONTH or YEAR)
+                cadence:,
+                # Entitlement behavior (Increment or Override)
+                behavior: nil,
+                # Description of the entitlement
+                description: nil,
+                # Override display name for the entitlement
+                display_name_override: nil,
+                # Widget types where this entitlement is hidden
+                hidden_from_widgets: nil,
+                # Whether this is a custom entitlement
+                is_custom: nil,
+                # Whether the entitlement is granted
+                is_granted: nil,
+                # Display order of the entitlement
+                order: nil,
+                # CreateCreditEntitlementRequest
+                type: :CREDIT
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    id: String,
+                    amount: T.nilable(Float),
+                    cadence:
+                      Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Cadence::OrSymbol,
+                    type: Symbol,
+                    behavior:
+                      Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Behavior::OrSymbol,
+                    description: String,
+                    display_name_override: String,
+                    hidden_from_widgets:
+                      T::Array[
+                        Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::HiddenFromWidget::OrSymbol
+                      ],
+                    is_custom: T::Boolean,
+                    is_granted: T::Boolean,
+                    order: Float
+                  }
+                )
+              end
+              def to_hash
+              end
+
+              # Credit grant cadence (MONTH or YEAR)
+              module Cadence
+                extend Stigg::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Cadence
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                MONTH =
+                  T.let(
+                    :MONTH,
+                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Cadence::TaggedSymbol
+                  )
+                YEAR =
+                  T.let(
+                    :YEAR,
+                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Cadence::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Cadence::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+
+              # Entitlement behavior (Increment or Override)
+              module Behavior
+                extend Stigg::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Behavior
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                INCREMENT =
+                  T.let(
+                    :Increment,
+                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Behavior::TaggedSymbol
+                  )
+                OVERRIDE =
+                  T.let(
+                    :Override,
+                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Behavior::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Behavior::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+
+              module HiddenFromWidget
+                extend Stigg::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::HiddenFromWidget
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                PAYWALL =
+                  T.let(
+                    :PAYWALL,
+                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::HiddenFromWidget::TaggedSymbol
+                  )
+                CUSTOMER_PORTAL =
+                  T.let(
+                    :CUSTOMER_PORTAL,
+                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::HiddenFromWidget::TaggedSymbol
+                  )
+                CHECKOUT =
+                  T.let(
+                    :CHECKOUT,
+                    Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::HiddenFromWidget::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::HiddenFromWidget::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+            end
+
+            sig do
+              override.returns(
+                T::Array[
+                  Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Variants
+                ]
+              )
+            end
+            def self.variants
             end
           end
         end
