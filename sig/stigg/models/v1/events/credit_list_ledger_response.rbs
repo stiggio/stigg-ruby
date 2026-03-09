@@ -1,0 +1,83 @@
+module Stigg
+  module Models
+    module V1
+      module Events
+        type credit_list_ledger_response =
+          {
+            amount: Float,
+            credit_currency_id: String,
+            credit_grant_id: String,
+            customer_id: String,
+            event_id: String?,
+            event_type: Stigg::Models::V1::Events::CreditListLedgerResponse::event_type,
+            feature_id: String?,
+            resource_id: String?,
+            timestamp: Time
+          }
+
+        class CreditListLedgerResponse < Stigg::Internal::Type::BaseModel
+          attr_accessor amount: Float
+
+          attr_accessor credit_currency_id: String
+
+          attr_accessor credit_grant_id: String
+
+          attr_accessor customer_id: String
+
+          attr_accessor event_id: String?
+
+          attr_accessor event_type: Stigg::Models::V1::Events::CreditListLedgerResponse::event_type
+
+          attr_accessor feature_id: String?
+
+          attr_accessor resource_id: String?
+
+          attr_accessor timestamp: Time
+
+          def initialize: (
+            amount: Float,
+            credit_currency_id: String,
+            credit_grant_id: String,
+            customer_id: String,
+            event_id: String?,
+            event_type: Stigg::Models::V1::Events::CreditListLedgerResponse::event_type,
+            feature_id: String?,
+            resource_id: String?,
+            timestamp: Time
+          ) -> void
+
+          def to_hash: -> {
+            amount: Float,
+            credit_currency_id: String,
+            credit_grant_id: String,
+            customer_id: String,
+            event_id: String?,
+            event_type: Stigg::Models::V1::Events::CreditListLedgerResponse::event_type,
+            feature_id: String?,
+            resource_id: String?,
+            timestamp: Time
+          }
+
+          type event_type =
+            :CREDITS_GRANTED
+            | :CREDITS_EXPIRED
+            | :CREDITS_CONSUMED
+            | :CREDITS_VOIDED
+            | :CREDITS_UPDATED
+
+          module EventType
+            extend Stigg::Internal::Type::Enum
+
+            CREDITS_GRANTED: :CREDITS_GRANTED
+            CREDITS_EXPIRED: :CREDITS_EXPIRED
+            CREDITS_CONSUMED: :CREDITS_CONSUMED
+            CREDITS_VOIDED: :CREDITS_VOIDED
+            CREDITS_UPDATED: :CREDITS_UPDATED
+
+            def self?.values: -> ::Array[Stigg::Models::V1::Events::CreditListLedgerResponse::event_type]
+          end
+        end
+      end
+    end
+  end
+end

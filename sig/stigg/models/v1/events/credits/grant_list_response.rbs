@@ -1,0 +1,301 @@
+module Stigg
+  module Models
+    module V1
+      module Events
+        module Credits
+          type grant_list_response =
+            {
+              id: String,
+              amount: Float,
+              comment: String?,
+              consumed_amount: Float,
+              cost: Stigg::Models::V1::Events::Credits::GrantListResponse::Cost,
+              created_at: Time,
+              currency_id: String,
+              customer_id: String,
+              display_name: String,
+              effective_at: Time,
+              expire_at: Time?,
+              grant_type: Stigg::Models::V1::Events::Credits::GrantListResponse::grant_type,
+              invoice_id: String?,
+              latest_invoice: Stigg::Models::V1::Events::Credits::GrantListResponse::LatestInvoice?,
+              metadata: ::Hash[Symbol, String],
+              payment_collection: Stigg::Models::V1::Events::Credits::GrantListResponse::payment_collection,
+              priority: Float,
+              resource_id: String?,
+              source_type: Stigg::Models::V1::Events::Credits::GrantListResponse::source_type?,
+              status: Stigg::Models::V1::Events::Credits::GrantListResponse::status,
+              updated_at: Time,
+              voided_at: Time?
+            }
+
+          class GrantListResponse < Stigg::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor amount: Float
+
+            attr_accessor comment: String?
+
+            attr_accessor consumed_amount: Float
+
+            attr_accessor cost: Stigg::Models::V1::Events::Credits::GrantListResponse::Cost
+
+            attr_accessor created_at: Time
+
+            attr_accessor currency_id: String
+
+            attr_accessor customer_id: String
+
+            attr_accessor display_name: String
+
+            attr_accessor effective_at: Time
+
+            attr_accessor expire_at: Time?
+
+            attr_accessor grant_type: Stigg::Models::V1::Events::Credits::GrantListResponse::grant_type
+
+            attr_accessor invoice_id: String?
+
+            attr_accessor latest_invoice: Stigg::Models::V1::Events::Credits::GrantListResponse::LatestInvoice?
+
+            attr_accessor metadata: ::Hash[Symbol, String]
+
+            attr_accessor payment_collection: Stigg::Models::V1::Events::Credits::GrantListResponse::payment_collection
+
+            attr_accessor priority: Float
+
+            attr_accessor resource_id: String?
+
+            attr_accessor source_type: Stigg::Models::V1::Events::Credits::GrantListResponse::source_type?
+
+            attr_accessor status: Stigg::Models::V1::Events::Credits::GrantListResponse::status
+
+            attr_accessor updated_at: Time
+
+            attr_accessor voided_at: Time?
+
+            def initialize: (
+              id: String,
+              amount: Float,
+              comment: String?,
+              consumed_amount: Float,
+              cost: Stigg::Models::V1::Events::Credits::GrantListResponse::Cost,
+              created_at: Time,
+              currency_id: String,
+              customer_id: String,
+              display_name: String,
+              effective_at: Time,
+              expire_at: Time?,
+              grant_type: Stigg::Models::V1::Events::Credits::GrantListResponse::grant_type,
+              invoice_id: String?,
+              latest_invoice: Stigg::Models::V1::Events::Credits::GrantListResponse::LatestInvoice?,
+              metadata: ::Hash[Symbol, String],
+              payment_collection: Stigg::Models::V1::Events::Credits::GrantListResponse::payment_collection,
+              priority: Float,
+              resource_id: String?,
+              source_type: Stigg::Models::V1::Events::Credits::GrantListResponse::source_type?,
+              status: Stigg::Models::V1::Events::Credits::GrantListResponse::status,
+              updated_at: Time,
+              voided_at: Time?
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              amount: Float,
+              comment: String?,
+              consumed_amount: Float,
+              cost: Stigg::Models::V1::Events::Credits::GrantListResponse::Cost,
+              created_at: Time,
+              currency_id: String,
+              customer_id: String,
+              display_name: String,
+              effective_at: Time,
+              expire_at: Time?,
+              grant_type: Stigg::Models::V1::Events::Credits::GrantListResponse::grant_type,
+              invoice_id: String?,
+              latest_invoice: Stigg::Models::V1::Events::Credits::GrantListResponse::LatestInvoice?,
+              metadata: ::Hash[Symbol, String],
+              payment_collection: Stigg::Models::V1::Events::Credits::GrantListResponse::payment_collection,
+              priority: Float,
+              resource_id: String?,
+              source_type: Stigg::Models::V1::Events::Credits::GrantListResponse::source_type?,
+              status: Stigg::Models::V1::Events::Credits::GrantListResponse::status,
+              updated_at: Time,
+              voided_at: Time?
+            }
+
+            type cost = { amount: Float, currency: String }
+
+            class Cost < Stigg::Internal::Type::BaseModel
+              attr_accessor amount: Float
+
+              attr_accessor currency: String
+
+              def initialize: (amount: Float, currency: String) -> void
+
+              def to_hash: -> { amount: Float, currency: String }
+            end
+
+            type grant_type = :PAID | :PROMOTIONAL | :RECURRING
+
+            module GrantType
+              extend Stigg::Internal::Type::Enum
+
+              PAID: :PAID
+              PROMOTIONAL: :PROMOTIONAL
+              RECURRING: :RECURRING
+
+              def self?.values: -> ::Array[Stigg::Models::V1::Events::Credits::GrantListResponse::grant_type]
+            end
+
+            type latest_invoice =
+              {
+                billing_id: String,
+                billing_reason: Stigg::Models::V1::Events::Credits::GrantListResponse::LatestInvoice::billing_reason?,
+                created_at: Time,
+                currency: String?,
+                due_date: Time?,
+                error_message: String?,
+                payment_url: String?,
+                pdf_url: String?,
+                requires_action: bool,
+                status: Stigg::Models::V1::Events::Credits::GrantListResponse::LatestInvoice::status,
+                sub_total: Float?,
+                tax: Float?,
+                total: Float?,
+                updated_at: Time
+              }
+
+            class LatestInvoice < Stigg::Internal::Type::BaseModel
+              attr_accessor billing_id: String
+
+              attr_accessor billing_reason: Stigg::Models::V1::Events::Credits::GrantListResponse::LatestInvoice::billing_reason?
+
+              attr_accessor created_at: Time
+
+              attr_accessor currency: String?
+
+              attr_accessor due_date: Time?
+
+              attr_accessor error_message: String?
+
+              attr_accessor payment_url: String?
+
+              attr_accessor pdf_url: String?
+
+              attr_accessor requires_action: bool
+
+              attr_accessor status: Stigg::Models::V1::Events::Credits::GrantListResponse::LatestInvoice::status
+
+              attr_accessor sub_total: Float?
+
+              attr_accessor tax: Float?
+
+              attr_accessor total: Float?
+
+              attr_accessor updated_at: Time
+
+              def initialize: (
+                billing_id: String,
+                billing_reason: Stigg::Models::V1::Events::Credits::GrantListResponse::LatestInvoice::billing_reason?,
+                created_at: Time,
+                currency: String?,
+                due_date: Time?,
+                error_message: String?,
+                payment_url: String?,
+                pdf_url: String?,
+                requires_action: bool,
+                status: Stigg::Models::V1::Events::Credits::GrantListResponse::LatestInvoice::status,
+                sub_total: Float?,
+                tax: Float?,
+                total: Float?,
+                updated_at: Time
+              ) -> void
+
+              def to_hash: -> {
+                billing_id: String,
+                billing_reason: Stigg::Models::V1::Events::Credits::GrantListResponse::LatestInvoice::billing_reason?,
+                created_at: Time,
+                currency: String?,
+                due_date: Time?,
+                error_message: String?,
+                payment_url: String?,
+                pdf_url: String?,
+                requires_action: bool,
+                status: Stigg::Models::V1::Events::Credits::GrantListResponse::LatestInvoice::status,
+                sub_total: Float?,
+                tax: Float?,
+                total: Float?,
+                updated_at: Time
+              }
+
+              type billing_reason = :MANUAL | :OTHER
+
+              module BillingReason
+                extend Stigg::Internal::Type::Enum
+
+                MANUAL: :MANUAL
+                OTHER: :OTHER
+
+                def self?.values: -> ::Array[Stigg::Models::V1::Events::Credits::GrantListResponse::LatestInvoice::billing_reason]
+              end
+
+              type status = :OPEN | :PAID | :CANCELED
+
+              module Status
+                extend Stigg::Internal::Type::Enum
+
+                OPEN: :OPEN
+                PAID: :PAID
+                CANCELED: :CANCELED
+
+                def self?.values: -> ::Array[Stigg::Models::V1::Events::Credits::GrantListResponse::LatestInvoice::status]
+              end
+            end
+
+            type payment_collection =
+              :NOT_REQUIRED | :PROCESSING | :FAILED | :ACTION_REQUIRED
+
+            module PaymentCollection
+              extend Stigg::Internal::Type::Enum
+
+              NOT_REQUIRED: :NOT_REQUIRED
+              PROCESSING: :PROCESSING
+              FAILED: :FAILED
+              ACTION_REQUIRED: :ACTION_REQUIRED
+
+              def self?.values: -> ::Array[Stigg::Models::V1::Events::Credits::GrantListResponse::payment_collection]
+            end
+
+            type source_type = :PRICE | :PLAN_ENTITLEMENT | :ADDON_ENTITLEMENT
+
+            module SourceType
+              extend Stigg::Internal::Type::Enum
+
+              PRICE: :PRICE
+              PLAN_ENTITLEMENT: :PLAN_ENTITLEMENT
+              ADDON_ENTITLEMENT: :ADDON_ENTITLEMENT
+
+              def self?.values: -> ::Array[Stigg::Models::V1::Events::Credits::GrantListResponse::source_type]
+            end
+
+            type status =
+              :PAYMENT_PENDING | :ACTIVE | :EXPIRED | :VOIDED | :SCHEDULED
+
+            module Status
+              extend Stigg::Internal::Type::Enum
+
+              PAYMENT_PENDING: :PAYMENT_PENDING
+              ACTIVE: :ACTIVE
+              EXPIRED: :EXPIRED
+              VOIDED: :VOIDED
+              SCHEDULED: :SCHEDULED
+
+              def self?.values: -> ::Array[Stigg::Models::V1::Events::Credits::GrantListResponse::status]
+            end
+          end
+        end
+      end
+    end
+  end
+end

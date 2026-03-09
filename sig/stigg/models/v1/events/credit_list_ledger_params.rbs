@@ -1,0 +1,65 @@
+module Stigg
+  module Models
+    module V1
+      module Events
+        type credit_list_ledger_params =
+          {
+            customer_id: String,
+            after: String,
+            before: String,
+            currency_id: String,
+            limit: Integer,
+            resource_id: String
+          }
+          & Stigg::Internal::Type::request_parameters
+
+        class CreditListLedgerParams < Stigg::Internal::Type::BaseModel
+          extend Stigg::Internal::Type::RequestParameters::Converter
+          include Stigg::Internal::Type::RequestParameters
+
+          attr_accessor customer_id: String
+
+          attr_reader after: String?
+
+          def after=: (String) -> String
+
+          attr_reader before: String?
+
+          def before=: (String) -> String
+
+          attr_reader currency_id: String?
+
+          def currency_id=: (String) -> String
+
+          attr_reader limit: Integer?
+
+          def limit=: (Integer) -> Integer
+
+          attr_reader resource_id: String?
+
+          def resource_id=: (String) -> String
+
+          def initialize: (
+            customer_id: String,
+            ?after: String,
+            ?before: String,
+            ?currency_id: String,
+            ?limit: Integer,
+            ?resource_id: String,
+            ?request_options: Stigg::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            customer_id: String,
+            after: String,
+            before: String,
+            currency_id: String,
+            limit: Integer,
+            resource_id: String,
+            request_options: Stigg::RequestOptions
+          }
+        end
+      end
+    end
+  end
+end
