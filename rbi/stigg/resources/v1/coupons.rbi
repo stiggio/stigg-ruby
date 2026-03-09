@@ -18,7 +18,7 @@ module Stigg
             duration_in_months: T.nilable(Integer),
             metadata: T.nilable(T::Hash[Symbol, String]),
             name: String,
-            percent_off: T.nilable(Float),
+            percent_off: T.nilable(Integer),
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Coupon)
         end

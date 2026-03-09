@@ -43,15 +43,19 @@ module Stigg
         attr_accessor :description
 
         # Duration of the coupon validity in months
-        sig { returns(T.nilable(Float)) }
+        sig { returns(T.nilable(Integer)) }
         attr_accessor :duration_in_months
+
+        # Metadata associated with the entity
+        sig { returns(T.nilable(T::Hash[Symbol, String])) }
+        attr_accessor :metadata
 
         # Name of the coupon
         sig { returns(String) }
         attr_accessor :name
 
         # Percentage discount off the original price
-        sig { returns(T.nilable(Float)) }
+        sig { returns(T.nilable(Integer)) }
         attr_accessor :percent_off
 
         # The source of the coupon
@@ -94,9 +98,10 @@ module Stigg
             billing_link_url: T.nilable(String),
             created_at: Time,
             description: T.nilable(String),
-            duration_in_months: T.nilable(Float),
+            duration_in_months: T.nilable(Integer),
+            metadata: T.nilable(T::Hash[Symbol, String]),
             name: String,
-            percent_off: T.nilable(Float),
+            percent_off: T.nilable(Integer),
             source:
               T.nilable(
                 Stigg::Models::V1::CouponListResponse::Source::OrSymbol
@@ -121,6 +126,8 @@ module Stigg
           description:,
           # Duration of the coupon validity in months
           duration_in_months:,
+          # Metadata associated with the entity
+          metadata:,
           # Name of the coupon
           name:,
           # Percentage discount off the original price
@@ -148,9 +155,10 @@ module Stigg
               billing_link_url: T.nilable(String),
               created_at: Time,
               description: T.nilable(String),
-              duration_in_months: T.nilable(Float),
+              duration_in_months: T.nilable(Integer),
+              metadata: T.nilable(T::Hash[Symbol, String]),
               name: String,
-              percent_off: T.nilable(Float),
+              percent_off: T.nilable(Integer),
               source:
                 T.nilable(
                   Stigg::Models::V1::CouponListResponse::Source::TaggedSymbol

@@ -47,8 +47,14 @@ module Stigg
         # @!attribute duration_in_months
         #   Duration of the coupon validity in months
         #
-        #   @return [Float, nil]
-        required :duration_in_months, Float, api_name: :durationInMonths, nil?: true
+        #   @return [Integer, nil]
+        required :duration_in_months, Integer, api_name: :durationInMonths, nil?: true
+
+        # @!attribute metadata
+        #   Metadata associated with the entity
+        #
+        #   @return [Hash{Symbol=>String}, nil]
+        required :metadata, Stigg::Internal::Type::HashOf[String], nil?: true
 
         # @!attribute name
         #   Name of the coupon
@@ -59,8 +65,8 @@ module Stigg
         # @!attribute percent_off
         #   Percentage discount off the original price
         #
-        #   @return [Float, nil]
-        required :percent_off, Float, api_name: :percentOff, nil?: true
+        #   @return [Integer, nil]
+        required :percent_off, Integer, api_name: :percentOff, nil?: true
 
         # @!attribute source
         #   The source of the coupon
@@ -86,7 +92,7 @@ module Stigg
         #   @return [Time]
         required :updated_at, Time, api_name: :updatedAt
 
-        # @!method initialize(id:, amounts_off:, billing_id:, billing_link_url:, created_at:, description:, duration_in_months:, name:, percent_off:, source:, status:, type:, updated_at:)
+        # @!method initialize(id:, amounts_off:, billing_id:, billing_link_url:, created_at:, description:, duration_in_months:, metadata:, name:, percent_off:, source:, status:, type:, updated_at:)
         #   Discount instrument with percentage or fixed amount
         #
         #   @param id [String] The unique identifier for the entity
@@ -101,11 +107,13 @@ module Stigg
         #
         #   @param description [String, nil] Description of the coupon
         #
-        #   @param duration_in_months [Float, nil] Duration of the coupon validity in months
+        #   @param duration_in_months [Integer, nil] Duration of the coupon validity in months
+        #
+        #   @param metadata [Hash{Symbol=>String}, nil] Metadata associated with the entity
         #
         #   @param name [String] Name of the coupon
         #
-        #   @param percent_off [Float, nil] Percentage discount off the original price
+        #   @param percent_off [Integer, nil] Percentage discount off the original price
         #
         #   @param source [Symbol, Stigg::Models::V1::CouponListResponse::Source, nil] The source of the coupon
         #
