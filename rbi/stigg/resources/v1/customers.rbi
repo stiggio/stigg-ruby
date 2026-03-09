@@ -34,6 +34,7 @@ module Stigg
         sig do
           params(
             id: String,
+            billing_id: T.nilable(String),
             coupon_id: T.nilable(String),
             email: T.nilable(String),
             integrations:
@@ -46,6 +47,8 @@ module Stigg
         def update(
           # The unique identifier of the entity
           id,
+          # The unique identifier for the entity in the billing provider
+          billing_id: nil,
           # Customer level coupon
           coupon_id: nil,
           # The email of the customer
@@ -156,6 +159,7 @@ module Stigg
         sig do
           params(
             id: String,
+            billing_id: T.nilable(String),
             coupon_id: T.nilable(String),
             default_payment_method:
               T.nilable(
@@ -172,6 +176,8 @@ module Stigg
         def provision(
           # Customer slug
           id:,
+          # The unique identifier for the entity in the billing provider
+          billing_id: nil,
           # Customer level coupon
           coupon_id: nil,
           # The default payment method details

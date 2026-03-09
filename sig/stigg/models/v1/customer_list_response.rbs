@@ -7,6 +7,7 @@ module Stigg
           archived_at: Time?,
           created_at: Time,
           updated_at: Time,
+          billing_id: String?,
           coupon_id: String?,
           default_payment_method: Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod?,
           email: String?,
@@ -23,6 +24,8 @@ module Stigg
         attr_accessor created_at: Time
 
         attr_accessor updated_at: Time
+
+        attr_accessor billing_id: String?
 
         attr_accessor coupon_id: String?
 
@@ -47,6 +50,7 @@ module Stigg
           archived_at: Time?,
           created_at: Time,
           updated_at: Time,
+          ?billing_id: String?,
           ?coupon_id: String?,
           ?default_payment_method: Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod?,
           ?email: String?,
@@ -60,6 +64,7 @@ module Stigg
           archived_at: Time?,
           created_at: Time,
           updated_at: Time,
+          billing_id: String?,
           coupon_id: String?,
           default_payment_method: Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod?,
           email: String?,

@@ -14,6 +14,12 @@ module Stigg
         #   @return [String]
         required :id, String
 
+        # @!attribute billing_id
+        #   The unique identifier for the entity in the billing provider
+        #
+        #   @return [String, nil]
+        optional :billing_id, String, api_name: :billingId, nil?: true
+
         # @!attribute coupon_id
         #   Customer level coupon
         #
@@ -54,8 +60,10 @@ module Stigg
         #   @return [String, nil]
         optional :name, String, nil?: true
 
-        # @!method initialize(id:, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil, request_options: {})
+        # @!method initialize(id:, billing_id: nil, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil, request_options: {})
         #   @param id [String] Customer slug
+        #
+        #   @param billing_id [String, nil] The unique identifier for the entity in the billing provider
         #
         #   @param coupon_id [String, nil] Customer level coupon
         #
