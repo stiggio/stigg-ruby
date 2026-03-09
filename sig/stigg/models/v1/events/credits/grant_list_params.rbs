@@ -1,0 +1,105 @@
+module Stigg
+  module Models
+    module V1
+      module Events
+        module Credits
+          type grant_list_params =
+            {
+              customer_id: String,
+              after: String,
+              before: String,
+              created_at: Stigg::V1::Events::Credits::GrantListParams::CreatedAt,
+              currency_id: String,
+              limit: Integer,
+              resource_id: String
+            }
+            & Stigg::Internal::Type::request_parameters
+
+          class GrantListParams < Stigg::Internal::Type::BaseModel
+            extend Stigg::Internal::Type::RequestParameters::Converter
+            include Stigg::Internal::Type::RequestParameters
+
+            attr_accessor customer_id: String
+
+            attr_reader after: String?
+
+            def after=: (String) -> String
+
+            attr_reader before: String?
+
+            def before=: (String) -> String
+
+            attr_reader created_at: Stigg::V1::Events::Credits::GrantListParams::CreatedAt?
+
+            def created_at=: (
+              Stigg::V1::Events::Credits::GrantListParams::CreatedAt
+            ) -> Stigg::V1::Events::Credits::GrantListParams::CreatedAt
+
+            attr_reader currency_id: String?
+
+            def currency_id=: (String) -> String
+
+            attr_reader limit: Integer?
+
+            def limit=: (Integer) -> Integer
+
+            attr_reader resource_id: String?
+
+            def resource_id=: (String) -> String
+
+            def initialize: (
+              customer_id: String,
+              ?after: String,
+              ?before: String,
+              ?created_at: Stigg::V1::Events::Credits::GrantListParams::CreatedAt,
+              ?currency_id: String,
+              ?limit: Integer,
+              ?resource_id: String,
+              ?request_options: Stigg::request_opts
+            ) -> void
+
+            def to_hash: -> {
+              customer_id: String,
+              after: String,
+              before: String,
+              created_at: Stigg::V1::Events::Credits::GrantListParams::CreatedAt,
+              currency_id: String,
+              limit: Integer,
+              resource_id: String,
+              request_options: Stigg::RequestOptions
+            }
+
+            type created_at = { gt: Time, gte: Time, lt: Time, lte: Time }
+
+            class CreatedAt < Stigg::Internal::Type::BaseModel
+              attr_reader gt: Time?
+
+              def gt=: (Time) -> Time
+
+              attr_reader gte: Time?
+
+              def gte=: (Time) -> Time
+
+              attr_reader lt: Time?
+
+              def lt=: (Time) -> Time
+
+              attr_reader lte: Time?
+
+              def lte=: (Time) -> Time
+
+              def initialize: (
+                ?gt: Time,
+                ?gte: Time,
+                ?lt: Time,
+                ?lte: Time
+              ) -> void
+
+              def to_hash: -> { gt: Time, gte: Time, lt: Time, lte: Time }
+            end
+          end
+        end
+      end
+    end
+  end
+end

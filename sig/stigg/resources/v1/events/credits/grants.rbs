@@ -1,0 +1,48 @@
+module Stigg
+  module Resources
+    class V1
+      class Events
+        class Credits
+          class Grants
+            def create: (
+              amount: Float,
+              currency_id: String,
+              customer_id: String,
+              display_name: String,
+              grant_type: Stigg::Models::V1::Events::Credits::GrantCreateParams::grant_type,
+              ?await_payment_confirmation: bool,
+              ?billing_information: Stigg::V1::Events::Credits::GrantCreateParams::BillingInformation,
+              ?comment: String,
+              ?cost: Stigg::V1::Events::Credits::GrantCreateParams::Cost,
+              ?effective_at: Time,
+              ?expire_at: Time,
+              ?metadata: ::Hash[Symbol, String],
+              ?payment_collection_method: Stigg::Models::V1::Events::Credits::GrantCreateParams::payment_collection_method,
+              ?priority: Integer,
+              ?resource_id: String,
+              ?request_options: Stigg::request_opts
+            ) -> Stigg::V1::Events::Credits::CreditGrantResponse
+
+            def list: (
+              customer_id: String,
+              ?after: String,
+              ?before: String,
+              ?created_at: Stigg::V1::Events::Credits::GrantListParams::CreatedAt,
+              ?currency_id: String,
+              ?limit: Integer,
+              ?resource_id: String,
+              ?request_options: Stigg::request_opts
+            ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::Events::Credits::GrantListResponse]
+
+            def `void`: (
+              String id,
+              ?request_options: Stigg::request_opts
+            ) -> Stigg::V1::Events::Credits::CreditGrantResponse
+
+            def initialize: (client: Stigg::Client) -> void
+          end
+        end
+      end
+    end
+  end
+end

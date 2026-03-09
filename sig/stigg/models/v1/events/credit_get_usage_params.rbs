@@ -1,0 +1,66 @@
+module Stigg
+  module Models
+    module V1
+      module Events
+        type credit_get_usage_params =
+          {
+            customer_id: String,
+            currency_id: String,
+            resource_id: String,
+            time_range: Stigg::Models::V1::Events::CreditGetUsageParams::time_range
+          }
+          & Stigg::Internal::Type::request_parameters
+
+        class CreditGetUsageParams < Stigg::Internal::Type::BaseModel
+          extend Stigg::Internal::Type::RequestParameters::Converter
+          include Stigg::Internal::Type::RequestParameters
+
+          attr_accessor customer_id: String
+
+          attr_reader currency_id: String?
+
+          def currency_id=: (String) -> String
+
+          attr_reader resource_id: String?
+
+          def resource_id=: (String) -> String
+
+          attr_reader time_range: Stigg::Models::V1::Events::CreditGetUsageParams::time_range?
+
+          def time_range=: (
+            Stigg::Models::V1::Events::CreditGetUsageParams::time_range
+          ) -> Stigg::Models::V1::Events::CreditGetUsageParams::time_range
+
+          def initialize: (
+            customer_id: String,
+            ?currency_id: String,
+            ?resource_id: String,
+            ?time_range: Stigg::Models::V1::Events::CreditGetUsageParams::time_range,
+            ?request_options: Stigg::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            customer_id: String,
+            currency_id: String,
+            resource_id: String,
+            time_range: Stigg::Models::V1::Events::CreditGetUsageParams::time_range,
+            request_options: Stigg::RequestOptions
+          }
+
+          type time_range = :LAST_DAY | :LAST_WEEK | :LAST_MONTH | :LAST_YEAR
+
+          module TimeRange
+            extend Stigg::Internal::Type::Enum
+
+            LAST_DAY: :LAST_DAY
+            LAST_WEEK: :LAST_WEEK
+            LAST_MONTH: :LAST_MONTH
+            LAST_YEAR: :LAST_YEAR
+
+            def self?.values: -> ::Array[Stigg::Models::V1::Events::CreditGetUsageParams::time_range]
+          end
+        end
+      end
+    end
+  end
+end
