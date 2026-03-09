@@ -15,768 +15,943 @@ module Stigg
               )
             end
 
-          # Feature or credit entitlement on an addon
-          sig { returns(Stigg::V1::Addons::AddonPackageEntitlement::Data) }
-          attr_reader :data
-
+          # Feature entitlement response
           sig do
-            params(
-              data: Stigg::V1::Addons::AddonPackageEntitlement::Data::OrHash
-            ).void
+            returns(Stigg::V1::Addons::AddonPackageEntitlement::Data::Variants)
           end
-          attr_writer :data
+          attr_accessor :data
 
           # Response object
           sig do
             params(
-              data: Stigg::V1::Addons::AddonPackageEntitlement::Data::OrHash
+              data:
+                T.any(
+                  Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::OrHash,
+                  Stigg::V1::Addons::AddonPackageEntitlement::Data::Credit::OrHash
+                )
             ).returns(T.attached_class)
           end
           def self.new(
-            # Feature or credit entitlement on an addon
+            # Feature entitlement response
             data:
           )
           end
 
           sig do
             override.returns(
-              { data: Stigg::V1::Addons::AddonPackageEntitlement::Data }
+              {
+                data: Stigg::V1::Addons::AddonPackageEntitlement::Data::Variants
+              }
             )
           end
           def to_hash
           end
 
-          class Data < Stigg::Internal::Type::BaseModel
-            OrHash =
+          # Feature entitlement response
+          module Data
+            extend Stigg::Internal::Type::Union
+
+            Variants =
               T.type_alias do
                 T.any(
-                  Stigg::V1::Addons::AddonPackageEntitlement::Data,
-                  Stigg::Internal::AnyHash
+                  Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature,
+                  Stigg::V1::Addons::AddonPackageEntitlement::Data::Credit
                 )
               end
 
-            # Unique identifier of the entitlement
-            sig { returns(String) }
-            attr_accessor :id
+            class Feature < Stigg::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature,
+                    Stigg::Internal::AnyHash
+                  )
+                end
 
-            # Credit amount (for credit entitlements)
-            sig { returns(T.nilable(Float)) }
-            attr_accessor :amount
-
-            # Entitlement behavior (Increment or Override)
-            sig do
-              returns(
-                Stigg::V1::Addons::AddonPackageEntitlement::Data::Behavior::TaggedSymbol
-              )
-            end
-            attr_accessor :behavior
-
-            # Credit grant cadence (for credit entitlements)
-            sig do
-              returns(
-                T.nilable(
-                  Stigg::V1::Addons::AddonPackageEntitlement::Data::Cadence::TaggedSymbol
-                )
-              )
-            end
-            attr_accessor :cadence
-
-            # Timestamp of when the record was created
-            sig { returns(Time) }
-            attr_accessor :created_at
-
-            # Custom currency ID (for credit entitlements)
-            sig { returns(T.nilable(String)) }
-            attr_accessor :custom_currency_id
-
-            # Optional description of the entitlement
-            sig { returns(T.nilable(String)) }
-            attr_accessor :description
-
-            # Override display name for the entitlement
-            sig { returns(T.nilable(String)) }
-            attr_accessor :display_name_override
-
-            # Allowed enum values (for feature entitlements)
-            sig { returns(T.nilable(T::Array[String])) }
-            attr_accessor :enum_values
-
-            # Feature ID (for feature entitlements)
-            sig { returns(T.nilable(String)) }
-            attr_accessor :feature_id
-
-            # Whether the usage limit is a soft limit (for feature entitlements)
-            sig { returns(T.nilable(T::Boolean)) }
-            attr_accessor :has_soft_limit
-
-            # Whether usage is unlimited (for feature entitlements)
-            sig { returns(T.nilable(T::Boolean)) }
-            attr_accessor :has_unlimited_usage
-
-            # Widget types where this entitlement is hidden
-            sig do
-              returns(
-                T::Array[
-                  Stigg::V1::Addons::AddonPackageEntitlement::Data::HiddenFromWidget::TaggedSymbol
-                ]
-              )
-            end
-            attr_accessor :hidden_from_widgets
-
-            # Whether this is a custom entitlement
-            sig { returns(T.nilable(T::Boolean)) }
-            attr_accessor :is_custom
-
-            # Whether the entitlement is granted
-            sig { returns(T::Boolean) }
-            attr_accessor :is_granted
-
-            # Display order of the entitlement
-            sig { returns(T.nilable(Float)) }
-            attr_accessor :order
-
-            # Usage reset period (for feature entitlements)
-            sig do
-              returns(
-                T.nilable(
-                  Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriod::TaggedSymbol
-                )
-              )
-            end
-            attr_accessor :reset_period
-
-            # Reset period configuration (for feature entitlements)
-            sig do
-              returns(
-                T.nilable(
-                  Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::Variants
-                )
-              )
-            end
-            attr_accessor :reset_period_configuration
-
-            # Entitlement type (FEATURE or CREDIT)
-            sig do
-              returns(
-                Stigg::V1::Addons::AddonPackageEntitlement::Data::Type::TaggedSymbol
-              )
-            end
-            attr_accessor :type
-
-            # Timestamp of when the record was last updated
-            sig { returns(Time) }
-            attr_accessor :updated_at
-
-            # Usage limit (for feature entitlements)
-            sig { returns(T.nilable(Float)) }
-            attr_accessor :usage_limit
-
-            # Feature or credit entitlement on an addon
-            sig do
-              params(
-                id: String,
-                amount: T.nilable(Float),
-                behavior:
-                  Stigg::V1::Addons::AddonPackageEntitlement::Data::Behavior::OrSymbol,
-                cadence:
-                  T.nilable(
-                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Cadence::OrSymbol
-                  ),
-                created_at: Time,
-                custom_currency_id: T.nilable(String),
-                description: T.nilable(String),
-                display_name_override: T.nilable(String),
-                enum_values: T.nilable(T::Array[String]),
-                feature_id: T.nilable(String),
-                has_soft_limit: T.nilable(T::Boolean),
-                has_unlimited_usage: T.nilable(T::Boolean),
-                hidden_from_widgets:
-                  T::Array[
-                    Stigg::V1::Addons::AddonPackageEntitlement::Data::HiddenFromWidget::OrSymbol
-                  ],
-                is_custom: T.nilable(T::Boolean),
-                is_granted: T::Boolean,
-                order: T.nilable(Float),
-                reset_period:
-                  T.nilable(
-                    Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriod::OrSymbol
-                  ),
-                reset_period_configuration:
-                  T.nilable(
-                    T.any(
-                      Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::YearlyResetPeriodConfig::OrHash,
-                      Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::MonthlyResetPeriodConfig::OrHash,
-                      Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::WeeklyResetPeriodConfig::OrHash
-                    )
-                  ),
-                type:
-                  Stigg::V1::Addons::AddonPackageEntitlement::Data::Type::OrSymbol,
-                updated_at: Time,
-                usage_limit: T.nilable(Float)
-              ).returns(T.attached_class)
-            end
-            def self.new(
               # Unique identifier of the entitlement
-              id:,
-              # Credit amount (for credit entitlements)
-              amount:,
-              # Entitlement behavior (Increment or Override)
-              behavior:,
-              # Credit grant cadence (for credit entitlements)
-              cadence:,
-              # Timestamp of when the record was created
-              created_at:,
-              # Custom currency ID (for credit entitlements)
-              custom_currency_id:,
-              # Optional description of the entitlement
-              description:,
-              # Override display name for the entitlement
-              display_name_override:,
-              # Allowed enum values (for feature entitlements)
-              enum_values:,
-              # Feature ID (for feature entitlements)
-              feature_id:,
-              # Whether the usage limit is a soft limit (for feature entitlements)
-              has_soft_limit:,
-              # Whether usage is unlimited (for feature entitlements)
-              has_unlimited_usage:,
-              # Widget types where this entitlement is hidden
-              hidden_from_widgets:,
-              # Whether this is a custom entitlement
-              is_custom:,
-              # Whether the entitlement is granted
-              is_granted:,
-              # Display order of the entitlement
-              order:,
-              # Usage reset period (for feature entitlements)
-              reset_period:,
-              # Reset period configuration (for feature entitlements)
-              reset_period_configuration:,
-              # Entitlement type (FEATURE or CREDIT)
-              type:,
-              # Timestamp of when the record was last updated
-              updated_at:,
-              # Usage limit (for feature entitlements)
-              usage_limit:
-            )
-            end
+              sig { returns(String) }
+              attr_accessor :id
 
-            sig do
-              override.returns(
-                {
+              # Entitlement behavior (Increment or Override)
+              sig do
+                returns(
+                  Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::Behavior::TaggedSymbol
+                )
+              end
+              attr_accessor :behavior
+
+              # Timestamp of when the record was created
+              sig { returns(Time) }
+              attr_accessor :created_at
+
+              # Optional description of the entitlement
+              sig { returns(T.nilable(String)) }
+              attr_accessor :description
+
+              # Override display name for the entitlement
+              sig { returns(T.nilable(String)) }
+              attr_accessor :display_name_override
+
+              # Allowed enum values (for feature entitlements)
+              sig { returns(T.nilable(T::Array[String])) }
+              attr_accessor :enum_values
+
+              # Whether the usage limit is a soft limit (for feature entitlements)
+              sig { returns(T.nilable(T::Boolean)) }
+              attr_accessor :has_soft_limit
+
+              # Whether usage is unlimited (for feature entitlements)
+              sig { returns(T.nilable(T::Boolean)) }
+              attr_accessor :has_unlimited_usage
+
+              # Widget types where this entitlement is hidden
+              sig do
+                returns(
+                  T::Array[
+                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::HiddenFromWidget::TaggedSymbol
+                  ]
+                )
+              end
+              attr_accessor :hidden_from_widgets
+
+              # Whether this is a custom entitlement
+              sig { returns(T.nilable(T::Boolean)) }
+              attr_accessor :is_custom
+
+              # Whether the entitlement is granted
+              sig { returns(T::Boolean) }
+              attr_accessor :is_granted
+
+              # Display order of the entitlement
+              sig { returns(T.nilable(Float)) }
+              attr_accessor :order
+
+              # Usage reset period (for feature entitlements)
+              sig do
+                returns(
+                  T.nilable(
+                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriod::TaggedSymbol
+                  )
+                )
+              end
+              attr_accessor :reset_period
+
+              # Reset period configuration (for feature entitlements)
+              sig do
+                returns(
+                  T.nilable(
+                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::Variants
+                  )
+                )
+              end
+              attr_accessor :reset_period_configuration
+
+              # Entitlement type (FEATURE or CREDIT)
+              sig { returns(Symbol) }
+              attr_accessor :type
+
+              # Timestamp of when the record was last updated
+              sig { returns(Time) }
+              attr_accessor :updated_at
+
+              # Usage limit (for feature entitlements)
+              sig { returns(T.nilable(Float)) }
+              attr_accessor :usage_limit
+
+              # Feature entitlement response
+              sig do
+                params(
                   id: String,
-                  amount: T.nilable(Float),
                   behavior:
-                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Behavior::TaggedSymbol,
-                  cadence:
-                    T.nilable(
-                      Stigg::V1::Addons::AddonPackageEntitlement::Data::Cadence::TaggedSymbol
-                    ),
+                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::Behavior::OrSymbol,
                   created_at: Time,
-                  custom_currency_id: T.nilable(String),
                   description: T.nilable(String),
                   display_name_override: T.nilable(String),
                   enum_values: T.nilable(T::Array[String]),
-                  feature_id: T.nilable(String),
                   has_soft_limit: T.nilable(T::Boolean),
                   has_unlimited_usage: T.nilable(T::Boolean),
                   hidden_from_widgets:
                     T::Array[
-                      Stigg::V1::Addons::AddonPackageEntitlement::Data::HiddenFromWidget::TaggedSymbol
+                      Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::HiddenFromWidget::OrSymbol
                     ],
                   is_custom: T.nilable(T::Boolean),
                   is_granted: T::Boolean,
                   order: T.nilable(Float),
                   reset_period:
                     T.nilable(
-                      Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriod::TaggedSymbol
+                      Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriod::OrSymbol
                     ),
                   reset_period_configuration:
                     T.nilable(
-                      Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::Variants
+                      T.any(
+                        Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::YearlyResetPeriodConfig::OrHash,
+                        Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::MonthlyResetPeriodConfig::OrHash,
+                        Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::WeeklyResetPeriodConfig::OrHash
+                      )
                     ),
-                  type:
-                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Type::TaggedSymbol,
                   updated_at: Time,
-                  usage_limit: T.nilable(Float)
-                }
+                  usage_limit: T.nilable(Float),
+                  type: Symbol
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Unique identifier of the entitlement
+                id:,
+                # Entitlement behavior (Increment or Override)
+                behavior:,
+                # Timestamp of when the record was created
+                created_at:,
+                # Optional description of the entitlement
+                description:,
+                # Override display name for the entitlement
+                display_name_override:,
+                # Allowed enum values (for feature entitlements)
+                enum_values:,
+                # Whether the usage limit is a soft limit (for feature entitlements)
+                has_soft_limit:,
+                # Whether usage is unlimited (for feature entitlements)
+                has_unlimited_usage:,
+                # Widget types where this entitlement is hidden
+                hidden_from_widgets:,
+                # Whether this is a custom entitlement
+                is_custom:,
+                # Whether the entitlement is granted
+                is_granted:,
+                # Display order of the entitlement
+                order:,
+                # Usage reset period (for feature entitlements)
+                reset_period:,
+                # Reset period configuration (for feature entitlements)
+                reset_period_configuration:,
+                # Timestamp of when the record was last updated
+                updated_at:,
+                # Usage limit (for feature entitlements)
+                usage_limit:,
+                # Entitlement type (FEATURE or CREDIT)
+                type: :FEATURE
               )
-            end
-            def to_hash
-            end
-
-            # Entitlement behavior (Increment or Override)
-            module Behavior
-              extend Stigg::Internal::Type::Enum
-
-              TaggedSymbol =
-                T.type_alias do
-                  T.all(
-                    Symbol,
-                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Behavior
-                  )
-                end
-              OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-              INCREMENT =
-                T.let(
-                  :Increment,
-                  Stigg::V1::Addons::AddonPackageEntitlement::Data::Behavior::TaggedSymbol
-                )
-              OVERRIDE =
-                T.let(
-                  :Override,
-                  Stigg::V1::Addons::AddonPackageEntitlement::Data::Behavior::TaggedSymbol
-                )
+              end
 
               sig do
                 override.returns(
-                  T::Array[
-                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Behavior::TaggedSymbol
-                  ]
+                  {
+                    id: String,
+                    behavior:
+                      Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::Behavior::TaggedSymbol,
+                    created_at: Time,
+                    description: T.nilable(String),
+                    display_name_override: T.nilable(String),
+                    enum_values: T.nilable(T::Array[String]),
+                    has_soft_limit: T.nilable(T::Boolean),
+                    has_unlimited_usage: T.nilable(T::Boolean),
+                    hidden_from_widgets:
+                      T::Array[
+                        Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::HiddenFromWidget::TaggedSymbol
+                      ],
+                    is_custom: T.nilable(T::Boolean),
+                    is_granted: T::Boolean,
+                    order: T.nilable(Float),
+                    reset_period:
+                      T.nilable(
+                        Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriod::TaggedSymbol
+                      ),
+                    reset_period_configuration:
+                      T.nilable(
+                        Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::Variants
+                      ),
+                    type: Symbol,
+                    updated_at: Time,
+                    usage_limit: T.nilable(Float)
+                  }
                 )
               end
-              def self.values
+              def to_hash
               end
-            end
 
-            # Credit grant cadence (for credit entitlements)
-            module Cadence
-              extend Stigg::Internal::Type::Enum
+              # Entitlement behavior (Increment or Override)
+              module Behavior
+                extend Stigg::Internal::Type::Enum
 
-              TaggedSymbol =
-                T.type_alias do
-                  T.all(
-                    Symbol,
-                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Cadence
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::Behavior
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                INCREMENT =
+                  T.let(
+                    :Increment,
+                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::Behavior::TaggedSymbol
+                  )
+                OVERRIDE =
+                  T.let(
+                    :Override,
+                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::Behavior::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::Behavior::TaggedSymbol
+                    ]
                   )
                 end
-              OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-              MONTH =
-                T.let(
-                  :MONTH,
-                  Stigg::V1::Addons::AddonPackageEntitlement::Data::Cadence::TaggedSymbol
-                )
-              YEAR =
-                T.let(
-                  :YEAR,
-                  Stigg::V1::Addons::AddonPackageEntitlement::Data::Cadence::TaggedSymbol
-                )
-
-              sig do
-                override.returns(
-                  T::Array[
-                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Cadence::TaggedSymbol
-                  ]
-                )
+                def self.values
+                end
               end
-              def self.values
-              end
-            end
 
-            module HiddenFromWidget
-              extend Stigg::Internal::Type::Enum
+              module HiddenFromWidget
+                extend Stigg::Internal::Type::Enum
 
-              TaggedSymbol =
-                T.type_alias do
-                  T.all(
-                    Symbol,
-                    Stigg::V1::Addons::AddonPackageEntitlement::Data::HiddenFromWidget
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::HiddenFromWidget
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                PAYWALL =
+                  T.let(
+                    :PAYWALL,
+                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::HiddenFromWidget::TaggedSymbol
+                  )
+                CUSTOMER_PORTAL =
+                  T.let(
+                    :CUSTOMER_PORTAL,
+                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::HiddenFromWidget::TaggedSymbol
+                  )
+                CHECKOUT =
+                  T.let(
+                    :CHECKOUT,
+                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::HiddenFromWidget::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::HiddenFromWidget::TaggedSymbol
+                    ]
                   )
                 end
-              OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-              PAYWALL =
-                T.let(
-                  :PAYWALL,
-                  Stigg::V1::Addons::AddonPackageEntitlement::Data::HiddenFromWidget::TaggedSymbol
-                )
-              CUSTOMER_PORTAL =
-                T.let(
-                  :CUSTOMER_PORTAL,
-                  Stigg::V1::Addons::AddonPackageEntitlement::Data::HiddenFromWidget::TaggedSymbol
-                )
-              CHECKOUT =
-                T.let(
-                  :CHECKOUT,
-                  Stigg::V1::Addons::AddonPackageEntitlement::Data::HiddenFromWidget::TaggedSymbol
-                )
-
-              sig do
-                override.returns(
-                  T::Array[
-                    Stigg::V1::Addons::AddonPackageEntitlement::Data::HiddenFromWidget::TaggedSymbol
-                  ]
-                )
+                def self.values
+                end
               end
-              def self.values
-              end
-            end
 
-            # Usage reset period (for feature entitlements)
-            module ResetPeriod
-              extend Stigg::Internal::Type::Enum
+              # Usage reset period (for feature entitlements)
+              module ResetPeriod
+                extend Stigg::Internal::Type::Enum
 
-              TaggedSymbol =
-                T.type_alias do
-                  T.all(
-                    Symbol,
-                    Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriod
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriod
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                YEAR =
+                  T.let(
+                    :YEAR,
+                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriod::TaggedSymbol
+                  )
+                MONTH =
+                  T.let(
+                    :MONTH,
+                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriod::TaggedSymbol
+                  )
+                WEEK =
+                  T.let(
+                    :WEEK,
+                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriod::TaggedSymbol
+                  )
+                DAY =
+                  T.let(
+                    :DAY,
+                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriod::TaggedSymbol
+                  )
+                HOUR =
+                  T.let(
+                    :HOUR,
+                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriod::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriod::TaggedSymbol
+                    ]
                   )
                 end
-              OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-              YEAR =
-                T.let(
-                  :YEAR,
-                  Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriod::TaggedSymbol
-                )
-              MONTH =
-                T.let(
-                  :MONTH,
-                  Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriod::TaggedSymbol
-                )
-              WEEK =
-                T.let(
-                  :WEEK,
-                  Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriod::TaggedSymbol
-                )
-              DAY =
-                T.let(
-                  :DAY,
-                  Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriod::TaggedSymbol
-                )
-              HOUR =
-                T.let(
-                  :HOUR,
-                  Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriod::TaggedSymbol
-                )
-
-              sig do
-                override.returns(
-                  T::Array[
-                    Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriod::TaggedSymbol
-                  ]
-                )
+                def self.values
+                end
               end
-              def self.values
+
+              # Reset period configuration (for feature entitlements)
+              module ResetPeriodConfiguration
+                extend Stigg::Internal::Type::Union
+
+                Variants =
+                  T.type_alias do
+                    T.any(
+                      Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::YearlyResetPeriodConfig,
+                      Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::MonthlyResetPeriodConfig,
+                      Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::WeeklyResetPeriodConfig
+                    )
+                  end
+
+                class YearlyResetPeriodConfig < Stigg::Internal::Type::BaseModel
+                  OrHash =
+                    T.type_alias do
+                      T.any(
+                        Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::YearlyResetPeriodConfig,
+                        Stigg::Internal::AnyHash
+                      )
+                    end
+
+                  # Reset anchor (SubscriptionStart)
+                  sig do
+                    returns(
+                      Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::YearlyResetPeriodConfig::AccordingTo::TaggedSymbol
+                    )
+                  end
+                  attr_accessor :according_to
+
+                  # Yearly reset configuration
+                  sig do
+                    params(
+                      according_to:
+                        Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::YearlyResetPeriodConfig::AccordingTo::OrSymbol
+                    ).returns(T.attached_class)
+                  end
+                  def self.new(
+                    # Reset anchor (SubscriptionStart)
+                    according_to:
+                  )
+                  end
+
+                  sig do
+                    override.returns(
+                      {
+                        according_to:
+                          Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::YearlyResetPeriodConfig::AccordingTo::TaggedSymbol
+                      }
+                    )
+                  end
+                  def to_hash
+                  end
+
+                  # Reset anchor (SubscriptionStart)
+                  module AccordingTo
+                    extend Stigg::Internal::Type::Enum
+
+                    TaggedSymbol =
+                      T.type_alias do
+                        T.all(
+                          Symbol,
+                          Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::YearlyResetPeriodConfig::AccordingTo
+                        )
+                      end
+                    OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                    SUBSCRIPTION_START =
+                      T.let(
+                        :SubscriptionStart,
+                        Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::YearlyResetPeriodConfig::AccordingTo::TaggedSymbol
+                      )
+
+                    sig do
+                      override.returns(
+                        T::Array[
+                          Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::YearlyResetPeriodConfig::AccordingTo::TaggedSymbol
+                        ]
+                      )
+                    end
+                    def self.values
+                    end
+                  end
+                end
+
+                class MonthlyResetPeriodConfig < Stigg::Internal::Type::BaseModel
+                  OrHash =
+                    T.type_alias do
+                      T.any(
+                        Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::MonthlyResetPeriodConfig,
+                        Stigg::Internal::AnyHash
+                      )
+                    end
+
+                  # Reset anchor (SubscriptionStart or StartOfTheMonth)
+                  sig do
+                    returns(
+                      Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::MonthlyResetPeriodConfig::AccordingTo::TaggedSymbol
+                    )
+                  end
+                  attr_accessor :according_to
+
+                  # Monthly reset configuration
+                  sig do
+                    params(
+                      according_to:
+                        Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::MonthlyResetPeriodConfig::AccordingTo::OrSymbol
+                    ).returns(T.attached_class)
+                  end
+                  def self.new(
+                    # Reset anchor (SubscriptionStart or StartOfTheMonth)
+                    according_to:
+                  )
+                  end
+
+                  sig do
+                    override.returns(
+                      {
+                        according_to:
+                          Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::MonthlyResetPeriodConfig::AccordingTo::TaggedSymbol
+                      }
+                    )
+                  end
+                  def to_hash
+                  end
+
+                  # Reset anchor (SubscriptionStart or StartOfTheMonth)
+                  module AccordingTo
+                    extend Stigg::Internal::Type::Enum
+
+                    TaggedSymbol =
+                      T.type_alias do
+                        T.all(
+                          Symbol,
+                          Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::MonthlyResetPeriodConfig::AccordingTo
+                        )
+                      end
+                    OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                    SUBSCRIPTION_START =
+                      T.let(
+                        :SubscriptionStart,
+                        Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::MonthlyResetPeriodConfig::AccordingTo::TaggedSymbol
+                      )
+                    START_OF_THE_MONTH =
+                      T.let(
+                        :StartOfTheMonth,
+                        Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::MonthlyResetPeriodConfig::AccordingTo::TaggedSymbol
+                      )
+
+                    sig do
+                      override.returns(
+                        T::Array[
+                          Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::MonthlyResetPeriodConfig::AccordingTo::TaggedSymbol
+                        ]
+                      )
+                    end
+                    def self.values
+                    end
+                  end
+                end
+
+                class WeeklyResetPeriodConfig < Stigg::Internal::Type::BaseModel
+                  OrHash =
+                    T.type_alias do
+                      T.any(
+                        Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::WeeklyResetPeriodConfig,
+                        Stigg::Internal::AnyHash
+                      )
+                    end
+
+                  # Reset anchor (SubscriptionStart or specific day)
+                  sig do
+                    returns(
+                      Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::WeeklyResetPeriodConfig::AccordingTo::TaggedSymbol
+                    )
+                  end
+                  attr_accessor :according_to
+
+                  # Weekly reset configuration
+                  sig do
+                    params(
+                      according_to:
+                        Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::WeeklyResetPeriodConfig::AccordingTo::OrSymbol
+                    ).returns(T.attached_class)
+                  end
+                  def self.new(
+                    # Reset anchor (SubscriptionStart or specific day)
+                    according_to:
+                  )
+                  end
+
+                  sig do
+                    override.returns(
+                      {
+                        according_to:
+                          Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::WeeklyResetPeriodConfig::AccordingTo::TaggedSymbol
+                      }
+                    )
+                  end
+                  def to_hash
+                  end
+
+                  # Reset anchor (SubscriptionStart or specific day)
+                  module AccordingTo
+                    extend Stigg::Internal::Type::Enum
+
+                    TaggedSymbol =
+                      T.type_alias do
+                        T.all(
+                          Symbol,
+                          Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::WeeklyResetPeriodConfig::AccordingTo
+                        )
+                      end
+                    OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                    SUBSCRIPTION_START =
+                      T.let(
+                        :SubscriptionStart,
+                        Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::WeeklyResetPeriodConfig::AccordingTo::TaggedSymbol
+                      )
+                    EVERY_SUNDAY =
+                      T.let(
+                        :EverySunday,
+                        Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::WeeklyResetPeriodConfig::AccordingTo::TaggedSymbol
+                      )
+                    EVERY_MONDAY =
+                      T.let(
+                        :EveryMonday,
+                        Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::WeeklyResetPeriodConfig::AccordingTo::TaggedSymbol
+                      )
+                    EVERY_TUESDAY =
+                      T.let(
+                        :EveryTuesday,
+                        Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::WeeklyResetPeriodConfig::AccordingTo::TaggedSymbol
+                      )
+                    EVERY_WEDNESDAY =
+                      T.let(
+                        :EveryWednesday,
+                        Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::WeeklyResetPeriodConfig::AccordingTo::TaggedSymbol
+                      )
+                    EVERY_THURSDAY =
+                      T.let(
+                        :EveryThursday,
+                        Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::WeeklyResetPeriodConfig::AccordingTo::TaggedSymbol
+                      )
+                    EVERY_FRIDAY =
+                      T.let(
+                        :EveryFriday,
+                        Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::WeeklyResetPeriodConfig::AccordingTo::TaggedSymbol
+                      )
+                    EVERY_SATURDAY =
+                      T.let(
+                        :EverySaturday,
+                        Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::WeeklyResetPeriodConfig::AccordingTo::TaggedSymbol
+                      )
+
+                    sig do
+                      override.returns(
+                        T::Array[
+                          Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::WeeklyResetPeriodConfig::AccordingTo::TaggedSymbol
+                        ]
+                      )
+                    end
+                    def self.values
+                    end
+                  end
+                end
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Stigg::V1::Addons::AddonPackageEntitlement::Data::Feature::ResetPeriodConfiguration::Variants
+                    ]
+                  )
+                end
+                def self.variants
+                end
               end
             end
 
-            # Reset period configuration (for feature entitlements)
-            module ResetPeriodConfiguration
-              extend Stigg::Internal::Type::Union
-
-              Variants =
+            class Credit < Stigg::Internal::Type::BaseModel
+              OrHash =
                 T.type_alias do
                   T.any(
-                    Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::YearlyResetPeriodConfig,
-                    Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::MonthlyResetPeriodConfig,
-                    Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::WeeklyResetPeriodConfig
+                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Credit,
+                    Stigg::Internal::AnyHash
                   )
                 end
 
-              class YearlyResetPeriodConfig < Stigg::Internal::Type::BaseModel
-                OrHash =
-                  T.type_alias do
-                    T.any(
-                      Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::YearlyResetPeriodConfig,
-                      Stigg::Internal::AnyHash
-                    )
-                  end
+              # Unique identifier of the entitlement
+              sig { returns(String) }
+              attr_accessor :id
 
-                # Reset anchor (SubscriptionStart)
-                sig do
-                  returns(
-                    Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::YearlyResetPeriodConfig::AccordingTo::TaggedSymbol
-                  )
-                end
-                attr_accessor :according_to
+              # Credit amount (for credit entitlements)
+              sig { returns(T.nilable(Float)) }
+              attr_accessor :amount
 
-                # Yearly reset configuration
-                sig do
-                  params(
-                    according_to:
-                      Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::YearlyResetPeriodConfig::AccordingTo::OrSymbol
-                  ).returns(T.attached_class)
-                end
-                def self.new(
-                  # Reset anchor (SubscriptionStart)
-                  according_to:
+              # Entitlement behavior (Increment or Override)
+              sig do
+                returns(
+                  Stigg::V1::Addons::AddonPackageEntitlement::Data::Credit::Behavior::TaggedSymbol
                 )
-                end
-
-                sig do
-                  override.returns(
-                    {
-                      according_to:
-                        Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::YearlyResetPeriodConfig::AccordingTo::TaggedSymbol
-                    }
-                  )
-                end
-                def to_hash
-                end
-
-                # Reset anchor (SubscriptionStart)
-                module AccordingTo
-                  extend Stigg::Internal::Type::Enum
-
-                  TaggedSymbol =
-                    T.type_alias do
-                      T.all(
-                        Symbol,
-                        Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::YearlyResetPeriodConfig::AccordingTo
-                      )
-                    end
-                  OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-                  SUBSCRIPTION_START =
-                    T.let(
-                      :SubscriptionStart,
-                      Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::YearlyResetPeriodConfig::AccordingTo::TaggedSymbol
-                    )
-
-                  sig do
-                    override.returns(
-                      T::Array[
-                        Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::YearlyResetPeriodConfig::AccordingTo::TaggedSymbol
-                      ]
-                    )
-                  end
-                  def self.values
-                  end
-                end
               end
+              attr_accessor :behavior
 
-              class MonthlyResetPeriodConfig < Stigg::Internal::Type::BaseModel
-                OrHash =
-                  T.type_alias do
-                    T.any(
-                      Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::MonthlyResetPeriodConfig,
-                      Stigg::Internal::AnyHash
-                    )
-                  end
-
-                # Reset anchor (SubscriptionStart or StartOfTheMonth)
-                sig do
-                  returns(
-                    Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::MonthlyResetPeriodConfig::AccordingTo::TaggedSymbol
+              # Credit grant cadence (for credit entitlements)
+              sig do
+                returns(
+                  T.nilable(
+                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Credit::Cadence::TaggedSymbol
                   )
-                end
-                attr_accessor :according_to
-
-                # Monthly reset configuration
-                sig do
-                  params(
-                    according_to:
-                      Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::MonthlyResetPeriodConfig::AccordingTo::OrSymbol
-                  ).returns(T.attached_class)
-                end
-                def self.new(
-                  # Reset anchor (SubscriptionStart or StartOfTheMonth)
-                  according_to:
                 )
-                end
-
-                sig do
-                  override.returns(
-                    {
-                      according_to:
-                        Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::MonthlyResetPeriodConfig::AccordingTo::TaggedSymbol
-                    }
-                  )
-                end
-                def to_hash
-                end
-
-                # Reset anchor (SubscriptionStart or StartOfTheMonth)
-                module AccordingTo
-                  extend Stigg::Internal::Type::Enum
-
-                  TaggedSymbol =
-                    T.type_alias do
-                      T.all(
-                        Symbol,
-                        Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::MonthlyResetPeriodConfig::AccordingTo
-                      )
-                    end
-                  OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-                  SUBSCRIPTION_START =
-                    T.let(
-                      :SubscriptionStart,
-                      Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::MonthlyResetPeriodConfig::AccordingTo::TaggedSymbol
-                    )
-                  START_OF_THE_MONTH =
-                    T.let(
-                      :StartOfTheMonth,
-                      Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::MonthlyResetPeriodConfig::AccordingTo::TaggedSymbol
-                    )
-
-                  sig do
-                    override.returns(
-                      T::Array[
-                        Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::MonthlyResetPeriodConfig::AccordingTo::TaggedSymbol
-                      ]
-                    )
-                  end
-                  def self.values
-                  end
-                end
               end
+              attr_accessor :cadence
 
-              class WeeklyResetPeriodConfig < Stigg::Internal::Type::BaseModel
-                OrHash =
-                  T.type_alias do
-                    T.any(
-                      Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::WeeklyResetPeriodConfig,
-                      Stigg::Internal::AnyHash
-                    )
-                  end
+              # Timestamp of when the record was created
+              sig { returns(Time) }
+              attr_accessor :created_at
 
-                # Reset anchor (SubscriptionStart or specific day)
-                sig do
-                  returns(
-                    Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::WeeklyResetPeriodConfig::AccordingTo::TaggedSymbol
-                  )
-                end
-                attr_accessor :according_to
+              # Optional description of the entitlement
+              sig { returns(T.nilable(String)) }
+              attr_accessor :description
 
-                # Weekly reset configuration
-                sig do
-                  params(
-                    according_to:
-                      Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::WeeklyResetPeriodConfig::AccordingTo::OrSymbol
-                  ).returns(T.attached_class)
-                end
-                def self.new(
-                  # Reset anchor (SubscriptionStart or specific day)
-                  according_to:
+              # Override display name for the entitlement
+              sig { returns(T.nilable(String)) }
+              attr_accessor :display_name_override
+
+              # Widget types where this entitlement is hidden
+              sig do
+                returns(
+                  T::Array[
+                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Credit::HiddenFromWidget::TaggedSymbol
+                  ]
                 )
-                end
+              end
+              attr_accessor :hidden_from_widgets
 
-                sig do
-                  override.returns(
-                    {
-                      according_to:
-                        Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::WeeklyResetPeriodConfig::AccordingTo::TaggedSymbol
-                    }
-                  )
-                end
-                def to_hash
-                end
+              # Whether this is a custom entitlement
+              sig { returns(T.nilable(T::Boolean)) }
+              attr_accessor :is_custom
 
-                # Reset anchor (SubscriptionStart or specific day)
-                module AccordingTo
-                  extend Stigg::Internal::Type::Enum
+              # Whether the entitlement is granted
+              sig { returns(T::Boolean) }
+              attr_accessor :is_granted
 
-                  TaggedSymbol =
-                    T.type_alias do
-                      T.all(
-                        Symbol,
-                        Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::WeeklyResetPeriodConfig::AccordingTo
-                      )
-                    end
-                  OrSymbol = T.type_alias { T.any(Symbol, String) }
+              # Display order of the entitlement
+              sig { returns(T.nilable(Float)) }
+              attr_accessor :order
 
-                  SUBSCRIPTION_START =
-                    T.let(
-                      :SubscriptionStart,
-                      Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::WeeklyResetPeriodConfig::AccordingTo::TaggedSymbol
-                    )
-                  EVERY_SUNDAY =
-                    T.let(
-                      :EverySunday,
-                      Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::WeeklyResetPeriodConfig::AccordingTo::TaggedSymbol
-                    )
-                  EVERY_MONDAY =
-                    T.let(
-                      :EveryMonday,
-                      Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::WeeklyResetPeriodConfig::AccordingTo::TaggedSymbol
-                    )
-                  EVERY_TUESDAY =
-                    T.let(
-                      :EveryTuesday,
-                      Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::WeeklyResetPeriodConfig::AccordingTo::TaggedSymbol
-                    )
-                  EVERY_WEDNESDAY =
-                    T.let(
-                      :EveryWednesday,
-                      Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::WeeklyResetPeriodConfig::AccordingTo::TaggedSymbol
-                    )
-                  EVERY_THURSDAY =
-                    T.let(
-                      :EveryThursday,
-                      Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::WeeklyResetPeriodConfig::AccordingTo::TaggedSymbol
-                    )
-                  EVERY_FRIDAY =
-                    T.let(
-                      :EveryFriday,
-                      Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::WeeklyResetPeriodConfig::AccordingTo::TaggedSymbol
-                    )
-                  EVERY_SATURDAY =
-                    T.let(
-                      :EverySaturday,
-                      Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::WeeklyResetPeriodConfig::AccordingTo::TaggedSymbol
-                    )
+              # Entitlement type (FEATURE or CREDIT)
+              sig { returns(Symbol) }
+              attr_accessor :type
 
-                  sig do
-                    override.returns(
-                      T::Array[
-                        Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::WeeklyResetPeriodConfig::AccordingTo::TaggedSymbol
-                      ]
-                    )
-                  end
-                  def self.values
-                  end
-                end
+              # Timestamp of when the record was last updated
+              sig { returns(Time) }
+              attr_accessor :updated_at
+
+              # Credit entitlement response
+              sig do
+                params(
+                  id: String,
+                  amount: T.nilable(Float),
+                  behavior:
+                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Credit::Behavior::OrSymbol,
+                  cadence:
+                    T.nilable(
+                      Stigg::V1::Addons::AddonPackageEntitlement::Data::Credit::Cadence::OrSymbol
+                    ),
+                  created_at: Time,
+                  description: T.nilable(String),
+                  display_name_override: T.nilable(String),
+                  hidden_from_widgets:
+                    T::Array[
+                      Stigg::V1::Addons::AddonPackageEntitlement::Data::Credit::HiddenFromWidget::OrSymbol
+                    ],
+                  is_custom: T.nilable(T::Boolean),
+                  is_granted: T::Boolean,
+                  order: T.nilable(Float),
+                  updated_at: Time,
+                  type: Symbol
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Unique identifier of the entitlement
+                id:,
+                # Credit amount (for credit entitlements)
+                amount:,
+                # Entitlement behavior (Increment or Override)
+                behavior:,
+                # Credit grant cadence (for credit entitlements)
+                cadence:,
+                # Timestamp of when the record was created
+                created_at:,
+                # Optional description of the entitlement
+                description:,
+                # Override display name for the entitlement
+                display_name_override:,
+                # Widget types where this entitlement is hidden
+                hidden_from_widgets:,
+                # Whether this is a custom entitlement
+                is_custom:,
+                # Whether the entitlement is granted
+                is_granted:,
+                # Display order of the entitlement
+                order:,
+                # Timestamp of when the record was last updated
+                updated_at:,
+                # Entitlement type (FEATURE or CREDIT)
+                type: :CREDIT
+              )
               end
 
               sig do
                 override.returns(
-                  T::Array[
-                    Stigg::V1::Addons::AddonPackageEntitlement::Data::ResetPeriodConfiguration::Variants
-                  ]
+                  {
+                    id: String,
+                    amount: T.nilable(Float),
+                    behavior:
+                      Stigg::V1::Addons::AddonPackageEntitlement::Data::Credit::Behavior::TaggedSymbol,
+                    cadence:
+                      T.nilable(
+                        Stigg::V1::Addons::AddonPackageEntitlement::Data::Credit::Cadence::TaggedSymbol
+                      ),
+                    created_at: Time,
+                    description: T.nilable(String),
+                    display_name_override: T.nilable(String),
+                    hidden_from_widgets:
+                      T::Array[
+                        Stigg::V1::Addons::AddonPackageEntitlement::Data::Credit::HiddenFromWidget::TaggedSymbol
+                      ],
+                    is_custom: T.nilable(T::Boolean),
+                    is_granted: T::Boolean,
+                    order: T.nilable(Float),
+                    type: Symbol,
+                    updated_at: Time
+                  }
                 )
               end
-              def self.variants
+              def to_hash
+              end
+
+              # Entitlement behavior (Increment or Override)
+              module Behavior
+                extend Stigg::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Stigg::V1::Addons::AddonPackageEntitlement::Data::Credit::Behavior
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                INCREMENT =
+                  T.let(
+                    :Increment,
+                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Credit::Behavior::TaggedSymbol
+                  )
+                OVERRIDE =
+                  T.let(
+                    :Override,
+                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Credit::Behavior::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Stigg::V1::Addons::AddonPackageEntitlement::Data::Credit::Behavior::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+
+              # Credit grant cadence (for credit entitlements)
+              module Cadence
+                extend Stigg::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Stigg::V1::Addons::AddonPackageEntitlement::Data::Credit::Cadence
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                MONTH =
+                  T.let(
+                    :MONTH,
+                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Credit::Cadence::TaggedSymbol
+                  )
+                YEAR =
+                  T.let(
+                    :YEAR,
+                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Credit::Cadence::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Stigg::V1::Addons::AddonPackageEntitlement::Data::Credit::Cadence::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+
+              module HiddenFromWidget
+                extend Stigg::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Stigg::V1::Addons::AddonPackageEntitlement::Data::Credit::HiddenFromWidget
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                PAYWALL =
+                  T.let(
+                    :PAYWALL,
+                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Credit::HiddenFromWidget::TaggedSymbol
+                  )
+                CUSTOMER_PORTAL =
+                  T.let(
+                    :CUSTOMER_PORTAL,
+                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Credit::HiddenFromWidget::TaggedSymbol
+                  )
+                CHECKOUT =
+                  T.let(
+                    :CHECKOUT,
+                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Credit::HiddenFromWidget::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Stigg::V1::Addons::AddonPackageEntitlement::Data::Credit::HiddenFromWidget::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
               end
             end
 
-            # Entitlement type (FEATURE or CREDIT)
-            module Type
-              extend Stigg::Internal::Type::Enum
-
-              TaggedSymbol =
-                T.type_alias do
-                  T.all(
-                    Symbol,
-                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Type
-                  )
-                end
-              OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-              FEATURE =
-                T.let(
-                  :FEATURE,
-                  Stigg::V1::Addons::AddonPackageEntitlement::Data::Type::TaggedSymbol
-                )
-              CREDIT =
-                T.let(
-                  :CREDIT,
-                  Stigg::V1::Addons::AddonPackageEntitlement::Data::Type::TaggedSymbol
-                )
-
-              sig do
-                override.returns(
-                  T::Array[
-                    Stigg::V1::Addons::AddonPackageEntitlement::Data::Type::TaggedSymbol
-                  ]
-                )
-              end
-              def self.values
-              end
+            sig do
+              override.returns(
+                T::Array[
+                  Stigg::V1::Addons::AddonPackageEntitlement::Data::Variants
+                ]
+              )
+            end
+            def self.variants
             end
           end
         end
