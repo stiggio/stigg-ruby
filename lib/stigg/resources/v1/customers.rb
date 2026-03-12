@@ -126,9 +126,11 @@ module Stigg
         # Imports multiple customers in bulk. Used for migrating customer data from
         # external systems.
         #
-        # @overload import(customers:, request_options: {})
+        # @overload import(customers:, integration_id: nil, request_options: {})
         #
         # @param customers [Array<Stigg::Models::V1::CustomerImportParams::Customer>] List of customer objects to import
+        #
+        # @param integration_id [String] Integration details
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #

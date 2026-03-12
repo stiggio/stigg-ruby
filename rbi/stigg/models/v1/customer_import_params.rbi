@@ -16,16 +16,26 @@ module Stigg
         sig { returns(T::Array[Stigg::V1::CustomerImportParams::Customer]) }
         attr_accessor :customers
 
+        # Integration details
+        sig { returns(T.nilable(String)) }
+        attr_reader :integration_id
+
+        sig { params(integration_id: String).void }
+        attr_writer :integration_id
+
         sig do
           params(
             customers:
               T::Array[Stigg::V1::CustomerImportParams::Customer::OrHash],
+            integration_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
           # List of customer objects to import
           customers:,
+          # Integration details
+          integration_id: nil,
           request_options: {}
         )
         end
@@ -34,6 +44,7 @@ module Stigg
           override.returns(
             {
               customers: T::Array[Stigg::V1::CustomerImportParams::Customer],
+              integration_id: String,
               request_options: Stigg::RequestOptions
             }
           )
@@ -62,6 +73,13 @@ module Stigg
           sig { returns(T.nilable(String)) }
           attr_accessor :name
 
+          # Id in the billing provider
+          sig { returns(T.nilable(String)) }
+          attr_reader :billing_id
+
+          sig { params(billing_id: String).void }
+          attr_writer :billing_id
+
           # Additional metadata
           sig { returns(T.nilable(T::Hash[Symbol, String])) }
           attr_reader :metadata
@@ -76,6 +94,13 @@ module Stigg
           sig { params(payment_method_id: String).void }
           attr_writer :payment_method_id
 
+          # The unique identifier for the customer in Salesforce integration
+          sig { returns(T.nilable(String)) }
+          attr_reader :salesforce_id
+
+          sig { params(salesforce_id: String).void }
+          attr_writer :salesforce_id
+
           # Timestamp of when the record was last updated
           sig { returns(T.nilable(Time)) }
           attr_reader :updated_at
@@ -88,8 +113,10 @@ module Stigg
               id: String,
               email: T.nilable(String),
               name: T.nilable(String),
+              billing_id: String,
               metadata: T::Hash[Symbol, String],
               payment_method_id: String,
+              salesforce_id: String,
               updated_at: Time
             ).returns(T.attached_class)
           end
@@ -100,10 +127,14 @@ module Stigg
             email:,
             # The name of the customer
             name:,
+            # Id in the billing provider
+            billing_id: nil,
             # Additional metadata
             metadata: nil,
             # Billing provider payment method id
             payment_method_id: nil,
+            # The unique identifier for the customer in Salesforce integration
+            salesforce_id: nil,
             # Timestamp of when the record was last updated
             updated_at: nil
           )
@@ -115,8 +146,10 @@ module Stigg
                 id: String,
                 email: T.nilable(String),
                 name: T.nilable(String),
+                billing_id: String,
                 metadata: T::Hash[Symbol, String],
                 payment_method_id: String,
+                salesforce_id: String,
                 updated_at: Time
               }
             )

@@ -14,8 +14,16 @@ module Stigg
         #   @return [Array<Stigg::Models::V1::CustomerImportParams::Customer>]
         required :customers, -> { Stigg::Internal::Type::ArrayOf[Stigg::V1::CustomerImportParams::Customer] }
 
-        # @!method initialize(customers:, request_options: {})
+        # @!attribute integration_id
+        #   Integration details
+        #
+        #   @return [String, nil]
+        optional :integration_id, String, api_name: :integrationId
+
+        # @!method initialize(customers:, integration_id: nil, request_options: {})
         #   @param customers [Array<Stigg::Models::V1::CustomerImportParams::Customer>] List of customer objects to import
+        #
+        #   @param integration_id [String] Integration details
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 
@@ -38,6 +46,12 @@ module Stigg
           #   @return [String, nil]
           required :name, String, nil?: true
 
+          # @!attribute billing_id
+          #   Id in the billing provider
+          #
+          #   @return [String, nil]
+          optional :billing_id, String, api_name: :billingId
+
           # @!attribute metadata
           #   Additional metadata
           #
@@ -50,22 +64,32 @@ module Stigg
           #   @return [String, nil]
           optional :payment_method_id, String, api_name: :paymentMethodId
 
+          # @!attribute salesforce_id
+          #   The unique identifier for the customer in Salesforce integration
+          #
+          #   @return [String, nil]
+          optional :salesforce_id, String, api_name: :salesforceId
+
           # @!attribute updated_at
           #   Timestamp of when the record was last updated
           #
           #   @return [Time, nil]
           optional :updated_at, Time, api_name: :updatedAt
 
-          # @!method initialize(id:, email:, name:, metadata: nil, payment_method_id: nil, updated_at: nil)
+          # @!method initialize(id:, email:, name:, billing_id: nil, metadata: nil, payment_method_id: nil, salesforce_id: nil, updated_at: nil)
           #   @param id [String] Customer slug
           #
           #   @param email [String, nil] The email of the customer
           #
           #   @param name [String, nil] The name of the customer
           #
+          #   @param billing_id [String] Id in the billing provider
+          #
           #   @param metadata [Hash{Symbol=>String}] Additional metadata
           #
           #   @param payment_method_id [String] Billing provider payment method id
+          #
+          #   @param salesforce_id [String] The unique identifier for the customer in Salesforce integration
           #
           #   @param updated_at [Time] Timestamp of when the record was last updated
         end

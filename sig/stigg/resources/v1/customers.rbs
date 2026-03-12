@@ -39,6 +39,7 @@ module Stigg
 
         def import: (
           customers: ::Array[Stigg::V1::CustomerImportParams::Customer],
+          ?integration_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Models::V1::CustomerImportResponse
 
