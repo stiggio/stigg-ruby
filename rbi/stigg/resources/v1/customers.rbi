@@ -117,12 +117,15 @@ module Stigg
           params(
             customers:
               T::Array[Stigg::V1::CustomerImportParams::Customer::OrHash],
+            integration_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::Models::V1::CustomerImportResponse)
         end
         def import(
           # List of customer objects to import
           customers:,
+          # Integration details
+          integration_id: nil,
           request_options: {}
         )
         end
