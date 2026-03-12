@@ -2,7 +2,10 @@ module Stigg
   module Models
     module V1
       type customer_import_params =
-        { customers: ::Array[Stigg::V1::CustomerImportParams::Customer] }
+        {
+          customers: ::Array[Stigg::V1::CustomerImportParams::Customer],
+          integration_id: String
+        }
         & Stigg::Internal::Type::request_parameters
 
       class CustomerImportParams < Stigg::Internal::Type::BaseModel
@@ -11,13 +14,19 @@ module Stigg
 
         attr_accessor customers: ::Array[Stigg::V1::CustomerImportParams::Customer]
 
+        attr_reader integration_id: String?
+
+        def integration_id=: (String) -> String
+
         def initialize: (
           customers: ::Array[Stigg::V1::CustomerImportParams::Customer],
+          ?integration_id: String,
           ?request_options: Stigg::request_opts
         ) -> void
 
         def to_hash: -> {
           customers: ::Array[Stigg::V1::CustomerImportParams::Customer],
+          integration_id: String,
           request_options: Stigg::RequestOptions
         }
 
@@ -26,8 +35,10 @@ module Stigg
             id: String,
             email: String?,
             name: String?,
+            billing_id: String,
             metadata: ::Hash[Symbol, String],
             payment_method_id: String,
+            salesforce_id: String,
             updated_at: Time
           }
 
@@ -38,6 +49,10 @@ module Stigg
 
           attr_accessor name: String?
 
+          attr_reader billing_id: String?
+
+          def billing_id=: (String) -> String
+
           attr_reader metadata: ::Hash[Symbol, String]?
 
           def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
@@ -45,6 +60,10 @@ module Stigg
           attr_reader payment_method_id: String?
 
           def payment_method_id=: (String) -> String
+
+          attr_reader salesforce_id: String?
+
+          def salesforce_id=: (String) -> String
 
           attr_reader updated_at: Time?
 
@@ -54,8 +73,10 @@ module Stigg
             id: String,
             email: String?,
             name: String?,
+            ?billing_id: String,
             ?metadata: ::Hash[Symbol, String],
             ?payment_method_id: String,
+            ?salesforce_id: String,
             ?updated_at: Time
           ) -> void
 
@@ -63,8 +84,10 @@ module Stigg
             id: String,
             email: String?,
             name: String?,
+            billing_id: String,
             metadata: ::Hash[Symbol, String],
             payment_method_id: String,
+            salesforce_id: String,
             updated_at: Time
           }
         end
