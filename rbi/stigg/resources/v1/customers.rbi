@@ -34,6 +34,10 @@ module Stigg
         sig do
           params(
             id: String,
+            billing_currency:
+              T.nilable(
+                Stigg::V1::CustomerUpdateParams::BillingCurrency::OrSymbol
+              ),
             billing_id: T.nilable(String),
             coupon_id: T.nilable(String),
             email: T.nilable(String),
@@ -47,6 +51,8 @@ module Stigg
         def update(
           # The unique identifier of the entity
           id,
+          # The billing currency of the customer
+          billing_currency: nil,
           # The unique identifier for the entity in the billing provider
           billing_id: nil,
           # Customer level coupon
@@ -162,6 +168,10 @@ module Stigg
         sig do
           params(
             id: String,
+            billing_currency:
+              T.nilable(
+                Stigg::V1::CustomerProvisionParams::BillingCurrency::OrSymbol
+              ),
             billing_id: T.nilable(String),
             coupon_id: T.nilable(String),
             default_payment_method:
@@ -179,6 +189,8 @@ module Stigg
         def provision(
           # Customer slug
           id:,
+          # The billing currency of the customer
+          billing_currency: nil,
           # The unique identifier for the entity in the billing provider
           billing_id: nil,
           # Customer level coupon
