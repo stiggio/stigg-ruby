@@ -24,7 +24,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "stigg", "~> 0.1.0.pre.alpha.18"
+gem "stigg", "~> 0.1.0.pre.alpha.19"
 ```
 
 <!-- x-release-please-end -->
@@ -232,25 +232,25 @@ stigg.v1.customers.retrieve("REPLACE_ME", **params)
 Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
 
 ```ruby
-# :AUTH0
-puts(Stigg::V1::Customers::PaymentMethodAttachParams::VendorIdentifier::AUTH0)
+# :usd
+puts(Stigg::V1::CustomerUpdateParams::BillingCurrency::USD)
 
-# Revealed type: `T.all(Stigg::V1::Customers::PaymentMethodAttachParams::VendorIdentifier, Symbol)`
-T.reveal_type(Stigg::V1::Customers::PaymentMethodAttachParams::VendorIdentifier::AUTH0)
+# Revealed type: `T.all(Stigg::V1::CustomerUpdateParams::BillingCurrency, Symbol)`
+T.reveal_type(Stigg::V1::CustomerUpdateParams::BillingCurrency::USD)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
 
 ```ruby
 # Using the enum constants preserves the tagged type information:
-stigg.v1.customers.payment_method.attach(
-  vendor_identifier: Stigg::V1::Customers::PaymentMethodAttachParams::VendorIdentifier::AUTH0,
+stigg.v1.customers.update(
+  billing_currency: Stigg::V1::CustomerUpdateParams::BillingCurrency::USD,
   # …
 )
 
 # Literal values are also permissible:
-stigg.v1.customers.payment_method.attach(
-  vendor_identifier: :AUTH0,
+stigg.v1.customers.update(
+  billing_currency: :usd,
   # …
 )
 ```

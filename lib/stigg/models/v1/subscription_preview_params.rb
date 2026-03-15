@@ -290,7 +290,7 @@ module Stigg
               required :amount, Float
 
               # @!attribute currency
-              #   The price currency
+              #   ISO 4217 currency code
               #
               #   @return [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::Currency]
               required :currency,
@@ -299,9 +299,9 @@ module Stigg
               # @!method initialize(amount:, currency:)
               #   @param amount [Float] The price amount
               #
-              #   @param currency [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::Currency] The price currency
+              #   @param currency [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff::Currency] ISO 4217 currency code
 
-              # The price currency
+              # ISO 4217 currency code
               #
               # @see Stigg::Models::V1::SubscriptionPreviewParams::AppliedCoupon::Discount::AmountsOff#currency
               module Currency

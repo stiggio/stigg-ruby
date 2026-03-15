@@ -29,6 +29,15 @@ module Stigg
         #   @return [Time]
         required :updated_at, Time, api_name: :updatedAt
 
+        # @!attribute billing_currency
+        #   The billing currency of the customer
+        #
+        #   @return [Symbol, Stigg::Models::V1::CustomerListResponse::BillingCurrency, nil]
+        optional :billing_currency,
+                 enum: -> { Stigg::Models::V1::CustomerListResponse::BillingCurrency },
+                 api_name: :billingCurrency,
+                 nil?: true
+
         # @!attribute billing_id
         #   The unique identifier for the entity in the billing provider
         #
@@ -75,7 +84,7 @@ module Stigg
         #   @return [String, nil]
         optional :name, String, nil?: true
 
-        # @!method initialize(id:, archived_at:, created_at:, updated_at:, billing_id: nil, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil)
+        # @!method initialize(id:, archived_at:, created_at:, updated_at:, billing_currency: nil, billing_id: nil, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil)
         #   A customer can be either an organization or an individual
         #
         #   @param id [String] Customer slug
@@ -85,6 +94,8 @@ module Stigg
         #   @param created_at [Time] Timestamp of when the record was created
         #
         #   @param updated_at [Time] Timestamp of when the record was last updated
+        #
+        #   @param billing_currency [Symbol, Stigg::Models::V1::CustomerListResponse::BillingCurrency, nil] The billing currency of the customer
         #
         #   @param billing_id [String, nil] The unique identifier for the entity in the billing provider
         #
@@ -99,6 +110,133 @@ module Stigg
         #   @param metadata [Hash{Symbol=>String}] Additional metadata
         #
         #   @param name [String, nil] The name of the customer
+
+        # The billing currency of the customer
+        #
+        # @see Stigg::Models::V1::CustomerListResponse#billing_currency
+        module BillingCurrency
+          extend Stigg::Internal::Type::Enum
+
+          USD = :usd
+          AED = :aed
+          ALL = :all
+          AMD = :amd
+          ANG = :ang
+          AUD = :aud
+          AWG = :awg
+          AZN = :azn
+          BAM = :bam
+          BBD = :bbd
+          BDT = :bdt
+          BGN = :bgn
+          BIF = :bif
+          BMD = :bmd
+          BND = :bnd
+          BSD = :bsd
+          BWP = :bwp
+          BYN = :byn
+          BZD = :bzd
+          BRL = :brl
+          CAD = :cad
+          CDF = :cdf
+          CHF = :chf
+          CNY = :cny
+          CZK = :czk
+          DKK = :dkk
+          DOP = :dop
+          DZD = :dzd
+          EGP = :egp
+          ETB = :etb
+          EUR = :eur
+          FJD = :fjd
+          GBP = :gbp
+          GEL = :gel
+          GIP = :gip
+          GMD = :gmd
+          GYD = :gyd
+          HKD = :hkd
+          HRK = :hrk
+          HTG = :htg
+          IDR = :idr
+          ILS = :ils
+          INR = :inr
+          ISK = :isk
+          JMD = :jmd
+          JPY = :jpy
+          KES = :kes
+          KGS = :kgs
+          KHR = :khr
+          KMF = :kmf
+          KRW = :krw
+          KYD = :kyd
+          KZT = :kzt
+          LBP = :lbp
+          LKR = :lkr
+          LRD = :lrd
+          LSL = :lsl
+          MAD = :mad
+          MDL = :mdl
+          MGA = :mga
+          MKD = :mkd
+          MMK = :mmk
+          MNT = :mnt
+          MOP = :mop
+          MRO = :mro
+          MVR = :mvr
+          MWK = :mwk
+          MXN = :mxn
+          MYR = :myr
+          MZN = :mzn
+          NAD = :nad
+          NGN = :ngn
+          NOK = :nok
+          NPR = :npr
+          NZD = :nzd
+          PGK = :pgk
+          PHP = :php
+          PKR = :pkr
+          PLN = :pln
+          QAR = :qar
+          RON = :ron
+          RSD = :rsd
+          RUB = :rub
+          RWF = :rwf
+          SAR = :sar
+          SBD = :sbd
+          SCR = :scr
+          SEK = :sek
+          SGD = :sgd
+          SLE = :sle
+          SLL = :sll
+          SOS = :sos
+          SZL = :szl
+          THB = :thb
+          TJS = :tjs
+          TOP = :top
+          TRY = :try
+          TTD = :ttd
+          TZS = :tzs
+          UAH = :uah
+          UZS = :uzs
+          VND = :vnd
+          VUV = :vuv
+          WST = :wst
+          XAF = :xaf
+          XCD = :xcd
+          YER = :yer
+          ZAR = :zar
+          ZMW = :zmw
+          CLP = :clp
+          DJF = :djf
+          GNF = :gnf
+          UGX = :ugx
+          PYG = :pyg
+          XOF = :xof
+          XPF = :xpf
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
 
         # @see Stigg::Models::V1::CustomerListResponse#default_payment_method
         class DefaultPaymentMethod < Stigg::Internal::Type::BaseModel

@@ -13,6 +13,7 @@ module Stigg
 
         def update: (
           String id,
+          ?billing_currency: Stigg::Models::V1::CustomerUpdateParams::billing_currency?,
           ?billing_id: String?,
           ?coupon_id: String?,
           ?email: String?,
@@ -53,6 +54,7 @@ module Stigg
 
         def provision: (
           id: String,
+          ?billing_currency: Stigg::Models::V1::CustomerProvisionParams::billing_currency?,
           ?billing_id: String?,
           ?coupon_id: String?,
           ?default_payment_method: Stigg::V1::CustomerProvisionParams::DefaultPaymentMethod?,

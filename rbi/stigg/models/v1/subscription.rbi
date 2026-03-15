@@ -3503,7 +3503,7 @@ module Stigg
                 sig { returns(Float) }
                 attr_accessor :amount
 
-                # The price currency
+                # ISO 4217 currency code
                 sig do
                   returns(
                     Stigg::V1::Subscription::Data::Price::Tier::FlatPrice::Currency::TaggedSymbol
@@ -3522,7 +3522,7 @@ module Stigg
                 def self.new(
                   # The price amount
                   amount:,
-                  # The price currency
+                  # ISO 4217 currency code
                   currency:
                 )
                 end
@@ -3539,7 +3539,7 @@ module Stigg
                 def to_hash
                 end
 
-                # The price currency
+                # ISO 4217 currency code
                 module Currency
                   extend Stigg::Internal::Type::Enum
 
@@ -4158,7 +4158,7 @@ module Stigg
                 sig { returns(Float) }
                 attr_accessor :amount
 
-                # The price currency
+                # ISO 4217 currency code
                 sig do
                   returns(
                     Stigg::V1::Subscription::Data::Price::Tier::UnitPrice::Currency::TaggedSymbol
@@ -4177,7 +4177,7 @@ module Stigg
                 def self.new(
                   # The price amount
                   amount:,
-                  # The price currency
+                  # ISO 4217 currency code
                   currency:
                 )
                 end
@@ -4194,7 +4194,7 @@ module Stigg
                 def to_hash
                 end
 
-                # The price currency
+                # ISO 4217 currency code
                 module Currency
                   extend Stigg::Internal::Type::Enum
 
