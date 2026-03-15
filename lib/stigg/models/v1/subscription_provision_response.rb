@@ -1702,7 +1702,7 @@ module Stigg
                   required :amount, Float
 
                   # @!attribute currency
-                  #   The price currency
+                  #   ISO 4217 currency code
                   #
                   #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier::FlatPrice::Currency]
                   required :currency,
@@ -1713,9 +1713,9 @@ module Stigg
                   #
                   #   @param amount [Float] The price amount
                   #
-                  #   @param currency [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier::FlatPrice::Currency] The price currency
+                  #   @param currency [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier::FlatPrice::Currency] ISO 4217 currency code
 
-                  # The price currency
+                  # ISO 4217 currency code
                   #
                   # @see Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier::FlatPrice#currency
                   module Currency
@@ -1852,7 +1852,7 @@ module Stigg
                   required :amount, Float
 
                   # @!attribute currency
-                  #   The price currency
+                  #   ISO 4217 currency code
                   #
                   #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier::UnitPrice::Currency]
                   required :currency,
@@ -1863,9 +1863,9 @@ module Stigg
                   #
                   #   @param amount [Float] The price amount
                   #
-                  #   @param currency [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier::UnitPrice::Currency] The price currency
+                  #   @param currency [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier::UnitPrice::Currency] ISO 4217 currency code
 
-                  # The price currency
+                  # ISO 4217 currency code
                   #
                   # @see Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Price::Tier::UnitPrice#currency
                   module Currency
