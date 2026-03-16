@@ -19,16 +19,13 @@ module Stigg
         sig { returns(String) }
         attr_accessor :id
 
+        # Display name of the product
+        sig { returns(String) }
+        attr_accessor :display_name
+
         # Description of the product
         sig { returns(T.nilable(String)) }
         attr_accessor :description
-
-        # Display name of the product
-        sig { returns(T.nilable(String)) }
-        attr_reader :display_name
-
-        sig { params(display_name: String).void }
-        attr_writer :display_name
 
         # Additional metadata for the product
         sig { returns(T.nilable(T::Hash[Symbol, String])) }
@@ -44,8 +41,8 @@ module Stigg
         sig do
           params(
             id: String,
-            description: T.nilable(String),
             display_name: String,
+            description: T.nilable(String),
             metadata: T.nilable(T::Hash[Symbol, String]),
             multiple_subscriptions: T::Boolean,
             request_options: Stigg::RequestOptions::OrHash
@@ -54,10 +51,10 @@ module Stigg
         def self.new(
           # The unique identifier for the entity
           id:,
+          # Display name of the product
+          display_name:,
           # Description of the product
           description: nil,
-          # Display name of the product
-          display_name: nil,
           # Additional metadata for the product
           metadata: nil,
           # Indicates if multiple subscriptions to this product are allowed
@@ -70,8 +67,8 @@ module Stigg
           override.returns(
             {
               id: String,
-              description: T.nilable(String),
               display_name: String,
+              description: T.nilable(String),
               metadata: T.nilable(T::Hash[Symbol, String]),
               multiple_subscriptions: T::Boolean,
               request_options: Stigg::RequestOptions

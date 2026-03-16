@@ -24,8 +24,8 @@ module Stigg
         sig do
           params(
             id: String,
-            description: T.nilable(String),
             display_name: String,
+            description: T.nilable(String),
             metadata: T.nilable(T::Hash[Symbol, String]),
             multiple_subscriptions: T::Boolean,
             request_options: Stigg::RequestOptions::OrHash
@@ -34,10 +34,10 @@ module Stigg
         def create_product(
           # The unique identifier for the entity
           id:,
+          # Display name of the product
+          display_name:,
           # Description of the product
           description: nil,
-          # Display name of the product
-          display_name: nil,
           # Additional metadata for the product
           metadata: nil,
           # Indicates if multiple subscriptions to this product are allowed

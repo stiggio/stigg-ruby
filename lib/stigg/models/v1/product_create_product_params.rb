@@ -14,17 +14,17 @@ module Stigg
         #   @return [String]
         required :id, String
 
+        # @!attribute display_name
+        #   Display name of the product
+        #
+        #   @return [String]
+        required :display_name, String, api_name: :displayName
+
         # @!attribute description
         #   Description of the product
         #
         #   @return [String, nil]
         optional :description, String, nil?: true
-
-        # @!attribute display_name
-        #   Display name of the product
-        #
-        #   @return [String, nil]
-        optional :display_name, String, api_name: :displayName
 
         # @!attribute metadata
         #   Additional metadata for the product
@@ -38,12 +38,12 @@ module Stigg
         #   @return [Boolean, nil]
         optional :multiple_subscriptions, Stigg::Internal::Type::Boolean, api_name: :multipleSubscriptions
 
-        # @!method initialize(id:, description: nil, display_name: nil, metadata: nil, multiple_subscriptions: nil, request_options: {})
+        # @!method initialize(id:, display_name:, description: nil, metadata: nil, multiple_subscriptions: nil, request_options: {})
         #   @param id [String] The unique identifier for the entity
         #
-        #   @param description [String, nil] Description of the product
-        #
         #   @param display_name [String] Display name of the product
+        #
+        #   @param description [String, nil] Description of the product
         #
         #   @param metadata [Hash{Symbol=>String}, nil] Additional metadata for the product
         #

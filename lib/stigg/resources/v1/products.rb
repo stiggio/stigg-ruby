@@ -28,13 +28,13 @@ module Stigg
 
         # Creates a new product.
         #
-        # @overload create_product(id:, description: nil, display_name: nil, metadata: nil, multiple_subscriptions: nil, request_options: {})
+        # @overload create_product(id:, display_name:, description: nil, metadata: nil, multiple_subscriptions: nil, request_options: {})
         #
         # @param id [String] The unique identifier for the entity
         #
-        # @param description [String, nil] Description of the product
-        #
         # @param display_name [String] Display name of the product
+        #
+        # @param description [String, nil] Description of the product
         #
         # @param metadata [Hash{Symbol=>String}, nil] Additional metadata for the product
         #
