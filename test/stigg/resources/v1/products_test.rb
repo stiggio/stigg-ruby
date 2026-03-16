@@ -22,7 +22,7 @@ class Stigg::Test::Resources::V1::ProductsTest < Stigg::Test::ResourceTest
   def test_create_product_required_params
     skip("Mock server tests are disabled")
 
-    response = @stigg.v1.products.create_product(id: "id")
+    response = @stigg.v1.products.create_product(id: "id", display_name: "displayName")
 
     assert_pattern do
       response => Stigg::V1::Product
