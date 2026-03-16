@@ -31,8 +31,11 @@ module Stigg
         # @!attribute coupon_id
         #   Customer level coupon
         #
-        #   @return [String, nil]
-        optional :coupon_id, String, api_name: :couponId, nil?: true
+        #   @return [String, Symbol, Stigg::Models::V1::CustomerUpdateParams::CouponID, nil]
+        optional :coupon_id,
+                 union: -> { Stigg::V1::CustomerUpdateParams::CouponID },
+                 api_name: :couponId,
+                 nil?: true
 
         # @!attribute email
         #   The email of the customer
@@ -84,7 +87,7 @@ module Stigg
         #
         #   @param billing_id [String, nil] The unique identifier for the entity in the billing provider
         #
-        #   @param coupon_id [String, nil] Customer level coupon
+        #   @param coupon_id [String, Symbol, Stigg::Models::V1::CustomerUpdateParams::CouponID, nil] Customer level coupon
         #
         #   @param email [String, nil] The email of the customer
         #
@@ -225,6 +228,29 @@ module Stigg
 
           # @!method self.values
           #   @return [Array<Symbol>]
+        end
+
+        # Customer level coupon
+        module CouponID
+          extend Stigg::Internal::Type::Union
+
+          # Customer level coupon
+          variant String
+
+          variant const: -> { Stigg::Models::V1::CustomerUpdateParams::CouponID::EMPTY }
+
+          # @!method self.variants
+          #   @return [Array(String, Symbol)]
+
+          define_sorbet_constant!(:Variants) do
+            T.type_alias { T.any(String, Stigg::V1::CustomerUpdateParams::CouponID::TaggedSymbol) }
+          end
+
+          # @!group
+
+          EMPTY = :""
+
+          # @!endgroup
         end
 
         class Integration < Stigg::Internal::Type::BaseModel

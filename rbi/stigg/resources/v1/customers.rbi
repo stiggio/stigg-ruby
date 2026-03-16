@@ -39,7 +39,13 @@ module Stigg
                 Stigg::V1::CustomerUpdateParams::BillingCurrency::OrSymbol
               ),
             billing_id: T.nilable(String),
-            coupon_id: T.nilable(String),
+            coupon_id:
+              T.nilable(
+                T.any(
+                  String,
+                  Stigg::V1::CustomerUpdateParams::CouponID::OrSymbol
+                )
+              ),
             email: T.nilable(String),
             integrations:
               T::Array[Stigg::V1::CustomerUpdateParams::Integration::OrHash],
@@ -182,7 +188,13 @@ module Stigg
                 Stigg::V1::CustomerProvisionParams::BillingCurrency::OrSymbol
               ),
             billing_id: T.nilable(String),
-            coupon_id: T.nilable(String),
+            coupon_id:
+              T.nilable(
+                T.any(
+                  String,
+                  Stigg::V1::CustomerProvisionParams::CouponID::OrSymbol
+                )
+              ),
             default_payment_method:
               T.nilable(
                 Stigg::V1::CustomerProvisionParams::DefaultPaymentMethod::OrHash

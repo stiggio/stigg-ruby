@@ -9,7 +9,7 @@ module Stigg
           updated_at: Time,
           billing_currency: Stigg::Models::V1::CustomerListResponse::billing_currency?,
           billing_id: String?,
-          coupon_id: String?,
+          coupon_id: Stigg::Models::V1::CustomerListResponse::coupon_id?,
           default_payment_method: Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod?,
           email: String?,
           integrations: ::Array[Stigg::Models::V1::CustomerListResponse::Integration],
@@ -33,7 +33,7 @@ module Stigg
 
         attr_accessor billing_id: String?
 
-        attr_accessor coupon_id: String?
+        attr_accessor coupon_id: Stigg::Models::V1::CustomerListResponse::coupon_id?
 
         attr_accessor default_payment_method: Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod?
 
@@ -68,7 +68,7 @@ module Stigg
           updated_at: Time,
           ?billing_currency: Stigg::Models::V1::CustomerListResponse::billing_currency?,
           ?billing_id: String?,
-          ?coupon_id: String?,
+          ?coupon_id: Stigg::Models::V1::CustomerListResponse::coupon_id?,
           ?default_payment_method: Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod?,
           ?email: String?,
           ?integrations: ::Array[Stigg::Models::V1::CustomerListResponse::Integration],
@@ -86,7 +86,7 @@ module Stigg
           updated_at: Time,
           billing_currency: Stigg::Models::V1::CustomerListResponse::billing_currency?,
           billing_id: String?,
-          coupon_id: String?,
+          coupon_id: Stigg::Models::V1::CustomerListResponse::coupon_id?,
           default_payment_method: Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod?,
           email: String?,
           integrations: ::Array[Stigg::Models::V1::CustomerListResponse::Integration],
@@ -336,6 +336,16 @@ module Stigg
           XPF: :xpf
 
           def self?.values: -> ::Array[Stigg::Models::V1::CustomerListResponse::billing_currency]
+        end
+
+        type coupon_id = String | :""
+
+        module CouponID
+          extend Stigg::Internal::Type::Union
+
+          def self?.variants: -> ::Array[Stigg::Models::V1::CustomerListResponse::coupon_id]
+
+          EMPTY: :""
         end
 
         type default_payment_method =

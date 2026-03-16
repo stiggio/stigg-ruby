@@ -6,7 +6,7 @@ module Stigg
           id: String,
           billing_currency: Stigg::Models::V1::CustomerUpdateParams::billing_currency?,
           billing_id: String?,
-          coupon_id: String?,
+          coupon_id: Stigg::Models::V1::CustomerUpdateParams::coupon_id?,
           email: String?,
           integrations: ::Array[Stigg::V1::CustomerUpdateParams::Integration],
           language: String?,
@@ -27,7 +27,7 @@ module Stigg
 
         attr_accessor billing_id: String?
 
-        attr_accessor coupon_id: String?
+        attr_accessor coupon_id: Stigg::Models::V1::CustomerUpdateParams::coupon_id?
 
         attr_accessor email: String?
 
@@ -57,7 +57,7 @@ module Stigg
           id: String,
           ?billing_currency: Stigg::Models::V1::CustomerUpdateParams::billing_currency?,
           ?billing_id: String?,
-          ?coupon_id: String?,
+          ?coupon_id: Stigg::Models::V1::CustomerUpdateParams::coupon_id?,
           ?email: String?,
           ?integrations: ::Array[Stigg::V1::CustomerUpdateParams::Integration],
           ?language: String?,
@@ -72,7 +72,7 @@ module Stigg
           id: String,
           billing_currency: Stigg::Models::V1::CustomerUpdateParams::billing_currency?,
           billing_id: String?,
-          coupon_id: String?,
+          coupon_id: Stigg::Models::V1::CustomerUpdateParams::coupon_id?,
           email: String?,
           integrations: ::Array[Stigg::V1::CustomerUpdateParams::Integration],
           language: String?,
@@ -322,6 +322,16 @@ module Stigg
           XPF: :xpf
 
           def self?.values: -> ::Array[Stigg::Models::V1::CustomerUpdateParams::billing_currency]
+        end
+
+        type coupon_id = String | :""
+
+        module CouponID
+          extend Stigg::Internal::Type::Union
+
+          def self?.variants: -> ::Array[Stigg::Models::V1::CustomerUpdateParams::coupon_id]
+
+          EMPTY: :""
         end
 
         type integration =
