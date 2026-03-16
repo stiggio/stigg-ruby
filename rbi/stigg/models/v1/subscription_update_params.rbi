@@ -392,6 +392,7 @@ module Stigg
           end
           attr_writer :configuration
 
+          # Stigg coupon ID
           sig { returns(T.nilable(String)) }
           attr_reader :coupon_id
 
@@ -432,6 +433,7 @@ module Stigg
           def self.new(
             billing_coupon_id: nil,
             configuration: nil,
+            # Stigg coupon ID
             coupon_id: nil,
             discount: nil,
             promotion_code: nil

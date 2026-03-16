@@ -59,7 +59,7 @@ class Stigg::Test::Resources::V1::CustomersTest < Stigg::Test::ResourceTest
         updated_at: Time,
         billing_currency: Stigg::Models::V1::CustomerListResponse::BillingCurrency | nil,
         billing_id: String | nil,
-        coupon_id: String | nil,
+        coupon_id: Stigg::Models::V1::CustomerListResponse::CouponID | nil,
         default_payment_method: Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod | nil,
         email: String | nil,
         integrations: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::CustomerListResponse::Integration]) | nil,

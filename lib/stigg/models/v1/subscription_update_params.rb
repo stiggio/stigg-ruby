@@ -177,6 +177,7 @@ module Stigg
           optional :configuration, -> { Stigg::V1::SubscriptionUpdateParams::AppliedCoupon::Configuration }
 
           # @!attribute coupon_id
+          #   Stigg coupon ID
           #
           #   @return [String, nil]
           optional :coupon_id, String, api_name: :couponId
@@ -193,9 +194,13 @@ module Stigg
 
           # @!method initialize(billing_coupon_id: nil, configuration: nil, coupon_id: nil, discount: nil, promotion_code: nil)
           #   @param billing_coupon_id [String]
+          #
           #   @param configuration [Stigg::Models::V1::SubscriptionUpdateParams::AppliedCoupon::Configuration]
-          #   @param coupon_id [String]
+          #
+          #   @param coupon_id [String] Stigg coupon ID
+          #
           #   @param discount [Stigg::Models::V1::SubscriptionUpdateParams::AppliedCoupon::Discount]
+          #
           #   @param promotion_code [String, nil]
 
           # @see Stigg::Models::V1::SubscriptionUpdateParams::AppliedCoupon#configuration
