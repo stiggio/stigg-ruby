@@ -85,6 +85,12 @@ module Stigg
           optional :integrations,
                    -> { Stigg::Internal::Type::ArrayOf[Stigg::V1::CustomerResponse::Data::Integration] }
 
+          # @!attribute language
+          #   Language to use for this customer
+          #
+          #   @return [String, nil]
+          optional :language, String, nil?: true
+
           # @!attribute metadata
           #   Additional metadata
           #
@@ -97,7 +103,19 @@ module Stigg
           #   @return [String, nil]
           optional :name, String, nil?: true
 
-          # @!method initialize(id:, archived_at:, created_at:, updated_at:, billing_currency: nil, billing_id: nil, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil)
+          # @!attribute passthrough
+          #   Vendor-specific billing passthrough fields.
+          #
+          #   @return [Stigg::Models::V1::CustomerResponse::Data::Passthrough, nil]
+          optional :passthrough, -> { Stigg::V1::CustomerResponse::Data::Passthrough }
+
+          # @!attribute timezone
+          #   Timezone to use for this customer
+          #
+          #   @return [String, nil]
+          optional :timezone, String, nil?: true
+
+          # @!method initialize(id:, archived_at:, created_at:, updated_at:, billing_currency: nil, billing_id: nil, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, language: nil, metadata: nil, name: nil, passthrough: nil, timezone: nil)
           #   A customer can be either an organization or an individual
           #
           #   @param id [String] Customer slug
@@ -120,9 +138,15 @@ module Stigg
           #
           #   @param integrations [Array<Stigg::Models::V1::CustomerResponse::Data::Integration>] List of integrations
           #
+          #   @param language [String, nil] Language to use for this customer
+          #
           #   @param metadata [Hash{Symbol=>String}] Additional metadata
           #
           #   @param name [String, nil] The name of the customer
+          #
+          #   @param passthrough [Stigg::Models::V1::CustomerResponse::Data::Passthrough] Vendor-specific billing passthrough fields.
+          #
+          #   @param timezone [String, nil] Timezone to use for this customer
 
           # The billing currency of the customer
           #
@@ -360,6 +384,450 @@ module Stigg
 
               # @!method self.values
               #   @return [Array<Symbol>]
+            end
+          end
+
+          # @see Stigg::Models::V1::CustomerResponse::Data#passthrough
+          class Passthrough < Stigg::Internal::Type::BaseModel
+            # @!attribute stripe
+            #   Stripe-specific billing fields for the customer.
+            #
+            #   @return [Stigg::Models::V1::CustomerResponse::Data::Passthrough::Stripe, nil]
+            optional :stripe, -> { Stigg::V1::CustomerResponse::Data::Passthrough::Stripe }
+
+            # @!attribute zuora
+            #   Zuora-specific billing fields for the customer.
+            #
+            #   @return [Stigg::Models::V1::CustomerResponse::Data::Passthrough::Zuora, nil]
+            optional :zuora, -> { Stigg::V1::CustomerResponse::Data::Passthrough::Zuora }
+
+            # @!method initialize(stripe: nil, zuora: nil)
+            #   Vendor-specific billing passthrough fields.
+            #
+            #   @param stripe [Stigg::Models::V1::CustomerResponse::Data::Passthrough::Stripe] Stripe-specific billing fields for the customer.
+            #
+            #   @param zuora [Stigg::Models::V1::CustomerResponse::Data::Passthrough::Zuora] Zuora-specific billing fields for the customer.
+
+            # @see Stigg::Models::V1::CustomerResponse::Data::Passthrough#stripe
+            class Stripe < Stigg::Internal::Type::BaseModel
+              # @!attribute billing_address
+              #   Physical address
+              #
+              #   @return [Stigg::Models::V1::CustomerResponse::Data::Passthrough::Stripe::BillingAddress, nil]
+              optional :billing_address,
+                       -> { Stigg::V1::CustomerResponse::Data::Passthrough::Stripe::BillingAddress },
+                       api_name: :billingAddress
+
+              # @!attribute customer_name
+              #   Customer name
+              #
+              #   @return [String, nil]
+              optional :customer_name, String, api_name: :customerName
+
+              # @!attribute invoice_custom_fields
+              #   Invoice custom fields
+              #
+              #   @return [Hash{Symbol=>String}, nil]
+              optional :invoice_custom_fields,
+                       Stigg::Internal::Type::HashOf[String],
+                       api_name: :invoiceCustomFields
+
+              # @!attribute metadata
+              #   Additional metadata
+              #
+              #   @return [Hash{Symbol=>String}, nil]
+              optional :metadata, Stigg::Internal::Type::HashOf[String]
+
+              # @!attribute payment_method_id
+              #   Billing provider payment method id, attached to this customer
+              #
+              #   @return [String, nil]
+              optional :payment_method_id, String, api_name: :paymentMethodId
+
+              # @!attribute shipping_address
+              #   Physical address
+              #
+              #   @return [Stigg::Models::V1::CustomerResponse::Data::Passthrough::Stripe::ShippingAddress, nil]
+              optional :shipping_address,
+                       -> { Stigg::V1::CustomerResponse::Data::Passthrough::Stripe::ShippingAddress },
+                       api_name: :shippingAddress
+
+              # @!attribute tax_ids
+              #   Tax IDs
+              #
+              #   @return [Array<Stigg::Models::V1::CustomerResponse::Data::Passthrough::Stripe::TaxID>, nil]
+              optional :tax_ids,
+                       -> {
+                         Stigg::Internal::Type::ArrayOf[Stigg::V1::CustomerResponse::Data::Passthrough::Stripe::TaxID]
+                       },
+                       api_name: :taxIds
+
+              # @!method initialize(billing_address: nil, customer_name: nil, invoice_custom_fields: nil, metadata: nil, payment_method_id: nil, shipping_address: nil, tax_ids: nil)
+              #   Stripe-specific billing fields for the customer.
+              #
+              #   @param billing_address [Stigg::Models::V1::CustomerResponse::Data::Passthrough::Stripe::BillingAddress] Physical address
+              #
+              #   @param customer_name [String] Customer name
+              #
+              #   @param invoice_custom_fields [Hash{Symbol=>String}] Invoice custom fields
+              #
+              #   @param metadata [Hash{Symbol=>String}] Additional metadata
+              #
+              #   @param payment_method_id [String] Billing provider payment method id, attached to this customer
+              #
+              #   @param shipping_address [Stigg::Models::V1::CustomerResponse::Data::Passthrough::Stripe::ShippingAddress] Physical address
+              #
+              #   @param tax_ids [Array<Stigg::Models::V1::CustomerResponse::Data::Passthrough::Stripe::TaxID>] Tax IDs
+
+              # @see Stigg::Models::V1::CustomerResponse::Data::Passthrough::Stripe#billing_address
+              class BillingAddress < Stigg::Internal::Type::BaseModel
+                # @!attribute city
+                #   City name
+                #
+                #   @return [String, nil]
+                optional :city, String
+
+                # @!attribute country
+                #   Country code or name
+                #
+                #   @return [String, nil]
+                optional :country, String
+
+                # @!attribute line1
+                #   Street address line 1
+                #
+                #   @return [String, nil]
+                optional :line1, String
+
+                # @!attribute line2
+                #   Street address line 2
+                #
+                #   @return [String, nil]
+                optional :line2, String
+
+                # @!attribute postal_code
+                #   Postal or ZIP code
+                #
+                #   @return [String, nil]
+                optional :postal_code, String, api_name: :postalCode
+
+                # @!attribute state
+                #   State or province
+                #
+                #   @return [String, nil]
+                optional :state, String
+
+                # @!method initialize(city: nil, country: nil, line1: nil, line2: nil, postal_code: nil, state: nil)
+                #   Physical address
+                #
+                #   @param city [String] City name
+                #
+                #   @param country [String] Country code or name
+                #
+                #   @param line1 [String] Street address line 1
+                #
+                #   @param line2 [String] Street address line 2
+                #
+                #   @param postal_code [String] Postal or ZIP code
+                #
+                #   @param state [String] State or province
+              end
+
+              # @see Stigg::Models::V1::CustomerResponse::Data::Passthrough::Stripe#shipping_address
+              class ShippingAddress < Stigg::Internal::Type::BaseModel
+                # @!attribute city
+                #   City name
+                #
+                #   @return [String, nil]
+                optional :city, String
+
+                # @!attribute country
+                #   Country code or name
+                #
+                #   @return [String, nil]
+                optional :country, String
+
+                # @!attribute line1
+                #   Street address line 1
+                #
+                #   @return [String, nil]
+                optional :line1, String
+
+                # @!attribute line2
+                #   Street address line 2
+                #
+                #   @return [String, nil]
+                optional :line2, String
+
+                # @!attribute postal_code
+                #   Postal or ZIP code
+                #
+                #   @return [String, nil]
+                optional :postal_code, String, api_name: :postalCode
+
+                # @!attribute state
+                #   State or province
+                #
+                #   @return [String, nil]
+                optional :state, String
+
+                # @!method initialize(city: nil, country: nil, line1: nil, line2: nil, postal_code: nil, state: nil)
+                #   Physical address
+                #
+                #   @param city [String] City name
+                #
+                #   @param country [String] Country code or name
+                #
+                #   @param line1 [String] Street address line 1
+                #
+                #   @param line2 [String] Street address line 2
+                #
+                #   @param postal_code [String] Postal or ZIP code
+                #
+                #   @param state [String] State or province
+              end
+
+              class TaxID < Stigg::Internal::Type::BaseModel
+                # @!attribute type
+                #   The type of tax exemption identifier, such as VAT.
+                #
+                #   @return [String]
+                required :type, String
+
+                # @!attribute value
+                #   The actual tax identifier value
+                #
+                #   @return [String]
+                required :value, String
+
+                # @!method initialize(type:, value:)
+                #   Tax identifier with type and value for customer tax exemptions.
+                #
+                #   @param type [String] The type of tax exemption identifier, such as VAT.
+                #
+                #   @param value [String] The actual tax identifier value
+              end
+            end
+
+            # @see Stigg::Models::V1::CustomerResponse::Data::Passthrough#zuora
+            class Zuora < Stigg::Internal::Type::BaseModel
+              # @!attribute billing_address
+              #   Physical address
+              #
+              #   @return [Stigg::Models::V1::CustomerResponse::Data::Passthrough::Zuora::BillingAddress, nil]
+              optional :billing_address,
+                       -> { Stigg::V1::CustomerResponse::Data::Passthrough::Zuora::BillingAddress },
+                       api_name: :billingAddress
+
+              # @!attribute currency
+              #   Customers selected currency
+              #
+              #   @return [Symbol, Stigg::Models::V1::CustomerResponse::Data::Passthrough::Zuora::Currency, nil]
+              optional :currency, enum: -> { Stigg::V1::CustomerResponse::Data::Passthrough::Zuora::Currency }
+
+              # @!attribute metadata
+              #   Additional metadata
+              #
+              #   @return [Hash{Symbol=>String}, nil]
+              optional :metadata, Stigg::Internal::Type::HashOf[String]
+
+              # @!attribute payment_method_id
+              #   Billing provider payment method id, attached to this customer
+              #
+              #   @return [String, nil]
+              optional :payment_method_id, String, api_name: :paymentMethodId
+
+              # @!method initialize(billing_address: nil, currency: nil, metadata: nil, payment_method_id: nil)
+              #   Zuora-specific billing fields for the customer.
+              #
+              #   @param billing_address [Stigg::Models::V1::CustomerResponse::Data::Passthrough::Zuora::BillingAddress] Physical address
+              #
+              #   @param currency [Symbol, Stigg::Models::V1::CustomerResponse::Data::Passthrough::Zuora::Currency] Customers selected currency
+              #
+              #   @param metadata [Hash{Symbol=>String}] Additional metadata
+              #
+              #   @param payment_method_id [String] Billing provider payment method id, attached to this customer
+
+              # @see Stigg::Models::V1::CustomerResponse::Data::Passthrough::Zuora#billing_address
+              class BillingAddress < Stigg::Internal::Type::BaseModel
+                # @!attribute city
+                #   City name
+                #
+                #   @return [String, nil]
+                optional :city, String
+
+                # @!attribute country
+                #   Country code or name
+                #
+                #   @return [String, nil]
+                optional :country, String
+
+                # @!attribute line1
+                #   Street address line 1
+                #
+                #   @return [String, nil]
+                optional :line1, String
+
+                # @!attribute line2
+                #   Street address line 2
+                #
+                #   @return [String, nil]
+                optional :line2, String
+
+                # @!attribute postal_code
+                #   Postal or ZIP code
+                #
+                #   @return [String, nil]
+                optional :postal_code, String, api_name: :postalCode
+
+                # @!attribute state
+                #   State or province
+                #
+                #   @return [String, nil]
+                optional :state, String
+
+                # @!method initialize(city: nil, country: nil, line1: nil, line2: nil, postal_code: nil, state: nil)
+                #   Physical address
+                #
+                #   @param city [String] City name
+                #
+                #   @param country [String] Country code or name
+                #
+                #   @param line1 [String] Street address line 1
+                #
+                #   @param line2 [String] Street address line 2
+                #
+                #   @param postal_code [String] Postal or ZIP code
+                #
+                #   @param state [String] State or province
+              end
+
+              # Customers selected currency
+              #
+              # @see Stigg::Models::V1::CustomerResponse::Data::Passthrough::Zuora#currency
+              module Currency
+                extend Stigg::Internal::Type::Enum
+
+                USD = :usd
+                AED = :aed
+                ALL = :all
+                AMD = :amd
+                ANG = :ang
+                AUD = :aud
+                AWG = :awg
+                AZN = :azn
+                BAM = :bam
+                BBD = :bbd
+                BDT = :bdt
+                BGN = :bgn
+                BIF = :bif
+                BMD = :bmd
+                BND = :bnd
+                BSD = :bsd
+                BWP = :bwp
+                BYN = :byn
+                BZD = :bzd
+                BRL = :brl
+                CAD = :cad
+                CDF = :cdf
+                CHF = :chf
+                CNY = :cny
+                CZK = :czk
+                DKK = :dkk
+                DOP = :dop
+                DZD = :dzd
+                EGP = :egp
+                ETB = :etb
+                EUR = :eur
+                FJD = :fjd
+                GBP = :gbp
+                GEL = :gel
+                GIP = :gip
+                GMD = :gmd
+                GYD = :gyd
+                HKD = :hkd
+                HRK = :hrk
+                HTG = :htg
+                IDR = :idr
+                ILS = :ils
+                INR = :inr
+                ISK = :isk
+                JMD = :jmd
+                JPY = :jpy
+                KES = :kes
+                KGS = :kgs
+                KHR = :khr
+                KMF = :kmf
+                KRW = :krw
+                KYD = :kyd
+                KZT = :kzt
+                LBP = :lbp
+                LKR = :lkr
+                LRD = :lrd
+                LSL = :lsl
+                MAD = :mad
+                MDL = :mdl
+                MGA = :mga
+                MKD = :mkd
+                MMK = :mmk
+                MNT = :mnt
+                MOP = :mop
+                MRO = :mro
+                MVR = :mvr
+                MWK = :mwk
+                MXN = :mxn
+                MYR = :myr
+                MZN = :mzn
+                NAD = :nad
+                NGN = :ngn
+                NOK = :nok
+                NPR = :npr
+                NZD = :nzd
+                PGK = :pgk
+                PHP = :php
+                PKR = :pkr
+                PLN = :pln
+                QAR = :qar
+                RON = :ron
+                RSD = :rsd
+                RUB = :rub
+                RWF = :rwf
+                SAR = :sar
+                SBD = :sbd
+                SCR = :scr
+                SEK = :sek
+                SGD = :sgd
+                SLE = :sle
+                SLL = :sll
+                SOS = :sos
+                SZL = :szl
+                THB = :thb
+                TJS = :tjs
+                TOP = :top
+                TRY = :try
+                TTD = :ttd
+                TZS = :tzs
+                UAH = :uah
+                UZS = :uzs
+                VND = :vnd
+                VUV = :vuv
+                WST = :wst
+                XAF = :xaf
+                XCD = :xcd
+                YER = :yer
+                ZAR = :zar
+                ZMW = :zmw
+                CLP = :clp
+                DJF = :djf
+                GNF = :gnf
+                UGX = :ugx
+                PYG = :pyg
+                XOF = :xof
+                XPF = :xpf
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
             end
           end
         end

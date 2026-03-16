@@ -63,8 +63,11 @@ class Stigg::Test::Resources::V1::CustomersTest < Stigg::Test::ResourceTest
         default_payment_method: Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod | nil,
         email: String | nil,
         integrations: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::CustomerListResponse::Integration]) | nil,
+        language: String | nil,
         metadata: ^(Stigg::Internal::Type::HashOf[String]) | nil,
-        name: String | nil
+        name: String | nil,
+        passthrough: Stigg::Models::V1::CustomerListResponse::Passthrough | nil,
+        timezone: String | nil
       }
     end
   end
