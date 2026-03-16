@@ -9,8 +9,8 @@ module Stigg
 
         def create_product: (
           id: String,
+          display_name: String,
           ?description: String?,
-          ?display_name: String,
           ?metadata: ::Hash[Symbol, String]?,
           ?multiple_subscriptions: bool,
           ?request_options: Stigg::request_opts
