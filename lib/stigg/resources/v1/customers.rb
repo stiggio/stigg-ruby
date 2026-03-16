@@ -36,7 +36,7 @@ module Stigg
         # Updates an existing customer's properties such as name, email, and billing
         # information.
         #
-        # @overload update(id, billing_currency: nil, billing_id: nil, coupon_id: nil, email: nil, integrations: nil, metadata: nil, name: nil, request_options: {})
+        # @overload update(id, billing_currency: nil, billing_id: nil, coupon_id: nil, email: nil, integrations: nil, language: nil, metadata: nil, name: nil, passthrough: nil, timezone: nil, request_options: {})
         #
         # @param id [String] The unique identifier of the entity
         #
@@ -50,9 +50,15 @@ module Stigg
         #
         # @param integrations [Array<Stigg::Models::V1::CustomerUpdateParams::Integration>] List of integrations
         #
+        # @param language [String, nil] Language to use for this customer
+        #
         # @param metadata [Hash{Symbol=>String}] Additional metadata
         #
         # @param name [String, nil] The name of the customer
+        #
+        # @param passthrough [Stigg::Models::V1::CustomerUpdateParams::Passthrough] Vendor-specific billing passthrough fields.
+        #
+        # @param timezone [String, nil] Timezone to use for this customer
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -183,7 +189,7 @@ module Stigg
         # Creates a new customer and optionally provisions an initial subscription in a
         # single operation.
         #
-        # @overload provision(id:, billing_currency: nil, billing_id: nil, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, metadata: nil, name: nil, request_options: {})
+        # @overload provision(id:, billing_currency: nil, billing_id: nil, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, language: nil, metadata: nil, name: nil, passthrough: nil, timezone: nil, request_options: {})
         #
         # @param id [String] Customer slug
         #
@@ -199,9 +205,15 @@ module Stigg
         #
         # @param integrations [Array<Stigg::Models::V1::CustomerProvisionParams::Integration>] List of integrations
         #
+        # @param language [String, nil] Language to use for this customer
+        #
         # @param metadata [Hash{Symbol=>String}] Additional metadata
         #
         # @param name [String, nil] The name of the customer
+        #
+        # @param passthrough [Stigg::Models::V1::CustomerProvisionParams::Passthrough] Vendor-specific billing passthrough fields.
+        #
+        # @param timezone [String, nil] Timezone to use for this customer
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
