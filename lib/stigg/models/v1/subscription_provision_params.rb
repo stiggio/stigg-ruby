@@ -694,6 +694,8 @@ module Stigg
             required :value, String
 
             # @!method initialize(type:, value:)
+            #   Tax identifier with type and value for customer tax exemptions.
+            #
             #   @param type [String] The type of tax exemption identifier, such as VAT.
             #
             #   @param value [String] The actual tax identifier value

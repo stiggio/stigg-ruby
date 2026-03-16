@@ -1765,6 +1765,7 @@ module Stigg
             sig { returns(String) }
             attr_accessor :value
 
+            # Tax identifier with type and value for customer tax exemptions.
             sig do
               params(type: String, value: String).returns(T.attached_class)
             end

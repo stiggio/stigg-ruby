@@ -18,8 +18,11 @@ module Stigg
           ?coupon_id: String?,
           ?email: String?,
           ?integrations: ::Array[Stigg::V1::CustomerUpdateParams::Integration],
+          ?language: String?,
           ?metadata: ::Hash[Symbol, String],
           ?name: String?,
+          ?passthrough: Stigg::V1::CustomerUpdateParams::Passthrough,
+          ?timezone: String?,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::CustomerResponse
 
@@ -60,8 +63,11 @@ module Stigg
           ?default_payment_method: Stigg::V1::CustomerProvisionParams::DefaultPaymentMethod?,
           ?email: String?,
           ?integrations: ::Array[Stigg::V1::CustomerProvisionParams::Integration],
+          ?language: String?,
           ?metadata: ::Hash[Symbol, String],
           ?name: String?,
+          ?passthrough: Stigg::V1::CustomerProvisionParams::Passthrough,
+          ?timezone: String?,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::CustomerResponse
 

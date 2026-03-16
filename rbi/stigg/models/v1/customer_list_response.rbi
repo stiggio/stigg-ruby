@@ -90,6 +90,10 @@ module Stigg
         end
         attr_writer :integrations
 
+        # Language to use for this customer
+        sig { returns(T.nilable(String)) }
+        attr_accessor :language
+
         # Additional metadata
         sig { returns(T.nilable(T::Hash[Symbol, String])) }
         attr_reader :metadata
@@ -100,6 +104,26 @@ module Stigg
         # The name of the customer
         sig { returns(T.nilable(String)) }
         attr_accessor :name
+
+        # Vendor-specific billing passthrough fields.
+        sig do
+          returns(
+            T.nilable(Stigg::Models::V1::CustomerListResponse::Passthrough)
+          )
+        end
+        attr_reader :passthrough
+
+        sig do
+          params(
+            passthrough:
+              Stigg::Models::V1::CustomerListResponse::Passthrough::OrHash
+          ).void
+        end
+        attr_writer :passthrough
+
+        # Timezone to use for this customer
+        sig { returns(T.nilable(String)) }
+        attr_accessor :timezone
 
         # A customer can be either an organization or an individual
         sig do
@@ -123,8 +147,12 @@ module Stigg
               T::Array[
                 Stigg::Models::V1::CustomerListResponse::Integration::OrHash
               ],
+            language: T.nilable(String),
             metadata: T::Hash[Symbol, String],
-            name: T.nilable(String)
+            name: T.nilable(String),
+            passthrough:
+              Stigg::Models::V1::CustomerListResponse::Passthrough::OrHash,
+            timezone: T.nilable(String)
           ).returns(T.attached_class)
         end
         def self.new(
@@ -148,10 +176,16 @@ module Stigg
           email: nil,
           # List of integrations
           integrations: nil,
+          # Language to use for this customer
+          language: nil,
           # Additional metadata
           metadata: nil,
           # The name of the customer
-          name: nil
+          name: nil,
+          # Vendor-specific billing passthrough fields.
+          passthrough: nil,
+          # Timezone to use for this customer
+          timezone: nil
         )
         end
 
@@ -175,8 +209,11 @@ module Stigg
               email: T.nilable(String),
               integrations:
                 T::Array[Stigg::Models::V1::CustomerListResponse::Integration],
+              language: T.nilable(String),
               metadata: T::Hash[Symbol, String],
-              name: T.nilable(String)
+              name: T.nilable(String),
+              passthrough: Stigg::Models::V1::CustomerListResponse::Passthrough,
+              timezone: T.nilable(String)
             }
           )
         end
@@ -1031,6 +1068,1253 @@ module Stigg
               )
             end
             def self.values
+            end
+          end
+        end
+
+        class Passthrough < Stigg::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Stigg::Models::V1::CustomerListResponse::Passthrough,
+                Stigg::Internal::AnyHash
+              )
+            end
+
+          # Stripe-specific billing fields for the customer.
+          sig do
+            returns(
+              T.nilable(
+                Stigg::Models::V1::CustomerListResponse::Passthrough::Stripe
+              )
+            )
+          end
+          attr_reader :stripe
+
+          sig do
+            params(
+              stripe:
+                Stigg::Models::V1::CustomerListResponse::Passthrough::Stripe::OrHash
+            ).void
+          end
+          attr_writer :stripe
+
+          # Zuora-specific billing fields for the customer.
+          sig do
+            returns(
+              T.nilable(
+                Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora
+              )
+            )
+          end
+          attr_reader :zuora
+
+          sig do
+            params(
+              zuora:
+                Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::OrHash
+            ).void
+          end
+          attr_writer :zuora
+
+          # Vendor-specific billing passthrough fields.
+          sig do
+            params(
+              stripe:
+                Stigg::Models::V1::CustomerListResponse::Passthrough::Stripe::OrHash,
+              zuora:
+                Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::OrHash
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Stripe-specific billing fields for the customer.
+            stripe: nil,
+            # Zuora-specific billing fields for the customer.
+            zuora: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                stripe:
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Stripe,
+                zuora:
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class Stripe < Stigg::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Stripe,
+                  Stigg::Internal::AnyHash
+                )
+              end
+
+            # Physical address
+            sig do
+              returns(
+                T.nilable(
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Stripe::BillingAddress
+                )
+              )
+            end
+            attr_reader :billing_address
+
+            sig do
+              params(
+                billing_address:
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Stripe::BillingAddress::OrHash
+              ).void
+            end
+            attr_writer :billing_address
+
+            # Customer name
+            sig { returns(T.nilable(String)) }
+            attr_reader :customer_name
+
+            sig { params(customer_name: String).void }
+            attr_writer :customer_name
+
+            # Invoice custom fields
+            sig { returns(T.nilable(T::Hash[Symbol, String])) }
+            attr_reader :invoice_custom_fields
+
+            sig { params(invoice_custom_fields: T::Hash[Symbol, String]).void }
+            attr_writer :invoice_custom_fields
+
+            # Additional metadata
+            sig { returns(T.nilable(T::Hash[Symbol, String])) }
+            attr_reader :metadata
+
+            sig { params(metadata: T::Hash[Symbol, String]).void }
+            attr_writer :metadata
+
+            # Billing provider payment method id, attached to this customer
+            sig { returns(T.nilable(String)) }
+            attr_reader :payment_method_id
+
+            sig { params(payment_method_id: String).void }
+            attr_writer :payment_method_id
+
+            # Physical address
+            sig do
+              returns(
+                T.nilable(
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Stripe::ShippingAddress
+                )
+              )
+            end
+            attr_reader :shipping_address
+
+            sig do
+              params(
+                shipping_address:
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Stripe::ShippingAddress::OrHash
+              ).void
+            end
+            attr_writer :shipping_address
+
+            # Tax IDs
+            sig do
+              returns(
+                T.nilable(
+                  T::Array[
+                    Stigg::Models::V1::CustomerListResponse::Passthrough::Stripe::TaxID
+                  ]
+                )
+              )
+            end
+            attr_reader :tax_ids
+
+            sig do
+              params(
+                tax_ids:
+                  T::Array[
+                    Stigg::Models::V1::CustomerListResponse::Passthrough::Stripe::TaxID::OrHash
+                  ]
+              ).void
+            end
+            attr_writer :tax_ids
+
+            # Stripe-specific billing fields for the customer.
+            sig do
+              params(
+                billing_address:
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Stripe::BillingAddress::OrHash,
+                customer_name: String,
+                invoice_custom_fields: T::Hash[Symbol, String],
+                metadata: T::Hash[Symbol, String],
+                payment_method_id: String,
+                shipping_address:
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Stripe::ShippingAddress::OrHash,
+                tax_ids:
+                  T::Array[
+                    Stigg::Models::V1::CustomerListResponse::Passthrough::Stripe::TaxID::OrHash
+                  ]
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # Physical address
+              billing_address: nil,
+              # Customer name
+              customer_name: nil,
+              # Invoice custom fields
+              invoice_custom_fields: nil,
+              # Additional metadata
+              metadata: nil,
+              # Billing provider payment method id, attached to this customer
+              payment_method_id: nil,
+              # Physical address
+              shipping_address: nil,
+              # Tax IDs
+              tax_ids: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  billing_address:
+                    Stigg::Models::V1::CustomerListResponse::Passthrough::Stripe::BillingAddress,
+                  customer_name: String,
+                  invoice_custom_fields: T::Hash[Symbol, String],
+                  metadata: T::Hash[Symbol, String],
+                  payment_method_id: String,
+                  shipping_address:
+                    Stigg::Models::V1::CustomerListResponse::Passthrough::Stripe::ShippingAddress,
+                  tax_ids:
+                    T::Array[
+                      Stigg::Models::V1::CustomerListResponse::Passthrough::Stripe::TaxID
+                    ]
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class BillingAddress < Stigg::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Stigg::Models::V1::CustomerListResponse::Passthrough::Stripe::BillingAddress,
+                    Stigg::Internal::AnyHash
+                  )
+                end
+
+              # City name
+              sig { returns(T.nilable(String)) }
+              attr_reader :city
+
+              sig { params(city: String).void }
+              attr_writer :city
+
+              # Country code or name
+              sig { returns(T.nilable(String)) }
+              attr_reader :country
+
+              sig { params(country: String).void }
+              attr_writer :country
+
+              # Street address line 1
+              sig { returns(T.nilable(String)) }
+              attr_reader :line1
+
+              sig { params(line1: String).void }
+              attr_writer :line1
+
+              # Street address line 2
+              sig { returns(T.nilable(String)) }
+              attr_reader :line2
+
+              sig { params(line2: String).void }
+              attr_writer :line2
+
+              # Postal or ZIP code
+              sig { returns(T.nilable(String)) }
+              attr_reader :postal_code
+
+              sig { params(postal_code: String).void }
+              attr_writer :postal_code
+
+              # State or province
+              sig { returns(T.nilable(String)) }
+              attr_reader :state
+
+              sig { params(state: String).void }
+              attr_writer :state
+
+              # Physical address
+              sig do
+                params(
+                  city: String,
+                  country: String,
+                  line1: String,
+                  line2: String,
+                  postal_code: String,
+                  state: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # City name
+                city: nil,
+                # Country code or name
+                country: nil,
+                # Street address line 1
+                line1: nil,
+                # Street address line 2
+                line2: nil,
+                # Postal or ZIP code
+                postal_code: nil,
+                # State or province
+                state: nil
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    city: String,
+                    country: String,
+                    line1: String,
+                    line2: String,
+                    postal_code: String,
+                    state: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+
+            class ShippingAddress < Stigg::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Stigg::Models::V1::CustomerListResponse::Passthrough::Stripe::ShippingAddress,
+                    Stigg::Internal::AnyHash
+                  )
+                end
+
+              # City name
+              sig { returns(T.nilable(String)) }
+              attr_reader :city
+
+              sig { params(city: String).void }
+              attr_writer :city
+
+              # Country code or name
+              sig { returns(T.nilable(String)) }
+              attr_reader :country
+
+              sig { params(country: String).void }
+              attr_writer :country
+
+              # Street address line 1
+              sig { returns(T.nilable(String)) }
+              attr_reader :line1
+
+              sig { params(line1: String).void }
+              attr_writer :line1
+
+              # Street address line 2
+              sig { returns(T.nilable(String)) }
+              attr_reader :line2
+
+              sig { params(line2: String).void }
+              attr_writer :line2
+
+              # Postal or ZIP code
+              sig { returns(T.nilable(String)) }
+              attr_reader :postal_code
+
+              sig { params(postal_code: String).void }
+              attr_writer :postal_code
+
+              # State or province
+              sig { returns(T.nilable(String)) }
+              attr_reader :state
+
+              sig { params(state: String).void }
+              attr_writer :state
+
+              # Physical address
+              sig do
+                params(
+                  city: String,
+                  country: String,
+                  line1: String,
+                  line2: String,
+                  postal_code: String,
+                  state: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # City name
+                city: nil,
+                # Country code or name
+                country: nil,
+                # Street address line 1
+                line1: nil,
+                # Street address line 2
+                line2: nil,
+                # Postal or ZIP code
+                postal_code: nil,
+                # State or province
+                state: nil
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    city: String,
+                    country: String,
+                    line1: String,
+                    line2: String,
+                    postal_code: String,
+                    state: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+
+            class TaxID < Stigg::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Stigg::Models::V1::CustomerListResponse::Passthrough::Stripe::TaxID,
+                    Stigg::Internal::AnyHash
+                  )
+                end
+
+              # The type of tax exemption identifier, such as VAT.
+              sig { returns(String) }
+              attr_accessor :type
+
+              # The actual tax identifier value
+              sig { returns(String) }
+              attr_accessor :value
+
+              # Tax identifier with type and value for customer tax exemptions.
+              sig do
+                params(type: String, value: String).returns(T.attached_class)
+              end
+              def self.new(
+                # The type of tax exemption identifier, such as VAT.
+                type:,
+                # The actual tax identifier value
+                value:
+              )
+              end
+
+              sig { override.returns({ type: String, value: String }) }
+              def to_hash
+              end
+            end
+          end
+
+          class Zuora < Stigg::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora,
+                  Stigg::Internal::AnyHash
+                )
+              end
+
+            # Physical address
+            sig do
+              returns(
+                T.nilable(
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::BillingAddress
+                )
+              )
+            end
+            attr_reader :billing_address
+
+            sig do
+              params(
+                billing_address:
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::BillingAddress::OrHash
+              ).void
+            end
+            attr_writer :billing_address
+
+            # Customers selected currency
+            sig do
+              returns(
+                T.nilable(
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              )
+            end
+            attr_reader :currency
+
+            sig do
+              params(
+                currency:
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::OrSymbol
+              ).void
+            end
+            attr_writer :currency
+
+            # Additional metadata
+            sig { returns(T.nilable(T::Hash[Symbol, String])) }
+            attr_reader :metadata
+
+            sig { params(metadata: T::Hash[Symbol, String]).void }
+            attr_writer :metadata
+
+            # Billing provider payment method id, attached to this customer
+            sig { returns(T.nilable(String)) }
+            attr_reader :payment_method_id
+
+            sig { params(payment_method_id: String).void }
+            attr_writer :payment_method_id
+
+            # Zuora-specific billing fields for the customer.
+            sig do
+              params(
+                billing_address:
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::BillingAddress::OrHash,
+                currency:
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::OrSymbol,
+                metadata: T::Hash[Symbol, String],
+                payment_method_id: String
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # Physical address
+              billing_address: nil,
+              # Customers selected currency
+              currency: nil,
+              # Additional metadata
+              metadata: nil,
+              # Billing provider payment method id, attached to this customer
+              payment_method_id: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  billing_address:
+                    Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::BillingAddress,
+                  currency:
+                    Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol,
+                  metadata: T::Hash[Symbol, String],
+                  payment_method_id: String
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class BillingAddress < Stigg::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::BillingAddress,
+                    Stigg::Internal::AnyHash
+                  )
+                end
+
+              # City name
+              sig { returns(T.nilable(String)) }
+              attr_reader :city
+
+              sig { params(city: String).void }
+              attr_writer :city
+
+              # Country code or name
+              sig { returns(T.nilable(String)) }
+              attr_reader :country
+
+              sig { params(country: String).void }
+              attr_writer :country
+
+              # Street address line 1
+              sig { returns(T.nilable(String)) }
+              attr_reader :line1
+
+              sig { params(line1: String).void }
+              attr_writer :line1
+
+              # Street address line 2
+              sig { returns(T.nilable(String)) }
+              attr_reader :line2
+
+              sig { params(line2: String).void }
+              attr_writer :line2
+
+              # Postal or ZIP code
+              sig { returns(T.nilable(String)) }
+              attr_reader :postal_code
+
+              sig { params(postal_code: String).void }
+              attr_writer :postal_code
+
+              # State or province
+              sig { returns(T.nilable(String)) }
+              attr_reader :state
+
+              sig { params(state: String).void }
+              attr_writer :state
+
+              # Physical address
+              sig do
+                params(
+                  city: String,
+                  country: String,
+                  line1: String,
+                  line2: String,
+                  postal_code: String,
+                  state: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # City name
+                city: nil,
+                # Country code or name
+                country: nil,
+                # Street address line 1
+                line1: nil,
+                # Street address line 2
+                line2: nil,
+                # Postal or ZIP code
+                postal_code: nil,
+                # State or province
+                state: nil
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    city: String,
+                    country: String,
+                    line1: String,
+                    line2: String,
+                    postal_code: String,
+                    state: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+
+            # Customers selected currency
+            module Currency
+              extend Stigg::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              USD =
+                T.let(
+                  :usd,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              AED =
+                T.let(
+                  :aed,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              ALL =
+                T.let(
+                  :all,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              AMD =
+                T.let(
+                  :amd,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              ANG =
+                T.let(
+                  :ang,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              AUD =
+                T.let(
+                  :aud,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              AWG =
+                T.let(
+                  :awg,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              AZN =
+                T.let(
+                  :azn,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              BAM =
+                T.let(
+                  :bam,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              BBD =
+                T.let(
+                  :bbd,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              BDT =
+                T.let(
+                  :bdt,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              BGN =
+                T.let(
+                  :bgn,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              BIF =
+                T.let(
+                  :bif,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              BMD =
+                T.let(
+                  :bmd,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              BND =
+                T.let(
+                  :bnd,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              BSD =
+                T.let(
+                  :bsd,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              BWP =
+                T.let(
+                  :bwp,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              BYN =
+                T.let(
+                  :byn,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              BZD =
+                T.let(
+                  :bzd,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              BRL =
+                T.let(
+                  :brl,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              CAD =
+                T.let(
+                  :cad,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              CDF =
+                T.let(
+                  :cdf,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              CHF =
+                T.let(
+                  :chf,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              CNY =
+                T.let(
+                  :cny,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              CZK =
+                T.let(
+                  :czk,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              DKK =
+                T.let(
+                  :dkk,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              DOP =
+                T.let(
+                  :dop,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              DZD =
+                T.let(
+                  :dzd,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              EGP =
+                T.let(
+                  :egp,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              ETB =
+                T.let(
+                  :etb,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              EUR =
+                T.let(
+                  :eur,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              FJD =
+                T.let(
+                  :fjd,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              GBP =
+                T.let(
+                  :gbp,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              GEL =
+                T.let(
+                  :gel,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              GIP =
+                T.let(
+                  :gip,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              GMD =
+                T.let(
+                  :gmd,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              GYD =
+                T.let(
+                  :gyd,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              HKD =
+                T.let(
+                  :hkd,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              HRK =
+                T.let(
+                  :hrk,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              HTG =
+                T.let(
+                  :htg,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              IDR =
+                T.let(
+                  :idr,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              ILS =
+                T.let(
+                  :ils,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              INR =
+                T.let(
+                  :inr,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              ISK =
+                T.let(
+                  :isk,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              JMD =
+                T.let(
+                  :jmd,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              JPY =
+                T.let(
+                  :jpy,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              KES =
+                T.let(
+                  :kes,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              KGS =
+                T.let(
+                  :kgs,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              KHR =
+                T.let(
+                  :khr,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              KMF =
+                T.let(
+                  :kmf,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              KRW =
+                T.let(
+                  :krw,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              KYD =
+                T.let(
+                  :kyd,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              KZT =
+                T.let(
+                  :kzt,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              LBP =
+                T.let(
+                  :lbp,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              LKR =
+                T.let(
+                  :lkr,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              LRD =
+                T.let(
+                  :lrd,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              LSL =
+                T.let(
+                  :lsl,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              MAD =
+                T.let(
+                  :mad,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              MDL =
+                T.let(
+                  :mdl,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              MGA =
+                T.let(
+                  :mga,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              MKD =
+                T.let(
+                  :mkd,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              MMK =
+                T.let(
+                  :mmk,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              MNT =
+                T.let(
+                  :mnt,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              MOP =
+                T.let(
+                  :mop,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              MRO =
+                T.let(
+                  :mro,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              MVR =
+                T.let(
+                  :mvr,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              MWK =
+                T.let(
+                  :mwk,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              MXN =
+                T.let(
+                  :mxn,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              MYR =
+                T.let(
+                  :myr,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              MZN =
+                T.let(
+                  :mzn,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              NAD =
+                T.let(
+                  :nad,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              NGN =
+                T.let(
+                  :ngn,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              NOK =
+                T.let(
+                  :nok,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              NPR =
+                T.let(
+                  :npr,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              NZD =
+                T.let(
+                  :nzd,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              PGK =
+                T.let(
+                  :pgk,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              PHP =
+                T.let(
+                  :php,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              PKR =
+                T.let(
+                  :pkr,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              PLN =
+                T.let(
+                  :pln,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              QAR =
+                T.let(
+                  :qar,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              RON =
+                T.let(
+                  :ron,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              RSD =
+                T.let(
+                  :rsd,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              RUB =
+                T.let(
+                  :rub,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              RWF =
+                T.let(
+                  :rwf,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              SAR =
+                T.let(
+                  :sar,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              SBD =
+                T.let(
+                  :sbd,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              SCR =
+                T.let(
+                  :scr,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              SEK =
+                T.let(
+                  :sek,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              SGD =
+                T.let(
+                  :sgd,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              SLE =
+                T.let(
+                  :sle,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              SLL =
+                T.let(
+                  :sll,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              SOS =
+                T.let(
+                  :sos,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              SZL =
+                T.let(
+                  :szl,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              THB =
+                T.let(
+                  :thb,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              TJS =
+                T.let(
+                  :tjs,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              TOP =
+                T.let(
+                  :top,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              TRY =
+                T.let(
+                  :try,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              TTD =
+                T.let(
+                  :ttd,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              TZS =
+                T.let(
+                  :tzs,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              UAH =
+                T.let(
+                  :uah,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              UZS =
+                T.let(
+                  :uzs,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              VND =
+                T.let(
+                  :vnd,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              VUV =
+                T.let(
+                  :vuv,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              WST =
+                T.let(
+                  :wst,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              XAF =
+                T.let(
+                  :xaf,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              XCD =
+                T.let(
+                  :xcd,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              YER =
+                T.let(
+                  :yer,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              ZAR =
+                T.let(
+                  :zar,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              ZMW =
+                T.let(
+                  :zmw,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              CLP =
+                T.let(
+                  :clp,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              DJF =
+                T.let(
+                  :djf,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              GNF =
+                T.let(
+                  :gnf,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              UGX =
+                T.let(
+                  :ugx,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              PYG =
+                T.let(
+                  :pyg,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              XOF =
+                T.let(
+                  :xof,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+              XPF =
+                T.let(
+                  :xpf,
+                  Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Stigg::Models::V1::CustomerListResponse::Passthrough::Zuora::Currency::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
             end
           end
         end

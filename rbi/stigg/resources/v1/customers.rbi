@@ -43,8 +43,11 @@ module Stigg
             email: T.nilable(String),
             integrations:
               T::Array[Stigg::V1::CustomerUpdateParams::Integration::OrHash],
+            language: T.nilable(String),
             metadata: T::Hash[Symbol, String],
             name: T.nilable(String),
+            passthrough: Stigg::V1::CustomerUpdateParams::Passthrough::OrHash,
+            timezone: T.nilable(String),
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::CustomerResponse)
         end
@@ -61,10 +64,16 @@ module Stigg
           email: nil,
           # List of integrations
           integrations: nil,
+          # Language to use for this customer
+          language: nil,
           # Additional metadata
           metadata: nil,
           # The name of the customer
           name: nil,
+          # Vendor-specific billing passthrough fields.
+          passthrough: nil,
+          # Timezone to use for this customer
+          timezone: nil,
           request_options: {}
         )
         end
@@ -181,8 +190,12 @@ module Stigg
             email: T.nilable(String),
             integrations:
               T::Array[Stigg::V1::CustomerProvisionParams::Integration::OrHash],
+            language: T.nilable(String),
             metadata: T::Hash[Symbol, String],
             name: T.nilable(String),
+            passthrough:
+              Stigg::V1::CustomerProvisionParams::Passthrough::OrHash,
+            timezone: T.nilable(String),
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::CustomerResponse)
         end
@@ -201,10 +214,16 @@ module Stigg
           email: nil,
           # List of integrations
           integrations: nil,
+          # Language to use for this customer
+          language: nil,
           # Additional metadata
           metadata: nil,
           # The name of the customer
           name: nil,
+          # Vendor-specific billing passthrough fields.
+          passthrough: nil,
+          # Timezone to use for this customer
+          timezone: nil,
           request_options: {}
         )
         end
