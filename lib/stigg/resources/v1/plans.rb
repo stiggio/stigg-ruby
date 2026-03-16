@@ -72,11 +72,13 @@ module Stigg
         # Updates an existing plan's properties such as display name, description, and
         # metadata.
         #
-        # @overload update(id, billing_id: nil, compatible_addon_ids: nil, default_trial_config: nil, description: nil, display_name: nil, metadata: nil, parent_plan_id: nil, request_options: {})
+        # @overload update(id, billing_id: nil, charges: nil, compatible_addon_ids: nil, default_trial_config: nil, description: nil, display_name: nil, metadata: nil, parent_plan_id: nil, request_options: {})
         #
         # @param id [String] The unique identifier of the entity
         #
         # @param billing_id [String, nil] The unique identifier for the entity in the billing provider
+        #
+        # @param charges [Stigg::Models::V1::PlanUpdateParams::Charges] Pricing configuration to set on the plan draft
         #
         # @param compatible_addon_ids [Array<String>, nil]
         #
@@ -221,41 +223,6 @@ module Stigg
             path: ["api/v1/plans/%1$s/draft", id],
             model: Stigg::Models::V1::PlanRemoveDraftResponse,
             options: params[:request_options]
-          )
-        end
-
-        # Sets the pricing configuration for a plan, including pricing models, overage
-        # pricing, and minimum spend.
-        #
-        # @overload set_pricing(id, pricing_type:, billing_id: nil, minimum_spend: nil, overage_billing_period: nil, overage_pricing_models: nil, pricing_models: nil, request_options: {})
-        #
-        # @param id [String] The unique identifier of the entity
-        #
-        # @param pricing_type [Symbol, Stigg::Models::V1::SetPackagePricing::PricingType] The pricing type (FREE, PAID, or CUSTOM)
-        #
-        # @param billing_id [String] Deprecated: billing integration ID
-        #
-        # @param minimum_spend [Array<Stigg::Models::V1::SetPackagePricing::MinimumSpend>, nil] Minimum spend configuration per billing period
-        #
-        # @param overage_billing_period [Symbol, Stigg::Models::V1::SetPackagePricing::OverageBillingPeriod] When overage charges are billed
-        #
-        # @param overage_pricing_models [Array<Stigg::Models::V1::SetPackagePricing::OveragePricingModel>] Array of overage pricing model configurations
-        #
-        # @param pricing_models [Array<Stigg::Models::V1::SetPackagePricing::PricingModel>] Array of pricing model configurations
-        #
-        # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
-        #
-        # @return [Stigg::Models::V1::SetPackagePricingResponse]
-        #
-        # @see Stigg::Models::V1::PlanSetPricingParams
-        def set_pricing(id, params)
-          parsed, options = Stigg::V1::PlanSetPricingParams.dump_request(params)
-          @client.request(
-            method: :put,
-            path: ["api/v1/plans/%1$s/charges", id],
-            body: parsed,
-            model: Stigg::V1::SetPackagePricingResponse,
-            options: options
           )
         end
 

@@ -281,7 +281,8 @@ module Stigg
                 is_granted: bool,
                 order: Float?,
                 type: :CREDIT,
-                updated_at: Time
+                updated_at: Time,
+                dependency_feature_id: String?
               }
 
             class Credit < Stigg::Internal::Type::BaseModel
@@ -311,6 +312,8 @@ module Stigg
 
               attr_accessor updated_at: Time
 
+              attr_accessor dependency_feature_id: String?
+
               def initialize: (
                 id: String,
                 amount: Float?,
@@ -324,6 +327,7 @@ module Stigg
                 is_granted: bool,
                 order: Float?,
                 updated_at: Time,
+                ?dependency_feature_id: String?,
                 ?type: :CREDIT
               ) -> void
 
@@ -340,7 +344,8 @@ module Stigg
                 is_granted: bool,
                 order: Float?,
                 type: :CREDIT,
-                updated_at: Time
+                updated_at: Time,
+                dependency_feature_id: String?
               }
 
               type behavior = :Increment | :Override

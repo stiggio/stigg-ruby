@@ -25,6 +25,7 @@ module Stigg
         def update: (
           String id,
           ?billing_id: String?,
+          ?charges: Stigg::V1::AddonUpdateParams::Charges,
           ?dependencies: ::Array[String]?,
           ?description: String?,
           ?display_name: String,
@@ -64,17 +65,6 @@ module Stigg
           String id,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Models::V1::AddonRemoveDraftResponse
-
-        def set_pricing: (
-          String id,
-          pricing_type: Stigg::Models::V1::SetPackagePricing::pricing_type,
-          ?billing_id: String,
-          ?minimum_spend: ::Array[Stigg::V1::SetPackagePricing::MinimumSpend]?,
-          ?overage_billing_period: Stigg::Models::V1::SetPackagePricing::overage_billing_period,
-          ?overage_pricing_models: ::Array[Stigg::V1::SetPackagePricing::OveragePricingModel],
-          ?pricing_models: ::Array[Stigg::V1::SetPackagePricing::PricingModel],
-          ?request_options: Stigg::request_opts
-        ) -> Stigg::V1::SetPackagePricingResponse
 
         def initialize: (client: Stigg::Client) -> void
       end

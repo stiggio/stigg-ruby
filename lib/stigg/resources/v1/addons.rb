@@ -70,11 +70,13 @@ module Stigg
         # Updates an existing addon's properties such as display name, description, and
         # metadata.
         #
-        # @overload update(id, billing_id: nil, dependencies: nil, description: nil, display_name: nil, max_quantity: nil, metadata: nil, status: nil, request_options: {})
+        # @overload update(id, billing_id: nil, charges: nil, dependencies: nil, description: nil, display_name: nil, max_quantity: nil, metadata: nil, status: nil, request_options: {})
         #
         # @param id [String] The unique identifier of the entity
         #
         # @param billing_id [String, nil] The unique identifier for the entity in the billing provider
+        #
+        # @param charges [Stigg::Models::V1::AddonUpdateParams::Charges] Pricing configuration to set on the addon draft
         #
         # @param dependencies [Array<String>, nil] List of addons the addon is dependant on
         #
@@ -219,40 +221,6 @@ module Stigg
             path: ["api/v1/addons/%1$s/draft", id],
             model: Stigg::Models::V1::AddonRemoveDraftResponse,
             options: params[:request_options]
-          )
-        end
-
-        # Sets the pricing configuration for an addon.
-        #
-        # @overload set_pricing(id, pricing_type:, billing_id: nil, minimum_spend: nil, overage_billing_period: nil, overage_pricing_models: nil, pricing_models: nil, request_options: {})
-        #
-        # @param id [String] The unique identifier of the entity
-        #
-        # @param pricing_type [Symbol, Stigg::Models::V1::SetPackagePricing::PricingType] The pricing type (FREE, PAID, or CUSTOM)
-        #
-        # @param billing_id [String] Deprecated: billing integration ID
-        #
-        # @param minimum_spend [Array<Stigg::Models::V1::SetPackagePricing::MinimumSpend>, nil] Minimum spend configuration per billing period
-        #
-        # @param overage_billing_period [Symbol, Stigg::Models::V1::SetPackagePricing::OverageBillingPeriod] When overage charges are billed
-        #
-        # @param overage_pricing_models [Array<Stigg::Models::V1::SetPackagePricing::OveragePricingModel>] Array of overage pricing model configurations
-        #
-        # @param pricing_models [Array<Stigg::Models::V1::SetPackagePricing::PricingModel>] Array of pricing model configurations
-        #
-        # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
-        #
-        # @return [Stigg::Models::V1::SetPackagePricingResponse]
-        #
-        # @see Stigg::Models::V1::AddonSetPricingParams
-        def set_pricing(id, params)
-          parsed, options = Stigg::V1::AddonSetPricingParams.dump_request(params)
-          @client.request(
-            method: :put,
-            path: ["api/v1/addons/%1$s/charges", id],
-            body: parsed,
-            model: Stigg::V1::SetPackagePricingResponse,
-            options: options
           )
         end
 

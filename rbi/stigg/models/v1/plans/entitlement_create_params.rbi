@@ -820,6 +820,14 @@ module Stigg
               end
               attr_writer :behavior
 
+              # The feature ID this entitlement depends on. The entitlement value will be
+              # calculated as: base amount × dependency feature usage limit
+              sig { returns(T.nilable(String)) }
+              attr_reader :dependency_feature_id
+
+              sig { params(dependency_feature_id: String).void }
+              attr_writer :dependency_feature_id
+
               # Description of the entitlement
               sig { returns(T.nilable(String)) }
               attr_reader :description
@@ -886,6 +894,7 @@ module Stigg
                     Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Cadence::OrSymbol,
                   behavior:
                     Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Behavior::OrSymbol,
+                  dependency_feature_id: String,
                   description: String,
                   display_name_override: String,
                   hidden_from_widgets:
@@ -907,6 +916,9 @@ module Stigg
                 cadence:,
                 # Entitlement behavior (Increment or Override)
                 behavior: nil,
+                # The feature ID this entitlement depends on. The entitlement value will be
+                # calculated as: base amount × dependency feature usage limit
+                dependency_feature_id: nil,
                 # Description of the entitlement
                 description: nil,
                 # Override display name for the entitlement
@@ -934,6 +946,7 @@ module Stigg
                     type: Symbol,
                     behavior:
                       Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::Behavior::OrSymbol,
+                    dependency_feature_id: String,
                     description: String,
                     display_name_override: String,
                     hidden_from_widgets:
