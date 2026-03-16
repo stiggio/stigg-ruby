@@ -426,7 +426,19 @@ module Stigg
               #   @return [Time]
               required :updated_at, Time, api_name: :updatedAt
 
-              # @!method initialize(id:, amount:, behavior:, cadence:, created_at:, description:, display_name_override:, hidden_from_widgets:, is_custom:, is_granted:, order:, updated_at:, type: :CREDIT)
+              # @!attribute dependency_feature_id
+              #   The feature ID this entitlement depends on (for credit entitlements). The
+              #   entitlement value will be calculated as: base amount × dependency feature usage
+              #   limit
+              #
+              #   @return [String, nil]
+              optional :dependency_feature_id, String, api_name: :dependencyFeatureId, nil?: true
+
+              # @!method initialize(id:, amount:, behavior:, cadence:, created_at:, description:, display_name_override:, hidden_from_widgets:, is_custom:, is_granted:, order:, updated_at:, dependency_feature_id: nil, type: :CREDIT)
+              #   Some parameter documentations has been truncated, see
+              #   {Stigg::Models::V1::Addons::AddonPackageEntitlement::Data::Credit} for more
+              #   details.
+              #
               #   Credit entitlement response
               #
               #   @param id [String] Unique identifier of the entitlement
@@ -452,6 +464,8 @@ module Stigg
               #   @param order [Float, nil] Display order of the entitlement
               #
               #   @param updated_at [Time] Timestamp of when the record was last updated
+              #
+              #   @param dependency_feature_id [String, nil] The feature ID this entitlement depends on (for credit entitlements). The entitl
               #
               #   @param type [Symbol, :CREDIT] Entitlement type (FEATURE or CREDIT)
 

@@ -74,6 +74,7 @@ module Stigg
           params(
             id: String,
             billing_id: T.nilable(String),
+            charges: Stigg::V1::PlanUpdateParams::Charges::OrHash,
             compatible_addon_ids: T.nilable(T::Array[String]),
             default_trial_config:
               T.nilable(
@@ -91,6 +92,8 @@ module Stigg
           id,
           # The unique identifier for the entity in the billing provider
           billing_id: nil,
+          # Pricing configuration to set on the plan draft
+          charges: nil,
           compatible_addon_ids: nil,
           # Default trial configuration for the plan
           default_trial_config: nil,
@@ -193,47 +196,6 @@ module Stigg
         def remove_draft(
           # The unique identifier of the entity
           id,
-          request_options: {}
-        )
-        end
-
-        # Sets the pricing configuration for a plan, including pricing models, overage
-        # pricing, and minimum spend.
-        sig do
-          params(
-            id: String,
-            pricing_type: Stigg::V1::SetPackagePricing::PricingType::OrSymbol,
-            billing_id: String,
-            minimum_spend:
-              T.nilable(
-                T::Array[Stigg::V1::SetPackagePricing::MinimumSpend::OrHash]
-              ),
-            overage_billing_period:
-              Stigg::V1::SetPackagePricing::OverageBillingPeriod::OrSymbol,
-            overage_pricing_models:
-              T::Array[
-                Stigg::V1::SetPackagePricing::OveragePricingModel::OrHash
-              ],
-            pricing_models:
-              T::Array[Stigg::V1::SetPackagePricing::PricingModel::OrHash],
-            request_options: Stigg::RequestOptions::OrHash
-          ).returns(Stigg::V1::SetPackagePricingResponse)
-        end
-        def set_pricing(
-          # The unique identifier of the entity
-          id,
-          # The pricing type (FREE, PAID, or CUSTOM)
-          pricing_type:,
-          # Deprecated: billing integration ID
-          billing_id: nil,
-          # Minimum spend configuration per billing period
-          minimum_spend: nil,
-          # When overage charges are billed
-          overage_billing_period: nil,
-          # Array of overage pricing model configurations
-          overage_pricing_models: nil,
-          # Array of pricing model configurations
-          pricing_models: nil,
           request_options: {}
         )
         end

@@ -302,6 +302,7 @@ module Stigg
                 cadence: Stigg::Models::V1::Plans::EntitlementCreateParams::Entitlement::Credit::cadence,
                 type: :CREDIT,
                 behavior: Stigg::Models::V1::Plans::EntitlementCreateParams::Entitlement::Credit::behavior,
+                dependency_feature_id: String,
                 description: String,
                 display_name_override: String,
                 hidden_from_widgets: ::Array[Stigg::Models::V1::Plans::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget],
@@ -324,6 +325,10 @@ module Stigg
               def behavior=: (
                 Stigg::Models::V1::Plans::EntitlementCreateParams::Entitlement::Credit::behavior
               ) -> Stigg::Models::V1::Plans::EntitlementCreateParams::Entitlement::Credit::behavior
+
+              attr_reader dependency_feature_id: String?
+
+              def dependency_feature_id=: (String) -> String
 
               attr_reader description: String?
 
@@ -356,6 +361,7 @@ module Stigg
                 amount: Float?,
                 cadence: Stigg::Models::V1::Plans::EntitlementCreateParams::Entitlement::Credit::cadence,
                 ?behavior: Stigg::Models::V1::Plans::EntitlementCreateParams::Entitlement::Credit::behavior,
+                ?dependency_feature_id: String,
                 ?description: String,
                 ?display_name_override: String,
                 ?hidden_from_widgets: ::Array[Stigg::Models::V1::Plans::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget],
@@ -371,6 +377,7 @@ module Stigg
                 cadence: Stigg::Models::V1::Plans::EntitlementCreateParams::Entitlement::Credit::cadence,
                 type: :CREDIT,
                 behavior: Stigg::Models::V1::Plans::EntitlementCreateParams::Entitlement::Credit::behavior,
+                dependency_feature_id: String,
                 description: String,
                 display_name_override: String,
                 hidden_from_widgets: ::Array[Stigg::Models::V1::Plans::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget],

@@ -374,6 +374,13 @@ module Stigg
               #   @return [Symbol, Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::Behavior, nil]
               optional :behavior, enum: -> { Stigg::V1::Addons::EntitlementCreateParams::Entitlement::Credit::Behavior }
 
+              # @!attribute dependency_feature_id
+              #   The feature ID this entitlement depends on. The entitlement value will be
+              #   calculated as: base amount × dependency feature usage limit
+              #
+              #   @return [String, nil]
+              optional :dependency_feature_id, String, api_name: :dependencyFeatureId
+
               # @!attribute description
               #   Description of the entitlement
               #
@@ -414,7 +421,11 @@ module Stigg
               #   @return [Float, nil]
               optional :order, Float
 
-              # @!method initialize(id:, amount:, cadence:, behavior: nil, description: nil, display_name_override: nil, hidden_from_widgets: nil, is_custom: nil, is_granted: nil, order: nil, type: :CREDIT)
+              # @!method initialize(id:, amount:, cadence:, behavior: nil, dependency_feature_id: nil, description: nil, display_name_override: nil, hidden_from_widgets: nil, is_custom: nil, is_granted: nil, order: nil, type: :CREDIT)
+              #   Some parameter documentations has been truncated, see
+              #   {Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit} for
+              #   more details.
+              #
               #   Request to create a credit entitlement
               #
               #   @param id [String] The custom currency ID for the credit entitlement
@@ -424,6 +435,8 @@ module Stigg
               #   @param cadence [Symbol, Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::Cadence] Credit grant cadence (MONTH or YEAR)
               #
               #   @param behavior [Symbol, Stigg::Models::V1::Addons::EntitlementCreateParams::Entitlement::Credit::Behavior] Entitlement behavior (Increment or Override)
+              #
+              #   @param dependency_feature_id [String] The feature ID this entitlement depends on. The entitlement value will be calcul
               #
               #   @param description [String] Description of the entitlement
               #
