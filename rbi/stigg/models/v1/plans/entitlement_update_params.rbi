@@ -821,6 +821,11 @@ module Stigg
               end
               attr_writer :cadence
 
+              # The feature ID this entitlement depends on. The entitlement value will be
+              # calculated as: base amount × dependency feature usage limit
+              sig { returns(T.nilable(String)) }
+              attr_accessor :dependency_feature_id
+
               # Description of the entitlement
               sig { returns(T.nilable(String)) }
               attr_reader :description
@@ -886,6 +891,7 @@ module Stigg
                     Stigg::V1::Plans::EntitlementUpdateParams::Body::Credit::Behavior::OrSymbol,
                   cadence:
                     Stigg::V1::Plans::EntitlementUpdateParams::Body::Credit::Cadence::OrSymbol,
+                  dependency_feature_id: T.nilable(String),
                   description: String,
                   display_name_override: String,
                   hidden_from_widgets:
@@ -905,6 +911,9 @@ module Stigg
                 behavior: nil,
                 # Credit grant cadence (MONTH or YEAR)
                 cadence: nil,
+                # The feature ID this entitlement depends on. The entitlement value will be
+                # calculated as: base amount × dependency feature usage limit
+                dependency_feature_id: nil,
                 # Description of the entitlement
                 description: nil,
                 # Override display name for the entitlement
@@ -931,6 +940,7 @@ module Stigg
                       Stigg::V1::Plans::EntitlementUpdateParams::Body::Credit::Behavior::OrSymbol,
                     cadence:
                       Stigg::V1::Plans::EntitlementUpdateParams::Body::Credit::Cadence::OrSymbol,
+                    dependency_feature_id: T.nilable(String),
                     description: String,
                     display_name_override: String,
                     hidden_from_widgets:

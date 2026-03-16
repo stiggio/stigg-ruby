@@ -151,20 +151,4 @@ class Stigg::Test::Resources::V1::AddonsTest < Stigg::Test::ResourceTest
       }
     end
   end
-
-  def test_set_pricing_required_params
-    skip("Mock server tests are disabled")
-
-    response = @stigg.v1.addons.set_pricing("x", pricing_type: :FREE)
-
-    assert_pattern do
-      response => Stigg::V1::SetPackagePricingResponse
-    end
-
-    assert_pattern do
-      response => {
-        data: Stigg::V1::SetPackagePricingResponse::Data
-      }
-    end
-  end
 end

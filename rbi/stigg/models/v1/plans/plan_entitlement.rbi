@@ -743,6 +743,12 @@ module Stigg
               sig { returns(Time) }
               attr_accessor :updated_at
 
+              # The feature ID this entitlement depends on (for credit entitlements). The
+              # entitlement value will be calculated as: base amount × dependency feature usage
+              # limit
+              sig { returns(T.nilable(String)) }
+              attr_accessor :dependency_feature_id
+
               # Credit entitlement response
               sig do
                 params(
@@ -765,6 +771,7 @@ module Stigg
                   is_granted: T::Boolean,
                   order: T.nilable(Float),
                   updated_at: Time,
+                  dependency_feature_id: T.nilable(String),
                   type: Symbol
                 ).returns(T.attached_class)
               end
@@ -793,6 +800,10 @@ module Stigg
                 order:,
                 # Timestamp of when the record was last updated
                 updated_at:,
+                # The feature ID this entitlement depends on (for credit entitlements). The
+                # entitlement value will be calculated as: base amount × dependency feature usage
+                # limit
+                dependency_feature_id: nil,
                 # Entitlement type (FEATURE or CREDIT)
                 type: :CREDIT
               )
@@ -820,7 +831,8 @@ module Stigg
                     is_granted: T::Boolean,
                     order: T.nilable(Float),
                     type: Symbol,
-                    updated_at: Time
+                    updated_at: Time,
+                    dependency_feature_id: T.nilable(String)
                   }
                 )
               end

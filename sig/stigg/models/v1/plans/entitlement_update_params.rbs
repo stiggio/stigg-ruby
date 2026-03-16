@@ -301,6 +301,7 @@ module Stigg
                 amount: Float,
                 behavior: Stigg::Models::V1::Plans::EntitlementUpdateParams::Body::Credit::behavior,
                 cadence: Stigg::Models::V1::Plans::EntitlementUpdateParams::Body::Credit::cadence,
+                dependency_feature_id: String?,
                 description: String,
                 display_name_override: String,
                 hidden_from_widgets: ::Array[Stigg::Models::V1::Plans::EntitlementUpdateParams::Body::Credit::hidden_from_widget],
@@ -327,6 +328,8 @@ module Stigg
               def cadence=: (
                 Stigg::Models::V1::Plans::EntitlementUpdateParams::Body::Credit::cadence
               ) -> Stigg::Models::V1::Plans::EntitlementUpdateParams::Body::Credit::cadence
+
+              attr_accessor dependency_feature_id: String?
 
               attr_reader description: String?
 
@@ -358,6 +361,7 @@ module Stigg
                 ?amount: Float,
                 ?behavior: Stigg::Models::V1::Plans::EntitlementUpdateParams::Body::Credit::behavior,
                 ?cadence: Stigg::Models::V1::Plans::EntitlementUpdateParams::Body::Credit::cadence,
+                ?dependency_feature_id: String?,
                 ?description: String,
                 ?display_name_override: String,
                 ?hidden_from_widgets: ::Array[Stigg::Models::V1::Plans::EntitlementUpdateParams::Body::Credit::hidden_from_widget],
@@ -372,6 +376,7 @@ module Stigg
                 amount: Float,
                 behavior: Stigg::Models::V1::Plans::EntitlementUpdateParams::Body::Credit::behavior,
                 cadence: Stigg::Models::V1::Plans::EntitlementUpdateParams::Body::Credit::cadence,
+                dependency_feature_id: String?,
                 description: String,
                 display_name_override: String,
                 hidden_from_widgets: ::Array[Stigg::Models::V1::Plans::EntitlementUpdateParams::Body::Credit::hidden_from_widget],
