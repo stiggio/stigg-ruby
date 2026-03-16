@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.0-alpha.19 (2026-03-16)
+
+Full Changelog: [v0.1.0-alpha.18...v0.1.0-alpha.19](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.18...v0.1.0-alpha.19)
+
+### Features
+
+* **api:** api update ([53a5dad](https://github.com/stiggio/stigg-ruby/commit/53a5dadabbfa92086f91cc91326aacad7cf87978))
+* **api:** api update ([3c58c09](https://github.com/stiggio/stigg-ruby/commit/3c58c097a4c2890dec60d71fea8e810c00c1cd4b))
+* **api:** api update ([754dc4a](https://github.com/stiggio/stigg-ruby/commit/754dc4a855a640fc0bc99c7ef5c84f9dbd881d6a))
+
 ## 0.1.0-alpha.18 (2026-03-12)
 
 Full Changelog: [v0.1.0-alpha.17...v0.1.0-alpha.18](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.17...v0.1.0-alpha.18)
