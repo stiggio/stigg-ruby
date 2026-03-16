@@ -69,7 +69,11 @@ module Stigg
           attr_accessor :billing_id
 
           # Customer level coupon
-          sig { returns(T.nilable(String)) }
+          sig do
+            returns(
+              T.nilable(Stigg::V1::CustomerResponse::Data::CouponID::Variants)
+            )
+          end
           attr_accessor :coupon_id
 
           # The default payment method details
@@ -157,7 +161,13 @@ module Stigg
                   Stigg::V1::CustomerResponse::Data::BillingCurrency::OrSymbol
                 ),
               billing_id: T.nilable(String),
-              coupon_id: T.nilable(String),
+              coupon_id:
+                T.nilable(
+                  T.any(
+                    String,
+                    Stigg::V1::CustomerResponse::Data::CouponID::OrSymbol
+                  )
+                ),
               default_payment_method:
                 T.nilable(
                   Stigg::V1::CustomerResponse::Data::DefaultPaymentMethod::OrHash
@@ -221,7 +231,10 @@ module Stigg
                     Stigg::V1::CustomerResponse::Data::BillingCurrency::TaggedSymbol
                   ),
                 billing_id: T.nilable(String),
-                coupon_id: T.nilable(String),
+                coupon_id:
+                  T.nilable(
+                    Stigg::V1::CustomerResponse::Data::CouponID::Variants
+                  ),
                 default_payment_method:
                   T.nilable(
                     Stigg::V1::CustomerResponse::Data::DefaultPaymentMethod
@@ -843,6 +856,39 @@ module Stigg
             end
             def self.values
             end
+          end
+
+          # Customer level coupon
+          module CouponID
+            extend Stigg::Internal::Type::Union
+
+            Variants =
+              T.type_alias do
+                T.any(
+                  String,
+                  Stigg::V1::CustomerResponse::Data::CouponID::TaggedSymbol
+                )
+              end
+
+            sig do
+              override.returns(
+                T::Array[Stigg::V1::CustomerResponse::Data::CouponID::Variants]
+              )
+            end
+            def self.variants
+            end
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(Symbol, Stigg::V1::CustomerResponse::Data::CouponID)
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            EMPTY =
+              T.let(
+                :"",
+                Stigg::V1::CustomerResponse::Data::CouponID::TaggedSymbol
+              )
           end
 
           class DefaultPaymentMethod < Stigg::Internal::Type::BaseModel

@@ -30,7 +30,13 @@ module Stigg
         attr_accessor :billing_id
 
         # Customer level coupon
-        sig { returns(T.nilable(String)) }
+        sig do
+          returns(
+            T.nilable(
+              T.any(String, Stigg::V1::CustomerUpdateParams::CouponID::OrSymbol)
+            )
+          )
+        end
         attr_accessor :coupon_id
 
         # The email of the customer
@@ -91,7 +97,13 @@ module Stigg
                 Stigg::V1::CustomerUpdateParams::BillingCurrency::OrSymbol
               ),
             billing_id: T.nilable(String),
-            coupon_id: T.nilable(String),
+            coupon_id:
+              T.nilable(
+                T.any(
+                  String,
+                  Stigg::V1::CustomerUpdateParams::CouponID::OrSymbol
+                )
+              ),
             email: T.nilable(String),
             integrations:
               T::Array[Stigg::V1::CustomerUpdateParams::Integration::OrHash],
@@ -138,7 +150,13 @@ module Stigg
                   Stigg::V1::CustomerUpdateParams::BillingCurrency::OrSymbol
                 ),
               billing_id: T.nilable(String),
-              coupon_id: T.nilable(String),
+              coupon_id:
+                T.nilable(
+                  T.any(
+                    String,
+                    Stigg::V1::CustomerUpdateParams::CouponID::OrSymbol
+                  )
+                ),
               email: T.nilable(String),
               integrations:
                 T::Array[Stigg::V1::CustomerUpdateParams::Integration],
@@ -754,6 +772,36 @@ module Stigg
           end
           def self.values
           end
+        end
+
+        # Customer level coupon
+        module CouponID
+          extend Stigg::Internal::Type::Union
+
+          Variants =
+            T.type_alias do
+              T.any(
+                String,
+                Stigg::V1::CustomerUpdateParams::CouponID::TaggedSymbol
+              )
+            end
+
+          sig do
+            override.returns(
+              T::Array[Stigg::V1::CustomerUpdateParams::CouponID::Variants]
+            )
+          end
+          def self.variants
+          end
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Stigg::V1::CustomerUpdateParams::CouponID)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          EMPTY =
+            T.let(:"", Stigg::V1::CustomerUpdateParams::CouponID::TaggedSymbol)
         end
 
         class Integration < Stigg::Internal::Type::BaseModel

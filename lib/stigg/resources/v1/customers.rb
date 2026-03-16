@@ -44,7 +44,7 @@ module Stigg
         #
         # @param billing_id [String, nil] The unique identifier for the entity in the billing provider
         #
-        # @param coupon_id [String, nil] Customer level coupon
+        # @param coupon_id [String, Symbol, Stigg::Models::V1::CustomerUpdateParams::CouponID, nil] Customer level coupon
         #
         # @param email [String, nil] The email of the customer
         #
@@ -197,7 +197,7 @@ module Stigg
         #
         # @param billing_id [String, nil] The unique identifier for the entity in the billing provider
         #
-        # @param coupon_id [String, nil] Customer level coupon
+        # @param coupon_id [String, Symbol, Stigg::Models::V1::CustomerProvisionParams::CouponID, nil] Customer level coupon
         #
         # @param default_payment_method [Stigg::Models::V1::CustomerProvisionParams::DefaultPaymentMethod, nil] The default payment method details
         #
