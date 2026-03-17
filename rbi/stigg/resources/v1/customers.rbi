@@ -240,6 +240,24 @@ module Stigg
         )
         end
 
+        # Retrieves the effective entitlements for a customer or resource, including
+        # feature and credit entitlements.
+        sig do
+          params(
+            id: String,
+            resource_id: String,
+            request_options: Stigg::RequestOptions::OrHash
+          ).returns(Stigg::Models::V1::CustomerRetrieveEntitlementsResponse)
+        end
+        def retrieve_entitlements(
+          # The unique identifier of the entity
+          id,
+          # Resource ID to scope entitlements to a specific resource
+          resource_id: nil,
+          request_options: {}
+        )
+        end
+
         # Restores an archived customer, allowing them to create new subscriptions again.
         sig do
           params(

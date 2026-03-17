@@ -71,6 +71,12 @@ module Stigg
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::CustomerResponse
 
+        def retrieve_entitlements: (
+          String id,
+          ?resource_id: String,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::Models::V1::CustomerRetrieveEntitlementsResponse
+
         def unarchive: (
           String id,
           ?request_options: Stigg::request_opts
