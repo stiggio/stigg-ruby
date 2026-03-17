@@ -20,7 +20,7 @@ module Stigg
         #
         # @param end_date [Time] Query param: The end date of the range
         #
-        # @param group_by [String] Query param
+        # @param group_by [String] Query param: Criteria by which to group the usage history
         #
         # @param include_inactive_subscriptions [Boolean] Query param: When true, includes usage data from the most recent cancelled or ex
         #

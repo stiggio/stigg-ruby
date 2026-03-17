@@ -3,8 +3,8 @@ module Stigg
     module V1
       type product_duplicate_product_params =
         {
-          path_id: String,
-          body_id: String,
+          id: String,
+          target_id: String,
           description: String?,
           display_name: String
         }
@@ -14,9 +14,9 @@ module Stigg
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
-        attr_accessor path_id: String
+        attr_accessor id: String
 
-        attr_accessor body_id: String
+        attr_accessor target_id: String
 
         attr_accessor description: String?
 
@@ -25,16 +25,16 @@ module Stigg
         def display_name=: (String) -> String
 
         def initialize: (
-          path_id: String,
-          body_id: String,
+          id: String,
+          target_id: String,
           ?description: String?,
           ?display_name: String,
           ?request_options: Stigg::request_opts
         ) -> void
 
         def to_hash: -> {
-          path_id: String,
-          body_id: String,
+          id: String,
+          target_id: String,
           description: String?,
           display_name: String,
           request_options: Stigg::RequestOptions

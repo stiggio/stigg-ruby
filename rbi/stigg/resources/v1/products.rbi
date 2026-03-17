@@ -49,8 +49,8 @@ module Stigg
         # Duplicates an existing product, including its plans, addons, and configuration.
         sig do
           params(
-            path_id: String,
-            body_id: String,
+            id: String,
+            target_id: String,
             description: T.nilable(String),
             display_name: String,
             request_options: Stigg::RequestOptions::OrHash
@@ -58,9 +58,9 @@ module Stigg
         end
         def duplicate_product(
           # The unique identifier of the entity
-          path_id,
+          id,
           # The unique identifier for the entity
-          body_id:,
+          target_id:,
           # Description of the product
           description: nil,
           # Display name of the product
