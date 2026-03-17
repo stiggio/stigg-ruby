@@ -31,6 +31,7 @@ module Stigg
         optional :end_date, Time
 
         # @!attribute group_by
+        #   Criteria by which to group the usage history
         #
         #   @return [String, nil]
         optional :group_by, String
@@ -60,7 +61,7 @@ module Stigg
         #
         #   @param end_date [Time] The end date of the range
         #
-        #   @param group_by [String]
+        #   @param group_by [String] Criteria by which to group the usage history
         #
         #   @param include_inactive_subscriptions [Boolean] When true, includes usage data from the most recent cancelled or expired subscri
         #

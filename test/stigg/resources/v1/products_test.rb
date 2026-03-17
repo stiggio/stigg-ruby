@@ -38,7 +38,7 @@ class Stigg::Test::Resources::V1::ProductsTest < Stigg::Test::ResourceTest
   def test_duplicate_product_required_params
     skip("Mock server tests are disabled")
 
-    response = @stigg.v1.products.duplicate_product("x", body_id: "id")
+    response = @stigg.v1.products.duplicate_product("x", target_id: "targetId")
 
     assert_pattern do
       response => Stigg::V1::Product

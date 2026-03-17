@@ -16,11 +16,11 @@ module Stigg
           end
 
         sig { returns(String) }
-        attr_accessor :path_id
+        attr_accessor :id
 
         # The unique identifier for the entity
         sig { returns(String) }
-        attr_accessor :body_id
+        attr_accessor :target_id
 
         # Description of the product
         sig { returns(T.nilable(String)) }
@@ -35,17 +35,17 @@ module Stigg
 
         sig do
           params(
-            path_id: String,
-            body_id: String,
+            id: String,
+            target_id: String,
             description: T.nilable(String),
             display_name: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
-          path_id:,
+          id:,
           # The unique identifier for the entity
-          body_id:,
+          target_id:,
           # Description of the product
           description: nil,
           # Display name of the product
@@ -57,8 +57,8 @@ module Stigg
         sig do
           override.returns(
             {
-              path_id: String,
-              body_id: String,
+              id: String,
+              target_id: String,
               description: T.nilable(String),
               display_name: String,
               request_options: Stigg::RequestOptions
