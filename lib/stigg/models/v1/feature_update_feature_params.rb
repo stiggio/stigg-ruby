@@ -131,13 +131,15 @@ module Stigg
             required :function, enum: -> { Stigg::V1::FeatureUpdateFeatureParams::Meter::Aggregation::Function }
 
             # @!attribute field
+            #   Aggregation field name
             #
             #   @return [String, nil]
             optional :field, String
 
             # @!method initialize(function:, field: nil)
             #   @param function [Symbol, Stigg::Models::V1::FeatureUpdateFeatureParams::Meter::Aggregation::Function]
-            #   @param field [String]
+            #
+            #   @param field [String] Aggregation field name
 
             # @see Stigg::Models::V1::FeatureUpdateFeatureParams::Meter::Aggregation#function
             module Function
@@ -167,6 +169,7 @@ module Stigg
 
             class Condition < Stigg::Internal::Type::BaseModel
               # @!attribute field
+              #   Condition field name
               #
               #   @return [String]
               required :field, String
@@ -178,6 +181,7 @@ module Stigg
                        enum: -> { Stigg::V1::FeatureUpdateFeatureParams::Meter::Filter::Condition::Operation }
 
               # @!attribute value
+              #   Condition value
               #
               #   @return [String, nil]
               optional :value, String
@@ -188,9 +192,12 @@ module Stigg
               optional :values, Stigg::Internal::Type::ArrayOf[String]
 
               # @!method initialize(field:, operation:, value: nil, values: nil)
-              #   @param field [String]
+              #   @param field [String] Condition field name
+              #
               #   @param operation [Symbol, Stigg::Models::V1::FeatureUpdateFeatureParams::Meter::Filter::Condition::Operation]
-              #   @param value [String]
+              #
+              #   @param value [String] Condition value
+              #
               #   @param values [Array<String>]
 
               # @see Stigg::Models::V1::FeatureUpdateFeatureParams::Meter::Filter::Condition#operation

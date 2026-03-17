@@ -273,6 +273,7 @@ module Stigg
             end
             attr_accessor :function
 
+            # Aggregation field name
             sig { returns(T.nilable(String)) }
             attr_reader :field
 
@@ -286,7 +287,11 @@ module Stigg
                 field: String
               ).returns(T.attached_class)
             end
-            def self.new(function:, field: nil)
+            def self.new(
+              function:,
+              # Aggregation field name
+              field: nil
+            )
             end
 
             sig do
@@ -407,6 +412,7 @@ module Stigg
                   )
                 end
 
+              # Condition field name
               sig { returns(String) }
               attr_accessor :field
 
@@ -417,6 +423,7 @@ module Stigg
               end
               attr_accessor :operation
 
+              # Condition value
               sig { returns(T.nilable(String)) }
               attr_reader :value
 
@@ -438,7 +445,14 @@ module Stigg
                   values: T::Array[String]
                 ).returns(T.attached_class)
               end
-              def self.new(field:, operation:, value: nil, values: nil)
+              def self.new(
+                # Condition field name
+                field:,
+                operation:,
+                # Condition value
+                value: nil,
+                values: nil
+              )
               end
 
               sig do
