@@ -160,6 +160,8 @@ module Stigg
           sig { returns(T.nilable(String)) }
           attr_accessor :downgrade_plan_id
 
+          # Indicates if the subscription should be prorated at the end of the billing
+          # period
           sig { returns(T.nilable(T::Boolean)) }
           attr_accessor :prorate_at_end_of_billing_period
 
@@ -189,6 +191,8 @@ module Stigg
             subscription_start_setup:,
             # ID of the plan to downgrade to at the end of the billing period
             downgrade_plan_id: nil,
+            # Indicates if the subscription should be prorated at the end of the billing
+            # period
             prorate_at_end_of_billing_period: nil,
             # ID of the plan to start the subscription with
             subscription_start_plan_id: nil

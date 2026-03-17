@@ -105,6 +105,8 @@ module Stigg
           optional :downgrade_plan_id, String, api_name: :downgradePlanId, nil?: true
 
           # @!attribute prorate_at_end_of_billing_period
+          #   Indicates if the subscription should be prorated at the end of the billing
+          #   period
           #
           #   @return [Boolean, nil]
           optional :prorate_at_end_of_billing_period,
@@ -119,6 +121,10 @@ module Stigg
           optional :subscription_start_plan_id, String, api_name: :subscriptionStartPlanId, nil?: true
 
           # @!method initialize(subscription_cancellation_time:, subscription_end_setup:, subscription_start_setup:, downgrade_plan_id: nil, prorate_at_end_of_billing_period: nil, subscription_start_plan_id: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Stigg::Models::V1::ProductUpdateProductParams::ProductSettings} for more
+          #   details.
+          #
           #   @param subscription_cancellation_time [Symbol, Stigg::Models::V1::ProductUpdateProductParams::ProductSettings::SubscriptionCancellationTime] Time when the subscription will be cancelled
           #
           #   @param subscription_end_setup [Symbol, Stigg::Models::V1::ProductUpdateProductParams::ProductSettings::SubscriptionEndSetup] Setup for the end of the subscription
@@ -127,7 +133,7 @@ module Stigg
           #
           #   @param downgrade_plan_id [String, nil] ID of the plan to downgrade to at the end of the billing period
           #
-          #   @param prorate_at_end_of_billing_period [Boolean, nil]
+          #   @param prorate_at_end_of_billing_period [Boolean, nil] Indicates if the subscription should be prorated at the end of the billing perio
           #
           #   @param subscription_start_plan_id [String, nil] ID of the plan to start the subscription with
 
