@@ -29,6 +29,7 @@ module Stigg
         sig { params(end_date: Time).void }
         attr_writer :end_date
 
+        # Criteria by which to group the usage history
         sig { returns(T.nilable(String)) }
         attr_reader :group_by
 
@@ -66,6 +67,7 @@ module Stigg
           start_date:,
           # The end date of the range
           end_date: nil,
+          # Criteria by which to group the usage history
           group_by: nil,
           # When true, includes usage data from the most recent cancelled or expired
           # subscription

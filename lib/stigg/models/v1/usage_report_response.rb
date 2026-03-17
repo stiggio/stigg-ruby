@@ -51,8 +51,8 @@ module Stigg
           # @!attribute value
           #   The usage measurement record
           #
-          #   @return [Float]
-          required :value, Float
+          #   @return [Integer]
+          required :value, Integer
 
           # @!attribute current_usage
           #   The current measured usage value
@@ -102,7 +102,7 @@ module Stigg
           #
           #   @param timestamp [Time] Timestamp
           #
-          #   @param value [Float] The usage measurement record
+          #   @param value [Integer] The usage measurement record
           #
           #   @param current_usage [Float, nil] The current measured usage value
           #

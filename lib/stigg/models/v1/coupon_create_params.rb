@@ -50,8 +50,8 @@ module Stigg
         # @!attribute percent_off
         #   Percentage discount off the original price
         #
-        #   @return [Integer, nil]
-        required :percent_off, Integer, api_name: :percentOff, nil?: true
+        #   @return [Float, nil]
+        required :percent_off, Float, api_name: :percentOff, nil?: true
 
         # @!method initialize(id:, amounts_off:, description:, duration_in_months:, metadata:, name:, percent_off:, request_options: {})
         #   @param id [String] The unique identifier for the entity
@@ -66,7 +66,7 @@ module Stigg
         #
         #   @param name [String] Name of the coupon
         #
-        #   @param percent_off [Integer, nil] Percentage discount off the original price
+        #   @param percent_off [Float, nil] Percentage discount off the original price
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 

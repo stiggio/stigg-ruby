@@ -27,7 +27,7 @@ module Stigg
           start_date:,
           # Query param: The end date of the range
           end_date: nil,
-          # Query param
+          # Query param: Criteria by which to group the usage history
           group_by: nil,
           # Query param: When true, includes usage data from the most recent cancelled or
           # expired subscription

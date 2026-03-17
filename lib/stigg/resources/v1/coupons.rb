@@ -22,7 +22,7 @@ module Stigg
         #
         # @param name [String] Name of the coupon
         #
-        # @param percent_off [Integer, nil] Percentage discount off the original price
+        # @param percent_off [Float, nil] Percentage discount off the original price
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #

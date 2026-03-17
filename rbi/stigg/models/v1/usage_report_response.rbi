@@ -67,7 +67,7 @@ module Stigg
           attr_accessor :timestamp
 
           # The usage measurement record
-          sig { returns(Float) }
+          sig { returns(Integer) }
           attr_accessor :value
 
           # The current measured usage value
@@ -100,7 +100,7 @@ module Stigg
               customer_id: String,
               feature_id: String,
               timestamp: Time,
-              value: Float,
+              value: Integer,
               current_usage: T.nilable(Float),
               next_reset_date: T.nilable(Time),
               resource_id: T.nilable(String),
@@ -144,7 +144,7 @@ module Stigg
                 customer_id: String,
                 feature_id: String,
                 timestamp: Time,
-                value: Float,
+                value: Integer,
                 current_usage: T.nilable(Float),
                 next_reset_date: T.nilable(Time),
                 resource_id: T.nilable(String),

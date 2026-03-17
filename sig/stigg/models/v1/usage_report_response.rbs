@@ -22,7 +22,7 @@ module Stigg
             customer_id: String,
             feature_id: String,
             timestamp: Time,
-            value: Float,
+            value: Integer,
             current_usage: Float?,
             next_reset_date: Time?,
             resource_id: String?,
@@ -41,7 +41,7 @@ module Stigg
 
           attr_accessor timestamp: Time
 
-          attr_accessor value: Float
+          attr_accessor value: Integer
 
           attr_accessor current_usage: Float?
 
@@ -59,7 +59,7 @@ module Stigg
             customer_id: String,
             feature_id: String,
             timestamp: Time,
-            value: Float,
+            value: Integer,
             ?current_usage: Float?,
             ?next_reset_date: Time?,
             ?resource_id: String?,
@@ -73,7 +73,7 @@ module Stigg
             customer_id: String,
             feature_id: String,
             timestamp: Time,
-            value: Float,
+            value: Integer,
             current_usage: Float?,
             next_reset_date: Time?,
             resource_id: String?,
