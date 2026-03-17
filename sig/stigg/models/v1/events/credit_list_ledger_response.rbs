@@ -64,6 +64,8 @@ module Stigg
             | :CREDITS_CONSUMED
             | :CREDITS_VOIDED
             | :CREDITS_UPDATED
+            | :CREDITS_CONSUMPTION_TRANSFER_SOURCE
+            | :CREDITS_CONSUMPTION_TRANSFER_TARGET
 
           module EventType
             extend Stigg::Internal::Type::Enum
@@ -73,6 +75,8 @@ module Stigg
             CREDITS_CONSUMED: :CREDITS_CONSUMED
             CREDITS_VOIDED: :CREDITS_VOIDED
             CREDITS_UPDATED: :CREDITS_UPDATED
+            CREDITS_CONSUMPTION_TRANSFER_SOURCE: :CREDITS_CONSUMPTION_TRANSFER_SOURCE
+            CREDITS_CONSUMPTION_TRANSFER_TARGET: :CREDITS_CONSUMPTION_TRANSFER_TARGET
 
             def self?.values: -> ::Array[Stigg::Models::V1::Events::CreditListLedgerResponse::event_type]
           end

@@ -147,6 +147,16 @@ module Stigg
                 :CREDITS_UPDATED,
                 Stigg::Models::V1::Events::CreditListLedgerResponse::EventType::TaggedSymbol
               )
+            CREDITS_CONSUMPTION_TRANSFER_SOURCE =
+              T.let(
+                :CREDITS_CONSUMPTION_TRANSFER_SOURCE,
+                Stigg::Models::V1::Events::CreditListLedgerResponse::EventType::TaggedSymbol
+              )
+            CREDITS_CONSUMPTION_TRANSFER_TARGET =
+              T.let(
+                :CREDITS_CONSUMPTION_TRANSFER_TARGET,
+                Stigg::Models::V1::Events::CreditListLedgerResponse::EventType::TaggedSymbol
+              )
 
             sig do
               override.returns(
