@@ -1,0 +1,416 @@
+module Stigg
+  module Models
+    module V1
+      type customer_retrieve_entitlements_response =
+        { data: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data }
+
+      class CustomerRetrieveEntitlementsResponse < Stigg::Internal::Type::BaseModel
+        attr_accessor data: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data
+
+        def initialize: (
+          data: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data
+        ) -> void
+
+        def to_hash: -> {
+          data: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data
+        }
+
+        type data =
+          {
+            access_denied_reason: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::access_denied_reason?,
+            entitlements: ::Array[Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::entitlement]
+          }
+
+        class Data < Stigg::Internal::Type::BaseModel
+          attr_accessor access_denied_reason: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::access_denied_reason?
+
+          attr_accessor entitlements: ::Array[Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::entitlement]
+
+          def initialize: (
+            access_denied_reason: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::access_denied_reason?,
+            entitlements: ::Array[Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::entitlement]
+          ) -> void
+
+          def to_hash: -> {
+            access_denied_reason: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::access_denied_reason?,
+            entitlements: ::Array[Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::entitlement]
+          }
+
+          type access_denied_reason =
+            :CustomerNotFound | :NoActiveSubscription | :CustomerIsArchived
+
+          module AccessDeniedReason
+            extend Stigg::Internal::Type::Enum
+
+            CUSTOMER_NOT_FOUND: :CustomerNotFound
+            NO_ACTIVE_SUBSCRIPTION: :NoActiveSubscription
+            CUSTOMER_IS_ARCHIVED: :CustomerIsArchived
+
+            def self?.values: -> ::Array[Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::access_denied_reason]
+          end
+
+          type entitlement =
+            Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature
+            | Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Credit
+
+          module Entitlement
+            extend Stigg::Internal::Type::Union
+
+            type feature =
+              {
+                access_denied_reason: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::access_denied_reason?,
+                is_granted: bool,
+                type: :FEATURE,
+                current_usage: Float,
+                entitlement_updated_at: Time,
+                feature: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::Feature,
+                has_unlimited_usage: bool,
+                reset_period: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::reset_period?,
+                usage_limit: Float?,
+                usage_period_anchor: Time,
+                usage_period_end: Time,
+                usage_period_start: Time,
+                valid_until: Time
+              }
+
+            class Feature < Stigg::Internal::Type::BaseModel
+              attr_accessor access_denied_reason: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::access_denied_reason?
+
+              attr_accessor is_granted: bool
+
+              attr_accessor type: :FEATURE
+
+              attr_reader current_usage: Float?
+
+              def current_usage=: (Float) -> Float
+
+              attr_reader entitlement_updated_at: Time?
+
+              def entitlement_updated_at=: (Time) -> Time
+
+              attr_reader feature: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::Feature?
+
+              def feature=: (
+                Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::Feature
+              ) -> Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::Feature
+
+              attr_reader has_unlimited_usage: bool?
+
+              def has_unlimited_usage=: (bool) -> bool
+
+              attr_accessor reset_period: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::reset_period?
+
+              attr_accessor usage_limit: Float?
+
+              attr_reader usage_period_anchor: Time?
+
+              def usage_period_anchor=: (Time) -> Time
+
+              attr_reader usage_period_end: Time?
+
+              def usage_period_end=: (Time) -> Time
+
+              attr_reader usage_period_start: Time?
+
+              def usage_period_start=: (Time) -> Time
+
+              attr_reader valid_until: Time?
+
+              def valid_until=: (Time) -> Time
+
+              def initialize: (
+                access_denied_reason: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::access_denied_reason?,
+                is_granted: bool,
+                ?current_usage: Float,
+                ?entitlement_updated_at: Time,
+                ?feature: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::Feature,
+                ?has_unlimited_usage: bool,
+                ?reset_period: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::reset_period?,
+                ?usage_limit: Float?,
+                ?usage_period_anchor: Time,
+                ?usage_period_end: Time,
+                ?usage_period_start: Time,
+                ?valid_until: Time,
+                ?type: :FEATURE
+              ) -> void
+
+              def to_hash: -> {
+                access_denied_reason: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::access_denied_reason?,
+                is_granted: bool,
+                type: :FEATURE,
+                current_usage: Float,
+                entitlement_updated_at: Time,
+                feature: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::Feature,
+                has_unlimited_usage: bool,
+                reset_period: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::reset_period?,
+                usage_limit: Float?,
+                usage_period_anchor: Time,
+                usage_period_end: Time,
+                usage_period_start: Time,
+                valid_until: Time
+              }
+
+              type access_denied_reason =
+                :FeatureNotFound
+                | :CustomerNotFound
+                | :CustomerIsArchived
+                | :CustomerResourceNotFound
+                | :NoActiveSubscription
+                | :NoFeatureEntitlementInSubscription
+                | :RequestedUsageExceedingLimit
+                | :RequestedValuesMismatch
+                | :BudgetExceeded
+                | :Unknown
+                | :FeatureTypeMismatch
+                | :Revoked
+                | :InsufficientCredits
+                | :EntitlementNotFound
+
+              module AccessDeniedReason
+                extend Stigg::Internal::Type::Enum
+
+                FEATURE_NOT_FOUND: :FeatureNotFound
+                CUSTOMER_NOT_FOUND: :CustomerNotFound
+                CUSTOMER_IS_ARCHIVED: :CustomerIsArchived
+                CUSTOMER_RESOURCE_NOT_FOUND: :CustomerResourceNotFound
+                NO_ACTIVE_SUBSCRIPTION: :NoActiveSubscription
+                NO_FEATURE_ENTITLEMENT_IN_SUBSCRIPTION: :NoFeatureEntitlementInSubscription
+                REQUESTED_USAGE_EXCEEDING_LIMIT: :RequestedUsageExceedingLimit
+                REQUESTED_VALUES_MISMATCH: :RequestedValuesMismatch
+                BUDGET_EXCEEDED: :BudgetExceeded
+                UNKNOWN: :Unknown
+                FEATURE_TYPE_MISMATCH: :FeatureTypeMismatch
+                REVOKED: :Revoked
+                INSUFFICIENT_CREDITS: :InsufficientCredits
+                ENTITLEMENT_NOT_FOUND: :EntitlementNotFound
+
+                def self?.values: -> ::Array[Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::access_denied_reason]
+              end
+
+              type feature =
+                {
+                  display_name: String,
+                  feature_status: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::Feature::feature_status,
+                  feature_type: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::Feature::feature_type,
+                  ref_id: String
+                }
+
+              class Feature < Stigg::Internal::Type::BaseModel
+                attr_accessor display_name: String
+
+                attr_accessor feature_status: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::Feature::feature_status
+
+                attr_accessor feature_type: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::Feature::feature_type
+
+                attr_accessor ref_id: String
+
+                def initialize: (
+                  display_name: String,
+                  feature_status: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::Feature::feature_status,
+                  feature_type: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::Feature::feature_type,
+                  ref_id: String
+                ) -> void
+
+                def to_hash: -> {
+                  display_name: String,
+                  feature_status: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::Feature::feature_status,
+                  feature_type: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::Feature::feature_type,
+                  ref_id: String
+                }
+
+                type feature_status = :NEW | :SUSPENDED | :ACTIVE
+
+                module FeatureStatus
+                  extend Stigg::Internal::Type::Enum
+
+                  NEW: :NEW
+                  SUSPENDED: :SUSPENDED
+                  ACTIVE: :ACTIVE
+
+                  def self?.values: -> ::Array[Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::Feature::feature_status]
+                end
+
+                type feature_type = :BOOLEAN | :NUMBER | :ENUM
+
+                module FeatureType
+                  extend Stigg::Internal::Type::Enum
+
+                  BOOLEAN: :BOOLEAN
+                  NUMBER: :NUMBER
+                  ENUM: :ENUM
+
+                  def self?.values: -> ::Array[Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::Feature::feature_type]
+                end
+              end
+
+              type reset_period = :YEAR | :MONTH | :WEEK | :DAY | :HOUR
+
+              module ResetPeriod
+                extend Stigg::Internal::Type::Enum
+
+                YEAR: :YEAR
+                MONTH: :MONTH
+                WEEK: :WEEK
+                DAY: :DAY
+                HOUR: :HOUR
+
+                def self?.values: -> ::Array[Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::reset_period]
+              end
+            end
+
+            type credit =
+              {
+                access_denied_reason: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Credit::access_denied_reason?,
+                currency: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Credit::Currency,
+                current_usage: Float,
+                is_granted: bool,
+                type: :CREDIT,
+                usage_limit: Float,
+                usage_updated_at: Time,
+                entitlement_updated_at: Time,
+                usage_period_end: Time,
+                valid_until: Time
+              }
+
+            class Credit < Stigg::Internal::Type::BaseModel
+              attr_accessor access_denied_reason: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Credit::access_denied_reason?
+
+              attr_accessor currency: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Credit::Currency
+
+              attr_accessor current_usage: Float
+
+              attr_accessor is_granted: bool
+
+              attr_accessor type: :CREDIT
+
+              attr_accessor usage_limit: Float
+
+              attr_accessor usage_updated_at: Time
+
+              attr_reader entitlement_updated_at: Time?
+
+              def entitlement_updated_at=: (Time) -> Time
+
+              attr_reader usage_period_end: Time?
+
+              def usage_period_end=: (Time) -> Time
+
+              attr_reader valid_until: Time?
+
+              def valid_until=: (Time) -> Time
+
+              def initialize: (
+                access_denied_reason: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Credit::access_denied_reason?,
+                currency: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Credit::Currency,
+                current_usage: Float,
+                is_granted: bool,
+                usage_limit: Float,
+                usage_updated_at: Time,
+                ?entitlement_updated_at: Time,
+                ?usage_period_end: Time,
+                ?valid_until: Time,
+                ?type: :CREDIT
+              ) -> void
+
+              def to_hash: -> {
+                access_denied_reason: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Credit::access_denied_reason?,
+                currency: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Credit::Currency,
+                current_usage: Float,
+                is_granted: bool,
+                type: :CREDIT,
+                usage_limit: Float,
+                usage_updated_at: Time,
+                entitlement_updated_at: Time,
+                usage_period_end: Time,
+                valid_until: Time
+              }
+
+              type access_denied_reason =
+                :FeatureNotFound
+                | :CustomerNotFound
+                | :CustomerIsArchived
+                | :CustomerResourceNotFound
+                | :NoActiveSubscription
+                | :NoFeatureEntitlementInSubscription
+                | :RequestedUsageExceedingLimit
+                | :RequestedValuesMismatch
+                | :BudgetExceeded
+                | :Unknown
+                | :FeatureTypeMismatch
+                | :Revoked
+                | :InsufficientCredits
+                | :EntitlementNotFound
+
+              module AccessDeniedReason
+                extend Stigg::Internal::Type::Enum
+
+                FEATURE_NOT_FOUND: :FeatureNotFound
+                CUSTOMER_NOT_FOUND: :CustomerNotFound
+                CUSTOMER_IS_ARCHIVED: :CustomerIsArchived
+                CUSTOMER_RESOURCE_NOT_FOUND: :CustomerResourceNotFound
+                NO_ACTIVE_SUBSCRIPTION: :NoActiveSubscription
+                NO_FEATURE_ENTITLEMENT_IN_SUBSCRIPTION: :NoFeatureEntitlementInSubscription
+                REQUESTED_USAGE_EXCEEDING_LIMIT: :RequestedUsageExceedingLimit
+                REQUESTED_VALUES_MISMATCH: :RequestedValuesMismatch
+                BUDGET_EXCEEDED: :BudgetExceeded
+                UNKNOWN: :Unknown
+                FEATURE_TYPE_MISMATCH: :FeatureTypeMismatch
+                REVOKED: :Revoked
+                INSUFFICIENT_CREDITS: :InsufficientCredits
+                ENTITLEMENT_NOT_FOUND: :EntitlementNotFound
+
+                def self?.values: -> ::Array[Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Credit::access_denied_reason]
+              end
+
+              type currency =
+                {
+                  currency_id: String,
+                  display_name: String,
+                  additional_meta_data: top,
+                  description: String?,
+                  unit_plural: String?,
+                  unit_singular: String?
+                }
+
+              class Currency < Stigg::Internal::Type::BaseModel
+                attr_accessor currency_id: String
+
+                attr_accessor display_name: String
+
+                attr_reader additional_meta_data: top?
+
+                def additional_meta_data=: (top) -> top
+
+                attr_accessor description: String?
+
+                attr_accessor unit_plural: String?
+
+                attr_accessor unit_singular: String?
+
+                def initialize: (
+                  currency_id: String,
+                  display_name: String,
+                  ?additional_meta_data: top,
+                  ?description: String?,
+                  ?unit_plural: String?,
+                  ?unit_singular: String?
+                ) -> void
+
+                def to_hash: -> {
+                  currency_id: String,
+                  display_name: String,
+                  additional_meta_data: top,
+                  description: String?,
+                  unit_plural: String?,
+                  unit_singular: String?
+                }
+              end
+            end
+
+            def self?.variants: -> ::Array[Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::entitlement]
+          end
+        end
+      end
+    end
+  end
+end

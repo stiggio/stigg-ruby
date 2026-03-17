@@ -231,6 +231,32 @@ module Stigg
           )
         end
 
+        # Retrieves the effective entitlements for a customer or resource, including
+        # feature and credit entitlements.
+        #
+        # @overload retrieve_entitlements(id, resource_id: nil, request_options: {})
+        #
+        # @param id [String] The unique identifier of the entity
+        #
+        # @param resource_id [String] Resource ID to scope entitlements to a specific resource
+        #
+        # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [Stigg::Models::V1::CustomerRetrieveEntitlementsResponse]
+        #
+        # @see Stigg::Models::V1::CustomerRetrieveEntitlementsParams
+        def retrieve_entitlements(id, params = {})
+          parsed, options = Stigg::V1::CustomerRetrieveEntitlementsParams.dump_request(params)
+          query = Stigg::Internal::Util.encode_query_params(parsed)
+          @client.request(
+            method: :get,
+            path: ["api/v1/customers/%1$s/entitlements", id],
+            query: query.transform_keys(resource_id: "resourceId"),
+            model: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse,
+            options: options
+          )
+        end
+
         # Restores an archived customer, allowing them to create new subscriptions again.
         #
         # @overload unarchive(id, request_options: {})
