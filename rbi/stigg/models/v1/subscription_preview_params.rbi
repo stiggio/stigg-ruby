@@ -1374,10 +1374,10 @@ module Stigg
           attr_writer :is_invoice_paid
 
           # Additional billing metadata
-          sig { returns(T.nilable(T.anything)) }
+          sig { returns(T.nilable(T::Hash[Symbol, String])) }
           attr_reader :metadata
 
-          sig { params(metadata: T.anything).void }
+          sig { params(metadata: T::Hash[Symbol, String]).void }
           attr_writer :metadata
 
           # Proration behavior
@@ -1444,7 +1444,7 @@ module Stigg
               invoice_days_until_due: Float,
               is_backdated: T::Boolean,
               is_invoice_paid: T::Boolean,
-              metadata: T.anything,
+              metadata: T::Hash[Symbol, String],
               proration_behavior:
                 Stigg::V1::SubscriptionPreviewParams::BillingInformation::ProrationBehavior::OrSymbol,
               tax_ids:
@@ -1491,7 +1491,7 @@ module Stigg
                 invoice_days_until_due: Float,
                 is_backdated: T::Boolean,
                 is_invoice_paid: T::Boolean,
-                metadata: T.anything,
+                metadata: T::Hash[Symbol, String],
                 proration_behavior:
                   Stigg::V1::SubscriptionPreviewParams::BillingInformation::ProrationBehavior::OrSymbol,
                 tax_ids:

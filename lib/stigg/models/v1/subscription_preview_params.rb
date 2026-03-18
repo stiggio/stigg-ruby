@@ -505,8 +505,8 @@ module Stigg
           # @!attribute metadata
           #   Additional billing metadata
           #
-          #   @return [Object, nil]
-          optional :metadata, Stigg::Internal::Type::Unknown
+          #   @return [Hash{Symbol=>String}, nil]
+          optional :metadata, Stigg::Internal::Type::HashOf[String]
 
           # @!attribute proration_behavior
           #   Proration behavior
@@ -553,7 +553,7 @@ module Stigg
           #
           #   @param is_invoice_paid [Boolean] Whether invoice is already paid
           #
-          #   @param metadata [Object] Additional billing metadata
+          #   @param metadata [Hash{Symbol=>String}] Additional billing metadata
           #
           #   @param proration_behavior [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation::ProrationBehavior] Proration behavior
           #
