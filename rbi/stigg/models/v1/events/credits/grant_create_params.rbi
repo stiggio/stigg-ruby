@@ -257,6 +257,11 @@ module Stigg
                   :RECURRING,
                   Stigg::V1::Events::Credits::GrantCreateParams::GrantType::TaggedSymbol
                 )
+              OVERDRAFT =
+                T.let(
+                  :OVERDRAFT,
+                  Stigg::V1::Events::Credits::GrantCreateParams::GrantType::TaggedSymbol
+                )
 
               sig do
                 override.returns(
