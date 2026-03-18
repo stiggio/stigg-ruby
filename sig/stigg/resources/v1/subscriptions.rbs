@@ -89,7 +89,7 @@ module Stigg
           ?schedule_strategy: Stigg::Models::V1::SubscriptionPreviewParams::schedule_strategy,
           ?start_date: Time,
           ?trial_override_configuration: Stigg::V1::SubscriptionPreviewParams::TrialOverrideConfiguration,
-          ?unit_quantity: Float,
+          ?unit_quantity: Integer,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Models::V1::SubscriptionPreviewResponse
 
@@ -119,7 +119,7 @@ module Stigg
           ?schedule_strategy: Stigg::Models::V1::SubscriptionProvisionParams::schedule_strategy,
           ?start_date: Time,
           ?trial_override_configuration: Stigg::V1::SubscriptionProvisionParams::TrialOverrideConfiguration,
-          ?unit_quantity: Float,
+          ?unit_quantity: Integer,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Models::V1::SubscriptionProvisionResponse
 

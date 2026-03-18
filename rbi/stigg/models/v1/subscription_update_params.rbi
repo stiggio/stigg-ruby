@@ -42,6 +42,7 @@ module Stigg
         end
         attr_writer :applied_coupon
 
+        # Await payment confirmation
         sig { returns(T.nilable(T::Boolean)) }
         attr_reader :await_payment_confirmation
 
@@ -192,6 +193,7 @@ module Stigg
         end
         attr_writer :price_overrides
 
+        # Promotion code
         sig { returns(T.nilable(String)) }
         attr_reader :promotion_code
 
@@ -267,6 +269,7 @@ module Stigg
           id:,
           addons: nil,
           applied_coupon: nil,
+          # Await payment confirmation
           await_payment_confirmation: nil,
           billing_cycle_anchor: nil,
           billing_information: nil,
@@ -279,6 +282,7 @@ module Stigg
           # Minimum spend amount
           minimum_spend: nil,
           price_overrides: nil,
+          # Promotion code
           promotion_code: nil,
           schedule_strategy: nil,
           # Subscription trial end date
