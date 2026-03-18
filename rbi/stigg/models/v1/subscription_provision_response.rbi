@@ -952,16 +952,13 @@ module Stigg
                 sig { returns(String) }
                 attr_accessor :display_name
 
-                # Additional metadata associated with the currency.
-                sig { returns(T.nilable(T.anything)) }
-                attr_reader :additional_meta_data
-
-                sig { params(additional_meta_data: T.anything).void }
-                attr_writer :additional_meta_data
-
                 # A description of the currency.
                 sig { returns(T.nilable(String)) }
                 attr_accessor :description
+
+                # Additional metadata associated with the currency.
+                sig { returns(T.nilable(T::Hash[Symbol, String])) }
+                attr_accessor :metadata
 
                 # The plural form of the currency unit.
                 sig { returns(T.nilable(String)) }
@@ -976,8 +973,8 @@ module Stigg
                   params(
                     currency_id: String,
                     display_name: String,
-                    additional_meta_data: T.anything,
                     description: T.nilable(String),
+                    metadata: T.nilable(T::Hash[Symbol, String]),
                     unit_plural: T.nilable(String),
                     unit_singular: T.nilable(String)
                   ).returns(T.attached_class)
@@ -987,10 +984,10 @@ module Stigg
                   currency_id:,
                   # The display name of the currency.
                   display_name:,
-                  # Additional metadata associated with the currency.
-                  additional_meta_data: nil,
                   # A description of the currency.
                   description: nil,
+                  # Additional metadata associated with the currency.
+                  metadata: nil,
                   # The plural form of the currency unit.
                   unit_plural: nil,
                   # The singular form of the currency unit.
@@ -1003,8 +1000,8 @@ module Stigg
                     {
                       currency_id: String,
                       display_name: String,
-                      additional_meta_data: T.anything,
                       description: T.nilable(String),
+                      metadata: T.nilable(T::Hash[Symbol, String]),
                       unit_plural: T.nilable(String),
                       unit_singular: T.nilable(String)
                     }

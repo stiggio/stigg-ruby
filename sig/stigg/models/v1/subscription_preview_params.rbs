@@ -558,7 +558,7 @@ module Stigg
             invoice_days_until_due: Float,
             is_backdated: bool,
             is_invoice_paid: bool,
-            metadata: top,
+            metadata: ::Hash[Symbol, String],
             proration_behavior: Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation::proration_behavior,
             tax_ids: ::Array[Stigg::V1::SubscriptionPreviewParams::BillingInformation::TaxID],
             tax_percentage: Float,
@@ -592,9 +592,9 @@ module Stigg
 
           def is_invoice_paid=: (bool) -> bool
 
-          attr_reader metadata: top?
+          attr_reader metadata: ::Hash[Symbol, String]?
 
-          def metadata=: (top) -> top
+          def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
 
           attr_reader proration_behavior: Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation::proration_behavior?
 
@@ -623,7 +623,7 @@ module Stigg
             ?invoice_days_until_due: Float,
             ?is_backdated: bool,
             ?is_invoice_paid: bool,
-            ?metadata: top,
+            ?metadata: ::Hash[Symbol, String],
             ?proration_behavior: Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation::proration_behavior,
             ?tax_ids: ::Array[Stigg::V1::SubscriptionPreviewParams::BillingInformation::TaxID],
             ?tax_percentage: Float,
@@ -637,7 +637,7 @@ module Stigg
             invoice_days_until_due: Float,
             is_backdated: bool,
             is_invoice_paid: bool,
-            metadata: top,
+            metadata: ::Hash[Symbol, String],
             proration_behavior: Stigg::Models::V1::SubscriptionPreviewParams::BillingInformation::proration_behavior,
             tax_ids: ::Array[Stigg::V1::SubscriptionPreviewParams::BillingInformation::TaxID],
             tax_percentage: Float,

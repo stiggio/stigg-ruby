@@ -401,17 +401,17 @@ module Stigg
                 #   @return [String]
                 required :display_name, String, api_name: :displayName
 
-                # @!attribute additional_meta_data
-                #   Additional metadata associated with the currency.
-                #
-                #   @return [Object, nil]
-                optional :additional_meta_data, Stigg::Internal::Type::Unknown, api_name: :additionalMetaData
-
                 # @!attribute description
                 #   A description of the currency.
                 #
                 #   @return [String, nil]
                 optional :description, String, nil?: true
+
+                # @!attribute metadata
+                #   Additional metadata associated with the currency.
+                #
+                #   @return [Hash{Symbol=>String}, nil]
+                optional :metadata, Stigg::Internal::Type::HashOf[String], nil?: true
 
                 # @!attribute unit_plural
                 #   The plural form of the currency unit.
@@ -425,16 +425,16 @@ module Stigg
                 #   @return [String, nil]
                 optional :unit_singular, String, api_name: :unitSingular, nil?: true
 
-                # @!method initialize(currency_id:, display_name:, additional_meta_data: nil, description: nil, unit_plural: nil, unit_singular: nil)
+                # @!method initialize(currency_id:, display_name:, description: nil, metadata: nil, unit_plural: nil, unit_singular: nil)
                 #   The currency associated with a credit entitlement.
                 #
                 #   @param currency_id [String] The unique identifier of the custom currency.
                 #
                 #   @param display_name [String] The display name of the currency.
                 #
-                #   @param additional_meta_data [Object] Additional metadata associated with the currency.
-                #
                 #   @param description [String, nil] A description of the currency.
+                #
+                #   @param metadata [Hash{Symbol=>String}, nil] Additional metadata associated with the currency.
                 #
                 #   @param unit_plural [String, nil] The plural form of the currency unit.
                 #

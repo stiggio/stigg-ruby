@@ -366,8 +366,8 @@ module Stigg
                 {
                   currency_id: String,
                   display_name: String,
-                  additional_meta_data: top,
                   description: String?,
+                  metadata: ::Hash[Symbol, String]?,
                   unit_plural: String?,
                   unit_singular: String?
                 }
@@ -377,11 +377,9 @@ module Stigg
 
                 attr_accessor display_name: String
 
-                attr_reader additional_meta_data: top?
-
-                def additional_meta_data=: (top) -> top
-
                 attr_accessor description: String?
+
+                attr_accessor metadata: ::Hash[Symbol, String]?
 
                 attr_accessor unit_plural: String?
 
@@ -390,8 +388,8 @@ module Stigg
                 def initialize: (
                   currency_id: String,
                   display_name: String,
-                  ?additional_meta_data: top,
                   ?description: String?,
+                  ?metadata: ::Hash[Symbol, String]?,
                   ?unit_plural: String?,
                   ?unit_singular: String?
                 ) -> void
@@ -399,8 +397,8 @@ module Stigg
                 def to_hash: -> {
                   currency_id: String,
                   display_name: String,
-                  additional_meta_data: top,
                   description: String?,
+                  metadata: ::Hash[Symbol, String]?,
                   unit_plural: String?,
                   unit_singular: String?
                 }
