@@ -455,6 +455,10 @@ module Stigg
                     )
                   end
 
+                # The unique reference ID of the entitlement.
+                sig { returns(String) }
+                attr_accessor :id
+
                 # The human-readable name of the entitlement, shown in UI elements.
                 sig { returns(String) }
                 attr_accessor :display_name
@@ -475,41 +479,37 @@ module Stigg
                 end
                 attr_accessor :feature_type
 
-                # The unique reference ID of the entitlement.
-                sig { returns(String) }
-                attr_accessor :ref_id
-
                 sig do
                   params(
+                    id: String,
                     display_name: String,
                     feature_status:
                       Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::Feature::FeatureStatus::OrSymbol,
                     feature_type:
-                      Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::Feature::FeatureType::OrSymbol,
-                    ref_id: String
+                      Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::Feature::FeatureType::OrSymbol
                   ).returns(T.attached_class)
                 end
                 def self.new(
+                  # The unique reference ID of the entitlement.
+                  id:,
                   # The human-readable name of the entitlement, shown in UI elements.
                   display_name:,
                   # The current status of the feature.
                   feature_status:,
                   # The type of feature associated with the entitlement.
-                  feature_type:,
-                  # The unique reference ID of the entitlement.
-                  ref_id:
+                  feature_type:
                 )
                 end
 
                 sig do
                   override.returns(
                     {
+                      id: String,
                       display_name: String,
                       feature_status:
                         Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::Feature::FeatureStatus::TaggedSymbol,
                       feature_type:
-                        Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::Feature::FeatureType::TaggedSymbol,
-                      ref_id: String
+                        Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::Feature::FeatureType::TaggedSymbol
                     }
                   )
                 end
