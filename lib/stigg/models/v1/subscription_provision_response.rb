@@ -235,6 +235,12 @@ module Stigg
 
               # @see Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionObjectVariant0#feature
               class Feature < Stigg::Internal::Type::BaseModel
+                # @!attribute id
+                #   The unique reference ID of the entitlement.
+                #
+                #   @return [String]
+                required :id, String
+
                 # @!attribute display_name
                 #   The human-readable name of the entitlement, shown in UI elements.
                 #
@@ -257,20 +263,14 @@ module Stigg
                          enum: -> { Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionObjectVariant0::Feature::FeatureType },
                          api_name: :featureType
 
-                # @!attribute ref_id
-                #   The unique reference ID of the entitlement.
+                # @!method initialize(id:, display_name:, feature_status:, feature_type:)
+                #   @param id [String] The unique reference ID of the entitlement.
                 #
-                #   @return [String]
-                required :ref_id, String, api_name: :refId
-
-                # @!method initialize(display_name:, feature_status:, feature_type:, ref_id:)
                 #   @param display_name [String] The human-readable name of the entitlement, shown in UI elements.
                 #
                 #   @param feature_status [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionObjectVariant0::Feature::FeatureStatus] The current status of the feature.
                 #
                 #   @param feature_type [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionObjectVariant0::Feature::FeatureType] The type of feature associated with the entitlement.
-                #
-                #   @param ref_id [String] The unique reference ID of the entitlement.
 
                 # The current status of the feature.
                 #
