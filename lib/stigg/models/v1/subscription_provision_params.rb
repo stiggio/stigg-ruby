@@ -177,9 +177,10 @@ module Stigg
                  api_name: :trialOverrideConfiguration
 
         # @!attribute unit_quantity
+        #   Unit quantity
         #
-        #   @return [Float, nil]
-        optional :unit_quantity, Float, api_name: :unitQuantity
+        #   @return [Integer, nil]
+        optional :unit_quantity, Integer, api_name: :unitQuantity
 
         # @!method initialize(customer_id:, plan_id:, id: nil, addons: nil, applied_coupon: nil, await_payment_confirmation: nil, billing_country_code: nil, billing_cycle_anchor: nil, billing_id: nil, billing_information: nil, billing_period: nil, budget: nil, charges: nil, checkout_options: nil, entitlements: nil, metadata: nil, minimum_spend: nil, paying_customer_id: nil, payment_collection_method: nil, price_overrides: nil, resource_id: nil, salesforce_id: nil, schedule_strategy: nil, start_date: nil, trial_override_configuration: nil, unit_quantity: nil, request_options: {})
         #   @param customer_id [String] Customer ID to provision the subscription for
@@ -232,7 +233,7 @@ module Stigg
         #
         #   @param trial_override_configuration [Stigg::Models::V1::SubscriptionProvisionParams::TrialOverrideConfiguration] Trial period override settings
         #
-        #   @param unit_quantity [Float]
+        #   @param unit_quantity [Integer] Unit quantity
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 

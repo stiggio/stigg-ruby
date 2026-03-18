@@ -26,6 +26,7 @@ module Stigg
                  api_name: :appliedCoupon
 
         # @!attribute await_payment_confirmation
+        #   Await payment confirmation
         #
         #   @return [Boolean, nil]
         optional :await_payment_confirmation,
@@ -92,6 +93,7 @@ module Stigg
                  api_name: :priceOverrides
 
         # @!attribute promotion_code
+        #   Promotion code
         #
         #   @return [String, nil]
         optional :promotion_code, String, api_name: :promotionCode
@@ -116,7 +118,7 @@ module Stigg
         #
         #   @param applied_coupon [Stigg::Models::V1::SubscriptionUpdateParams::AppliedCoupon]
         #
-        #   @param await_payment_confirmation [Boolean]
+        #   @param await_payment_confirmation [Boolean] Await payment confirmation
         #
         #   @param billing_cycle_anchor [Symbol, Stigg::Models::V1::SubscriptionUpdateParams::BillingCycleAnchor]
         #
@@ -136,7 +138,7 @@ module Stigg
         #
         #   @param price_overrides [Array<Stigg::Models::V1::SubscriptionUpdateParams::PriceOverride>]
         #
-        #   @param promotion_code [String]
+        #   @param promotion_code [String] Promotion code
         #
         #   @param schedule_strategy [Symbol, Stigg::Models::V1::SubscriptionUpdateParams::ScheduleStrategy]
         #

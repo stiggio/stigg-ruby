@@ -208,10 +208,10 @@ module Stigg
         attr_writer :trial_override_configuration
 
         # Unit quantity for per-unit pricing
-        sig { returns(T.nilable(Float)) }
+        sig { returns(T.nilable(Integer)) }
         attr_reader :unit_quantity
 
-        sig { params(unit_quantity: Float).void }
+        sig { params(unit_quantity: Integer).void }
         attr_writer :unit_quantity
 
         sig do
@@ -242,7 +242,7 @@ module Stigg
             start_date: Time,
             trial_override_configuration:
               Stigg::V1::SubscriptionPreviewParams::TrialOverrideConfiguration::OrHash,
-            unit_quantity: Float,
+            unit_quantity: Integer,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -308,7 +308,7 @@ module Stigg
               start_date: Time,
               trial_override_configuration:
                 Stigg::V1::SubscriptionPreviewParams::TrialOverrideConfiguration,
-              unit_quantity: Float,
+              unit_quantity: Integer,
               request_options: Stigg::RequestOptions
             }
           )
