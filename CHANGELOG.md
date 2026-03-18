@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.1.0-alpha.21 (2026-03-18)
+
+Full Changelog: [v0.1.0-alpha.20...v0.1.0-alpha.21](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.20...v0.1.0-alpha.21)
+
+### Features
+
+* **api:** api update ([19c4a8d](https://github.com/stiggio/stigg-ruby/commit/19c4a8dffdae186c183be3c5450e4b368ee599e7))
+* **api:** api update ([d3d42ce](https://github.com/stiggio/stigg-ruby/commit/d3d42ce11a4ddbde5beaff61dba25267cb3f5059))
+* **api:** api update ([2130f77](https://github.com/stiggio/stigg-ruby/commit/2130f77d05a0eaabed89d6378fd3b36470991ba7))
+* **api:** api update ([e1a03fa](https://github.com/stiggio/stigg-ruby/commit/e1a03fa307f0580d2dbd026800aa12b793a96852))
+* **api:** api update ([19db5a8](https://github.com/stiggio/stigg-ruby/commit/19db5a8d069cbfa6ce7f844b8b9475a66f8a1360))
+* **api:** updated stainless config with new endpoint ([fb38dd1](https://github.com/stiggio/stigg-ruby/commit/fb38dd154e6b183cc9186b9c449102cec8de498f))
+
+
+### Chores
+
+* **internal:** tweak CI branches ([e1072da](https://github.com/stiggio/stigg-ruby/commit/e1072da3748dbe4ae22cee00610f1e13011b43a2))
+
 ## 0.1.0-alpha.20 (2026-03-16)
 
 Full Changelog: [v0.1.0-alpha.19...v0.1.0-alpha.20](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.19...v0.1.0-alpha.20)
