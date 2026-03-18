@@ -48,7 +48,7 @@ module Stigg
         #
         # @param applied_coupon [Stigg::Models::V1::SubscriptionUpdateParams::AppliedCoupon]
         #
-        # @param await_payment_confirmation [Boolean]
+        # @param await_payment_confirmation [Boolean] Await payment confirmation
         #
         # @param billing_cycle_anchor [Symbol, Stigg::Models::V1::SubscriptionUpdateParams::BillingCycleAnchor]
         #
@@ -68,7 +68,7 @@ module Stigg
         #
         # @param price_overrides [Array<Stigg::Models::V1::SubscriptionUpdateParams::PriceOverride>]
         #
-        # @param promotion_code [String]
+        # @param promotion_code [String] Promotion code
         #
         # @param schedule_strategy [Symbol, Stigg::Models::V1::SubscriptionUpdateParams::ScheduleStrategy]
         #
@@ -284,7 +284,7 @@ module Stigg
         #
         # @param trial_override_configuration [Stigg::Models::V1::SubscriptionPreviewParams::TrialOverrideConfiguration] Trial period override settings
         #
-        # @param unit_quantity [Float] Unit quantity for per-unit pricing
+        # @param unit_quantity [Integer] Unit quantity for per-unit pricing
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -357,7 +357,7 @@ module Stigg
         #
         # @param trial_override_configuration [Stigg::Models::V1::SubscriptionProvisionParams::TrialOverrideConfiguration] Trial period override settings
         #
-        # @param unit_quantity [Float]
+        # @param unit_quantity [Integer] Unit quantity
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #

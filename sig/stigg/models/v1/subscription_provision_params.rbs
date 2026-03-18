@@ -28,7 +28,7 @@ module Stigg
           schedule_strategy: Stigg::Models::V1::SubscriptionProvisionParams::schedule_strategy,
           start_date: Time,
           trial_override_configuration: Stigg::V1::SubscriptionProvisionParams::TrialOverrideConfiguration,
-          unit_quantity: Float
+          unit_quantity: Integer
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -142,9 +142,9 @@ module Stigg
           Stigg::V1::SubscriptionProvisionParams::TrialOverrideConfiguration
         ) -> Stigg::V1::SubscriptionProvisionParams::TrialOverrideConfiguration
 
-        attr_reader unit_quantity: Float?
+        attr_reader unit_quantity: Integer?
 
-        def unit_quantity=: (Float) -> Float
+        def unit_quantity=: (Integer) -> Integer
 
         def initialize: (
           customer_id: String,
@@ -172,7 +172,7 @@ module Stigg
           ?schedule_strategy: Stigg::Models::V1::SubscriptionProvisionParams::schedule_strategy,
           ?start_date: Time,
           ?trial_override_configuration: Stigg::V1::SubscriptionProvisionParams::TrialOverrideConfiguration,
-          ?unit_quantity: Float,
+          ?unit_quantity: Integer,
           ?request_options: Stigg::request_opts
         ) -> void
 
@@ -202,7 +202,7 @@ module Stigg
           schedule_strategy: Stigg::Models::V1::SubscriptionProvisionParams::schedule_strategy,
           start_date: Time,
           trial_override_configuration: Stigg::V1::SubscriptionProvisionParams::TrialOverrideConfiguration,
-          unit_quantity: Float,
+          unit_quantity: Integer,
           request_options: Stigg::RequestOptions
         }
 

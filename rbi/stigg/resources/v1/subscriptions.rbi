@@ -79,6 +79,7 @@ module Stigg
           id,
           addons: nil,
           applied_coupon: nil,
+          # Await payment confirmation
           await_payment_confirmation: nil,
           billing_cycle_anchor: nil,
           billing_information: nil,
@@ -91,6 +92,7 @@ module Stigg
           # Minimum spend amount
           minimum_spend: nil,
           price_overrides: nil,
+          # Promotion code
           promotion_code: nil,
           schedule_strategy: nil,
           # Subscription trial end date
@@ -262,7 +264,7 @@ module Stigg
             start_date: Time,
             trial_override_configuration:
               Stigg::V1::SubscriptionPreviewParams::TrialOverrideConfiguration::OrHash,
-            unit_quantity: Float,
+            unit_quantity: Integer,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::Models::V1::SubscriptionPreviewResponse)
         end
@@ -355,7 +357,7 @@ module Stigg
             start_date: Time,
             trial_override_configuration:
               Stigg::V1::SubscriptionProvisionParams::TrialOverrideConfiguration::OrHash,
-            unit_quantity: Float,
+            unit_quantity: Integer,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::Models::V1::SubscriptionProvisionResponse)
         end
@@ -404,6 +406,7 @@ module Stigg
           start_date: nil,
           # Trial period override settings
           trial_override_configuration: nil,
+          # Unit quantity
           unit_quantity: nil,
           request_options: {}
         )
