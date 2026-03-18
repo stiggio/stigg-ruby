@@ -152,7 +152,7 @@ module Stigg
                 def to_hash: -> { amount: Float, currency: String }
               end
 
-              type grant_type = :PAID | :PROMOTIONAL | :RECURRING
+              type grant_type = :PAID | :PROMOTIONAL | :RECURRING | :OVERDRAFT
 
               module GrantType
                 extend Stigg::Internal::Type::Enum
@@ -160,6 +160,7 @@ module Stigg
                 PAID: :PAID
                 PROMOTIONAL: :PROMOTIONAL
                 RECURRING: :RECURRING
+                OVERDRAFT: :OVERDRAFT
 
                 def self?.values: -> ::Array[Stigg::Models::V1::Events::Credits::CreditGrantResponse::Data::grant_type]
               end

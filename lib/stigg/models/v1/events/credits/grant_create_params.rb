@@ -148,6 +148,7 @@ module Stigg
               PAID = :PAID
               PROMOTIONAL = :PROMOTIONAL
               RECURRING = :RECURRING
+              OVERDRAFT = :OVERDRAFT
 
               # @!method self.values
               #   @return [Array<Symbol>]

@@ -384,6 +384,11 @@ module Stigg
                     :RECURRING,
                     Stigg::V1::Events::Credits::CreditGrantResponse::Data::GrantType::TaggedSymbol
                   )
+                OVERDRAFT =
+                  T.let(
+                    :OVERDRAFT,
+                    Stigg::V1::Events::Credits::CreditGrantResponse::Data::GrantType::TaggedSymbol
+                  )
 
                 sig do
                   override.returns(
