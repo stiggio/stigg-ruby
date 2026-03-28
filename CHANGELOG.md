@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.0-alpha.23 (2026-03-28)
+
+Full Changelog: [v0.1.0-alpha.22...v0.1.0-alpha.23](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.22...v0.1.0-alpha.23)
+
+### Bug Fixes
+
+* **internal:** correct multipart form field name encoding ([47cc751](https://github.com/stiggio/stigg-ruby/commit/47cc75194354b4497727ea305cd28250b08d4f1a))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([472e426](https://github.com/stiggio/stigg-ruby/commit/472e42658cfbc55e298c5f06346a9eaa24229b45))
+* **ci:** support opting out of skipping builds on metadata-only commits ([b23f8f6](https://github.com/stiggio/stigg-ruby/commit/b23f8f6f03b70d7c4cfe6e6c7ceb59571babdca2))
+* **internal:** update gitignore ([1bc8cd6](https://github.com/stiggio/stigg-ruby/commit/1bc8cd6a761deca466cf0fcd8fa722ce989cd8aa))
+
 ## 0.1.0-alpha.22 (2026-03-18)
 
 Full Changelog: [v0.1.0-alpha.21...v0.1.0-alpha.22](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.21...v0.1.0-alpha.22)
