@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.0-alpha.24 (2026-04-01)
+
+Full Changelog: [v0.1.0-alpha.23...v0.1.0-alpha.24](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.23...v0.1.0-alpha.24)
+
+### Bug Fixes
+
+* align path encoding with RFC 3986 section 3.3 ([c7a2627](https://github.com/stiggio/stigg-ruby/commit/c7a26278759ffabe6190390178e3f65754683920))
+* variable name typo ([f7b01b9](https://github.com/stiggio/stigg-ruby/commit/f7b01b9338a55b0dac62f8627184b8bd34f86661))
+
 ## 0.1.0-alpha.23 (2026-03-28)
 
 Full Changelog: [v0.1.0-alpha.22...v0.1.0-alpha.23](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.22...v0.1.0-alpha.23)
