@@ -1,0 +1,42 @@
+module Stigg
+  module Resources
+    class Internal
+      class Beta
+        class EventQueues
+          def retrieve: (
+            String queue_name,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::Internal::Beta::EventQueueRetrieveResponse
+
+          def update: (
+            String queue_name,
+            ?allowed_assume_role_arns: ::Array[String],
+            ?create_low_priority_queues: bool,
+            ?event_types: ::Array[Stigg::Models::Internal::Beta::EventQueueUpdateParams::event_type],
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::Internal::Beta::EventQueueUpdateResponse
+
+          def list: (
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::Internal::Beta::EventQueueListResponse
+
+          def delete: (
+            String queue_name,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::Internal::Beta::EventQueueDeleteResponse
+
+          def provision: (
+            region: Stigg::Models::Internal::Beta::EventQueueProvisionParams::region,
+            ?allowed_assume_role_arns: ::Array[String],
+            ?create_low_priority_queues: bool,
+            ?event_types: ::Array[Stigg::Models::Internal::Beta::EventQueueProvisionParams::event_type],
+            ?suffix: String,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::Internal::Beta::EventQueueProvisionResponse
+
+          def initialize: (client: Stigg::Client) -> void
+        end
+      end
+    end
+  end
+end

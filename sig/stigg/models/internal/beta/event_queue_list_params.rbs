@@ -1,0 +1,19 @@
+module Stigg
+  module Models
+    module Internal
+      module Beta
+        type event_queue_list_params =
+          {  } & Stigg::Internal::Type::request_parameters
+
+        class EventQueueListParams < Stigg::Internal::Type::BaseModel
+          extend Stigg::Internal::Type::RequestParameters::Converter
+          include Stigg::Internal::Type::RequestParameters
+
+          def initialize: (?request_options: Stigg::request_opts) -> void
+
+          def to_hash: -> { request_options: Stigg::RequestOptions }
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,27 @@
+module Stigg
+  module Models
+    module Internal
+      module Beta
+        type event_queue_delete_params =
+          { queue_name: String } & Stigg::Internal::Type::request_parameters
+
+        class EventQueueDeleteParams < Stigg::Internal::Type::BaseModel
+          extend Stigg::Internal::Type::RequestParameters::Converter
+          include Stigg::Internal::Type::RequestParameters
+
+          attr_accessor queue_name: String
+
+          def initialize: (
+            queue_name: String,
+            ?request_options: Stigg::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            queue_name: String,
+            request_options: Stigg::RequestOptions
+          }
+        end
+      end
+    end
+  end
+end

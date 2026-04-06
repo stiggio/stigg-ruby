@@ -1,0 +1,74 @@
+module Stigg
+  module Models
+    module V1
+      module Customers
+        type integration_link_params =
+          {
+            path_id: String,
+            body_id: String,
+            synced_entity_id: String,
+            vendor_identifier: Stigg::Models::V1::Customers::IntegrationLinkParams::vendor_identifier
+          }
+          & Stigg::Internal::Type::request_parameters
+
+        class IntegrationLinkParams < Stigg::Internal::Type::BaseModel
+          extend Stigg::Internal::Type::RequestParameters::Converter
+          include Stigg::Internal::Type::RequestParameters
+
+          attr_accessor path_id: String
+
+          attr_accessor body_id: String
+
+          attr_accessor synced_entity_id: String
+
+          attr_accessor vendor_identifier: Stigg::Models::V1::Customers::IntegrationLinkParams::vendor_identifier
+
+          def initialize: (
+            path_id: String,
+            body_id: String,
+            synced_entity_id: String,
+            vendor_identifier: Stigg::Models::V1::Customers::IntegrationLinkParams::vendor_identifier,
+            ?request_options: Stigg::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            path_id: String,
+            body_id: String,
+            synced_entity_id: String,
+            vendor_identifier: Stigg::Models::V1::Customers::IntegrationLinkParams::vendor_identifier,
+            request_options: Stigg::RequestOptions
+          }
+
+          type vendor_identifier =
+            :AUTH0
+            | :ZUORA
+            | :STRIPE
+            | :HUBSPOT
+            | :AWS_MARKETPLACE
+            | :SNOWFLAKE
+            | :SALESFORCE
+            | :BIG_QUERY
+            | :OPEN_FGA
+            | :APP_STORE
+
+          module VendorIdentifier
+            extend Stigg::Internal::Type::Enum
+
+            AUTH0: :AUTH0
+            ZUORA: :ZUORA
+            STRIPE: :STRIPE
+            HUBSPOT: :HUBSPOT
+            AWS_MARKETPLACE: :AWS_MARKETPLACE
+            SNOWFLAKE: :SNOWFLAKE
+            SALESFORCE: :SALESFORCE
+            BIG_QUERY: :BIG_QUERY
+            OPEN_FGA: :OPEN_FGA
+            APP_STORE: :APP_STORE
+
+            def self?.values: -> ::Array[Stigg::Models::V1::Customers::IntegrationLinkParams::vendor_identifier]
+          end
+        end
+      end
+    end
+  end
+end

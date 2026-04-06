@@ -14,6 +14,9 @@ module Stigg
         end
         attr_reader :promotional_entitlements
 
+        sig { returns(Stigg::Resources::V1::Customers::Integrations) }
+        attr_reader :integrations
+
         # Retrieves a customer by their unique identifier, including billing information
         # and subscription status.
         sig do
