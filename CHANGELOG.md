@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.25 (2026-04-06)
+
+Full Changelog: [v0.1.0-alpha.24...v0.1.0-alpha.25](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.24...v0.1.0-alpha.25)
+
+### Features
+
+* **api:** add event_queues and customer integrations endpoints ([9500262](https://github.com/stiggio/stigg-ruby/commit/95002623d816a08a57ed9900f7fe7532869f6ffa))
+
 ## 0.1.0-alpha.24 (2026-04-01)
 
 Full Changelog: [v0.1.0-alpha.23...v0.1.0-alpha.24](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.23...v0.1.0-alpha.24)
