@@ -6,6 +6,8 @@ module Stigg
 
         attr_reader promotional_entitlements: Stigg::Resources::V1::Customers::PromotionalEntitlements
 
+        attr_reader integrations: Stigg::Resources::V1::Customers::Integrations
+
         def retrieve: (
           String id,
           ?request_options: Stigg::request_opts

@@ -1,0 +1,47 @@
+module Stigg
+  module Resources
+    class V1
+      class Customers
+        class Integrations
+          def retrieve: (
+            String integration_id,
+            id: String,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Customers::IntegrationRetrieveResponse
+
+          def update: (
+            String integration_id,
+            id: String,
+            synced_entity_id: String?,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Customers::IntegrationUpdateResponse
+
+          def list: (
+            String id,
+            ?after: String,
+            ?before: String,
+            ?limit: Integer,
+            ?vendor_identifier: String,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::Customers::IntegrationListResponse]
+
+          def link: (
+            String path_id,
+            body_id: String,
+            synced_entity_id: String,
+            vendor_identifier: Stigg::Models::V1::Customers::IntegrationLinkParams::vendor_identifier,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Customers::IntegrationLinkResponse
+
+          def unlink: (
+            String integration_id,
+            id: String,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Customers::IntegrationUnlinkResponse
+
+          def initialize: (client: Stigg::Client) -> void
+        end
+      end
+    end
+  end
+end
