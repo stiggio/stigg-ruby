@@ -6,7 +6,7 @@ module Stigg
           def retrieve: (
             String queue_name,
             ?request_options: Stigg::request_opts
-          ) -> Stigg::Models::Internal::Beta::EventQueueRetrieveResponse
+          ) -> Stigg::Models::Internal::Beta::EventQueueResponse
 
           def update: (
             String queue_name,
@@ -14,7 +14,7 @@ module Stigg
             ?create_low_priority_queues: bool,
             ?event_types: ::Array[Stigg::Models::Internal::Beta::EventQueueUpdateParams::event_type],
             ?request_options: Stigg::request_opts
-          ) -> Stigg::Models::Internal::Beta::EventQueueUpdateResponse
+          ) -> Stigg::Models::Internal::Beta::EventQueueResponse
 
           def list: (
             ?request_options: Stigg::request_opts
@@ -23,7 +23,7 @@ module Stigg
           def delete: (
             String queue_name,
             ?request_options: Stigg::request_opts
-          ) -> Stigg::Models::Internal::Beta::EventQueueDeleteResponse
+          ) -> Stigg::Models::Internal::Beta::EventQueueResponse
 
           def provision: (
             region: Stigg::Models::Internal::Beta::EventQueueProvisionParams::region,
@@ -32,7 +32,7 @@ module Stigg
             ?event_types: ::Array[Stigg::Models::Internal::Beta::EventQueueProvisionParams::event_type],
             ?suffix: String,
             ?request_options: Stigg::request_opts
-          ) -> Stigg::Models::Internal::Beta::EventQueueProvisionResponse
+          ) -> Stigg::Models::Internal::Beta::EventQueueResponse
 
           def initialize: (client: Stigg::Client) -> void
         end

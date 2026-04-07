@@ -11,7 +11,7 @@ module Stigg
               integration_id: String,
               id: String,
               request_options: Stigg::RequestOptions::OrHash
-            ).returns(Stigg::Models::V1::Customers::IntegrationRetrieveResponse)
+            ).returns(Stigg::V1::CustomerIntegrationResponse)
           end
           def retrieve(
             # Integration details
@@ -30,7 +30,7 @@ module Stigg
               id: String,
               synced_entity_id: T.nilable(String),
               request_options: Stigg::RequestOptions::OrHash
-            ).returns(Stigg::Models::V1::Customers::IntegrationUpdateResponse)
+            ).returns(Stigg::V1::CustomerIntegrationResponse)
           end
           def update(
             # Path param: Integration details
@@ -85,7 +85,7 @@ module Stigg
               vendor_identifier:
                 Stigg::V1::Customers::IntegrationLinkParams::VendorIdentifier::OrSymbol,
               request_options: Stigg::RequestOptions::OrHash
-            ).returns(Stigg::Models::V1::Customers::IntegrationLinkResponse)
+            ).returns(Stigg::V1::CustomerIntegrationResponse)
           end
           def link(
             # The unique identifier of the entity
@@ -106,7 +106,7 @@ module Stigg
               integration_id: String,
               id: String,
               request_options: Stigg::RequestOptions::OrHash
-            ).returns(Stigg::Models::V1::Customers::IntegrationUnlinkResponse)
+            ).returns(Stigg::V1::CustomerIntegrationResponse)
           end
           def unlink(
             # Integration details

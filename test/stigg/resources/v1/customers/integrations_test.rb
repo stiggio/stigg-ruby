@@ -9,12 +9,12 @@ class Stigg::Test::Resources::V1::Customers::IntegrationsTest < Stigg::Test::Res
     response = @stigg.v1.customers.integrations.retrieve("integrationId", id: "id")
 
     assert_pattern do
-      response => Stigg::Models::V1::Customers::IntegrationRetrieveResponse
+      response => Stigg::V1::CustomerIntegrationResponse
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::Customers::IntegrationRetrieveResponse::Data
+        data: Stigg::V1::CustomerIntegrationResponse::Data
       }
     end
   end
@@ -26,12 +26,12 @@ class Stigg::Test::Resources::V1::Customers::IntegrationsTest < Stigg::Test::Res
       @stigg.v1.customers.integrations.update("integrationId", id: "id", synced_entity_id: "syncedEntityId")
 
     assert_pattern do
-      response => Stigg::Models::V1::Customers::IntegrationUpdateResponse
+      response => Stigg::V1::CustomerIntegrationResponse
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::Customers::IntegrationUpdateResponse::Data
+        data: Stigg::V1::CustomerIntegrationResponse::Data
       }
     end
   end
@@ -74,12 +74,12 @@ class Stigg::Test::Resources::V1::Customers::IntegrationsTest < Stigg::Test::Res
       )
 
     assert_pattern do
-      response => Stigg::Models::V1::Customers::IntegrationLinkResponse
+      response => Stigg::V1::CustomerIntegrationResponse
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::Customers::IntegrationLinkResponse::Data
+        data: Stigg::V1::CustomerIntegrationResponse::Data
       }
     end
   end
@@ -90,12 +90,12 @@ class Stigg::Test::Resources::V1::Customers::IntegrationsTest < Stigg::Test::Res
     response = @stigg.v1.customers.integrations.unlink("integrationId", id: "id")
 
     assert_pattern do
-      response => Stigg::Models::V1::Customers::IntegrationUnlinkResponse
+      response => Stigg::V1::CustomerIntegrationResponse
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::Customers::IntegrationUnlinkResponse::Data
+        data: Stigg::V1::CustomerIntegrationResponse::Data
       }
     end
   end
