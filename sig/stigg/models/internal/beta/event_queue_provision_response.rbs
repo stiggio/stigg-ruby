@@ -1,0 +1,152 @@
+module Stigg
+  module Models
+    module Internal
+      module Beta
+        type event_queue_provision_response =
+          {
+            data: Stigg::Models::Internal::Beta::EventQueueProvisionResponse::Data
+          }
+
+        class EventQueueProvisionResponse < Stigg::Internal::Type::BaseModel
+          attr_accessor data: Stigg::Models::Internal::Beta::EventQueueProvisionResponse::Data
+
+          def initialize: (
+            data: Stigg::Models::Internal::Beta::EventQueueProvisionResponse::Data
+          ) -> void
+
+          def to_hash: -> {
+            data: Stigg::Models::Internal::Beta::EventQueueProvisionResponse::Data
+          }
+
+          type data =
+            {
+              created_at: Time,
+              queue_name: String,
+              region: Stigg::Models::Internal::Beta::EventQueueProvisionResponse::Data::region,
+              status: Stigg::Models::Internal::Beta::EventQueueProvisionResponse::Data::status,
+              updated_at: Time,
+              queue_url: String?,
+              role_arn: String?,
+              suffix: String?
+            }
+
+          class Data < Stigg::Internal::Type::BaseModel
+            attr_accessor created_at: Time
+
+            attr_accessor queue_name: String
+
+            attr_accessor region: Stigg::Models::Internal::Beta::EventQueueProvisionResponse::Data::region
+
+            attr_accessor status: Stigg::Models::Internal::Beta::EventQueueProvisionResponse::Data::status
+
+            attr_accessor updated_at: Time
+
+            attr_accessor queue_url: String?
+
+            attr_accessor role_arn: String?
+
+            attr_accessor suffix: String?
+
+            def initialize: (
+              created_at: Time,
+              queue_name: String,
+              region: Stigg::Models::Internal::Beta::EventQueueProvisionResponse::Data::region,
+              status: Stigg::Models::Internal::Beta::EventQueueProvisionResponse::Data::status,
+              updated_at: Time,
+              ?queue_url: String?,
+              ?role_arn: String?,
+              ?suffix: String?
+            ) -> void
+
+            def to_hash: -> {
+              created_at: Time,
+              queue_name: String,
+              region: Stigg::Models::Internal::Beta::EventQueueProvisionResponse::Data::region,
+              status: Stigg::Models::Internal::Beta::EventQueueProvisionResponse::Data::status,
+              updated_at: Time,
+              queue_url: String?,
+              role_arn: String?,
+              suffix: String?
+            }
+
+            type region =
+              :"us-east-1"
+              | :"us-east-2"
+              | :"us-west-1"
+              | :"us-west-2"
+              | :"ca-central-1"
+              | :"eu-west-1"
+              | :"eu-west-2"
+              | :"eu-west-3"
+              | :"eu-central-1"
+              | :"eu-central-2"
+              | :"eu-north-1"
+              | :"eu-south-1"
+              | :"eu-south-2"
+              | :"ap-southeast-1"
+              | :"ap-southeast-2"
+              | :"ap-southeast-3"
+              | :"ap-northeast-1"
+              | :"ap-northeast-2"
+              | :"ap-northeast-3"
+              | :"ap-south-1"
+              | :"ap-south-2"
+              | :"ap-east-1"
+              | :"sa-east-1"
+              | :"af-south-1"
+              | :"me-south-1"
+              | :"me-central-1"
+              | :"il-central-1"
+
+            module Region
+              extend Stigg::Internal::Type::Enum
+
+              US_EAST_1: :"us-east-1"
+              US_EAST_2: :"us-east-2"
+              US_WEST_1: :"us-west-1"
+              US_WEST_2: :"us-west-2"
+              CA_CENTRAL_1: :"ca-central-1"
+              EU_WEST_1: :"eu-west-1"
+              EU_WEST_2: :"eu-west-2"
+              EU_WEST_3: :"eu-west-3"
+              EU_CENTRAL_1: :"eu-central-1"
+              EU_CENTRAL_2: :"eu-central-2"
+              EU_NORTH_1: :"eu-north-1"
+              EU_SOUTH_1: :"eu-south-1"
+              EU_SOUTH_2: :"eu-south-2"
+              AP_SOUTHEAST_1: :"ap-southeast-1"
+              AP_SOUTHEAST_2: :"ap-southeast-2"
+              AP_SOUTHEAST_3: :"ap-southeast-3"
+              AP_NORTHEAST_1: :"ap-northeast-1"
+              AP_NORTHEAST_2: :"ap-northeast-2"
+              AP_NORTHEAST_3: :"ap-northeast-3"
+              AP_SOUTH_1: :"ap-south-1"
+              AP_SOUTH_2: :"ap-south-2"
+              AP_EAST_1: :"ap-east-1"
+              SA_EAST_1: :"sa-east-1"
+              AF_SOUTH_1: :"af-south-1"
+              ME_SOUTH_1: :"me-south-1"
+              ME_CENTRAL_1: :"me-central-1"
+              IL_CENTRAL_1: :"il-central-1"
+
+              def self?.values: -> ::Array[Stigg::Models::Internal::Beta::EventQueueProvisionResponse::Data::region]
+            end
+
+            type status = :PROVISIONING | :ACTIVE | :FAILED | :DEPROVISIONING
+
+            module Status
+              extend Stigg::Internal::Type::Enum
+
+              PROVISIONING: :PROVISIONING
+              ACTIVE: :ACTIVE
+              FAILED: :FAILED
+              DEPROVISIONING: :DEPROVISIONING
+
+              def self?.values: -> ::Array[Stigg::Models::Internal::Beta::EventQueueProvisionResponse::Data::status]
+            end
+          end
+        end
+      end
+    end
+  end
+end
