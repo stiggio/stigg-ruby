@@ -9,12 +9,12 @@ class Stigg::Test::Resources::Internal::Beta::EventQueuesTest < Stigg::Test::Res
     response = @stigg.internal.beta.event_queues.retrieve("x")
 
     assert_pattern do
-      response => Stigg::Models::Internal::Beta::EventQueueRetrieveResponse
+      response => Stigg::Models::Internal::Beta::EventQueueResponse
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::Internal::Beta::EventQueueRetrieveResponse::Data
+        data: Stigg::Models::Internal::Beta::EventQueueResponse::Data
       }
     end
   end
@@ -25,12 +25,12 @@ class Stigg::Test::Resources::Internal::Beta::EventQueuesTest < Stigg::Test::Res
     response = @stigg.internal.beta.event_queues.update("x")
 
     assert_pattern do
-      response => Stigg::Models::Internal::Beta::EventQueueUpdateResponse
+      response => Stigg::Models::Internal::Beta::EventQueueResponse
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data
+        data: Stigg::Models::Internal::Beta::EventQueueResponse::Data
       }
     end
   end
@@ -58,12 +58,12 @@ class Stigg::Test::Resources::Internal::Beta::EventQueuesTest < Stigg::Test::Res
     response = @stigg.internal.beta.event_queues.delete("x")
 
     assert_pattern do
-      response => Stigg::Models::Internal::Beta::EventQueueDeleteResponse
+      response => Stigg::Models::Internal::Beta::EventQueueResponse
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::Internal::Beta::EventQueueDeleteResponse::Data
+        data: Stigg::Models::Internal::Beta::EventQueueResponse::Data
       }
     end
   end
@@ -74,12 +74,12 @@ class Stigg::Test::Resources::Internal::Beta::EventQueuesTest < Stigg::Test::Res
     response = @stigg.internal.beta.event_queues.provision(region: :"us-east-1")
 
     assert_pattern do
-      response => Stigg::Models::Internal::Beta::EventQueueProvisionResponse
+      response => Stigg::Models::Internal::Beta::EventQueueResponse
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::Internal::Beta::EventQueueProvisionResponse::Data
+        data: Stigg::Models::Internal::Beta::EventQueueResponse::Data
       }
     end
   end

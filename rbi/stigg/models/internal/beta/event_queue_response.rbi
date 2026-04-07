@@ -4,27 +4,25 @@ module Stigg
   module Models
     module Internal
       module Beta
-        class EventQueueUpdateResponse < Stigg::Internal::Type::BaseModel
+        class EventQueueResponse < Stigg::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Stigg::Models::Internal::Beta::EventQueueUpdateResponse,
+                Stigg::Models::Internal::Beta::EventQueueResponse,
                 Stigg::Internal::AnyHash
               )
             end
 
           # Event queue provisioning status and details
           sig do
-            returns(
-              Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data
-            )
+            returns(Stigg::Models::Internal::Beta::EventQueueResponse::Data)
           end
           attr_reader :data
 
           sig do
             params(
               data:
-                Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::OrHash
+                Stigg::Models::Internal::Beta::EventQueueResponse::Data::OrHash
             ).void
           end
           attr_writer :data
@@ -33,7 +31,7 @@ module Stigg
           sig do
             params(
               data:
-                Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::OrHash
+                Stigg::Models::Internal::Beta::EventQueueResponse::Data::OrHash
             ).returns(T.attached_class)
           end
           def self.new(
@@ -44,10 +42,7 @@ module Stigg
 
           sig do
             override.returns(
-              {
-                data:
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data
-              }
+              { data: Stigg::Models::Internal::Beta::EventQueueResponse::Data }
             )
           end
           def to_hash
@@ -57,7 +52,7 @@ module Stigg
             OrHash =
               T.type_alias do
                 T.any(
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data,
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data,
                   Stigg::Internal::AnyHash
                 )
               end
@@ -73,7 +68,7 @@ module Stigg
             # AWS region where the queue is deployed
             sig do
               returns(
-                Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
               )
             end
             attr_accessor :region
@@ -81,7 +76,7 @@ module Stigg
             # Current provisioning status
             sig do
               returns(
-                Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Status::TaggedSymbol
+                Stigg::Models::Internal::Beta::EventQueueResponse::Data::Status::TaggedSymbol
               )
             end
             attr_accessor :status
@@ -108,9 +103,9 @@ module Stigg
                 created_at: Time,
                 queue_name: String,
                 region:
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::OrSymbol,
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::OrSymbol,
                 status:
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Status::OrSymbol,
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Status::OrSymbol,
                 updated_at: Time,
                 queue_url: T.nilable(String),
                 role_arn: T.nilable(String),
@@ -143,9 +138,9 @@ module Stigg
                   created_at: Time,
                   queue_name: String,
                   region:
-                    Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol,
+                    Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol,
                   status:
-                    Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Status::TaggedSymbol,
+                    Stigg::Models::Internal::Beta::EventQueueResponse::Data::Status::TaggedSymbol,
                   updated_at: Time,
                   queue_url: T.nilable(String),
                   role_arn: T.nilable(String),
@@ -164,7 +159,7 @@ module Stigg
                 T.type_alias do
                   T.all(
                     Symbol,
-                    Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region
+                    Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -172,143 +167,143 @@ module Stigg
               US_EAST_1 =
                 T.let(
                   :"us-east-1",
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                 )
               US_EAST_2 =
                 T.let(
                   :"us-east-2",
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                 )
               US_WEST_1 =
                 T.let(
                   :"us-west-1",
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                 )
               US_WEST_2 =
                 T.let(
                   :"us-west-2",
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                 )
               CA_CENTRAL_1 =
                 T.let(
                   :"ca-central-1",
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                 )
               EU_WEST_1 =
                 T.let(
                   :"eu-west-1",
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                 )
               EU_WEST_2 =
                 T.let(
                   :"eu-west-2",
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                 )
               EU_WEST_3 =
                 T.let(
                   :"eu-west-3",
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                 )
               EU_CENTRAL_1 =
                 T.let(
                   :"eu-central-1",
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                 )
               EU_CENTRAL_2 =
                 T.let(
                   :"eu-central-2",
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                 )
               EU_NORTH_1 =
                 T.let(
                   :"eu-north-1",
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                 )
               EU_SOUTH_1 =
                 T.let(
                   :"eu-south-1",
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                 )
               EU_SOUTH_2 =
                 T.let(
                   :"eu-south-2",
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                 )
               AP_SOUTHEAST_1 =
                 T.let(
                   :"ap-southeast-1",
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                 )
               AP_SOUTHEAST_2 =
                 T.let(
                   :"ap-southeast-2",
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                 )
               AP_SOUTHEAST_3 =
                 T.let(
                   :"ap-southeast-3",
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                 )
               AP_NORTHEAST_1 =
                 T.let(
                   :"ap-northeast-1",
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                 )
               AP_NORTHEAST_2 =
                 T.let(
                   :"ap-northeast-2",
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                 )
               AP_NORTHEAST_3 =
                 T.let(
                   :"ap-northeast-3",
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                 )
               AP_SOUTH_1 =
                 T.let(
                   :"ap-south-1",
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                 )
               AP_SOUTH_2 =
                 T.let(
                   :"ap-south-2",
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                 )
               AP_EAST_1 =
                 T.let(
                   :"ap-east-1",
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                 )
               SA_EAST_1 =
                 T.let(
                   :"sa-east-1",
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                 )
               AF_SOUTH_1 =
                 T.let(
                   :"af-south-1",
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                 )
               ME_SOUTH_1 =
                 T.let(
                   :"me-south-1",
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                 )
               ME_CENTRAL_1 =
                 T.let(
                   :"me-central-1",
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                 )
               IL_CENTRAL_1 =
                 T.let(
                   :"il-central-1",
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Region::TaggedSymbol
+                    Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region::TaggedSymbol
                   ]
                 )
               end
@@ -324,7 +319,7 @@ module Stigg
                 T.type_alias do
                   T.all(
                     Symbol,
-                    Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Status
+                    Stigg::Models::Internal::Beta::EventQueueResponse::Data::Status
                   )
                 end
               OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -332,28 +327,28 @@ module Stigg
               PROVISIONING =
                 T.let(
                   :PROVISIONING,
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Status::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Status::TaggedSymbol
                 )
               ACTIVE =
                 T.let(
                   :ACTIVE,
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Status::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Status::TaggedSymbol
                 )
               FAILED =
                 T.let(
                   :FAILED,
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Status::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Status::TaggedSymbol
                 )
               DEPROVISIONING =
                 T.let(
                   :DEPROVISIONING,
-                  Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Status::TaggedSymbol
+                  Stigg::Models::Internal::Beta::EventQueueResponse::Data::Status::TaggedSymbol
                 )
 
               sig do
                 override.returns(
                   T::Array[
-                    Stigg::Models::Internal::Beta::EventQueueUpdateResponse::Data::Status::TaggedSymbol
+                    Stigg::Models::Internal::Beta::EventQueueResponse::Data::Status::TaggedSymbol
                   ]
                 )
               end

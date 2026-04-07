@@ -13,14 +13,14 @@ module Stigg
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
-          # @return [Stigg::Models::Internal::Beta::EventQueueRetrieveResponse]
+          # @return [Stigg::Models::Internal::Beta::EventQueueResponse]
           #
           # @see Stigg::Models::Internal::Beta::EventQueueRetrieveParams
           def retrieve(queue_name, params = {})
             @client.request(
               method: :get,
               path: ["internal/beta/event-queues/%1$s", queue_name],
-              model: Stigg::Models::Internal::Beta::EventQueueRetrieveResponse,
+              model: Stigg::Models::Internal::Beta::EventQueueResponse,
               options: params[:request_options]
             )
           end
@@ -39,7 +39,7 @@ module Stigg
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
-          # @return [Stigg::Models::Internal::Beta::EventQueueUpdateResponse]
+          # @return [Stigg::Models::Internal::Beta::EventQueueResponse]
           #
           # @see Stigg::Models::Internal::Beta::EventQueueUpdateParams
           def update(queue_name, params = {})
@@ -48,7 +48,7 @@ module Stigg
               method: :patch,
               path: ["internal/beta/event-queues/%1$s", queue_name],
               body: parsed,
-              model: Stigg::Models::Internal::Beta::EventQueueUpdateResponse,
+              model: Stigg::Models::Internal::Beta::EventQueueResponse,
               options: options
             )
           end
@@ -79,14 +79,14 @@ module Stigg
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
-          # @return [Stigg::Models::Internal::Beta::EventQueueDeleteResponse]
+          # @return [Stigg::Models::Internal::Beta::EventQueueResponse]
           #
           # @see Stigg::Models::Internal::Beta::EventQueueDeleteParams
           def delete(queue_name, params = {})
             @client.request(
               method: :delete,
               path: ["internal/beta/event-queues/%1$s", queue_name],
-              model: Stigg::Models::Internal::Beta::EventQueueDeleteResponse,
+              model: Stigg::Models::Internal::Beta::EventQueueResponse,
               options: params[:request_options]
             )
           end
@@ -110,7 +110,7 @@ module Stigg
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
-          # @return [Stigg::Models::Internal::Beta::EventQueueProvisionResponse]
+          # @return [Stigg::Models::Internal::Beta::EventQueueResponse]
           #
           # @see Stigg::Models::Internal::Beta::EventQueueProvisionParams
           def provision(params)
@@ -119,7 +119,7 @@ module Stigg
               method: :post,
               path: "internal/beta/event-queues/provision",
               body: parsed,
-              model: Stigg::Models::Internal::Beta::EventQueueProvisionResponse,
+              model: Stigg::Models::Internal::Beta::EventQueueResponse,
               options: options
             )
           end
