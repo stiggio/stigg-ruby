@@ -15,7 +15,7 @@ module Stigg
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
-          # @return [Stigg::Models::V1::Customers::IntegrationRetrieveResponse]
+          # @return [Stigg::Models::V1::CustomerIntegrationResponse]
           #
           # @see Stigg::Models::V1::Customers::IntegrationRetrieveParams
           def retrieve(integration_id, params)
@@ -27,7 +27,7 @@ module Stigg
             @client.request(
               method: :get,
               path: ["api/v1/customers/%1$s/integrations/%2$s", id, integration_id],
-              model: Stigg::Models::V1::Customers::IntegrationRetrieveResponse,
+              model: Stigg::V1::CustomerIntegrationResponse,
               options: options
             )
           end
@@ -45,7 +45,7 @@ module Stigg
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
-          # @return [Stigg::Models::V1::Customers::IntegrationUpdateResponse]
+          # @return [Stigg::Models::V1::CustomerIntegrationResponse]
           #
           # @see Stigg::Models::V1::Customers::IntegrationUpdateParams
           def update(integration_id, params)
@@ -58,7 +58,7 @@ module Stigg
               method: :patch,
               path: ["api/v1/customers/%1$s/integrations/%2$s", id, integration_id],
               body: parsed,
-              model: Stigg::Models::V1::Customers::IntegrationUpdateResponse,
+              model: Stigg::V1::CustomerIntegrationResponse,
               options: options
             )
           end
@@ -114,7 +114,7 @@ module Stigg
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
-          # @return [Stigg::Models::V1::Customers::IntegrationLinkResponse]
+          # @return [Stigg::Models::V1::CustomerIntegrationResponse]
           #
           # @see Stigg::Models::V1::Customers::IntegrationLinkParams
           def link(path_id, params)
@@ -123,7 +123,7 @@ module Stigg
               method: :post,
               path: ["api/v1/customers/%1$s/integrations", path_id],
               body: parsed,
-              model: Stigg::Models::V1::Customers::IntegrationLinkResponse,
+              model: Stigg::V1::CustomerIntegrationResponse,
               options: options
             )
           end
@@ -138,7 +138,7 @@ module Stigg
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
-          # @return [Stigg::Models::V1::Customers::IntegrationUnlinkResponse]
+          # @return [Stigg::Models::V1::CustomerIntegrationResponse]
           #
           # @see Stigg::Models::V1::Customers::IntegrationUnlinkParams
           def unlink(integration_id, params)
@@ -150,7 +150,7 @@ module Stigg
             @client.request(
               method: :delete,
               path: ["api/v1/customers/%1$s/integrations/%2$s", id, integration_id],
-              model: Stigg::Models::V1::Customers::IntegrationUnlinkResponse,
+              model: Stigg::V1::CustomerIntegrationResponse,
               options: options
             )
           end

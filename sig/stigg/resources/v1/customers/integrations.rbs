@@ -7,14 +7,14 @@ module Stigg
             String integration_id,
             id: String,
             ?request_options: Stigg::request_opts
-          ) -> Stigg::Models::V1::Customers::IntegrationRetrieveResponse
+          ) -> Stigg::V1::CustomerIntegrationResponse
 
           def update: (
             String integration_id,
             id: String,
             synced_entity_id: String?,
             ?request_options: Stigg::request_opts
-          ) -> Stigg::Models::V1::Customers::IntegrationUpdateResponse
+          ) -> Stigg::V1::CustomerIntegrationResponse
 
           def list: (
             String id,
@@ -31,13 +31,13 @@ module Stigg
             synced_entity_id: String,
             vendor_identifier: Stigg::Models::V1::Customers::IntegrationLinkParams::vendor_identifier,
             ?request_options: Stigg::request_opts
-          ) -> Stigg::Models::V1::Customers::IntegrationLinkResponse
+          ) -> Stigg::V1::CustomerIntegrationResponse
 
           def unlink: (
             String integration_id,
             id: String,
             ?request_options: Stigg::request_opts
-          ) -> Stigg::Models::V1::Customers::IntegrationUnlinkResponse
+          ) -> Stigg::V1::CustomerIntegrationResponse
 
           def initialize: (client: Stigg::Client) -> void
         end

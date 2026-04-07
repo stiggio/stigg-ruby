@@ -10,7 +10,7 @@ module Stigg
             params(
               queue_name: String,
               request_options: Stigg::RequestOptions::OrHash
-            ).returns(Stigg::Models::Internal::Beta::EventQueueRetrieveResponse)
+            ).returns(Stigg::Models::Internal::Beta::EventQueueResponse)
           end
           def retrieve(
             # The queue name identifier
@@ -30,7 +30,7 @@ module Stigg
                   Stigg::Models::Internal::Beta::EventQueueUpdateParams::EventType::OrSymbol
                 ],
               request_options: Stigg::RequestOptions::OrHash
-            ).returns(Stigg::Models::Internal::Beta::EventQueueUpdateResponse)
+            ).returns(Stigg::Models::Internal::Beta::EventQueueResponse)
           end
           def update(
             # The queue name identifier
@@ -57,7 +57,7 @@ module Stigg
             params(
               queue_name: String,
               request_options: Stigg::RequestOptions::OrHash
-            ).returns(Stigg::Models::Internal::Beta::EventQueueDeleteResponse)
+            ).returns(Stigg::Models::Internal::Beta::EventQueueResponse)
           end
           def delete(
             # The queue name identifier
@@ -79,9 +79,7 @@ module Stigg
                 ],
               suffix: String,
               request_options: Stigg::RequestOptions::OrHash
-            ).returns(
-              Stigg::Models::Internal::Beta::EventQueueProvisionResponse
-            )
+            ).returns(Stigg::Models::Internal::Beta::EventQueueResponse)
           end
           def provision(
             # AWS region for the SQS queue (e.g., us-east-1, eu-west-1)

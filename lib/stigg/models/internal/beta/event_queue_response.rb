@@ -5,19 +5,19 @@ module Stigg
     module Internal
       module Beta
         # @see Stigg::Resources::Internal::Beta::EventQueues#retrieve
-        class EventQueueRetrieveResponse < Stigg::Internal::Type::BaseModel
+        class EventQueueResponse < Stigg::Internal::Type::BaseModel
           # @!attribute data
           #   Event queue provisioning status and details
           #
-          #   @return [Stigg::Models::Internal::Beta::EventQueueRetrieveResponse::Data]
-          required :data, -> { Stigg::Models::Internal::Beta::EventQueueRetrieveResponse::Data }
+          #   @return [Stigg::Models::Internal::Beta::EventQueueResponse::Data]
+          required :data, -> { Stigg::Models::Internal::Beta::EventQueueResponse::Data }
 
           # @!method initialize(data:)
           #   Response object
           #
-          #   @param data [Stigg::Models::Internal::Beta::EventQueueRetrieveResponse::Data] Event queue provisioning status and details
+          #   @param data [Stigg::Models::Internal::Beta::EventQueueResponse::Data] Event queue provisioning status and details
 
-          # @see Stigg::Models::Internal::Beta::EventQueueRetrieveResponse#data
+          # @see Stigg::Models::Internal::Beta::EventQueueResponse#data
           class Data < Stigg::Internal::Type::BaseModel
             # @!attribute created_at
             #   Timestamp of when the record was created
@@ -34,14 +34,14 @@ module Stigg
             # @!attribute region
             #   AWS region where the queue is deployed
             #
-            #   @return [Symbol, Stigg::Models::Internal::Beta::EventQueueRetrieveResponse::Data::Region]
-            required :region, enum: -> { Stigg::Models::Internal::Beta::EventQueueRetrieveResponse::Data::Region }
+            #   @return [Symbol, Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region]
+            required :region, enum: -> { Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region }
 
             # @!attribute status
             #   Current provisioning status
             #
-            #   @return [Symbol, Stigg::Models::Internal::Beta::EventQueueRetrieveResponse::Data::Status]
-            required :status, enum: -> { Stigg::Models::Internal::Beta::EventQueueRetrieveResponse::Data::Status }
+            #   @return [Symbol, Stigg::Models::Internal::Beta::EventQueueResponse::Data::Status]
+            required :status, enum: -> { Stigg::Models::Internal::Beta::EventQueueResponse::Data::Status }
 
             # @!attribute updated_at
             #   Timestamp of when the record was last updated
@@ -74,9 +74,9 @@ module Stigg
             #
             #   @param queue_name [String] Unique queue identifier
             #
-            #   @param region [Symbol, Stigg::Models::Internal::Beta::EventQueueRetrieveResponse::Data::Region] AWS region where the queue is deployed
+            #   @param region [Symbol, Stigg::Models::Internal::Beta::EventQueueResponse::Data::Region] AWS region where the queue is deployed
             #
-            #   @param status [Symbol, Stigg::Models::Internal::Beta::EventQueueRetrieveResponse::Data::Status] Current provisioning status
+            #   @param status [Symbol, Stigg::Models::Internal::Beta::EventQueueResponse::Data::Status] Current provisioning status
             #
             #   @param updated_at [Time] Timestamp of when the record was last updated
             #
@@ -88,7 +88,7 @@ module Stigg
 
             # AWS region where the queue is deployed
             #
-            # @see Stigg::Models::Internal::Beta::EventQueueRetrieveResponse::Data#region
+            # @see Stigg::Models::Internal::Beta::EventQueueResponse::Data#region
             module Region
               extend Stigg::Internal::Type::Enum
 
@@ -126,7 +126,7 @@ module Stigg
 
             # Current provisioning status
             #
-            # @see Stigg::Models::Internal::Beta::EventQueueRetrieveResponse::Data#status
+            # @see Stigg::Models::Internal::Beta::EventQueueResponse::Data#status
             module Status
               extend Stigg::Internal::Type::Enum
 
