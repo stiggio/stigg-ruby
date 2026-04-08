@@ -724,6 +724,11 @@ module Stigg
                 :EDGE_API_PLAN_CACHE_DATA_RESYNC,
                 Stigg::Models::Internal::Beta::EventQueueProvisionParams::EventType::TaggedSymbol
               )
+            EDGE_API_CUSTOM_CURRENCY_CACHE_DATA_RESYNC =
+              T.let(
+                :EDGE_API_CUSTOM_CURRENCY_CACHE_DATA_RESYNC,
+                Stigg::Models::Internal::Beta::EventQueueProvisionParams::EventType::TaggedSymbol
+              )
             REPLAY_WEBHOOK_EVENT =
               T.let(
                 :REPLAY_WEBHOOK_EVENT,
