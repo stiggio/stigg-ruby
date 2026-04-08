@@ -13,6 +13,7 @@ module Stigg
             start_date: Time,
             end_date: Time,
             group_by: String,
+            include_inactive_subscriptions: T::Boolean,
             resource_id: T.nilable(String),
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::Models::V1::UsageHistoryResponse)
@@ -28,6 +29,9 @@ module Stigg
           end_date: nil,
           # Query param: Criteria by which to group the usage history
           group_by: nil,
+          # Query param: When true, includes usage data from the most recent cancelled or
+          # expired subscription
+          include_inactive_subscriptions: nil,
           # Query param: Resource id
           resource_id: nil,
           request_options: {}
