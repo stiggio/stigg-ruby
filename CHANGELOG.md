@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.0-alpha.26 (2026-04-09)
+
+Full Changelog: [v0.1.0-alpha.25...v0.1.0-alpha.26](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.25...v0.1.0-alpha.26)
+
+### Features
+
+* **api:** add include_inactive_subscriptions parameter to usage history method ([efced83](https://github.com/stiggio/stigg-ruby/commit/efced83160364c549ecf61ea25e8dfb657232b4c))
+* **api:** stainless.yml ([d4c1cca](https://github.com/stiggio/stigg-ruby/commit/d4c1cca413f143cc9d3926c6f8f279dee9e29ea3))
+
+
+### Bug Fixes
+
+* multipart encoding for file arrays ([d14bf8d](https://github.com/stiggio/stigg-ruby/commit/d14bf8d38ee9f1127f9fc37246ae1e3deec95581))
+* **STIGG-7500:** stripe account not deauthorized when connected to multiple environments ([32a5de7](https://github.com/stiggio/stigg-ruby/commit/32a5de727a002863d9f69130722325036c0e3144))
+
 ## 0.1.0-alpha.25 (2026-04-06)
 
 Full Changelog: [v0.1.0-alpha.24...v0.1.0-alpha.25](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.24...v0.1.0-alpha.25)
