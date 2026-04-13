@@ -36,23 +36,13 @@ module Stigg
         #   @return [String, nil]
         optional :group_by, String
 
-        # @!attribute include_inactive_subscriptions
-        #   When true, includes usage data from the most recent cancelled or expired
-        #   subscription
-        #
-        #   @return [Boolean, nil]
-        optional :include_inactive_subscriptions, Stigg::Internal::Type::Boolean
-
         # @!attribute resource_id
         #   Resource id
         #
         #   @return [String, nil]
         optional :resource_id, String, nil?: true
 
-        # @!method initialize(customer_id:, feature_id:, start_date:, end_date: nil, group_by: nil, include_inactive_subscriptions: nil, resource_id: nil, request_options: {})
-        #   Some parameter documentations has been truncated, see
-        #   {Stigg::Models::V1::UsageHistoryParams} for more details.
-        #
+        # @!method initialize(customer_id:, feature_id:, start_date:, end_date: nil, group_by: nil, resource_id: nil, request_options: {})
         #   @param customer_id [String]
         #
         #   @param feature_id [String]
@@ -62,8 +52,6 @@ module Stigg
         #   @param end_date [Time] The end date of the range
         #
         #   @param group_by [String] Criteria by which to group the usage history
-        #
-        #   @param include_inactive_subscriptions [Boolean] When true, includes usage data from the most recent cancelled or expired subscri
         #
         #   @param resource_id [String, nil] Resource id
         #
