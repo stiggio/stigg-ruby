@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.27 (2026-04-13)
+
+Full Changelog: [v0.1.0-alpha.26...v0.1.0-alpha.27](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.26...v0.1.0-alpha.27)
+
+### Features
+
+* **api:** add currency resync to event queue, remove include_inactive_subscriptions param ([e8d45d5](https://github.com/stiggio/stigg-ruby/commit/e8d45d5831d7f20ea24c32c20667f8347dba1c8d))
+
 ## 0.1.0-alpha.26 (2026-04-09)
 
 Full Changelog: [v0.1.0-alpha.25...v0.1.0-alpha.26](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.25...v0.1.0-alpha.26)
