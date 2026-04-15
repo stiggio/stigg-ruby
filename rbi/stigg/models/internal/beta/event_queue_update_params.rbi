@@ -669,6 +669,26 @@ module Stigg
                 :FEATURE_GROUP_UN_ARCHIVED,
                 Stigg::Models::Internal::Beta::EventQueueUpdateParams::EventType::TaggedSymbol
               )
+            CUSTOM_CURRENCY_CREATED =
+              T.let(
+                :CUSTOM_CURRENCY_CREATED,
+                Stigg::Models::Internal::Beta::EventQueueUpdateParams::EventType::TaggedSymbol
+              )
+            CUSTOM_CURRENCY_UPDATED =
+              T.let(
+                :CUSTOM_CURRENCY_UPDATED,
+                Stigg::Models::Internal::Beta::EventQueueUpdateParams::EventType::TaggedSymbol
+              )
+            CUSTOM_CURRENCY_ARCHIVED =
+              T.let(
+                :CUSTOM_CURRENCY_ARCHIVED,
+                Stigg::Models::Internal::Beta::EventQueueUpdateParams::EventType::TaggedSymbol
+              )
+            CUSTOM_CURRENCY_UNARCHIVED =
+              T.let(
+                :CUSTOM_CURRENCY_UNARCHIVED,
+                Stigg::Models::Internal::Beta::EventQueueUpdateParams::EventType::TaggedSymbol
+              )
             STRIPE_APP_DRAWER_VIEWED =
               T.let(
                 :STRIPE_APP_DRAWER_VIEWED,
