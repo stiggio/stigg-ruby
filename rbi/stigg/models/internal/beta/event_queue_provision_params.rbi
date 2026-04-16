@@ -584,6 +584,11 @@ module Stigg
                 :INCOMING_APP_STORE_WEBHOOK,
                 Stigg::Models::Internal::Beta::EventQueueProvisionParams::EventType::TaggedSymbol
               )
+            INCOMING_AIRBYTE_WEBHOOK =
+              T.let(
+                :INCOMING_AIRBYTE_WEBHOOK,
+                Stigg::Models::Internal::Beta::EventQueueProvisionParams::EventType::TaggedSymbol
+              )
             RESYNC_INTEGRATION =
               T.let(
                 :RESYNC_INTEGRATION,
@@ -607,6 +612,11 @@ module Stigg
             SYNC_FAILED =
               T.let(
                 :SYNC_FAILED,
+                Stigg::Models::Internal::Beta::EventQueueProvisionParams::EventType::TaggedSymbol
+              )
+            DATA_EXPORT_SYNC_FAILED =
+              T.let(
+                :DATA_EXPORT_SYNC_FAILED,
                 Stigg::Models::Internal::Beta::EventQueueProvisionParams::EventType::TaggedSymbol
               )
             CUSTOMER_PAYMENT_FAILED =
