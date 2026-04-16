@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.0-alpha.28 (2026-04-16)
+
+Full Changelog: [v0.1.0-alpha.27...v0.1.0-alpha.28](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.27...v0.1.0-alpha.28)
+
+### Features
+
+* **api:** add custom currency event types to event_queue_provision/update_params ([363362b](https://github.com/stiggio/stigg-ruby/commit/363362bf8aca1846b69d1f6559b4b9fb2680b20e))
+* **api:** add event type enums, remove include_inactive_subscriptions from usage history ([b3080e5](https://github.com/stiggio/stigg-ruby/commit/b3080e58c85c267d25dc10d7144418a0b8a016e8))
+
 ## 0.1.0-alpha.27 (2026-04-13)
 
 Full Changelog: [v0.1.0-alpha.26...v0.1.0-alpha.27](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.26...v0.1.0-alpha.27)
