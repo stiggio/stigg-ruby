@@ -6,7 +6,9 @@ module Stigg
           {
             customer_id: String,
             currency_id: String,
+            end_date: Time,
             resource_id: String,
+            start_date: Time,
             time_range: Stigg::Models::V1::Events::CreditGetUsageParams::time_range
           }
           & Stigg::Internal::Type::request_parameters
@@ -21,9 +23,17 @@ module Stigg
 
           def currency_id=: (String) -> String
 
+          attr_reader end_date: Time?
+
+          def end_date=: (Time) -> Time
+
           attr_reader resource_id: String?
 
           def resource_id=: (String) -> String
+
+          attr_reader start_date: Time?
+
+          def start_date=: (Time) -> Time
 
           attr_reader time_range: Stigg::Models::V1::Events::CreditGetUsageParams::time_range?
 
@@ -34,7 +44,9 @@ module Stigg
           def initialize: (
             customer_id: String,
             ?currency_id: String,
+            ?end_date: Time,
             ?resource_id: String,
+            ?start_date: Time,
             ?time_range: Stigg::Models::V1::Events::CreditGetUsageParams::time_range,
             ?request_options: Stigg::request_opts
           ) -> void
@@ -42,7 +54,9 @@ module Stigg
           def to_hash: -> {
             customer_id: String,
             currency_id: String,
+            end_date: Time,
             resource_id: String,
+            start_date: Time,
             time_range: Stigg::Models::V1::Events::CreditGetUsageParams::time_range,
             request_options: Stigg::RequestOptions
           }

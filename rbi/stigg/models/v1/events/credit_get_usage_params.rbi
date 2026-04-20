@@ -27,12 +27,28 @@ module Stigg
           sig { params(currency_id: String).void }
           attr_writer :currency_id
 
+          # End date for the credit usage time range (ISO 8601). Defaults to now when
+          # startDate is provided
+          sig { returns(T.nilable(Time)) }
+          attr_reader :end_date
+
+          sig { params(end_date: Time).void }
+          attr_writer :end_date
+
           # Filter by resource ID
           sig { returns(T.nilable(String)) }
           attr_reader :resource_id
 
           sig { params(resource_id: String).void }
           attr_writer :resource_id
+
+          # Start date for the credit usage time range (ISO 8601). Takes precedence over
+          # timeRange when provided
+          sig { returns(T.nilable(Time)) }
+          attr_reader :start_date
+
+          sig { params(start_date: Time).void }
+          attr_writer :start_date
 
           # Time range for usage data (LAST_DAY, LAST_WEEK, LAST_MONTH, LAST_YEAR). Defaults
           # to LAST_MONTH
@@ -57,7 +73,9 @@ module Stigg
             params(
               customer_id: String,
               currency_id: String,
+              end_date: Time,
               resource_id: String,
+              start_date: Time,
               time_range:
                 Stigg::V1::Events::CreditGetUsageParams::TimeRange::OrSymbol,
               request_options: Stigg::RequestOptions::OrHash
@@ -68,8 +86,14 @@ module Stigg
             customer_id:,
             # Filter by currency ID
             currency_id: nil,
+            # End date for the credit usage time range (ISO 8601). Defaults to now when
+            # startDate is provided
+            end_date: nil,
             # Filter by resource ID
             resource_id: nil,
+            # Start date for the credit usage time range (ISO 8601). Takes precedence over
+            # timeRange when provided
+            start_date: nil,
             # Time range for usage data (LAST_DAY, LAST_WEEK, LAST_MONTH, LAST_YEAR). Defaults
             # to LAST_MONTH
             time_range: nil,
@@ -82,7 +106,9 @@ module Stigg
               {
                 customer_id: String,
                 currency_id: String,
+                end_date: Time,
                 resource_id: String,
+                start_date: Time,
                 time_range:
                   Stigg::V1::Events::CreditGetUsageParams::TimeRange::OrSymbol,
                 request_options: Stigg::RequestOptions
