@@ -14,7 +14,9 @@ module Stigg
           def get_usage: (
             customer_id: String,
             ?currency_id: String,
+            ?end_date: Time,
             ?resource_id: String,
+            ?start_date: Time,
             ?time_range: Stigg::Models::V1::Events::CreditGetUsageParams::time_range,
             ?request_options: Stigg::request_opts
           ) -> Stigg::Models::V1::Events::CreditGetUsageResponse

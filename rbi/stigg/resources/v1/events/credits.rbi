@@ -33,7 +33,9 @@ module Stigg
             params(
               customer_id: String,
               currency_id: String,
+              end_date: Time,
               resource_id: String,
+              start_date: Time,
               time_range:
                 Stigg::V1::Events::CreditGetUsageParams::TimeRange::OrSymbol,
               request_options: Stigg::RequestOptions::OrHash
@@ -44,8 +46,14 @@ module Stigg
             customer_id:,
             # Filter by currency ID
             currency_id: nil,
+            # End date for the credit usage time range (ISO 8601). Defaults to now when
+            # startDate is provided
+            end_date: nil,
             # Filter by resource ID
             resource_id: nil,
+            # Start date for the credit usage time range (ISO 8601). Takes precedence over
+            # timeRange when provided
+            start_date: nil,
             # Time range for usage data (LAST_DAY, LAST_WEEK, LAST_MONTH, LAST_YEAR). Defaults
             # to LAST_MONTH
             time_range: nil,
