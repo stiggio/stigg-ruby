@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.29 (2026-04-21)
+
+Full Changelog: [v0.1.0-alpha.28...v0.1.0-alpha.29](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.28...v0.1.0-alpha.29)
+
+### Features
+
+* **api:** add start_date and end_date parameters to credits.get_usage ([6fd528a](https://github.com/stiggio/stigg-ruby/commit/6fd528a895700d6177c7085f1625dcfb42f19480))
+
 ## 0.1.0-alpha.28 (2026-04-16)
 
 Full Changelog: [v0.1.0-alpha.27...v0.1.0-alpha.28](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.27...v0.1.0-alpha.28)
