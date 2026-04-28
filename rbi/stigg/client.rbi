@@ -16,9 +16,6 @@ module Stigg
     sig { returns(Stigg::Resources::V1) }
     attr_reader :v1
 
-    sig { returns(Stigg::Resources::Internal) }
-    attr_reader :internal
-
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers
