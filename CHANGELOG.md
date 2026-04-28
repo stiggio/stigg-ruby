@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.30 (2026-04-28)
+
+Full Changelog: [v0.1.0-alpha.29...v0.1.0-alpha.30](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.29...v0.1.0-alpha.30)
+
+### Features
+
+* support setting headers via env ([8c29e2f](https://github.com/stiggio/stigg-ruby/commit/8c29e2fcbdd7bf7cde22995e5e7676ef8e785472))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([0ebf6af](https://github.com/stiggio/stigg-ruby/commit/0ebf6af806639e8c0f2b2c570ef8dceadda1887c))
+
 ## 0.1.0-alpha.29 (2026-04-21)
 
 Full Changelog: [v0.1.0-alpha.28...v0.1.0-alpha.29](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.28...v0.1.0-alpha.29)
