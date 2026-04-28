@@ -1,9 +1,0 @@
-module Stigg
-  module Resources
-    class Internal
-      attr_reader beta: Stigg::Resources::Internal::Beta
-
-      def initialize: (client: Stigg::Client) -> void
-    end
-  end
-end
