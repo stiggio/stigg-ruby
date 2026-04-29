@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.31 (2026-04-29)
+
+Full Changelog: [v0.1.0-alpha.30...v0.1.0-alpha.31](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.30...v0.1.0-alpha.31)
+
+### Features
+
+* **api:** remove event_queues endpoints ([70b4848](https://github.com/stiggio/stigg-ruby/commit/70b48481f3bcf3b527c3c695e5410910726829f1))
+
 ## 0.1.0-alpha.30 (2026-04-28)
 
 Full Changelog: [v0.1.0-alpha.29...v0.1.0-alpha.30](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.29...v0.1.0-alpha.30)
