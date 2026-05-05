@@ -1,0 +1,11 @@
+module Stigg
+  module Resources
+    class Internal
+      class Beta
+        class EventQueues
+          def initialize: (client: Stigg::Client) -> void
+        end
+      end
+    end
+  end
+end
