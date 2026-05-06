@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.33 (2026-05-06)
+
+Full Changelog: [v0.1.0-alpha.32...v0.1.0-alpha.33](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.32...v0.1.0-alpha.33)
+
+### Bug Fixes
+
+* **types:** remove RECURRING value from GrantType in credits grant_create_params ([99aec20](https://github.com/stiggio/stigg-ruby/commit/99aec208645aa7e4ae32acad0488733a76a1b638))
+
 ## 0.1.0-alpha.32 (2026-05-06)
 
 Full Changelog: [v0.1.0-alpha.31...v0.1.0-alpha.32](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.31...v0.1.0-alpha.32)
