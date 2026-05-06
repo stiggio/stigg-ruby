@@ -135,6 +135,44 @@ module Stigg
         )
         end
 
+        # Checks a single entitlement (feature or credit) for a customer or resource.
+        # Supports `requestedUsage` and `requestedValues` to evaluate against limits or
+        # enum values.
+        #
+        # **Warning:** This REST API endpoint lacks built-in client-side caching, fallback
+        # mechanisms, and low-latency guarantees. It is not recommended for hot-path
+        # entitlement checks. For production use, consider using the Stigg Node Server SDK
+        # with caching or the Sidecar for low-latency cached responses.
+        sig do
+          params(
+            id: String,
+            currency_id: String,
+            feature_id: String,
+            requested_usage: Integer,
+            requested_values: T::Array[String],
+            resource_id: String,
+            request_options: Stigg::RequestOptions::OrHash
+          ).returns(Stigg::Models::V1::CustomerCheckEntitlementResponse)
+        end
+        def check_entitlement(
+          # The unique identifier of the entity
+          id,
+          # Currency ID (refId) to check for credit entitlements. Mutually exclusive with
+          # `featureId`.
+          currency_id: nil,
+          # Feature ID (refId) to check. Mutually exclusive with `currencyId`.
+          feature_id: nil,
+          # Requested usage amount to evaluate against the entitlement limit (numeric
+          # features only)
+          requested_usage: nil,
+          # Requested values to evaluate against allowed values (enum features only)
+          requested_values: nil,
+          # Resource ID to scope the entitlement check to a specific resource
+          resource_id: nil,
+          request_options: {}
+        )
+        end
+
         # Imports multiple customers in bulk. Used for migrating customer data from
         # external systems.
         sig do

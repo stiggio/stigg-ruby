@@ -43,6 +43,16 @@ module Stigg
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::CustomerResponse
 
+        def check_entitlement: (
+          String id,
+          ?currency_id: String,
+          ?feature_id: String,
+          ?requested_usage: Integer,
+          ?requested_values: ::Array[String],
+          ?resource_id: String,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::Models::V1::CustomerCheckEntitlementResponse
+
         def import: (
           customers: ::Array[Stigg::V1::CustomerImportParams::Customer],
           ?integration_id: String,
