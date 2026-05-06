@@ -134,6 +134,55 @@ module Stigg
           )
         end
 
+        # Some parameter documentations has been truncated, see
+        # {Stigg::Models::V1::CustomerCheckEntitlementParams} for more details.
+        #
+        # Checks a single entitlement (feature or credit) for a customer or resource.
+        # Supports `requestedUsage` and `requestedValues` to evaluate against limits or
+        # enum values.
+        #
+        # **Warning:** This REST API endpoint lacks built-in client-side caching, fallback
+        # mechanisms, and low-latency guarantees. It is not recommended for hot-path
+        # entitlement checks. For production use, consider using the Stigg Node Server SDK
+        # with caching or the Sidecar for low-latency cached responses.
+        #
+        # @overload check_entitlement(id, currency_id: nil, feature_id: nil, requested_usage: nil, requested_values: nil, resource_id: nil, request_options: {})
+        #
+        # @param id [String] The unique identifier of the entity
+        #
+        # @param currency_id [String] Currency ID (refId) to check for credit entitlements. Mutually exclusive with `f
+        #
+        # @param feature_id [String] Feature ID (refId) to check. Mutually exclusive with `currencyId`.
+        #
+        # @param requested_usage [Integer] Requested usage amount to evaluate against the entitlement limit (numeric featur
+        #
+        # @param requested_values [Array<String>] Requested values to evaluate against allowed values (enum features only)
+        #
+        # @param resource_id [String] Resource ID to scope the entitlement check to a specific resource
+        #
+        # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [Stigg::Models::V1::CustomerCheckEntitlementResponse]
+        #
+        # @see Stigg::Models::V1::CustomerCheckEntitlementParams
+        def check_entitlement(id, params = {})
+          parsed, options = Stigg::V1::CustomerCheckEntitlementParams.dump_request(params)
+          query = Stigg::Internal::Util.encode_query_params(parsed)
+          @client.request(
+            method: :get,
+            path: ["api/v1/customers/%1$s/entitlements/check", id],
+            query: query.transform_keys(
+              currency_id: "currencyId",
+              feature_id: "featureId",
+              requested_usage: "requestedUsage",
+              requested_values: "requestedValues",
+              resource_id: "resourceId"
+            ),
+            model: Stigg::Models::V1::CustomerCheckEntitlementResponse,
+            options: options
+          )
+        end
+
         # Imports multiple customers in bulk. Used for migrating customer data from
         # external systems.
         #
