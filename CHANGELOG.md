@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.32 (2026-05-06)
+
+Full Changelog: [v0.1.0-alpha.31...v0.1.0-alpha.32](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.31...v0.1.0-alpha.32)
+
+### Features
+
+* **api:** add check_entitlement method to customers ([9674756](https://github.com/stiggio/stigg-ruby/commit/9674756aad61c7a93dc4eb27947563c35eec46a5))
+
+
+### Chores
+
+* **internal:** regenerate SDK with no functional changes ([c50162d](https://github.com/stiggio/stigg-ruby/commit/c50162dea06451169a1edede170c995999c6d4fb))
+
 ## 0.1.0-alpha.31 (2026-04-29)
 
 Full Changelog: [v0.1.0-alpha.30...v0.1.0-alpha.31](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.30...v0.1.0-alpha.31)
