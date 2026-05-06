@@ -35,7 +35,7 @@ module Stigg
             required :display_name, String, api_name: :displayName
 
             # @!attribute grant_type
-            #   The type of credit grant (PAID, PROMOTIONAL, RECURRING)
+            #   The type of credit grant (PAID, PROMOTIONAL)
             #
             #   @return [Symbol, Stigg::Models::V1::Events::Credits::GrantCreateParams::GrantType]
             required :grant_type,
@@ -117,7 +117,7 @@ module Stigg
             #
             #   @param display_name [String] The display name for the credit grant
             #
-            #   @param grant_type [Symbol, Stigg::Models::V1::Events::Credits::GrantCreateParams::GrantType] The type of credit grant (PAID, PROMOTIONAL, RECURRING)
+            #   @param grant_type [Symbol, Stigg::Models::V1::Events::Credits::GrantCreateParams::GrantType] The type of credit grant (PAID, PROMOTIONAL)
             #
             #   @param await_payment_confirmation [Boolean] Whether to wait for payment confirmation before returning (default: true)
             #
@@ -141,14 +141,12 @@ module Stigg
             #
             #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 
-            # The type of credit grant (PAID, PROMOTIONAL, RECURRING)
+            # The type of credit grant (PAID, PROMOTIONAL)
             module GrantType
               extend Stigg::Internal::Type::Enum
 
               PAID = :PAID
               PROMOTIONAL = :PROMOTIONAL
-              RECURRING = :RECURRING
-              OVERDRAFT = :OVERDRAFT
 
               # @!method self.values
               #   @return [Array<Symbol>]

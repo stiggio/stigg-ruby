@@ -33,7 +33,7 @@ module Stigg
             sig { returns(String) }
             attr_accessor :display_name
 
-            # The type of credit grant (PAID, PROMOTIONAL, RECURRING)
+            # The type of credit grant (PAID, PROMOTIONAL)
             sig do
               returns(
                 Stigg::V1::Events::Credits::GrantCreateParams::GrantType::OrSymbol
@@ -175,7 +175,7 @@ module Stigg
               customer_id:,
               # The display name for the credit grant
               display_name:,
-              # The type of credit grant (PAID, PROMOTIONAL, RECURRING)
+              # The type of credit grant (PAID, PROMOTIONAL)
               grant_type:,
               # Whether to wait for payment confirmation before returning (default: true)
               await_payment_confirmation: nil,
@@ -229,7 +229,7 @@ module Stigg
             def to_hash
             end
 
-            # The type of credit grant (PAID, PROMOTIONAL, RECURRING)
+            # The type of credit grant (PAID, PROMOTIONAL)
             module GrantType
               extend Stigg::Internal::Type::Enum
 
@@ -250,16 +250,6 @@ module Stigg
               PROMOTIONAL =
                 T.let(
                   :PROMOTIONAL,
-                  Stigg::V1::Events::Credits::GrantCreateParams::GrantType::TaggedSymbol
-                )
-              RECURRING =
-                T.let(
-                  :RECURRING,
-                  Stigg::V1::Events::Credits::GrantCreateParams::GrantType::TaggedSymbol
-                )
-              OVERDRAFT =
-                T.let(
-                  :OVERDRAFT,
                   Stigg::V1::Events::Credits::GrantCreateParams::GrantType::TaggedSymbol
                 )
 
