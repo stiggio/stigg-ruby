@@ -42,7 +42,7 @@ module Stigg
               customer_id:,
               # The display name for the credit grant
               display_name:,
-              # The type of credit grant (PAID, PROMOTIONAL, RECURRING)
+              # The type of credit grant (PAID, PROMOTIONAL)
               grant_type:,
               # Whether to wait for payment confirmation before returning (default: true)
               await_payment_confirmation: nil,

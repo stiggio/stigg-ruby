@@ -121,15 +121,13 @@ module Stigg
               request_options: Stigg::RequestOptions
             }
 
-            type grant_type = :PAID | :PROMOTIONAL | :RECURRING | :OVERDRAFT
+            type grant_type = :PAID | :PROMOTIONAL
 
             module GrantType
               extend Stigg::Internal::Type::Enum
 
               PAID: :PAID
               PROMOTIONAL: :PROMOTIONAL
-              RECURRING: :RECURRING
-              OVERDRAFT: :OVERDRAFT
 
               def self?.values: -> ::Array[Stigg::Models::V1::Events::Credits::GrantCreateParams::grant_type]
             end
