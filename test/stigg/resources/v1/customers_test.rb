@@ -88,6 +88,22 @@ class Stigg::Test::Resources::V1::CustomersTest < Stigg::Test::ResourceTest
     end
   end
 
+  def test_check_entitlement
+    skip("Mock server tests are disabled")
+
+    response = @stigg.v1.customers.check_entitlement("x")
+
+    assert_pattern do
+      response => Stigg::Models::V1::CustomerCheckEntitlementResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: Stigg::Models::V1::CustomerCheckEntitlementResponse::Data
+      }
+    end
+  end
+
   def test_import_required_params
     skip("Mock server tests are disabled")
 
