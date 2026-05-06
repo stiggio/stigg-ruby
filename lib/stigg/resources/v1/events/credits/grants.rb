@@ -20,7 +20,7 @@ module Stigg
             #
             # @param display_name [String] The display name for the credit grant
             #
-            # @param grant_type [Symbol, Stigg::Models::V1::Events::Credits::GrantCreateParams::GrantType] The type of credit grant (PAID, PROMOTIONAL, RECURRING)
+            # @param grant_type [Symbol, Stigg::Models::V1::Events::Credits::GrantCreateParams::GrantType] The type of credit grant (PAID, PROMOTIONAL)
             #
             # @param await_payment_confirmation [Boolean] Whether to wait for payment confirmation before returning (default: true)
             #
