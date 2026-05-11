@@ -6,9 +6,6 @@ module Stigg
       module Addons
       end
 
-      module Beta
-      end
-
       module Credits
       end
 
@@ -17,11 +14,6 @@ module Stigg
 
       module Events
         module Credits
-        end
-      end
-
-      module Internal
-        module Beta
         end
       end
 
