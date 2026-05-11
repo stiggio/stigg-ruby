@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.34 (2026-05-11)
+
+Full Changelog: [v0.1.0-alpha.33...v0.1.0-alpha.34](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.33...v0.1.0-alpha.34)
+
+### Features
+
+* **api:** manual updates ([f5ac99f](https://github.com/stiggio/stigg-ruby/commit/f5ac99f4ba5b80ecf5dab7a6d5ae65481c218c2d))
+
 ## 0.1.0-alpha.33 (2026-05-06)
 
 Full Changelog: [v0.1.0-alpha.32...v0.1.0-alpha.33](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.32...v0.1.0-alpha.33)
