@@ -79,10 +79,17 @@ module Stigg
             after: String,
             before: String,
             created_at: Stigg::V1::FeatureListFeaturesParams::CreatedAt::OrHash,
-            feature_type: String,
+            feature_type:
+              T::Array[
+                Stigg::V1::FeatureListFeaturesParams::FeatureType::OrSymbol
+              ],
             limit: Integer,
-            meter_type: String,
-            status: String,
+            meter_type:
+              T::Array[
+                Stigg::V1::FeatureListFeaturesParams::MeterType::OrSymbol
+              ],
+            status:
+              T::Array[Stigg::V1::FeatureListFeaturesParams::Status::OrSymbol],
             request_options: Stigg::RequestOptions::OrHash
           ).returns(
             Stigg::Internal::MyCursorIDPage[

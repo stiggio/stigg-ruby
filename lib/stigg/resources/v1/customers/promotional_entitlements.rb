@@ -49,7 +49,7 @@ module Stigg
           #
           # @param limit [Integer] Maximum number of items to return
           #
-          # @param status [String] Filter by promotional entitlement status. Supports comma-separated values for mu
+          # @param status [Array<Symbol, Stigg::Models::V1::Customers::PromotionalEntitlementListParams::Status>] Filter by promotional entitlement status. Supports comma-separated values for mu
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #

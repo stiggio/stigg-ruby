@@ -36,8 +36,9 @@ module Stigg
           #   Filter by vendor identifier. Supports comma-separated values for multiple
           #   vendors (e.g., STRIPE,HUBSPOT)
           #
-          #   @return [String, nil]
-          optional :vendor_identifier, String
+          #   @return [Array<Symbol, Stigg::Models::V1::Customers::IntegrationListParams::VendorIdentifier>, nil]
+          optional :vendor_identifier,
+                   -> { Stigg::Internal::Type::ArrayOf[enum: Stigg::V1::Customers::IntegrationListParams::VendorIdentifier] }
 
           # @!method initialize(id:, after: nil, before: nil, limit: nil, vendor_identifier: nil, request_options: {})
           #   Some parameter documentations has been truncated, see
@@ -51,9 +52,27 @@ module Stigg
           #
           #   @param limit [Integer] Maximum number of items to return
           #
-          #   @param vendor_identifier [String] Filter by vendor identifier. Supports comma-separated values for multiple vendor
+          #   @param vendor_identifier [Array<Symbol, Stigg::Models::V1::Customers::IntegrationListParams::VendorIdentifier>] Filter by vendor identifier. Supports comma-separated values for multiple vendor
           #
           #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
+
+          module VendorIdentifier
+            extend Stigg::Internal::Type::Enum
+
+            AUTH0 = :AUTH0
+            ZUORA = :ZUORA
+            STRIPE = :STRIPE
+            HUBSPOT = :HUBSPOT
+            AWS_MARKETPLACE = :AWS_MARKETPLACE
+            SNOWFLAKE = :SNOWFLAKE
+            SALESFORCE = :SALESFORCE
+            BIG_QUERY = :BIG_QUERY
+            OPEN_FGA = :OPEN_FGA
+            APP_STORE = :APP_STORE
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
         end
       end
     end

@@ -41,7 +41,7 @@ module Stigg
           ?created_at: Stigg::V1::AddonListParams::CreatedAt,
           ?limit: Integer,
           ?product_id: String,
-          ?status: String,
+          ?status: ::Array[Stigg::Models::V1::AddonListParams::status],
           ?request_options: Stigg::request_opts
         ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::AddonListResponse]
 

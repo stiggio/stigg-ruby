@@ -110,11 +110,11 @@ module Stigg
         #
         # @param plan_id [String] Filter by plan ID
         #
-        # @param pricing_type [String] Filter by pricing type. Supports comma-separated values for multiple types
+        # @param pricing_type [Array<Symbol, Stigg::Models::V1::SubscriptionListParams::PricingType>] Filter by pricing type. Supports comma-separated values for multiple types
         #
         # @param resource_id [String] Filter by resource ID
         #
-        # @param status [String] Filter by subscription status. Supports comma-separated values for multiple stat
+        # @param status [Array<Symbol, Stigg::Models::V1::SubscriptionListParams::Status>] Filter by subscription status. Supports comma-separated values for multiple stat
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #

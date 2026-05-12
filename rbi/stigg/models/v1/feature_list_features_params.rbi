@@ -50,10 +50,25 @@ module Stigg
         attr_writer :created_at
 
         # Filter by feature type. Supports comma-separated values for multiple types
-        sig { returns(T.nilable(String)) }
+        sig do
+          returns(
+            T.nilable(
+              T::Array[
+                Stigg::V1::FeatureListFeaturesParams::FeatureType::OrSymbol
+              ]
+            )
+          )
+        end
         attr_reader :feature_type
 
-        sig { params(feature_type: String).void }
+        sig do
+          params(
+            feature_type:
+              T::Array[
+                Stigg::V1::FeatureListFeaturesParams::FeatureType::OrSymbol
+              ]
+          ).void
+        end
         attr_writer :feature_type
 
         # Maximum number of items to return
@@ -64,17 +79,43 @@ module Stigg
         attr_writer :limit
 
         # Filter by meter type. Supports comma-separated values for multiple types
-        sig { returns(T.nilable(String)) }
+        sig do
+          returns(
+            T.nilable(
+              T::Array[
+                Stigg::V1::FeatureListFeaturesParams::MeterType::OrSymbol
+              ]
+            )
+          )
+        end
         attr_reader :meter_type
 
-        sig { params(meter_type: String).void }
+        sig do
+          params(
+            meter_type:
+              T::Array[
+                Stigg::V1::FeatureListFeaturesParams::MeterType::OrSymbol
+              ]
+          ).void
+        end
         attr_writer :meter_type
 
         # Filter by feature status. Supports comma-separated values for multiple statuses
-        sig { returns(T.nilable(String)) }
+        sig do
+          returns(
+            T.nilable(
+              T::Array[Stigg::V1::FeatureListFeaturesParams::Status::OrSymbol]
+            )
+          )
+        end
         attr_reader :status
 
-        sig { params(status: String).void }
+        sig do
+          params(
+            status:
+              T::Array[Stigg::V1::FeatureListFeaturesParams::Status::OrSymbol]
+          ).void
+        end
         attr_writer :status
 
         sig do
@@ -83,10 +124,17 @@ module Stigg
             after: String,
             before: String,
             created_at: Stigg::V1::FeatureListFeaturesParams::CreatedAt::OrHash,
-            feature_type: String,
+            feature_type:
+              T::Array[
+                Stigg::V1::FeatureListFeaturesParams::FeatureType::OrSymbol
+              ],
             limit: Integer,
-            meter_type: String,
-            status: String,
+            meter_type:
+              T::Array[
+                Stigg::V1::FeatureListFeaturesParams::MeterType::OrSymbol
+              ],
+            status:
+              T::Array[Stigg::V1::FeatureListFeaturesParams::Status::OrSymbol],
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -118,10 +166,19 @@ module Stigg
               after: String,
               before: String,
               created_at: Stigg::V1::FeatureListFeaturesParams::CreatedAt,
-              feature_type: String,
+              feature_type:
+                T::Array[
+                  Stigg::V1::FeatureListFeaturesParams::FeatureType::OrSymbol
+                ],
               limit: Integer,
-              meter_type: String,
-              status: String,
+              meter_type:
+                T::Array[
+                  Stigg::V1::FeatureListFeaturesParams::MeterType::OrSymbol
+                ],
+              status:
+                T::Array[
+                  Stigg::V1::FeatureListFeaturesParams::Status::OrSymbol
+                ],
               request_options: Stigg::RequestOptions
             }
           )
@@ -186,6 +243,114 @@ module Stigg
 
           sig { override.returns({ gt: Time, gte: Time, lt: Time, lte: Time }) }
           def to_hash
+          end
+        end
+
+        module FeatureType
+          extend Stigg::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Stigg::V1::FeatureListFeaturesParams::FeatureType)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          BOOLEAN =
+            T.let(
+              :BOOLEAN,
+              Stigg::V1::FeatureListFeaturesParams::FeatureType::TaggedSymbol
+            )
+          NUMBER =
+            T.let(
+              :NUMBER,
+              Stigg::V1::FeatureListFeaturesParams::FeatureType::TaggedSymbol
+            )
+          ENUM =
+            T.let(
+              :ENUM,
+              Stigg::V1::FeatureListFeaturesParams::FeatureType::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Stigg::V1::FeatureListFeaturesParams::FeatureType::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        module MeterType
+          extend Stigg::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Stigg::V1::FeatureListFeaturesParams::MeterType)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          NONE =
+            T.let(
+              :None,
+              Stigg::V1::FeatureListFeaturesParams::MeterType::TaggedSymbol
+            )
+          FLUCTUATING =
+            T.let(
+              :FLUCTUATING,
+              Stigg::V1::FeatureListFeaturesParams::MeterType::TaggedSymbol
+            )
+          INCREMENTAL =
+            T.let(
+              :INCREMENTAL,
+              Stigg::V1::FeatureListFeaturesParams::MeterType::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Stigg::V1::FeatureListFeaturesParams::MeterType::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        module Status
+          extend Stigg::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Stigg::V1::FeatureListFeaturesParams::Status)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          NEW =
+            T.let(
+              :NEW,
+              Stigg::V1::FeatureListFeaturesParams::Status::TaggedSymbol
+            )
+          SUSPENDED =
+            T.let(
+              :SUSPENDED,
+              Stigg::V1::FeatureListFeaturesParams::Status::TaggedSymbol
+            )
+          ACTIVE =
+            T.let(
+              :ACTIVE,
+              Stigg::V1::FeatureListFeaturesParams::Status::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Stigg::V1::FeatureListFeaturesParams::Status::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
           end
         end
       end

@@ -40,9 +40,9 @@ module Stigg
           ?customer_id: String,
           ?limit: Integer,
           ?plan_id: String,
-          ?pricing_type: String,
+          ?pricing_type: ::Array[Stigg::Models::V1::SubscriptionListParams::pricing_type],
           ?resource_id: String,
-          ?status: String,
+          ?status: ::Array[Stigg::Models::V1::SubscriptionListParams::status],
           ?request_options: Stigg::request_opts
         ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::SubscriptionListResponse]
 

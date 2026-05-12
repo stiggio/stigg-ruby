@@ -52,10 +52,18 @@ module Stigg
         attr_writer :limit
 
         # Filter by coupon status. Supports comma-separated values for multiple statuses
-        sig { returns(T.nilable(String)) }
+        sig do
+          returns(
+            T.nilable(T::Array[Stigg::V1::CouponListParams::Status::OrSymbol])
+          )
+        end
         attr_reader :status
 
-        sig { params(status: String).void }
+        sig do
+          params(
+            status: T::Array[Stigg::V1::CouponListParams::Status::OrSymbol]
+          ).void
+        end
         attr_writer :status
 
         # Filter by coupon type (FIXED or PERCENTAGE)
@@ -72,7 +80,7 @@ module Stigg
             before: String,
             created_at: Stigg::V1::CouponListParams::CreatedAt::OrHash,
             limit: Integer,
-            status: String,
+            status: T::Array[Stigg::V1::CouponListParams::Status::OrSymbol],
             type: Stigg::V1::CouponListParams::Type::OrSymbol,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
@@ -104,7 +112,7 @@ module Stigg
               before: String,
               created_at: Stigg::V1::CouponListParams::CreatedAt,
               limit: Integer,
-              status: String,
+              status: T::Array[Stigg::V1::CouponListParams::Status::OrSymbol],
               type: Stigg::V1::CouponListParams::Type::OrSymbol,
               request_options: Stigg::RequestOptions
             }
@@ -170,6 +178,27 @@ module Stigg
 
           sig { override.returns({ gt: Time, gte: Time, lt: Time, lte: Time }) }
           def to_hash
+          end
+        end
+
+        module Status
+          extend Stigg::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias { T.all(Symbol, Stigg::V1::CouponListParams::Status) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          ACTIVE =
+            T.let(:ACTIVE, Stigg::V1::CouponListParams::Status::TaggedSymbol)
+          ARCHIVED =
+            T.let(:ARCHIVED, Stigg::V1::CouponListParams::Status::TaggedSymbol)
+
+          sig do
+            override.returns(
+              T::Array[Stigg::V1::CouponListParams::Status::TaggedSymbol]
+            )
+          end
+          def self.values
           end
         end
 

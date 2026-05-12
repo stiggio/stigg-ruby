@@ -109,7 +109,7 @@ module Stigg
             created_at: Stigg::V1::AddonListParams::CreatedAt::OrHash,
             limit: Integer,
             product_id: String,
-            status: String,
+            status: T::Array[Stigg::V1::AddonListParams::Status::OrSymbol],
             request_options: Stigg::RequestOptions::OrHash
           ).returns(
             Stigg::Internal::MyCursorIDPage[

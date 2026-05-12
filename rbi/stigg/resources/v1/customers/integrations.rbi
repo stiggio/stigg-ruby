@@ -51,7 +51,10 @@ module Stigg
               after: String,
               before: String,
               limit: Integer,
-              vendor_identifier: String,
+              vendor_identifier:
+                T::Array[
+                  Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::OrSymbol
+                ],
               request_options: Stigg::RequestOptions::OrHash
             ).returns(
               Stigg::Internal::MyCursorIDPage[
