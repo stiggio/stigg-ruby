@@ -63,7 +63,7 @@ module Stigg
             before: String,
             created_at: Stigg::V1::CouponListParams::CreatedAt::OrHash,
             limit: Integer,
-            status: String,
+            status: T::Array[Stigg::V1::CouponListParams::Status::OrSymbol],
             type: Stigg::V1::CouponListParams::Type::OrSymbol,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(

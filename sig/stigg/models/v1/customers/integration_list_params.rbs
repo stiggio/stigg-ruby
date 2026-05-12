@@ -8,7 +8,7 @@ module Stigg
             after: String,
             before: String,
             limit: Integer,
-            vendor_identifier: String
+            vendor_identifier: ::Array[Stigg::Models::V1::Customers::IntegrationListParams::vendor_identifier]
           }
           & Stigg::Internal::Type::request_parameters
 
@@ -30,16 +30,18 @@ module Stigg
 
           def limit=: (Integer) -> Integer
 
-          attr_reader vendor_identifier: String?
+          attr_reader vendor_identifier: ::Array[Stigg::Models::V1::Customers::IntegrationListParams::vendor_identifier]?
 
-          def vendor_identifier=: (String) -> String
+          def vendor_identifier=: (
+            ::Array[Stigg::Models::V1::Customers::IntegrationListParams::vendor_identifier]
+          ) -> ::Array[Stigg::Models::V1::Customers::IntegrationListParams::vendor_identifier]
 
           def initialize: (
             id: String,
             ?after: String,
             ?before: String,
             ?limit: Integer,
-            ?vendor_identifier: String,
+            ?vendor_identifier: ::Array[Stigg::Models::V1::Customers::IntegrationListParams::vendor_identifier],
             ?request_options: Stigg::request_opts
           ) -> void
 
@@ -48,9 +50,38 @@ module Stigg
             after: String,
             before: String,
             limit: Integer,
-            vendor_identifier: String,
+            vendor_identifier: ::Array[Stigg::Models::V1::Customers::IntegrationListParams::vendor_identifier],
             request_options: Stigg::RequestOptions
           }
+
+          type vendor_identifier =
+            :AUTH0
+            | :ZUORA
+            | :STRIPE
+            | :HUBSPOT
+            | :AWS_MARKETPLACE
+            | :SNOWFLAKE
+            | :SALESFORCE
+            | :BIG_QUERY
+            | :OPEN_FGA
+            | :APP_STORE
+
+          module VendorIdentifier
+            extend Stigg::Internal::Type::Enum
+
+            AUTH0: :AUTH0
+            ZUORA: :ZUORA
+            STRIPE: :STRIPE
+            HUBSPOT: :HUBSPOT
+            AWS_MARKETPLACE: :AWS_MARKETPLACE
+            SNOWFLAKE: :SNOWFLAKE
+            SALESFORCE: :SALESFORCE
+            BIG_QUERY: :BIG_QUERY
+            OPEN_FGA: :OPEN_FGA
+            APP_STORE: :APP_STORE
+
+            def self?.values: -> ::Array[Stigg::Models::V1::Customers::IntegrationListParams::vendor_identifier]
+          end
         end
       end
     end

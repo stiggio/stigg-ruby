@@ -120,7 +120,7 @@ module Stigg
         #
         # @param product_id [String] Filter by product ID
         #
-        # @param status [String] Filter by status. Supports comma-separated values for multiple statuses
+        # @param status [Array<Symbol, Stigg::Models::V1::AddonListParams::Status>] Filter by status. Supports comma-separated values for multiple statuses
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #

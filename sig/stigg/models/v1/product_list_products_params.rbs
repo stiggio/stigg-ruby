@@ -8,7 +8,7 @@ module Stigg
           before: String,
           created_at: Stigg::V1::ProductListProductsParams::CreatedAt,
           limit: Integer,
-          status: String
+          status: ::Array[Stigg::Models::V1::ProductListProductsParams::status]
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -38,9 +38,11 @@ module Stigg
 
         def limit=: (Integer) -> Integer
 
-        attr_reader status: String?
+        attr_reader status: ::Array[Stigg::Models::V1::ProductListProductsParams::status]?
 
-        def status=: (String) -> String
+        def status=: (
+          ::Array[Stigg::Models::V1::ProductListProductsParams::status]
+        ) -> ::Array[Stigg::Models::V1::ProductListProductsParams::status]
 
         def initialize: (
           ?id: String,
@@ -48,7 +50,7 @@ module Stigg
           ?before: String,
           ?created_at: Stigg::V1::ProductListProductsParams::CreatedAt,
           ?limit: Integer,
-          ?status: String,
+          ?status: ::Array[Stigg::Models::V1::ProductListProductsParams::status],
           ?request_options: Stigg::request_opts
         ) -> void
 
@@ -58,7 +60,7 @@ module Stigg
           before: String,
           created_at: Stigg::V1::ProductListProductsParams::CreatedAt,
           limit: Integer,
-          status: String,
+          status: ::Array[Stigg::Models::V1::ProductListProductsParams::status],
           request_options: Stigg::RequestOptions
         }
 
@@ -84,6 +86,17 @@ module Stigg
           def initialize: (?gt: Time, ?gte: Time, ?lt: Time, ?lte: Time) -> void
 
           def to_hash: -> { gt: Time, gte: Time, lt: Time, lte: Time }
+        end
+
+        type status = :PUBLISHED | :ARCHIVED
+
+        module Status
+          extend Stigg::Internal::Type::Enum
+
+          PUBLISHED: :PUBLISHED
+          ARCHIVED: :ARCHIVED
+
+          def self?.values: -> ::Array[Stigg::Models::V1::ProductListProductsParams::status]
         end
       end
     end

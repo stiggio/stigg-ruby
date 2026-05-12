@@ -117,7 +117,7 @@ module Stigg
             created_at: Stigg::V1::PlanListParams::CreatedAt::OrHash,
             limit: Integer,
             product_id: String,
-            status: String,
+            status: T::Array[Stigg::V1::PlanListParams::Status::OrSymbol],
             request_options: Stigg::RequestOptions::OrHash
           ).returns(
             Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::PlanListResponse]

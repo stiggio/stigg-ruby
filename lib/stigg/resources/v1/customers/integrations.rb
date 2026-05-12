@@ -79,7 +79,7 @@ module Stigg
           #
           # @param limit [Integer] Maximum number of items to return
           #
-          # @param vendor_identifier [String] Filter by vendor identifier. Supports comma-separated values for multiple vendor
+          # @param vendor_identifier [Array<Symbol, Stigg::Models::V1::Customers::IntegrationListParams::VendorIdentifier>] Filter by vendor identifier. Supports comma-separated values for multiple vendor
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #

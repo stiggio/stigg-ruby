@@ -47,8 +47,9 @@ module Stigg
         # @!attribute pricing_type
         #   Filter by pricing type. Supports comma-separated values for multiple types
         #
-        #   @return [String, nil]
-        optional :pricing_type, String
+        #   @return [Array<Symbol, Stigg::Models::V1::SubscriptionListParams::PricingType>, nil]
+        optional :pricing_type,
+                 -> { Stigg::Internal::Type::ArrayOf[enum: Stigg::V1::SubscriptionListParams::PricingType] }
 
         # @!attribute resource_id
         #   Filter by resource ID
@@ -60,8 +61,8 @@ module Stigg
         #   Filter by subscription status. Supports comma-separated values for multiple
         #   statuses
         #
-        #   @return [String, nil]
-        optional :status, String
+        #   @return [Array<Symbol, Stigg::Models::V1::SubscriptionListParams::Status>, nil]
+        optional :status, -> { Stigg::Internal::Type::ArrayOf[enum: Stigg::V1::SubscriptionListParams::Status] }
 
         # @!method initialize(after: nil, before: nil, created_at: nil, customer_id: nil, limit: nil, plan_id: nil, pricing_type: nil, resource_id: nil, status: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
@@ -79,11 +80,11 @@ module Stigg
         #
         #   @param plan_id [String] Filter by plan ID
         #
-        #   @param pricing_type [String] Filter by pricing type. Supports comma-separated values for multiple types
+        #   @param pricing_type [Array<Symbol, Stigg::Models::V1::SubscriptionListParams::PricingType>] Filter by pricing type. Supports comma-separated values for multiple types
         #
         #   @param resource_id [String] Filter by resource ID
         #
-        #   @param status [String] Filter by subscription status. Supports comma-separated values for multiple stat
+        #   @param status [Array<Symbol, Stigg::Models::V1::SubscriptionListParams::Status>] Filter by subscription status. Supports comma-separated values for multiple stat
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 
@@ -122,6 +123,31 @@ module Stigg
           #   @param lt [Time] Less than the specified createdAt value
           #
           #   @param lte [Time] Less than or equal to the specified createdAt value
+        end
+
+        module PricingType
+          extend Stigg::Internal::Type::Enum
+
+          FREE = :FREE
+          PAID = :PAID
+          CUSTOM = :CUSTOM
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        module Status
+          extend Stigg::Internal::Type::Enum
+
+          PAYMENT_PENDING = :PAYMENT_PENDING
+          ACTIVE = :ACTIVE
+          EXPIRED = :EXPIRED
+          IN_TRIAL = :IN_TRIAL
+          CANCELED = :CANCELED
+          NOT_STARTED = :NOT_STARTED
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
     end

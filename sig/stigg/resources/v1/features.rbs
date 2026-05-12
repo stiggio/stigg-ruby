@@ -27,10 +27,10 @@ module Stigg
           ?after: String,
           ?before: String,
           ?created_at: Stigg::V1::FeatureListFeaturesParams::CreatedAt,
-          ?feature_type: String,
+          ?feature_type: ::Array[Stigg::Models::V1::FeatureListFeaturesParams::feature_type],
           ?limit: Integer,
-          ?meter_type: String,
-          ?status: String,
+          ?meter_type: ::Array[Stigg::Models::V1::FeatureListFeaturesParams::meter_type],
+          ?status: ::Array[Stigg::Models::V1::FeatureListFeaturesParams::status],
           ?request_options: Stigg::request_opts
         ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::FeatureListFeaturesResponse]
 

@@ -21,7 +21,7 @@ module Stigg
             ?after: String,
             ?before: String,
             ?limit: Integer,
-            ?vendor_identifier: String,
+            ?vendor_identifier: ::Array[Stigg::Models::V1::Customers::IntegrationListParams::vendor_identifier],
             ?request_options: Stigg::request_opts
           ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::Customers::IntegrationListResponse]
 

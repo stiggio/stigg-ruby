@@ -5,6 +5,8 @@ module Stigg
         class Credits
           attr_reader grants: Stigg::Resources::V1::Events::Credits::Grants
 
+          attr_reader custom_currencies: Stigg::Resources::V1::Events::Credits::CustomCurrencies
+
           def get_auto_recharge: (
             currency_id: String,
             customer_id: String,

@@ -111,9 +111,13 @@ module Stigg
             customer_id: String,
             limit: Integer,
             plan_id: String,
-            pricing_type: String,
+            pricing_type:
+              T::Array[
+                Stigg::V1::SubscriptionListParams::PricingType::OrSymbol
+              ],
             resource_id: String,
-            status: String,
+            status:
+              T::Array[Stigg::V1::SubscriptionListParams::Status::OrSymbol],
             request_options: Stigg::RequestOptions::OrHash
           ).returns(
             Stigg::Internal::MyCursorIDPage[

@@ -59,10 +59,21 @@ module Stigg
         attr_writer :plan_id
 
         # Filter by pricing type. Supports comma-separated values for multiple types
-        sig { returns(T.nilable(String)) }
+        sig do
+          returns(
+            T.nilable(
+              T::Array[Stigg::V1::SubscriptionListParams::PricingType::OrSymbol]
+            )
+          )
+        end
         attr_reader :pricing_type
 
-        sig { params(pricing_type: String).void }
+        sig do
+          params(
+            pricing_type:
+              T::Array[Stigg::V1::SubscriptionListParams::PricingType::OrSymbol]
+          ).void
+        end
         attr_writer :pricing_type
 
         # Filter by resource ID
@@ -74,10 +85,21 @@ module Stigg
 
         # Filter by subscription status. Supports comma-separated values for multiple
         # statuses
-        sig { returns(T.nilable(String)) }
+        sig do
+          returns(
+            T.nilable(
+              T::Array[Stigg::V1::SubscriptionListParams::Status::OrSymbol]
+            )
+          )
+        end
         attr_reader :status
 
-        sig { params(status: String).void }
+        sig do
+          params(
+            status:
+              T::Array[Stigg::V1::SubscriptionListParams::Status::OrSymbol]
+          ).void
+        end
         attr_writer :status
 
         sig do
@@ -88,9 +110,13 @@ module Stigg
             customer_id: String,
             limit: Integer,
             plan_id: String,
-            pricing_type: String,
+            pricing_type:
+              T::Array[
+                Stigg::V1::SubscriptionListParams::PricingType::OrSymbol
+              ],
             resource_id: String,
-            status: String,
+            status:
+              T::Array[Stigg::V1::SubscriptionListParams::Status::OrSymbol],
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -127,9 +153,13 @@ module Stigg
               customer_id: String,
               limit: Integer,
               plan_id: String,
-              pricing_type: String,
+              pricing_type:
+                T::Array[
+                  Stigg::V1::SubscriptionListParams::PricingType::OrSymbol
+                ],
               resource_id: String,
-              status: String,
+              status:
+                T::Array[Stigg::V1::SubscriptionListParams::Status::OrSymbol],
               request_options: Stigg::RequestOptions
             }
           )
@@ -194,6 +224,91 @@ module Stigg
 
           sig { override.returns({ gt: Time, gte: Time, lt: Time, lte: Time }) }
           def to_hash
+          end
+        end
+
+        module PricingType
+          extend Stigg::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Stigg::V1::SubscriptionListParams::PricingType)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          FREE =
+            T.let(
+              :FREE,
+              Stigg::V1::SubscriptionListParams::PricingType::TaggedSymbol
+            )
+          PAID =
+            T.let(
+              :PAID,
+              Stigg::V1::SubscriptionListParams::PricingType::TaggedSymbol
+            )
+          CUSTOM =
+            T.let(
+              :CUSTOM,
+              Stigg::V1::SubscriptionListParams::PricingType::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Stigg::V1::SubscriptionListParams::PricingType::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        module Status
+          extend Stigg::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Stigg::V1::SubscriptionListParams::Status)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          PAYMENT_PENDING =
+            T.let(
+              :PAYMENT_PENDING,
+              Stigg::V1::SubscriptionListParams::Status::TaggedSymbol
+            )
+          ACTIVE =
+            T.let(
+              :ACTIVE,
+              Stigg::V1::SubscriptionListParams::Status::TaggedSymbol
+            )
+          EXPIRED =
+            T.let(
+              :EXPIRED,
+              Stigg::V1::SubscriptionListParams::Status::TaggedSymbol
+            )
+          IN_TRIAL =
+            T.let(
+              :IN_TRIAL,
+              Stigg::V1::SubscriptionListParams::Status::TaggedSymbol
+            )
+          CANCELED =
+            T.let(
+              :CANCELED,
+              Stigg::V1::SubscriptionListParams::Status::TaggedSymbol
+            )
+          NOT_STARTED =
+            T.let(
+              :NOT_STARTED,
+              Stigg::V1::SubscriptionListParams::Status::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[Stigg::V1::SubscriptionListParams::Status::TaggedSymbol]
+            )
+          end
+          def self.values
           end
         end
       end
