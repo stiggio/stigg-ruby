@@ -9,6 +9,10 @@ module Stigg
           # @return [Stigg::Resources::V1::Events::Credits::Grants]
           attr_reader :grants
 
+          # Operations related to custom currencies
+          # @return [Stigg::Resources::V1::Events::Credits::CustomCurrencies]
+          attr_reader :custom_currencies
+
           # Retrieves the automatic recharge configuration for a customer and currency.
           # Returns default settings if no configuration exists.
           #
@@ -123,6 +127,7 @@ module Stigg
           def initialize(client:)
             @client = client
             @grants = Stigg::Resources::V1::Events::Credits::Grants.new(client: client)
+            @custom_currencies = Stigg::Resources::V1::Events::Credits::CustomCurrencies.new(client: client)
           end
         end
       end

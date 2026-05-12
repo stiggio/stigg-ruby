@@ -15,7 +15,7 @@ module Stigg
             ?before: String,
             ?created_at: Stigg::V1::Customers::PromotionalEntitlementListParams::CreatedAt,
             ?limit: Integer,
-            ?status: String,
+            ?status: ::Array[Stigg::Models::V1::Customers::PromotionalEntitlementListParams::status],
             ?request_options: Stigg::request_opts
           ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::Customers::PromotionalEntitlementListResponse]
 

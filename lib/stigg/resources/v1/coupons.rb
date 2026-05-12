@@ -74,7 +74,7 @@ module Stigg
         #
         # @param limit [Integer] Maximum number of items to return
         #
-        # @param status [String] Filter by coupon status. Supports comma-separated values for multiple statuses
+        # @param status [Array<Symbol, Stigg::Models::V1::CouponListParams::Status>] Filter by coupon status. Supports comma-separated values for multiple statuses
         #
         # @param type [Symbol, Stigg::Models::V1::CouponListParams::Type] Filter by coupon type (FIXED or PERCENTAGE)
         #

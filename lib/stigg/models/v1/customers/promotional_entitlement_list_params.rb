@@ -42,8 +42,9 @@ module Stigg
           #   Filter by promotional entitlement status. Supports comma-separated values for
           #   multiple statuses
           #
-          #   @return [String, nil]
-          optional :status, String
+          #   @return [Array<Symbol, Stigg::Models::V1::Customers::PromotionalEntitlementListParams::Status>, nil]
+          optional :status,
+                   -> { Stigg::Internal::Type::ArrayOf[enum: Stigg::V1::Customers::PromotionalEntitlementListParams::Status] }
 
           # @!method initialize(id:, after: nil, before: nil, created_at: nil, limit: nil, status: nil, request_options: {})
           #   Some parameter documentations has been truncated, see
@@ -60,7 +61,7 @@ module Stigg
           #
           #   @param limit [Integer] Maximum number of items to return
           #
-          #   @param status [String] Filter by promotional entitlement status. Supports comma-separated values for mu
+          #   @param status [Array<Symbol, Stigg::Models::V1::Customers::PromotionalEntitlementListParams::Status>] Filter by promotional entitlement status. Supports comma-separated values for mu
           #
           #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 
@@ -99,6 +100,17 @@ module Stigg
             #   @param lt [Time] Less than the specified createdAt value
             #
             #   @param lte [Time] Less than or equal to the specified createdAt value
+          end
+
+          module Status
+            extend Stigg::Internal::Type::Enum
+
+            ACTIVE = :Active
+            EXPIRED = :Expired
+            PAUSED = :Paused
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
           end
         end
       end

@@ -1,0 +1,56 @@
+module Stigg
+  module Resources
+    class V1
+      class Events
+        class Credits
+          class CustomCurrencies
+            def create: (
+              id: String,
+              display_name: String,
+              ?description: String,
+              ?metadata: ::Hash[Symbol, String],
+              ?symbol: String,
+              ?units: Stigg::V1::Events::Credits::CustomCurrencyCreateParams::Units,
+              ?request_options: Stigg::request_opts
+            ) -> Stigg::Models::V1::Events::Credits::CustomCurrencyCreateResponse
+
+            def update: (
+              String currency_id,
+              ?description: String?,
+              ?display_name: String,
+              ?metadata: ::Hash[Symbol, String]?,
+              ?symbol: String?,
+              ?units: Stigg::V1::Events::Credits::CustomCurrencyUpdateParams::Units,
+              ?request_options: Stigg::request_opts
+            ) -> Stigg::Models::V1::Events::Credits::CustomCurrencyUpdateResponse
+
+            def list: (
+              ?after: String,
+              ?before: String,
+              ?limit: Integer,
+              ?status: ::Array[Stigg::Models::V1::Events::Credits::CustomCurrencyListParams::status],
+              ?request_options: Stigg::request_opts
+            ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::Events::Credits::CustomCurrencyListResponse]
+
+            def archive: (
+              String currency_id,
+              ?request_options: Stigg::request_opts
+            ) -> Stigg::Models::V1::Events::Credits::CustomCurrencyArchiveResponse
+
+            def list_associated_entities: (
+              String currency_id,
+              ?request_options: Stigg::request_opts
+            ) -> Stigg::Models::V1::Events::Credits::CustomCurrencyListAssociatedEntitiesResponse
+
+            def unarchive: (
+              String currency_id,
+              ?request_options: Stigg::request_opts
+            ) -> Stigg::Models::V1::Events::Credits::CustomCurrencyUnarchiveResponse
+
+            def initialize: (client: Stigg::Client) -> void
+          end
+        end
+      end
+    end
+  end
+end

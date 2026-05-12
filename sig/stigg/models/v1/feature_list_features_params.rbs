@@ -7,10 +7,10 @@ module Stigg
           after: String,
           before: String,
           created_at: Stigg::V1::FeatureListFeaturesParams::CreatedAt,
-          feature_type: String,
+          feature_type: ::Array[Stigg::Models::V1::FeatureListFeaturesParams::feature_type],
           limit: Integer,
-          meter_type: String,
-          status: String
+          meter_type: ::Array[Stigg::Models::V1::FeatureListFeaturesParams::meter_type],
+          status: ::Array[Stigg::Models::V1::FeatureListFeaturesParams::status]
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -36,31 +36,37 @@ module Stigg
           Stigg::V1::FeatureListFeaturesParams::CreatedAt
         ) -> Stigg::V1::FeatureListFeaturesParams::CreatedAt
 
-        attr_reader feature_type: String?
+        attr_reader feature_type: ::Array[Stigg::Models::V1::FeatureListFeaturesParams::feature_type]?
 
-        def feature_type=: (String) -> String
+        def feature_type=: (
+          ::Array[Stigg::Models::V1::FeatureListFeaturesParams::feature_type]
+        ) -> ::Array[Stigg::Models::V1::FeatureListFeaturesParams::feature_type]
 
         attr_reader limit: Integer?
 
         def limit=: (Integer) -> Integer
 
-        attr_reader meter_type: String?
+        attr_reader meter_type: ::Array[Stigg::Models::V1::FeatureListFeaturesParams::meter_type]?
 
-        def meter_type=: (String) -> String
+        def meter_type=: (
+          ::Array[Stigg::Models::V1::FeatureListFeaturesParams::meter_type]
+        ) -> ::Array[Stigg::Models::V1::FeatureListFeaturesParams::meter_type]
 
-        attr_reader status: String?
+        attr_reader status: ::Array[Stigg::Models::V1::FeatureListFeaturesParams::status]?
 
-        def status=: (String) -> String
+        def status=: (
+          ::Array[Stigg::Models::V1::FeatureListFeaturesParams::status]
+        ) -> ::Array[Stigg::Models::V1::FeatureListFeaturesParams::status]
 
         def initialize: (
           ?id: String,
           ?after: String,
           ?before: String,
           ?created_at: Stigg::V1::FeatureListFeaturesParams::CreatedAt,
-          ?feature_type: String,
+          ?feature_type: ::Array[Stigg::Models::V1::FeatureListFeaturesParams::feature_type],
           ?limit: Integer,
-          ?meter_type: String,
-          ?status: String,
+          ?meter_type: ::Array[Stigg::Models::V1::FeatureListFeaturesParams::meter_type],
+          ?status: ::Array[Stigg::Models::V1::FeatureListFeaturesParams::status],
           ?request_options: Stigg::request_opts
         ) -> void
 
@@ -69,10 +75,10 @@ module Stigg
           after: String,
           before: String,
           created_at: Stigg::V1::FeatureListFeaturesParams::CreatedAt,
-          feature_type: String,
+          feature_type: ::Array[Stigg::Models::V1::FeatureListFeaturesParams::feature_type],
           limit: Integer,
-          meter_type: String,
-          status: String,
+          meter_type: ::Array[Stigg::Models::V1::FeatureListFeaturesParams::meter_type],
+          status: ::Array[Stigg::Models::V1::FeatureListFeaturesParams::status],
           request_options: Stigg::RequestOptions
         }
 
@@ -98,6 +104,42 @@ module Stigg
           def initialize: (?gt: Time, ?gte: Time, ?lt: Time, ?lte: Time) -> void
 
           def to_hash: -> { gt: Time, gte: Time, lt: Time, lte: Time }
+        end
+
+        type feature_type = :BOOLEAN | :NUMBER | :ENUM
+
+        module FeatureType
+          extend Stigg::Internal::Type::Enum
+
+          BOOLEAN: :BOOLEAN
+          NUMBER: :NUMBER
+          ENUM: :ENUM
+
+          def self?.values: -> ::Array[Stigg::Models::V1::FeatureListFeaturesParams::feature_type]
+        end
+
+        type meter_type = :None | :FLUCTUATING | :INCREMENTAL
+
+        module MeterType
+          extend Stigg::Internal::Type::Enum
+
+          NONE: :None
+          FLUCTUATING: :FLUCTUATING
+          INCREMENTAL: :INCREMENTAL
+
+          def self?.values: -> ::Array[Stigg::Models::V1::FeatureListFeaturesParams::meter_type]
+        end
+
+        type status = :NEW | :SUSPENDED | :ACTIVE
+
+        module Status
+          extend Stigg::Internal::Type::Enum
+
+          NEW: :NEW
+          SUSPENDED: :SUSPENDED
+          ACTIVE: :ACTIVE
+
+          def self?.values: -> ::Array[Stigg::Models::V1::FeatureListFeaturesParams::status]
         end
       end
     end

@@ -98,7 +98,7 @@ module Stigg
         #
         # @param limit [Integer] Maximum number of items to return
         #
-        # @param status [String] Filter by product status. Supports comma-separated values for multiple statuses
+        # @param status [Array<Symbol, Stigg::Models::V1::ProductListProductsParams::Status>] Filter by product status. Supports comma-separated values for multiple statuses
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #

@@ -9,9 +9,9 @@ module Stigg
           customer_id: String,
           limit: Integer,
           plan_id: String,
-          pricing_type: String,
+          pricing_type: ::Array[Stigg::Models::V1::SubscriptionListParams::pricing_type],
           resource_id: String,
-          status: String
+          status: ::Array[Stigg::Models::V1::SubscriptionListParams::status]
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -45,17 +45,21 @@ module Stigg
 
         def plan_id=: (String) -> String
 
-        attr_reader pricing_type: String?
+        attr_reader pricing_type: ::Array[Stigg::Models::V1::SubscriptionListParams::pricing_type]?
 
-        def pricing_type=: (String) -> String
+        def pricing_type=: (
+          ::Array[Stigg::Models::V1::SubscriptionListParams::pricing_type]
+        ) -> ::Array[Stigg::Models::V1::SubscriptionListParams::pricing_type]
 
         attr_reader resource_id: String?
 
         def resource_id=: (String) -> String
 
-        attr_reader status: String?
+        attr_reader status: ::Array[Stigg::Models::V1::SubscriptionListParams::status]?
 
-        def status=: (String) -> String
+        def status=: (
+          ::Array[Stigg::Models::V1::SubscriptionListParams::status]
+        ) -> ::Array[Stigg::Models::V1::SubscriptionListParams::status]
 
         def initialize: (
           ?after: String,
@@ -64,9 +68,9 @@ module Stigg
           ?customer_id: String,
           ?limit: Integer,
           ?plan_id: String,
-          ?pricing_type: String,
+          ?pricing_type: ::Array[Stigg::Models::V1::SubscriptionListParams::pricing_type],
           ?resource_id: String,
-          ?status: String,
+          ?status: ::Array[Stigg::Models::V1::SubscriptionListParams::status],
           ?request_options: Stigg::request_opts
         ) -> void
 
@@ -77,9 +81,9 @@ module Stigg
           customer_id: String,
           limit: Integer,
           plan_id: String,
-          pricing_type: String,
+          pricing_type: ::Array[Stigg::Models::V1::SubscriptionListParams::pricing_type],
           resource_id: String,
-          status: String,
+          status: ::Array[Stigg::Models::V1::SubscriptionListParams::status],
           request_options: Stigg::RequestOptions
         }
 
@@ -105,6 +109,39 @@ module Stigg
           def initialize: (?gt: Time, ?gte: Time, ?lt: Time, ?lte: Time) -> void
 
           def to_hash: -> { gt: Time, gte: Time, lt: Time, lte: Time }
+        end
+
+        type pricing_type = :FREE | :PAID | :CUSTOM
+
+        module PricingType
+          extend Stigg::Internal::Type::Enum
+
+          FREE: :FREE
+          PAID: :PAID
+          CUSTOM: :CUSTOM
+
+          def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionListParams::pricing_type]
+        end
+
+        type status =
+          :PAYMENT_PENDING
+          | :ACTIVE
+          | :EXPIRED
+          | :IN_TRIAL
+          | :CANCELED
+          | :NOT_STARTED
+
+        module Status
+          extend Stigg::Internal::Type::Enum
+
+          PAYMENT_PENDING: :PAYMENT_PENDING
+          ACTIVE: :ACTIVE
+          EXPIRED: :EXPIRED
+          IN_TRIAL: :IN_TRIAL
+          CANCELED: :CANCELED
+          NOT_STARTED: :NOT_STARTED
+
+          def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionListParams::status]
         end
       end
     end

@@ -42,10 +42,25 @@ module Stigg
 
           # Filter by vendor identifier. Supports comma-separated values for multiple
           # vendors (e.g., STRIPE,HUBSPOT)
-          sig { returns(T.nilable(String)) }
+          sig do
+            returns(
+              T.nilable(
+                T::Array[
+                  Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::OrSymbol
+                ]
+              )
+            )
+          end
           attr_reader :vendor_identifier
 
-          sig { params(vendor_identifier: String).void }
+          sig do
+            params(
+              vendor_identifier:
+                T::Array[
+                  Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::OrSymbol
+                ]
+            ).void
+          end
           attr_writer :vendor_identifier
 
           sig do
@@ -54,7 +69,10 @@ module Stigg
               after: String,
               before: String,
               limit: Integer,
-              vendor_identifier: String,
+              vendor_identifier:
+                T::Array[
+                  Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::OrSymbol
+                ],
               request_options: Stigg::RequestOptions::OrHash
             ).returns(T.attached_class)
           end
@@ -80,12 +98,89 @@ module Stigg
                 after: String,
                 before: String,
                 limit: Integer,
-                vendor_identifier: String,
+                vendor_identifier:
+                  T::Array[
+                    Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::OrSymbol
+                  ],
                 request_options: Stigg::RequestOptions
               }
             )
           end
           def to_hash
+          end
+
+          module VendorIdentifier
+            extend Stigg::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Stigg::V1::Customers::IntegrationListParams::VendorIdentifier
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            AUTH0 =
+              T.let(
+                :AUTH0,
+                Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::TaggedSymbol
+              )
+            ZUORA =
+              T.let(
+                :ZUORA,
+                Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::TaggedSymbol
+              )
+            STRIPE =
+              T.let(
+                :STRIPE,
+                Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::TaggedSymbol
+              )
+            HUBSPOT =
+              T.let(
+                :HUBSPOT,
+                Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::TaggedSymbol
+              )
+            AWS_MARKETPLACE =
+              T.let(
+                :AWS_MARKETPLACE,
+                Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::TaggedSymbol
+              )
+            SNOWFLAKE =
+              T.let(
+                :SNOWFLAKE,
+                Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::TaggedSymbol
+              )
+            SALESFORCE =
+              T.let(
+                :SALESFORCE,
+                Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::TaggedSymbol
+              )
+            BIG_QUERY =
+              T.let(
+                :BIG_QUERY,
+                Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::TaggedSymbol
+              )
+            OPEN_FGA =
+              T.let(
+                :OPEN_FGA,
+                Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::TaggedSymbol
+              )
+            APP_STORE =
+              T.let(
+                :APP_STORE,
+                Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
           end
         end
       end

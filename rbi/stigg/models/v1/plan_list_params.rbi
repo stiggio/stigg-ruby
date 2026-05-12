@@ -50,10 +50,18 @@ module Stigg
         attr_writer :product_id
 
         # Filter by status. Supports comma-separated values for multiple statuses
-        sig { returns(T.nilable(String)) }
+        sig do
+          returns(
+            T.nilable(T::Array[Stigg::V1::PlanListParams::Status::OrSymbol])
+          )
+        end
         attr_reader :status
 
-        sig { params(status: String).void }
+        sig do
+          params(
+            status: T::Array[Stigg::V1::PlanListParams::Status::OrSymbol]
+          ).void
+        end
         attr_writer :status
 
         sig do
@@ -63,7 +71,7 @@ module Stigg
             created_at: Stigg::V1::PlanListParams::CreatedAt::OrHash,
             limit: Integer,
             product_id: String,
-            status: String,
+            status: T::Array[Stigg::V1::PlanListParams::Status::OrSymbol],
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -92,7 +100,7 @@ module Stigg
               created_at: Stigg::V1::PlanListParams::CreatedAt,
               limit: Integer,
               product_id: String,
-              status: String,
+              status: T::Array[Stigg::V1::PlanListParams::Status::OrSymbol],
               request_options: Stigg::RequestOptions
             }
           )
@@ -157,6 +165,28 @@ module Stigg
 
           sig { override.returns({ gt: Time, gte: Time, lt: Time, lte: Time }) }
           def to_hash
+          end
+        end
+
+        module Status
+          extend Stigg::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias { T.all(Symbol, Stigg::V1::PlanListParams::Status) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          DRAFT = T.let(:DRAFT, Stigg::V1::PlanListParams::Status::TaggedSymbol)
+          PUBLISHED =
+            T.let(:PUBLISHED, Stigg::V1::PlanListParams::Status::TaggedSymbol)
+          ARCHIVED =
+            T.let(:ARCHIVED, Stigg::V1::PlanListParams::Status::TaggedSymbol)
+
+          sig do
+            override.returns(
+              T::Array[Stigg::V1::PlanListParams::Status::TaggedSymbol]
+            )
+          end
+          def self.values
           end
         end
       end

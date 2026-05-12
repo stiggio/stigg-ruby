@@ -9,6 +9,12 @@ module Stigg
           sig { returns(Stigg::Resources::V1::Events::Credits::Grants) }
           attr_reader :grants
 
+          # Operations related to custom currencies
+          sig do
+            returns(Stigg::Resources::V1::Events::Credits::CustomCurrencies)
+          end
+          attr_reader :custom_currencies
+
           # Retrieves the automatic recharge configuration for a customer and currency.
           # Returns default settings if no configuration exists.
           sig do

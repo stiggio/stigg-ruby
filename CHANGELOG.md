@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-beta.1 (2026-05-12)
+
+Full Changelog: [v0.1.0-alpha.34...v0.1.0-beta.1](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.34...v0.1.0-beta.1)
+
+### Features
+
+* **api:** add custom_currencies resource to events/credits ([6999605](https://github.com/stiggio/stigg-ruby/commit/699960512734576197f4000f0dd069506bf47448))
+
+
+### Chores
+
+* **internal:** regenerate SDK with no functional changes ([e07191b](https://github.com/stiggio/stigg-ruby/commit/e07191b4ead698186c7d2b8c665d3eca17debe7e))
+
 ## 0.1.0-alpha.34 (2026-05-11)
 
 Full Changelog: [v0.1.0-alpha.33...v0.1.0-alpha.34](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-alpha.33...v0.1.0-alpha.34)

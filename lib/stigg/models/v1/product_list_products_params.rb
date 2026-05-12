@@ -41,8 +41,9 @@ module Stigg
         # @!attribute status
         #   Filter by product status. Supports comma-separated values for multiple statuses
         #
-        #   @return [String, nil]
-        optional :status, String
+        #   @return [Array<Symbol, Stigg::Models::V1::ProductListProductsParams::Status>, nil]
+        optional :status,
+                 -> { Stigg::Internal::Type::ArrayOf[enum: Stigg::V1::ProductListProductsParams::Status] }
 
         # @!method initialize(id: nil, after: nil, before: nil, created_at: nil, limit: nil, status: nil, request_options: {})
         #   @param id [String] Filter by entity ID
@@ -55,7 +56,7 @@ module Stigg
         #
         #   @param limit [Integer] Maximum number of items to return
         #
-        #   @param status [String] Filter by product status. Supports comma-separated values for multiple statuses
+        #   @param status [Array<Symbol, Stigg::Models::V1::ProductListProductsParams::Status>] Filter by product status. Supports comma-separated values for multiple statuses
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 
@@ -94,6 +95,16 @@ module Stigg
           #   @param lt [Time] Less than the specified createdAt value
           #
           #   @param lte [Time] Less than or equal to the specified createdAt value
+        end
+
+        module Status
+          extend Stigg::Internal::Type::Enum
+
+          PUBLISHED = :PUBLISHED
+          ARCHIVED = :ARCHIVED
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
     end

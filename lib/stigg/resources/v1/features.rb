@@ -79,13 +79,13 @@ module Stigg
         #
         # @param created_at [Stigg::Models::V1::FeatureListFeaturesParams::CreatedAt] Filter by creation date using range operators: gt, gte, lt, lte
         #
-        # @param feature_type [String] Filter by feature type. Supports comma-separated values for multiple types
+        # @param feature_type [Array<Symbol, Stigg::Models::V1::FeatureListFeaturesParams::FeatureType>] Filter by feature type. Supports comma-separated values for multiple types
         #
         # @param limit [Integer] Maximum number of items to return
         #
-        # @param meter_type [String] Filter by meter type. Supports comma-separated values for multiple types
+        # @param meter_type [Array<Symbol, Stigg::Models::V1::FeatureListFeaturesParams::MeterType>] Filter by meter type. Supports comma-separated values for multiple types
         #
-        # @param status [String] Filter by feature status. Supports comma-separated values for multiple statuses
+        # @param status [Array<Symbol, Stigg::Models::V1::FeatureListFeaturesParams::Status>] Filter by feature status. Supports comma-separated values for multiple statuses
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #

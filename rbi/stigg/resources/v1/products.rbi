@@ -77,7 +77,8 @@ module Stigg
             before: String,
             created_at: Stigg::V1::ProductListProductsParams::CreatedAt::OrHash,
             limit: Integer,
-            status: String,
+            status:
+              T::Array[Stigg::V1::ProductListProductsParams::Status::OrSymbol],
             request_options: Stigg::RequestOptions::OrHash
           ).returns(
             Stigg::Internal::MyCursorIDPage[
