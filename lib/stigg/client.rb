@@ -21,6 +21,9 @@ module Stigg
     # @return [Stigg::Resources::V1]
     attr_reader :v1
 
+    # @return [Stigg::Resources::Internal]
+    attr_reader :internal
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -81,6 +84,7 @@ module Stigg
       )
 
       @v1 = Stigg::Resources::V1.new(client: self)
+      @internal = Stigg::Resources::Internal.new(client: self)
     end
   end
 end
