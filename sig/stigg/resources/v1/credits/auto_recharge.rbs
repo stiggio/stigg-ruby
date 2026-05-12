@@ -1,0 +1,17 @@
+module Stigg
+  module Resources
+    class V1
+      class Credits
+        class AutoRecharge
+          def get_auto_recharge: (
+            currency_id: String,
+            customer_id: String,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Credits::AutoRechargeGetAutoRechargeResponse
+
+          def initialize: (client: Stigg::Client) -> void
+        end
+      end
+    end
+  end
+end

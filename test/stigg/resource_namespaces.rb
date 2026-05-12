@@ -12,11 +12,6 @@ module Stigg
       module Customers
       end
 
-      module Events
-        module Credits
-        end
-      end
-
       module Plans
       end
 
@@ -27,12 +22,10 @@ module Stigg
         module Addons
         end
 
-        module Customers
+        module Credits
         end
 
-        module Events
-          module Credits
-          end
+        module Customers
         end
 
         module Plans
