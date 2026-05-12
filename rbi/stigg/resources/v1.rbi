@@ -17,6 +17,9 @@ module Stigg
       sig { returns(Stigg::Resources::V1::Events) }
       attr_reader :events
 
+      sig { returns(Stigg::Resources::V1::Credits) }
+      attr_reader :credits
+
       # Operations related to features
       sig { returns(Stigg::Resources::V1::Features) }
       attr_reader :features
