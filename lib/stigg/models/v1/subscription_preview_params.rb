@@ -113,7 +113,7 @@ module Stigg
                  api_name: :trialOverrideConfiguration
 
         # @!attribute unit_quantity
-        #   Unit quantity for per-unit pricing
+        #   Unit quantity for per-unit pricing. Minimum is 0 (zero is allowed).
         #
         #   @return [Integer, nil]
         optional :unit_quantity, Integer, api_name: :unitQuantity
@@ -149,7 +149,7 @@ module Stigg
         #
         #   @param trial_override_configuration [Stigg::Models::V1::SubscriptionPreviewParams::TrialOverrideConfiguration] Trial period override settings
         #
-        #   @param unit_quantity [Integer] Unit quantity for per-unit pricing
+        #   @param unit_quantity [Integer] Unit quantity for per-unit pricing. Minimum is 0 (zero is allowed).
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 
@@ -439,7 +439,7 @@ module Stigg
           required :feature_id, String, api_name: :featureId
 
           # @!attribute quantity
-          #   Quantity of feature units
+          #   Quantity of feature units. Minimum is 0 (zero is allowed).
           #
           #   @return [Float]
           required :quantity, Float
@@ -449,7 +449,7 @@ module Stigg
           #
           #   @param feature_id [String] Feature ID
           #
-          #   @param quantity [Float] Quantity of feature units
+          #   @param quantity [Float] Quantity of feature units. Minimum is 0 (zero is allowed).
         end
 
         # Billing cycle anchor behavior for the subscription
@@ -661,7 +661,7 @@ module Stigg
           required :id, String
 
           # @!attribute quantity
-          #   Charge quantity
+          #   Charge quantity. Minimum is 0 (zero is allowed).
           #
           #   @return [Float]
           required :quantity, Float
@@ -677,7 +677,7 @@ module Stigg
           #
           #   @param id [String] Charge ID
           #
-          #   @param quantity [Float] Charge quantity
+          #   @param quantity [Float] Charge quantity. Minimum is 0 (zero is allowed).
           #
           #   @param type [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::Charge::Type] Charge type
 

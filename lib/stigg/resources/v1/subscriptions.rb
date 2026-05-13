@@ -284,7 +284,7 @@ module Stigg
         #
         # @param trial_override_configuration [Stigg::Models::V1::SubscriptionPreviewParams::TrialOverrideConfiguration] Trial period override settings
         #
-        # @param unit_quantity [Integer] Unit quantity for per-unit pricing
+        # @param unit_quantity [Integer] Unit quantity for per-unit pricing. Minimum is 0 (zero is allowed).
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -357,7 +357,7 @@ module Stigg
         #
         # @param trial_override_configuration [Stigg::Models::V1::SubscriptionProvisionParams::TrialOverrideConfiguration] Trial period override settings
         #
-        # @param unit_quantity [Integer] Unit quantity
+        # @param unit_quantity [Integer] Unit quantity for per-unit pricing. Minimum is 0 (zero is allowed).
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #

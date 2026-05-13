@@ -162,7 +162,7 @@ module Stigg
             required :id, String
 
             # @!attribute quantity
-            #   Charge quantity
+            #   Charge quantity. Minimum is 0 (zero is allowed).
             #
             #   @return [Float]
             required :quantity, Float
@@ -178,7 +178,7 @@ module Stigg
             #
             #   @param id [String] Charge ID
             #
-            #   @param quantity [Float] Charge quantity
+            #   @param quantity [Float] Charge quantity. Minimum is 0 (zero is allowed).
             #
             #   @param type [Symbol, Stigg::Models::V1::SubscriptionImportParams::Subscription::Charge::Type] Charge type
 
