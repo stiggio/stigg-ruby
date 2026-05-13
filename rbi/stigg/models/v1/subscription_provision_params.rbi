@@ -317,7 +317,7 @@ module Stigg
         end
         attr_writer :trial_override_configuration
 
-        # Unit quantity
+        # Unit quantity for per-unit pricing. Minimum is 0 (zero is allowed).
         sig { returns(T.nilable(Integer)) }
         attr_reader :unit_quantity
 
@@ -423,7 +423,7 @@ module Stigg
           start_date: nil,
           # Trial period override settings
           trial_override_configuration: nil,
-          # Unit quantity
+          # Unit quantity for per-unit pricing. Minimum is 0 (zero is allowed).
           unit_quantity: nil,
           request_options: {}
         )
@@ -1868,7 +1868,7 @@ module Stigg
           sig { returns(String) }
           attr_accessor :id
 
-          # Charge quantity
+          # Charge quantity. Minimum is 0 (zero is allowed).
           sig { returns(Float) }
           attr_accessor :quantity
 
@@ -1892,7 +1892,7 @@ module Stigg
           def self.new(
             # Charge ID
             id:,
-            # Charge quantity
+            # Charge quantity. Minimum is 0 (zero is allowed).
             quantity:,
             # Charge type
             type:

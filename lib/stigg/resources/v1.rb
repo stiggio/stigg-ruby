@@ -17,9 +17,6 @@ module Stigg
       # @return [Stigg::Resources::V1::Events]
       attr_reader :events
 
-      # @return [Stigg::Resources::V1::Credits]
-      attr_reader :credits
-
       # Operations related to features
       # @return [Stigg::Resources::V1::Features]
       attr_reader :features
@@ -49,7 +46,6 @@ module Stigg
         @subscriptions = Stigg::Resources::V1::Subscriptions.new(client: client)
         @coupons = Stigg::Resources::V1::Coupons.new(client: client)
         @events = Stigg::Resources::V1::Events.new(client: client)
-        @credits = Stigg::Resources::V1::Credits.new(client: client)
         @features = Stigg::Resources::V1::Features.new(client: client)
         @addons = Stigg::Resources::V1::Addons.new(client: client)
         @plans = Stigg::Resources::V1::Plans.new(client: client)
