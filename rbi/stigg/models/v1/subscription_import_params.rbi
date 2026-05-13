@@ -316,7 +316,7 @@ module Stigg
             sig { returns(String) }
             attr_accessor :id
 
-            # Charge quantity
+            # Charge quantity. Minimum is 0 (zero is allowed).
             sig { returns(Float) }
             attr_accessor :quantity
 
@@ -340,7 +340,7 @@ module Stigg
             def self.new(
               # Charge ID
               id:,
-              # Charge quantity
+              # Charge quantity. Minimum is 0 (zero is allowed).
               quantity:,
               # Charge type
               type:

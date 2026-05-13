@@ -303,7 +303,7 @@ module Stigg
           start_date: nil,
           # Trial period override settings
           trial_override_configuration: nil,
-          # Unit quantity for per-unit pricing
+          # Unit quantity for per-unit pricing. Minimum is 0 (zero is allowed).
           unit_quantity: nil,
           request_options: {}
         )
@@ -410,7 +410,7 @@ module Stigg
           start_date: nil,
           # Trial period override settings
           trial_override_configuration: nil,
-          # Unit quantity
+          # Unit quantity for per-unit pricing. Minimum is 0 (zero is allowed).
           unit_quantity: nil,
           request_options: {}
         )
