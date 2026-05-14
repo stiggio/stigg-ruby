@@ -1,0 +1,73 @@
+module Stigg
+  module Models
+    module V1
+      module Credits
+        type custom_currency_update_params =
+          {
+            currency_id: String,
+            description: String?,
+            display_name: String,
+            metadata: ::Hash[Symbol, String]?,
+            symbol: String?,
+            units: Stigg::V1::Credits::CustomCurrencyUpdateParams::Units
+          }
+          & Stigg::Internal::Type::request_parameters
+
+        class CustomCurrencyUpdateParams < Stigg::Internal::Type::BaseModel
+          extend Stigg::Internal::Type::RequestParameters::Converter
+          include Stigg::Internal::Type::RequestParameters
+
+          attr_accessor currency_id: String
+
+          attr_accessor description: String?
+
+          attr_reader display_name: String?
+
+          def display_name=: (String) -> String
+
+          attr_accessor metadata: ::Hash[Symbol, String]?
+
+          attr_accessor symbol: String?
+
+          attr_reader units: Stigg::V1::Credits::CustomCurrencyUpdateParams::Units?
+
+          def units=: (
+            Stigg::V1::Credits::CustomCurrencyUpdateParams::Units
+          ) -> Stigg::V1::Credits::CustomCurrencyUpdateParams::Units
+
+          def initialize: (
+            currency_id: String,
+            ?description: String?,
+            ?display_name: String,
+            ?metadata: ::Hash[Symbol, String]?,
+            ?symbol: String?,
+            ?units: Stigg::V1::Credits::CustomCurrencyUpdateParams::Units,
+            ?request_options: Stigg::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            currency_id: String,
+            description: String?,
+            display_name: String,
+            metadata: ::Hash[Symbol, String]?,
+            symbol: String?,
+            units: Stigg::V1::Credits::CustomCurrencyUpdateParams::Units,
+            request_options: Stigg::RequestOptions
+          }
+
+          type units = { plural: String, singular: String }
+
+          class Units < Stigg::Internal::Type::BaseModel
+            attr_accessor plural: String
+
+            attr_accessor singular: String
+
+            def initialize: (plural: String, singular: String) -> void
+
+            def to_hash: -> { plural: String, singular: String }
+          end
+        end
+      end
+    end
+  end
+end
