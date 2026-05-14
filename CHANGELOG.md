@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.4 (2026-05-14)
+
+Full Changelog: [v0.1.0-beta.3...v0.1.0-beta.4](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.3...v0.1.0-beta.4)
+
+### Features
+
+* **api:** fix credits resource ([2afca34](https://github.com/stiggio/stigg-ruby/commit/2afca34e49428caf0a750174cbf09a868c183faa))
+
 ## 0.1.0-beta.3 (2026-05-14)
 
 Full Changelog: [v0.1.0-beta.2...v0.1.0-beta.3](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.2...v0.1.0-beta.3)
