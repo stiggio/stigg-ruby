@@ -1,0 +1,42 @@
+module Stigg
+  module Models
+    module V1
+      module Credits
+        type custom_currency_list_associated_entities_response =
+          {
+            data: ::Array[Stigg::Models::V1::Credits::CustomCurrencyListAssociatedEntitiesResponse::Data]
+          }
+
+        class CustomCurrencyListAssociatedEntitiesResponse < Stigg::Internal::Type::BaseModel
+          attr_accessor data: ::Array[Stigg::Models::V1::Credits::CustomCurrencyListAssociatedEntitiesResponse::Data]
+
+          def initialize: (
+            data: ::Array[Stigg::Models::V1::Credits::CustomCurrencyListAssociatedEntitiesResponse::Data]
+          ) -> void
+
+          def to_hash: -> {
+            data: ::Array[Stigg::Models::V1::Credits::CustomCurrencyListAssociatedEntitiesResponse::Data]
+          }
+
+          type data = { id: String, display_name: String, type: String }
+
+          class Data < Stigg::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor display_name: String
+
+            attr_accessor type: String
+
+            def initialize: (
+              id: String,
+              display_name: String,
+              type: String
+            ) -> void
+
+            def to_hash: -> { id: String, display_name: String, type: String }
+          end
+        end
+      end
+    end
+  end
+end
