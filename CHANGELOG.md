@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-beta.3 (2026-05-14)
+
+Full Changelog: [v0.1.0-beta.2...v0.1.0-beta.3](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.2...v0.1.0-beta.3)
+
+### Bug Fixes
+
+* **client:** elide content type header on requests without body ([7cf5869](https://github.com/stiggio/stigg-ruby/commit/7cf58699e5967da519c0756dc677ce68b53e964b))
+
+
+### Chores
+
+* **internal:** regenerate SDK with no functional changes ([251a55c](https://github.com/stiggio/stigg-ruby/commit/251a55c685da67aa5332afa5784cc55d35b6c326))
+
 ## 0.1.0-beta.2 (2026-05-12)
 
 Full Changelog: [v0.1.0-beta.1...v0.1.0-beta.2](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.1...v0.1.0-beta.2)
