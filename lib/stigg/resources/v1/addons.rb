@@ -180,6 +180,36 @@ module Stigg
           )
         end
 
+        # Retrieves the list of charges configured on an addon.
+        #
+        # @overload list_charges(id, after: nil, before: nil, limit: nil, request_options: {})
+        #
+        # @param id [String] The unique identifier of the entity
+        #
+        # @param after [String] Return items that come after this cursor
+        #
+        # @param before [String] Return items that come before this cursor
+        #
+        # @param limit [Integer] Maximum number of items to return
+        #
+        # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [Stigg::Internal::MyCursorIDPage<Stigg::Models::V1::AddonListChargesResponse>]
+        #
+        # @see Stigg::Models::V1::AddonListChargesParams
+        def list_charges(id, params = {})
+          parsed, options = Stigg::V1::AddonListChargesParams.dump_request(params)
+          query = Stigg::Internal::Util.encode_query_params(parsed)
+          @client.request(
+            method: :get,
+            path: ["api/v1/addons/%1$s/charges", id],
+            query: query,
+            page: Stigg::Internal::MyCursorIDPage,
+            model: Stigg::Models::V1::AddonListChargesResponse,
+            options: options
+          )
+        end
+
         # Publishes a draft addon, making it available for use in subscriptions.
         #
         # @overload publish(id, migration_type:, request_options: {})

@@ -56,6 +56,22 @@ module Stigg
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Plan
 
+        def list_charges: (
+          String id,
+          ?after: String,
+          ?before: String,
+          ?limit: Integer,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::PlanListChargesResponse]
+
+        def list_overage_charges: (
+          String id,
+          ?after: String,
+          ?before: String,
+          ?limit: Integer,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::PlanListOverageChargesResponse]
+
         def publish: (
           String id,
           migration_type: Stigg::Models::V1::PlanPublishParams::migration_type,

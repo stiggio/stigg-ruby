@@ -162,6 +162,33 @@ module Stigg
         )
         end
 
+        # Retrieves the list of charges configured on an addon.
+        sig do
+          params(
+            id: String,
+            after: String,
+            before: String,
+            limit: Integer,
+            request_options: Stigg::RequestOptions::OrHash
+          ).returns(
+            Stigg::Internal::MyCursorIDPage[
+              Stigg::Models::V1::AddonListChargesResponse
+            ]
+          )
+        end
+        def list_charges(
+          # The unique identifier of the entity
+          id,
+          # Return items that come after this cursor
+          after: nil,
+          # Return items that come before this cursor
+          before: nil,
+          # Maximum number of items to return
+          limit: nil,
+          request_options: {}
+        )
+        end
+
         # Publishes a draft addon, making it available for use in subscriptions.
         sig do
           params(

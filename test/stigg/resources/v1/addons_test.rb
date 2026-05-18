@@ -120,6 +120,48 @@ class Stigg::Test::Resources::V1::AddonsTest < Stigg::Test::ResourceTest
     end
   end
 
+  def test_list_charges
+    skip("Mock server tests are disabled")
+
+    response = @stigg.v1.addons.list_charges("x")
+
+    assert_pattern do
+      response => Stigg::Internal::MyCursorIDPage
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Stigg::Models::V1::AddonListChargesResponse
+    end
+
+    assert_pattern do
+      row => {
+        id: String,
+        billing_cadence: Stigg::Models::V1::AddonListChargesResponse::BillingCadence,
+        billing_model: Stigg::Models::V1::AddonListChargesResponse::BillingModel,
+        billing_period: Stigg::Models::V1::AddonListChargesResponse::BillingPeriod,
+        created_at: Time,
+        billing_country_code: String | nil,
+        billing_id: String | nil,
+        block_size: Float | nil,
+        credit_grant_cadence: Stigg::Models::V1::AddonListChargesResponse::CreditGrantCadence | nil,
+        credit_rate: Stigg::Models::V1::AddonListChargesResponse::CreditRate | nil,
+        crm_id: String | nil,
+        crm_link_url: String | nil,
+        feature_id: String | nil,
+        max_unit_quantity: Float | nil,
+        min_unit_quantity: Float | nil,
+        price: Stigg::Models::V1::AddonListChargesResponse::Price | nil,
+        tiers: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::AddonListChargesResponse::Tier]) | nil,
+        tiers_mode: Stigg::Models::V1::AddonListChargesResponse::TiersMode | nil,
+        top_up_custom_currency_id: String | nil,
+        used_in_subscriptions: Stigg::Internal::Type::Boolean | nil
+      }
+    end
+  end
+
   def test_publish_required_params
     skip("Mock server tests are disabled")
 
