@@ -1880,7 +1880,8 @@ module Stigg
           end
           attr_accessor :type
 
-          # Charge item
+          # A charge selection for a subscription (references a catalog charge with a
+          # quantity).
           sig do
             params(
               id: String,

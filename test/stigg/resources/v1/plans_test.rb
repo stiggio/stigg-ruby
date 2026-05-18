@@ -121,6 +121,90 @@ class Stigg::Test::Resources::V1::PlansTest < Stigg::Test::ResourceTest
     end
   end
 
+  def test_list_charges
+    skip("Mock server tests are disabled")
+
+    response = @stigg.v1.plans.list_charges("x")
+
+    assert_pattern do
+      response => Stigg::Internal::MyCursorIDPage
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Stigg::Models::V1::PlanListChargesResponse
+    end
+
+    assert_pattern do
+      row => {
+        id: String,
+        billing_cadence: Stigg::Models::V1::PlanListChargesResponse::BillingCadence,
+        billing_model: Stigg::Models::V1::PlanListChargesResponse::BillingModel,
+        billing_period: Stigg::Models::V1::PlanListChargesResponse::BillingPeriod,
+        created_at: Time,
+        billing_country_code: String | nil,
+        billing_id: String | nil,
+        block_size: Float | nil,
+        credit_grant_cadence: Stigg::Models::V1::PlanListChargesResponse::CreditGrantCadence | nil,
+        credit_rate: Stigg::Models::V1::PlanListChargesResponse::CreditRate | nil,
+        crm_id: String | nil,
+        crm_link_url: String | nil,
+        feature_id: String | nil,
+        max_unit_quantity: Float | nil,
+        min_unit_quantity: Float | nil,
+        price: Stigg::Models::V1::PlanListChargesResponse::Price | nil,
+        tiers: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::PlanListChargesResponse::Tier]) | nil,
+        tiers_mode: Stigg::Models::V1::PlanListChargesResponse::TiersMode | nil,
+        top_up_custom_currency_id: String | nil,
+        used_in_subscriptions: Stigg::Internal::Type::Boolean | nil
+      }
+    end
+  end
+
+  def test_list_overage_charges
+    skip("Mock server tests are disabled")
+
+    response = @stigg.v1.plans.list_overage_charges("x")
+
+    assert_pattern do
+      response => Stigg::Internal::MyCursorIDPage
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Stigg::Models::V1::PlanListOverageChargesResponse
+    end
+
+    assert_pattern do
+      row => {
+        id: String,
+        billing_cadence: Stigg::Models::V1::PlanListOverageChargesResponse::BillingCadence,
+        billing_model: Stigg::Models::V1::PlanListOverageChargesResponse::BillingModel,
+        billing_period: Stigg::Models::V1::PlanListOverageChargesResponse::BillingPeriod,
+        created_at: Time,
+        billing_country_code: String | nil,
+        billing_id: String | nil,
+        block_size: Float | nil,
+        credit_grant_cadence: Stigg::Models::V1::PlanListOverageChargesResponse::CreditGrantCadence | nil,
+        credit_rate: Stigg::Models::V1::PlanListOverageChargesResponse::CreditRate | nil,
+        crm_id: String | nil,
+        crm_link_url: String | nil,
+        feature_id: String | nil,
+        max_unit_quantity: Float | nil,
+        min_unit_quantity: Float | nil,
+        price: Stigg::Models::V1::PlanListOverageChargesResponse::Price | nil,
+        tiers: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::PlanListOverageChargesResponse::Tier]) | nil,
+        tiers_mode: Stigg::Models::V1::PlanListOverageChargesResponse::TiersMode | nil,
+        top_up_custom_currency_id: String | nil,
+        used_in_subscriptions: Stigg::Internal::Type::Boolean | nil
+      }
+    end
+  end
+
   def test_publish_required_params
     skip("Mock server tests are disabled")
 
