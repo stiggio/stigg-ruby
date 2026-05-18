@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.5 (2026-05-18)
+
+Full Changelog: [v0.1.0-beta.4...v0.1.0-beta.5](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.4...v0.1.0-beta.5)
+
+### Features
+
+* **api:** add list_charges to addons/plans, list_overage_charges to plans ([fb487bc](https://github.com/stiggio/stigg-ruby/commit/fb487bcafb18189afc7f0351d4f1f5b841167b06))
+
 ## 0.1.0-beta.4 (2026-05-14)
 
 Full Changelog: [v0.1.0-beta.3...v0.1.0-beta.4](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.3...v0.1.0-beta.4)
