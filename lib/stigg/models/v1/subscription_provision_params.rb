@@ -753,7 +753,8 @@ module Stigg
           required :type, enum: -> { Stigg::V1::SubscriptionProvisionParams::Charge::Type }
 
           # @!method initialize(id:, quantity:, type:)
-          #   Charge item
+          #   A charge selection for a subscription (references a catalog charge with a
+          #   quantity).
           #
           #   @param id [String] Charge ID
           #
