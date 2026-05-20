@@ -1,0 +1,171 @@
+# typed: strong
+
+module Stigg
+  module Resources
+    class V1
+      class Events
+        class Credits
+          # Operations related to custom currencies
+          class CustomCurrencies
+            # Creates a new custom currency in the environment.
+            sig do
+              params(
+                id: String,
+                display_name: String,
+                description: String,
+                metadata: T::Hash[Symbol, String],
+                symbol: String,
+                units:
+                  Stigg::V1::Events::Credits::CustomCurrencyCreateParams::Units::OrHash,
+                request_options: Stigg::RequestOptions::OrHash
+              ).returns(
+                Stigg::Models::V1::Events::Credits::CustomCurrencyCreateResponse
+              )
+            end
+            def create(
+              # The unique identifier for the new custom currency
+              id:,
+              # The display name of the custom currency
+              display_name:,
+              # Description of the currency
+              description: nil,
+              # Additional metadata to attach to the custom currency
+              metadata: nil,
+              # The symbol used to represent the custom currency
+              symbol: nil,
+              # Singular and plural unit labels for a custom currency. Both fields are required
+              # when supplied.
+              units: nil,
+              request_options: {}
+            )
+            end
+
+            # Updates an existing custom currency. Only the supplied fields are modified.
+            sig do
+              params(
+                currency_id: String,
+                description: T.nilable(String),
+                display_name: String,
+                metadata: T.nilable(T::Hash[Symbol, String]),
+                symbol: T.nilable(String),
+                units:
+                  Stigg::V1::Events::Credits::CustomCurrencyUpdateParams::Units::OrHash,
+                request_options: Stigg::RequestOptions::OrHash
+              ).returns(
+                Stigg::Models::V1::Events::Credits::CustomCurrencyUpdateResponse
+              )
+            end
+            def update(
+              # The reference ID of the custom currency
+              currency_id,
+              # A human-readable description of the custom currency. Send an empty string to
+              # clear.
+              description: nil,
+              # The display name of the custom currency
+              display_name: nil,
+              # Additional metadata to attach to the custom currency
+              metadata: nil,
+              # The symbol used to represent the custom currency. Send an empty string to clear.
+              symbol: nil,
+              # Singular and plural unit labels for a custom currency. Both fields are required
+              # when supplied.
+              units: nil,
+              request_options: {}
+            )
+            end
+
+            # Retrieves a paginated list of custom currencies in the environment. Archived
+            # currencies are excluded by default; pass `status=ARCHIVED` (or
+            # `status=ACTIVE,ARCHIVED`) to include them.
+            sig do
+              params(
+                after: String,
+                before: String,
+                limit: Integer,
+                status:
+                  T::Array[
+                    Stigg::V1::Events::Credits::CustomCurrencyListParams::Status::OrSymbol
+                  ],
+                request_options: Stigg::RequestOptions::OrHash
+              ).returns(
+                Stigg::Internal::MyCursorIDPage[
+                  Stigg::Models::V1::Events::Credits::CustomCurrencyListResponse
+                ]
+              )
+            end
+            def list(
+              # Return items that come after this cursor
+              after: nil,
+              # Return items that come before this cursor
+              before: nil,
+              # Maximum number of items to return
+              limit: nil,
+              # Filter by custom currency status. Supports comma-separated values (e.g.,
+              # `ACTIVE,ARCHIVED`). Defaults to `ACTIVE`.
+              status: nil,
+              request_options: {}
+            )
+            end
+
+            # Archives a custom currency. Fails if the currency is still associated with any
+            # active plan or addon — use the associated-entities endpoint first to inspect
+            # dependencies.
+            sig do
+              params(
+                currency_id: String,
+                request_options: Stigg::RequestOptions::OrHash
+              ).returns(
+                Stigg::Models::V1::Events::Credits::CustomCurrencyArchiveResponse
+              )
+            end
+            def archive(
+              # The reference ID of the custom currency
+              currency_id,
+              request_options: {}
+            )
+            end
+
+            # Lists the active plans and addons that reference a custom currency. Useful
+            # before archiving to inspect dependencies.
+            sig do
+              params(
+                currency_id: String,
+                request_options: Stigg::RequestOptions::OrHash
+              ).returns(
+                Stigg::Models::V1::Events::Credits::CustomCurrencyListAssociatedEntitiesResponse
+              )
+            end
+            def list_associated_entities(
+              # The reference ID of the custom currency
+              currency_id,
+              request_options: {}
+            )
+            end
+
+            # Restores a previously archived custom currency. Fails if another active currency
+            # with the same ID already exists.
+            sig do
+              params(
+                currency_id: String,
+                request_options: Stigg::RequestOptions::OrHash
+              ).returns(
+                Stigg::Models::V1::Events::Credits::CustomCurrencyUnarchiveResponse
+              )
+            end
+            def unarchive(
+              # The reference ID of the custom currency
+              currency_id,
+              request_options: {}
+            )
+            end
+
+            # @api private
+            sig { params(client: Stigg::Client).returns(T.attached_class) }
+            def self.new(client:)
+            end
+          end
+        end
+      end
+    end
+  end
+end
