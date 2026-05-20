@@ -2,6 +2,8 @@ module Stigg
   module Resources
     class V1
       class Events
+        attr_reader credits: Stigg::Resources::V1::Events::Credits
+
         def report: (
           events: ::Array[Stigg::V1::EventReportParams::Event],
           ?request_options: Stigg::request_opts

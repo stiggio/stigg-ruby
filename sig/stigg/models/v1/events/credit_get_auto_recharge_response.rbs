@@ -1,0 +1,113 @@
+module Stigg
+  module Models
+    module V1
+      module Events
+        type credit_get_auto_recharge_response =
+          {
+            data: Stigg::Models::V1::Events::CreditGetAutoRechargeResponse::Data
+          }
+
+        class CreditGetAutoRechargeResponse < Stigg::Internal::Type::BaseModel
+          attr_accessor data: Stigg::Models::V1::Events::CreditGetAutoRechargeResponse::Data
+
+          def initialize: (
+            data: Stigg::Models::V1::Events::CreditGetAutoRechargeResponse::Data
+          ) -> void
+
+          def to_hash: -> {
+            data: Stigg::Models::V1::Events::CreditGetAutoRechargeResponse::Data
+          }
+
+          type data =
+            {
+              id: String?,
+              created_at: Time?,
+              currency_id: String,
+              customer_id: String,
+              grant_expiration_period: Stigg::Models::V1::Events::CreditGetAutoRechargeResponse::Data::grant_expiration_period,
+              is_enabled: bool,
+              max_spend_limit: Float?,
+              target_balance: Float,
+              threshold_type: Stigg::Models::V1::Events::CreditGetAutoRechargeResponse::Data::threshold_type,
+              threshold_value: Float,
+              updated_at: Time?
+            }
+
+          class Data < Stigg::Internal::Type::BaseModel
+            attr_accessor id: String?
+
+            attr_accessor created_at: Time?
+
+            attr_accessor currency_id: String
+
+            attr_accessor customer_id: String
+
+            attr_accessor grant_expiration_period: Stigg::Models::V1::Events::CreditGetAutoRechargeResponse::Data::grant_expiration_period
+
+            attr_accessor is_enabled: bool
+
+            attr_accessor max_spend_limit: Float?
+
+            attr_accessor target_balance: Float
+
+            attr_accessor threshold_type: Stigg::Models::V1::Events::CreditGetAutoRechargeResponse::Data::threshold_type
+
+            attr_accessor threshold_value: Float
+
+            attr_accessor updated_at: Time?
+
+            def initialize: (
+              id: String?,
+              created_at: Time?,
+              currency_id: String,
+              customer_id: String,
+              grant_expiration_period: Stigg::Models::V1::Events::CreditGetAutoRechargeResponse::Data::grant_expiration_period,
+              is_enabled: bool,
+              max_spend_limit: Float?,
+              target_balance: Float,
+              threshold_type: Stigg::Models::V1::Events::CreditGetAutoRechargeResponse::Data::threshold_type,
+              threshold_value: Float,
+              updated_at: Time?
+            ) -> void
+
+            def to_hash: -> {
+              id: String?,
+              created_at: Time?,
+              currency_id: String,
+              customer_id: String,
+              grant_expiration_period: Stigg::Models::V1::Events::CreditGetAutoRechargeResponse::Data::grant_expiration_period,
+              is_enabled: bool,
+              max_spend_limit: Float?,
+              target_balance: Float,
+              threshold_type: Stigg::Models::V1::Events::CreditGetAutoRechargeResponse::Data::threshold_type,
+              threshold_value: Float,
+              updated_at: Time?
+            }
+
+            type grant_expiration_period = :"1_MONTH" | :"1_YEAR"
+
+            module GrantExpirationPeriod
+              extend Stigg::Internal::Type::Enum
+
+              GRANT_EXPIRATION_PERIOD_1_MONTH: :"1_MONTH"
+              GRANT_EXPIRATION_PERIOD_1_YEAR: :"1_YEAR"
+
+              def self?.values: -> ::Array[Stigg::Models::V1::Events::CreditGetAutoRechargeResponse::Data::grant_expiration_period]
+            end
+
+            type threshold_type = :CREDIT_AMOUNT | :DOLLAR_AMOUNT
+
+            module ThresholdType
+              extend Stigg::Internal::Type::Enum
+
+              CREDIT_AMOUNT: :CREDIT_AMOUNT
+              DOLLAR_AMOUNT: :DOLLAR_AMOUNT
+
+              def self?.values: -> ::Array[Stigg::Models::V1::Events::CreditGetAutoRechargeResponse::Data::threshold_type]
+            end
+          end
+        end
+      end
+    end
+  end
+end
