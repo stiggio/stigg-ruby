@@ -6,10 +6,22 @@ module Stigg
       module Addons
       end
 
+      module Beta
+        module Customers
+        end
+      end
+
       module Credits
       end
 
       module Customers
+      end
+
+      module Events
+        module Beta
+          module Customers
+          end
+        end
       end
 
       module Plans
@@ -26,6 +38,13 @@ module Stigg
         end
 
         module Customers
+        end
+
+        module Events
+          module Beta
+            module Customers
+            end
+          end
         end
 
         module Plans
