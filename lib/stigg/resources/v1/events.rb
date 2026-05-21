@@ -5,6 +5,9 @@ module Stigg
     class V1
       # Operations related to usage & metering
       class Events
+        # @return [Stigg::Resources::V1::Events::Beta]
+        attr_reader :beta
+
         # Reports raw usage events for event-based metering. Events are ingested
         # asynchronously and aggregated into usage totals.
         #
@@ -33,6 +36,7 @@ module Stigg
         # @param client [Stigg::Client]
         def initialize(client:)
           @client = client
+          @beta = Stigg::Resources::V1::Events::Beta.new(client: client)
         end
       end
     end
