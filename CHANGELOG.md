@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-beta.6 (2026-05-21)
+
+Full Changelog: [v0.1.0-beta.5...v0.1.0-beta.6](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.5...v0.1.0-beta.6)
+
+### Features
+
+* **api:** add beta customers entitlements check endpoint ([32d8d3e](https://github.com/stiggio/stigg-ruby/commit/32d8d3ef5170e3c760875e50a35d7e7c71e3d5ec))
+
+
+### Chores
+
+* **internal:** regenerate SDK with no functional changes ([6214a4c](https://github.com/stiggio/stigg-ruby/commit/6214a4c2860f0fbe4fd3f00d0b8f4cee3c51799a))
+* **internal:** regenerate SDK with no functional changes ([b422b48](https://github.com/stiggio/stigg-ruby/commit/b422b48ab03166551a1f462412b632ac139a51b9))
+
 ## 0.1.0-beta.5 (2026-05-18)
 
 Full Changelog: [v0.1.0-beta.4...v0.1.0-beta.5](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.4...v0.1.0-beta.5)
