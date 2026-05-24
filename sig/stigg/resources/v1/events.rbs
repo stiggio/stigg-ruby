@@ -2,8 +2,6 @@ module Stigg
   module Resources
     class V1
       class Events
-        attr_reader beta: Stigg::Resources::V1::Events::Beta
-
         def report: (
           events: ::Array[Stigg::V1::EventReportParams::Event],
           ?request_options: Stigg::request_opts
