@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.7 (2026-05-24)
+
+Full Changelog: [v0.1.0-beta.6...v0.1.0-beta.7](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.6...v0.1.0-beta.7)
+
+### Features
+
+* **api:** add entity_types resource with list/upsert to events beta ([0b33857](https://github.com/stiggio/stigg-ruby/commit/0b33857c6a530e5f4508a231d8545f7b2f28a19d))
+
 ## 0.1.0-beta.6 (2026-05-21)
 
 Full Changelog: [v0.1.0-beta.5...v0.1.0-beta.6](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.5...v0.1.0-beta.6)
