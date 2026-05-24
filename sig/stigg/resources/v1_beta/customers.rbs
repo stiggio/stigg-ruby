@@ -1,0 +1,11 @@
+module Stigg
+  module Resources
+    class V1Beta
+      class Customers
+        attr_reader entitlements: Stigg::Resources::V1Beta::Customers::Entitlements
+
+        def initialize: (client: Stigg::Client) -> void
+      end
+    end
+  end
+end
