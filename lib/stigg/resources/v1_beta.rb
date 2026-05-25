@@ -9,6 +9,9 @@ module Stigg
       # @return [Stigg::Resources::V1Beta::EntityTypes]
       attr_reader :entity_types
 
+      # @return [Stigg::Resources::V1Beta::Entities]
+      attr_reader :entities
+
       # @api private
       #
       # @param client [Stigg::Client]
@@ -16,6 +19,7 @@ module Stigg
         @client = client
         @customers = Stigg::Resources::V1Beta::Customers.new(client: client)
         @entity_types = Stigg::Resources::V1Beta::EntityTypes.new(client: client)
+        @entities = Stigg::Resources::V1Beta::Entities.new(client: client)
       end
     end
   end
