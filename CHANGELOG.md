@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.8 (2026-05-25)
+
+Full Changelog: [v0.1.0-beta.7...v0.1.0-beta.8](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.7...v0.1.0-beta.8)
+
+### Features
+
+* **api:** add entities resource with retrieve/list/archive/unarchive/upsert methods ([7ed5106](https://github.com/stiggio/stigg-ruby/commit/7ed5106db56d60583655a9750cf2a3e58c9fb3c7))
+
 ## 0.1.0-beta.7 (2026-05-24)
 
 Full Changelog: [v0.1.0-beta.6...v0.1.0-beta.7](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.6...v0.1.0-beta.7)
