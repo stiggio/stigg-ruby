@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.9 (2026-05-26)
+
+Full Changelog: [v0.1.0-beta.8...v0.1.0-beta.9](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.8...v0.1.0-beta.9)
+
+### Features
+
+* **api:** add customer assignments list/upsert to events beta ([0fb3a5c](https://github.com/stiggio/stigg-ruby/commit/0fb3a5cdb62465d80fbdeb1bc4919f6b73835ed5))
+
 ## 0.1.0-beta.8 (2026-05-25)
 
 Full Changelog: [v0.1.0-beta.7...v0.1.0-beta.8](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.7...v0.1.0-beta.8)
