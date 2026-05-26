@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.11 (2026-05-26)
+
+Full Changelog: [v0.1.0-beta.10...v0.1.0-beta.11](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.10...v0.1.0-beta.11)
+
+### Features
+
+* **api:** add group_by parameter and tags field to credit usage ([b60f99c](https://github.com/stiggio/stigg-ruby/commit/b60f99c81952aa094717c7a8ed336df88e0f6ae4))
+
 ## 0.1.0-beta.10 (2026-05-26)
 
 Full Changelog: [v0.1.0-beta.9...v0.1.0-beta.10](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.9...v0.1.0-beta.10)
