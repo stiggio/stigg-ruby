@@ -75,33 +75,42 @@ module Stigg
 
           type series =
             {
-              feature_id: String,
-              feature_name: String,
+              feature_id: String?,
+              feature_name: String?,
               points: ::Array[Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Point],
-              total_credits: Float
+              total_credits: Float,
+              tags: ::Array[Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Tag]
             }
 
           class Series < Stigg::Internal::Type::BaseModel
-            attr_accessor feature_id: String
+            attr_accessor feature_id: String?
 
-            attr_accessor feature_name: String
+            attr_accessor feature_name: String?
 
             attr_accessor points: ::Array[Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Point]
 
             attr_accessor total_credits: Float
 
+            attr_reader tags: ::Array[Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Tag]?
+
+            def tags=: (
+              ::Array[Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Tag]
+            ) -> ::Array[Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Tag]
+
             def initialize: (
-              feature_id: String,
-              feature_name: String,
+              feature_id: String?,
+              feature_name: String?,
               points: ::Array[Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Point],
-              total_credits: Float
+              total_credits: Float,
+              ?tags: ::Array[Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Tag]
             ) -> void
 
             def to_hash: -> {
-              feature_id: String,
-              feature_name: String,
+              feature_id: String?,
+              feature_name: String?,
               points: ::Array[Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Point],
-              total_credits: Float
+              total_credits: Float,
+              tags: ::Array[Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Tag]
             }
 
             type point = { timestamp: Time, value: Float }
@@ -114,6 +123,18 @@ module Stigg
               def initialize: (timestamp: Time, value: Float) -> void
 
               def to_hash: -> { timestamp: Time, value: Float }
+            end
+
+            type tag = { key: String, value: String }
+
+            class Tag < Stigg::Internal::Type::BaseModel
+              attr_accessor key: String
+
+              attr_accessor value: String
+
+              def initialize: (key: String, value: String) -> void
+
+              def to_hash: -> { key: String, value: String }
             end
           end
         end

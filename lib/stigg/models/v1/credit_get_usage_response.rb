@@ -86,16 +86,16 @@ module Stigg
 
           class Series < Stigg::Internal::Type::BaseModel
             # @!attribute feature_id
-            #   The feature ID
+            #   The feature ID; null when grouping by dimensions only
             #
-            #   @return [String]
-            required :feature_id, String, api_name: :featureId
+            #   @return [String, nil]
+            required :feature_id, String, api_name: :featureId, nil?: true
 
             # @!attribute feature_name
-            #   The display name of the feature
+            #   The display name of the feature; null when grouping by dimensions only
             #
-            #   @return [String]
-            required :feature_name, String, api_name: :featureName
+            #   @return [String, nil]
+            required :feature_name, String, api_name: :featureName, nil?: true
 
             # @!attribute points
             #   Time-series data points for this feature
@@ -110,16 +110,25 @@ module Stigg
             #   @return [Float]
             required :total_credits, Float, api_name: :totalCredits
 
-            # @!method initialize(feature_id:, feature_name:, points:, total_credits:)
+            # @!attribute tags
+            #   Dimension key/value pairs identifying this series when groupBy is applied
+            #
+            #   @return [Array<Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Tag>, nil]
+            optional :tags,
+                     -> { Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Tag] }
+
+            # @!method initialize(feature_id:, feature_name:, points:, total_credits:, tags: nil)
             #   Credit usage data for a single feature
             #
-            #   @param feature_id [String] The feature ID
+            #   @param feature_id [String, nil] The feature ID; null when grouping by dimensions only
             #
-            #   @param feature_name [String] The display name of the feature
+            #   @param feature_name [String, nil] The display name of the feature; null when grouping by dimensions only
             #
             #   @param points [Array<Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Point>] Time-series data points for this feature
             #
             #   @param total_credits [Float] Total credits consumed by this feature in the time range
+            #
+            #   @param tags [Array<Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Tag>] Dimension key/value pairs identifying this series when groupBy is applied
 
             class Point < Stigg::Internal::Type::BaseModel
               # @!attribute timestamp
@@ -140,6 +149,27 @@ module Stigg
               #   @param timestamp [Time] The timestamp of the data point
               #
               #   @param value [Float] The credit usage value at this point
+            end
+
+            class Tag < Stigg::Internal::Type::BaseModel
+              # @!attribute key
+              #   The dimension key
+              #
+              #   @return [String]
+              required :key, String
+
+              # @!attribute value
+              #   The dimension value for this series
+              #
+              #   @return [String]
+              required :value, String
+
+              # @!method initialize(key:, value:)
+              #   Dimension key/value pair identifying a credit usage series
+              #
+              #   @param key [String] The dimension key
+              #
+              #   @param value [String] The dimension value for this series
             end
           end
         end
