@@ -31,6 +31,14 @@ module Stigg
         sig { params(end_date: Time).void }
         attr_writer :end_date
 
+        # Comma-separated list of feature dimension keys to group usage series by (up to
+        # 3). Each key matches /^[a-zA-Z0-9_$-]+$/
+        sig { returns(T.nilable(String)) }
+        attr_reader :group_by
+
+        sig { params(group_by: String).void }
+        attr_writer :group_by
+
         # Filter by resource ID
         sig { returns(T.nilable(String)) }
         attr_reader :resource_id
@@ -67,6 +75,7 @@ module Stigg
             customer_id: String,
             currency_id: String,
             end_date: Time,
+            group_by: String,
             resource_id: String,
             start_date: Time,
             time_range: Stigg::V1::CreditGetUsageParams::TimeRange::OrSymbol,
@@ -81,6 +90,9 @@ module Stigg
           # End date for the credit usage time range (ISO 8601). Defaults to now when
           # startDate is provided
           end_date: nil,
+          # Comma-separated list of feature dimension keys to group usage series by (up to
+          # 3). Each key matches /^[a-zA-Z0-9_$-]+$/
+          group_by: nil,
           # Filter by resource ID
           resource_id: nil,
           # Start date for the credit usage time range (ISO 8601). Takes precedence over
@@ -99,6 +111,7 @@ module Stigg
               customer_id: String,
               currency_id: String,
               end_date: Time,
+              group_by: String,
               resource_id: String,
               start_date: Time,
               time_range: Stigg::V1::CreditGetUsageParams::TimeRange::OrSymbol,

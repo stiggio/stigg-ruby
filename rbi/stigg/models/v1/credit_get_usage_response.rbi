@@ -195,12 +195,12 @@ module Stigg
                 )
               end
 
-            # The feature ID
-            sig { returns(String) }
+            # The feature ID; null when grouping by dimensions only
+            sig { returns(T.nilable(String)) }
             attr_accessor :feature_id
 
-            # The display name of the feature
-            sig { returns(String) }
+            # The display name of the feature; null when grouping by dimensions only
+            sig { returns(T.nilable(String)) }
             attr_accessor :feature_name
 
             # Time-series data points for this feature
@@ -217,40 +217,72 @@ module Stigg
             sig { returns(Float) }
             attr_accessor :total_credits
 
+            # Dimension key/value pairs identifying this series when groupBy is applied
+            sig do
+              returns(
+                T.nilable(
+                  T::Array[
+                    Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Tag
+                  ]
+                )
+              )
+            end
+            attr_reader :tags
+
+            sig do
+              params(
+                tags:
+                  T::Array[
+                    Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Tag::OrHash
+                  ]
+              ).void
+            end
+            attr_writer :tags
+
             # Credit usage data for a single feature
             sig do
               params(
-                feature_id: String,
-                feature_name: String,
+                feature_id: T.nilable(String),
+                feature_name: T.nilable(String),
                 points:
                   T::Array[
                     Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Point::OrHash
                   ],
-                total_credits: Float
+                total_credits: Float,
+                tags:
+                  T::Array[
+                    Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Tag::OrHash
+                  ]
               ).returns(T.attached_class)
             end
             def self.new(
-              # The feature ID
+              # The feature ID; null when grouping by dimensions only
               feature_id:,
-              # The display name of the feature
+              # The display name of the feature; null when grouping by dimensions only
               feature_name:,
               # Time-series data points for this feature
               points:,
               # Total credits consumed by this feature in the time range
-              total_credits:
+              total_credits:,
+              # Dimension key/value pairs identifying this series when groupBy is applied
+              tags: nil
             )
             end
 
             sig do
               override.returns(
                 {
-                  feature_id: String,
-                  feature_name: String,
+                  feature_id: T.nilable(String),
+                  feature_name: T.nilable(String),
                   points:
                     T::Array[
                       Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Point
                     ],
-                  total_credits: Float
+                  total_credits: Float,
+                  tags:
+                    T::Array[
+                      Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Tag
+                    ]
                 }
               )
             end
@@ -287,6 +319,40 @@ module Stigg
               end
 
               sig { override.returns({ timestamp: Time, value: Float }) }
+              def to_hash
+              end
+            end
+
+            class Tag < Stigg::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Tag,
+                    Stigg::Internal::AnyHash
+                  )
+                end
+
+              # The dimension key
+              sig { returns(String) }
+              attr_accessor :key
+
+              # The dimension value for this series
+              sig { returns(String) }
+              attr_accessor :value
+
+              # Dimension key/value pair identifying a credit usage series
+              sig do
+                params(key: String, value: String).returns(T.attached_class)
+              end
+              def self.new(
+                # The dimension key
+                key:,
+                # The dimension value for this series
+                value:
+              )
+              end
+
+              sig { override.returns({ key: String, value: String }) }
               def to_hash
               end
             end

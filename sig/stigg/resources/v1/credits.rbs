@@ -16,6 +16,7 @@ module Stigg
           customer_id: String,
           ?currency_id: String,
           ?end_date: Time,
+          ?group_by: String,
           ?resource_id: String,
           ?start_date: Time,
           ?time_range: Stigg::Models::V1::CreditGetUsageParams::time_range,
