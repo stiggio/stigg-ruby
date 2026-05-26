@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.10 (2026-05-26)
+
+Full Changelog: [v0.1.0-beta.9...v0.1.0-beta.10](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.9...v0.1.0-beta.10)
+
+### Features
+
+* **api:** manual updates ([2cb86c8](https://github.com/stiggio/stigg-ruby/commit/2cb86c8bbbe394b1e1bc966a3eb1f6254d15aa3a))
+
 ## 0.1.0-beta.9 (2026-05-26)
 
 Full Changelog: [v0.1.0-beta.8...v0.1.0-beta.9](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.8...v0.1.0-beta.9)
