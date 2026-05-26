@@ -133,29 +133,29 @@ class Stigg::Test::Resources::V1::AddonsTest < Stigg::Test::ResourceTest
     return if row.nil?
 
     assert_pattern do
-      row => Stigg::Models::V1::AddonListChargesResponse
+      row => Stigg::V1::ChargeList::Data
     end
 
     assert_pattern do
       row => {
         id: String,
-        billing_cadence: Stigg::Models::V1::AddonListChargesResponse::BillingCadence,
-        billing_model: Stigg::Models::V1::AddonListChargesResponse::BillingModel,
-        billing_period: Stigg::Models::V1::AddonListChargesResponse::BillingPeriod,
+        billing_cadence: Stigg::V1::ChargeList::Data::BillingCadence,
+        billing_model: Stigg::V1::ChargeList::Data::BillingModel,
+        billing_period: Stigg::V1::ChargeList::Data::BillingPeriod,
         created_at: Time,
         billing_country_code: String | nil,
         billing_id: String | nil,
         block_size: Float | nil,
-        credit_grant_cadence: Stigg::Models::V1::AddonListChargesResponse::CreditGrantCadence | nil,
-        credit_rate: Stigg::Models::V1::AddonListChargesResponse::CreditRate | nil,
+        credit_grant_cadence: Stigg::V1::ChargeList::Data::CreditGrantCadence | nil,
+        credit_rate: Stigg::V1::ChargeList::Data::CreditRate | nil,
         crm_id: String | nil,
         crm_link_url: String | nil,
         feature_id: String | nil,
         max_unit_quantity: Float | nil,
         min_unit_quantity: Float | nil,
-        price: Stigg::Models::V1::AddonListChargesResponse::Price | nil,
-        tiers: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::AddonListChargesResponse::Tier]) | nil,
-        tiers_mode: Stigg::Models::V1::AddonListChargesResponse::TiersMode | nil,
+        price: Stigg::V1::ChargeList::Data::Price | nil,
+        tiers: ^(Stigg::Internal::Type::ArrayOf[Stigg::V1::ChargeList::Data::Tier]) | nil,
+        tiers_mode: Stigg::V1::ChargeList::Data::TiersMode | nil,
         top_up_custom_currency_id: String | nil,
         used_in_subscriptions: Stigg::Internal::Type::Boolean | nil
       }

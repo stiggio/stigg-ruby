@@ -76,7 +76,7 @@ module Stigg
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
-          # @return [Stigg::Models::V1Beta::Customers::EntityArchiveResponse]
+          # @return [Stigg::Models::V1Beta::Customers::EntityIDsActionResponseDto]
           #
           # @see Stigg::Models::V1Beta::Customers::EntityArchiveParams
           def archive(id, params)
@@ -85,7 +85,7 @@ module Stigg
               method: :post,
               path: ["api/v1-beta/customers/%1$s/entities/archive", id],
               body: parsed,
-              model: Stigg::Models::V1Beta::Customers::EntityArchiveResponse,
+              model: Stigg::V1Beta::Customers::EntityIDsActionResponseDto,
               options: options
             )
           end
@@ -100,7 +100,7 @@ module Stigg
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
-          # @return [Stigg::Models::V1Beta::Customers::EntityUnarchiveResponse]
+          # @return [Stigg::Models::V1Beta::Customers::EntityIDsActionResponseDto]
           #
           # @see Stigg::Models::V1Beta::Customers::EntityUnarchiveParams
           def unarchive(id, params)
@@ -109,7 +109,7 @@ module Stigg
               method: :post,
               path: ["api/v1-beta/customers/%1$s/entities/unarchive", id],
               body: parsed,
-              model: Stigg::Models::V1Beta::Customers::EntityUnarchiveResponse,
+              model: Stigg::V1Beta::Customers::EntityIDsActionResponseDto,
               options: options
             )
           end
