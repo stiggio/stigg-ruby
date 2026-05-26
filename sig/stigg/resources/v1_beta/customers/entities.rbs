@@ -23,13 +23,13 @@ module Stigg
             String id,
             ids: ::Array[String],
             ?request_options: Stigg::request_opts
-          ) -> Stigg::Models::V1Beta::Customers::EntityArchiveResponse
+          ) -> Stigg::V1Beta::Customers::EntityIDsActionResponseDto
 
           def unarchive: (
             String id,
             ids: ::Array[String],
             ?request_options: Stigg::request_opts
-          ) -> Stigg::Models::V1Beta::Customers::EntityUnarchiveResponse
+          ) -> Stigg::V1Beta::Customers::EntityIDsActionResponseDto
 
           def upsert: (
             String id,

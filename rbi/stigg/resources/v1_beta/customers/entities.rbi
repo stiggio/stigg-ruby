@@ -62,7 +62,7 @@ module Stigg
               id: String,
               ids: T::Array[String],
               request_options: Stigg::RequestOptions::OrHash
-            ).returns(Stigg::Models::V1Beta::Customers::EntityArchiveResponse)
+            ).returns(Stigg::V1Beta::Customers::EntityIDsActionResponseDto)
           end
           def archive(
             # The customer identifier (owner) the entities belong to
@@ -79,7 +79,7 @@ module Stigg
               id: String,
               ids: T::Array[String],
               request_options: Stigg::RequestOptions::OrHash
-            ).returns(Stigg::Models::V1Beta::Customers::EntityUnarchiveResponse)
+            ).returns(Stigg::V1Beta::Customers::EntityIDsActionResponseDto)
           end
           def unarchive(
             # The customer identifier (owner) the entities belong to
