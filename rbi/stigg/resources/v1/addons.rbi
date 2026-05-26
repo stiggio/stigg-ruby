@@ -171,9 +171,7 @@ module Stigg
             limit: Integer,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(
-            Stigg::Internal::MyCursorIDPage[
-              Stigg::Models::V1::AddonListChargesResponse
-            ]
+            Stigg::Internal::MyCursorIDPage[Stigg::V1::ChargeList::Data]
           )
         end
         def list_charges(

@@ -2,20 +2,18 @@ module Stigg
   module Models
     module V1Beta
       module Customers
-        type entity_unarchive_response =
-          {
-            data: Stigg::Models::V1Beta::Customers::EntityUnarchiveResponse::Data
-          }
+        type entity_ids_action_response_dto =
+          { data: Stigg::V1Beta::Customers::EntityIDsActionResponseDto::Data }
 
-        class EntityUnarchiveResponse < Stigg::Internal::Type::BaseModel
-          attr_accessor data: Stigg::Models::V1Beta::Customers::EntityUnarchiveResponse::Data
+        class EntityIDsActionResponseDto < Stigg::Internal::Type::BaseModel
+          attr_accessor data: Stigg::V1Beta::Customers::EntityIDsActionResponseDto::Data
 
           def initialize: (
-            data: Stigg::Models::V1Beta::Customers::EntityUnarchiveResponse::Data
+            data: Stigg::V1Beta::Customers::EntityIDsActionResponseDto::Data
           ) -> void
 
           def to_hash: -> {
-            data: Stigg::Models::V1Beta::Customers::EntityUnarchiveResponse::Data
+            data: Stigg::V1Beta::Customers::EntityIDsActionResponseDto::Data
           }
 
           type data = { ids: ::Array[String] }

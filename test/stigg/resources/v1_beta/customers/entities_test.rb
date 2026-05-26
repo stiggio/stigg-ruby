@@ -53,12 +53,12 @@ class Stigg::Test::Resources::V1Beta::Customers::EntitiesTest < Stigg::Test::Res
     response = @stigg.v1_beta.customers.entities.archive("id", ids: %w[user-7f3a0c1d user-c4d1b2e9])
 
     assert_pattern do
-      response => Stigg::Models::V1Beta::Customers::EntityArchiveResponse
+      response => Stigg::V1Beta::Customers::EntityIDsActionResponseDto
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1Beta::Customers::EntityArchiveResponse::Data
+        data: Stigg::V1Beta::Customers::EntityIDsActionResponseDto::Data
       }
     end
   end
@@ -69,12 +69,12 @@ class Stigg::Test::Resources::V1Beta::Customers::EntitiesTest < Stigg::Test::Res
     response = @stigg.v1_beta.customers.entities.unarchive("id", ids: %w[user-7f3a0c1d user-c4d1b2e9])
 
     assert_pattern do
-      response => Stigg::Models::V1Beta::Customers::EntityUnarchiveResponse
+      response => Stigg::V1Beta::Customers::EntityIDsActionResponseDto
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1Beta::Customers::EntityUnarchiveResponse::Data
+        data: Stigg::V1Beta::Customers::EntityIDsActionResponseDto::Data
       }
     end
   end

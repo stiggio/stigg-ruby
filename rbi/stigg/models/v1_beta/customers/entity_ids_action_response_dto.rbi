@@ -4,27 +4,25 @@ module Stigg
   module Models
     module V1Beta
       module Customers
-        class EntityArchiveResponse < Stigg::Internal::Type::BaseModel
+        class EntityIDsActionResponseDto < Stigg::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                Stigg::Models::V1Beta::Customers::EntityArchiveResponse,
+                Stigg::V1Beta::Customers::EntityIDsActionResponseDto,
                 Stigg::Internal::AnyHash
               )
             end
 
           # List of entity identifiers that were acted on
           sig do
-            returns(
-              Stigg::Models::V1Beta::Customers::EntityArchiveResponse::Data
-            )
+            returns(Stigg::V1Beta::Customers::EntityIDsActionResponseDto::Data)
           end
           attr_reader :data
 
           sig do
             params(
               data:
-                Stigg::Models::V1Beta::Customers::EntityArchiveResponse::Data::OrHash
+                Stigg::V1Beta::Customers::EntityIDsActionResponseDto::Data::OrHash
             ).void
           end
           attr_writer :data
@@ -33,7 +31,7 @@ module Stigg
           sig do
             params(
               data:
-                Stigg::Models::V1Beta::Customers::EntityArchiveResponse::Data::OrHash
+                Stigg::V1Beta::Customers::EntityIDsActionResponseDto::Data::OrHash
             ).returns(T.attached_class)
           end
           def self.new(
@@ -45,8 +43,7 @@ module Stigg
           sig do
             override.returns(
               {
-                data:
-                  Stigg::Models::V1Beta::Customers::EntityArchiveResponse::Data
+                data: Stigg::V1Beta::Customers::EntityIDsActionResponseDto::Data
               }
             )
           end
@@ -57,7 +54,7 @@ module Stigg
             OrHash =
               T.type_alias do
                 T.any(
-                  Stigg::Models::V1Beta::Customers::EntityArchiveResponse::Data,
+                  Stigg::V1Beta::Customers::EntityIDsActionResponseDto::Data,
                   Stigg::Internal::AnyHash
                 )
               end

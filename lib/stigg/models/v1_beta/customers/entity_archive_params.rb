@@ -5,7 +5,7 @@ module Stigg
     module V1Beta
       module Customers
         # @see Stigg::Resources::V1Beta::Customers::Entities#archive
-        class EntityArchiveParams < Stigg::Internal::Type::BaseModel
+        class EntityArchiveParams < Stigg::Models::V1Beta::Customers::EntityIDsRequestDto
           extend Stigg::Internal::Type::RequestParameters::Converter
           include Stigg::Internal::Type::RequestParameters
 
@@ -14,17 +14,8 @@ module Stigg
           #   @return [String]
           required :id, String
 
-          # @!attribute ids
-          #   Entity identifiers to act on
-          #
-          #   @return [Array<String>]
-          required :ids, Stigg::Internal::Type::ArrayOf[String]
-
-          # @!method initialize(id:, ids:, request_options: {})
+          # @!method initialize(id:, request_options: {})
           #   @param id [String]
-          #
-          #   @param ids [Array<String>] Entity identifiers to act on
-          #
           #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
         end
       end

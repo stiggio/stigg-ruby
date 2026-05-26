@@ -194,7 +194,7 @@ module Stigg
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Stigg::Internal::MyCursorIDPage<Stigg::Models::V1::AddonListChargesResponse>]
+        # @return [Stigg::Internal::MyCursorIDPage<Stigg::Models::V1::ChargeList::Data>]
         #
         # @see Stigg::Models::V1::AddonListChargesParams
         def list_charges(id, params = {})
@@ -205,7 +205,7 @@ module Stigg
             path: ["api/v1/addons/%1$s/charges", id],
             query: query,
             page: Stigg::Internal::MyCursorIDPage,
-            model: Stigg::Models::V1::AddonListChargesResponse,
+            model: Stigg::V1::ChargeList::Data,
             options: options
           )
         end
