@@ -9,9 +9,6 @@ module Stigg
       sig { returns(Stigg::Resources::V1Beta::EntityTypes) }
       attr_reader :entity_types
 
-      sig { returns(Stigg::Resources::V1Beta::Entities) }
-      attr_reader :entities
-
       # @api private
       sig { params(client: Stigg::Client).returns(T.attached_class) }
       def self.new(client:)
