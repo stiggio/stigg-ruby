@@ -1,0 +1,87 @@
+module Stigg
+  module Models
+    module V1
+      module Events
+        module Beta
+          module Customers
+            type assignment_upsert_params =
+              {
+                id: String,
+                assignments: ::Array[Stigg::V1::Events::Beta::Customers::AssignmentUpsertParams::Assignment]
+              }
+              & Stigg::Internal::Type::request_parameters
+
+            class AssignmentUpsertParams < Stigg::Internal::Type::BaseModel
+              extend Stigg::Internal::Type::RequestParameters::Converter
+              include Stigg::Internal::Type::RequestParameters
+
+              attr_accessor id: String
+
+              attr_accessor assignments: ::Array[Stigg::V1::Events::Beta::Customers::AssignmentUpsertParams::Assignment]
+
+              def initialize: (
+                id: String,
+                assignments: ::Array[Stigg::V1::Events::Beta::Customers::AssignmentUpsertParams::Assignment],
+                ?request_options: Stigg::request_opts
+              ) -> void
+
+              def to_hash: -> {
+                id: String,
+                assignments: ::Array[Stigg::V1::Events::Beta::Customers::AssignmentUpsertParams::Assignment],
+                request_options: Stigg::RequestOptions
+              }
+
+              type assignment =
+                {
+                  capability_id: String,
+                  entity_id: String,
+                  cadence: Stigg::Models::V1::Events::Beta::Customers::AssignmentUpsertParams::Assignment::cadence,
+                  usage_limit: Float
+                }
+
+              class Assignment < Stigg::Internal::Type::BaseModel
+                attr_accessor capability_id: String
+
+                attr_accessor entity_id: String
+
+                attr_reader cadence: Stigg::Models::V1::Events::Beta::Customers::AssignmentUpsertParams::Assignment::cadence?
+
+                def cadence=: (
+                  Stigg::Models::V1::Events::Beta::Customers::AssignmentUpsertParams::Assignment::cadence
+                ) -> Stigg::Models::V1::Events::Beta::Customers::AssignmentUpsertParams::Assignment::cadence
+
+                attr_reader usage_limit: Float?
+
+                def usage_limit=: (Float) -> Float
+
+                def initialize: (
+                  capability_id: String,
+                  entity_id: String,
+                  ?cadence: Stigg::Models::V1::Events::Beta::Customers::AssignmentUpsertParams::Assignment::cadence,
+                  ?usage_limit: Float
+                ) -> void
+
+                def to_hash: -> {
+                  capability_id: String,
+                  entity_id: String,
+                  cadence: Stigg::Models::V1::Events::Beta::Customers::AssignmentUpsertParams::Assignment::cadence,
+                  usage_limit: Float
+                }
+
+                type cadence = :MONTH
+
+                module Cadence
+                  extend Stigg::Internal::Type::Enum
+
+                  MONTH: :MONTH
+
+                  def self?.values: -> ::Array[Stigg::Models::V1::Events::Beta::Customers::AssignmentUpsertParams::Assignment::cadence]
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end

@@ -62,7 +62,7 @@ module Stigg
           ?before: String,
           ?limit: Integer,
           ?request_options: Stigg::request_opts
-        ) -> Stigg::Internal::MyCursorIDPage[Stigg::V1::ChargeList::Data]
+        ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::PlanListChargesResponse]
 
         def list_overage_charges: (
           String id,
@@ -70,7 +70,7 @@ module Stigg
           ?before: String,
           ?limit: Integer,
           ?request_options: Stigg::request_opts
-        ) -> Stigg::Internal::MyCursorIDPage[Stigg::V1::ChargeList::Data]
+        ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::PlanListOverageChargesResponse]
 
         def publish: (
           String id,

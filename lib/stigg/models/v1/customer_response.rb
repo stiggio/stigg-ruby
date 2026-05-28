@@ -409,6 +409,7 @@ module Stigg
               BIG_QUERY = :BIG_QUERY
               OPEN_FGA = :OPEN_FGA
               APP_STORE = :APP_STORE
+              RECEIVED = :RECEIVED
 
               # @!method self.values
               #   @return [Array<Symbol>]

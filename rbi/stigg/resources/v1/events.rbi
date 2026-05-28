@@ -5,6 +5,9 @@ module Stigg
     class V1
       # Operations related to usage & metering
       class Events
+        sig { returns(Stigg::Resources::V1::Events::Beta) }
+        attr_reader :beta
+
         # Reports raw usage events for event-based metering. Events are ingested
         # asynchronously and aggregated into usage totals.
         sig do
