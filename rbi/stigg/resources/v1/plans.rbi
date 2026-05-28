@@ -177,7 +177,9 @@ module Stigg
             limit: Integer,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(
-            Stigg::Internal::MyCursorIDPage[Stigg::V1::ChargeList::Data]
+            Stigg::Internal::MyCursorIDPage[
+              Stigg::Models::V1::PlanListChargesResponse
+            ]
           )
         end
         def list_charges(
@@ -202,7 +204,9 @@ module Stigg
             limit: Integer,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(
-            Stigg::Internal::MyCursorIDPage[Stigg::V1::ChargeList::Data]
+            Stigg::Internal::MyCursorIDPage[
+              Stigg::Models::V1::PlanListOverageChargesResponse
+            ]
           )
         end
         def list_overage_charges(

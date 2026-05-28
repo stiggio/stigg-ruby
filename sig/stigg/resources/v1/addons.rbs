@@ -61,7 +61,7 @@ module Stigg
           ?before: String,
           ?limit: Integer,
           ?request_options: Stigg::request_opts
-        ) -> Stigg::Internal::MyCursorIDPage[Stigg::V1::ChargeList::Data]
+        ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::AddonListChargesResponse]
 
         def publish: (
           String id,

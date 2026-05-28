@@ -50,6 +50,7 @@ module Stigg
             | :BIG_QUERY
             | :OPEN_FGA
             | :APP_STORE
+            | :RECEIVED
 
           module VendorIdentifier
             extend Stigg::Internal::Type::Enum
@@ -64,6 +65,7 @@ module Stigg
             BIG_QUERY: :BIG_QUERY
             OPEN_FGA: :OPEN_FGA
             APP_STORE: :APP_STORE
+            RECEIVED: :RECEIVED
 
             def self?.values: -> ::Array[Stigg::Models::V1::Customers::IntegrationLinkParams::vendor_identifier]
           end
