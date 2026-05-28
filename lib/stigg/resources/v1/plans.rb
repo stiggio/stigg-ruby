@@ -196,7 +196,7 @@ module Stigg
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Stigg::Internal::MyCursorIDPage<Stigg::Models::V1::ChargeList::Data>]
+        # @return [Stigg::Internal::MyCursorIDPage<Stigg::Models::V1::PlanListChargesResponse>]
         #
         # @see Stigg::Models::V1::PlanListChargesParams
         def list_charges(id, params = {})
@@ -207,7 +207,7 @@ module Stigg
             path: ["api/v1/plans/%1$s/charges", id],
             query: query,
             page: Stigg::Internal::MyCursorIDPage,
-            model: Stigg::V1::ChargeList::Data,
+            model: Stigg::Models::V1::PlanListChargesResponse,
             options: options
           )
         end
@@ -226,7 +226,7 @@ module Stigg
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [Stigg::Internal::MyCursorIDPage<Stigg::Models::V1::ChargeList::Data>]
+        # @return [Stigg::Internal::MyCursorIDPage<Stigg::Models::V1::PlanListOverageChargesResponse>]
         #
         # @see Stigg::Models::V1::PlanListOverageChargesParams
         def list_overage_charges(id, params = {})
@@ -237,7 +237,7 @@ module Stigg
             path: ["api/v1/plans/%1$s/overage-charges", id],
             query: query,
             page: Stigg::Internal::MyCursorIDPage,
-            model: Stigg::V1::ChargeList::Data,
+            model: Stigg::Models::V1::PlanListOverageChargesResponse,
             options: options
           )
         end

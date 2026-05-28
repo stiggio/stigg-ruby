@@ -1077,6 +1077,11 @@ module Stigg
                 :APP_STORE,
                 Stigg::V1::CustomerProvisionParams::Integration::VendorIdentifier::TaggedSymbol
               )
+            RECEIVED =
+              T.let(
+                :RECEIVED,
+                Stigg::V1::CustomerProvisionParams::Integration::VendorIdentifier::TaggedSymbol
+              )
 
             sig do
               override.returns(
