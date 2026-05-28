@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.12 (2026-05-28)
+
+Full Changelog: [v0.1.0-beta.11...v0.1.0-beta.12](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.11...v0.1.0-beta.12)
+
+### Features
+
+* **api:** add RECEIVED to VendorIdentifier enum in customer models ([fa5f069](https://github.com/stiggio/stigg-ruby/commit/fa5f069f301817f3b41f6add902a80e01e1d26ce))
+
 ## 0.1.0-beta.11 (2026-05-26)
 
 Full Changelog: [v0.1.0-beta.10...v0.1.0-beta.11](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.10...v0.1.0-beta.11)
