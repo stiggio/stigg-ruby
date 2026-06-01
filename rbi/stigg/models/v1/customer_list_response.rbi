@@ -1114,6 +1114,11 @@ module Stigg
                 :RECEIVED,
                 Stigg::Models::V1::CustomerListResponse::Integration::VendorIdentifier::TaggedSymbol
               )
+            PREQUEL =
+              T.let(
+                :PREQUEL,
+                Stigg::Models::V1::CustomerListResponse::Integration::VendorIdentifier::TaggedSymbol
+              )
 
             sig do
               override.returns(
