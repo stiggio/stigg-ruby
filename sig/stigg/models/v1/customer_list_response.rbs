@@ -435,6 +435,7 @@ module Stigg
             | :OPEN_FGA
             | :APP_STORE
             | :RECEIVED
+            | :PREQUEL
 
           module VendorIdentifier
             extend Stigg::Internal::Type::Enum
@@ -450,6 +451,7 @@ module Stigg
             OPEN_FGA: :OPEN_FGA
             APP_STORE: :APP_STORE
             RECEIVED: :RECEIVED
+            PREQUEL: :PREQUEL
 
             def self?.values: -> ::Array[Stigg::Models::V1::CustomerListResponse::Integration::vendor_identifier]
           end

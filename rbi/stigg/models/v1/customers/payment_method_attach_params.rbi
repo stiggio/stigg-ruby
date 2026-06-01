@@ -160,6 +160,11 @@ module Stigg
                 :RECEIVED,
                 Stigg::V1::Customers::PaymentMethodAttachParams::VendorIdentifier::TaggedSymbol
               )
+            PREQUEL =
+              T.let(
+                :PREQUEL,
+                Stigg::V1::Customers::PaymentMethodAttachParams::VendorIdentifier::TaggedSymbol
+              )
 
             sig do
               override.returns(
