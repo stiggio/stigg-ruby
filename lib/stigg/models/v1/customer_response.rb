@@ -410,6 +410,7 @@ module Stigg
               OPEN_FGA = :OPEN_FGA
               APP_STORE = :APP_STORE
               RECEIVED = :RECEIVED
+              PREQUEL = :PREQUEL
 
               # @!method self.values
               #   @return [Array<Symbol>]
