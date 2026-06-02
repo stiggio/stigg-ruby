@@ -1,0 +1,64 @@
+module Stigg
+  module Models
+    module V1Beta
+      module Customers
+        type assignment_list_response =
+          {
+            id: String,
+            cadence: Stigg::Models::V1Beta::Customers::AssignmentListResponse::cadence,
+            capability_id: String,
+            created_at: Time,
+            entity_id: String,
+            updated_at: Time,
+            usage_limit: Float
+          }
+
+        class AssignmentListResponse < Stigg::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor cadence: Stigg::Models::V1Beta::Customers::AssignmentListResponse::cadence
+
+          attr_accessor capability_id: String
+
+          attr_accessor created_at: Time
+
+          attr_accessor entity_id: String
+
+          attr_accessor updated_at: Time
+
+          attr_accessor usage_limit: Float
+
+          def initialize: (
+            id: String,
+            cadence: Stigg::Models::V1Beta::Customers::AssignmentListResponse::cadence,
+            capability_id: String,
+            created_at: Time,
+            entity_id: String,
+            updated_at: Time,
+            usage_limit: Float
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            cadence: Stigg::Models::V1Beta::Customers::AssignmentListResponse::cadence,
+            capability_id: String,
+            created_at: Time,
+            entity_id: String,
+            updated_at: Time,
+            usage_limit: Float
+          }
+
+          type cadence = :MONTH
+
+          module Cadence
+            extend Stigg::Internal::Type::Enum
+
+            MONTH: :MONTH
+
+            def self?.values: -> ::Array[Stigg::Models::V1Beta::Customers::AssignmentListResponse::cadence]
+          end
+        end
+      end
+    end
+  end
+end
