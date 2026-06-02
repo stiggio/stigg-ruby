@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.15 (2026-06-02)
+
+Full Changelog: [v0.1.0-beta.14...v0.1.0-beta.15](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.14...v0.1.0-beta.15)
+
+### Features
+
+* **api:** add pagination to credits get_usage method ([9c116ed](https://github.com/stiggio/stigg-ruby/commit/9c116edfec5202435552f5cb746cc63217051ef2))
+
 ## 0.1.0-beta.14 (2026-06-02)
 
 Full Changelog: [v0.1.0-beta.13...v0.1.0-beta.14](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.13...v0.1.0-beta.14)
