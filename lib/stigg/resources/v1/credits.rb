@@ -44,15 +44,21 @@ module Stigg
         # Retrieves credit usage time-series data for a customer, grouped by feature, over
         # a specified time range.
         #
-        # @overload get_usage(customer_id:, currency_id: nil, end_date: nil, group_by: nil, resource_id: nil, start_date: nil, time_range: nil, request_options: {})
+        # @overload get_usage(customer_id:, after: nil, before: nil, currency_id: nil, end_date: nil, group_by: nil, limit: nil, resource_id: nil, start_date: nil, time_range: nil, request_options: {})
         #
         # @param customer_id [String] Filter by customer ID (required)
+        #
+        # @param after [String] Return items that come after this cursor
+        #
+        # @param before [String] Return items that come before this cursor
         #
         # @param currency_id [String] Filter by currency ID
         #
         # @param end_date [Time] End date for the credit usage time range (ISO 8601). Defaults to now when startD
         #
         # @param group_by [String] Comma-separated list of feature dimension keys to group usage series by (up to 3
+        #
+        # @param limit [Integer] Maximum number of items to return
         #
         # @param resource_id [String] Filter by resource ID
         #

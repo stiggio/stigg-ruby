@@ -4,9 +4,12 @@ module Stigg
       type credit_get_usage_params =
         {
           customer_id: String,
+          after: String,
+          before: String,
           currency_id: String,
           end_date: Time,
           group_by: String,
+          limit: Integer,
           resource_id: String,
           start_date: Time,
           time_range: Stigg::Models::V1::CreditGetUsageParams::time_range
@@ -19,6 +22,14 @@ module Stigg
 
         attr_accessor customer_id: String
 
+        attr_reader after: String?
+
+        def after=: (String) -> String
+
+        attr_reader before: String?
+
+        def before=: (String) -> String
+
         attr_reader currency_id: String?
 
         def currency_id=: (String) -> String
@@ -30,6 +41,10 @@ module Stigg
         attr_reader group_by: String?
 
         def group_by=: (String) -> String
+
+        attr_reader limit: Integer?
+
+        def limit=: (Integer) -> Integer
 
         attr_reader resource_id: String?
 
@@ -47,9 +62,12 @@ module Stigg
 
         def initialize: (
           customer_id: String,
+          ?after: String,
+          ?before: String,
           ?currency_id: String,
           ?end_date: Time,
           ?group_by: String,
+          ?limit: Integer,
           ?resource_id: String,
           ?start_date: Time,
           ?time_range: Stigg::Models::V1::CreditGetUsageParams::time_range,
@@ -58,9 +76,12 @@ module Stigg
 
         def to_hash: -> {
           customer_id: String,
+          after: String,
+          before: String,
           currency_id: String,
           end_date: Time,
           group_by: String,
+          limit: Integer,
           resource_id: String,
           start_date: Time,
           time_range: Stigg::Models::V1::CreditGetUsageParams::time_range,

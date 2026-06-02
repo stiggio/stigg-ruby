@@ -72,6 +72,22 @@ module Stigg
           end
           attr_writer :currency
 
+          # Cursor-based pagination for the returned series. `next`/`prev` are opaque
+          # cursors; pass them back as `after`/`before` to traverse pages. The series axis
+          # is `groupBy` when provided, otherwise `featureId`
+          sig do
+            returns(Stigg::Models::V1::CreditGetUsageResponse::Data::Pagination)
+          end
+          attr_reader :pagination
+
+          sig do
+            params(
+              pagination:
+                Stigg::Models::V1::CreditGetUsageResponse::Data::Pagination::OrHash
+            ).void
+          end
+          attr_writer :pagination
+
           # Credit usage series grouped by feature
           sig do
             returns(
@@ -87,6 +103,8 @@ module Stigg
                 T.nilable(
                   Stigg::Models::V1::CreditGetUsageResponse::Data::Currency::OrHash
                 ),
+              pagination:
+                Stigg::Models::V1::CreditGetUsageResponse::Data::Pagination::OrHash,
               series:
                 T::Array[
                   Stigg::Models::V1::CreditGetUsageResponse::Data::Series::OrHash
@@ -96,6 +114,10 @@ module Stigg
           def self.new(
             # The custom currency used for credit measurement
             currency:,
+            # Cursor-based pagination for the returned series. `next`/`prev` are opaque
+            # cursors; pass them back as `after`/`before` to traverse pages. The series axis
+            # is `groupBy` when provided, otherwise `featureId`
+            pagination:,
             # Credit usage series grouped by feature
             series:
           )
@@ -108,6 +130,8 @@ module Stigg
                   T.nilable(
                     Stigg::Models::V1::CreditGetUsageResponse::Data::Currency
                   ),
+                pagination:
+                  Stigg::Models::V1::CreditGetUsageResponse::Data::Pagination,
                 series:
                   T::Array[
                     Stigg::Models::V1::CreditGetUsageResponse::Data::Series
@@ -180,6 +204,50 @@ module Stigg
                   singular: T.nilable(String),
                   symbol: T.nilable(String)
                 }
+              )
+            end
+            def to_hash
+            end
+          end
+
+          class Pagination < Stigg::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Stigg::Models::V1::CreditGetUsageResponse::Data::Pagination,
+                  Stigg::Internal::AnyHash
+                )
+              end
+
+            # Cursor for fetching the next page of results, or null if no additional pages
+            # exist
+            sig { returns(T.nilable(String)) }
+            attr_accessor :next_
+
+            # Cursor for fetching the previous page of results, or null if at the beginning
+            sig { returns(T.nilable(String)) }
+            attr_accessor :prev
+
+            # Cursor-based pagination for the returned series. `next`/`prev` are opaque
+            # cursors; pass them back as `after`/`before` to traverse pages. The series axis
+            # is `groupBy` when provided, otherwise `featureId`
+            sig do
+              params(next_: T.nilable(String), prev: T.nilable(String)).returns(
+                T.attached_class
+              )
+            end
+            def self.new(
+              # Cursor for fetching the next page of results, or null if no additional pages
+              # exist
+              next_:,
+              # Cursor for fetching the previous page of results, or null if at the beginning
+              prev:
+            )
+            end
+
+            sig do
+              override.returns(
+                { next_: T.nilable(String), prev: T.nilable(String) }
               )
             end
             def to_hash

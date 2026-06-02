@@ -24,6 +24,14 @@ module Stigg
           #   @return [Stigg::Models::V1::CreditGetUsageResponse::Data::Currency, nil]
           required :currency, -> { Stigg::Models::V1::CreditGetUsageResponse::Data::Currency }, nil?: true
 
+          # @!attribute pagination
+          #   Cursor-based pagination for the returned series. `next`/`prev` are opaque
+          #   cursors; pass them back as `after`/`before` to traverse pages. The series axis
+          #   is `groupBy` when provided, otherwise `featureId`
+          #
+          #   @return [Stigg::Models::V1::CreditGetUsageResponse::Data::Pagination]
+          required :pagination, -> { Stigg::Models::V1::CreditGetUsageResponse::Data::Pagination }
+
           # @!attribute series
           #   Credit usage series grouped by feature
           #
@@ -31,10 +39,15 @@ module Stigg
           required :series,
                    -> { Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::CreditGetUsageResponse::Data::Series] }
 
-          # @!method initialize(currency:, series:)
+          # @!method initialize(currency:, pagination:, series:)
+          #   Some parameter documentations has been truncated, see
+          #   {Stigg::Models::V1::CreditGetUsageResponse::Data} for more details.
+          #
           #   Credit usage data grouped by feature with time-series points
           #
           #   @param currency [Stigg::Models::V1::CreditGetUsageResponse::Data::Currency, nil] The custom currency used for credit measurement
+          #
+          #   @param pagination [Stigg::Models::V1::CreditGetUsageResponse::Data::Pagination] Cursor-based pagination for the returned series. `next`/`prev` are opaque cursor
           #
           #   @param series [Array<Stigg::Models::V1::CreditGetUsageResponse::Data::Series>] Credit usage series grouped by feature
 
@@ -82,6 +95,34 @@ module Stigg
             #   @param singular [String, nil] Singular unit label
             #
             #   @param symbol [String, nil] The currency symbol
+          end
+
+          # @see Stigg::Models::V1::CreditGetUsageResponse::Data#pagination
+          class Pagination < Stigg::Internal::Type::BaseModel
+            # @!attribute next_
+            #   Cursor for fetching the next page of results, or null if no additional pages
+            #   exist
+            #
+            #   @return [String, nil]
+            required :next_, String, api_name: :next, nil?: true
+
+            # @!attribute prev
+            #   Cursor for fetching the previous page of results, or null if at the beginning
+            #
+            #   @return [String, nil]
+            required :prev, String, nil?: true
+
+            # @!method initialize(next_:, prev:)
+            #   Some parameter documentations has been truncated, see
+            #   {Stigg::Models::V1::CreditGetUsageResponse::Data::Pagination} for more details.
+            #
+            #   Cursor-based pagination for the returned series. `next`/`prev` are opaque
+            #   cursors; pass them back as `after`/`before` to traverse pages. The series axis
+            #   is `groupBy` when provided, otherwise `featureId`
+            #
+            #   @param next_ [String, nil] Cursor for fetching the next page of results, or null if no additional pages exi
+            #
+            #   @param prev [String, nil] Cursor for fetching the previous page of results, or null if at the beginning
           end
 
           class Series < Stigg::Internal::Type::BaseModel
