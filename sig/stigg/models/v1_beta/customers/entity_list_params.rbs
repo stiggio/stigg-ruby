@@ -1,0 +1,78 @@
+module Stigg
+  module Models
+    module V1Beta
+      module Customers
+        type entity_list_params =
+          {
+            id: String,
+            after: String,
+            before: String,
+            include_archived: Stigg::Models::V1Beta::Customers::EntityListParams::include_archived,
+            limit: Integer,
+            type_ref_id: String
+          }
+          & Stigg::Internal::Type::request_parameters
+
+        class EntityListParams < Stigg::Internal::Type::BaseModel
+          extend Stigg::Internal::Type::RequestParameters::Converter
+          include Stigg::Internal::Type::RequestParameters
+
+          attr_accessor id: String
+
+          attr_reader after: String?
+
+          def after=: (String) -> String
+
+          attr_reader before: String?
+
+          def before=: (String) -> String
+
+          attr_reader include_archived: Stigg::Models::V1Beta::Customers::EntityListParams::include_archived?
+
+          def include_archived=: (
+            Stigg::Models::V1Beta::Customers::EntityListParams::include_archived
+          ) -> Stigg::Models::V1Beta::Customers::EntityListParams::include_archived
+
+          attr_reader limit: Integer?
+
+          def limit=: (Integer) -> Integer
+
+          attr_reader type_ref_id: String?
+
+          def type_ref_id=: (String) -> String
+
+          def initialize: (
+            id: String,
+            ?after: String,
+            ?before: String,
+            ?include_archived: Stigg::Models::V1Beta::Customers::EntityListParams::include_archived,
+            ?limit: Integer,
+            ?type_ref_id: String,
+            ?request_options: Stigg::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            after: String,
+            before: String,
+            include_archived: Stigg::Models::V1Beta::Customers::EntityListParams::include_archived,
+            limit: Integer,
+            type_ref_id: String,
+            request_options: Stigg::RequestOptions
+          }
+
+          type include_archived = :true | :false
+
+          module IncludeArchived
+            extend Stigg::Internal::Type::Enum
+
+            TRUE: :true
+            FALSE: :false
+
+            def self?.values: -> ::Array[Stigg::Models::V1Beta::Customers::EntityListParams::include_archived]
+          end
+        end
+      end
+    end
+  end
+end
