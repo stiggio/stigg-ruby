@@ -18,21 +18,26 @@ module Stigg
         type data =
           {
             currency: Stigg::Models::V1::CreditGetUsageResponse::Data::Currency?,
+            pagination: Stigg::Models::V1::CreditGetUsageResponse::Data::Pagination,
             series: ::Array[Stigg::Models::V1::CreditGetUsageResponse::Data::Series]
           }
 
         class Data < Stigg::Internal::Type::BaseModel
           attr_accessor currency: Stigg::Models::V1::CreditGetUsageResponse::Data::Currency?
 
+          attr_accessor pagination: Stigg::Models::V1::CreditGetUsageResponse::Data::Pagination
+
           attr_accessor series: ::Array[Stigg::Models::V1::CreditGetUsageResponse::Data::Series]
 
           def initialize: (
             currency: Stigg::Models::V1::CreditGetUsageResponse::Data::Currency?,
+            pagination: Stigg::Models::V1::CreditGetUsageResponse::Data::Pagination,
             series: ::Array[Stigg::Models::V1::CreditGetUsageResponse::Data::Series]
           ) -> void
 
           def to_hash: -> {
             currency: Stigg::Models::V1::CreditGetUsageResponse::Data::Currency?,
+            pagination: Stigg::Models::V1::CreditGetUsageResponse::Data::Pagination,
             series: ::Array[Stigg::Models::V1::CreditGetUsageResponse::Data::Series]
           }
 
@@ -71,6 +76,18 @@ module Stigg
               singular: String?,
               symbol: String?
             }
+          end
+
+          type pagination = { next_: String?, prev: String? }
+
+          class Pagination < Stigg::Internal::Type::BaseModel
+            attr_accessor next_: String?
+
+            attr_accessor prev: String?
+
+            def initialize: (next_: String?, prev: String?) -> void
+
+            def to_hash: -> { next_: String?, prev: String? }
           end
 
           type series =

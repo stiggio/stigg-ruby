@@ -14,9 +14,12 @@ module Stigg
 
         def get_usage: (
           customer_id: String,
+          ?after: String,
+          ?before: String,
           ?currency_id: String,
           ?end_date: Time,
           ?group_by: String,
+          ?limit: Integer,
           ?resource_id: String,
           ?start_date: Time,
           ?time_range: Stigg::Models::V1::CreditGetUsageParams::time_range,

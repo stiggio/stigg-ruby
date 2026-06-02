@@ -16,6 +16,20 @@ module Stigg
         sig { returns(String) }
         attr_accessor :customer_id
 
+        # Return items that come after this cursor
+        sig { returns(T.nilable(String)) }
+        attr_reader :after
+
+        sig { params(after: String).void }
+        attr_writer :after
+
+        # Return items that come before this cursor
+        sig { returns(T.nilable(String)) }
+        attr_reader :before
+
+        sig { params(before: String).void }
+        attr_writer :before
+
         # Filter by currency ID
         sig { returns(T.nilable(String)) }
         attr_reader :currency_id
@@ -38,6 +52,13 @@ module Stigg
 
         sig { params(group_by: String).void }
         attr_writer :group_by
+
+        # Maximum number of items to return
+        sig { returns(T.nilable(Integer)) }
+        attr_reader :limit
+
+        sig { params(limit: Integer).void }
+        attr_writer :limit
 
         # Filter by resource ID
         sig { returns(T.nilable(String)) }
@@ -73,9 +94,12 @@ module Stigg
         sig do
           params(
             customer_id: String,
+            after: String,
+            before: String,
             currency_id: String,
             end_date: Time,
             group_by: String,
+            limit: Integer,
             resource_id: String,
             start_date: Time,
             time_range: Stigg::V1::CreditGetUsageParams::TimeRange::OrSymbol,
@@ -85,6 +109,10 @@ module Stigg
         def self.new(
           # Filter by customer ID (required)
           customer_id:,
+          # Return items that come after this cursor
+          after: nil,
+          # Return items that come before this cursor
+          before: nil,
           # Filter by currency ID
           currency_id: nil,
           # End date for the credit usage time range (ISO 8601). Defaults to now when
@@ -93,6 +121,8 @@ module Stigg
           # Comma-separated list of feature dimension keys to group usage series by (up to
           # 3). Each key matches /^[a-zA-Z0-9_$-]+$/
           group_by: nil,
+          # Maximum number of items to return
+          limit: nil,
           # Filter by resource ID
           resource_id: nil,
           # Start date for the credit usage time range (ISO 8601). Takes precedence over
@@ -109,9 +139,12 @@ module Stigg
           override.returns(
             {
               customer_id: String,
+              after: String,
+              before: String,
               currency_id: String,
               end_date: Time,
               group_by: String,
+              limit: Integer,
               resource_id: String,
               start_date: Time,
               time_range: Stigg::V1::CreditGetUsageParams::TimeRange::OrSymbol,
