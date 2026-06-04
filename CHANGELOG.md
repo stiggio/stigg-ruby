@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-beta.17 (2026-06-04)
+
+Full Changelog: [v0.1.0-beta.16...v0.1.0-beta.17](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.16...v0.1.0-beta.17)
+
+### Features
+
+* **api:** add data_export resource with token/sync/destinations to events ([141a9f9](https://github.com/stiggio/stigg-ruby/commit/141a9f9fe9f94198bab6cd52dec16ddae3bfb802))
+
+
+### Chores
+
+* **api:** move beta resources from v1_beta to v1/events/beta namespace ([64ca884](https://github.com/stiggio/stigg-ruby/commit/64ca88458119a7f2c3c16f91ee4cc6bf39f920ca))
+
 ## 0.1.0-beta.16 (2026-06-03)
 
 Full Changelog: [v0.1.0-beta.15...v0.1.0-beta.16](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.15...v0.1.0-beta.16)
