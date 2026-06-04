@@ -1,0 +1,19 @@
+module Stigg
+  module Resources
+    class V1
+      class Events
+        class Beta
+          class Customers
+            attr_reader entitlements: Stigg::Resources::V1::Events::Beta::Customers::Entitlements
+
+            attr_reader entities: Stigg::Resources::V1::Events::Beta::Customers::Entities
+
+            attr_reader assignments: Stigg::Resources::V1::Events::Beta::Customers::Assignments
+
+            def initialize: (client: Stigg::Client) -> void
+          end
+        end
+      end
+    end
+  end
+end
