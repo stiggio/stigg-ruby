@@ -1,0 +1,66 @@
+module Stigg
+  module Models
+    module V1
+      module Events
+        module DataExport
+          type destination_create_response =
+            {
+              data: Stigg::Models::V1::Events::DataExport::DestinationCreateResponse::Data
+            }
+
+          class DestinationCreateResponse < Stigg::Internal::Type::BaseModel
+            attr_accessor data: Stigg::Models::V1::Events::DataExport::DestinationCreateResponse::Data
+
+            def initialize: (
+              data: Stigg::Models::V1::Events::DataExport::DestinationCreateResponse::Data
+            ) -> void
+
+            def to_hash: -> {
+              data: Stigg::Models::V1::Events::DataExport::DestinationCreateResponse::Data
+            }
+
+            type data =
+              {
+                destinations: ::Array[Stigg::Models::V1::Events::DataExport::DestinationCreateResponse::Data::Destination]
+              }
+
+            class Data < Stigg::Internal::Type::BaseModel
+              attr_accessor destinations: ::Array[Stigg::Models::V1::Events::DataExport::DestinationCreateResponse::Data::Destination]
+
+              def initialize: (
+                destinations: ::Array[Stigg::Models::V1::Events::DataExport::DestinationCreateResponse::Data::Destination]
+              ) -> void
+
+              def to_hash: -> {
+                destinations: ::Array[Stigg::Models::V1::Events::DataExport::DestinationCreateResponse::Data::Destination]
+              }
+
+              type destination =
+                { connected_at: String, destination_id: String, type: String }
+
+              class Destination < Stigg::Internal::Type::BaseModel
+                attr_accessor connected_at: String
+
+                attr_accessor destination_id: String
+
+                attr_accessor type: String
+
+                def initialize: (
+                  connected_at: String,
+                  destination_id: String,
+                  type: String
+                ) -> void
+
+                def to_hash: -> {
+                  connected_at: String,
+                  destination_id: String,
+                  type: String
+                }
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end

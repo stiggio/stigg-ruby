@@ -8,6 +8,9 @@ module Stigg
         # @return [Stigg::Resources::V1::Events::Beta]
         attr_reader :beta
 
+        # @return [Stigg::Resources::V1::Events::DataExport]
+        attr_reader :data_export
+
         # Reports raw usage events for event-based metering. Events are ingested
         # asynchronously and aggregated into usage totals.
         #
@@ -37,6 +40,7 @@ module Stigg
         def initialize(client:)
           @client = client
           @beta = Stigg::Resources::V1::Events::Beta.new(client: client)
+          @data_export = Stigg::Resources::V1::Events::DataExport.new(client: client)
         end
       end
     end

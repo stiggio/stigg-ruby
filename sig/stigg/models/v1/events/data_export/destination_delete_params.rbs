@@ -1,0 +1,30 @@
+module Stigg
+  module Models
+    module V1
+      module Events
+        module DataExport
+          type destination_delete_params =
+            { destination_id: String }
+            & Stigg::Internal::Type::request_parameters
+
+          class DestinationDeleteParams < Stigg::Internal::Type::BaseModel
+            extend Stigg::Internal::Type::RequestParameters::Converter
+            include Stigg::Internal::Type::RequestParameters
+
+            attr_accessor destination_id: String
+
+            def initialize: (
+              destination_id: String,
+              ?request_options: Stigg::request_opts
+            ) -> void
+
+            def to_hash: -> {
+              destination_id: String,
+              request_options: Stigg::RequestOptions
+            }
+          end
+        end
+      end
+    end
+  end
+end

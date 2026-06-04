@@ -1,0 +1,34 @@
+module Stigg
+  module Models
+    module V1
+      module Events
+        module DataExport
+          type destination_create_params =
+            { destination_id: String, destination_type: String }
+            & Stigg::Internal::Type::request_parameters
+
+          class DestinationCreateParams < Stigg::Internal::Type::BaseModel
+            extend Stigg::Internal::Type::RequestParameters::Converter
+            include Stigg::Internal::Type::RequestParameters
+
+            attr_accessor destination_id: String
+
+            attr_accessor destination_type: String
+
+            def initialize: (
+              destination_id: String,
+              destination_type: String,
+              ?request_options: Stigg::request_opts
+            ) -> void
+
+            def to_hash: -> {
+              destination_id: String,
+              destination_type: String,
+              request_options: Stigg::RequestOptions
+            }
+          end
+        end
+      end
+    end
+  end
+end
