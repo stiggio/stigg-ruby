@@ -1,0 +1,77 @@
+module Stigg
+  module Models
+    module V1
+      module Events
+        type data_export_trigger_sync_response =
+          {
+            data: Stigg::Models::V1::Events::DataExportTriggerSyncResponse::Data
+          }
+
+        class DataExportTriggerSyncResponse < Stigg::Internal::Type::BaseModel
+          attr_accessor data: Stigg::Models::V1::Events::DataExportTriggerSyncResponse::Data
+
+          def initialize: (
+            data: Stigg::Models::V1::Events::DataExportTriggerSyncResponse::Data
+          ) -> void
+
+          def to_hash: -> {
+            data: Stigg::Models::V1::Events::DataExportTriggerSyncResponse::Data
+          }
+
+          type data =
+            {
+              results: ::Array[Stigg::Models::V1::Events::DataExportTriggerSyncResponse::Data::Result]
+            }
+
+          class Data < Stigg::Internal::Type::BaseModel
+            attr_accessor results: ::Array[Stigg::Models::V1::Events::DataExportTriggerSyncResponse::Data::Result]
+
+            def initialize: (
+              results: ::Array[Stigg::Models::V1::Events::DataExportTriggerSyncResponse::Data::Result]
+            ) -> void
+
+            def to_hash: -> {
+              results: ::Array[Stigg::Models::V1::Events::DataExportTriggerSyncResponse::Data::Result]
+            }
+
+            type result =
+              {
+                destination_id: String,
+                triggered: bool,
+                error_message: String,
+                transfer_id: String
+              }
+
+            class Result < Stigg::Internal::Type::BaseModel
+              attr_accessor destination_id: String
+
+              attr_accessor triggered: bool
+
+              attr_reader error_message: String?
+
+              def error_message=: (String) -> String
+
+              attr_reader transfer_id: String?
+
+              def transfer_id=: (String) -> String
+
+              def initialize: (
+                destination_id: String,
+                triggered: bool,
+                ?error_message: String,
+                ?transfer_id: String
+              ) -> void
+
+              def to_hash: -> {
+                destination_id: String,
+                triggered: bool,
+                error_message: String,
+                transfer_id: String
+              }
+            end
+          end
+        end
+      end
+    end
+  end
+end
