@@ -17,10 +17,16 @@ module Stigg
       module Customers
       end
 
+      module DataExport
+      end
+
       module Events
         module Beta
           module Customers
           end
+        end
+
+        module DataExport
         end
       end
 
@@ -44,6 +50,9 @@ module Stigg
           module Beta
             module Customers
             end
+          end
+
+          module DataExport
           end
         end
 
