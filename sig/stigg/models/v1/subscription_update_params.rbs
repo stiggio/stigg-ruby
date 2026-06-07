@@ -11,6 +11,7 @@ module Stigg
           billing_information: Stigg::V1::SubscriptionUpdateParams::BillingInformation,
           billing_period: Stigg::Models::V1::SubscriptionUpdateParams::billing_period,
           budget: Stigg::V1::SubscriptionUpdateParams::Budget?,
+          cancellation_date: Time?,
           charges: ::Array[Stigg::V1::SubscriptionUpdateParams::Charge],
           entitlements: ::Array[Stigg::Models::V1::SubscriptionUpdateParams::entitlement],
           metadata: ::Hash[Symbol, String],
@@ -64,6 +65,8 @@ module Stigg
 
         attr_accessor budget: Stigg::V1::SubscriptionUpdateParams::Budget?
 
+        attr_accessor cancellation_date: Time?
+
         attr_reader charges: ::Array[Stigg::V1::SubscriptionUpdateParams::Charge]?
 
         def charges=: (
@@ -111,6 +114,7 @@ module Stigg
           ?billing_information: Stigg::V1::SubscriptionUpdateParams::BillingInformation,
           ?billing_period: Stigg::Models::V1::SubscriptionUpdateParams::billing_period,
           ?budget: Stigg::V1::SubscriptionUpdateParams::Budget?,
+          ?cancellation_date: Time?,
           ?charges: ::Array[Stigg::V1::SubscriptionUpdateParams::Charge],
           ?entitlements: ::Array[Stigg::Models::V1::SubscriptionUpdateParams::entitlement],
           ?metadata: ::Hash[Symbol, String],
@@ -131,6 +135,7 @@ module Stigg
           billing_information: Stigg::V1::SubscriptionUpdateParams::BillingInformation,
           billing_period: Stigg::Models::V1::SubscriptionUpdateParams::billing_period,
           budget: Stigg::V1::SubscriptionUpdateParams::Budget?,
+          cancellation_date: Time?,
           charges: ::Array[Stigg::V1::SubscriptionUpdateParams::Charge],
           entitlements: ::Array[Stigg::Models::V1::SubscriptionUpdateParams::entitlement],
           metadata: ::Hash[Symbol, String],

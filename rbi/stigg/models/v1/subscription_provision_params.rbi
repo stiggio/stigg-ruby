@@ -142,6 +142,13 @@ module Stigg
         end
         attr_writer :budget
 
+        # Subscription cancellation date
+        sig { returns(T.nilable(Time)) }
+        attr_reader :cancellation_date
+
+        sig { params(cancellation_date: Time).void }
+        attr_writer :cancellation_date
+
         sig do
           returns(
             T.nilable(T::Array[Stigg::V1::SubscriptionProvisionParams::Charge])
@@ -344,6 +351,7 @@ module Stigg
               Stigg::V1::SubscriptionProvisionParams::BillingPeriod::OrSymbol,
             budget:
               T.nilable(Stigg::V1::SubscriptionProvisionParams::Budget::OrHash),
+            cancellation_date: Time,
             charges:
               T::Array[Stigg::V1::SubscriptionProvisionParams::Charge::OrHash],
             checkout_options:
@@ -400,6 +408,8 @@ module Stigg
           # Billing period (MONTHLY or ANNUALLY)
           billing_period: nil,
           budget: nil,
+          # Subscription cancellation date
+          cancellation_date: nil,
           charges: nil,
           # Checkout page configuration for payment collection
           checkout_options: nil,
@@ -448,6 +458,7 @@ module Stigg
               billing_period:
                 Stigg::V1::SubscriptionProvisionParams::BillingPeriod::OrSymbol,
               budget: T.nilable(Stigg::V1::SubscriptionProvisionParams::Budget),
+              cancellation_date: Time,
               charges: T::Array[Stigg::V1::SubscriptionProvisionParams::Charge],
               checkout_options:
                 Stigg::V1::SubscriptionProvisionParams::CheckoutOptions,
