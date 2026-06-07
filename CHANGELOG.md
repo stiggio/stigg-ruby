@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.18 (2026-06-07)
+
+Full Changelog: [v0.1.0-beta.17...v0.1.0-beta.18](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.17...v0.1.0-beta.18)
+
+### Features
+
+* **api:** add cancellation_date to subscription provision/update ([03e1cbb](https://github.com/stiggio/stigg-ruby/commit/03e1cbb1d8f8f297d08fb471d3026db5dd49b463))
+
 ## 0.1.0-beta.17 (2026-06-04)
 
 Full Changelog: [v0.1.0-beta.16...v0.1.0-beta.17](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.16...v0.1.0-beta.17)
