@@ -15,6 +15,7 @@ module Stigg
           billing_information: Stigg::V1::SubscriptionProvisionParams::BillingInformation,
           billing_period: Stigg::Models::V1::SubscriptionProvisionParams::billing_period,
           budget: Stigg::V1::SubscriptionProvisionParams::Budget?,
+          cancellation_date: Time,
           charges: ::Array[Stigg::V1::SubscriptionProvisionParams::Charge],
           checkout_options: Stigg::V1::SubscriptionProvisionParams::CheckoutOptions,
           entitlements: ::Array[Stigg::Models::V1::SubscriptionProvisionParams::entitlement],
@@ -83,6 +84,10 @@ module Stigg
         ) -> Stigg::Models::V1::SubscriptionProvisionParams::billing_period
 
         attr_accessor budget: Stigg::V1::SubscriptionProvisionParams::Budget?
+
+        attr_reader cancellation_date: Time?
+
+        def cancellation_date=: (Time) -> Time
 
         attr_reader charges: ::Array[Stigg::V1::SubscriptionProvisionParams::Charge]?
 
@@ -159,6 +164,7 @@ module Stigg
           ?billing_information: Stigg::V1::SubscriptionProvisionParams::BillingInformation,
           ?billing_period: Stigg::Models::V1::SubscriptionProvisionParams::billing_period,
           ?budget: Stigg::V1::SubscriptionProvisionParams::Budget?,
+          ?cancellation_date: Time,
           ?charges: ::Array[Stigg::V1::SubscriptionProvisionParams::Charge],
           ?checkout_options: Stigg::V1::SubscriptionProvisionParams::CheckoutOptions,
           ?entitlements: ::Array[Stigg::Models::V1::SubscriptionProvisionParams::entitlement],
@@ -189,6 +195,7 @@ module Stigg
           billing_information: Stigg::V1::SubscriptionProvisionParams::BillingInformation,
           billing_period: Stigg::Models::V1::SubscriptionProvisionParams::billing_period,
           budget: Stigg::V1::SubscriptionProvisionParams::Budget?,
+          cancellation_date: Time,
           charges: ::Array[Stigg::V1::SubscriptionProvisionParams::Charge],
           checkout_options: Stigg::V1::SubscriptionProvisionParams::CheckoutOptions,
           entitlements: ::Array[Stigg::Models::V1::SubscriptionProvisionParams::entitlement],
