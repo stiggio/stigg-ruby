@@ -49,6 +49,7 @@ module Stigg
               Stigg::V1::SubscriptionUpdateParams::BillingPeriod::OrSymbol,
             budget:
               T.nilable(Stigg::V1::SubscriptionUpdateParams::Budget::OrHash),
+            cancellation_date: T.nilable(Time),
             charges:
               T::Array[Stigg::V1::SubscriptionUpdateParams::Charge::OrHash],
             entitlements:
@@ -85,6 +86,8 @@ module Stigg
           billing_information: nil,
           billing_period: nil,
           budget: nil,
+          # Subscription cancellation date
+          cancellation_date: nil,
           charges: nil,
           entitlements: nil,
           # Additional metadata for the subscription
@@ -331,6 +334,7 @@ module Stigg
               Stigg::V1::SubscriptionProvisionParams::BillingPeriod::OrSymbol,
             budget:
               T.nilable(Stigg::V1::SubscriptionProvisionParams::Budget::OrHash),
+            cancellation_date: Time,
             charges:
               T::Array[Stigg::V1::SubscriptionProvisionParams::Charge::OrHash],
             checkout_options:
@@ -387,6 +391,8 @@ module Stigg
           # Billing period (MONTHLY or ANNUALLY)
           billing_period: nil,
           budget: nil,
+          # Subscription cancellation date
+          cancellation_date: nil,
           charges: nil,
           # Checkout page configuration for payment collection
           checkout_options: nil,

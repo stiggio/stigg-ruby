@@ -59,6 +59,12 @@ module Stigg
         #   @return [Stigg::Models::V1::SubscriptionUpdateParams::Budget, nil]
         optional :budget, -> { Stigg::V1::SubscriptionUpdateParams::Budget }, nil?: true
 
+        # @!attribute cancellation_date
+        #   Subscription cancellation date
+        #
+        #   @return [Time, nil]
+        optional :cancellation_date, Time, api_name: :cancellationDate, nil?: true
+
         # @!attribute charges
         #
         #   @return [Array<Stigg::Models::V1::SubscriptionUpdateParams::Charge>, nil]
@@ -111,7 +117,7 @@ module Stigg
         #   @return [Time, nil]
         optional :trial_end_date, Time, api_name: :trialEndDate
 
-        # @!method initialize(id:, addons: nil, applied_coupon: nil, await_payment_confirmation: nil, billing_cycle_anchor: nil, billing_information: nil, billing_period: nil, budget: nil, charges: nil, entitlements: nil, metadata: nil, minimum_spend: nil, price_overrides: nil, promotion_code: nil, schedule_strategy: nil, trial_end_date: nil, request_options: {})
+        # @!method initialize(id:, addons: nil, applied_coupon: nil, await_payment_confirmation: nil, billing_cycle_anchor: nil, billing_information: nil, billing_period: nil, budget: nil, cancellation_date: nil, charges: nil, entitlements: nil, metadata: nil, minimum_spend: nil, price_overrides: nil, promotion_code: nil, schedule_strategy: nil, trial_end_date: nil, request_options: {})
         #   @param id [String]
         #
         #   @param addons [Array<Stigg::Models::V1::SubscriptionUpdateParams::Addon>]
@@ -127,6 +133,8 @@ module Stigg
         #   @param billing_period [Symbol, Stigg::Models::V1::SubscriptionUpdateParams::BillingPeriod]
         #
         #   @param budget [Stigg::Models::V1::SubscriptionUpdateParams::Budget, nil]
+        #
+        #   @param cancellation_date [Time, nil] Subscription cancellation date
         #
         #   @param charges [Array<Stigg::Models::V1::SubscriptionUpdateParams::Charge>]
         #

@@ -87,6 +87,12 @@ module Stigg
         #   @return [Stigg::Models::V1::SubscriptionProvisionParams::Budget, nil]
         optional :budget, -> { Stigg::V1::SubscriptionProvisionParams::Budget }, nil?: true
 
+        # @!attribute cancellation_date
+        #   Subscription cancellation date
+        #
+        #   @return [Time, nil]
+        optional :cancellation_date, Time, api_name: :cancellationDate
+
         # @!attribute charges
         #
         #   @return [Array<Stigg::Models::V1::SubscriptionProvisionParams::Charge>, nil]
@@ -182,7 +188,7 @@ module Stigg
         #   @return [Integer, nil]
         optional :unit_quantity, Integer, api_name: :unitQuantity
 
-        # @!method initialize(customer_id:, plan_id:, id: nil, addons: nil, applied_coupon: nil, await_payment_confirmation: nil, billing_country_code: nil, billing_cycle_anchor: nil, billing_id: nil, billing_information: nil, billing_period: nil, budget: nil, charges: nil, checkout_options: nil, entitlements: nil, metadata: nil, minimum_spend: nil, paying_customer_id: nil, payment_collection_method: nil, price_overrides: nil, resource_id: nil, salesforce_id: nil, schedule_strategy: nil, start_date: nil, trial_override_configuration: nil, unit_quantity: nil, request_options: {})
+        # @!method initialize(customer_id:, plan_id:, id: nil, addons: nil, applied_coupon: nil, await_payment_confirmation: nil, billing_country_code: nil, billing_cycle_anchor: nil, billing_id: nil, billing_information: nil, billing_period: nil, budget: nil, cancellation_date: nil, charges: nil, checkout_options: nil, entitlements: nil, metadata: nil, minimum_spend: nil, paying_customer_id: nil, payment_collection_method: nil, price_overrides: nil, resource_id: nil, salesforce_id: nil, schedule_strategy: nil, start_date: nil, trial_override_configuration: nil, unit_quantity: nil, request_options: {})
         #   @param customer_id [String] Customer ID to provision the subscription for
         #
         #   @param plan_id [String] Plan ID to provision
@@ -206,6 +212,8 @@ module Stigg
         #   @param billing_period [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::BillingPeriod] Billing period (MONTHLY or ANNUALLY)
         #
         #   @param budget [Stigg::Models::V1::SubscriptionProvisionParams::Budget, nil]
+        #
+        #   @param cancellation_date [Time] Subscription cancellation date
         #
         #   @param charges [Array<Stigg::Models::V1::SubscriptionProvisionParams::Charge>]
         #
