@@ -51,7 +51,21 @@ module Stigg
                 #   @return [String]
                 required :type, String
 
-                # @!method initialize(connected_at:, destination_id:, type:)
+                # @!attribute connection_status
+                #   Connection status of the destination (connected, failed)
+                #
+                #   @return [String, nil]
+                optional :connection_status, String, api_name: :connectionStatus
+
+                # @!attribute last_sync_status
+                #   Latest sync snapshot for the destination, refreshed by the provider webhook
+                #
+                #   @return [Stigg::Models::V1::Events::DataExport::DestinationCreateResponse::Data::Destination::LastSyncStatus, nil]
+                optional :last_sync_status,
+                         -> { Stigg::Models::V1::Events::DataExport::DestinationCreateResponse::Data::Destination::LastSyncStatus },
+                         api_name: :lastSyncStatus
+
+                # @!method initialize(connected_at:, destination_id:, type:, connection_status: nil, last_sync_status: nil)
                 #   A single destination entry under the DATA_EXPORT integration.
                 #
                 #   @param connected_at [String] ISO8601 timestamp of when the destination was connected
@@ -59,6 +73,64 @@ module Stigg
                 #   @param destination_id [String] Provider destination ID
                 #
                 #   @param type [String] Destination type (snowflake, bigquery, ...)
+                #
+                #   @param connection_status [String] Connection status of the destination (connected, failed)
+                #
+                #   @param last_sync_status [Stigg::Models::V1::Events::DataExport::DestinationCreateResponse::Data::Destination::LastSyncStatus] Latest sync snapshot for the destination, refreshed by the provider webhook
+
+                # @see Stigg::Models::V1::Events::DataExport::DestinationCreateResponse::Data::Destination#last_sync_status
+                class LastSyncStatus < Stigg::Internal::Type::BaseModel
+                  # @!attribute finished_at
+                  #   ISO8601 timestamp of when the latest sync finished
+                  #
+                  #   @return [String]
+                  required :finished_at, String, api_name: :finishedAt
+
+                  # @!attribute status
+                  #   Sync status (PENDING, RUNNING, INCOMPLETE, FAILED, SUCCEEDED, CANCELLED)
+                  #
+                  #   @return [String]
+                  required :status, String
+
+                  # @!attribute transfer_id
+                  #   Provider transfer ID of the latest sync
+                  #
+                  #   @return [String]
+                  required :transfer_id, String, api_name: :transferId
+
+                  # @!attribute blamed_party
+                  #   Party responsible for a failed sync, as reported by the data-export provider
+                  #
+                  #   @return [String, nil]
+                  optional :blamed_party, String, api_name: :blamedParty
+
+                  # @!attribute failure_message
+                  #   Customer-friendly failure message, when the latest sync failed
+                  #
+                  #   @return [String, nil]
+                  optional :failure_message, String, api_name: :failureMessage
+
+                  # @!attribute rows_transferred
+                  #   Number of rows transferred in the latest sync
+                  #
+                  #   @return [Float, nil]
+                  optional :rows_transferred, Float, api_name: :rowsTransferred
+
+                  # @!method initialize(finished_at:, status:, transfer_id:, blamed_party: nil, failure_message: nil, rows_transferred: nil)
+                  #   Latest sync snapshot for the destination, refreshed by the provider webhook
+                  #
+                  #   @param finished_at [String] ISO8601 timestamp of when the latest sync finished
+                  #
+                  #   @param status [String] Sync status (PENDING, RUNNING, INCOMPLETE, FAILED, SUCCEEDED, CANCELLED)
+                  #
+                  #   @param transfer_id [String] Provider transfer ID of the latest sync
+                  #
+                  #   @param blamed_party [String] Party responsible for a failed sync, as reported by the data-export provider
+                  #
+                  #   @param failure_message [String] Customer-friendly failure message, when the latest sync failed
+                  #
+                  #   @param rows_transferred [Float] Number of rows transferred in the latest sync
+                end
               end
             end
           end
