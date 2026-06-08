@@ -19,7 +19,9 @@ module Stigg
           price_overrides: ::Array[Stigg::V1::SubscriptionUpdateParams::PriceOverride],
           promotion_code: String,
           schedule_strategy: Stigg::Models::V1::SubscriptionUpdateParams::schedule_strategy,
-          trial_end_date: Time
+          trial_end_date: Time,
+          x_account_id: String,
+          x_environment_id: String
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -105,6 +107,14 @@ module Stigg
 
         def trial_end_date=: (Time) -> Time
 
+        attr_reader x_account_id: String?
+
+        def x_account_id=: (String) -> String
+
+        attr_reader x_environment_id: String?
+
+        def x_environment_id=: (String) -> String
+
         def initialize: (
           id: String,
           ?addons: ::Array[Stigg::V1::SubscriptionUpdateParams::Addon],
@@ -123,6 +133,8 @@ module Stigg
           ?promotion_code: String,
           ?schedule_strategy: Stigg::Models::V1::SubscriptionUpdateParams::schedule_strategy,
           ?trial_end_date: Time,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> void
 
@@ -144,6 +156,8 @@ module Stigg
           promotion_code: String,
           schedule_strategy: Stigg::Models::V1::SubscriptionUpdateParams::schedule_strategy,
           trial_end_date: Time,
+          x_account_id: String,
+          x_environment_id: String,
           request_options: Stigg::RequestOptions
         }
 

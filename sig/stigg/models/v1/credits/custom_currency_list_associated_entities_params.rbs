@@ -3,7 +3,12 @@ module Stigg
     module V1
       module Credits
         type custom_currency_list_associated_entities_params =
-          { currency_id: String } & Stigg::Internal::Type::request_parameters
+          {
+            currency_id: String,
+            x_account_id: String,
+            x_environment_id: String
+          }
+          & Stigg::Internal::Type::request_parameters
 
         class CustomCurrencyListAssociatedEntitiesParams < Stigg::Internal::Type::BaseModel
           extend Stigg::Internal::Type::RequestParameters::Converter
@@ -11,13 +16,25 @@ module Stigg
 
           attr_accessor currency_id: String
 
+          attr_reader x_account_id: String?
+
+          def x_account_id=: (String) -> String
+
+          attr_reader x_environment_id: String?
+
+          def x_environment_id=: (String) -> String
+
           def initialize: (
             currency_id: String,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> void
 
           def to_hash: -> {
             currency_id: String,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions
           }
         end

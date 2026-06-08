@@ -25,30 +25,39 @@ module Stigg
             pricing_type:
               T.nilable(Stigg::V1::PlanCreateParams::PricingType::OrSymbol),
             status: Stigg::V1::PlanCreateParams::Status::OrSymbol,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Plan)
         end
         def create(
-          # The unique identifier for the entity
+          # Body param: The unique identifier for the entity
           id:,
-          # The display name of the package
+          # Body param: The display name of the package
           display_name:,
-          # The product ID to associate the plan with
+          # Body param: The product ID to associate the plan with
           product_id:,
-          # The unique identifier for the entity in the billing provider
+          # Body param: The unique identifier for the entity in the billing provider
           billing_id: nil,
-          # Default trial configuration for the plan
+          # Body param: Default trial configuration for the plan
           default_trial_config: nil,
-          # The description of the package
+          # Body param: The description of the package
           description: nil,
-          # Metadata associated with the entity
+          # Body param: Metadata associated with the entity
           metadata: nil,
-          # The ID of the parent plan, if applicable
+          # Body param: The ID of the parent plan, if applicable
           parent_plan_id: nil,
-          # The pricing type of the package
+          # Body param: The pricing type of the package
           pricing_type: nil,
-          # The status of the package
+          # Body param: The status of the package
           status: nil,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -58,12 +67,21 @@ module Stigg
         sig do
           params(
             id: String,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Plan)
         end
         def retrieve(
           # The unique identifier of the entity
           id,
+          # Account ID — optional when authenticating with a user JWT (Bearer token); falls
+          # back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Environment ID — required when authenticating with a user JWT (Bearer token) on
+          # environment-scoped endpoints. Ignored for API-key auth (env is intrinsic to the
+          # key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -84,27 +102,37 @@ module Stigg
             display_name: String,
             metadata: T::Hash[Symbol, String],
             parent_plan_id: T.nilable(String),
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Plan)
         end
         def update(
-          # The unique identifier of the entity
+          # Path param: The unique identifier of the entity
           id,
-          # The unique identifier for the entity in the billing provider
+          # Body param: The unique identifier for the entity in the billing provider
           billing_id: nil,
-          # Pricing configuration to set on the plan draft
+          # Body param: Pricing configuration to set on the plan draft
           charges: nil,
+          # Body param
           compatible_addon_ids: nil,
-          # Default trial configuration for the plan
+          # Body param: Default trial configuration for the plan
           default_trial_config: nil,
-          # The description of the package
+          # Body param: The description of the package
           description: nil,
-          # The display name of the package
+          # Body param: The display name of the package
           display_name: nil,
-          # Metadata associated with the entity
+          # Body param: Metadata associated with the entity
           metadata: nil,
-          # The ID of the parent plan, if applicable
+          # Body param: The ID of the parent plan, if applicable
           parent_plan_id: nil,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -118,24 +146,34 @@ module Stigg
             limit: Integer,
             product_id: String,
             status: T::Array[Stigg::V1::PlanListParams::Status::OrSymbol],
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(
             Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::PlanListResponse]
           )
         end
         def list(
-          # Return items that come after this cursor
+          # Query param: Return items that come after this cursor
           after: nil,
-          # Return items that come before this cursor
+          # Query param: Return items that come before this cursor
           before: nil,
-          # Filter by creation date using range operators: gt, gte, lt, lte
+          # Query param: Filter by creation date using range operators: gt, gte, lt, lte
           created_at: nil,
-          # Maximum number of items to return
+          # Query param: Maximum number of items to return
           limit: nil,
-          # Filter by product ID
+          # Query param: Filter by product ID
           product_id: nil,
-          # Filter by status. Supports comma-separated values for multiple statuses
+          # Query param: Filter by status. Supports comma-separated values for multiple
+          # statuses
           status: nil,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -144,12 +182,21 @@ module Stigg
         sig do
           params(
             id: String,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Plan)
         end
         def archive(
           # The unique identifier of the entity
           id,
+          # Account ID — optional when authenticating with a user JWT (Bearer token); falls
+          # back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Environment ID — required when authenticating with a user JWT (Bearer token) on
+          # environment-scoped endpoints. Ignored for API-key auth (env is intrinsic to the
+          # key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -158,12 +205,21 @@ module Stigg
         sig do
           params(
             id: String,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Plan)
         end
         def create_draft(
           # The unique identifier of the entity
           id,
+          # Account ID — optional when authenticating with a user JWT (Bearer token); falls
+          # back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Environment ID — required when authenticating with a user JWT (Bearer token) on
+          # environment-scoped endpoints. Ignored for API-key auth (env is intrinsic to the
+          # key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -175,6 +231,8 @@ module Stigg
             after: String,
             before: String,
             limit: Integer,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(
             Stigg::Internal::MyCursorIDPage[
@@ -183,14 +241,21 @@ module Stigg
           )
         end
         def list_charges(
-          # The unique identifier of the entity
+          # Path param: The unique identifier of the entity
           id,
-          # Return items that come after this cursor
+          # Query param: Return items that come after this cursor
           after: nil,
-          # Return items that come before this cursor
+          # Query param: Return items that come before this cursor
           before: nil,
-          # Maximum number of items to return
+          # Query param: Maximum number of items to return
           limit: nil,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -202,6 +267,8 @@ module Stigg
             after: String,
             before: String,
             limit: Integer,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(
             Stigg::Internal::MyCursorIDPage[
@@ -210,14 +277,21 @@ module Stigg
           )
         end
         def list_overage_charges(
-          # The unique identifier of the entity
+          # Path param: The unique identifier of the entity
           id,
-          # Return items that come after this cursor
+          # Query param: Return items that come after this cursor
           after: nil,
-          # Return items that come before this cursor
+          # Query param: Return items that come before this cursor
           before: nil,
-          # Maximum number of items to return
+          # Query param: Maximum number of items to return
           limit: nil,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -228,14 +302,23 @@ module Stigg
             id: String,
             migration_type:
               Stigg::V1::PlanPublishParams::MigrationType::OrSymbol,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::Models::V1::PlanPublishResponse)
         end
         def publish(
-          # The unique identifier of the entity
+          # Path param: The unique identifier of the entity
           id,
-          # The migration type of the package
+          # Body param: The migration type of the package
           migration_type:,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -244,12 +327,21 @@ module Stigg
         sig do
           params(
             id: String,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::Models::V1::PlanRemoveDraftResponse)
         end
         def remove_draft(
           # The unique identifier of the entity
           id,
+          # Account ID — optional when authenticating with a user JWT (Bearer token); falls
+          # back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Environment ID — required when authenticating with a user JWT (Bearer token) on
+          # environment-scoped endpoints. Ignored for API-key auth (env is intrinsic to the
+          # key).
+          x_environment_id: nil,
           request_options: {}
         )
         end

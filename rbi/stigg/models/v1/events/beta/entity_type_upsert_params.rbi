@@ -25,18 +25,34 @@ module Stigg
             end
             attr_accessor :types
 
+            sig { returns(T.nilable(String)) }
+            attr_reader :x_account_id
+
+            sig { params(x_account_id: String).void }
+            attr_writer :x_account_id
+
+            sig { returns(T.nilable(String)) }
+            attr_reader :x_environment_id
+
+            sig { params(x_environment_id: String).void }
+            attr_writer :x_environment_id
+
             sig do
               params(
                 types:
                   T::Array[
                     Stigg::V1::Events::Beta::EntityTypeUpsertParams::Type::OrHash
                   ],
+                x_account_id: String,
+                x_environment_id: String,
                 request_options: Stigg::RequestOptions::OrHash
               ).returns(T.attached_class)
             end
             def self.new(
               # Entity types to upsert (1–100 per request)
               types:,
+              x_account_id: nil,
+              x_environment_id: nil,
               request_options: {}
             )
             end
@@ -48,6 +64,8 @@ module Stigg
                     T::Array[
                       Stigg::V1::Events::Beta::EntityTypeUpsertParams::Type
                     ],
+                  x_account_id: String,
+                  x_environment_id: String,
                   request_options: Stigg::RequestOptions
                 }
               )

@@ -8,7 +8,9 @@ module Stigg
           created_at: Stigg::V1::CustomerListParams::CreatedAt,
           email: String,
           limit: Integer,
-          name: String
+          name: String,
+          x_account_id: String,
+          x_environment_id: String
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -42,6 +44,14 @@ module Stigg
 
         def name=: (String) -> String
 
+        attr_reader x_account_id: String?
+
+        def x_account_id=: (String) -> String
+
+        attr_reader x_environment_id: String?
+
+        def x_environment_id=: (String) -> String
+
         def initialize: (
           ?after: String,
           ?before: String,
@@ -49,6 +59,8 @@ module Stigg
           ?email: String,
           ?limit: Integer,
           ?name: String,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> void
 
@@ -59,6 +71,8 @@ module Stigg
           email: String,
           limit: Integer,
           name: String,
+          x_account_id: String,
+          x_environment_id: String,
           request_options: Stigg::RequestOptions
         }
 

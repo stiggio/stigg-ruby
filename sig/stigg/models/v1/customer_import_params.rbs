@@ -4,7 +4,9 @@ module Stigg
       type customer_import_params =
         {
           customers: ::Array[Stigg::V1::CustomerImportParams::Customer],
-          integration_id: String
+          integration_id: String,
+          x_account_id: String,
+          x_environment_id: String
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -18,15 +20,27 @@ module Stigg
 
         def integration_id=: (String) -> String
 
+        attr_reader x_account_id: String?
+
+        def x_account_id=: (String) -> String
+
+        attr_reader x_environment_id: String?
+
+        def x_environment_id=: (String) -> String
+
         def initialize: (
           customers: ::Array[Stigg::V1::CustomerImportParams::Customer],
           ?integration_id: String,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> void
 
         def to_hash: -> {
           customers: ::Array[Stigg::V1::CustomerImportParams::Customer],
           integration_id: String,
+          x_account_id: String,
+          x_environment_id: String,
           request_options: Stigg::RequestOptions
         }
 

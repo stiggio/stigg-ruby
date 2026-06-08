@@ -21,12 +21,21 @@ module Stigg
         sig do
           params(
             id: String,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Subscription)
         end
         def retrieve(
           # The unique identifier of the entity
           id,
+          # Account ID — optional when authenticating with a user JWT (Bearer token); falls
+          # back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Environment ID — required when authenticating with a user JWT (Bearer token) on
+          # environment-scoped endpoints. Ignored for API-key auth (env is intrinsic to the
+          # key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -72,34 +81,53 @@ module Stigg
             schedule_strategy:
               Stigg::V1::SubscriptionUpdateParams::ScheduleStrategy::OrSymbol,
             trial_end_date: Time,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Subscription)
         end
         def update(
-          # The unique identifier of the entity
+          # Path param: The unique identifier of the entity
           id,
+          # Body param
           addons: nil,
+          # Body param
           applied_coupon: nil,
-          # Await payment confirmation
+          # Body param: Await payment confirmation
           await_payment_confirmation: nil,
+          # Body param
           billing_cycle_anchor: nil,
+          # Body param
           billing_information: nil,
+          # Body param
           billing_period: nil,
+          # Body param
           budget: nil,
-          # Subscription cancellation date
+          # Body param: Subscription cancellation date
           cancellation_date: nil,
+          # Body param
           charges: nil,
+          # Body param
           entitlements: nil,
-          # Additional metadata for the subscription
+          # Body param: Additional metadata for the subscription
           metadata: nil,
-          # Minimum spend amount
+          # Body param: Minimum spend amount
           minimum_spend: nil,
+          # Body param
           price_overrides: nil,
-          # Promotion code
+          # Body param: Promotion code
           promotion_code: nil,
+          # Body param
           schedule_strategy: nil,
-          # Subscription trial end date
+          # Body param: Subscription trial end date
           trial_end_date: nil,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -121,6 +149,8 @@ module Stigg
             resource_id: String,
             status:
               T::Array[Stigg::V1::SubscriptionListParams::Status::OrSymbol],
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(
             Stigg::Internal::MyCursorIDPage[
@@ -129,25 +159,33 @@ module Stigg
           )
         end
         def list(
-          # Return items that come after this cursor
+          # Query param: Return items that come after this cursor
           after: nil,
-          # Return items that come before this cursor
+          # Query param: Return items that come before this cursor
           before: nil,
-          # Filter by creation date using range operators: gt, gte, lt, lte
+          # Query param: Filter by creation date using range operators: gt, gte, lt, lte
           created_at: nil,
-          # Filter by customer ID
+          # Query param: Filter by customer ID
           customer_id: nil,
-          # Maximum number of items to return
+          # Query param: Maximum number of items to return
           limit: nil,
-          # Filter by plan ID
+          # Query param: Filter by plan ID
           plan_id: nil,
-          # Filter by pricing type. Supports comma-separated values for multiple types
+          # Query param: Filter by pricing type. Supports comma-separated values for
+          # multiple types
           pricing_type: nil,
-          # Filter by resource ID
+          # Query param: Filter by resource ID
           resource_id: nil,
-          # Filter by subscription status. Supports comma-separated values for multiple
-          # statuses
+          # Query param: Filter by subscription status. Supports comma-separated values for
+          # multiple statuses
           status: nil,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -163,20 +201,30 @@ module Stigg
               Stigg::V1::SubscriptionCancelParams::CancellationTime::OrSymbol,
             end_date: Time,
             prorate: T::Boolean,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Subscription)
         end
         def cancel(
-          # The unique identifier of the entity
+          # Path param: The unique identifier of the entity
           id,
-          # Action on cancellation (downgrade or revoke)
+          # Body param: Action on cancellation (downgrade or revoke)
           cancellation_action: nil,
-          # When to cancel (immediate, period end, or date)
+          # Body param: When to cancel (immediate, period end, or date)
           cancellation_time: nil,
-          # Subscription end date
+          # Body param: Subscription end date
           end_date: nil,
-          # If set, enables or disables prorating of credits on subscription cancellation.
+          # Body param: If set, enables or disables prorating of credits on subscription
+          # cancellation.
           prorate: nil,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -187,16 +235,26 @@ module Stigg
           params(
             id: String,
             target_customer_id: String,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Subscription)
         end
         def delegate(
-          # The unique identifier of the entity
+          # Path param: The unique identifier of the entity
           id,
-          # The unique identifier of the customer who will assume payment responsibility for
-          # this subscription. This customer must already exist in your Stigg account and
-          # have a valid payment method if the subscription requires payment.
+          # Body param: The unique identifier of the customer who will assume payment
+          # responsibility for this subscription. This customer must already exist in your
+          # Stigg account and have a valid payment method if the subscription requires
+          # payment.
           target_customer_id:,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -210,14 +268,23 @@ module Stigg
                 Stigg::V1::SubscriptionImportParams::Subscription::OrHash
               ],
             integration_id: T.nilable(String),
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::Models::V1::SubscriptionImportResponse)
         end
         def import(
-          # List of subscription objects to import
+          # Body param: List of subscription objects to import
           subscriptions:,
-          # Integration ID to use for importing subscriptions
+          # Body param: Integration ID to use for importing subscriptions
           integration_id: nil,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -229,14 +296,23 @@ module Stigg
             id: String,
             subscription_migration_time:
               Stigg::V1::SubscriptionMigrateParams::SubscriptionMigrationTime::OrSymbol,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Subscription)
         end
         def migrate(
-          # The unique identifier of the entity
+          # Path param: The unique identifier of the entity
           id,
-          # When to migrate (immediate or period end)
+          # Body param: When to migrate (immediate or period end)
           subscription_migration_time: nil,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -272,42 +348,51 @@ module Stigg
             trial_override_configuration:
               Stigg::V1::SubscriptionPreviewParams::TrialOverrideConfiguration::OrHash,
             unit_quantity: Integer,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::Models::V1::SubscriptionPreviewResponse)
         end
         def preview(
-          # Customer ID
+          # Body param: Customer ID
           customer_id:,
-          # Plan ID
+          # Body param: Plan ID
           plan_id:,
-          # Addons to include
+          # Body param: Addons to include
           addons: nil,
-          # Coupon or discount to apply
+          # Body param: Coupon or discount to apply
           applied_coupon: nil,
-          # Billable features with quantities
+          # Body param: Billable features with quantities
           billable_features: nil,
-          # ISO 3166-1 country code for localization
+          # Body param: ISO 3166-1 country code for localization
           billing_country_code: nil,
-          # Billing cycle anchor behavior for the subscription
+          # Body param: Billing cycle anchor behavior for the subscription
           billing_cycle_anchor: nil,
-          # Billing and tax configuration
+          # Body param: Billing and tax configuration
           billing_information: nil,
-          # Billing period (MONTHLY or ANNUALLY)
+          # Body param: Billing period (MONTHLY or ANNUALLY)
           billing_period: nil,
-          # One-time or recurring charges
+          # Body param: One-time or recurring charges
           charges: nil,
-          # Paying customer ID for delegated billing
+          # Body param: Paying customer ID for delegated billing
           paying_customer_id: nil,
-          # Resource ID for multi-instance subscriptions
+          # Body param: Resource ID for multi-instance subscriptions
           resource_id: nil,
-          # When to apply subscription changes
+          # Body param: When to apply subscription changes
           schedule_strategy: nil,
-          # Subscription start date
+          # Body param: Subscription start date
           start_date: nil,
-          # Trial period override settings
+          # Body param: Trial period override settings
           trial_override_configuration: nil,
-          # Unit quantity for per-unit pricing. Minimum is 0 (zero is allowed).
+          # Body param: Unit quantity for per-unit pricing. Minimum is 0 (zero is allowed).
           unit_quantity: nil,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -366,58 +451,74 @@ module Stigg
             trial_override_configuration:
               Stigg::V1::SubscriptionProvisionParams::TrialOverrideConfiguration::OrHash,
             unit_quantity: Integer,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::Models::V1::SubscriptionProvisionResponse)
         end
         def provision(
-          # Customer ID to provision the subscription for
+          # Body param: Customer ID to provision the subscription for
           customer_id:,
-          # Plan ID to provision
+          # Body param: Plan ID to provision
           plan_id:,
-          # Unique identifier for the subscription
+          # Body param: Unique identifier for the subscription
           id: nil,
+          # Body param
           addons: nil,
-          # Coupon configuration
+          # Body param: Coupon configuration
           applied_coupon: nil,
-          # Whether to wait for payment confirmation before returning the subscription
+          # Body param: Whether to wait for payment confirmation before returning the
+          # subscription
           await_payment_confirmation: nil,
-          # The ISO 3166-1 alpha-2 country code for billing
+          # Body param: The ISO 3166-1 alpha-2 country code for billing
           billing_country_code: nil,
-          # Billing cycle anchor behavior for the subscription
+          # Body param: Billing cycle anchor behavior for the subscription
           billing_cycle_anchor: nil,
-          # External billing system identifier
+          # Body param: External billing system identifier
           billing_id: nil,
+          # Body param
           billing_information: nil,
-          # Billing period (MONTHLY or ANNUALLY)
+          # Body param: Billing period (MONTHLY or ANNUALLY)
           billing_period: nil,
+          # Body param
           budget: nil,
-          # Subscription cancellation date
+          # Body param: Subscription cancellation date
           cancellation_date: nil,
+          # Body param
           charges: nil,
-          # Checkout page configuration for payment collection
+          # Body param: Checkout page configuration for payment collection
           checkout_options: nil,
+          # Body param
           entitlements: nil,
-          # Additional metadata for the subscription
+          # Body param: Additional metadata for the subscription
           metadata: nil,
-          # Minimum spend amount
+          # Body param: Minimum spend amount
           minimum_spend: nil,
-          # Optional paying customer ID for split billing scenarios
+          # Body param: Optional paying customer ID for split billing scenarios
           paying_customer_id: nil,
-          # How payments should be collected for this subscription
+          # Body param: How payments should be collected for this subscription
           payment_collection_method: nil,
+          # Body param
           price_overrides: nil,
-          # Optional resource ID for multi-instance subscriptions
+          # Body param: Optional resource ID for multi-instance subscriptions
           resource_id: nil,
-          # Salesforce ID
+          # Body param: Salesforce ID
           salesforce_id: nil,
-          # Strategy for scheduling subscription changes
+          # Body param: Strategy for scheduling subscription changes
           schedule_strategy: nil,
-          # Subscription start date
+          # Body param: Subscription start date
           start_date: nil,
-          # Trial period override settings
+          # Body param: Trial period override settings
           trial_override_configuration: nil,
-          # Unit quantity for per-unit pricing. Minimum is 0 (zero is allowed).
+          # Body param: Unit quantity for per-unit pricing. Minimum is 0 (zero is allowed).
           unit_quantity: nil,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -428,14 +529,23 @@ module Stigg
           params(
             id: String,
             destination_resource_id: String,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Subscription)
         end
         def transfer(
-          # The unique identifier of the entity
+          # Path param: The unique identifier of the entity
           id,
-          # Resource ID to transfer the subscription to
+          # Body param: Resource ID to transfer the subscription to
           destination_resource_id:,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end

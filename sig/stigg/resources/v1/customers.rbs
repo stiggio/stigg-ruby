@@ -10,6 +10,8 @@ module Stigg
 
         def retrieve: (
           String id,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::CustomerResponse
 
@@ -25,6 +27,8 @@ module Stigg
           ?name: String?,
           ?passthrough: Stigg::V1::CustomerUpdateParams::Passthrough,
           ?timezone: String?,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::CustomerResponse
 
@@ -35,11 +39,15 @@ module Stigg
           ?email: String,
           ?limit: Integer,
           ?name: String,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::CustomerListResponse]
 
         def archive: (
           String id,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::CustomerResponse
 
@@ -50,12 +58,16 @@ module Stigg
           ?requested_usage: Integer,
           ?requested_values: ::Array[String],
           ?resource_id: String,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Models::V1::CustomerCheckEntitlementResponse
 
         def import: (
           customers: ::Array[Stigg::V1::CustomerImportParams::Customer],
           ?integration_id: String,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Models::V1::CustomerImportResponse
 
@@ -64,6 +76,8 @@ module Stigg
           ?after: String,
           ?before: String,
           ?limit: Integer,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::CustomerListResourcesResponse]
 
@@ -80,17 +94,23 @@ module Stigg
           ?name: String?,
           ?passthrough: Stigg::V1::CustomerProvisionParams::Passthrough,
           ?timezone: String?,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::CustomerResponse
 
         def retrieve_entitlements: (
           String id,
           ?resource_id: String,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Models::V1::CustomerRetrieveEntitlementsResponse
 
         def unarchive: (
           String id,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::CustomerResponse
 

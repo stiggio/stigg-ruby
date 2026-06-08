@@ -6,7 +6,9 @@ module Stigg
           id: String,
           target_id: String,
           description: String?,
-          display_name: String
+          display_name: String,
+          x_account_id: String,
+          x_environment_id: String
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -24,11 +26,21 @@ module Stigg
 
         def display_name=: (String) -> String
 
+        attr_reader x_account_id: String?
+
+        def x_account_id=: (String) -> String
+
+        attr_reader x_environment_id: String?
+
+        def x_environment_id=: (String) -> String
+
         def initialize: (
           id: String,
           target_id: String,
           ?description: String?,
           ?display_name: String,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> void
 
@@ -37,6 +49,8 @@ module Stigg
           target_id: String,
           description: String?,
           display_name: String,
+          x_account_id: String,
+          x_environment_id: String,
           request_options: Stigg::RequestOptions
         }
       end

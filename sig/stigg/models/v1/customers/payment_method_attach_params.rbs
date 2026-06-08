@@ -8,7 +8,9 @@ module Stigg
             integration_id: String,
             payment_method_id: String,
             vendor_identifier: Stigg::Models::V1::Customers::PaymentMethodAttachParams::vendor_identifier,
-            billing_currency: Stigg::Models::V1::Customers::PaymentMethodAttachParams::billing_currency?
+            billing_currency: Stigg::Models::V1::Customers::PaymentMethodAttachParams::billing_currency?,
+            x_account_id: String,
+            x_environment_id: String
           }
           & Stigg::Internal::Type::request_parameters
 
@@ -26,12 +28,22 @@ module Stigg
 
           attr_accessor billing_currency: Stigg::Models::V1::Customers::PaymentMethodAttachParams::billing_currency?
 
+          attr_reader x_account_id: String?
+
+          def x_account_id=: (String) -> String
+
+          attr_reader x_environment_id: String?
+
+          def x_environment_id=: (String) -> String
+
           def initialize: (
             id: String,
             integration_id: String,
             payment_method_id: String,
             vendor_identifier: Stigg::Models::V1::Customers::PaymentMethodAttachParams::vendor_identifier,
             ?billing_currency: Stigg::Models::V1::Customers::PaymentMethodAttachParams::billing_currency?,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> void
 
@@ -41,6 +53,8 @@ module Stigg
             payment_method_id: String,
             vendor_identifier: Stigg::Models::V1::Customers::PaymentMethodAttachParams::vendor_identifier,
             billing_currency: Stigg::Models::V1::Customers::PaymentMethodAttachParams::billing_currency?,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions
           }
 

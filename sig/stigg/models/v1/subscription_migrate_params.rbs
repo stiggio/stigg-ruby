@@ -4,7 +4,9 @@ module Stigg
       type subscription_migrate_params =
         {
           id: String,
-          subscription_migration_time: Stigg::Models::V1::SubscriptionMigrateParams::subscription_migration_time
+          subscription_migration_time: Stigg::Models::V1::SubscriptionMigrateParams::subscription_migration_time,
+          x_account_id: String,
+          x_environment_id: String
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -20,15 +22,27 @@ module Stigg
           Stigg::Models::V1::SubscriptionMigrateParams::subscription_migration_time
         ) -> Stigg::Models::V1::SubscriptionMigrateParams::subscription_migration_time
 
+        attr_reader x_account_id: String?
+
+        def x_account_id=: (String) -> String
+
+        attr_reader x_environment_id: String?
+
+        def x_environment_id=: (String) -> String
+
         def initialize: (
           id: String,
           ?subscription_migration_time: Stigg::Models::V1::SubscriptionMigrateParams::subscription_migration_time,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> void
 
         def to_hash: -> {
           id: String,
           subscription_migration_time: Stigg::Models::V1::SubscriptionMigrateParams::subscription_migration_time,
+          x_account_id: String,
+          x_environment_id: String,
           request_options: Stigg::RequestOptions
         }
 

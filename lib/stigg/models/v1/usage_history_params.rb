@@ -42,7 +42,17 @@ module Stigg
         #   @return [String, nil]
         optional :resource_id, String, nil?: true
 
-        # @!method initialize(customer_id:, feature_id:, start_date:, end_date: nil, group_by: nil, resource_id: nil, request_options: {})
+        # @!attribute x_account_id
+        #
+        #   @return [String, nil]
+        optional :x_account_id, String
+
+        # @!attribute x_environment_id
+        #
+        #   @return [String, nil]
+        optional :x_environment_id, String
+
+        # @!method initialize(customer_id:, feature_id:, start_date:, end_date: nil, group_by: nil, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #   @param customer_id [String]
         #
         #   @param feature_id [String]
@@ -54,6 +64,10 @@ module Stigg
         #   @param group_by [String] Criteria by which to group the usage history
         #
         #   @param resource_id [String, nil] Resource id
+        #
+        #   @param x_account_id [String]
+        #
+        #   @param x_environment_id [String]
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
       end

@@ -15,16 +15,25 @@ module Stigg
                 T::Array[
                   Stigg::V1::Customers::PromotionalEntitlementCreateParams::PromotionalEntitlement::OrHash
                 ],
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions::OrHash
             ).returns(
               Stigg::Models::V1::Customers::PromotionalEntitlementCreateResponse
             )
           end
           def create(
-            # The unique identifier of the entity
+            # Path param: The unique identifier of the entity
             id,
-            # Promotional entitlements to grant
+            # Body param: Promotional entitlements to grant
             promotional_entitlements:,
+            # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+            # token); falls back to the user's first membership. Ignored for API-key auth.
+            x_account_id: nil,
+            # Header param: Environment ID — required when authenticating with a user JWT
+            # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+            # intrinsic to the key).
+            x_environment_id: nil,
             request_options: {}
           )
           end
@@ -42,6 +51,8 @@ module Stigg
                 T::Array[
                   Stigg::V1::Customers::PromotionalEntitlementListParams::Status::OrSymbol
                 ],
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions::OrHash
             ).returns(
               Stigg::Internal::MyCursorIDPage[
@@ -50,19 +61,26 @@ module Stigg
             )
           end
           def list(
-            # The unique identifier of the entity
+            # Path param: The unique identifier of the entity
             id,
-            # Return items that come after this cursor
+            # Query param: Return items that come after this cursor
             after: nil,
-            # Return items that come before this cursor
+            # Query param: Return items that come before this cursor
             before: nil,
-            # Filter by creation date using range operators: gt, gte, lt, lte
+            # Query param: Filter by creation date using range operators: gt, gte, lt, lte
             created_at: nil,
-            # Maximum number of items to return
+            # Query param: Maximum number of items to return
             limit: nil,
-            # Filter by promotional entitlement status. Supports comma-separated values for
-            # multiple statuses
+            # Query param: Filter by promotional entitlement status. Supports comma-separated
+            # values for multiple statuses
             status: nil,
+            # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+            # token); falls back to the user's first membership. Ignored for API-key auth.
+            x_account_id: nil,
+            # Header param: Environment ID — required when authenticating with a user JWT
+            # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+            # intrinsic to the key).
+            x_environment_id: nil,
             request_options: {}
           )
           end
@@ -73,16 +91,25 @@ module Stigg
             params(
               feature_id: String,
               id: String,
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions::OrHash
             ).returns(
               Stigg::Models::V1::Customers::PromotionalEntitlementRevokeResponse
             )
           end
           def revoke(
-            # The unique identifier of the entitlement feature
+            # Path param: The unique identifier of the entitlement feature
             feature_id,
-            # The unique identifier of the customer
+            # Path param: The unique identifier of the customer
             id:,
+            # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+            # token); falls back to the user's first membership. Ignored for API-key auth.
+            x_account_id: nil,
+            # Header param: Environment ID — required when authenticating with a user JWT
+            # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+            # intrinsic to the key).
+            x_environment_id: nil,
             request_options: {}
           )
           end

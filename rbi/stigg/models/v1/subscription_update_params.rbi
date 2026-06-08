@@ -228,6 +228,18 @@ module Stigg
         sig { params(trial_end_date: Time).void }
         attr_writer :trial_end_date
 
+        sig { returns(T.nilable(String)) }
+        attr_reader :x_account_id
+
+        sig { params(x_account_id: String).void }
+        attr_writer :x_account_id
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :x_environment_id
+
+        sig { params(x_environment_id: String).void }
+        attr_writer :x_environment_id
+
         sig do
           params(
             id: String,
@@ -267,6 +279,8 @@ module Stigg
             schedule_strategy:
               Stigg::V1::SubscriptionUpdateParams::ScheduleStrategy::OrSymbol,
             trial_end_date: Time,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -294,6 +308,8 @@ module Stigg
           schedule_strategy: nil,
           # Subscription trial end date
           trial_end_date: nil,
+          x_account_id: nil,
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -331,6 +347,8 @@ module Stigg
               schedule_strategy:
                 Stigg::V1::SubscriptionUpdateParams::ScheduleStrategy::OrSymbol,
               trial_end_date: Time,
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions
             }
           )

@@ -12,7 +12,9 @@ module Stigg
           metadata: ::Hash[Symbol, String],
           parent_plan_id: String?,
           pricing_type: Stigg::Models::V1::PlanCreateParams::pricing_type?,
-          status: Stigg::Models::V1::PlanCreateParams::status
+          status: Stigg::Models::V1::PlanCreateParams::status,
+          x_account_id: String,
+          x_environment_id: String
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -46,6 +48,14 @@ module Stigg
           Stigg::Models::V1::PlanCreateParams::status
         ) -> Stigg::Models::V1::PlanCreateParams::status
 
+        attr_reader x_account_id: String?
+
+        def x_account_id=: (String) -> String
+
+        attr_reader x_environment_id: String?
+
+        def x_environment_id=: (String) -> String
+
         def initialize: (
           id: String,
           display_name: String,
@@ -57,6 +67,8 @@ module Stigg
           ?parent_plan_id: String?,
           ?pricing_type: Stigg::Models::V1::PlanCreateParams::pricing_type?,
           ?status: Stigg::Models::V1::PlanCreateParams::status,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> void
 
@@ -71,6 +83,8 @@ module Stigg
           parent_plan_id: String?,
           pricing_type: Stigg::Models::V1::PlanCreateParams::pricing_type?,
           status: Stigg::Models::V1::PlanCreateParams::status,
+          x_account_id: String,
+          x_environment_id: String,
           request_options: Stigg::RequestOptions
         }
 

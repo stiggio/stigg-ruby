@@ -67,6 +67,18 @@ module Stigg
               sig { params(type_ref_id: String).void }
               attr_writer :type_ref_id
 
+              sig { returns(T.nilable(String)) }
+              attr_reader :x_account_id
+
+              sig { params(x_account_id: String).void }
+              attr_writer :x_account_id
+
+              sig { returns(T.nilable(String)) }
+              attr_reader :x_environment_id
+
+              sig { params(x_environment_id: String).void }
+              attr_writer :x_environment_id
+
               sig do
                 params(
                   id: String,
@@ -76,6 +88,8 @@ module Stigg
                     Stigg::V1::Events::Beta::Customers::EntityListParams::IncludeArchived::OrSymbol,
                   limit: Integer,
                   type_ref_id: String,
+                  x_account_id: String,
+                  x_environment_id: String,
                   request_options: Stigg::RequestOptions::OrHash
                 ).returns(T.attached_class)
               end
@@ -91,6 +105,8 @@ module Stigg
                 limit: nil,
                 # Filter results to entities of a specific entity type, by the type's refId
                 type_ref_id: nil,
+                x_account_id: nil,
+                x_environment_id: nil,
                 request_options: {}
               )
               end
@@ -105,6 +121,8 @@ module Stigg
                       Stigg::V1::Events::Beta::Customers::EntityListParams::IncludeArchived::OrSymbol,
                     limit: Integer,
                     type_ref_id: String,
+                    x_account_id: String,
+                    x_environment_id: String,
                     request_options: Stigg::RequestOptions
                   }
                 )

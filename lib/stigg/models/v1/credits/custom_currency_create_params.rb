@@ -46,7 +46,17 @@ module Stigg
           #   @return [Stigg::Models::V1::Credits::CustomCurrencyCreateParams::Units, nil]
           optional :units, -> { Stigg::V1::Credits::CustomCurrencyCreateParams::Units }
 
-          # @!method initialize(id:, display_name:, description: nil, metadata: nil, symbol: nil, units: nil, request_options: {})
+          # @!attribute x_account_id
+          #
+          #   @return [String, nil]
+          optional :x_account_id, String
+
+          # @!attribute x_environment_id
+          #
+          #   @return [String, nil]
+          optional :x_environment_id, String
+
+          # @!method initialize(id:, display_name:, description: nil, metadata: nil, symbol: nil, units: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
           #   Some parameter documentations has been truncated, see
           #   {Stigg::Models::V1::Credits::CustomCurrencyCreateParams} for more details.
           #
@@ -61,6 +71,10 @@ module Stigg
           #   @param symbol [String] The symbol used to represent the custom currency
           #
           #   @param units [Stigg::Models::V1::Credits::CustomCurrencyCreateParams::Units] Singular and plural unit labels for a custom currency. Both fields are required
+          #
+          #   @param x_account_id [String]
+          #
+          #   @param x_environment_id [String]
           #
           #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 

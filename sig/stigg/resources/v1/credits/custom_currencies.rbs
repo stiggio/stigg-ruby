@@ -10,6 +10,8 @@ module Stigg
             ?metadata: ::Hash[Symbol, String],
             ?symbol: String,
             ?units: Stigg::V1::Credits::CustomCurrencyCreateParams::Units,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::V1::Credits::CustomCurrencyResponse
 
@@ -20,6 +22,8 @@ module Stigg
             ?metadata: ::Hash[Symbol, String]?,
             ?symbol: String?,
             ?units: Stigg::V1::Credits::CustomCurrencyUpdateParams::Units,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::V1::Credits::CustomCurrencyResponse
 
@@ -28,21 +32,29 @@ module Stigg
             ?before: String,
             ?limit: Integer,
             ?status: ::Array[Stigg::Models::V1::Credits::CustomCurrencyListParams::status],
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::Credits::CustomCurrencyListResponse]
 
           def archive: (
             String currency_id,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::V1::Credits::CustomCurrencyResponse
 
           def list_associated_entities: (
             String currency_id,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::Models::V1::Credits::CustomCurrencyListAssociatedEntitiesResponse
 
           def unarchive: (
             String currency_id,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::V1::Credits::CustomCurrencyResponse
 

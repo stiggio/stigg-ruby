@@ -18,14 +18,23 @@ module Stigg
           params(
             currency_id: String,
             customer_id: String,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::Models::V1::CreditGetAutoRechargeResponse)
         end
         def get_auto_recharge(
-          # Filter by currency ID (required)
+          # Query param: Filter by currency ID (required)
           currency_id:,
-          # Filter by customer ID (required)
+          # Query param: Filter by customer ID (required)
           customer_id:,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -44,34 +53,43 @@ module Stigg
             resource_id: String,
             start_date: Time,
             time_range: Stigg::V1::CreditGetUsageParams::TimeRange::OrSymbol,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::Models::V1::CreditGetUsageResponse)
         end
         def get_usage(
-          # Filter by customer ID (required)
+          # Query param: Filter by customer ID (required)
           customer_id:,
-          # Return items that come after this cursor
+          # Query param: Return items that come after this cursor
           after: nil,
-          # Return items that come before this cursor
+          # Query param: Return items that come before this cursor
           before: nil,
-          # Filter by currency ID
+          # Query param: Filter by currency ID
           currency_id: nil,
-          # End date for the credit usage time range (ISO 8601). Defaults to now when
-          # startDate is provided
+          # Query param: End date for the credit usage time range (ISO 8601). Defaults to
+          # now when startDate is provided
           end_date: nil,
-          # Comma-separated list of feature dimension keys to group usage series by (up to
-          # 3). Each key matches /^[a-zA-Z0-9_$-]+$/
+          # Query param: Comma-separated list of feature dimension keys to group usage
+          # series by (up to 3). Each key matches /^[a-zA-Z0-9_$-]+$/
           group_by: nil,
-          # Maximum number of items to return
+          # Query param: Maximum number of items to return
           limit: nil,
-          # Filter by resource ID
+          # Query param: Filter by resource ID
           resource_id: nil,
-          # Start date for the credit usage time range (ISO 8601). Takes precedence over
-          # timeRange when provided
+          # Query param: Start date for the credit usage time range (ISO 8601). Takes
+          # precedence over timeRange when provided
           start_date: nil,
-          # Time range for usage data (LAST_DAY, LAST_WEEK, LAST_MONTH, LAST_YEAR). Defaults
-          # to LAST_MONTH
+          # Query param: Time range for usage data (LAST_DAY, LAST_WEEK, LAST_MONTH,
+          # LAST_YEAR). Defaults to LAST_MONTH
           time_range: nil,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -85,6 +103,8 @@ module Stigg
             currency_id: String,
             limit: Integer,
             resource_id: String,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(
             Stigg::Internal::MyCursorIDPage[
@@ -93,18 +113,25 @@ module Stigg
           )
         end
         def list_ledger(
-          # Filter by customer ID (required)
+          # Query param: Filter by customer ID (required)
           customer_id:,
-          # Return items that come after this cursor
+          # Query param: Return items that come after this cursor
           after: nil,
-          # Return items that come before this cursor
+          # Query param: Return items that come before this cursor
           before: nil,
-          # Filter by currency ID
+          # Query param: Filter by currency ID
           currency_id: nil,
-          # Maximum number of items to return
+          # Query param: Maximum number of items to return
           limit: nil,
-          # Filter by resource ID
+          # Query param: Filter by resource ID
           resource_id: nil,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end

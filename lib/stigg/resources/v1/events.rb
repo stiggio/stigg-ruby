@@ -11,12 +11,19 @@ module Stigg
         # @return [Stigg::Resources::V1::Events::DataExport]
         attr_reader :data_export
 
+        # Some parameter documentations has been truncated, see
+        # {Stigg::Models::V1::EventReportParams} for more details.
+        #
         # Reports raw usage events for event-based metering. Events are ingested
         # asynchronously and aggregated into usage totals.
         #
-        # @overload report(events:, request_options: {})
+        # @overload report(events:, x_account_id: nil, x_environment_id: nil, request_options: {})
         #
-        # @param events [Array<Stigg::Models::V1::EventReportParams::Event>] A list of usage events to report
+        # @param events [Array<Stigg::Models::V1::EventReportParams::Event>] Body param: A list of usage events to report
+        #
+        # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
+        #
+        # @param x_environment_id [String] Header param: Environment ID — required when authenticating with a user JWT (Bea
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -25,10 +32,12 @@ module Stigg
         # @see Stigg::Models::V1::EventReportParams
         def report(params)
           parsed, options = Stigg::V1::EventReportParams.dump_request(params)
+          header_params = {x_account_id: "x-account-id", x_environment_id: "x-environment-id"}
           @client.request(
             method: :post,
             path: "api/v1/events",
-            body: parsed,
+            headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+            body: parsed.except(*header_params.keys),
             model: Stigg::Models::V1::EventReportResponse,
             options: options
           )

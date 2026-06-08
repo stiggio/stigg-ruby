@@ -65,7 +65,17 @@ module Stigg
         #   @return [Symbol, Stigg::Models::V1::AddonCreateParams::Status, nil]
         optional :status, enum: -> { Stigg::V1::AddonCreateParams::Status }
 
-        # @!method initialize(id:, display_name:, product_id:, billing_id: nil, description: nil, max_quantity: nil, metadata: nil, pricing_type: nil, status: nil, request_options: {})
+        # @!attribute x_account_id
+        #
+        #   @return [String, nil]
+        optional :x_account_id, String
+
+        # @!attribute x_environment_id
+        #
+        #   @return [String, nil]
+        optional :x_environment_id, String
+
+        # @!method initialize(id:, display_name:, product_id:, billing_id: nil, description: nil, max_quantity: nil, metadata: nil, pricing_type: nil, status: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #   @param id [String] The unique identifier for the entity
         #
         #   @param display_name [String] The display name of the package
@@ -83,6 +93,10 @@ module Stigg
         #   @param pricing_type [Symbol, Stigg::Models::V1::AddonCreateParams::PricingType, nil] The pricing type of the package
         #
         #   @param status [Symbol, Stigg::Models::V1::AddonCreateParams::Status] The status of the package
+        #
+        #   @param x_account_id [String]
+        #
+        #   @param x_environment_id [String]
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 

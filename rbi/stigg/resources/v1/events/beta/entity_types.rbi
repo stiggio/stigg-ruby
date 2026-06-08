@@ -14,6 +14,8 @@ module Stigg
                 after: String,
                 before: String,
                 limit: Integer,
+                x_account_id: String,
+                x_environment_id: String,
                 request_options: Stigg::RequestOptions::OrHash
               ).returns(
                 Stigg::Internal::MyCursorIDPage[
@@ -22,12 +24,19 @@ module Stigg
               )
             end
             def list(
-              # Return items that come after this cursor
+              # Query param: Return items that come after this cursor
               after: nil,
-              # Return items that come before this cursor
+              # Query param: Return items that come before this cursor
               before: nil,
-              # Maximum number of items to return
+              # Query param: Maximum number of items to return
               limit: nil,
+              # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+              # token); falls back to the user's first membership. Ignored for API-key auth.
+              x_account_id: nil,
+              # Header param: Environment ID — required when authenticating with a user JWT
+              # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+              # intrinsic to the key).
+              x_environment_id: nil,
               request_options: {}
             )
             end
@@ -41,14 +50,23 @@ module Stigg
                   T::Array[
                     Stigg::V1::Events::Beta::EntityTypeUpsertParams::Type::OrHash
                   ],
+                x_account_id: String,
+                x_environment_id: String,
                 request_options: Stigg::RequestOptions::OrHash
               ).returns(
                 Stigg::Models::V1::Events::Beta::EntityTypeUpsertResponse
               )
             end
             def upsert(
-              # Entity types to upsert (1–100 per request)
+              # Body param: Entity types to upsert (1–100 per request)
               types:,
+              # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+              # token); falls back to the user's first membership. Ignored for API-key auth.
+              x_account_id: nil,
+              # Header param: Environment ID — required when authenticating with a user JWT
+              # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+              # intrinsic to the key).
+              x_environment_id: nil,
               request_options: {}
             )
             end

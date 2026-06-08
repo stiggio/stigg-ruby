@@ -53,7 +53,17 @@ module Stigg
         #   @return [Float, nil]
         required :percent_off, Float, api_name: :percentOff, nil?: true
 
-        # @!method initialize(id:, amounts_off:, description:, duration_in_months:, metadata:, name:, percent_off:, request_options: {})
+        # @!attribute x_account_id
+        #
+        #   @return [String, nil]
+        optional :x_account_id, String
+
+        # @!attribute x_environment_id
+        #
+        #   @return [String, nil]
+        optional :x_environment_id, String
+
+        # @!method initialize(id:, amounts_off:, description:, duration_in_months:, metadata:, name:, percent_off:, x_account_id: nil, x_environment_id: nil, request_options: {})
         #   @param id [String] The unique identifier for the entity
         #
         #   @param amounts_off [Array<Stigg::Models::V1::CouponCreateParams::AmountsOff>, nil] Fixed amount discounts in different currencies
@@ -67,6 +77,10 @@ module Stigg
         #   @param name [String] Name of the coupon
         #
         #   @param percent_off [Float, nil] Percentage discount off the original price
+        #
+        #   @param x_account_id [String]
+        #
+        #   @param x_environment_id [String]
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 

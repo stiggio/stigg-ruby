@@ -35,7 +35,17 @@ module Stigg
           optional :status,
                    -> { Stigg::Internal::Type::ArrayOf[enum: Stigg::V1::Credits::CustomCurrencyListParams::Status] }
 
-          # @!method initialize(after: nil, before: nil, limit: nil, status: nil, request_options: {})
+          # @!attribute x_account_id
+          #
+          #   @return [String, nil]
+          optional :x_account_id, String
+
+          # @!attribute x_environment_id
+          #
+          #   @return [String, nil]
+          optional :x_environment_id, String
+
+          # @!method initialize(after: nil, before: nil, limit: nil, status: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
           #   Some parameter documentations has been truncated, see
           #   {Stigg::Models::V1::Credits::CustomCurrencyListParams} for more details.
           #
@@ -46,6 +56,10 @@ module Stigg
           #   @param limit [Integer] Maximum number of items to return
           #
           #   @param status [Array<Symbol, Stigg::Models::V1::Credits::CustomCurrencyListParams::Status>] Filter by custom currency status. Supports comma-separated values (e.g., `ACTIVE
+          #
+          #   @param x_account_id [String]
+          #
+          #   @param x_environment_id [String]
           #
           #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 

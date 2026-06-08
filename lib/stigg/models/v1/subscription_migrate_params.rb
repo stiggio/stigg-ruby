@@ -21,10 +21,24 @@ module Stigg
                  enum: -> { Stigg::V1::SubscriptionMigrateParams::SubscriptionMigrationTime },
                  api_name: :subscriptionMigrationTime
 
-        # @!method initialize(id:, subscription_migration_time: nil, request_options: {})
+        # @!attribute x_account_id
+        #
+        #   @return [String, nil]
+        optional :x_account_id, String
+
+        # @!attribute x_environment_id
+        #
+        #   @return [String, nil]
+        optional :x_environment_id, String
+
+        # @!method initialize(id:, subscription_migration_time: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #   @param id [String]
         #
         #   @param subscription_migration_time [Symbol, Stigg::Models::V1::SubscriptionMigrateParams::SubscriptionMigrationTime] When to migrate (immediate or period end)
+        #
+        #   @param x_account_id [String]
+        #
+        #   @param x_environment_id [String]
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 

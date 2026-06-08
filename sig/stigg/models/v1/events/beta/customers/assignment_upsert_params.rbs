@@ -7,7 +7,9 @@ module Stigg
             type assignment_upsert_params =
               {
                 id: String,
-                assignments: ::Array[Stigg::V1::Events::Beta::Customers::AssignmentUpsertParams::Assignment]
+                assignments: ::Array[Stigg::V1::Events::Beta::Customers::AssignmentUpsertParams::Assignment],
+                x_account_id: String,
+                x_environment_id: String
               }
               & Stigg::Internal::Type::request_parameters
 
@@ -19,15 +21,27 @@ module Stigg
 
               attr_accessor assignments: ::Array[Stigg::V1::Events::Beta::Customers::AssignmentUpsertParams::Assignment]
 
+              attr_reader x_account_id: String?
+
+              def x_account_id=: (String) -> String
+
+              attr_reader x_environment_id: String?
+
+              def x_environment_id=: (String) -> String
+
               def initialize: (
                 id: String,
                 assignments: ::Array[Stigg::V1::Events::Beta::Customers::AssignmentUpsertParams::Assignment],
+                ?x_account_id: String,
+                ?x_environment_id: String,
                 ?request_options: Stigg::request_opts
               ) -> void
 
               def to_hash: -> {
                 id: String,
                 assignments: ::Array[Stigg::V1::Events::Beta::Customers::AssignmentUpsertParams::Assignment],
+                x_account_id: String,
+                x_environment_id: String,
                 request_options: Stigg::RequestOptions
               }
 

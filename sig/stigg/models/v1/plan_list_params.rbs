@@ -8,7 +8,9 @@ module Stigg
           created_at: Stigg::V1::PlanListParams::CreatedAt,
           limit: Integer,
           product_id: String,
-          status: ::Array[Stigg::Models::V1::PlanListParams::status]
+          status: ::Array[Stigg::Models::V1::PlanListParams::status],
+          x_account_id: String,
+          x_environment_id: String
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -44,6 +46,14 @@ module Stigg
           ::Array[Stigg::Models::V1::PlanListParams::status]
         ) -> ::Array[Stigg::Models::V1::PlanListParams::status]
 
+        attr_reader x_account_id: String?
+
+        def x_account_id=: (String) -> String
+
+        attr_reader x_environment_id: String?
+
+        def x_environment_id=: (String) -> String
+
         def initialize: (
           ?after: String,
           ?before: String,
@@ -51,6 +61,8 @@ module Stigg
           ?limit: Integer,
           ?product_id: String,
           ?status: ::Array[Stigg::Models::V1::PlanListParams::status],
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> void
 
@@ -61,6 +73,8 @@ module Stigg
           limit: Integer,
           product_id: String,
           status: ::Array[Stigg::Models::V1::PlanListParams::status],
+          x_account_id: String,
+          x_environment_id: String,
           request_options: Stigg::RequestOptions
         }
 

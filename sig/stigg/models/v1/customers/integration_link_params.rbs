@@ -7,7 +7,9 @@ module Stigg
             path_id: String,
             body_id: String,
             synced_entity_id: String,
-            vendor_identifier: Stigg::Models::V1::Customers::IntegrationLinkParams::vendor_identifier
+            vendor_identifier: Stigg::Models::V1::Customers::IntegrationLinkParams::vendor_identifier,
+            x_account_id: String,
+            x_environment_id: String
           }
           & Stigg::Internal::Type::request_parameters
 
@@ -23,11 +25,21 @@ module Stigg
 
           attr_accessor vendor_identifier: Stigg::Models::V1::Customers::IntegrationLinkParams::vendor_identifier
 
+          attr_reader x_account_id: String?
+
+          def x_account_id=: (String) -> String
+
+          attr_reader x_environment_id: String?
+
+          def x_environment_id=: (String) -> String
+
           def initialize: (
             path_id: String,
             body_id: String,
             synced_entity_id: String,
             vendor_identifier: Stigg::Models::V1::Customers::IntegrationLinkParams::vendor_identifier,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> void
 
@@ -36,6 +48,8 @@ module Stigg
             body_id: String,
             synced_entity_id: String,
             vendor_identifier: Stigg::Models::V1::Customers::IntegrationLinkParams::vendor_identifier,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions
           }
 

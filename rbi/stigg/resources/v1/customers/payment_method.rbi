@@ -19,20 +19,29 @@ module Stigg
                 T.nilable(
                   Stigg::V1::Customers::PaymentMethodAttachParams::BillingCurrency::OrSymbol
                 ),
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions::OrHash
             ).returns(Stigg::V1::CustomerResponse)
           end
           def attach(
-            # The unique identifier of the entity
+            # Path param: The unique identifier of the entity
             id,
-            # Integration details
+            # Body param: Integration details
             integration_id:,
-            # Billing provider payment method id
+            # Body param: Billing provider payment method id
             payment_method_id:,
-            # The vendor identifier of integration
+            # Body param: The vendor identifier of integration
             vendor_identifier:,
-            # Customers selected currency
+            # Body param: Customers selected currency
             billing_currency: nil,
+            # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+            # token); falls back to the user's first membership. Ignored for API-key auth.
+            x_account_id: nil,
+            # Header param: Environment ID — required when authenticating with a user JWT
+            # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+            # intrinsic to the key).
+            x_environment_id: nil,
             request_options: {}
           )
           end
@@ -42,12 +51,21 @@ module Stigg
           sig do
             params(
               id: String,
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions::OrHash
             ).returns(Stigg::V1::CustomerResponse)
           end
           def detach(
             # The unique identifier of the entity
             id,
+            # Account ID — optional when authenticating with a user JWT (Bearer token); falls
+            # back to the user's first membership. Ignored for API-key auth.
+            x_account_id: nil,
+            # Environment ID — required when authenticating with a user JWT (Bearer token) on
+            # environment-scoped endpoints. Ignored for API-key auth (env is intrinsic to the
+            # key).
+            x_environment_id: nil,
             request_options: {}
           )
           end

@@ -8,6 +8,8 @@ module Stigg
 
         def report: (
           events: ::Array[Stigg::V1::EventReportParams::Event],
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Models::V1::EventReportResponse
 

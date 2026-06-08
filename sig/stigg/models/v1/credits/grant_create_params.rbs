@@ -18,7 +18,9 @@ module Stigg
             metadata: ::Hash[Symbol, String],
             payment_collection_method: Stigg::Models::V1::Credits::GrantCreateParams::payment_collection_method,
             priority: Integer,
-            resource_id: String
+            resource_id: String,
+            x_account_id: String,
+            x_environment_id: String
           }
           & Stigg::Internal::Type::request_parameters
 
@@ -82,6 +84,14 @@ module Stigg
 
           def resource_id=: (String) -> String
 
+          attr_reader x_account_id: String?
+
+          def x_account_id=: (String) -> String
+
+          attr_reader x_environment_id: String?
+
+          def x_environment_id=: (String) -> String
+
           def initialize: (
             amount: Float,
             currency_id: String,
@@ -98,6 +108,8 @@ module Stigg
             ?payment_collection_method: Stigg::Models::V1::Credits::GrantCreateParams::payment_collection_method,
             ?priority: Integer,
             ?resource_id: String,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> void
 
@@ -117,6 +129,8 @@ module Stigg
             payment_collection_method: Stigg::Models::V1::Credits::GrantCreateParams::payment_collection_method,
             priority: Integer,
             resource_id: String,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions
           }
 

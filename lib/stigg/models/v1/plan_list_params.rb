@@ -44,7 +44,17 @@ module Stigg
         #   @return [Array<Symbol, Stigg::Models::V1::PlanListParams::Status>, nil]
         optional :status, -> { Stigg::Internal::Type::ArrayOf[enum: Stigg::V1::PlanListParams::Status] }
 
-        # @!method initialize(after: nil, before: nil, created_at: nil, limit: nil, product_id: nil, status: nil, request_options: {})
+        # @!attribute x_account_id
+        #
+        #   @return [String, nil]
+        optional :x_account_id, String
+
+        # @!attribute x_environment_id
+        #
+        #   @return [String, nil]
+        optional :x_environment_id, String
+
+        # @!method initialize(after: nil, before: nil, created_at: nil, limit: nil, product_id: nil, status: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #   @param after [String] Return items that come after this cursor
         #
         #   @param before [String] Return items that come before this cursor
@@ -56,6 +66,10 @@ module Stigg
         #   @param product_id [String] Filter by product ID
         #
         #   @param status [Array<Symbol, Stigg::Models::V1::PlanListParams::Status>] Filter by status. Supports comma-separated values for multiple statuses
+        #
+        #   @param x_account_id [String]
+        #
+        #   @param x_environment_id [String]
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 

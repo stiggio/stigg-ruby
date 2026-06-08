@@ -11,7 +11,9 @@ module Stigg
           description: String?,
           display_name: String,
           metadata: ::Hash[Symbol, String],
-          parent_plan_id: String?
+          parent_plan_id: String?,
+          x_account_id: String,
+          x_environment_id: String
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -45,6 +47,14 @@ module Stigg
 
         attr_accessor parent_plan_id: String?
 
+        attr_reader x_account_id: String?
+
+        def x_account_id=: (String) -> String
+
+        attr_reader x_environment_id: String?
+
+        def x_environment_id=: (String) -> String
+
         def initialize: (
           id: String,
           ?billing_id: String?,
@@ -55,6 +65,8 @@ module Stigg
           ?display_name: String,
           ?metadata: ::Hash[Symbol, String],
           ?parent_plan_id: String?,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> void
 
@@ -68,6 +80,8 @@ module Stigg
           display_name: String,
           metadata: ::Hash[Symbol, String],
           parent_plan_id: String?,
+          x_account_id: String,
+          x_environment_id: String,
           request_options: Stigg::RequestOptions
         }
 

@@ -10,11 +10,15 @@ module Stigg
           metadata: ::Hash[Symbol, String]?,
           name: String,
           percent_off: Float?,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Coupon
 
         def retrieve: (
           String id,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Coupon
 
@@ -26,11 +30,15 @@ module Stigg
           ?limit: Integer,
           ?status: ::Array[Stigg::Models::V1::CouponListParams::status],
           ?type: Stigg::Models::V1::CouponListParams::type_,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::CouponListResponse]
 
         def archive_coupon: (
           String id,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Coupon
 
@@ -39,6 +47,8 @@ module Stigg
           ?description: String?,
           ?metadata: ::Hash[Symbol, String]?,
           ?name: String,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Coupon
 
