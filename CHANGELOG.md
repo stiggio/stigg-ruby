@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.19 (2026-06-08)
+
+Full Changelog: [v0.1.0-beta.18...v0.1.0-beta.19](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.18...v0.1.0-beta.19)
+
+### Features
+
+* **api:** add connection_status, last_sync_status fields to data_export destination responses ([b421148](https://github.com/stiggio/stigg-ruby/commit/b421148a32c286d560454febc8b9ace477b24902))
+
 ## 0.1.0-beta.18 (2026-06-07)
 
 Full Changelog: [v0.1.0-beta.17...v0.1.0-beta.18](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.17...v0.1.0-beta.18)
