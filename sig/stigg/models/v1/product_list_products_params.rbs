@@ -8,7 +8,9 @@ module Stigg
           before: String,
           created_at: Stigg::V1::ProductListProductsParams::CreatedAt,
           limit: Integer,
-          status: ::Array[Stigg::Models::V1::ProductListProductsParams::status]
+          status: ::Array[Stigg::Models::V1::ProductListProductsParams::status],
+          x_account_id: String,
+          x_environment_id: String
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -44,6 +46,14 @@ module Stigg
           ::Array[Stigg::Models::V1::ProductListProductsParams::status]
         ) -> ::Array[Stigg::Models::V1::ProductListProductsParams::status]
 
+        attr_reader x_account_id: String?
+
+        def x_account_id=: (String) -> String
+
+        attr_reader x_environment_id: String?
+
+        def x_environment_id=: (String) -> String
+
         def initialize: (
           ?id: String,
           ?after: String,
@@ -51,6 +61,8 @@ module Stigg
           ?created_at: Stigg::V1::ProductListProductsParams::CreatedAt,
           ?limit: Integer,
           ?status: ::Array[Stigg::Models::V1::ProductListProductsParams::status],
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> void
 
@@ -61,6 +73,8 @@ module Stigg
           created_at: Stigg::V1::ProductListProductsParams::CreatedAt,
           limit: Integer,
           status: ::Array[Stigg::Models::V1::ProductListProductsParams::status],
+          x_account_id: String,
+          x_environment_id: String,
           request_options: Stigg::RequestOptions
         }
 

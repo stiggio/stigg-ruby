@@ -14,11 +14,15 @@ module Stigg
           ?metadata: ::Hash[Symbol, String],
           ?pricing_type: Stigg::Models::V1::AddonCreateParams::pricing_type?,
           ?status: Stigg::Models::V1::AddonCreateParams::status,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Addon
 
         def retrieve: (
           String id,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Addon
 
@@ -32,6 +36,8 @@ module Stigg
           ?max_quantity: Integer?,
           ?metadata: ::Hash[Symbol, String],
           ?status: Stigg::Models::V1::AddonUpdateParams::status,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Addon
 
@@ -42,16 +48,22 @@ module Stigg
           ?limit: Integer,
           ?product_id: String,
           ?status: ::Array[Stigg::Models::V1::AddonListParams::status],
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::AddonListResponse]
 
         def archive: (
           String id,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Addon
 
         def create_draft: (
           String id,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Addon
 
@@ -60,17 +72,23 @@ module Stigg
           ?after: String,
           ?before: String,
           ?limit: Integer,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::AddonListChargesResponse]
 
         def publish: (
           String id,
           migration_type: Stigg::Models::V1::AddonPublishParams::migration_type,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Models::V1::AddonPublishResponse
 
         def remove_draft: (
           String id,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Models::V1::AddonRemoveDraftResponse
 

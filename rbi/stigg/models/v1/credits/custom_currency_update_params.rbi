@@ -56,6 +56,18 @@ module Stigg
           end
           attr_writer :units
 
+          sig { returns(T.nilable(String)) }
+          attr_reader :x_account_id
+
+          sig { params(x_account_id: String).void }
+          attr_writer :x_account_id
+
+          sig { returns(T.nilable(String)) }
+          attr_reader :x_environment_id
+
+          sig { params(x_environment_id: String).void }
+          attr_writer :x_environment_id
+
           sig do
             params(
               currency_id: String,
@@ -65,6 +77,8 @@ module Stigg
               symbol: T.nilable(String),
               units:
                 Stigg::V1::Credits::CustomCurrencyUpdateParams::Units::OrHash,
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions::OrHash
             ).returns(T.attached_class)
           end
@@ -82,6 +96,8 @@ module Stigg
             # Singular and plural unit labels for a custom currency. Both fields are required
             # when supplied.
             units: nil,
+            x_account_id: nil,
+            x_environment_id: nil,
             request_options: {}
           )
           end
@@ -95,6 +111,8 @@ module Stigg
                 metadata: T.nilable(T::Hash[Symbol, String]),
                 symbol: T.nilable(String),
                 units: Stigg::V1::Credits::CustomCurrencyUpdateParams::Units,
+                x_account_id: String,
+                x_environment_id: String,
                 request_options: Stigg::RequestOptions
               }
             )

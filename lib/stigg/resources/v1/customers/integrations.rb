@@ -5,13 +5,20 @@ module Stigg
     class V1
       class Customers
         class Integrations
+          # Some parameter documentations has been truncated, see
+          # {Stigg::Models::V1::Customers::IntegrationRetrieveParams} for more details.
+          #
           # Retrieves a specific integration for a customer by integration ID.
           #
-          # @overload retrieve(integration_id, id:, request_options: {})
+          # @overload retrieve(integration_id, id:, x_account_id: nil, x_environment_id: nil, request_options: {})
           #
-          # @param integration_id [String] Integration details
+          # @param integration_id [String] Path param: Integration details
           #
-          # @param id [String] Customer slug
+          # @param id [String] Path param: Customer slug
+          #
+          # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          #
+          # @param x_environment_id [String] Header param: Environment ID — required when authenticating with a user JWT (Bea
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
@@ -27,21 +34,32 @@ module Stigg
             @client.request(
               method: :get,
               path: ["api/v1/customers/%1$s/integrations/%2$s", id, integration_id],
+              headers: parsed.transform_keys(
+                x_account_id: "x-account-id",
+                x_environment_id: "x-environment-id"
+              ),
               model: Stigg::V1::CustomerIntegrationResponse,
               options: options
             )
           end
 
+          # Some parameter documentations has been truncated, see
+          # {Stigg::Models::V1::Customers::IntegrationUpdateParams} for more details.
+          #
           # Updates a customer's integration link, such as changing the synced external
           # entity ID.
           #
-          # @overload update(integration_id, id:, synced_entity_id:, request_options: {})
+          # @overload update(integration_id, id:, synced_entity_id:, x_account_id: nil, x_environment_id: nil, request_options: {})
           #
           # @param integration_id [String] Path param: Integration details
           #
           # @param id [String] Path param: Customer slug
           #
           # @param synced_entity_id [String, nil] Body param: Synced entity id
+          #
+          # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          #
+          # @param x_environment_id [String] Header param: Environment ID — required when authenticating with a user JWT (Bea
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
@@ -54,10 +72,12 @@ module Stigg
               parsed.delete(:id) do
                 raise ArgumentError.new("missing required path argument #{_1}")
               end
+            header_params = {x_account_id: "x-account-id", x_environment_id: "x-environment-id"}
             @client.request(
               method: :patch,
               path: ["api/v1/customers/%1$s/integrations/%2$s", id, integration_id],
-              body: parsed,
+              headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+              body: parsed.except(*header_params.keys),
               model: Stigg::V1::CustomerIntegrationResponse,
               options: options
             )
@@ -69,17 +89,21 @@ module Stigg
           # Retrieves a paginated list of a customer's external integrations (billing, CRM,
           # etc.).
           #
-          # @overload list(id, after: nil, before: nil, limit: nil, vendor_identifier: nil, request_options: {})
+          # @overload list(id, after: nil, before: nil, limit: nil, vendor_identifier: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
           #
-          # @param id [String] The unique identifier of the entity
+          # @param id [String] Path param: The unique identifier of the entity
           #
-          # @param after [String] Return items that come after this cursor
+          # @param after [String] Query param: Return items that come after this cursor
           #
-          # @param before [String] Return items that come before this cursor
+          # @param before [String] Query param: Return items that come before this cursor
           #
-          # @param limit [Integer] Maximum number of items to return
+          # @param limit [Integer] Query param: Maximum number of items to return
           #
-          # @param vendor_identifier [Array<Symbol, Stigg::Models::V1::Customers::IntegrationListParams::VendorIdentifier>] Filter by vendor identifier. Supports comma-separated values for multiple vendor
+          # @param vendor_identifier [Array<Symbol, Stigg::Models::V1::Customers::IntegrationListParams::VendorIdentifier>] Query param: Filter by vendor identifier. Supports comma-separated values for mu
+          #
+          # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          #
+          # @param x_environment_id [String] Header param: Environment ID — required when authenticating with a user JWT (Bea
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
@@ -87,30 +111,42 @@ module Stigg
           #
           # @see Stigg::Models::V1::Customers::IntegrationListParams
           def list(id, params = {})
+            query_params = [:after, :before, :limit, :vendor_identifier]
             parsed, options = Stigg::V1::Customers::IntegrationListParams.dump_request(params)
-            query = Stigg::Internal::Util.encode_query_params(parsed)
+            query = Stigg::Internal::Util.encode_query_params(parsed.slice(*query_params))
             @client.request(
               method: :get,
               path: ["api/v1/customers/%1$s/integrations", id],
               query: query.transform_keys(vendor_identifier: "vendorIdentifier"),
+              headers: parsed.except(*query_params).transform_keys(
+                x_account_id: "x-account-id",
+                x_environment_id: "x-environment-id"
+              ),
               page: Stigg::Internal::MyCursorIDPage,
               model: Stigg::Models::V1::Customers::IntegrationListResponse,
               options: options
             )
           end
 
+          # Some parameter documentations has been truncated, see
+          # {Stigg::Models::V1::Customers::IntegrationLinkParams} for more details.
+          #
           # Links a customer to an external integration by specifying the vendor and
           # external entity ID.
           #
-          # @overload link(path_id, body_id:, synced_entity_id:, vendor_identifier:, request_options: {})
+          # @overload link(path_id, body_id:, synced_entity_id:, vendor_identifier:, x_account_id: nil, x_environment_id: nil, request_options: {})
           #
-          # @param path_id [String] The unique identifier of the entity
+          # @param path_id [String] Path param: The unique identifier of the entity
           #
-          # @param body_id [String] Integration details
+          # @param body_id [String] Body param: Integration details
           #
-          # @param synced_entity_id [String] Synced entity id
+          # @param synced_entity_id [String] Body param: Synced entity id
           #
-          # @param vendor_identifier [Symbol, Stigg::Models::V1::Customers::IntegrationLinkParams::VendorIdentifier] The vendor identifier of integration
+          # @param vendor_identifier [Symbol, Stigg::Models::V1::Customers::IntegrationLinkParams::VendorIdentifier] Body param: The vendor identifier of integration
+          #
+          # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          #
+          # @param x_environment_id [String] Header param: Environment ID — required when authenticating with a user JWT (Bea
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
@@ -119,22 +155,31 @@ module Stigg
           # @see Stigg::Models::V1::Customers::IntegrationLinkParams
           def link(path_id, params)
             parsed, options = Stigg::V1::Customers::IntegrationLinkParams.dump_request(params)
+            header_params = {x_account_id: "x-account-id", x_environment_id: "x-environment-id"}
             @client.request(
               method: :post,
               path: ["api/v1/customers/%1$s/integrations", path_id],
-              body: parsed,
+              headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+              body: parsed.except(*header_params.keys),
               model: Stigg::V1::CustomerIntegrationResponse,
               options: options
             )
           end
 
+          # Some parameter documentations has been truncated, see
+          # {Stigg::Models::V1::Customers::IntegrationUnlinkParams} for more details.
+          #
           # Removes the link between a customer and an external integration.
           #
-          # @overload unlink(integration_id, id:, request_options: {})
+          # @overload unlink(integration_id, id:, x_account_id: nil, x_environment_id: nil, request_options: {})
           #
-          # @param integration_id [String] Integration details
+          # @param integration_id [String] Path param: Integration details
           #
-          # @param id [String] Customer slug
+          # @param id [String] Path param: Customer slug
+          #
+          # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          #
+          # @param x_environment_id [String] Header param: Environment ID — required when authenticating with a user JWT (Bea
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
@@ -150,6 +195,10 @@ module Stigg
             @client.request(
               method: :delete,
               path: ["api/v1/customers/%1$s/integrations/%2$s", id, integration_id],
+              headers: parsed.transform_keys(
+                x_account_id: "x-account-id",
+                x_environment_id: "x-environment-id"
+              ),
               model: Stigg::V1::CustomerIntegrationResponse,
               options: options
             )

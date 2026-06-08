@@ -5,9 +5,12 @@ module Stigg
     class V1
       # Operations related to usage & metering
       class Usage
+        # Some parameter documentations has been truncated, see
+        # {Stigg::Models::V1::UsageHistoryParams} for more details.
+        #
         # Retrieves historical usage data for a customer's metered feature over time.
         #
-        # @overload history(feature_id, customer_id:, start_date:, end_date: nil, group_by: nil, resource_id: nil, request_options: {})
+        # @overload history(feature_id, customer_id:, start_date:, end_date: nil, group_by: nil, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #
         # @param feature_id [String] Path param: Feature id
         #
@@ -21,14 +24,19 @@ module Stigg
         #
         # @param resource_id [String, nil] Query param: Resource id
         #
+        # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
+        #
+        # @param x_environment_id [String] Header param: Environment ID — required when authenticating with a user JWT (Bea
+        #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
         # @return [Stigg::Models::V1::UsageHistoryResponse]
         #
         # @see Stigg::Models::V1::UsageHistoryParams
         def history(feature_id, params)
+          query_params = [:start_date, :end_date, :group_by, :resource_id]
           parsed, options = Stigg::V1::UsageHistoryParams.dump_request(params)
-          query = Stigg::Internal::Util.encode_query_params(parsed)
+          query = Stigg::Internal::Util.encode_query_params(parsed.slice(*query_params))
           customer_id =
             parsed.delete(:customer_id) do
               raise ArgumentError.new("missing required path argument #{_1}")
@@ -42,17 +50,28 @@ module Stigg
               group_by: "groupBy",
               resource_id: "resourceId"
             ),
+            headers: parsed.except(*query_params).transform_keys(
+              x_account_id: "x-account-id",
+              x_environment_id: "x-environment-id"
+            ),
             model: Stigg::Models::V1::UsageHistoryResponse,
             options: options
           )
         end
 
+        # Some parameter documentations has been truncated, see
+        # {Stigg::Models::V1::UsageReportParams} for more details.
+        #
         # Reports usage measurements for metered features. The reported usage is used to
         # track, limit, and bill customer consumption.
         #
-        # @overload report(usages:, request_options: {})
+        # @overload report(usages:, x_account_id: nil, x_environment_id: nil, request_options: {})
         #
-        # @param usages [Array<Stigg::Models::V1::UsageReportParams::Usage>] A list of usage reports to be submitted in bulk
+        # @param usages [Array<Stigg::Models::V1::UsageReportParams::Usage>] Body param: A list of usage reports to be submitted in bulk
+        #
+        # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
+        #
+        # @param x_environment_id [String] Header param: Environment ID — required when authenticating with a user JWT (Bea
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -61,10 +80,12 @@ module Stigg
         # @see Stigg::Models::V1::UsageReportParams
         def report(params)
           parsed, options = Stigg::V1::UsageReportParams.dump_request(params)
+          header_params = {x_account_id: "x-account-id", x_environment_id: "x-environment-id"}
           @client.request(
             method: :post,
             path: "api/v1/usage",
-            body: parsed,
+            headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+            body: parsed.except(*header_params.keys),
             model: Stigg::Models::V1::UsageReportResponse,
             options: options
           )

@@ -67,6 +67,18 @@ module Stigg
         sig { returns(T.nilable(String)) }
         attr_accessor :parent_plan_id
 
+        sig { returns(T.nilable(String)) }
+        attr_reader :x_account_id
+
+        sig { params(x_account_id: String).void }
+        attr_writer :x_account_id
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :x_environment_id
+
+        sig { params(x_environment_id: String).void }
+        attr_writer :x_environment_id
+
         sig do
           params(
             id: String,
@@ -81,6 +93,8 @@ module Stigg
             display_name: String,
             metadata: T::Hash[Symbol, String],
             parent_plan_id: T.nilable(String),
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -101,6 +115,8 @@ module Stigg
           metadata: nil,
           # The ID of the parent plan, if applicable
           parent_plan_id: nil,
+          x_account_id: nil,
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -118,6 +134,8 @@ module Stigg
               display_name: String,
               metadata: T::Hash[Symbol, String],
               parent_plan_id: T.nilable(String),
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions
             }
           )

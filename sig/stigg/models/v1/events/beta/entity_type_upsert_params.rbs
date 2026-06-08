@@ -5,7 +5,9 @@ module Stigg
         module Beta
           type entity_type_upsert_params =
             {
-              types: ::Array[Stigg::V1::Events::Beta::EntityTypeUpsertParams::Type]
+              types: ::Array[Stigg::V1::Events::Beta::EntityTypeUpsertParams::Type],
+              x_account_id: String,
+              x_environment_id: String
             }
             & Stigg::Internal::Type::request_parameters
 
@@ -15,13 +17,25 @@ module Stigg
 
             attr_accessor types: ::Array[Stigg::V1::Events::Beta::EntityTypeUpsertParams::Type]
 
+            attr_reader x_account_id: String?
+
+            def x_account_id=: (String) -> String
+
+            attr_reader x_environment_id: String?
+
+            def x_environment_id=: (String) -> String
+
             def initialize: (
               types: ::Array[Stigg::V1::Events::Beta::EntityTypeUpsertParams::Type],
+              ?x_account_id: String,
+              ?x_environment_id: String,
               ?request_options: Stigg::request_opts
             ) -> void
 
             def to_hash: -> {
               types: ::Array[Stigg::V1::Events::Beta::EntityTypeUpsertParams::Type],
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions
             }
 

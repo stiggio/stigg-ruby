@@ -25,12 +25,26 @@ module Stigg
           #   @return [String, nil]
           required :synced_entity_id, String, api_name: :syncedEntityId, nil?: true
 
-          # @!method initialize(id:, integration_id:, synced_entity_id:, request_options: {})
+          # @!attribute x_account_id
+          #
+          #   @return [String, nil]
+          optional :x_account_id, String
+
+          # @!attribute x_environment_id
+          #
+          #   @return [String, nil]
+          optional :x_environment_id, String
+
+          # @!method initialize(id:, integration_id:, synced_entity_id:, x_account_id: nil, x_environment_id: nil, request_options: {})
           #   @param id [String]
           #
           #   @param integration_id [String]
           #
           #   @param synced_entity_id [String, nil] Synced entity id
+          #
+          #   @param x_account_id [String]
+          #
+          #   @param x_environment_id [String]
           #
           #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
         end

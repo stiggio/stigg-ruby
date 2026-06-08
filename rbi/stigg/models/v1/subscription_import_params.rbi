@@ -22,6 +22,18 @@ module Stigg
         sig { returns(T.nilable(String)) }
         attr_accessor :integration_id
 
+        sig { returns(T.nilable(String)) }
+        attr_reader :x_account_id
+
+        sig { params(x_account_id: String).void }
+        attr_writer :x_account_id
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :x_environment_id
+
+        sig { params(x_environment_id: String).void }
+        attr_writer :x_environment_id
+
         sig do
           params(
             subscriptions:
@@ -29,6 +41,8 @@ module Stigg
                 Stigg::V1::SubscriptionImportParams::Subscription::OrHash
               ],
             integration_id: T.nilable(String),
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -37,6 +51,8 @@ module Stigg
           subscriptions:,
           # Integration ID to use for importing subscriptions
           integration_id: nil,
+          x_account_id: nil,
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -47,6 +63,8 @@ module Stigg
               subscriptions:
                 T::Array[Stigg::V1::SubscriptionImportParams::Subscription],
               integration_id: T.nilable(String),
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions
             }
           )

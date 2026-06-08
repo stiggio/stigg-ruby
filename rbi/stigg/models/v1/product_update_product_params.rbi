@@ -73,6 +73,18 @@ module Stigg
         end
         attr_writer :usage_reset_cutoff_rule
 
+        sig { returns(T.nilable(String)) }
+        attr_reader :x_account_id
+
+        sig { params(x_account_id: String).void }
+        attr_writer :x_account_id
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :x_environment_id
+
+        sig { params(x_environment_id: String).void }
+        attr_writer :x_environment_id
+
         sig do
           params(
             id: String,
@@ -84,6 +96,8 @@ module Stigg
               Stigg::V1::ProductUpdateProductParams::ProductSettings::OrHash,
             usage_reset_cutoff_rule:
               Stigg::V1::ProductUpdateProductParams::UsageResetCutoffRule::OrHash,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -100,6 +114,8 @@ module Stigg
           product_settings: nil,
           # Rule defining when usage resets upon subscription update.
           usage_reset_cutoff_rule: nil,
+          x_account_id: nil,
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -116,6 +132,8 @@ module Stigg
                 Stigg::V1::ProductUpdateProductParams::ProductSettings,
               usage_reset_cutoff_rule:
                 Stigg::V1::ProductUpdateProductParams::UsageResetCutoffRule,
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions
             }
           )

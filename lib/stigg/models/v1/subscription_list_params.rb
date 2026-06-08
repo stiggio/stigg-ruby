@@ -64,7 +64,17 @@ module Stigg
         #   @return [Array<Symbol, Stigg::Models::V1::SubscriptionListParams::Status>, nil]
         optional :status, -> { Stigg::Internal::Type::ArrayOf[enum: Stigg::V1::SubscriptionListParams::Status] }
 
-        # @!method initialize(after: nil, before: nil, created_at: nil, customer_id: nil, limit: nil, plan_id: nil, pricing_type: nil, resource_id: nil, status: nil, request_options: {})
+        # @!attribute x_account_id
+        #
+        #   @return [String, nil]
+        optional :x_account_id, String
+
+        # @!attribute x_environment_id
+        #
+        #   @return [String, nil]
+        optional :x_environment_id, String
+
+        # @!method initialize(after: nil, before: nil, created_at: nil, customer_id: nil, limit: nil, plan_id: nil, pricing_type: nil, resource_id: nil, status: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {Stigg::Models::V1::SubscriptionListParams} for more details.
         #
@@ -85,6 +95,10 @@ module Stigg
         #   @param resource_id [String] Filter by resource ID
         #
         #   @param status [Array<Symbol, Stigg::Models::V1::SubscriptionListParams::Status>] Filter by subscription status. Supports comma-separated values for multiple stat
+        #
+        #   @param x_account_id [String]
+        #
+        #   @param x_environment_id [String]
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 

@@ -5,7 +5,9 @@ module Stigg
         type entitlement_create_params =
           {
             plan_id: String,
-            entitlements: ::Array[Stigg::Models::V1::Plans::EntitlementCreateParams::entitlement]
+            entitlements: ::Array[Stigg::Models::V1::Plans::EntitlementCreateParams::entitlement],
+            x_account_id: String,
+            x_environment_id: String
           }
           & Stigg::Internal::Type::request_parameters
 
@@ -17,15 +19,27 @@ module Stigg
 
           attr_accessor entitlements: ::Array[Stigg::Models::V1::Plans::EntitlementCreateParams::entitlement]
 
+          attr_reader x_account_id: String?
+
+          def x_account_id=: (String) -> String
+
+          attr_reader x_environment_id: String?
+
+          def x_environment_id=: (String) -> String
+
           def initialize: (
             plan_id: String,
             entitlements: ::Array[Stigg::Models::V1::Plans::EntitlementCreateParams::entitlement],
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> void
 
           def to_hash: -> {
             plan_id: String,
             entitlements: ::Array[Stigg::Models::V1::Plans::EntitlementCreateParams::entitlement],
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions
           }
 

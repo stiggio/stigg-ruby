@@ -80,7 +80,17 @@ module Stigg
         #   @return [String, nil]
         optional :timezone, String, nil?: true
 
-        # @!method initialize(id:, billing_currency: nil, billing_id: nil, coupon_id: nil, email: nil, integrations: nil, language: nil, metadata: nil, name: nil, passthrough: nil, timezone: nil, request_options: {})
+        # @!attribute x_account_id
+        #
+        #   @return [String, nil]
+        optional :x_account_id, String
+
+        # @!attribute x_environment_id
+        #
+        #   @return [String, nil]
+        optional :x_environment_id, String
+
+        # @!method initialize(id:, billing_currency: nil, billing_id: nil, coupon_id: nil, email: nil, integrations: nil, language: nil, metadata: nil, name: nil, passthrough: nil, timezone: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #   @param id [String]
         #
         #   @param billing_currency [Symbol, Stigg::Models::V1::CustomerUpdateParams::BillingCurrency, nil] The billing currency of the customer
@@ -102,6 +112,10 @@ module Stigg
         #   @param passthrough [Stigg::Models::V1::CustomerUpdateParams::Passthrough] Vendor-specific billing passthrough fields.
         #
         #   @param timezone [String, nil] Timezone to use for this customer
+        #
+        #   @param x_account_id [String]
+        #
+        #   @param x_environment_id [String]
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 

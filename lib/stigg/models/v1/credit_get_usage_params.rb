@@ -72,7 +72,17 @@ module Stigg
         #   @return [Symbol, Stigg::Models::V1::CreditGetUsageParams::TimeRange, nil]
         optional :time_range, enum: -> { Stigg::V1::CreditGetUsageParams::TimeRange }
 
-        # @!method initialize(customer_id:, after: nil, before: nil, currency_id: nil, end_date: nil, group_by: nil, limit: nil, resource_id: nil, start_date: nil, time_range: nil, request_options: {})
+        # @!attribute x_account_id
+        #
+        #   @return [String, nil]
+        optional :x_account_id, String
+
+        # @!attribute x_environment_id
+        #
+        #   @return [String, nil]
+        optional :x_environment_id, String
+
+        # @!method initialize(customer_id:, after: nil, before: nil, currency_id: nil, end_date: nil, group_by: nil, limit: nil, resource_id: nil, start_date: nil, time_range: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {Stigg::Models::V1::CreditGetUsageParams} for more details.
         #
@@ -95,6 +105,10 @@ module Stigg
         #   @param start_date [Time] Start date for the credit usage time range (ISO 8601). Takes precedence over tim
         #
         #   @param time_range [Symbol, Stigg::Models::V1::CreditGetUsageParams::TimeRange] Time range for usage data (LAST_DAY, LAST_WEEK, LAST_MONTH, LAST_YEAR). Defaults
+        #
+        #   @param x_account_id [String]
+        #
+        #   @param x_environment_id [String]
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 

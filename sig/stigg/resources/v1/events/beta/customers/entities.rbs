@@ -8,6 +8,8 @@ module Stigg
               def retrieve: (
                 String entity_id,
                 id: String,
+                ?x_account_id: String,
+                ?x_environment_id: String,
                 ?request_options: Stigg::request_opts
               ) -> Stigg::Models::V1::Events::Beta::Customers::EntityRetrieveResponse
 
@@ -18,24 +20,32 @@ module Stigg
                 ?include_archived: Stigg::Models::V1::Events::Beta::Customers::EntityListParams::include_archived,
                 ?limit: Integer,
                 ?type_ref_id: String,
+                ?x_account_id: String,
+                ?x_environment_id: String,
                 ?request_options: Stigg::request_opts
               ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::Events::Beta::Customers::EntityListResponse]
 
               def archive: (
                 String id,
                 ids: ::Array[String],
+                ?x_account_id: String,
+                ?x_environment_id: String,
                 ?request_options: Stigg::request_opts
               ) -> Stigg::Models::V1::Events::Beta::Customers::EntityArchiveResponse
 
               def unarchive: (
                 String id,
                 ids: ::Array[String],
+                ?x_account_id: String,
+                ?x_environment_id: String,
                 ?request_options: Stigg::request_opts
               ) -> Stigg::Models::V1::Events::Beta::Customers::EntityUnarchiveResponse
 
               def upsert: (
                 String id,
                 entities: ::Array[Stigg::V1::Events::Beta::Customers::EntityUpsertParams::Entity],
+                ?x_account_id: String,
+                ?x_environment_id: String,
                 ?request_options: Stigg::request_opts
               ) -> Stigg::Models::V1::Events::Beta::Customers::EntityUpsertResponse
 

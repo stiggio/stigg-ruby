@@ -7,7 +7,9 @@ module Stigg
           cancellation_action: Stigg::Models::V1::SubscriptionCancelParams::cancellation_action,
           cancellation_time: Stigg::Models::V1::SubscriptionCancelParams::cancellation_time,
           end_date: Time,
-          prorate: bool
+          prorate: bool,
+          x_account_id: String,
+          x_environment_id: String
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -37,12 +39,22 @@ module Stigg
 
         def prorate=: (bool) -> bool
 
+        attr_reader x_account_id: String?
+
+        def x_account_id=: (String) -> String
+
+        attr_reader x_environment_id: String?
+
+        def x_environment_id=: (String) -> String
+
         def initialize: (
           id: String,
           ?cancellation_action: Stigg::Models::V1::SubscriptionCancelParams::cancellation_action,
           ?cancellation_time: Stigg::Models::V1::SubscriptionCancelParams::cancellation_time,
           ?end_date: Time,
           ?prorate: bool,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> void
 
@@ -52,6 +64,8 @@ module Stigg
           cancellation_time: Stigg::Models::V1::SubscriptionCancelParams::cancellation_time,
           end_date: Time,
           prorate: bool,
+          x_account_id: String,
+          x_environment_id: String,
           request_options: Stigg::RequestOptions
         }
 

@@ -2,7 +2,8 @@ module Stigg
   module Models
     module V1
       type customer_unarchive_params =
-        { id: String } & Stigg::Internal::Type::request_parameters
+        { id: String, x_account_id: String, x_environment_id: String }
+        & Stigg::Internal::Type::request_parameters
 
       class CustomerUnarchiveParams < Stigg::Internal::Type::BaseModel
         extend Stigg::Internal::Type::RequestParameters::Converter
@@ -10,12 +11,27 @@ module Stigg
 
         attr_accessor id: String
 
+        attr_reader x_account_id: String?
+
+        def x_account_id=: (String) -> String
+
+        attr_reader x_environment_id: String?
+
+        def x_environment_id=: (String) -> String
+
         def initialize: (
           id: String,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> void
 
-        def to_hash: -> { id: String, request_options: Stigg::RequestOptions }
+        def to_hash: -> {
+          id: String,
+          x_account_id: String,
+          x_environment_id: String,
+          request_options: Stigg::RequestOptions
+        }
       end
     end
   end

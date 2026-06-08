@@ -65,6 +65,18 @@ module Stigg
         sig { params(prorate: T::Boolean).void }
         attr_writer :prorate
 
+        sig { returns(T.nilable(String)) }
+        attr_reader :x_account_id
+
+        sig { params(x_account_id: String).void }
+        attr_writer :x_account_id
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :x_environment_id
+
+        sig { params(x_environment_id: String).void }
+        attr_writer :x_environment_id
+
         sig do
           params(
             id: String,
@@ -74,6 +86,8 @@ module Stigg
               Stigg::V1::SubscriptionCancelParams::CancellationTime::OrSymbol,
             end_date: Time,
             prorate: T::Boolean,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -87,6 +101,8 @@ module Stigg
           end_date: nil,
           # If set, enables or disables prorating of credits on subscription cancellation.
           prorate: nil,
+          x_account_id: nil,
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -101,6 +117,8 @@ module Stigg
                 Stigg::V1::SubscriptionCancelParams::CancellationTime::OrSymbol,
               end_date: Time,
               prorate: T::Boolean,
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions
             }
           )

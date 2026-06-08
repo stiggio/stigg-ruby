@@ -117,7 +117,17 @@ module Stigg
         #   @return [Time, nil]
         optional :trial_end_date, Time, api_name: :trialEndDate
 
-        # @!method initialize(id:, addons: nil, applied_coupon: nil, await_payment_confirmation: nil, billing_cycle_anchor: nil, billing_information: nil, billing_period: nil, budget: nil, cancellation_date: nil, charges: nil, entitlements: nil, metadata: nil, minimum_spend: nil, price_overrides: nil, promotion_code: nil, schedule_strategy: nil, trial_end_date: nil, request_options: {})
+        # @!attribute x_account_id
+        #
+        #   @return [String, nil]
+        optional :x_account_id, String
+
+        # @!attribute x_environment_id
+        #
+        #   @return [String, nil]
+        optional :x_environment_id, String
+
+        # @!method initialize(id:, addons: nil, applied_coupon: nil, await_payment_confirmation: nil, billing_cycle_anchor: nil, billing_information: nil, billing_period: nil, budget: nil, cancellation_date: nil, charges: nil, entitlements: nil, metadata: nil, minimum_spend: nil, price_overrides: nil, promotion_code: nil, schedule_strategy: nil, trial_end_date: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #   @param id [String]
         #
         #   @param addons [Array<Stigg::Models::V1::SubscriptionUpdateParams::Addon>]
@@ -151,6 +161,10 @@ module Stigg
         #   @param schedule_strategy [Symbol, Stigg::Models::V1::SubscriptionUpdateParams::ScheduleStrategy]
         #
         #   @param trial_end_date [Time] Subscription trial end date
+        #
+        #   @param x_account_id [String]
+        #
+        #   @param x_environment_id [String]
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 

@@ -91,6 +91,18 @@ module Stigg
         end
         attr_writer :time_range
 
+        sig { returns(T.nilable(String)) }
+        attr_reader :x_account_id
+
+        sig { params(x_account_id: String).void }
+        attr_writer :x_account_id
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :x_environment_id
+
+        sig { params(x_environment_id: String).void }
+        attr_writer :x_environment_id
+
         sig do
           params(
             customer_id: String,
@@ -103,6 +115,8 @@ module Stigg
             resource_id: String,
             start_date: Time,
             time_range: Stigg::V1::CreditGetUsageParams::TimeRange::OrSymbol,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -131,6 +145,8 @@ module Stigg
           # Time range for usage data (LAST_DAY, LAST_WEEK, LAST_MONTH, LAST_YEAR). Defaults
           # to LAST_MONTH
           time_range: nil,
+          x_account_id: nil,
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -148,6 +164,8 @@ module Stigg
               resource_id: String,
               start_date: Time,
               time_range: Stigg::V1::CreditGetUsageParams::TimeRange::OrSymbol,
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions
             }
           )

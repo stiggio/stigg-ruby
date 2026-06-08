@@ -6,6 +6,8 @@ module Stigg
           def create: (
             String addon_id,
             entitlements: ::Array[Stigg::Models::V1::Addons::EntitlementCreateParams::entitlement],
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::Models::V1::Addons::EntitlementCreateResponse
 
@@ -13,17 +15,23 @@ module Stigg
             String id,
             addon_id: String,
             body: Stigg::Models::V1::Addons::EntitlementUpdateParams::body,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::V1::Addons::AddonPackageEntitlement
 
           def list: (
             String addon_id,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::Models::V1::Addons::EntitlementListResponse
 
           def delete: (
             String id,
             addon_id: String,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::V1::Addons::AddonPackageEntitlement
 

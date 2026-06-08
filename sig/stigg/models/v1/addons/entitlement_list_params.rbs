@@ -3,7 +3,8 @@ module Stigg
     module V1
       module Addons
         type entitlement_list_params =
-          { addon_id: String } & Stigg::Internal::Type::request_parameters
+          { addon_id: String, x_account_id: String, x_environment_id: String }
+          & Stigg::Internal::Type::request_parameters
 
         class EntitlementListParams < Stigg::Internal::Type::BaseModel
           extend Stigg::Internal::Type::RequestParameters::Converter
@@ -11,13 +12,25 @@ module Stigg
 
           attr_accessor addon_id: String
 
+          attr_reader x_account_id: String?
+
+          def x_account_id=: (String) -> String
+
+          attr_reader x_environment_id: String?
+
+          def x_environment_id=: (String) -> String
+
           def initialize: (
             addon_id: String,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> void
 
           def to_hash: -> {
             addon_id: String,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions
           }
         end

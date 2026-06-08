@@ -12,14 +12,21 @@ module Stigg
         # @return [Stigg::Resources::V1::Credits::CustomCurrencies]
         attr_reader :custom_currencies
 
+        # Some parameter documentations has been truncated, see
+        # {Stigg::Models::V1::CreditGetAutoRechargeParams} for more details.
+        #
         # Retrieves the automatic recharge configuration for a customer and currency.
         # Returns default settings if no configuration exists.
         #
-        # @overload get_auto_recharge(currency_id:, customer_id:, request_options: {})
+        # @overload get_auto_recharge(currency_id:, customer_id:, x_account_id: nil, x_environment_id: nil, request_options: {})
         #
-        # @param currency_id [String] Filter by currency ID (required)
+        # @param currency_id [String] Query param: Filter by currency ID (required)
         #
-        # @param customer_id [String] Filter by customer ID (required)
+        # @param customer_id [String] Query param: Filter by customer ID (required)
+        #
+        # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
+        #
+        # @param x_environment_id [String] Header param: Environment ID — required when authenticating with a user JWT (Bea
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -27,12 +34,17 @@ module Stigg
         #
         # @see Stigg::Models::V1::CreditGetAutoRechargeParams
         def get_auto_recharge(params)
+          query_params = [:currency_id, :customer_id]
           parsed, options = Stigg::V1::CreditGetAutoRechargeParams.dump_request(params)
-          query = Stigg::Internal::Util.encode_query_params(parsed)
+          query = Stigg::Internal::Util.encode_query_params(parsed.slice(*query_params))
           @client.request(
             method: :get,
             path: "api/v1/credits/auto-recharge",
             query: query.transform_keys(currency_id: "currencyId", customer_id: "customerId"),
+            headers: parsed.except(*query_params).transform_keys(
+              x_account_id: "x-account-id",
+              x_environment_id: "x-environment-id"
+            ),
             model: Stigg::Models::V1::CreditGetAutoRechargeResponse,
             options: options
           )
@@ -44,27 +56,31 @@ module Stigg
         # Retrieves credit usage time-series data for a customer, grouped by feature, over
         # a specified time range.
         #
-        # @overload get_usage(customer_id:, after: nil, before: nil, currency_id: nil, end_date: nil, group_by: nil, limit: nil, resource_id: nil, start_date: nil, time_range: nil, request_options: {})
+        # @overload get_usage(customer_id:, after: nil, before: nil, currency_id: nil, end_date: nil, group_by: nil, limit: nil, resource_id: nil, start_date: nil, time_range: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #
-        # @param customer_id [String] Filter by customer ID (required)
+        # @param customer_id [String] Query param: Filter by customer ID (required)
         #
-        # @param after [String] Return items that come after this cursor
+        # @param after [String] Query param: Return items that come after this cursor
         #
-        # @param before [String] Return items that come before this cursor
+        # @param before [String] Query param: Return items that come before this cursor
         #
-        # @param currency_id [String] Filter by currency ID
+        # @param currency_id [String] Query param: Filter by currency ID
         #
-        # @param end_date [Time] End date for the credit usage time range (ISO 8601). Defaults to now when startD
+        # @param end_date [Time] Query param: End date for the credit usage time range (ISO 8601). Defaults to no
         #
-        # @param group_by [String] Comma-separated list of feature dimension keys to group usage series by (up to 3
+        # @param group_by [String] Query param: Comma-separated list of feature dimension keys to group usage serie
         #
-        # @param limit [Integer] Maximum number of items to return
+        # @param limit [Integer] Query param: Maximum number of items to return
         #
-        # @param resource_id [String] Filter by resource ID
+        # @param resource_id [String] Query param: Filter by resource ID
         #
-        # @param start_date [Time] Start date for the credit usage time range (ISO 8601). Takes precedence over tim
+        # @param start_date [Time] Query param: Start date for the credit usage time range (ISO 8601). Takes preced
         #
-        # @param time_range [Symbol, Stigg::Models::V1::CreditGetUsageParams::TimeRange] Time range for usage data (LAST_DAY, LAST_WEEK, LAST_MONTH, LAST_YEAR). Defaults
+        # @param time_range [Symbol, Stigg::Models::V1::CreditGetUsageParams::TimeRange] Query param: Time range for usage data (LAST_DAY, LAST_WEEK, LAST_MONTH, LAST_YE
+        #
+        # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
+        #
+        # @param x_environment_id [String] Header param: Environment ID — required when authenticating with a user JWT (Bea
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -72,8 +88,21 @@ module Stigg
         #
         # @see Stigg::Models::V1::CreditGetUsageParams
         def get_usage(params)
+          query_params =
+            [
+              :customer_id,
+              :after,
+              :before,
+              :currency_id,
+              :end_date,
+              :group_by,
+              :limit,
+              :resource_id,
+              :start_date,
+              :time_range
+            ]
           parsed, options = Stigg::V1::CreditGetUsageParams.dump_request(params)
-          query = Stigg::Internal::Util.encode_query_params(parsed)
+          query = Stigg::Internal::Util.encode_query_params(parsed.slice(*query_params))
           @client.request(
             method: :get,
             path: "api/v1/credits/usage",
@@ -86,26 +115,37 @@ module Stigg
               start_date: "startDate",
               time_range: "timeRange"
             ),
+            headers: parsed.except(*query_params).transform_keys(
+              x_account_id: "x-account-id",
+              x_environment_id: "x-environment-id"
+            ),
             model: Stigg::Models::V1::CreditGetUsageResponse,
             options: options
           )
         end
 
+        # Some parameter documentations has been truncated, see
+        # {Stigg::Models::V1::CreditListLedgerParams} for more details.
+        #
         # Retrieves a paginated list of credit ledger events for a customer.
         #
-        # @overload list_ledger(customer_id:, after: nil, before: nil, currency_id: nil, limit: nil, resource_id: nil, request_options: {})
+        # @overload list_ledger(customer_id:, after: nil, before: nil, currency_id: nil, limit: nil, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #
-        # @param customer_id [String] Filter by customer ID (required)
+        # @param customer_id [String] Query param: Filter by customer ID (required)
         #
-        # @param after [String] Return items that come after this cursor
+        # @param after [String] Query param: Return items that come after this cursor
         #
-        # @param before [String] Return items that come before this cursor
+        # @param before [String] Query param: Return items that come before this cursor
         #
-        # @param currency_id [String] Filter by currency ID
+        # @param currency_id [String] Query param: Filter by currency ID
         #
-        # @param limit [Integer] Maximum number of items to return
+        # @param limit [Integer] Query param: Maximum number of items to return
         #
-        # @param resource_id [String] Filter by resource ID
+        # @param resource_id [String] Query param: Filter by resource ID
+        #
+        # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
+        #
+        # @param x_environment_id [String] Header param: Environment ID — required when authenticating with a user JWT (Bea
         #
         # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -113,8 +153,9 @@ module Stigg
         #
         # @see Stigg::Models::V1::CreditListLedgerParams
         def list_ledger(params)
+          query_params = [:customer_id, :after, :before, :currency_id, :limit, :resource_id]
           parsed, options = Stigg::V1::CreditListLedgerParams.dump_request(params)
-          query = Stigg::Internal::Util.encode_query_params(parsed)
+          query = Stigg::Internal::Util.encode_query_params(parsed.slice(*query_params))
           @client.request(
             method: :get,
             path: "api/v1/credits/ledger",
@@ -122,6 +163,10 @@ module Stigg
               customer_id: "customerId",
               currency_id: "currencyId",
               resource_id: "resourceId"
+            ),
+            headers: parsed.except(*query_params).transform_keys(
+              x_account_id: "x-account-id",
+              x_environment_id: "x-environment-id"
             ),
             page: Stigg::Internal::MyCursorIDPage,
             model: Stigg::Models::V1::CreditListLedgerResponse,

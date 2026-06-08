@@ -19,6 +19,8 @@ module Stigg
             ?payment_collection_method: Stigg::Models::V1::Credits::GrantCreateParams::payment_collection_method,
             ?priority: Integer,
             ?resource_id: String,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::V1::Credits::CreditGrantResponse
 
@@ -30,11 +32,15 @@ module Stigg
             ?currency_id: String,
             ?limit: Integer,
             ?resource_id: String,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::Credits::GrantListResponse]
 
           def `void`: (
             String id,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::V1::Credits::CreditGrantResponse
 

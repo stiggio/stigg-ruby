@@ -102,6 +102,18 @@ module Stigg
         end
         attr_writer :status
 
+        sig { returns(T.nilable(String)) }
+        attr_reader :x_account_id
+
+        sig { params(x_account_id: String).void }
+        attr_writer :x_account_id
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :x_environment_id
+
+        sig { params(x_environment_id: String).void }
+        attr_writer :x_environment_id
+
         sig do
           params(
             after: String,
@@ -117,6 +129,8 @@ module Stigg
             resource_id: String,
             status:
               T::Array[Stigg::V1::SubscriptionListParams::Status::OrSymbol],
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -140,6 +154,8 @@ module Stigg
           # Filter by subscription status. Supports comma-separated values for multiple
           # statuses
           status: nil,
+          x_account_id: nil,
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -160,6 +176,8 @@ module Stigg
               resource_id: String,
               status:
                 T::Array[Stigg::V1::SubscriptionListParams::Status::OrSymbol],
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions
             }
           )

@@ -38,7 +38,17 @@ module Stigg
         #   @return [Boolean, nil]
         optional :multiple_subscriptions, Stigg::Internal::Type::Boolean, api_name: :multipleSubscriptions
 
-        # @!method initialize(id:, display_name:, description: nil, metadata: nil, multiple_subscriptions: nil, request_options: {})
+        # @!attribute x_account_id
+        #
+        #   @return [String, nil]
+        optional :x_account_id, String
+
+        # @!attribute x_environment_id
+        #
+        #   @return [String, nil]
+        optional :x_environment_id, String
+
+        # @!method initialize(id:, display_name:, description: nil, metadata: nil, multiple_subscriptions: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #   @param id [String] The unique identifier for the entity
         #
         #   @param display_name [String] Display name of the product
@@ -48,6 +58,10 @@ module Stigg
         #   @param metadata [Hash{Symbol=>String}, nil] Additional metadata for the product
         #
         #   @param multiple_subscriptions [Boolean] Indicates if multiple subscriptions to this product are allowed
+        #
+        #   @param x_account_id [String]
+        #
+        #   @param x_environment_id [String]
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
       end

@@ -14,8 +14,22 @@ module Stigg
         #   @return [Array<Stigg::Models::V1::UsageReportParams::Usage>]
         required :usages, -> { Stigg::Internal::Type::ArrayOf[Stigg::V1::UsageReportParams::Usage] }
 
-        # @!method initialize(usages:, request_options: {})
+        # @!attribute x_account_id
+        #
+        #   @return [String, nil]
+        optional :x_account_id, String
+
+        # @!attribute x_environment_id
+        #
+        #   @return [String, nil]
+        optional :x_environment_id, String
+
+        # @!method initialize(usages:, x_account_id: nil, x_environment_id: nil, request_options: {})
         #   @param usages [Array<Stigg::Models::V1::UsageReportParams::Usage>] A list of usage reports to be submitted in bulk
+        #
+        #   @param x_account_id [String]
+        #
+        #   @param x_environment_id [String]
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 

@@ -6,11 +6,15 @@ module Stigg
           def charge_usage: (
             String id,
             ?until_date: Time,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::Models::V1::Subscriptions::UsageChargeUsageResponse
 
           def sync: (
             String id,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::Models::V1::Subscriptions::UsageSyncResponse
 

@@ -19,24 +19,33 @@ module Stigg
             metadata: T.nilable(T::Hash[Symbol, String]),
             name: String,
             percent_off: T.nilable(Float),
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Coupon)
         end
         def create(
-          # The unique identifier for the entity
+          # Body param: The unique identifier for the entity
           id:,
-          # Fixed amount discounts in different currencies
+          # Body param: Fixed amount discounts in different currencies
           amounts_off:,
-          # Description of the coupon
+          # Body param: Description of the coupon
           description:,
-          # Duration of the coupon validity in months
+          # Body param: Duration of the coupon validity in months
           duration_in_months:,
-          # Metadata associated with the entity
+          # Body param: Metadata associated with the entity
           metadata:,
-          # Name of the coupon
+          # Body param: Name of the coupon
           name:,
-          # Percentage discount off the original price
+          # Body param: Percentage discount off the original price
           percent_off:,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -45,12 +54,21 @@ module Stigg
         sig do
           params(
             id: String,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Coupon)
         end
         def retrieve(
           # The unique identifier of the entity
           id,
+          # Account ID — optional when authenticating with a user JWT (Bearer token); falls
+          # back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Environment ID — required when authenticating with a user JWT (Bearer token) on
+          # environment-scoped endpoints. Ignored for API-key auth (env is intrinsic to the
+          # key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -65,6 +83,8 @@ module Stigg
             limit: Integer,
             status: T::Array[Stigg::V1::CouponListParams::Status::OrSymbol],
             type: Stigg::V1::CouponListParams::Type::OrSymbol,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(
             Stigg::Internal::MyCursorIDPage[
@@ -73,20 +93,28 @@ module Stigg
           )
         end
         def list(
-          # Filter by entity ID
+          # Query param: Filter by entity ID
           id: nil,
-          # Return items that come after this cursor
+          # Query param: Return items that come after this cursor
           after: nil,
-          # Return items that come before this cursor
+          # Query param: Return items that come before this cursor
           before: nil,
-          # Filter by creation date using range operators: gt, gte, lt, lte
+          # Query param: Filter by creation date using range operators: gt, gte, lt, lte
           created_at: nil,
-          # Maximum number of items to return
+          # Query param: Maximum number of items to return
           limit: nil,
-          # Filter by coupon status. Supports comma-separated values for multiple statuses
+          # Query param: Filter by coupon status. Supports comma-separated values for
+          # multiple statuses
           status: nil,
-          # Filter by coupon type (FIXED or PERCENTAGE)
+          # Query param: Filter by coupon type (FIXED or PERCENTAGE)
           type: nil,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -95,12 +123,21 @@ module Stigg
         sig do
           params(
             id: String,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Coupon)
         end
         def archive_coupon(
           # The unique identifier of the entity
           id,
+          # Account ID — optional when authenticating with a user JWT (Bearer token); falls
+          # back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Environment ID — required when authenticating with a user JWT (Bearer token) on
+          # environment-scoped endpoints. Ignored for API-key auth (env is intrinsic to the
+          # key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -112,18 +149,27 @@ module Stigg
             description: T.nilable(String),
             metadata: T.nilable(T::Hash[Symbol, String]),
             name: String,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Coupon)
         end
         def update_coupon(
-          # The unique identifier of the entity
+          # Path param: The unique identifier of the entity
           id,
-          # Description of the coupon
+          # Body param: Description of the coupon
           description: nil,
-          # Metadata associated with the entity
+          # Body param: Metadata associated with the entity
           metadata: nil,
-          # Name of the coupon
+          # Body param: Name of the coupon
           name: nil,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end

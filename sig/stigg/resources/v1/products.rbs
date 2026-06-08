@@ -4,6 +4,8 @@ module Stigg
       class Products
         def archive_product: (
           String id,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Product
 
@@ -13,6 +15,8 @@ module Stigg
           ?description: String?,
           ?metadata: ::Hash[Symbol, String]?,
           ?multiple_subscriptions: bool,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Product
 
@@ -21,6 +25,8 @@ module Stigg
           target_id: String,
           ?description: String?,
           ?display_name: String,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Product
 
@@ -31,11 +37,15 @@ module Stigg
           ?created_at: Stigg::V1::ProductListProductsParams::CreatedAt,
           ?limit: Integer,
           ?status: ::Array[Stigg::Models::V1::ProductListProductsParams::status],
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::ProductListProductsResponse]
 
         def unarchive_product: (
           String id,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Product
 
@@ -47,6 +57,8 @@ module Stigg
           ?multiple_subscriptions: bool,
           ?product_settings: Stigg::V1::ProductUpdateProductParams::ProductSettings,
           ?usage_reset_cutoff_rule: Stigg::V1::ProductUpdateProductParams::UsageResetCutoffRule,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Product
 

@@ -30,12 +30,26 @@ module Stigg
         sig { params(name: String).void }
         attr_writer :name
 
+        sig { returns(T.nilable(String)) }
+        attr_reader :x_account_id
+
+        sig { params(x_account_id: String).void }
+        attr_writer :x_account_id
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :x_environment_id
+
+        sig { params(x_environment_id: String).void }
+        attr_writer :x_environment_id
+
         sig do
           params(
             id: String,
             description: T.nilable(String),
             metadata: T.nilable(T::Hash[Symbol, String]),
             name: String,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -47,6 +61,8 @@ module Stigg
           metadata: nil,
           # Name of the coupon
           name: nil,
+          x_account_id: nil,
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -58,6 +74,8 @@ module Stigg
               description: T.nilable(String),
               metadata: T.nilable(T::Hash[Symbol, String]),
               name: String,
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions
             }
           )

@@ -9,6 +9,8 @@ module Stigg
         def get_auto_recharge: (
           currency_id: String,
           customer_id: String,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Models::V1::CreditGetAutoRechargeResponse
 
@@ -23,6 +25,8 @@ module Stigg
           ?resource_id: String,
           ?start_date: Time,
           ?time_range: Stigg::Models::V1::CreditGetUsageParams::time_range,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Models::V1::CreditGetUsageResponse
 
@@ -33,6 +37,8 @@ module Stigg
           ?currency_id: String,
           ?limit: Integer,
           ?resource_id: String,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::CreditListLedgerResponse]
 

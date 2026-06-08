@@ -28,40 +28,50 @@ module Stigg
                 Stigg::V1::Credits::GrantCreateParams::PaymentCollectionMethod::OrSymbol,
               priority: Integer,
               resource_id: String,
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions::OrHash
             ).returns(Stigg::V1::Credits::CreditGrantResponse)
           end
           def create(
-            # The credit amount to grant
+            # Body param: The credit amount to grant
             amount:,
-            # The credit currency ID (required)
+            # Body param: The credit currency ID (required)
             currency_id:,
-            # The customer ID to grant credits to (required)
+            # Body param: The customer ID to grant credits to (required)
             customer_id:,
-            # The display name for the credit grant
+            # Body param: The display name for the credit grant
             display_name:,
-            # The type of credit grant (PAID, PROMOTIONAL)
+            # Body param: The type of credit grant (PAID, PROMOTIONAL)
             grant_type:,
-            # Whether to wait for payment confirmation before returning (default: true)
+            # Body param: Whether to wait for payment confirmation before returning (default:
+            # true)
             await_payment_confirmation: nil,
-            # Billing information for the credit grant
+            # Body param: Billing information for the credit grant
             billing_information: nil,
-            # An optional comment on the credit grant
+            # Body param: An optional comment on the credit grant
             comment: nil,
-            # The monetary cost of the credit grant
+            # Body param: The monetary cost of the credit grant
             cost: nil,
-            # The date when the credit grant becomes effective
+            # Body param: The date when the credit grant becomes effective
             effective_at: nil,
-            # The date when the credit grant expires
+            # Body param: The date when the credit grant expires
             expire_at: nil,
-            # Additional metadata for the credit grant
+            # Body param: Additional metadata for the credit grant
             metadata: nil,
-            # The payment collection method (CHARGE, INVOICE, NONE)
+            # Body param: The payment collection method (CHARGE, INVOICE, NONE)
             payment_collection_method: nil,
-            # The priority of the credit grant (lower number = higher priority)
+            # Body param: The priority of the credit grant (lower number = higher priority)
             priority: nil,
-            # The resource ID to scope the grant to
+            # Body param: The resource ID to scope the grant to
             resource_id: nil,
+            # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+            # token); falls back to the user's first membership. Ignored for API-key auth.
+            x_account_id: nil,
+            # Header param: Environment ID — required when authenticating with a user JWT
+            # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+            # intrinsic to the key).
+            x_environment_id: nil,
             request_options: {}
           )
           end
@@ -77,6 +87,8 @@ module Stigg
               currency_id: String,
               limit: Integer,
               resource_id: String,
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions::OrHash
             ).returns(
               Stigg::Internal::MyCursorIDPage[
@@ -85,20 +97,28 @@ module Stigg
             )
           end
           def list(
-            # Filter by customer ID (required)
+            # Query param: Filter by customer ID (required)
             customer_id:,
-            # Return items that come after this cursor
+            # Query param: Return items that come after this cursor
             after: nil,
-            # Return items that come before this cursor
+            # Query param: Return items that come before this cursor
             before: nil,
-            # Filter by creation date using range operators: gt, gte, lt, lte
+            # Query param: Filter by creation date using range operators: gt, gte, lt, lte
             created_at: nil,
-            # Filter by currency ID
+            # Query param: Filter by currency ID
             currency_id: nil,
-            # Maximum number of items to return
+            # Query param: Maximum number of items to return
             limit: nil,
-            # Filter by resource ID. When omitted, only grants without a resource are returned
+            # Query param: Filter by resource ID. When omitted, only grants without a resource
+            # are returned
             resource_id: nil,
+            # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+            # token); falls back to the user's first membership. Ignored for API-key auth.
+            x_account_id: nil,
+            # Header param: Environment ID — required when authenticating with a user JWT
+            # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+            # intrinsic to the key).
+            x_environment_id: nil,
             request_options: {}
           )
           end
@@ -108,12 +128,21 @@ module Stigg
           sig do
             params(
               id: String,
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions::OrHash
             ).returns(Stigg::V1::Credits::CreditGrantResponse)
           end
           def void(
             # The unique identifier of the entity
             id,
+            # Account ID — optional when authenticating with a user JWT (Bearer token); falls
+            # back to the user's first membership. Ignored for API-key auth.
+            x_account_id: nil,
+            # Environment ID — required when authenticating with a user JWT (Bearer token) on
+            # environment-scoped endpoints. Ignored for API-key auth (env is intrinsic to the
+            # key).
+            x_environment_id: nil,
             request_options: {}
           )
           end

@@ -52,7 +52,17 @@ module Stigg
                  -> { Stigg::V1::ProductUpdateProductParams::UsageResetCutoffRule },
                  api_name: :usageResetCutoffRule
 
-        # @!method initialize(id:, description: nil, display_name: nil, metadata: nil, multiple_subscriptions: nil, product_settings: nil, usage_reset_cutoff_rule: nil, request_options: {})
+        # @!attribute x_account_id
+        #
+        #   @return [String, nil]
+        optional :x_account_id, String
+
+        # @!attribute x_environment_id
+        #
+        #   @return [String, nil]
+        optional :x_environment_id, String
+
+        # @!method initialize(id:, description: nil, display_name: nil, metadata: nil, multiple_subscriptions: nil, product_settings: nil, usage_reset_cutoff_rule: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #   @param id [String]
         #
         #   @param description [String, nil] Description of the product
@@ -66,6 +76,10 @@ module Stigg
         #   @param product_settings [Stigg::Models::V1::ProductUpdateProductParams::ProductSettings]
         #
         #   @param usage_reset_cutoff_rule [Stigg::Models::V1::ProductUpdateProductParams::UsageResetCutoffRule] Rule defining when usage resets upon subscription update.
+        #
+        #   @param x_account_id [String]
+        #
+        #   @param x_environment_id [String]
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 

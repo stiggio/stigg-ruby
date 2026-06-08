@@ -11,7 +11,9 @@ module Stigg
           display_name: String,
           max_quantity: Integer?,
           metadata: ::Hash[Symbol, String],
-          status: Stigg::Models::V1::AddonUpdateParams::status
+          status: Stigg::Models::V1::AddonUpdateParams::status,
+          x_account_id: String,
+          x_environment_id: String
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -49,6 +51,14 @@ module Stigg
           Stigg::Models::V1::AddonUpdateParams::status
         ) -> Stigg::Models::V1::AddonUpdateParams::status
 
+        attr_reader x_account_id: String?
+
+        def x_account_id=: (String) -> String
+
+        attr_reader x_environment_id: String?
+
+        def x_environment_id=: (String) -> String
+
         def initialize: (
           id: String,
           ?billing_id: String?,
@@ -59,6 +69,8 @@ module Stigg
           ?max_quantity: Integer?,
           ?metadata: ::Hash[Symbol, String],
           ?status: Stigg::Models::V1::AddonUpdateParams::status,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> void
 
@@ -72,6 +84,8 @@ module Stigg
           max_quantity: Integer?,
           metadata: ::Hash[Symbol, String],
           status: Stigg::Models::V1::AddonUpdateParams::status,
+          x_account_id: String,
+          x_environment_id: String,
           request_options: Stigg::RequestOptions
         }
 

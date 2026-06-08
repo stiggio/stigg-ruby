@@ -6,6 +6,8 @@ module Stigg
           def retrieve: (
             String integration_id,
             id: String,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::V1::CustomerIntegrationResponse
 
@@ -13,6 +15,8 @@ module Stigg
             String integration_id,
             id: String,
             synced_entity_id: String?,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::V1::CustomerIntegrationResponse
 
@@ -22,6 +26,8 @@ module Stigg
             ?before: String,
             ?limit: Integer,
             ?vendor_identifier: ::Array[Stigg::Models::V1::Customers::IntegrationListParams::vendor_identifier],
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::Customers::IntegrationListResponse]
 
@@ -30,12 +36,16 @@ module Stigg
             body_id: String,
             synced_entity_id: String,
             vendor_identifier: Stigg::Models::V1::Customers::IntegrationLinkParams::vendor_identifier,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::V1::CustomerIntegrationResponse
 
           def unlink: (
             String integration_id,
             id: String,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::V1::CustomerIntegrationResponse
 

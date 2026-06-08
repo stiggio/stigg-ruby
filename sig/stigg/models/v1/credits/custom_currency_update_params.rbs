@@ -9,7 +9,9 @@ module Stigg
             display_name: String,
             metadata: ::Hash[Symbol, String]?,
             symbol: String?,
-            units: Stigg::V1::Credits::CustomCurrencyUpdateParams::Units
+            units: Stigg::V1::Credits::CustomCurrencyUpdateParams::Units,
+            x_account_id: String,
+            x_environment_id: String
           }
           & Stigg::Internal::Type::request_parameters
 
@@ -35,6 +37,14 @@ module Stigg
             Stigg::V1::Credits::CustomCurrencyUpdateParams::Units
           ) -> Stigg::V1::Credits::CustomCurrencyUpdateParams::Units
 
+          attr_reader x_account_id: String?
+
+          def x_account_id=: (String) -> String
+
+          attr_reader x_environment_id: String?
+
+          def x_environment_id=: (String) -> String
+
           def initialize: (
             currency_id: String,
             ?description: String?,
@@ -42,6 +52,8 @@ module Stigg
             ?metadata: ::Hash[Symbol, String]?,
             ?symbol: String?,
             ?units: Stigg::V1::Credits::CustomCurrencyUpdateParams::Units,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> void
 
@@ -52,6 +64,8 @@ module Stigg
             metadata: ::Hash[Symbol, String]?,
             symbol: String?,
             units: Stigg::V1::Credits::CustomCurrencyUpdateParams::Units,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions
           }
 

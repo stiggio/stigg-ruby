@@ -22,14 +22,34 @@ module Stigg
           sig { returns(String) }
           attr_accessor :integration_id
 
+          sig { returns(T.nilable(String)) }
+          attr_reader :x_account_id
+
+          sig { params(x_account_id: String).void }
+          attr_writer :x_account_id
+
+          sig { returns(T.nilable(String)) }
+          attr_reader :x_environment_id
+
+          sig { params(x_environment_id: String).void }
+          attr_writer :x_environment_id
+
           sig do
             params(
               id: String,
               integration_id: String,
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions::OrHash
             ).returns(T.attached_class)
           end
-          def self.new(id:, integration_id:, request_options: {})
+          def self.new(
+            id:,
+            integration_id:,
+            x_account_id: nil,
+            x_environment_id: nil,
+            request_options: {}
+          )
           end
 
           sig do
@@ -37,6 +57,8 @@ module Stigg
               {
                 id: String,
                 integration_id: String,
+                x_account_id: String,
+                x_environment_id: String,
                 request_options: Stigg::RequestOptions
               }
             )

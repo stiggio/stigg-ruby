@@ -118,7 +118,17 @@ module Stigg
         #   @return [Integer, nil]
         optional :unit_quantity, Integer, api_name: :unitQuantity
 
-        # @!method initialize(customer_id:, plan_id:, addons: nil, applied_coupon: nil, billable_features: nil, billing_country_code: nil, billing_cycle_anchor: nil, billing_information: nil, billing_period: nil, charges: nil, paying_customer_id: nil, resource_id: nil, schedule_strategy: nil, start_date: nil, trial_override_configuration: nil, unit_quantity: nil, request_options: {})
+        # @!attribute x_account_id
+        #
+        #   @return [String, nil]
+        optional :x_account_id, String
+
+        # @!attribute x_environment_id
+        #
+        #   @return [String, nil]
+        optional :x_environment_id, String
+
+        # @!method initialize(customer_id:, plan_id:, addons: nil, applied_coupon: nil, billable_features: nil, billing_country_code: nil, billing_cycle_anchor: nil, billing_information: nil, billing_period: nil, charges: nil, paying_customer_id: nil, resource_id: nil, schedule_strategy: nil, start_date: nil, trial_override_configuration: nil, unit_quantity: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #   @param customer_id [String] Customer ID
         #
         #   @param plan_id [String] Plan ID
@@ -150,6 +160,10 @@ module Stigg
         #   @param trial_override_configuration [Stigg::Models::V1::SubscriptionPreviewParams::TrialOverrideConfiguration] Trial period override settings
         #
         #   @param unit_quantity [Integer] Unit quantity for per-unit pricing. Minimum is 0 (zero is allowed).
+        #
+        #   @param x_account_id [String]
+        #
+        #   @param x_environment_id [String]
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 

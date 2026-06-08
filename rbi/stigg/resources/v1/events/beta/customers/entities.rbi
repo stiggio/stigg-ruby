@@ -12,16 +12,25 @@ module Stigg
                 params(
                   entity_id: String,
                   id: String,
+                  x_account_id: String,
+                  x_environment_id: String,
                   request_options: Stigg::RequestOptions::OrHash
                 ).returns(
                   Stigg::Models::V1::Events::Beta::Customers::EntityRetrieveResponse
                 )
               end
               def retrieve(
-                # The entity identifier (refId)
+                # Path param: The entity identifier (refId)
                 entity_id,
-                # The customer identifier (owner) the entity belongs to
+                # Path param: The customer identifier (owner) the entity belongs to
                 id:,
+                # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+                # token); falls back to the user's first membership. Ignored for API-key auth.
+                x_account_id: nil,
+                # Header param: Environment ID — required when authenticating with a user JWT
+                # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+                # intrinsic to the key).
+                x_environment_id: nil,
                 request_options: {}
               )
               end
@@ -36,6 +45,8 @@ module Stigg
                     Stigg::V1::Events::Beta::Customers::EntityListParams::IncludeArchived::OrSymbol,
                   limit: Integer,
                   type_ref_id: String,
+                  x_account_id: String,
+                  x_environment_id: String,
                   request_options: Stigg::RequestOptions::OrHash
                 ).returns(
                   Stigg::Internal::MyCursorIDPage[
@@ -44,18 +55,26 @@ module Stigg
                 )
               end
               def list(
-                # The customer identifier (owner) the entities belong to
+                # Path param: The customer identifier (owner) the entities belong to
                 id,
-                # Return items that come after this cursor
+                # Query param: Return items that come after this cursor
                 after: nil,
-                # Return items that come before this cursor
+                # Query param: Return items that come before this cursor
                 before: nil,
-                # Whether to include archived entities. One of: true, false
+                # Query param: Whether to include archived entities. One of: true, false
                 include_archived: nil,
-                # Maximum number of items to return
+                # Query param: Maximum number of items to return
                 limit: nil,
-                # Filter results to entities of a specific entity type, by the type's refId
+                # Query param: Filter results to entities of a specific entity type, by the type's
+                # refId
                 type_ref_id: nil,
+                # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+                # token); falls back to the user's first membership. Ignored for API-key auth.
+                x_account_id: nil,
+                # Header param: Environment ID — required when authenticating with a user JWT
+                # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+                # intrinsic to the key).
+                x_environment_id: nil,
                 request_options: {}
               )
               end
@@ -65,16 +84,25 @@ module Stigg
                 params(
                   id: String,
                   ids: T::Array[String],
+                  x_account_id: String,
+                  x_environment_id: String,
                   request_options: Stigg::RequestOptions::OrHash
                 ).returns(
                   Stigg::Models::V1::Events::Beta::Customers::EntityArchiveResponse
                 )
               end
               def archive(
-                # The customer identifier (owner) the entities belong to
+                # Path param: The customer identifier (owner) the entities belong to
                 id,
-                # Entity identifiers to act on
+                # Body param: Entity identifiers to act on
                 ids:,
+                # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+                # token); falls back to the user's first membership. Ignored for API-key auth.
+                x_account_id: nil,
+                # Header param: Environment ID — required when authenticating with a user JWT
+                # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+                # intrinsic to the key).
+                x_environment_id: nil,
                 request_options: {}
               )
               end
@@ -84,16 +112,25 @@ module Stigg
                 params(
                   id: String,
                   ids: T::Array[String],
+                  x_account_id: String,
+                  x_environment_id: String,
                   request_options: Stigg::RequestOptions::OrHash
                 ).returns(
                   Stigg::Models::V1::Events::Beta::Customers::EntityUnarchiveResponse
                 )
               end
               def unarchive(
-                # The customer identifier (owner) the entities belong to
+                # Path param: The customer identifier (owner) the entities belong to
                 id,
-                # Entity identifiers to act on
+                # Body param: Entity identifiers to act on
                 ids:,
+                # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+                # token); falls back to the user's first membership. Ignored for API-key auth.
+                x_account_id: nil,
+                # Header param: Environment ID — required when authenticating with a user JWT
+                # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+                # intrinsic to the key).
+                x_environment_id: nil,
                 request_options: {}
               )
               end
@@ -107,16 +144,25 @@ module Stigg
                     T::Array[
                       Stigg::V1::Events::Beta::Customers::EntityUpsertParams::Entity::OrHash
                     ],
+                  x_account_id: String,
+                  x_environment_id: String,
                   request_options: Stigg::RequestOptions::OrHash
                 ).returns(
                   Stigg::Models::V1::Events::Beta::Customers::EntityUpsertResponse
                 )
               end
               def upsert(
-                # The customer identifier (owner) the entities belong to
+                # Path param: The customer identifier (owner) the entities belong to
                 id,
-                # List of entities to create or update (1-100 entries)
+                # Body param: List of entities to create or update (1-100 entries)
                 entities:,
+                # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+                # token); falls back to the user's first membership. Ignored for API-key auth.
+                x_account_id: nil,
+                # Header param: Environment ID — required when authenticating with a user JWT
+                # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+                # intrinsic to the key).
+                x_environment_id: nil,
                 request_options: {}
               )
               end

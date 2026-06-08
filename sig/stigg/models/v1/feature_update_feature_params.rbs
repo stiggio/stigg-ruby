@@ -11,7 +11,9 @@ module Stigg
           feature_units_plural: String,
           metadata: ::Hash[Symbol, String],
           meter: Stigg::V1::FeatureUpdateFeatureParams::Meter,
-          unit_transformation: Stigg::V1::FeatureUpdateFeatureParams::UnitTransformation?
+          unit_transformation: Stigg::V1::FeatureUpdateFeatureParams::UnitTransformation?,
+          x_account_id: String,
+          x_environment_id: String
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -55,6 +57,14 @@ module Stigg
 
         attr_accessor unit_transformation: Stigg::V1::FeatureUpdateFeatureParams::UnitTransformation?
 
+        attr_reader x_account_id: String?
+
+        def x_account_id=: (String) -> String
+
+        attr_reader x_environment_id: String?
+
+        def x_environment_id=: (String) -> String
+
         def initialize: (
           id: String,
           ?description: String,
@@ -65,6 +75,8 @@ module Stigg
           ?metadata: ::Hash[Symbol, String],
           ?meter: Stigg::V1::FeatureUpdateFeatureParams::Meter,
           ?unit_transformation: Stigg::V1::FeatureUpdateFeatureParams::UnitTransformation?,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> void
 
@@ -78,6 +90,8 @@ module Stigg
           metadata: ::Hash[Symbol, String],
           meter: Stigg::V1::FeatureUpdateFeatureParams::Meter,
           unit_transformation: Stigg::V1::FeatureUpdateFeatureParams::UnitTransformation?,
+          x_account_id: String,
+          x_environment_id: String,
           request_options: Stigg::RequestOptions
         }
 

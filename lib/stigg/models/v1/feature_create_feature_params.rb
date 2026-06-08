@@ -89,7 +89,17 @@ module Stigg
                  api_name: :unitTransformation,
                  nil?: true
 
-        # @!method initialize(id:, display_name:, feature_type:, description: nil, enum_configuration: nil, feature_status: nil, feature_units: nil, feature_units_plural: nil, metadata: nil, meter_type: nil, unit_transformation: nil, request_options: {})
+        # @!attribute x_account_id
+        #
+        #   @return [String, nil]
+        optional :x_account_id, String
+
+        # @!attribute x_environment_id
+        #
+        #   @return [String, nil]
+        optional :x_environment_id, String
+
+        # @!method initialize(id:, display_name:, feature_type:, description: nil, enum_configuration: nil, feature_status: nil, feature_units: nil, feature_units_plural: nil, metadata: nil, meter_type: nil, unit_transformation: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #   @param id [String] The unique identifier for the feature
         #
         #   @param display_name [String] The display name for the feature
@@ -111,6 +121,10 @@ module Stigg
         #   @param meter_type [Symbol, Stigg::Models::V1::FeatureCreateFeatureParams::MeterType] The meter type for the feature
         #
         #   @param unit_transformation [Stigg::Models::V1::FeatureCreateFeatureParams::UnitTransformation, nil] Unit transformation to be applied to the reported usage
+        #
+        #   @param x_account_id [String]
+        #
+        #   @param x_environment_id [String]
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 

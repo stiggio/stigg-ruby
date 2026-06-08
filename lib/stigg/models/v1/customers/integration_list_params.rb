@@ -40,7 +40,17 @@ module Stigg
           optional :vendor_identifier,
                    -> { Stigg::Internal::Type::ArrayOf[enum: Stigg::V1::Customers::IntegrationListParams::VendorIdentifier] }
 
-          # @!method initialize(id:, after: nil, before: nil, limit: nil, vendor_identifier: nil, request_options: {})
+          # @!attribute x_account_id
+          #
+          #   @return [String, nil]
+          optional :x_account_id, String
+
+          # @!attribute x_environment_id
+          #
+          #   @return [String, nil]
+          optional :x_environment_id, String
+
+          # @!method initialize(id:, after: nil, before: nil, limit: nil, vendor_identifier: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
           #   Some parameter documentations has been truncated, see
           #   {Stigg::Models::V1::Customers::IntegrationListParams} for more details.
           #
@@ -53,6 +63,10 @@ module Stigg
           #   @param limit [Integer] Maximum number of items to return
           #
           #   @param vendor_identifier [Array<Symbol, Stigg::Models::V1::Customers::IntegrationListParams::VendorIdentifier>] Filter by vendor identifier. Supports comma-separated values for multiple vendor
+          #
+          #   @param x_account_id [String]
+          #
+          #   @param x_environment_id [String]
           #
           #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 
