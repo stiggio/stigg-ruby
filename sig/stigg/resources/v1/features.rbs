@@ -4,6 +4,8 @@ module Stigg
       class Features
         def archive_feature: (
           String id,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Feature
 
@@ -19,6 +21,8 @@ module Stigg
           ?metadata: ::Hash[Symbol, String],
           ?meter_type: Stigg::Models::V1::FeatureCreateFeatureParams::meter_type,
           ?unit_transformation: Stigg::V1::FeatureCreateFeatureParams::UnitTransformation?,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Feature
 
@@ -31,16 +35,22 @@ module Stigg
           ?limit: Integer,
           ?meter_type: ::Array[Stigg::Models::V1::FeatureListFeaturesParams::meter_type],
           ?status: ::Array[Stigg::Models::V1::FeatureListFeaturesParams::status],
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::FeatureListFeaturesResponse]
 
         def retrieve_feature: (
           String id,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Feature
 
         def unarchive_feature: (
           String id,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Feature
 
@@ -54,6 +64,8 @@ module Stigg
           ?metadata: ::Hash[Symbol, String],
           ?meter: Stigg::V1::FeatureUpdateFeatureParams::Meter,
           ?unit_transformation: Stigg::V1::FeatureUpdateFeatureParams::UnitTransformation?,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Feature
 

@@ -39,12 +39,26 @@ module Stigg
         sig { params(limit: Integer).void }
         attr_writer :limit
 
+        sig { returns(T.nilable(String)) }
+        attr_reader :x_account_id
+
+        sig { params(x_account_id: String).void }
+        attr_writer :x_account_id
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :x_environment_id
+
+        sig { params(x_environment_id: String).void }
+        attr_writer :x_environment_id
+
         sig do
           params(
             id: String,
             after: String,
             before: String,
             limit: Integer,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -56,6 +70,8 @@ module Stigg
           before: nil,
           # Maximum number of items to return
           limit: nil,
+          x_account_id: nil,
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -67,6 +83,8 @@ module Stigg
               after: String,
               before: String,
               limit: Integer,
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions
             }
           )

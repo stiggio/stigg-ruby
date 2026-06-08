@@ -6,6 +6,8 @@ module Stigg
           def create: (
             String id,
             promotional_entitlements: ::Array[Stigg::V1::Customers::PromotionalEntitlementCreateParams::PromotionalEntitlement],
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::Models::V1::Customers::PromotionalEntitlementCreateResponse
 
@@ -16,12 +18,16 @@ module Stigg
             ?created_at: Stigg::V1::Customers::PromotionalEntitlementListParams::CreatedAt,
             ?limit: Integer,
             ?status: ::Array[Stigg::Models::V1::Customers::PromotionalEntitlementListParams::status],
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::Customers::PromotionalEntitlementListResponse]
 
           def revoke: (
             String feature_id,
             id: String,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::Models::V1::Customers::PromotionalEntitlementRevokeResponse
 

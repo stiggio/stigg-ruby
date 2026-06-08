@@ -16,14 +16,23 @@ module Stigg
                     Stigg::V1::Plans::EntitlementCreateParams::Entitlement::Credit::OrHash
                   )
                 ],
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions::OrHash
             ).returns(Stigg::Models::V1::Plans::EntitlementCreateResponse)
           end
           def create(
-            # The plan ID
+            # Path param: The plan ID
             plan_id,
-            # Entitlements to create
+            # Body param: Entitlements to create
             entitlements:,
+            # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+            # token); falls back to the user's first membership. Ignored for API-key auth.
+            x_account_id: nil,
+            # Header param: Environment ID — required when authenticating with a user JWT
+            # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+            # intrinsic to the key).
+            x_environment_id: nil,
             request_options: {}
           )
           end
@@ -38,6 +47,8 @@ module Stigg
                   Stigg::V1::Plans::EntitlementUpdateParams::Body::Feature::OrHash,
                   Stigg::V1::Plans::EntitlementUpdateParams::Body::Credit::OrHash
                 ),
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions::OrHash
             ).returns(Stigg::V1::Plans::PlanEntitlement)
           end
@@ -48,6 +59,13 @@ module Stigg
             plan_id:,
             # Body param: Request to update a plan entitlement
             body:,
+            # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+            # token); falls back to the user's first membership. Ignored for API-key auth.
+            x_account_id: nil,
+            # Header param: Environment ID — required when authenticating with a user JWT
+            # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+            # intrinsic to the key).
+            x_environment_id: nil,
             request_options: {}
           )
           end
@@ -56,12 +74,21 @@ module Stigg
           sig do
             params(
               plan_id: String,
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions::OrHash
             ).returns(Stigg::Models::V1::Plans::EntitlementListResponse)
           end
           def list(
             # The plan ID
             plan_id,
+            # Account ID — optional when authenticating with a user JWT (Bearer token); falls
+            # back to the user's first membership. Ignored for API-key auth.
+            x_account_id: nil,
+            # Environment ID — required when authenticating with a user JWT (Bearer token) on
+            # environment-scoped endpoints. Ignored for API-key auth (env is intrinsic to the
+            # key).
+            x_environment_id: nil,
             request_options: {}
           )
           end
@@ -71,14 +98,23 @@ module Stigg
             params(
               id: String,
               plan_id: String,
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions::OrHash
             ).returns(Stigg::V1::Plans::PlanEntitlement)
           end
           def delete(
-            # The feature ID or custom currency ID of the entitlement
+            # Path param: The feature ID or custom currency ID of the entitlement
             id,
-            # The plan ID
+            # Path param: The plan ID
             plan_id:,
+            # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+            # token); falls back to the user's first membership. Ignored for API-key auth.
+            x_account_id: nil,
+            # Header param: Environment ID — required when authenticating with a user JWT
+            # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+            # intrinsic to the key).
+            x_environment_id: nil,
             request_options: {}
           )
           end

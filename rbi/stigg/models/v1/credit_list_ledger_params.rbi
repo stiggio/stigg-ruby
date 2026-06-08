@@ -51,6 +51,18 @@ module Stigg
         sig { params(resource_id: String).void }
         attr_writer :resource_id
 
+        sig { returns(T.nilable(String)) }
+        attr_reader :x_account_id
+
+        sig { params(x_account_id: String).void }
+        attr_writer :x_account_id
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :x_environment_id
+
+        sig { params(x_environment_id: String).void }
+        attr_writer :x_environment_id
+
         sig do
           params(
             customer_id: String,
@@ -59,6 +71,8 @@ module Stigg
             currency_id: String,
             limit: Integer,
             resource_id: String,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -75,6 +89,8 @@ module Stigg
           limit: nil,
           # Filter by resource ID
           resource_id: nil,
+          x_account_id: nil,
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -88,6 +104,8 @@ module Stigg
               currency_id: String,
               limit: Integer,
               resource_id: String,
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions
             }
           )

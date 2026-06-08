@@ -11,6 +11,8 @@ module Stigg
           sig do
             params(
               id: String,
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions::OrHash
             ).returns(
               Stigg::Models::V1::Subscriptions::InvoiceMarkAsPaidResponse
@@ -19,6 +21,13 @@ module Stigg
           def mark_as_paid(
             # The unique identifier of the entity
             id,
+            # Account ID — optional when authenticating with a user JWT (Bearer token); falls
+            # back to the user's first membership. Ignored for API-key auth.
+            x_account_id: nil,
+            # Environment ID — required when authenticating with a user JWT (Bearer token) on
+            # environment-scoped endpoints. Ignored for API-key auth (env is intrinsic to the
+            # key).
+            x_environment_id: nil,
             request_options: {}
           )
           end

@@ -5,11 +5,15 @@ module Stigg
         class FutureUpdate
           def cancel_pending_payment: (
             String id,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::V1::Subscriptions::CancelSubscription
 
           def cancel_schedule: (
             String id,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::V1::Subscriptions::CancelSubscription
 

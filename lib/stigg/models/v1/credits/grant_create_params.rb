@@ -109,7 +109,17 @@ module Stigg
           #   @return [String, nil]
           optional :resource_id, String, api_name: :resourceId
 
-          # @!method initialize(amount:, currency_id:, customer_id:, display_name:, grant_type:, await_payment_confirmation: nil, billing_information: nil, comment: nil, cost: nil, effective_at: nil, expire_at: nil, metadata: nil, payment_collection_method: nil, priority: nil, resource_id: nil, request_options: {})
+          # @!attribute x_account_id
+          #
+          #   @return [String, nil]
+          optional :x_account_id, String
+
+          # @!attribute x_environment_id
+          #
+          #   @return [String, nil]
+          optional :x_environment_id, String
+
+          # @!method initialize(amount:, currency_id:, customer_id:, display_name:, grant_type:, await_payment_confirmation: nil, billing_information: nil, comment: nil, cost: nil, effective_at: nil, expire_at: nil, metadata: nil, payment_collection_method: nil, priority: nil, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
           #   @param amount [Float] The credit amount to grant
           #
           #   @param currency_id [String] The credit currency ID (required)
@@ -139,6 +149,10 @@ module Stigg
           #   @param priority [Integer] The priority of the credit grant (lower number = higher priority)
           #
           #   @param resource_id [String] The resource ID to scope the grant to
+          #
+          #   @param x_account_id [String]
+          #
+          #   @param x_environment_id [String]
           #
           #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 

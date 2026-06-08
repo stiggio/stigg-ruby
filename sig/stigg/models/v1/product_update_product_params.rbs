@@ -9,7 +9,9 @@ module Stigg
           metadata: ::Hash[Symbol, String]?,
           multiple_subscriptions: bool,
           product_settings: Stigg::V1::ProductUpdateProductParams::ProductSettings,
-          usage_reset_cutoff_rule: Stigg::V1::ProductUpdateProductParams::UsageResetCutoffRule
+          usage_reset_cutoff_rule: Stigg::V1::ProductUpdateProductParams::UsageResetCutoffRule,
+          x_account_id: String,
+          x_environment_id: String
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -43,6 +45,14 @@ module Stigg
           Stigg::V1::ProductUpdateProductParams::UsageResetCutoffRule
         ) -> Stigg::V1::ProductUpdateProductParams::UsageResetCutoffRule
 
+        attr_reader x_account_id: String?
+
+        def x_account_id=: (String) -> String
+
+        attr_reader x_environment_id: String?
+
+        def x_environment_id=: (String) -> String
+
         def initialize: (
           id: String,
           ?description: String?,
@@ -51,6 +61,8 @@ module Stigg
           ?multiple_subscriptions: bool,
           ?product_settings: Stigg::V1::ProductUpdateProductParams::ProductSettings,
           ?usage_reset_cutoff_rule: Stigg::V1::ProductUpdateProductParams::UsageResetCutoffRule,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> void
 
@@ -62,6 +74,8 @@ module Stigg
           multiple_subscriptions: bool,
           product_settings: Stigg::V1::ProductUpdateProductParams::ProductSettings,
           usage_reset_cutoff_rule: Stigg::V1::ProductUpdateProductParams::UsageResetCutoffRule,
+          x_account_id: String,
+          x_environment_id: String,
           request_options: Stigg::RequestOptions
         }
 

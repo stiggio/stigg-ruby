@@ -7,7 +7,9 @@ module Stigg
             after: String,
             before: String,
             limit: Integer,
-            status: ::Array[Stigg::Models::V1::Credits::CustomCurrencyListParams::status]
+            status: ::Array[Stigg::Models::V1::Credits::CustomCurrencyListParams::status],
+            x_account_id: String,
+            x_environment_id: String
           }
           & Stigg::Internal::Type::request_parameters
 
@@ -33,11 +35,21 @@ module Stigg
             ::Array[Stigg::Models::V1::Credits::CustomCurrencyListParams::status]
           ) -> ::Array[Stigg::Models::V1::Credits::CustomCurrencyListParams::status]
 
+          attr_reader x_account_id: String?
+
+          def x_account_id=: (String) -> String
+
+          attr_reader x_environment_id: String?
+
+          def x_environment_id=: (String) -> String
+
           def initialize: (
             ?after: String,
             ?before: String,
             ?limit: Integer,
             ?status: ::Array[Stigg::Models::V1::Credits::CustomCurrencyListParams::status],
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> void
 
@@ -46,6 +58,8 @@ module Stigg
             before: String,
             limit: Integer,
             status: ::Array[Stigg::Models::V1::Credits::CustomCurrencyListParams::status],
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions
           }
 

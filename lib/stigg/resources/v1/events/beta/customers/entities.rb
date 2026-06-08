@@ -7,13 +7,21 @@ module Stigg
         class Beta
           class Customers
             class Entities
+              # Some parameter documentations has been truncated, see
+              # {Stigg::Models::V1::Events::Beta::Customers::EntityRetrieveParams} for more
+              # details.
+              #
               # Retrieves a single entity for the given customer by its identifier.
               #
-              # @overload retrieve(entity_id, id:, request_options: {})
+              # @overload retrieve(entity_id, id:, x_account_id: nil, x_environment_id: nil, request_options: {})
               #
-              # @param entity_id [String] The entity identifier (refId)
+              # @param entity_id [String] Path param: The entity identifier (refId)
               #
-              # @param id [String] The customer identifier (owner) the entity belongs to
+              # @param id [String] Path param: The customer identifier (owner) the entity belongs to
+              #
+              # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
+              #
+              # @param x_environment_id [String] Header param: Environment ID — required when authenticating with a user JWT (Bea
               #
               # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
               #
@@ -29,26 +37,37 @@ module Stigg
                 @client.request(
                   method: :get,
                   path: ["api/v1-beta/customers/%1$s/entities/%2$s", id, entity_id],
+                  headers: parsed.transform_keys(
+                    x_account_id: "x-account-id",
+                    x_environment_id: "x-environment-id"
+                  ),
                   model: Stigg::Models::V1::Events::Beta::Customers::EntityRetrieveResponse,
                   options: options
                 )
               end
 
+              # Some parameter documentations has been truncated, see
+              # {Stigg::Models::V1::Events::Beta::Customers::EntityListParams} for more details.
+              #
               # Retrieves a paginated list of entities for the given customer.
               #
-              # @overload list(id, after: nil, before: nil, include_archived: nil, limit: nil, type_ref_id: nil, request_options: {})
+              # @overload list(id, after: nil, before: nil, include_archived: nil, limit: nil, type_ref_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
               #
-              # @param id [String] The customer identifier (owner) the entities belong to
+              # @param id [String] Path param: The customer identifier (owner) the entities belong to
               #
-              # @param after [String] Return items that come after this cursor
+              # @param after [String] Query param: Return items that come after this cursor
               #
-              # @param before [String] Return items that come before this cursor
+              # @param before [String] Query param: Return items that come before this cursor
               #
-              # @param include_archived [Symbol, Stigg::Models::V1::Events::Beta::Customers::EntityListParams::IncludeArchived] Whether to include archived entities. One of: true, false
+              # @param include_archived [Symbol, Stigg::Models::V1::Events::Beta::Customers::EntityListParams::IncludeArchived] Query param: Whether to include archived entities. One of: true, false
               #
-              # @param limit [Integer] Maximum number of items to return
+              # @param limit [Integer] Query param: Maximum number of items to return
               #
-              # @param type_ref_id [String] Filter results to entities of a specific entity type, by the type's refId
+              # @param type_ref_id [String] Query param: Filter results to entities of a specific entity type, by the type's
+              #
+              # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
+              #
+              # @param x_environment_id [String] Header param: Environment ID — required when authenticating with a user JWT (Bea
               #
               # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
               #
@@ -56,25 +75,38 @@ module Stigg
               #
               # @see Stigg::Models::V1::Events::Beta::Customers::EntityListParams
               def list(id, params = {})
+                query_params = [:after, :before, :include_archived, :limit, :type_ref_id]
                 parsed, options = Stigg::V1::Events::Beta::Customers::EntityListParams.dump_request(params)
-                query = Stigg::Internal::Util.encode_query_params(parsed)
+                query = Stigg::Internal::Util.encode_query_params(parsed.slice(*query_params))
                 @client.request(
                   method: :get,
                   path: ["api/v1-beta/customers/%1$s/entities", id],
                   query: query.transform_keys(include_archived: "includeArchived", type_ref_id: "typeRefId"),
+                  headers: parsed.except(*query_params).transform_keys(
+                    x_account_id: "x-account-id",
+                    x_environment_id: "x-environment-id"
+                  ),
                   page: Stigg::Internal::MyCursorIDPage,
                   model: Stigg::Models::V1::Events::Beta::Customers::EntityListResponse,
                   options: options
                 )
               end
 
+              # Some parameter documentations has been truncated, see
+              # {Stigg::Models::V1::Events::Beta::Customers::EntityArchiveParams} for more
+              # details.
+              #
               # Archives entities in bulk for the given customer by id.
               #
-              # @overload archive(id, ids:, request_options: {})
+              # @overload archive(id, ids:, x_account_id: nil, x_environment_id: nil, request_options: {})
               #
-              # @param id [String] The customer identifier (owner) the entities belong to
+              # @param id [String] Path param: The customer identifier (owner) the entities belong to
               #
-              # @param ids [Array<String>] Entity identifiers to act on
+              # @param ids [Array<String>] Body param: Entity identifiers to act on
+              #
+              # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
+              #
+              # @param x_environment_id [String] Header param: Environment ID — required when authenticating with a user JWT (Bea
               #
               # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
               #
@@ -83,22 +115,32 @@ module Stigg
               # @see Stigg::Models::V1::Events::Beta::Customers::EntityArchiveParams
               def archive(id, params)
                 parsed, options = Stigg::V1::Events::Beta::Customers::EntityArchiveParams.dump_request(params)
+                header_params = {x_account_id: "x-account-id", x_environment_id: "x-environment-id"}
                 @client.request(
                   method: :post,
                   path: ["api/v1-beta/customers/%1$s/entities/archive", id],
-                  body: parsed,
+                  headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+                  body: parsed.except(*header_params.keys),
                   model: Stigg::Models::V1::Events::Beta::Customers::EntityArchiveResponse,
                   options: options
                 )
               end
 
+              # Some parameter documentations has been truncated, see
+              # {Stigg::Models::V1::Events::Beta::Customers::EntityUnarchiveParams} for more
+              # details.
+              #
               # Restores previously archived entities in bulk for the given customer by id.
               #
-              # @overload unarchive(id, ids:, request_options: {})
+              # @overload unarchive(id, ids:, x_account_id: nil, x_environment_id: nil, request_options: {})
               #
-              # @param id [String] The customer identifier (owner) the entities belong to
+              # @param id [String] Path param: The customer identifier (owner) the entities belong to
               #
-              # @param ids [Array<String>] Entity identifiers to act on
+              # @param ids [Array<String>] Body param: Entity identifiers to act on
+              #
+              # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
+              #
+              # @param x_environment_id [String] Header param: Environment ID — required when authenticating with a user JWT (Bea
               #
               # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
               #
@@ -107,23 +149,33 @@ module Stigg
               # @see Stigg::Models::V1::Events::Beta::Customers::EntityUnarchiveParams
               def unarchive(id, params)
                 parsed, options = Stigg::V1::Events::Beta::Customers::EntityUnarchiveParams.dump_request(params)
+                header_params = {x_account_id: "x-account-id", x_environment_id: "x-environment-id"}
                 @client.request(
                   method: :post,
                   path: ["api/v1-beta/customers/%1$s/entities/unarchive", id],
-                  body: parsed,
+                  headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+                  body: parsed.except(*header_params.keys),
                   model: Stigg::Models::V1::Events::Beta::Customers::EntityUnarchiveResponse,
                   options: options
                 )
               end
 
+              # Some parameter documentations has been truncated, see
+              # {Stigg::Models::V1::Events::Beta::Customers::EntityUpsertParams} for more
+              # details.
+              #
               # Creates or updates entities in bulk for the given customer. Existing entities
               # matched by id are updated; new ids are created.
               #
-              # @overload upsert(id, entities:, request_options: {})
+              # @overload upsert(id, entities:, x_account_id: nil, x_environment_id: nil, request_options: {})
               #
-              # @param id [String] The customer identifier (owner) the entities belong to
+              # @param id [String] Path param: The customer identifier (owner) the entities belong to
               #
-              # @param entities [Array<Stigg::Models::V1::Events::Beta::Customers::EntityUpsertParams::Entity>] List of entities to create or update (1-100 entries)
+              # @param entities [Array<Stigg::Models::V1::Events::Beta::Customers::EntityUpsertParams::Entity>] Body param: List of entities to create or update (1-100 entries)
+              #
+              # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
+              #
+              # @param x_environment_id [String] Header param: Environment ID — required when authenticating with a user JWT (Bea
               #
               # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
               #
@@ -132,10 +184,12 @@ module Stigg
               # @see Stigg::Models::V1::Events::Beta::Customers::EntityUpsertParams
               def upsert(id, params)
                 parsed, options = Stigg::V1::Events::Beta::Customers::EntityUpsertParams.dump_request(params)
+                header_params = {x_account_id: "x-account-id", x_environment_id: "x-environment-id"}
                 @client.request(
                   method: :put,
                   path: ["api/v1-beta/customers/%1$s/entities", id],
-                  body: parsed,
+                  headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+                  body: parsed.except(*header_params.keys),
                   model: Stigg::Models::V1::Events::Beta::Customers::EntityUpsertResponse,
                   options: options
                 )

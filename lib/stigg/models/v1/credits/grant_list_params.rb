@@ -51,7 +51,17 @@ module Stigg
           #   @return [String, nil]
           optional :resource_id, String
 
-          # @!method initialize(customer_id:, after: nil, before: nil, created_at: nil, currency_id: nil, limit: nil, resource_id: nil, request_options: {})
+          # @!attribute x_account_id
+          #
+          #   @return [String, nil]
+          optional :x_account_id, String
+
+          # @!attribute x_environment_id
+          #
+          #   @return [String, nil]
+          optional :x_environment_id, String
+
+          # @!method initialize(customer_id:, after: nil, before: nil, created_at: nil, currency_id: nil, limit: nil, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
           #   Some parameter documentations has been truncated, see
           #   {Stigg::Models::V1::Credits::GrantListParams} for more details.
           #
@@ -68,6 +78,10 @@ module Stigg
           #   @param limit [Integer] Maximum number of items to return
           #
           #   @param resource_id [String] Filter by resource ID. When omitted, only grants without a resource are returned
+          #
+          #   @param x_account_id [String]
+          #
+          #   @param x_environment_id [String]
           #
           #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 

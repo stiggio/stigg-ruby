@@ -7,7 +7,9 @@ module Stigg
           display_name: String,
           description: String?,
           metadata: ::Hash[Symbol, String]?,
-          multiple_subscriptions: bool
+          multiple_subscriptions: bool,
+          x_account_id: String,
+          x_environment_id: String
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -27,12 +29,22 @@ module Stigg
 
         def multiple_subscriptions=: (bool) -> bool
 
+        attr_reader x_account_id: String?
+
+        def x_account_id=: (String) -> String
+
+        attr_reader x_environment_id: String?
+
+        def x_environment_id=: (String) -> String
+
         def initialize: (
           id: String,
           display_name: String,
           ?description: String?,
           ?metadata: ::Hash[Symbol, String]?,
           ?multiple_subscriptions: bool,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> void
 
@@ -42,6 +54,8 @@ module Stigg
           description: String?,
           metadata: ::Hash[Symbol, String]?,
           multiple_subscriptions: bool,
+          x_account_id: String,
+          x_environment_id: String,
           request_options: Stigg::RequestOptions
         }
       end

@@ -12,7 +12,9 @@ module Stigg
           limit: Integer,
           resource_id: String,
           start_date: Time,
-          time_range: Stigg::Models::V1::CreditGetUsageParams::time_range
+          time_range: Stigg::Models::V1::CreditGetUsageParams::time_range,
+          x_account_id: String,
+          x_environment_id: String
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -60,6 +62,14 @@ module Stigg
           Stigg::Models::V1::CreditGetUsageParams::time_range
         ) -> Stigg::Models::V1::CreditGetUsageParams::time_range
 
+        attr_reader x_account_id: String?
+
+        def x_account_id=: (String) -> String
+
+        attr_reader x_environment_id: String?
+
+        def x_environment_id=: (String) -> String
+
         def initialize: (
           customer_id: String,
           ?after: String,
@@ -71,6 +81,8 @@ module Stigg
           ?resource_id: String,
           ?start_date: Time,
           ?time_range: Stigg::Models::V1::CreditGetUsageParams::time_range,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> void
 
@@ -85,6 +97,8 @@ module Stigg
           resource_id: String,
           start_date: Time,
           time_range: Stigg::Models::V1::CreditGetUsageParams::time_range,
+          x_account_id: String,
+          x_environment_id: String,
           request_options: Stigg::RequestOptions
         }
 

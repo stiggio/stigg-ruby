@@ -3,7 +3,13 @@ module Stigg
     module V1
       module Customers
         type integration_update_params =
-          { id: String, integration_id: String, synced_entity_id: String? }
+          {
+            id: String,
+            integration_id: String,
+            synced_entity_id: String?,
+            x_account_id: String,
+            x_environment_id: String
+          }
           & Stigg::Internal::Type::request_parameters
 
         class IntegrationUpdateParams < Stigg::Internal::Type::BaseModel
@@ -16,10 +22,20 @@ module Stigg
 
           attr_accessor synced_entity_id: String?
 
+          attr_reader x_account_id: String?
+
+          def x_account_id=: (String) -> String
+
+          attr_reader x_environment_id: String?
+
+          def x_environment_id=: (String) -> String
+
           def initialize: (
             id: String,
             integration_id: String,
             synced_entity_id: String?,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> void
 
@@ -27,6 +43,8 @@ module Stigg
             id: String,
             integration_id: String,
             synced_entity_id: String?,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions
           }
         end

@@ -44,7 +44,17 @@ module Stigg
         #   @return [String, nil]
         optional :name, String
 
-        # @!method initialize(after: nil, before: nil, created_at: nil, email: nil, limit: nil, name: nil, request_options: {})
+        # @!attribute x_account_id
+        #
+        #   @return [String, nil]
+        optional :x_account_id, String
+
+        # @!attribute x_environment_id
+        #
+        #   @return [String, nil]
+        optional :x_environment_id, String
+
+        # @!method initialize(after: nil, before: nil, created_at: nil, email: nil, limit: nil, name: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #   @param after [String] Return items that come after this cursor
         #
         #   @param before [String] Return items that come before this cursor
@@ -56,6 +66,10 @@ module Stigg
         #   @param limit [Integer] Maximum number of items to return
         #
         #   @param name [String] Filter by exact customer name
+        #
+        #   @param x_account_id [String]
+        #
+        #   @param x_environment_id [String]
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 

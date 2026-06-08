@@ -3,7 +3,12 @@ module Stigg
     module V1
       module Addons
         type entitlement_delete_params =
-          { addon_id: String, id: String }
+          {
+            addon_id: String,
+            id: String,
+            x_account_id: String,
+            x_environment_id: String
+          }
           & Stigg::Internal::Type::request_parameters
 
         class EntitlementDeleteParams < Stigg::Internal::Type::BaseModel
@@ -14,15 +19,27 @@ module Stigg
 
           attr_accessor id: String
 
+          attr_reader x_account_id: String?
+
+          def x_account_id=: (String) -> String
+
+          attr_reader x_environment_id: String?
+
+          def x_environment_id=: (String) -> String
+
           def initialize: (
             addon_id: String,
             id: String,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> void
 
           def to_hash: -> {
             addon_id: String,
             id: String,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions
           }
         end

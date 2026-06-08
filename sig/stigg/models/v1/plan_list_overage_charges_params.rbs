@@ -2,7 +2,14 @@ module Stigg
   module Models
     module V1
       type plan_list_overage_charges_params =
-        { id: String, after: String, before: String, limit: Integer }
+        {
+          id: String,
+          after: String,
+          before: String,
+          limit: Integer,
+          x_account_id: String,
+          x_environment_id: String
+        }
         & Stigg::Internal::Type::request_parameters
 
       class PlanListOverageChargesParams < Stigg::Internal::Type::BaseModel
@@ -23,11 +30,21 @@ module Stigg
 
         def limit=: (Integer) -> Integer
 
+        attr_reader x_account_id: String?
+
+        def x_account_id=: (String) -> String
+
+        attr_reader x_environment_id: String?
+
+        def x_environment_id=: (String) -> String
+
         def initialize: (
           id: String,
           ?after: String,
           ?before: String,
           ?limit: Integer,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> void
 
@@ -36,6 +53,8 @@ module Stigg
           after: String,
           before: String,
           limit: Integer,
+          x_account_id: String,
+          x_environment_id: String,
           request_options: Stigg::RequestOptions
         }
       end

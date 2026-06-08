@@ -9,11 +9,15 @@ module Stigg
             payment_method_id: String,
             vendor_identifier: Stigg::Models::V1::Customers::PaymentMethodAttachParams::vendor_identifier,
             ?billing_currency: Stigg::Models::V1::Customers::PaymentMethodAttachParams::billing_currency?,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::V1::CustomerResponse
 
           def detach: (
             String id,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::V1::CustomerResponse
 

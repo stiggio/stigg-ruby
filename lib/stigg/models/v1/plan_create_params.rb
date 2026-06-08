@@ -74,7 +74,17 @@ module Stigg
         #   @return [Symbol, Stigg::Models::V1::PlanCreateParams::Status, nil]
         optional :status, enum: -> { Stigg::V1::PlanCreateParams::Status }
 
-        # @!method initialize(id:, display_name:, product_id:, billing_id: nil, default_trial_config: nil, description: nil, metadata: nil, parent_plan_id: nil, pricing_type: nil, status: nil, request_options: {})
+        # @!attribute x_account_id
+        #
+        #   @return [String, nil]
+        optional :x_account_id, String
+
+        # @!attribute x_environment_id
+        #
+        #   @return [String, nil]
+        optional :x_environment_id, String
+
+        # @!method initialize(id:, display_name:, product_id:, billing_id: nil, default_trial_config: nil, description: nil, metadata: nil, parent_plan_id: nil, pricing_type: nil, status: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #   @param id [String] The unique identifier for the entity
         #
         #   @param display_name [String] The display name of the package
@@ -94,6 +104,10 @@ module Stigg
         #   @param pricing_type [Symbol, Stigg::Models::V1::PlanCreateParams::PricingType, nil] The pricing type of the package
         #
         #   @param status [Symbol, Stigg::Models::V1::PlanCreateParams::Status] The status of the package
+        #
+        #   @param x_account_id [String]
+        #
+        #   @param x_environment_id [String]
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 

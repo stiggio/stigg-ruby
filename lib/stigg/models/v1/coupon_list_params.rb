@@ -50,7 +50,17 @@ module Stigg
         #   @return [Symbol, Stigg::Models::V1::CouponListParams::Type, nil]
         optional :type, enum: -> { Stigg::V1::CouponListParams::Type }
 
-        # @!method initialize(id: nil, after: nil, before: nil, created_at: nil, limit: nil, status: nil, type: nil, request_options: {})
+        # @!attribute x_account_id
+        #
+        #   @return [String, nil]
+        optional :x_account_id, String
+
+        # @!attribute x_environment_id
+        #
+        #   @return [String, nil]
+        optional :x_environment_id, String
+
+        # @!method initialize(id: nil, after: nil, before: nil, created_at: nil, limit: nil, status: nil, type: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #   @param id [String] Filter by entity ID
         #
         #   @param after [String] Return items that come after this cursor
@@ -64,6 +74,10 @@ module Stigg
         #   @param status [Array<Symbol, Stigg::Models::V1::CouponListParams::Status>] Filter by coupon status. Supports comma-separated values for multiple statuses
         #
         #   @param type [Symbol, Stigg::Models::V1::CouponListParams::Type] Filter by coupon type (FIXED or PERCENTAGE)
+        #
+        #   @param x_account_id [String]
+        #
+        #   @param x_environment_id [String]
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 

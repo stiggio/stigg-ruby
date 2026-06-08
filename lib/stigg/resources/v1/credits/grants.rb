@@ -6,40 +6,47 @@ module Stigg
       class Credits
         # Operations related to credit grants
         class Grants
+          # Some parameter documentations has been truncated, see
+          # {Stigg::Models::V1::Credits::GrantCreateParams} for more details.
+          #
           # Creates a new credit grant for a customer with specified amount, type, and
           # optional billing configuration.
           #
-          # @overload create(amount:, currency_id:, customer_id:, display_name:, grant_type:, await_payment_confirmation: nil, billing_information: nil, comment: nil, cost: nil, effective_at: nil, expire_at: nil, metadata: nil, payment_collection_method: nil, priority: nil, resource_id: nil, request_options: {})
+          # @overload create(amount:, currency_id:, customer_id:, display_name:, grant_type:, await_payment_confirmation: nil, billing_information: nil, comment: nil, cost: nil, effective_at: nil, expire_at: nil, metadata: nil, payment_collection_method: nil, priority: nil, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
           #
-          # @param amount [Float] The credit amount to grant
+          # @param amount [Float] Body param: The credit amount to grant
           #
-          # @param currency_id [String] The credit currency ID (required)
+          # @param currency_id [String] Body param: The credit currency ID (required)
           #
-          # @param customer_id [String] The customer ID to grant credits to (required)
+          # @param customer_id [String] Body param: The customer ID to grant credits to (required)
           #
-          # @param display_name [String] The display name for the credit grant
+          # @param display_name [String] Body param: The display name for the credit grant
           #
-          # @param grant_type [Symbol, Stigg::Models::V1::Credits::GrantCreateParams::GrantType] The type of credit grant (PAID, PROMOTIONAL)
+          # @param grant_type [Symbol, Stigg::Models::V1::Credits::GrantCreateParams::GrantType] Body param: The type of credit grant (PAID, PROMOTIONAL)
           #
-          # @param await_payment_confirmation [Boolean] Whether to wait for payment confirmation before returning (default: true)
+          # @param await_payment_confirmation [Boolean] Body param: Whether to wait for payment confirmation before returning (default:
           #
-          # @param billing_information [Stigg::Models::V1::Credits::GrantCreateParams::BillingInformation] Billing information for the credit grant
+          # @param billing_information [Stigg::Models::V1::Credits::GrantCreateParams::BillingInformation] Body param: Billing information for the credit grant
           #
-          # @param comment [String] An optional comment on the credit grant
+          # @param comment [String] Body param: An optional comment on the credit grant
           #
-          # @param cost [Stigg::Models::V1::Credits::GrantCreateParams::Cost] The monetary cost of the credit grant
+          # @param cost [Stigg::Models::V1::Credits::GrantCreateParams::Cost] Body param: The monetary cost of the credit grant
           #
-          # @param effective_at [Time] The date when the credit grant becomes effective
+          # @param effective_at [Time] Body param: The date when the credit grant becomes effective
           #
-          # @param expire_at [Time] The date when the credit grant expires
+          # @param expire_at [Time] Body param: The date when the credit grant expires
           #
-          # @param metadata [Hash{Symbol=>String}] Additional metadata for the credit grant
+          # @param metadata [Hash{Symbol=>String}] Body param: Additional metadata for the credit grant
           #
-          # @param payment_collection_method [Symbol, Stigg::Models::V1::Credits::GrantCreateParams::PaymentCollectionMethod] The payment collection method (CHARGE, INVOICE, NONE)
+          # @param payment_collection_method [Symbol, Stigg::Models::V1::Credits::GrantCreateParams::PaymentCollectionMethod] Body param: The payment collection method (CHARGE, INVOICE, NONE)
           #
-          # @param priority [Integer] The priority of the credit grant (lower number = higher priority)
+          # @param priority [Integer] Body param: The priority of the credit grant (lower number = higher priority)
           #
-          # @param resource_id [String] The resource ID to scope the grant to
+          # @param resource_id [String] Body param: The resource ID to scope the grant to
+          #
+          # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          #
+          # @param x_environment_id [String] Header param: Environment ID — required when authenticating with a user JWT (Bea
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
@@ -48,10 +55,12 @@ module Stigg
           # @see Stigg::Models::V1::Credits::GrantCreateParams
           def create(params)
             parsed, options = Stigg::V1::Credits::GrantCreateParams.dump_request(params)
+            header_params = {x_account_id: "x-account-id", x_environment_id: "x-environment-id"}
             @client.request(
               method: :post,
               path: "api/v1/credits/grants",
-              body: parsed,
+              headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+              body: parsed.except(*header_params.keys),
               model: Stigg::V1::Credits::CreditGrantResponse,
               options: options
             )
@@ -62,21 +71,25 @@ module Stigg
           #
           # Retrieves a paginated list of credit grants for a customer.
           #
-          # @overload list(customer_id:, after: nil, before: nil, created_at: nil, currency_id: nil, limit: nil, resource_id: nil, request_options: {})
+          # @overload list(customer_id:, after: nil, before: nil, created_at: nil, currency_id: nil, limit: nil, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
           #
-          # @param customer_id [String] Filter by customer ID (required)
+          # @param customer_id [String] Query param: Filter by customer ID (required)
           #
-          # @param after [String] Return items that come after this cursor
+          # @param after [String] Query param: Return items that come after this cursor
           #
-          # @param before [String] Return items that come before this cursor
+          # @param before [String] Query param: Return items that come before this cursor
           #
-          # @param created_at [Stigg::Models::V1::Credits::GrantListParams::CreatedAt] Filter by creation date using range operators: gt, gte, lt, lte
+          # @param created_at [Stigg::Models::V1::Credits::GrantListParams::CreatedAt] Query param: Filter by creation date using range operators: gt, gte, lt, lte
           #
-          # @param currency_id [String] Filter by currency ID
+          # @param currency_id [String] Query param: Filter by currency ID
           #
-          # @param limit [Integer] Maximum number of items to return
+          # @param limit [Integer] Query param: Maximum number of items to return
           #
-          # @param resource_id [String] Filter by resource ID. When omitted, only grants without a resource are returned
+          # @param resource_id [String] Query param: Filter by resource ID. When omitted, only grants without a resource
+          #
+          # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          #
+          # @param x_environment_id [String] Header param: Environment ID — required when authenticating with a user JWT (Bea
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
@@ -84,8 +97,9 @@ module Stigg
           #
           # @see Stigg::Models::V1::Credits::GrantListParams
           def list(params)
+            query_params = [:customer_id, :after, :before, :created_at, :currency_id, :limit, :resource_id]
             parsed, options = Stigg::V1::Credits::GrantListParams.dump_request(params)
-            query = Stigg::Internal::Util.encode_query_params(parsed)
+            query = Stigg::Internal::Util.encode_query_params(parsed.slice(*query_params))
             @client.request(
               method: :get,
               path: "api/v1/credits/grants",
@@ -95,18 +109,29 @@ module Stigg
                 currency_id: "currencyId",
                 resource_id: "resourceId"
               ),
+              headers: parsed.except(*query_params).transform_keys(
+                x_account_id: "x-account-id",
+                x_environment_id: "x-environment-id"
+              ),
               page: Stigg::Internal::MyCursorIDPage,
               model: Stigg::Models::V1::Credits::GrantListResponse,
               options: options
             )
           end
 
+          # Some parameter documentations has been truncated, see
+          # {Stigg::Models::V1::Credits::GrantVoidParams} for more details.
+          #
           # Voids an existing credit grant, preventing further consumption of the remaining
           # credits.
           #
-          # @overload void(id, request_options: {})
+          # @overload void(id, x_account_id: nil, x_environment_id: nil, request_options: {})
           #
           # @param id [String] The unique identifier of the entity
+          #
+          # @param x_account_id [String] Account ID — optional when authenticating with a user JWT (Bearer token); falls
+          #
+          # @param x_environment_id [String] Environment ID — required when authenticating with a user JWT (Bearer token) on
           #
           # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
           #
@@ -114,11 +139,16 @@ module Stigg
           #
           # @see Stigg::Models::V1::Credits::GrantVoidParams
           def void(id, params = {})
+            parsed, options = Stigg::V1::Credits::GrantVoidParams.dump_request(params)
             @client.request(
               method: :post,
               path: ["api/v1/credits/grants/%1$s/void", id],
+              headers: parsed.transform_keys(
+                x_account_id: "x-account-id",
+                x_environment_id: "x-environment-id"
+              ),
               model: Stigg::V1::Credits::CreditGrantResponse,
-              options: params[:request_options]
+              options: options
             )
           end
 

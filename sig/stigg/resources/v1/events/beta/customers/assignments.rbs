@@ -12,12 +12,16 @@ module Stigg
                 ?capability_id: String,
                 ?entity_id: String,
                 ?limit: Integer,
+                ?x_account_id: String,
+                ?x_environment_id: String,
                 ?request_options: Stigg::request_opts
               ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::Events::Beta::Customers::AssignmentListResponse]
 
               def upsert: (
                 String id,
                 assignments: ::Array[Stigg::V1::Events::Beta::Customers::AssignmentUpsertParams::Assignment],
+                ?x_account_id: String,
+                ?x_environment_id: String,
                 ?request_options: Stigg::request_opts
               ) -> Stigg::Models::V1::Events::Beta::Customers::AssignmentUpsertResponse
 

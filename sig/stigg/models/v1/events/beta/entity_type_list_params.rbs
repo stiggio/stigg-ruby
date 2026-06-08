@@ -4,7 +4,13 @@ module Stigg
       module Events
         module Beta
           type entity_type_list_params =
-            { after: String, before: String, limit: Integer }
+            {
+              after: String,
+              before: String,
+              limit: Integer,
+              x_account_id: String,
+              x_environment_id: String
+            }
             & Stigg::Internal::Type::request_parameters
 
           class EntityTypeListParams < Stigg::Internal::Type::BaseModel
@@ -23,10 +29,20 @@ module Stigg
 
             def limit=: (Integer) -> Integer
 
+            attr_reader x_account_id: String?
+
+            def x_account_id=: (String) -> String
+
+            attr_reader x_environment_id: String?
+
+            def x_environment_id=: (String) -> String
+
             def initialize: (
               ?after: String,
               ?before: String,
               ?limit: Integer,
+              ?x_account_id: String,
+              ?x_environment_id: String,
               ?request_options: Stigg::request_opts
             ) -> void
 
@@ -34,6 +50,8 @@ module Stigg
               after: String,
               before: String,
               limit: Integer,
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions
             }
           end

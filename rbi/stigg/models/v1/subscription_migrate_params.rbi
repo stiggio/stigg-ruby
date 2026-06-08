@@ -36,11 +36,25 @@ module Stigg
         end
         attr_writer :subscription_migration_time
 
+        sig { returns(T.nilable(String)) }
+        attr_reader :x_account_id
+
+        sig { params(x_account_id: String).void }
+        attr_writer :x_account_id
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :x_environment_id
+
+        sig { params(x_environment_id: String).void }
+        attr_writer :x_environment_id
+
         sig do
           params(
             id: String,
             subscription_migration_time:
               Stigg::V1::SubscriptionMigrateParams::SubscriptionMigrationTime::OrSymbol,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -48,6 +62,8 @@ module Stigg
           id:,
           # When to migrate (immediate or period end)
           subscription_migration_time: nil,
+          x_account_id: nil,
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -58,6 +74,8 @@ module Stigg
               id: String,
               subscription_migration_time:
                 Stigg::V1::SubscriptionMigrateParams::SubscriptionMigrationTime::OrSymbol,
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions
             }
           )

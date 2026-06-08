@@ -43,7 +43,17 @@ module Stigg
                    api_name: :billingCurrency,
                    nil?: true
 
-          # @!method initialize(id:, integration_id:, payment_method_id:, vendor_identifier:, billing_currency: nil, request_options: {})
+          # @!attribute x_account_id
+          #
+          #   @return [String, nil]
+          optional :x_account_id, String
+
+          # @!attribute x_environment_id
+          #
+          #   @return [String, nil]
+          optional :x_environment_id, String
+
+          # @!method initialize(id:, integration_id:, payment_method_id:, vendor_identifier:, billing_currency: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
           #   @param id [String]
           #
           #   @param integration_id [String] Integration details
@@ -53,6 +63,10 @@ module Stigg
           #   @param vendor_identifier [Symbol, Stigg::Models::V1::Customers::PaymentMethodAttachParams::VendorIdentifier] The vendor identifier of integration
           #
           #   @param billing_currency [Symbol, Stigg::Models::V1::Customers::PaymentMethodAttachParams::BillingCurrency, nil] Customers selected currency
+          #
+          #   @param x_account_id [String]
+          #
+          #   @param x_environment_id [String]
           #
           #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 

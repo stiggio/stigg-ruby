@@ -5,6 +5,8 @@ module Stigg
         class Invoice
           def mark_as_paid: (
             String id,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::Models::V1::Subscriptions::InvoiceMarkAsPaidResponse
 

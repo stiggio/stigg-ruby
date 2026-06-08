@@ -14,7 +14,9 @@ module Stigg
           metadata: ::Hash[Symbol, String],
           name: String?,
           passthrough: Stigg::V1::CustomerProvisionParams::Passthrough,
-          timezone: String?
+          timezone: String?,
+          x_account_id: String,
+          x_environment_id: String
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -56,6 +58,14 @@ module Stigg
 
         attr_accessor timezone: String?
 
+        attr_reader x_account_id: String?
+
+        def x_account_id=: (String) -> String
+
+        attr_reader x_environment_id: String?
+
+        def x_environment_id=: (String) -> String
+
         def initialize: (
           id: String,
           ?billing_currency: Stigg::Models::V1::CustomerProvisionParams::billing_currency?,
@@ -69,6 +79,8 @@ module Stigg
           ?name: String?,
           ?passthrough: Stigg::V1::CustomerProvisionParams::Passthrough,
           ?timezone: String?,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> void
 
@@ -85,6 +97,8 @@ module Stigg
           name: String?,
           passthrough: Stigg::V1::CustomerProvisionParams::Passthrough,
           timezone: String?,
+          x_account_id: String,
+          x_environment_id: String,
           request_options: Stigg::RequestOptions
         }
 

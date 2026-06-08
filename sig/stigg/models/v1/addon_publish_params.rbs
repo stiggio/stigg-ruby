@@ -4,7 +4,9 @@ module Stigg
       type addon_publish_params =
         {
           id: String,
-          migration_type: Stigg::Models::V1::AddonPublishParams::migration_type
+          migration_type: Stigg::Models::V1::AddonPublishParams::migration_type,
+          x_account_id: String,
+          x_environment_id: String
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -16,15 +18,27 @@ module Stigg
 
         attr_accessor migration_type: Stigg::Models::V1::AddonPublishParams::migration_type
 
+        attr_reader x_account_id: String?
+
+        def x_account_id=: (String) -> String
+
+        attr_reader x_environment_id: String?
+
+        def x_environment_id=: (String) -> String
+
         def initialize: (
           id: String,
           migration_type: Stigg::Models::V1::AddonPublishParams::migration_type,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> void
 
         def to_hash: -> {
           id: String,
           migration_type: Stigg::Models::V1::AddonPublishParams::migration_type,
+          x_account_id: String,
+          x_environment_id: String,
           request_options: Stigg::RequestOptions
         }
 

@@ -11,7 +11,9 @@ module Stigg
           max_quantity: Integer?,
           metadata: ::Hash[Symbol, String],
           pricing_type: Stigg::Models::V1::AddonCreateParams::pricing_type?,
-          status: Stigg::Models::V1::AddonCreateParams::status
+          status: Stigg::Models::V1::AddonCreateParams::status,
+          x_account_id: String,
+          x_environment_id: String
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -43,6 +45,14 @@ module Stigg
           Stigg::Models::V1::AddonCreateParams::status
         ) -> Stigg::Models::V1::AddonCreateParams::status
 
+        attr_reader x_account_id: String?
+
+        def x_account_id=: (String) -> String
+
+        attr_reader x_environment_id: String?
+
+        def x_environment_id=: (String) -> String
+
         def initialize: (
           id: String,
           display_name: String,
@@ -53,6 +63,8 @@ module Stigg
           ?metadata: ::Hash[Symbol, String],
           ?pricing_type: Stigg::Models::V1::AddonCreateParams::pricing_type?,
           ?status: Stigg::Models::V1::AddonCreateParams::status,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> void
 
@@ -66,6 +78,8 @@ module Stigg
           metadata: ::Hash[Symbol, String],
           pricing_type: Stigg::Models::V1::AddonCreateParams::pricing_type?,
           status: Stigg::Models::V1::AddonCreateParams::status,
+          x_account_id: String,
+          x_environment_id: String,
           request_options: Stigg::RequestOptions
         }
 

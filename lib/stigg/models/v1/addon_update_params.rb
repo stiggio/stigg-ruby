@@ -61,7 +61,17 @@ module Stigg
         #   @return [Symbol, Stigg::Models::V1::AddonUpdateParams::Status, nil]
         optional :status, enum: -> { Stigg::V1::AddonUpdateParams::Status }
 
-        # @!method initialize(id:, billing_id: nil, charges: nil, dependencies: nil, description: nil, display_name: nil, max_quantity: nil, metadata: nil, status: nil, request_options: {})
+        # @!attribute x_account_id
+        #
+        #   @return [String, nil]
+        optional :x_account_id, String
+
+        # @!attribute x_environment_id
+        #
+        #   @return [String, nil]
+        optional :x_environment_id, String
+
+        # @!method initialize(id:, billing_id: nil, charges: nil, dependencies: nil, description: nil, display_name: nil, max_quantity: nil, metadata: nil, status: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #   @param id [String]
         #
         #   @param billing_id [String, nil] The unique identifier for the entity in the billing provider
@@ -79,6 +89,10 @@ module Stigg
         #   @param metadata [Hash{Symbol=>String}] Metadata associated with the entity
         #
         #   @param status [Symbol, Stigg::Models::V1::AddonUpdateParams::Status] The status of the package
+        #
+        #   @param x_account_id [String]
+        #
+        #   @param x_environment_id [String]
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 

@@ -8,11 +8,15 @@ module Stigg
               ?after: String,
               ?before: String,
               ?limit: Integer,
+              ?x_account_id: String,
+              ?x_environment_id: String,
               ?request_options: Stigg::request_opts
             ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::Events::Beta::EntityTypeListResponse]
 
             def upsert: (
               types: ::Array[Stigg::V1::Events::Beta::EntityTypeUpsertParams::Type],
+              ?x_account_id: String,
+              ?x_environment_id: String,
               ?request_options: Stigg::request_opts
             ) -> Stigg::Models::V1::Events::Beta::EntityTypeUpsertResponse
 

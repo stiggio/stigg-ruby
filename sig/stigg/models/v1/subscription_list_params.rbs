@@ -11,7 +11,9 @@ module Stigg
           plan_id: String,
           pricing_type: ::Array[Stigg::Models::V1::SubscriptionListParams::pricing_type],
           resource_id: String,
-          status: ::Array[Stigg::Models::V1::SubscriptionListParams::status]
+          status: ::Array[Stigg::Models::V1::SubscriptionListParams::status],
+          x_account_id: String,
+          x_environment_id: String
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -61,6 +63,14 @@ module Stigg
           ::Array[Stigg::Models::V1::SubscriptionListParams::status]
         ) -> ::Array[Stigg::Models::V1::SubscriptionListParams::status]
 
+        attr_reader x_account_id: String?
+
+        def x_account_id=: (String) -> String
+
+        attr_reader x_environment_id: String?
+
+        def x_environment_id=: (String) -> String
+
         def initialize: (
           ?after: String,
           ?before: String,
@@ -71,6 +81,8 @@ module Stigg
           ?pricing_type: ::Array[Stigg::Models::V1::SubscriptionListParams::pricing_type],
           ?resource_id: String,
           ?status: ::Array[Stigg::Models::V1::SubscriptionListParams::status],
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> void
 
@@ -84,6 +96,8 @@ module Stigg
           pricing_type: ::Array[Stigg::Models::V1::SubscriptionListParams::pricing_type],
           resource_id: String,
           status: ::Array[Stigg::Models::V1::SubscriptionListParams::status],
+          x_account_id: String,
+          x_environment_id: String,
           request_options: Stigg::RequestOptions
         }
 

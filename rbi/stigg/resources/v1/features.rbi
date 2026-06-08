@@ -9,12 +9,21 @@ module Stigg
         sig do
           params(
             id: String,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Feature)
         end
         def archive_feature(
           # The unique identifier of the entity
           id,
+          # Account ID — optional when authenticating with a user JWT (Bearer token); falls
+          # back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Environment ID — required when authenticating with a user JWT (Bearer token) on
+          # environment-scoped endpoints. Ignored for API-key auth (env is intrinsic to the
+          # key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -42,32 +51,41 @@ module Stigg
               T.nilable(
                 Stigg::V1::FeatureCreateFeatureParams::UnitTransformation::OrHash
               ),
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Feature)
         end
         def create_feature(
-          # The unique identifier for the feature
+          # Body param: The unique identifier for the feature
           id:,
-          # The display name for the feature
+          # Body param: The display name for the feature
           display_name:,
-          # The type of the feature
+          # Body param: The type of the feature
           feature_type:,
-          # The description for the feature
+          # Body param: The description for the feature
           description: nil,
-          # The configuration data for the feature
+          # Body param: The configuration data for the feature
           enum_configuration: nil,
-          # The status of the feature
+          # Body param: The status of the feature
           feature_status: nil,
-          # The units for the feature
+          # Body param: The units for the feature
           feature_units: nil,
-          # The plural units for the feature
+          # Body param: The plural units for the feature
           feature_units_plural: nil,
-          # The additional metadata for the feature
+          # Body param: The additional metadata for the feature
           metadata: nil,
-          # The meter type for the feature
+          # Body param: The meter type for the feature
           meter_type: nil,
-          # Unit transformation to be applied to the reported usage
+          # Body param: Unit transformation to be applied to the reported usage
           unit_transformation: nil,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -90,6 +108,8 @@ module Stigg
               ],
             status:
               T::Array[Stigg::V1::FeatureListFeaturesParams::Status::OrSymbol],
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(
             Stigg::Internal::MyCursorIDPage[
@@ -98,22 +118,32 @@ module Stigg
           )
         end
         def list_features(
-          # Filter by entity ID
+          # Query param: Filter by entity ID
           id: nil,
-          # Return items that come after this cursor
+          # Query param: Return items that come after this cursor
           after: nil,
-          # Return items that come before this cursor
+          # Query param: Return items that come before this cursor
           before: nil,
-          # Filter by creation date using range operators: gt, gte, lt, lte
+          # Query param: Filter by creation date using range operators: gt, gte, lt, lte
           created_at: nil,
-          # Filter by feature type. Supports comma-separated values for multiple types
+          # Query param: Filter by feature type. Supports comma-separated values for
+          # multiple types
           feature_type: nil,
-          # Maximum number of items to return
+          # Query param: Maximum number of items to return
           limit: nil,
-          # Filter by meter type. Supports comma-separated values for multiple types
+          # Query param: Filter by meter type. Supports comma-separated values for multiple
+          # types
           meter_type: nil,
-          # Filter by feature status. Supports comma-separated values for multiple statuses
+          # Query param: Filter by feature status. Supports comma-separated values for
+          # multiple statuses
           status: nil,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -122,12 +152,21 @@ module Stigg
         sig do
           params(
             id: String,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Feature)
         end
         def retrieve_feature(
           # The unique identifier of the entity
           id,
+          # Account ID — optional when authenticating with a user JWT (Bearer token); falls
+          # back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Environment ID — required when authenticating with a user JWT (Bearer token) on
+          # environment-scoped endpoints. Ignored for API-key auth (env is intrinsic to the
+          # key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -136,12 +175,21 @@ module Stigg
         sig do
           params(
             id: String,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Feature)
         end
         def unarchive_feature(
           # The unique identifier of the entity
           id,
+          # Account ID — optional when authenticating with a user JWT (Bearer token); falls
+          # back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Environment ID — required when authenticating with a user JWT (Bearer token) on
+          # environment-scoped endpoints. Ignored for API-key auth (env is intrinsic to the
+          # key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -165,27 +213,37 @@ module Stigg
               T.nilable(
                 Stigg::V1::FeatureUpdateFeatureParams::UnitTransformation::OrHash
               ),
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Feature)
         end
         def update_feature(
-          # The unique identifier of the entity
+          # Path param: The unique identifier of the entity
           id,
-          # The description for the feature
+          # Body param: The description for the feature
           description: nil,
-          # The display name for the feature
+          # Body param: The display name for the feature
           display_name: nil,
-          # The configuration data for the feature
+          # Body param: The configuration data for the feature
           enum_configuration: nil,
-          # The units for the feature
+          # Body param: The units for the feature
           feature_units: nil,
-          # The plural units for the feature
+          # Body param: The plural units for the feature
           feature_units_plural: nil,
-          # The additional metadata for the feature
+          # Body param: The additional metadata for the feature
           metadata: nil,
+          # Body param
           meter: nil,
-          # Unit transformation to be applied to the reported usage
+          # Body param: Unit transformation to be applied to the reported usage
           unit_transformation: nil,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end

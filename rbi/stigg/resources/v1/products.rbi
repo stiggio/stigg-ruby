@@ -10,12 +10,21 @@ module Stigg
         sig do
           params(
             id: String,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Product)
         end
         def archive_product(
           # The unique identifier of the entity
           id,
+          # Account ID — optional when authenticating with a user JWT (Bearer token); falls
+          # back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Environment ID — required when authenticating with a user JWT (Bearer token) on
+          # environment-scoped endpoints. Ignored for API-key auth (env is intrinsic to the
+          # key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -28,20 +37,29 @@ module Stigg
             description: T.nilable(String),
             metadata: T.nilable(T::Hash[Symbol, String]),
             multiple_subscriptions: T::Boolean,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Product)
         end
         def create_product(
-          # The unique identifier for the entity
+          # Body param: The unique identifier for the entity
           id:,
-          # Display name of the product
+          # Body param: Display name of the product
           display_name:,
-          # Description of the product
+          # Body param: Description of the product
           description: nil,
-          # Additional metadata for the product
+          # Body param: Additional metadata for the product
           metadata: nil,
-          # Indicates if multiple subscriptions to this product are allowed
+          # Body param: Indicates if multiple subscriptions to this product are allowed
           multiple_subscriptions: nil,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -53,18 +71,27 @@ module Stigg
             target_id: String,
             description: T.nilable(String),
             display_name: String,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Product)
         end
         def duplicate_product(
-          # The unique identifier of the entity
+          # Path param: The unique identifier of the entity
           id,
-          # The unique identifier for the entity
+          # Body param: The unique identifier for the entity
           target_id:,
-          # Description of the product
+          # Body param: Description of the product
           description: nil,
-          # Display name of the product
+          # Body param: Display name of the product
           display_name: nil,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -79,6 +106,8 @@ module Stigg
             limit: Integer,
             status:
               T::Array[Stigg::V1::ProductListProductsParams::Status::OrSymbol],
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(
             Stigg::Internal::MyCursorIDPage[
@@ -87,18 +116,26 @@ module Stigg
           )
         end
         def list_products(
-          # Filter by entity ID
+          # Query param: Filter by entity ID
           id: nil,
-          # Return items that come after this cursor
+          # Query param: Return items that come after this cursor
           after: nil,
-          # Return items that come before this cursor
+          # Query param: Return items that come before this cursor
           before: nil,
-          # Filter by creation date using range operators: gt, gte, lt, lte
+          # Query param: Filter by creation date using range operators: gt, gte, lt, lte
           created_at: nil,
-          # Maximum number of items to return
+          # Query param: Maximum number of items to return
           limit: nil,
-          # Filter by product status. Supports comma-separated values for multiple statuses
+          # Query param: Filter by product status. Supports comma-separated values for
+          # multiple statuses
           status: nil,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -107,12 +144,21 @@ module Stigg
         sig do
           params(
             id: String,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Product)
         end
         def unarchive_product(
           # The unique identifier of the entity
           id,
+          # Account ID — optional when authenticating with a user JWT (Bearer token); falls
+          # back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Environment ID — required when authenticating with a user JWT (Bearer token) on
+          # environment-scoped endpoints. Ignored for API-key auth (env is intrinsic to the
+          # key).
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -130,23 +176,33 @@ module Stigg
               Stigg::V1::ProductUpdateProductParams::ProductSettings::OrHash,
             usage_reset_cutoff_rule:
               Stigg::V1::ProductUpdateProductParams::UsageResetCutoffRule::OrHash,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(Stigg::V1::Product)
         end
         def update_product(
-          # The unique identifier of the entity
+          # Path param: The unique identifier of the entity
           id,
-          # Description of the product
+          # Body param: Description of the product
           description: nil,
-          # Display name of the product
+          # Body param: Display name of the product
           display_name: nil,
-          # Additional metadata for the product
+          # Body param: Additional metadata for the product
           metadata: nil,
-          # Indicates if multiple subscriptions to this product are allowed
+          # Body param: Indicates if multiple subscriptions to this product are allowed
           multiple_subscriptions: nil,
+          # Body param
           product_settings: nil,
-          # Rule defining when usage resets upon subscription update.
+          # Body param: Rule defining when usage resets upon subscription update.
           usage_reset_cutoff_rule: nil,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
           request_options: {}
         )
         end

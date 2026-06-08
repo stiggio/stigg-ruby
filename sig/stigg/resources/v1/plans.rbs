@@ -15,11 +15,15 @@ module Stigg
           ?parent_plan_id: String?,
           ?pricing_type: Stigg::Models::V1::PlanCreateParams::pricing_type?,
           ?status: Stigg::Models::V1::PlanCreateParams::status,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Plan
 
         def retrieve: (
           String id,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Plan
 
@@ -33,6 +37,8 @@ module Stigg
           ?display_name: String,
           ?metadata: ::Hash[Symbol, String],
           ?parent_plan_id: String?,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Plan
 
@@ -43,16 +49,22 @@ module Stigg
           ?limit: Integer,
           ?product_id: String,
           ?status: ::Array[Stigg::Models::V1::PlanListParams::status],
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::PlanListResponse]
 
         def archive: (
           String id,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Plan
 
         def create_draft: (
           String id,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::V1::Plan
 
@@ -61,6 +73,8 @@ module Stigg
           ?after: String,
           ?before: String,
           ?limit: Integer,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::PlanListChargesResponse]
 
@@ -69,17 +83,23 @@ module Stigg
           ?after: String,
           ?before: String,
           ?limit: Integer,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::PlanListOverageChargesResponse]
 
         def publish: (
           String id,
           migration_type: Stigg::Models::V1::PlanPublishParams::migration_type,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Models::V1::PlanPublishResponse
 
         def remove_draft: (
           String id,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> Stigg::Models::V1::PlanRemoveDraftResponse
 

@@ -214,6 +214,18 @@ module Stigg
         sig { params(unit_quantity: Integer).void }
         attr_writer :unit_quantity
 
+        sig { returns(T.nilable(String)) }
+        attr_reader :x_account_id
+
+        sig { params(x_account_id: String).void }
+        attr_writer :x_account_id
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :x_environment_id
+
+        sig { params(x_environment_id: String).void }
+        attr_writer :x_environment_id
+
         sig do
           params(
             customer_id: String,
@@ -243,6 +255,8 @@ module Stigg
             trial_override_configuration:
               Stigg::V1::SubscriptionPreviewParams::TrialOverrideConfiguration::OrHash,
             unit_quantity: Integer,
+            x_account_id: String,
+            x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -279,6 +293,8 @@ module Stigg
           trial_override_configuration: nil,
           # Unit quantity for per-unit pricing. Minimum is 0 (zero is allowed).
           unit_quantity: nil,
+          x_account_id: nil,
+          x_environment_id: nil,
           request_options: {}
         )
         end
@@ -309,6 +325,8 @@ module Stigg
               trial_override_configuration:
                 Stigg::V1::SubscriptionPreviewParams::TrialOverrideConfiguration,
               unit_quantity: Integer,
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions
             }
           )

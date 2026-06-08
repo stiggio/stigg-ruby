@@ -9,7 +9,9 @@ module Stigg
           duration_in_months: Integer?,
           metadata: ::Hash[Symbol, String]?,
           name: String,
-          percent_off: Float?
+          percent_off: Float?,
+          x_account_id: String,
+          x_environment_id: String
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -31,6 +33,14 @@ module Stigg
 
         attr_accessor percent_off: Float?
 
+        attr_reader x_account_id: String?
+
+        def x_account_id=: (String) -> String
+
+        attr_reader x_environment_id: String?
+
+        def x_environment_id=: (String) -> String
+
         def initialize: (
           id: String,
           amounts_off: ::Array[Stigg::V1::CouponCreateParams::AmountsOff]?,
@@ -39,6 +49,8 @@ module Stigg
           metadata: ::Hash[Symbol, String]?,
           name: String,
           percent_off: Float?,
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> void
 
@@ -50,6 +62,8 @@ module Stigg
           metadata: ::Hash[Symbol, String]?,
           name: String,
           percent_off: Float?,
+          x_account_id: String,
+          x_environment_id: String,
           request_options: Stigg::RequestOptions
         }
 

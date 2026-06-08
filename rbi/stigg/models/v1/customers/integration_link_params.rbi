@@ -35,6 +35,18 @@ module Stigg
           end
           attr_accessor :vendor_identifier
 
+          sig { returns(T.nilable(String)) }
+          attr_reader :x_account_id
+
+          sig { params(x_account_id: String).void }
+          attr_writer :x_account_id
+
+          sig { returns(T.nilable(String)) }
+          attr_reader :x_environment_id
+
+          sig { params(x_environment_id: String).void }
+          attr_writer :x_environment_id
+
           sig do
             params(
               path_id: String,
@@ -42,6 +54,8 @@ module Stigg
               synced_entity_id: String,
               vendor_identifier:
                 Stigg::V1::Customers::IntegrationLinkParams::VendorIdentifier::OrSymbol,
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions::OrHash
             ).returns(T.attached_class)
           end
@@ -53,6 +67,8 @@ module Stigg
             synced_entity_id:,
             # The vendor identifier of integration
             vendor_identifier:,
+            x_account_id: nil,
+            x_environment_id: nil,
             request_options: {}
           )
           end
@@ -65,6 +81,8 @@ module Stigg
                 synced_entity_id: String,
                 vendor_identifier:
                   Stigg::V1::Customers::IntegrationLinkParams::VendorIdentifier::OrSymbol,
+                x_account_id: String,
+                x_environment_id: String,
                 request_options: Stigg::RequestOptions
               }
             )

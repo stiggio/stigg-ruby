@@ -10,7 +10,9 @@ module Stigg
           feature_type: ::Array[Stigg::Models::V1::FeatureListFeaturesParams::feature_type],
           limit: Integer,
           meter_type: ::Array[Stigg::Models::V1::FeatureListFeaturesParams::meter_type],
-          status: ::Array[Stigg::Models::V1::FeatureListFeaturesParams::status]
+          status: ::Array[Stigg::Models::V1::FeatureListFeaturesParams::status],
+          x_account_id: String,
+          x_environment_id: String
         }
         & Stigg::Internal::Type::request_parameters
 
@@ -58,6 +60,14 @@ module Stigg
           ::Array[Stigg::Models::V1::FeatureListFeaturesParams::status]
         ) -> ::Array[Stigg::Models::V1::FeatureListFeaturesParams::status]
 
+        attr_reader x_account_id: String?
+
+        def x_account_id=: (String) -> String
+
+        attr_reader x_environment_id: String?
+
+        def x_environment_id=: (String) -> String
+
         def initialize: (
           ?id: String,
           ?after: String,
@@ -67,6 +77,8 @@ module Stigg
           ?limit: Integer,
           ?meter_type: ::Array[Stigg::Models::V1::FeatureListFeaturesParams::meter_type],
           ?status: ::Array[Stigg::Models::V1::FeatureListFeaturesParams::status],
+          ?x_account_id: String,
+          ?x_environment_id: String,
           ?request_options: Stigg::request_opts
         ) -> void
 
@@ -79,6 +91,8 @@ module Stigg
           limit: Integer,
           meter_type: ::Array[Stigg::Models::V1::FeatureListFeaturesParams::meter_type],
           status: ::Array[Stigg::Models::V1::FeatureListFeaturesParams::status],
+          x_account_id: String,
+          x_environment_id: String,
           request_options: Stigg::RequestOptions
         }
 
