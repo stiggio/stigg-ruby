@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.20 (2026-06-08)
+
+Full Changelog: [v0.1.0-beta.19...v0.1.0-beta.20](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.19...v0.1.0-beta.20)
+
+### Features
+
+* **STIGG-8103:** support user JWT (Bearer) auth on REST API ([72c5e6b](https://github.com/stiggio/stigg-ruby/commit/72c5e6b71034e8e907e53f57d01afcd7dfd4a69c))
+
 ## 0.1.0-beta.19 (2026-06-08)
 
 Full Changelog: [v0.1.0-beta.18...v0.1.0-beta.19](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.18...v0.1.0-beta.19)
