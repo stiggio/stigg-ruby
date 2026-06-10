@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.21 (2026-06-10)
+
+Full Changelog: [v0.1.0-beta.20...v0.1.0-beta.21](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.20...v0.1.0-beta.21)
+
+### Features
+
+* **api:** add parent_id, scope_entity_ids fields to customers assignments ([758015c](https://github.com/stiggio/stigg-ruby/commit/758015c5491eff6fbda2bf4573cc3dc3159010e1))
+
 ## 0.1.0-beta.20 (2026-06-08)
 
 Full Changelog: [v0.1.0-beta.19...v0.1.0-beta.20](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.19...v0.1.0-beta.20)
