@@ -5,9 +5,6 @@ module Stigg
     class V1
       # Operations related to usage & metering
       class Events
-        sig { returns(Stigg::Resources::V1::Events::Beta) }
-        attr_reader :beta
-
         sig { returns(Stigg::Resources::V1::Events::DataExport) }
         attr_reader :data_export
 

@@ -21,10 +21,24 @@ module Stigg
           #   @return [String, nil]
           optional :destination_type, String, api_name: :destinationType
 
-          # @!method initialize(application_origin:, destination_type: nil, request_options: {})
+          # @!attribute x_account_id
+          #
+          #   @return [String, nil]
+          optional :x_account_id, String
+
+          # @!attribute x_environment_id
+          #
+          #   @return [String, nil]
+          optional :x_environment_id, String
+
+          # @!method initialize(application_origin:, destination_type: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
           #   @param application_origin [String] FE origin the resulting JWT is bound to (provider-side anti-fraud)
           #
           #   @param destination_type [String] Pin the token to a specific warehouse connect flow
+          #
+          #   @param x_account_id [String]
+          #
+          #   @param x_environment_id [String]
           #
           #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
         end

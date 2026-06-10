@@ -5,9 +5,6 @@ module Stigg
     class V1
       # Operations related to usage & metering
       class Events
-        # @return [Stigg::Resources::V1::Events::Beta]
-        attr_reader :beta
-
         # @return [Stigg::Resources::V1::Events::DataExport]
         attr_reader :data_export
 
@@ -48,7 +45,6 @@ module Stigg
         # @param client [Stigg::Client]
         def initialize(client:)
           @client = client
-          @beta = Stigg::Resources::V1::Events::Beta.new(client: client)
           @data_export = Stigg::Resources::V1::Events::DataExport.new(client: client)
         end
       end

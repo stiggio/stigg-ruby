@@ -22,10 +22,24 @@ module Stigg
             #   @return [String]
             required :destination_type, String, api_name: :destinationType
 
-            # @!method initialize(destination_id:, destination_type:, request_options: {})
+            # @!attribute x_account_id
+            #
+            #   @return [String, nil]
+            optional :x_account_id, String
+
+            # @!attribute x_environment_id
+            #
+            #   @return [String, nil]
+            optional :x_environment_id, String
+
+            # @!method initialize(destination_id:, destination_type:, x_account_id: nil, x_environment_id: nil, request_options: {})
             #   @param destination_id [String] The provider destination ID returned by the embedded SDK on connect
             #
             #   @param destination_type [String] The destination type (e.g. snowflake, bigquery)
+            #
+            #   @param x_account_id [String]
+            #
+            #   @param x_environment_id [String]
             #
             #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
           end

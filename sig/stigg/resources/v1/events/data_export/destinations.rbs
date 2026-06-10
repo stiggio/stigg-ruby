@@ -7,11 +7,15 @@ module Stigg
             def create: (
               destination_id: String,
               destination_type: String,
+              ?x_account_id: String,
+              ?x_environment_id: String,
               ?request_options: Stigg::request_opts
             ) -> Stigg::Models::V1::Events::DataExport::DestinationCreateResponse
 
             def delete: (
               String destination_id,
+              ?x_account_id: String,
+              ?x_environment_id: String,
               ?request_options: Stigg::request_opts
             ) -> Stigg::Models::V1::Events::DataExport::DestinationDeleteResponse
 

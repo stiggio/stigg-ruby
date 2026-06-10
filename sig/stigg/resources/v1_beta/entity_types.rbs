@@ -1,0 +1,25 @@
+module Stigg
+  module Resources
+    class V1Beta
+      class EntityTypes
+        def list: (
+          ?after: String,
+          ?before: String,
+          ?limit: Integer,
+          ?x_account_id: String,
+          ?x_environment_id: String,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1Beta::EntityTypeListResponse]
+
+        def upsert: (
+          types: ::Array[Stigg::V1Beta::EntityTypeUpsertParams::Type],
+          ?x_account_id: String,
+          ?x_environment_id: String,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::Models::V1Beta::EntityTypeUpsertResponse
+
+        def initialize: (client: Stigg::Client) -> void
+      end
+    end
+  end
+end

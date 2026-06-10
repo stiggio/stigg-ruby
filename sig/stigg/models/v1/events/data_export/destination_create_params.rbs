@@ -4,7 +4,12 @@ module Stigg
       module Events
         module DataExport
           type destination_create_params =
-            { destination_id: String, destination_type: String }
+            {
+              destination_id: String,
+              destination_type: String,
+              x_account_id: String,
+              x_environment_id: String
+            }
             & Stigg::Internal::Type::request_parameters
 
           class DestinationCreateParams < Stigg::Internal::Type::BaseModel
@@ -15,15 +20,27 @@ module Stigg
 
             attr_accessor destination_type: String
 
+            attr_reader x_account_id: String?
+
+            def x_account_id=: (String) -> String
+
+            attr_reader x_environment_id: String?
+
+            def x_environment_id=: (String) -> String
+
             def initialize: (
               destination_id: String,
               destination_type: String,
+              ?x_account_id: String,
+              ?x_environment_id: String,
               ?request_options: Stigg::request_opts
             ) -> void
 
             def to_hash: -> {
               destination_id: String,
               destination_type: String,
+              x_account_id: String,
+              x_environment_id: String,
               request_options: Stigg::RequestOptions
             }
           end

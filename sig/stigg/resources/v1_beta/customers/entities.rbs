@@ -1,0 +1,55 @@
+module Stigg
+  module Resources
+    class V1Beta
+      class Customers
+        class Entities
+          def retrieve: (
+            String entity_id,
+            id: String,
+            ?x_account_id: String,
+            ?x_environment_id: String,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1Beta::Customers::EntityRetrieveResponse
+
+          def list: (
+            String id,
+            ?after: String,
+            ?before: String,
+            ?include_archived: Stigg::Models::V1Beta::Customers::EntityListParams::include_archived,
+            ?limit: Integer,
+            ?type_ref_id: String,
+            ?x_account_id: String,
+            ?x_environment_id: String,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1Beta::Customers::EntityListResponse]
+
+          def archive: (
+            String id,
+            ids: ::Array[String],
+            ?x_account_id: String,
+            ?x_environment_id: String,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1Beta::Customers::EntityArchiveResponse
+
+          def unarchive: (
+            String id,
+            ids: ::Array[String],
+            ?x_account_id: String,
+            ?x_environment_id: String,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1Beta::Customers::EntityUnarchiveResponse
+
+          def upsert: (
+            String id,
+            entities: ::Array[Stigg::V1Beta::Customers::EntityUpsertParams::Entity],
+            ?x_account_id: String,
+            ?x_environment_id: String,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1Beta::Customers::EntityUpsertResponse
+
+          def initialize: (client: Stigg::Client) -> void
+        end
+      end
+    end
+  end
+end
