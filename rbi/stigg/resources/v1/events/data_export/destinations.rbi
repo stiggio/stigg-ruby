@@ -13,16 +13,25 @@ module Stigg
               params(
                 destination_id: String,
                 destination_type: String,
+                x_account_id: String,
+                x_environment_id: String,
                 request_options: Stigg::RequestOptions::OrHash
               ).returns(
                 Stigg::Models::V1::Events::DataExport::DestinationCreateResponse
               )
             end
             def create(
-              # The provider destination ID returned by the embedded SDK on connect
+              # Body param: The provider destination ID returned by the embedded SDK on connect
               destination_id:,
-              # The destination type (e.g. snowflake, bigquery)
+              # Body param: The destination type (e.g. snowflake, bigquery)
               destination_type:,
+              # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+              # token); falls back to the user's first membership. Ignored for API-key auth.
+              x_account_id: nil,
+              # Header param: Environment ID — required when authenticating with a user JWT
+              # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+              # intrinsic to the key).
+              x_environment_id: nil,
               request_options: {}
             )
             end
@@ -31,6 +40,8 @@ module Stigg
             sig do
               params(
                 destination_id: String,
+                x_account_id: String,
+                x_environment_id: String,
                 request_options: Stigg::RequestOptions::OrHash
               ).returns(
                 Stigg::Models::V1::Events::DataExport::DestinationDeleteResponse
@@ -39,6 +50,13 @@ module Stigg
             def delete(
               # Provider destination ID to remove
               destination_id,
+              # Account ID — optional when authenticating with a user JWT (Bearer token); falls
+              # back to the user's first membership. Ignored for API-key auth.
+              x_account_id: nil,
+              # Environment ID — required when authenticating with a user JWT (Bearer token) on
+              # environment-scoped endpoints. Ignored for API-key auth (env is intrinsic to the
+              # key).
+              x_environment_id: nil,
               request_options: {}
             )
             end

@@ -8,11 +8,15 @@ module Stigg
           def mint_scoped_token: (
             application_origin: String,
             ?destination_type: String,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::Models::V1::Events::DataExportMintScopedTokenResponse
 
           def trigger_sync: (
             ?destination_id: String,
+            ?x_account_id: String,
+            ?x_environment_id: String,
             ?request_options: Stigg::request_opts
           ) -> Stigg::Models::V1::Events::DataExportTriggerSyncResponse
 

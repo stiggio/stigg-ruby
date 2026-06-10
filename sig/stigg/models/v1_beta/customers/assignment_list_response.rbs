@@ -1,0 +1,83 @@
+module Stigg
+  module Models
+    module V1Beta
+      module Customers
+        type assignment_list_response =
+          {
+            id: String,
+            cadence: Stigg::Models::V1Beta::Customers::AssignmentListResponse::cadence,
+            created_at: Time,
+            entity_id: String,
+            parent_id: String?,
+            scope_entity_ids: ::Array[String],
+            updated_at: Time,
+            usage_limit: Float,
+            currency_id: String,
+            feature_id: String
+          }
+
+        class AssignmentListResponse < Stigg::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor cadence: Stigg::Models::V1Beta::Customers::AssignmentListResponse::cadence
+
+          attr_accessor created_at: Time
+
+          attr_accessor entity_id: String
+
+          attr_accessor parent_id: String?
+
+          attr_accessor scope_entity_ids: ::Array[String]
+
+          attr_accessor updated_at: Time
+
+          attr_accessor usage_limit: Float
+
+          attr_reader currency_id: String?
+
+          def currency_id=: (String) -> String
+
+          attr_reader feature_id: String?
+
+          def feature_id=: (String) -> String
+
+          def initialize: (
+            id: String,
+            cadence: Stigg::Models::V1Beta::Customers::AssignmentListResponse::cadence,
+            created_at: Time,
+            entity_id: String,
+            parent_id: String?,
+            scope_entity_ids: ::Array[String],
+            updated_at: Time,
+            usage_limit: Float,
+            ?currency_id: String,
+            ?feature_id: String
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            cadence: Stigg::Models::V1Beta::Customers::AssignmentListResponse::cadence,
+            created_at: Time,
+            entity_id: String,
+            parent_id: String?,
+            scope_entity_ids: ::Array[String],
+            updated_at: Time,
+            usage_limit: Float,
+            currency_id: String,
+            feature_id: String
+          }
+
+          type cadence = :MONTH
+
+          module Cadence
+            extend Stigg::Internal::Type::Enum
+
+            MONTH: :MONTH
+
+            def self?.values: -> ::Array[Stigg::Models::V1Beta::Customers::AssignmentListResponse::cadence]
+          end
+        end
+      end
+    end
+  end
+end
