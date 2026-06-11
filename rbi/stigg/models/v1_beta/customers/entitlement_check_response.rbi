@@ -399,6 +399,12 @@ module Stigg
                 sig { returns(T::Boolean) }
                 attr_accessor :is_granted
 
+                # External ids of the entities this budget is scoped to. Empty (`[]`) is the
+                # node-wide budget; a non-empty set is the dimension-scoped budget that matched
+                # this request — use it to tell apart multiple budgets on the same entity.
+                sig { returns(T::Array[String]) }
+                attr_accessor :scope_entity_ids
+
                 # Hard usage limit for this node; null when no assignment is configured.
                 sig { returns(T.nilable(Float)) }
                 attr_accessor :usage_limit
@@ -410,6 +416,7 @@ module Stigg
                     current_usage: Float,
                     entity_id: String,
                     is_granted: T::Boolean,
+                    scope_entity_ids: T::Array[String],
                     usage_limit: T.nilable(Float)
                   ).returns(T.attached_class)
                 end
@@ -420,6 +427,10 @@ module Stigg
                   entity_id:,
                   # Whether this node alone permits the requested usage.
                   is_granted:,
+                  # External ids of the entities this budget is scoped to. Empty (`[]`) is the
+                  # node-wide budget; a non-empty set is the dimension-scoped budget that matched
+                  # this request — use it to tell apart multiple budgets on the same entity.
+                  scope_entity_ids:,
                   # Hard usage limit for this node; null when no assignment is configured.
                   usage_limit:
                 )
@@ -431,6 +442,7 @@ module Stigg
                       current_usage: Float,
                       entity_id: String,
                       is_granted: T::Boolean,
+                      scope_entity_ids: T::Array[String],
                       usage_limit: T.nilable(Float)
                     }
                   )
@@ -1005,6 +1017,12 @@ module Stigg
                 sig { returns(T::Boolean) }
                 attr_accessor :is_granted
 
+                # External ids of the entities this budget is scoped to. Empty (`[]`) is the
+                # node-wide budget; a non-empty set is the dimension-scoped budget that matched
+                # this request — use it to tell apart multiple budgets on the same entity.
+                sig { returns(T::Array[String]) }
+                attr_accessor :scope_entity_ids
+
                 # Hard usage limit for this node; null when no assignment is configured.
                 sig { returns(T.nilable(Float)) }
                 attr_accessor :usage_limit
@@ -1016,6 +1034,7 @@ module Stigg
                     current_usage: Float,
                     entity_id: String,
                     is_granted: T::Boolean,
+                    scope_entity_ids: T::Array[String],
                     usage_limit: T.nilable(Float)
                   ).returns(T.attached_class)
                 end
@@ -1026,6 +1045,10 @@ module Stigg
                   entity_id:,
                   # Whether this node alone permits the requested usage.
                   is_granted:,
+                  # External ids of the entities this budget is scoped to. Empty (`[]`) is the
+                  # node-wide budget; a non-empty set is the dimension-scoped budget that matched
+                  # this request — use it to tell apart multiple budgets on the same entity.
+                  scope_entity_ids:,
                   # Hard usage limit for this node; null when no assignment is configured.
                   usage_limit:
                 )
@@ -1037,6 +1060,7 @@ module Stigg
                       current_usage: Float,
                       entity_id: String,
                       is_granted: T::Boolean,
+                      scope_entity_ids: T::Array[String],
                       usage_limit: T.nilable(Float)
                     }
                   )

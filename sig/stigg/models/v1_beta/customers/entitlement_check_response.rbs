@@ -170,6 +170,7 @@ module Stigg
                   current_usage: Float,
                   entity_id: String,
                   is_granted: bool,
+                  scope_entity_ids: ::Array[String],
                   usage_limit: Float?
                 }
 
@@ -180,12 +181,15 @@ module Stigg
 
                 attr_accessor is_granted: bool
 
+                attr_accessor scope_entity_ids: ::Array[String]
+
                 attr_accessor usage_limit: Float?
 
                 def initialize: (
                   current_usage: Float,
                   entity_id: String,
                   is_granted: bool,
+                  scope_entity_ids: ::Array[String],
                   usage_limit: Float?
                 ) -> void
 
@@ -193,6 +197,7 @@ module Stigg
                   current_usage: Float,
                   entity_id: String,
                   is_granted: bool,
+                  scope_entity_ids: ::Array[String],
                   usage_limit: Float?
                 }
               end
@@ -428,6 +433,7 @@ module Stigg
                   current_usage: Float,
                   entity_id: String,
                   is_granted: bool,
+                  scope_entity_ids: ::Array[String],
                   usage_limit: Float?
                 }
 
@@ -438,12 +444,15 @@ module Stigg
 
                 attr_accessor is_granted: bool
 
+                attr_accessor scope_entity_ids: ::Array[String]
+
                 attr_accessor usage_limit: Float?
 
                 def initialize: (
                   current_usage: Float,
                   entity_id: String,
                   is_granted: bool,
+                  scope_entity_ids: ::Array[String],
                   usage_limit: Float?
                 ) -> void
 
@@ -451,6 +460,7 @@ module Stigg
                   current_usage: Float,
                   entity_id: String,
                   is_granted: bool,
+                  scope_entity_ids: ::Array[String],
                   usage_limit: Float?
                 }
               end

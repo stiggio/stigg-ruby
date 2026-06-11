@@ -201,13 +201,25 @@ module Stigg
                 #   @return [Boolean]
                 required :is_granted, Stigg::Internal::Type::Boolean, api_name: :isGranted
 
+                # @!attribute scope_entity_ids
+                #   External ids of the entities this budget is scoped to. Empty (`[]`) is the
+                #   node-wide budget; a non-empty set is the dimension-scoped budget that matched
+                #   this request — use it to tell apart multiple budgets on the same entity.
+                #
+                #   @return [Array<String>]
+                required :scope_entity_ids, Stigg::Internal::Type::ArrayOf[String], api_name: :scopeEntityIds
+
                 # @!attribute usage_limit
                 #   Hard usage limit for this node; null when no assignment is configured.
                 #
                 #   @return [Float, nil]
                 required :usage_limit, Float, api_name: :usageLimit, nil?: true
 
-                # @!method initialize(current_usage:, entity_id:, is_granted:, usage_limit:)
+                # @!method initialize(current_usage:, entity_id:, is_granted:, scope_entity_ids:, usage_limit:)
+                #   Some parameter documentations has been truncated, see
+                #   {Stigg::Models::V1Beta::Customers::EntitlementCheckResponse::Data::Feature::Chain}
+                #   for more details.
+                #
                 #   Per-entity governance node — limit and current usage for a single resolved
                 #   entity.
                 #
@@ -216,6 +228,8 @@ module Stigg
                 #   @param entity_id [String] External id of the entity within the customer.
                 #
                 #   @param is_granted [Boolean] Whether this node alone permits the requested usage.
+                #
+                #   @param scope_entity_ids [Array<String>] External ids of the entities this budget is scoped to. Empty (`[]`) is the node-
                 #
                 #   @param usage_limit [Float, nil] Hard usage limit for this node; null when no assignment is configured.
               end
@@ -500,13 +514,25 @@ module Stigg
                 #   @return [Boolean]
                 required :is_granted, Stigg::Internal::Type::Boolean, api_name: :isGranted
 
+                # @!attribute scope_entity_ids
+                #   External ids of the entities this budget is scoped to. Empty (`[]`) is the
+                #   node-wide budget; a non-empty set is the dimension-scoped budget that matched
+                #   this request — use it to tell apart multiple budgets on the same entity.
+                #
+                #   @return [Array<String>]
+                required :scope_entity_ids, Stigg::Internal::Type::ArrayOf[String], api_name: :scopeEntityIds
+
                 # @!attribute usage_limit
                 #   Hard usage limit for this node; null when no assignment is configured.
                 #
                 #   @return [Float, nil]
                 required :usage_limit, Float, api_name: :usageLimit, nil?: true
 
-                # @!method initialize(current_usage:, entity_id:, is_granted:, usage_limit:)
+                # @!method initialize(current_usage:, entity_id:, is_granted:, scope_entity_ids:, usage_limit:)
+                #   Some parameter documentations has been truncated, see
+                #   {Stigg::Models::V1Beta::Customers::EntitlementCheckResponse::Data::Credit::Chain}
+                #   for more details.
+                #
                 #   Per-entity governance node — limit and current usage for a single resolved
                 #   entity.
                 #
@@ -515,6 +541,8 @@ module Stigg
                 #   @param entity_id [String] External id of the entity within the customer.
                 #
                 #   @param is_granted [Boolean] Whether this node alone permits the requested usage.
+                #
+                #   @param scope_entity_ids [Array<String>] External ids of the entities this budget is scoped to. Empty (`[]`) is the node-
                 #
                 #   @param usage_limit [Float, nil] Hard usage limit for this node; null when no assignment is configured.
               end
