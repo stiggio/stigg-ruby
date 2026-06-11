@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.22 (2026-06-11)
+
+Full Changelog: [v0.1.0-beta.21...v0.1.0-beta.22](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.21...v0.1.0-beta.22)
+
+### Features
+
+* **api:** add scope_entity_ids field to entitlement check response ([9e5fd6e](https://github.com/stiggio/stigg-ruby/commit/9e5fd6e0b7cc9a578b70b8c4d4075ec6d96b32a7))
+
 ## 0.1.0-beta.21 (2026-06-10)
 
 Full Changelog: [v0.1.0-beta.20...v0.1.0-beta.21](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.20...v0.1.0-beta.21)
