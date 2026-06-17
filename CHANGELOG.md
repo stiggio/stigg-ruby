@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.23 (2026-06-17)
+
+Full Changelog: [v0.1.0-beta.22...v0.1.0-beta.23](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.22...v0.1.0-beta.23)
+
+### Bug Fixes
+
+* **client:** send content-type header for requests with an omitted optional body ([83319e2](https://github.com/stiggio/stigg-ruby/commit/83319e269f6ebcae43f5d2bae13c24e618fcb9b2))
+
 ## 0.1.0-beta.22 (2026-06-11)
 
 Full Changelog: [v0.1.0-beta.21...v0.1.0-beta.22](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.21...v0.1.0-beta.22)
