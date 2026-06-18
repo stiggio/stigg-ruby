@@ -8,6 +8,9 @@ module Stigg
         # @return [Stigg::Resources::V1::Events::DataExport]
         attr_reader :data_export
 
+        # @return [Stigg::Resources::V1::Events::Beta]
+        attr_reader :beta
+
         # Some parameter documentations has been truncated, see
         # {Stigg::Models::V1::EventReportParams} for more details.
         #
@@ -46,6 +49,7 @@ module Stigg
         def initialize(client:)
           @client = client
           @data_export = Stigg::Resources::V1::Events::DataExport.new(client: client)
+          @beta = Stigg::Resources::V1::Events::Beta.new(client: client)
         end
       end
     end

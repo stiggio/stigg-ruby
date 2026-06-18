@@ -8,6 +8,9 @@ module Stigg
         sig { returns(Stigg::Resources::V1::Events::DataExport) }
         attr_reader :data_export
 
+        sig { returns(Stigg::Resources::V1::Events::Beta) }
+        attr_reader :beta
+
         # Reports raw usage events for event-based metering. Events are ingested
         # asynchronously and aggregated into usage totals.
         sig do
