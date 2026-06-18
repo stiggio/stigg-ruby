@@ -4,6 +4,8 @@ module Stigg
       class Events
         attr_reader data_export: Stigg::Resources::V1::Events::DataExport
 
+        attr_reader beta: Stigg::Resources::V1::Events::Beta
+
         def report: (
           events: ::Array[Stigg::V1::EventReportParams::Event],
           ?x_account_id: String,
