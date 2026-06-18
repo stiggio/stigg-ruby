@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.25 (2026-06-18)
+
+Full Changelog: [v0.1.0-beta.24...v0.1.0-beta.25](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.24...v0.1.0-beta.25)
+
+### Bug Fixes
+
+* **types:** make usage_limit nullable in customers assignment models ([8ea2068](https://github.com/stiggio/stigg-ruby/commit/8ea2068629367c01528095352c5e6fba96fb9328))
+
 ## 0.1.0-beta.24 (2026-06-18)
 
 Full Changelog: [v0.1.0-beta.23...v0.1.0-beta.24](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.23...v0.1.0-beta.24)
