@@ -51,7 +51,7 @@ module Stigg
               feature_id: String,
               parent_id: String?,
               scope_entity_ids: ::Array[String],
-              usage_limit: Float
+              usage_limit: Float?
             }
 
           class Assignment < Stigg::Internal::Type::BaseModel
@@ -77,9 +77,7 @@ module Stigg
 
             def scope_entity_ids=: (::Array[String]) -> ::Array[String]
 
-            attr_reader usage_limit: Float?
-
-            def usage_limit=: (Float) -> Float
+            attr_accessor usage_limit: Float?
 
             def initialize: (
               entity_id: String,
@@ -88,7 +86,7 @@ module Stigg
               ?feature_id: String,
               ?parent_id: String?,
               ?scope_entity_ids: ::Array[String],
-              ?usage_limit: Float
+              ?usage_limit: Float?
             ) -> void
 
             def to_hash: -> {
@@ -98,7 +96,7 @@ module Stigg
               feature_id: String,
               parent_id: String?,
               scope_entity_ids: ::Array[String],
-              usage_limit: Float
+              usage_limit: Float?
             }
 
             type cadence = :MONTH
