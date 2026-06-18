@@ -140,10 +140,7 @@ module Stigg
 
             # Maximum usage allowed within one cadence window (required on create)
             sig { returns(T.nilable(Float)) }
-            attr_reader :usage_limit
-
-            sig { params(usage_limit: Float).void }
-            attr_writer :usage_limit
+            attr_accessor :usage_limit
 
             # A single assignment to create or update. Identify the capability with exactly
             # one of `featureId` or `currencyId`. The natural key is the
@@ -159,7 +156,7 @@ module Stigg
                 feature_id: String,
                 parent_id: T.nilable(String),
                 scope_entity_ids: T::Array[String],
-                usage_limit: Float
+                usage_limit: T.nilable(Float)
               ).returns(T.attached_class)
             end
             def self.new(
@@ -192,7 +189,7 @@ module Stigg
                   feature_id: String,
                   parent_id: T.nilable(String),
                   scope_entity_ids: T::Array[String],
-                  usage_limit: Float
+                  usage_limit: T.nilable(Float)
                 }
               )
             end

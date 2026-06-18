@@ -49,7 +49,7 @@ module Stigg
           attr_accessor :updated_at
 
           # Maximum usage allowed within one cadence window
-          sig { returns(Float) }
+          sig { returns(T.nilable(Float)) }
           attr_accessor :usage_limit
 
           # Currency refId this assignment grants (present for credit capabilities).
@@ -79,7 +79,7 @@ module Stigg
               parent_id: T.nilable(String),
               scope_entity_ids: T::Array[String],
               updated_at: Time,
-              usage_limit: Float,
+              usage_limit: T.nilable(Float),
               currency_id: String,
               feature_id: String
             ).returns(T.attached_class)
@@ -122,7 +122,7 @@ module Stigg
                 parent_id: T.nilable(String),
                 scope_entity_ids: T::Array[String],
                 updated_at: Time,
-                usage_limit: Float,
+                usage_limit: T.nilable(Float),
                 currency_id: String,
                 feature_id: String
               }

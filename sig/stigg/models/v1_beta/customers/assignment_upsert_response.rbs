@@ -27,7 +27,7 @@ module Stigg
               parent_id: String?,
               scope_entity_ids: ::Array[String],
               updated_at: Time,
-              usage_limit: Float,
+              usage_limit: Float?,
               currency_id: String,
               feature_id: String
             }
@@ -47,7 +47,7 @@ module Stigg
 
             attr_accessor updated_at: Time
 
-            attr_accessor usage_limit: Float
+            attr_accessor usage_limit: Float?
 
             attr_reader currency_id: String?
 
@@ -65,7 +65,7 @@ module Stigg
               parent_id: String?,
               scope_entity_ids: ::Array[String],
               updated_at: Time,
-              usage_limit: Float,
+              usage_limit: Float?,
               ?currency_id: String,
               ?feature_id: String
             ) -> void
@@ -78,7 +78,7 @@ module Stigg
               parent_id: String?,
               scope_entity_ids: ::Array[String],
               updated_at: Time,
-              usage_limit: Float,
+              usage_limit: Float?,
               currency_id: String,
               feature_id: String
             }

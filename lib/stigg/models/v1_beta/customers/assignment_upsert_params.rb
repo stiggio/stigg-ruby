@@ -85,7 +85,7 @@ module Stigg
             #   Maximum usage allowed within one cadence window (required on create)
             #
             #   @return [Float, nil]
-            optional :usage_limit, Float, api_name: :usageLimit
+            optional :usage_limit, Float, api_name: :usageLimit, nil?: true
 
             # @!method initialize(entity_id:, cadence: nil, currency_id: nil, feature_id: nil, parent_id: nil, scope_entity_ids: nil, usage_limit: nil)
             #   Some parameter documentations has been truncated, see
@@ -110,7 +110,7 @@ module Stigg
             #
             #   @param scope_entity_ids [Array<String>]
             #
-            #   @param usage_limit [Float] Maximum usage allowed within one cadence window (required on create)
+            #   @param usage_limit [Float, nil] Maximum usage allowed within one cadence window (required on create)
 
             # Usage-reset cadence (required on create). Currently only `MONTH` is supported
             #
