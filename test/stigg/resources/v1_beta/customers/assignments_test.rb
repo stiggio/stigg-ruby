@@ -28,7 +28,7 @@ class Stigg::Test::Resources::V1Beta::Customers::AssignmentsTest < Stigg::Test::
         parent_id: String | nil,
         scope_entity_ids: ^(Stigg::Internal::Type::ArrayOf[String]),
         updated_at: Time,
-        usage_limit: Float,
+        usage_limit: Float | nil,
         currency_id: String | nil,
         feature_id: String | nil
       }

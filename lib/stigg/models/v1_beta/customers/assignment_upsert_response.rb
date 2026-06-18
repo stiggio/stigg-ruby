@@ -66,8 +66,8 @@ module Stigg
             # @!attribute usage_limit
             #   Maximum usage allowed within one cadence window
             #
-            #   @return [Float]
-            required :usage_limit, Float, api_name: :usageLimit
+            #   @return [Float, nil]
+            required :usage_limit, Float, api_name: :usageLimit, nil?: true
 
             # @!attribute currency_id
             #   Currency refId this assignment grants (present for credit capabilities).
@@ -104,7 +104,7 @@ module Stigg
             #
             #   @param updated_at [Time] Timestamp of when the record was last updated
             #
-            #   @param usage_limit [Float] Maximum usage allowed within one cadence window
+            #   @param usage_limit [Float, nil] Maximum usage allowed within one cadence window
             #
             #   @param currency_id [String] Currency refId this assignment grants (present for credit capabilities).
             #
