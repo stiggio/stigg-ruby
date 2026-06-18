@@ -1,0 +1,127 @@
+module Stigg
+  module Models
+    module V1
+      module Events
+        module Beta
+          type customer_retrieve_governance_response =
+            {
+              data: ::Array[Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Data],
+              pagination: Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Pagination
+            }
+
+          class CustomerRetrieveGovernanceResponse < Stigg::Internal::Type::BaseModel
+            attr_accessor data: ::Array[Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Data]
+
+            attr_accessor pagination: Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Pagination
+
+            def initialize: (
+              data: ::Array[Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Data],
+              pagination: Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Pagination
+            ) -> void
+
+            def to_hash: -> {
+              data: ::Array[Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Data],
+              pagination: Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Pagination
+            }
+
+            type data =
+              {
+                cadence: Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Data::cadence?,
+                current_usage: Float?,
+                entity_id: String,
+                entity_type: String,
+                parent_id: String?,
+                scope_entity_ids: ::Array[String],
+                usage_limit: Float?,
+                usage_period_end: Time?,
+                usage_period_start: Time?,
+                utilization: Float?,
+                currency_id: String,
+                feature_id: String
+              }
+
+            class Data < Stigg::Internal::Type::BaseModel
+              attr_accessor cadence: Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Data::cadence?
+
+              attr_accessor current_usage: Float?
+
+              attr_accessor entity_id: String
+
+              attr_accessor entity_type: String
+
+              attr_accessor parent_id: String?
+
+              attr_accessor scope_entity_ids: ::Array[String]
+
+              attr_accessor usage_limit: Float?
+
+              attr_accessor usage_period_end: Time?
+
+              attr_accessor usage_period_start: Time?
+
+              attr_accessor utilization: Float?
+
+              attr_reader currency_id: String?
+
+              def currency_id=: (String) -> String
+
+              attr_reader feature_id: String?
+
+              def feature_id=: (String) -> String
+
+              def initialize: (
+                cadence: Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Data::cadence?,
+                current_usage: Float?,
+                entity_id: String,
+                entity_type: String,
+                parent_id: String?,
+                scope_entity_ids: ::Array[String],
+                usage_limit: Float?,
+                usage_period_end: Time?,
+                usage_period_start: Time?,
+                utilization: Float?,
+                ?currency_id: String,
+                ?feature_id: String
+              ) -> void
+
+              def to_hash: -> {
+                cadence: Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Data::cadence?,
+                current_usage: Float?,
+                entity_id: String,
+                entity_type: String,
+                parent_id: String?,
+                scope_entity_ids: ::Array[String],
+                usage_limit: Float?,
+                usage_period_end: Time?,
+                usage_period_start: Time?,
+                utilization: Float?,
+                currency_id: String,
+                feature_id: String
+              }
+
+              type cadence = :MONTH
+
+              module Cadence
+                extend Stigg::Internal::Type::Enum
+
+                MONTH: :MONTH
+
+                def self?.values: -> ::Array[Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Data::cadence]
+              end
+            end
+
+            type pagination = { next_: String? }
+
+            class Pagination < Stigg::Internal::Type::BaseModel
+              attr_accessor next_: String?
+
+              def initialize: (next_: String?) -> void
+
+              def to_hash: -> { next_: String? }
+            end
+          end
+        end
+      end
+    end
+  end
+end
