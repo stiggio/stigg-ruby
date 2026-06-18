@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.24 (2026-06-18)
+
+Full Changelog: [v0.1.0-beta.23...v0.1.0-beta.24](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.23...v0.1.0-beta.24)
+
+### Features
+
+* **api:** add retrieve_governance method to events/beta/customers ([95132a5](https://github.com/stiggio/stigg-ruby/commit/95132a50a901830feddb5ee9f48a06dce18c7d64))
+
 ## 0.1.0-beta.23 (2026-06-17)
 
 Full Changelog: [v0.1.0-beta.22...v0.1.0-beta.23](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.22...v0.1.0-beta.23)
