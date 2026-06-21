@@ -77,14 +77,9 @@ module Stigg
                   )
                 end
 
-              # Usage-reset cadence. Currently only `MONTH` is supported.
-              sig do
-                returns(
-                  T.nilable(
-                    Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Data::Cadence::TaggedSymbol
-                  )
-                )
-              end
+              # Usage-reset cadence as an ISO-8601 single-unit duration, e.g. `P1M`, `P30D`,
+              # `PT1M`; `null` when the node has no usage configuration.
+              sig { returns(T.nilable(String)) }
               attr_accessor :cadence
 
               # Usage consumed in the current cadence period (may lag the live counter by a
@@ -150,10 +145,7 @@ module Stigg
               # access.
               sig do
                 params(
-                  cadence:
-                    T.nilable(
-                      Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Data::Cadence::OrSymbol
-                    ),
+                  cadence: T.nilable(String),
                   current_usage: T.nilable(Float),
                   entity_id: String,
                   entity_type: String,
@@ -168,7 +160,8 @@ module Stigg
                 ).returns(T.attached_class)
               end
               def self.new(
-                # Usage-reset cadence. Currently only `MONTH` is supported.
+                # Usage-reset cadence as an ISO-8601 single-unit duration, e.g. `P1M`, `P30D`,
+                # `PT1M`; `null` when the node has no usage configuration.
                 cadence:,
                 # Usage consumed in the current cadence period (may lag the live counter by a
                 # short interval).
@@ -205,10 +198,7 @@ module Stigg
               sig do
                 override.returns(
                   {
-                    cadence:
-                      T.nilable(
-                        Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Data::Cadence::TaggedSymbol
-                      ),
+                    cadence: T.nilable(String),
                     current_usage: T.nilable(Float),
                     entity_id: String,
                     entity_type: String,
@@ -224,36 +214,6 @@ module Stigg
                 )
               end
               def to_hash
-              end
-
-              # Usage-reset cadence. Currently only `MONTH` is supported.
-              module Cadence
-                extend Stigg::Internal::Type::Enum
-
-                TaggedSymbol =
-                  T.type_alias do
-                    T.all(
-                      Symbol,
-                      Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Data::Cadence
-                    )
-                  end
-                OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-                MONTH =
-                  T.let(
-                    :MONTH,
-                    Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Data::Cadence::TaggedSymbol
-                  )
-
-                sig do
-                  override.returns(
-                    T::Array[
-                      Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Data::Cadence::TaggedSymbol
-                    ]
-                  )
-                end
-                def self.values
-                end
               end
             end
 

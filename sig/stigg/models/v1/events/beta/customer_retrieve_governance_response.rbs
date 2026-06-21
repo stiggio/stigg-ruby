@@ -26,7 +26,7 @@ module Stigg
 
             type data =
               {
-                cadence: Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Data::cadence?,
+                cadence: String?,
                 current_usage: Float?,
                 entity_id: String,
                 entity_type: String,
@@ -41,7 +41,7 @@ module Stigg
               }
 
             class Data < Stigg::Internal::Type::BaseModel
-              attr_accessor cadence: Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Data::cadence?
+              attr_accessor cadence: String?
 
               attr_accessor current_usage: Float?
 
@@ -70,7 +70,7 @@ module Stigg
               def feature_id=: (String) -> String
 
               def initialize: (
-                cadence: Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Data::cadence?,
+                cadence: String?,
                 current_usage: Float?,
                 entity_id: String,
                 entity_type: String,
@@ -85,7 +85,7 @@ module Stigg
               ) -> void
 
               def to_hash: -> {
-                cadence: Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Data::cadence?,
+                cadence: String?,
                 current_usage: Float?,
                 entity_id: String,
                 entity_type: String,
@@ -98,16 +98,6 @@ module Stigg
                 currency_id: String,
                 feature_id: String
               }
-
-              type cadence = :MONTH
-
-              module Cadence
-                extend Stigg::Internal::Type::Enum
-
-                MONTH: :MONTH
-
-                def self?.values: -> ::Array[Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Data::cadence]
-              end
             end
 
             type pagination = { next_: String? }
