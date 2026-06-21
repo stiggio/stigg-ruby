@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.26 (2026-06-21)
+
+Full Changelog: [v0.1.0-beta.25...v0.1.0-beta.26](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.25...v0.1.0-beta.26)
+
+### Bug Fixes
+
+* **types:** change cadence from enum to String in customers assignments ([869fffe](https://github.com/stiggio/stigg-ruby/commit/869fffeff326c47f92f03f08220866045b6395f7))
+
 ## 0.1.0-beta.25 (2026-06-18)
 
 Full Changelog: [v0.1.0-beta.24...v0.1.0-beta.25](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.24...v0.1.0-beta.25)
