@@ -93,22 +93,12 @@ module Stigg
             sig { returns(String) }
             attr_accessor :entity_id
 
-            # Usage-reset cadence (required on create). Currently only `MONTH` is supported
-            sig do
-              returns(
-                T.nilable(
-                  Stigg::V1Beta::Customers::AssignmentUpsertParams::Assignment::Cadence::OrSymbol
-                )
-              )
-            end
+            # Usage-reset cadence (required on create) as an ISO-8601 single-unit duration,
+            # e.g. `P1M`, `P30D`, `PT1M`.
+            sig { returns(T.nilable(String)) }
             attr_reader :cadence
 
-            sig do
-              params(
-                cadence:
-                  Stigg::V1Beta::Customers::AssignmentUpsertParams::Assignment::Cadence::OrSymbol
-              ).void
-            end
+            sig { params(cadence: String).void }
             attr_writer :cadence
 
             # Currency refId this assignment grants (credit budgets). Mutually exclusive with
@@ -150,8 +140,7 @@ module Stigg
             sig do
               params(
                 entity_id: String,
-                cadence:
-                  Stigg::V1Beta::Customers::AssignmentUpsertParams::Assignment::Cadence::OrSymbol,
+                cadence: String,
                 currency_id: String,
                 feature_id: String,
                 parent_id: T.nilable(String),
@@ -162,7 +151,8 @@ module Stigg
             def self.new(
               # The entity refId this assignment is attached to
               entity_id:,
-              # Usage-reset cadence (required on create). Currently only `MONTH` is supported
+              # Usage-reset cadence (required on create) as an ISO-8601 single-unit duration,
+              # e.g. `P1M`, `P30D`, `PT1M`.
               cadence: nil,
               # Currency refId this assignment grants (credit budgets). Mutually exclusive with
               # `featureId`.
@@ -183,8 +173,7 @@ module Stigg
               override.returns(
                 {
                   entity_id: String,
-                  cadence:
-                    Stigg::V1Beta::Customers::AssignmentUpsertParams::Assignment::Cadence::OrSymbol,
+                  cadence: String,
                   currency_id: String,
                   feature_id: String,
                   parent_id: T.nilable(String),
@@ -194,36 +183,6 @@ module Stigg
               )
             end
             def to_hash
-            end
-
-            # Usage-reset cadence (required on create). Currently only `MONTH` is supported
-            module Cadence
-              extend Stigg::Internal::Type::Enum
-
-              TaggedSymbol =
-                T.type_alias do
-                  T.all(
-                    Symbol,
-                    Stigg::V1Beta::Customers::AssignmentUpsertParams::Assignment::Cadence
-                  )
-                end
-              OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-              MONTH =
-                T.let(
-                  :MONTH,
-                  Stigg::V1Beta::Customers::AssignmentUpsertParams::Assignment::Cadence::TaggedSymbol
-                )
-
-              sig do
-                override.returns(
-                  T::Array[
-                    Stigg::V1Beta::Customers::AssignmentUpsertParams::Assignment::Cadence::TaggedSymbol
-                  ]
-                )
-              end
-              def self.values
-              end
             end
           end
         end

@@ -28,12 +28,11 @@ module Stigg
 
             class Data < Stigg::Internal::Type::BaseModel
               # @!attribute cadence
-              #   Usage-reset cadence. Currently only `MONTH` is supported.
+              #   Usage-reset cadence as an ISO-8601 single-unit duration, e.g. `P1M`, `P30D`,
+              #   `PT1M`; `null` when the node has no usage configuration.
               #
-              #   @return [Symbol, Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Data::Cadence, nil]
-              required :cadence,
-                       enum: -> { Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Data::Cadence },
-                       nil?: true
+              #   @return [String, nil]
+              required :cadence, String, nil?: true
 
               # @!attribute current_usage
               #   Usage consumed in the current cadence period (may lag the live counter by a
@@ -118,7 +117,7 @@ module Stigg
               #   read model and may lag the live counter by a short interval; it never gates
               #   access.
               #
-              #   @param cadence [Symbol, Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Data::Cadence, nil] Usage-reset cadence. Currently only `MONTH` is supported.
+              #   @param cadence [String, nil] Usage-reset cadence as an ISO-8601 single-unit duration, e.g. `P1M`, `P30D`, `PT
               #
               #   @param current_usage [Float, nil] Usage consumed in the current cadence period (may lag the live counter by a shor
               #
@@ -141,18 +140,6 @@ module Stigg
               #   @param currency_id [String] The metered currency refId (present when the configured capability is a credit c
               #
               #   @param feature_id [String] The metered feature refId (present when the configured capability is a feature).
-
-              # Usage-reset cadence. Currently only `MONTH` is supported.
-              #
-              # @see Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Data#cadence
-              module Cadence
-                extend Stigg::Internal::Type::Enum
-
-                MONTH = :MONTH
-
-                # @!method self.values
-                #   @return [Array<Symbol>]
-              end
             end
 
             # @see Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse#pagination

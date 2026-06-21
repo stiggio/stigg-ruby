@@ -22,7 +22,7 @@ class Stigg::Test::Resources::V1Beta::Customers::AssignmentsTest < Stigg::Test::
     assert_pattern do
       row => {
         id: String,
-        cadence: Stigg::Models::V1Beta::Customers::AssignmentListResponse::Cadence,
+        cadence: String,
         created_at: Time,
         entity_id: String,
         parent_id: String | nil,

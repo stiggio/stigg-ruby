@@ -25,10 +25,11 @@ module Stigg
             required :id, String
 
             # @!attribute cadence
-            #   Usage-reset cadence. Currently only `MONTH` is supported
+            #   Usage-reset cadence as an ISO-8601 single-unit duration, e.g. `P1M`, `P30D`,
+            #   `PT1M`.
             #
-            #   @return [Symbol, Stigg::Models::V1Beta::Customers::AssignmentUpsertResponse::Data::Cadence]
-            required :cadence, enum: -> { Stigg::Models::V1Beta::Customers::AssignmentUpsertResponse::Data::Cadence }
+            #   @return [String]
+            required :cadence, String
 
             # @!attribute created_at
             #   Timestamp of when the record was created
@@ -92,7 +93,7 @@ module Stigg
             #
             #   @param id [String] Synthetic UUID identifier — also the cursor anchor for paginated lists
             #
-            #   @param cadence [Symbol, Stigg::Models::V1Beta::Customers::AssignmentUpsertResponse::Data::Cadence] Usage-reset cadence. Currently only `MONTH` is supported
+            #   @param cadence [String] Usage-reset cadence as an ISO-8601 single-unit duration, e.g. `P1M`, `P30D`, `PT
             #
             #   @param created_at [Time] Timestamp of when the record was created
             #
@@ -109,18 +110,6 @@ module Stigg
             #   @param currency_id [String] Currency refId this assignment grants (present for credit capabilities).
             #
             #   @param feature_id [String] Feature refId this assignment grants (present for feature capabilities).
-
-            # Usage-reset cadence. Currently only `MONTH` is supported
-            #
-            # @see Stigg::Models::V1Beta::Customers::AssignmentUpsertResponse::Data#cadence
-            module Cadence
-              extend Stigg::Internal::Type::Enum
-
-              MONTH = :MONTH
-
-              # @!method self.values
-              #   @return [Array<Symbol>]
-            end
           end
         end
       end
