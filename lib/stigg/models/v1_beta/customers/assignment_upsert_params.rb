@@ -50,10 +50,11 @@ module Stigg
             required :entity_id, String, api_name: :entityId
 
             # @!attribute cadence
-            #   Usage-reset cadence (required on create). Currently only `MONTH` is supported
+            #   Usage-reset cadence (required on create) as an ISO-8601 single-unit duration,
+            #   e.g. `P1M`, `P30D`, `PT1M`.
             #
-            #   @return [Symbol, Stigg::Models::V1Beta::Customers::AssignmentUpsertParams::Assignment::Cadence, nil]
-            optional :cadence, enum: -> { Stigg::V1Beta::Customers::AssignmentUpsertParams::Assignment::Cadence }
+            #   @return [String, nil]
+            optional :cadence, String
 
             # @!attribute currency_id
             #   Currency refId this assignment grants (credit budgets). Mutually exclusive with
@@ -100,7 +101,7 @@ module Stigg
             #
             #   @param entity_id [String] The entity refId this assignment is attached to
             #
-            #   @param cadence [Symbol, Stigg::Models::V1Beta::Customers::AssignmentUpsertParams::Assignment::Cadence] Usage-reset cadence (required on create). Currently only `MONTH` is supported
+            #   @param cadence [String] Usage-reset cadence (required on create) as an ISO-8601 single-unit duration, e.
             #
             #   @param currency_id [String] Currency refId this assignment grants (credit budgets). Mutually exclusive with
             #
@@ -111,18 +112,6 @@ module Stigg
             #   @param scope_entity_ids [Array<String>]
             #
             #   @param usage_limit [Float, nil] Maximum usage allowed within one cadence window (required on create)
-
-            # Usage-reset cadence (required on create). Currently only `MONTH` is supported
-            #
-            # @see Stigg::Models::V1Beta::Customers::AssignmentUpsertParams::Assignment#cadence
-            module Cadence
-              extend Stigg::Internal::Type::Enum
-
-              MONTH = :MONTH
-
-              # @!method self.values
-              #   @return [Array<Symbol>]
-            end
           end
         end
       end

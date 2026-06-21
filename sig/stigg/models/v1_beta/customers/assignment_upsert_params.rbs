@@ -46,7 +46,7 @@ module Stigg
           type assignment =
             {
               entity_id: String,
-              cadence: Stigg::Models::V1Beta::Customers::AssignmentUpsertParams::Assignment::cadence,
+              cadence: String,
               currency_id: String,
               feature_id: String,
               parent_id: String?,
@@ -57,11 +57,9 @@ module Stigg
           class Assignment < Stigg::Internal::Type::BaseModel
             attr_accessor entity_id: String
 
-            attr_reader cadence: Stigg::Models::V1Beta::Customers::AssignmentUpsertParams::Assignment::cadence?
+            attr_reader cadence: String?
 
-            def cadence=: (
-              Stigg::Models::V1Beta::Customers::AssignmentUpsertParams::Assignment::cadence
-            ) -> Stigg::Models::V1Beta::Customers::AssignmentUpsertParams::Assignment::cadence
+            def cadence=: (String) -> String
 
             attr_reader currency_id: String?
 
@@ -81,7 +79,7 @@ module Stigg
 
             def initialize: (
               entity_id: String,
-              ?cadence: Stigg::Models::V1Beta::Customers::AssignmentUpsertParams::Assignment::cadence,
+              ?cadence: String,
               ?currency_id: String,
               ?feature_id: String,
               ?parent_id: String?,
@@ -91,23 +89,13 @@ module Stigg
 
             def to_hash: -> {
               entity_id: String,
-              cadence: Stigg::Models::V1Beta::Customers::AssignmentUpsertParams::Assignment::cadence,
+              cadence: String,
               currency_id: String,
               feature_id: String,
               parent_id: String?,
               scope_entity_ids: ::Array[String],
               usage_limit: Float?
             }
-
-            type cadence = :MONTH
-
-            module Cadence
-              extend Stigg::Internal::Type::Enum
-
-              MONTH: :MONTH
-
-              def self?.values: -> ::Array[Stigg::Models::V1Beta::Customers::AssignmentUpsertParams::Assignment::cadence]
-            end
           end
         end
       end

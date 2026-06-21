@@ -17,12 +17,9 @@ module Stigg
           sig { returns(String) }
           attr_accessor :id
 
-          # Usage-reset cadence. Currently only `MONTH` is supported
-          sig do
-            returns(
-              Stigg::Models::V1Beta::Customers::AssignmentListResponse::Cadence::TaggedSymbol
-            )
-          end
+          # Usage-reset cadence as an ISO-8601 single-unit duration, e.g. `P1M`, `P30D`,
+          # `PT1M`.
+          sig { returns(String) }
           attr_accessor :cadence
 
           # Timestamp of when the record was created
@@ -72,8 +69,7 @@ module Stigg
           sig do
             params(
               id: String,
-              cadence:
-                Stigg::Models::V1Beta::Customers::AssignmentListResponse::Cadence::OrSymbol,
+              cadence: String,
               created_at: Time,
               entity_id: String,
               parent_id: T.nilable(String),
@@ -87,7 +83,8 @@ module Stigg
           def self.new(
             # Synthetic UUID identifier — also the cursor anchor for paginated lists
             id:,
-            # Usage-reset cadence. Currently only `MONTH` is supported
+            # Usage-reset cadence as an ISO-8601 single-unit duration, e.g. `P1M`, `P30D`,
+            # `PT1M`.
             cadence:,
             # Timestamp of when the record was created
             created_at:,
@@ -115,8 +112,7 @@ module Stigg
             override.returns(
               {
                 id: String,
-                cadence:
-                  Stigg::Models::V1Beta::Customers::AssignmentListResponse::Cadence::TaggedSymbol,
+                cadence: String,
                 created_at: Time,
                 entity_id: String,
                 parent_id: T.nilable(String),
@@ -129,36 +125,6 @@ module Stigg
             )
           end
           def to_hash
-          end
-
-          # Usage-reset cadence. Currently only `MONTH` is supported
-          module Cadence
-            extend Stigg::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  Stigg::Models::V1Beta::Customers::AssignmentListResponse::Cadence
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            MONTH =
-              T.let(
-                :MONTH,
-                Stigg::Models::V1Beta::Customers::AssignmentListResponse::Cadence::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  Stigg::Models::V1Beta::Customers::AssignmentListResponse::Cadence::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
           end
         end
       end

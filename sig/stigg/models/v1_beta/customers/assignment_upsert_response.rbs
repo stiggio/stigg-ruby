@@ -21,7 +21,7 @@ module Stigg
           type data =
             {
               id: String,
-              cadence: Stigg::Models::V1Beta::Customers::AssignmentUpsertResponse::Data::cadence,
+              cadence: String,
               created_at: Time,
               entity_id: String,
               parent_id: String?,
@@ -35,7 +35,7 @@ module Stigg
           class Data < Stigg::Internal::Type::BaseModel
             attr_accessor id: String
 
-            attr_accessor cadence: Stigg::Models::V1Beta::Customers::AssignmentUpsertResponse::Data::cadence
+            attr_accessor cadence: String
 
             attr_accessor created_at: Time
 
@@ -59,7 +59,7 @@ module Stigg
 
             def initialize: (
               id: String,
-              cadence: Stigg::Models::V1Beta::Customers::AssignmentUpsertResponse::Data::cadence,
+              cadence: String,
               created_at: Time,
               entity_id: String,
               parent_id: String?,
@@ -72,7 +72,7 @@ module Stigg
 
             def to_hash: -> {
               id: String,
-              cadence: Stigg::Models::V1Beta::Customers::AssignmentUpsertResponse::Data::cadence,
+              cadence: String,
               created_at: Time,
               entity_id: String,
               parent_id: String?,
@@ -82,16 +82,6 @@ module Stigg
               currency_id: String,
               feature_id: String
             }
-
-            type cadence = :MONTH
-
-            module Cadence
-              extend Stigg::Internal::Type::Enum
-
-              MONTH: :MONTH
-
-              def self?.values: -> ::Array[Stigg::Models::V1Beta::Customers::AssignmentUpsertResponse::Data::cadence]
-            end
           end
         end
       end
