@@ -129,6 +129,12 @@ module Stigg
                 sig { params(connection_status: String).void }
                 attr_writer :connection_status
 
+                sig { returns(T.nilable(T::Array[String])) }
+                attr_reader :enabled_models
+
+                sig { params(enabled_models: T::Array[String]).void }
+                attr_writer :enabled_models
+
                 # Latest sync snapshot for the destination, refreshed by the provider webhook
                 sig do
                   returns(
@@ -154,6 +160,7 @@ module Stigg
                     destination_id: String,
                     type: String,
                     connection_status: String,
+                    enabled_models: T::Array[String],
                     last_sync_status:
                       Stigg::Models::V1::Events::DataExport::DestinationDeleteResponse::Data::Destination::LastSyncStatus::OrHash
                   ).returns(T.attached_class)
@@ -167,6 +174,7 @@ module Stigg
                   type:,
                   # Connection status of the destination (connected, failed)
                   connection_status: nil,
+                  enabled_models: nil,
                   # Latest sync snapshot for the destination, refreshed by the provider webhook
                   last_sync_status: nil
                 )
@@ -179,6 +187,7 @@ module Stigg
                       destination_id: String,
                       type: String,
                       connection_status: String,
+                      enabled_models: T::Array[String],
                       last_sync_status:
                         Stigg::Models::V1::Events::DataExport::DestinationDeleteResponse::Data::Destination::LastSyncStatus
                     }

@@ -3,6 +3,22 @@
 require_relative "../../../test_helper"
 
 class Stigg::Test::Resources::V1::Events::DataExportTest < Stigg::Test::ResourceTest
+  def test_list_models
+    skip("Mock server tests are disabled")
+
+    response = @stigg.v1.events.data_export.list_models
+
+    assert_pattern do
+      response => Stigg::Models::V1::Events::DataExportListModelsResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: Stigg::Models::V1::Events::DataExportListModelsResponse::Data
+      }
+    end
+  end
+
   def test_mint_scoped_token_required_params
     skip("Mock server tests are disabled")
 

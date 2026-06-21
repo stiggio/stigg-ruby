@@ -13,6 +13,7 @@ module Stigg
               params(
                 destination_id: String,
                 destination_type: String,
+                enabled_models: T::Array[String],
                 x_account_id: String,
                 x_environment_id: String,
                 request_options: Stigg::RequestOptions::OrHash
@@ -25,6 +26,8 @@ module Stigg
               destination_id:,
               # Body param: The destination type (e.g. snowflake, bigquery)
               destination_type:,
+              # Body param
+              enabled_models: nil,
               # Header param: Account ID — optional when authenticating with a user JWT (Bearer
               # token); falls back to the user's first membership. Ignored for API-key auth.
               x_account_id: nil,
