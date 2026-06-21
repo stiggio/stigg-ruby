@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.27 (2026-06-21)
+
+Full Changelog: [v0.1.0-beta.26...v0.1.0-beta.27](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.26...v0.1.0-beta.27)
+
+### Features
+
+* **api:** add list_models method, enabled_models field to data_export ([d929005](https://github.com/stiggio/stigg-ruby/commit/d929005ea0e1ed43bd1a0ed5a8a32e09dc25bb4b))
+
 ## 0.1.0-beta.26 (2026-06-21)
 
 Full Changelog: [v0.1.0-beta.25...v0.1.0-beta.26](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.25...v0.1.0-beta.26)
