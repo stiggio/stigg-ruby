@@ -21,6 +21,11 @@ module Stigg
           #   @return [String, nil]
           optional :destination_type, String, api_name: :destinationType
 
+          # @!attribute enabled_models
+          #
+          #   @return [Array<String>, nil]
+          optional :enabled_models, Stigg::Internal::Type::ArrayOf[String], api_name: :enabledModels
+
           # @!attribute x_account_id
           #
           #   @return [String, nil]
@@ -31,10 +36,12 @@ module Stigg
           #   @return [String, nil]
           optional :x_environment_id, String
 
-          # @!method initialize(application_origin:, destination_type: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+          # @!method initialize(application_origin:, destination_type: nil, enabled_models: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
           #   @param application_origin [String] FE origin the resulting JWT is bound to (provider-side anti-fraud)
           #
           #   @param destination_type [String] Pin the token to a specific warehouse connect flow
+          #
+          #   @param enabled_models [Array<String>]
           #
           #   @param x_account_id [String]
           #

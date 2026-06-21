@@ -9,16 +9,49 @@ module Stigg
           attr_reader :destinations
 
           # Some parameter documentations has been truncated, see
+          # {Stigg::Models::V1::Events::DataExportListModelsParams} for more details.
+          #
+          # List the catalog of data-export models the customer can opt into when connecting
+          # a destination.
+          #
+          # @overload list_models(x_account_id: nil, x_environment_id: nil, request_options: {})
+          #
+          # @param x_account_id [String] Account ID — optional when authenticating with a user JWT (Bearer token); falls
+          #
+          # @param x_environment_id [String] Environment ID — required when authenticating with a user JWT (Bearer token) on
+          #
+          # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
+          #
+          # @return [Stigg::Models::V1::Events::DataExportListModelsResponse]
+          #
+          # @see Stigg::Models::V1::Events::DataExportListModelsParams
+          def list_models(params = {})
+            parsed, options = Stigg::V1::Events::DataExportListModelsParams.dump_request(params)
+            @client.request(
+              method: :get,
+              path: "api/v1/data-export/models",
+              headers: parsed.transform_keys(
+                x_account_id: "x-account-id",
+                x_environment_id: "x-environment-id"
+              ),
+              model: Stigg::Models::V1::Events::DataExportListModelsResponse,
+              options: options
+            )
+          end
+
+          # Some parameter documentations has been truncated, see
           # {Stigg::Models::V1::Events::DataExportMintScopedTokenParams} for more details.
           #
           # Mint a scoped JWT for the FE embedded SDK. Lazy-creates the DATA_EXPORT
           # integration if needed.
           #
-          # @overload mint_scoped_token(application_origin:, destination_type: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+          # @overload mint_scoped_token(application_origin:, destination_type: nil, enabled_models: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
           #
           # @param application_origin [String] Body param: FE origin the resulting JWT is bound to (provider-side anti-fraud)
           #
           # @param destination_type [String] Body param: Pin the token to a specific warehouse connect flow
+          #
+          # @param enabled_models [Array<String>] Body param
           #
           # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
           #

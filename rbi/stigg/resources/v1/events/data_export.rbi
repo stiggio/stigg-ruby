@@ -10,12 +10,34 @@ module Stigg
           end
           attr_reader :destinations
 
+          # List the catalog of data-export models the customer can opt into when connecting
+          # a destination.
+          sig do
+            params(
+              x_account_id: String,
+              x_environment_id: String,
+              request_options: Stigg::RequestOptions::OrHash
+            ).returns(Stigg::Models::V1::Events::DataExportListModelsResponse)
+          end
+          def list_models(
+            # Account ID — optional when authenticating with a user JWT (Bearer token); falls
+            # back to the user's first membership. Ignored for API-key auth.
+            x_account_id: nil,
+            # Environment ID — required when authenticating with a user JWT (Bearer token) on
+            # environment-scoped endpoints. Ignored for API-key auth (env is intrinsic to the
+            # key).
+            x_environment_id: nil,
+            request_options: {}
+          )
+          end
+
           # Mint a scoped JWT for the FE embedded SDK. Lazy-creates the DATA_EXPORT
           # integration if needed.
           sig do
             params(
               application_origin: String,
               destination_type: String,
+              enabled_models: T::Array[String],
               x_account_id: String,
               x_environment_id: String,
               request_options: Stigg::RequestOptions::OrHash
@@ -28,6 +50,8 @@ module Stigg
             application_origin:,
             # Body param: Pin the token to a specific warehouse connect flow
             destination_type: nil,
+            # Body param
+            enabled_models: nil,
             # Header param: Account ID — optional when authenticating with a user JWT (Bearer
             # token); falls back to the user's first membership. Ignored for API-key auth.
             x_account_id: nil,

@@ -6,6 +6,7 @@ module Stigg
           {
             application_origin: String,
             destination_type: String,
+            enabled_models: ::Array[String],
             x_account_id: String,
             x_environment_id: String
           }
@@ -21,6 +22,10 @@ module Stigg
 
           def destination_type=: (String) -> String
 
+          attr_reader enabled_models: ::Array[String]?
+
+          def enabled_models=: (::Array[String]) -> ::Array[String]
+
           attr_reader x_account_id: String?
 
           def x_account_id=: (String) -> String
@@ -32,6 +37,7 @@ module Stigg
           def initialize: (
             application_origin: String,
             ?destination_type: String,
+            ?enabled_models: ::Array[String],
             ?x_account_id: String,
             ?x_environment_id: String,
             ?request_options: Stigg::request_opts
@@ -40,6 +46,7 @@ module Stigg
           def to_hash: -> {
             application_origin: String,
             destination_type: String,
+            enabled_models: ::Array[String],
             x_account_id: String,
             x_environment_id: String,
             request_options: Stigg::RequestOptions

@@ -14,11 +14,13 @@ module Stigg
             # Lazy-creates the integration row + provider recipient on first call. Idempotent
             # on destinationId.
             #
-            # @overload create(destination_id:, destination_type:, x_account_id: nil, x_environment_id: nil, request_options: {})
+            # @overload create(destination_id:, destination_type:, enabled_models: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
             #
             # @param destination_id [String] Body param: The provider destination ID returned by the embedded SDK on connect
             #
             # @param destination_type [String] Body param: The destination type (e.g. snowflake, bigquery)
+            #
+            # @param enabled_models [Array<String>] Body param
             #
             # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
             #

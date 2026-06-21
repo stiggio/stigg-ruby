@@ -1,0 +1,80 @@
+module Stigg
+  module Models
+    module V1
+      module Events
+        type data_export_list_models_response =
+          {
+            data: Stigg::Models::V1::Events::DataExportListModelsResponse::Data
+          }
+
+        class DataExportListModelsResponse < Stigg::Internal::Type::BaseModel
+          attr_accessor data: Stigg::Models::V1::Events::DataExportListModelsResponse::Data
+
+          def initialize: (
+            data: Stigg::Models::V1::Events::DataExportListModelsResponse::Data
+          ) -> void
+
+          def to_hash: -> {
+            data: Stigg::Models::V1::Events::DataExportListModelsResponse::Data
+          }
+
+          type data =
+            {
+              groups: ::Array[Stigg::Models::V1::Events::DataExportListModelsResponse::Data::Group]
+            }
+
+          class Data < Stigg::Internal::Type::BaseModel
+            attr_accessor groups: ::Array[Stigg::Models::V1::Events::DataExportListModelsResponse::Data::Group]
+
+            def initialize: (
+              groups: ::Array[Stigg::Models::V1::Events::DataExportListModelsResponse::Data::Group]
+            ) -> void
+
+            def to_hash: -> {
+              groups: ::Array[Stigg::Models::V1::Events::DataExportListModelsResponse::Data::Group]
+            }
+
+            type group =
+              {
+                id: String,
+                display_name: String,
+                models: ::Array[Stigg::Models::V1::Events::DataExportListModelsResponse::Data::Group::Model]
+              }
+
+            class Group < Stigg::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              attr_accessor display_name: String
+
+              attr_accessor models: ::Array[Stigg::Models::V1::Events::DataExportListModelsResponse::Data::Group::Model]
+
+              def initialize: (
+                id: String,
+                display_name: String,
+                models: ::Array[Stigg::Models::V1::Events::DataExportListModelsResponse::Data::Group::Model]
+              ) -> void
+
+              def to_hash: -> {
+                id: String,
+                display_name: String,
+                models: ::Array[Stigg::Models::V1::Events::DataExportListModelsResponse::Data::Group::Model]
+              }
+
+              type model = { id: String, display_name: String }
+
+              class Model < Stigg::Internal::Type::BaseModel
+                attr_accessor id: String
+
+                attr_accessor display_name: String
+
+                def initialize: (id: String, display_name: String) -> void
+
+                def to_hash: -> { id: String, display_name: String }
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end
