@@ -5,9 +5,16 @@ module Stigg
         class DataExport
           attr_reader destinations: Stigg::Resources::V1::Events::DataExport::Destinations
 
+          def list_models: (
+            ?x_account_id: String,
+            ?x_environment_id: String,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Events::DataExportListModelsResponse
+
           def mint_scoped_token: (
             application_origin: String,
             ?destination_type: String,
+            ?enabled_models: ::Array[String],
             ?x_account_id: String,
             ?x_environment_id: String,
             ?request_options: Stigg::request_opts

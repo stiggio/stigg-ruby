@@ -57,6 +57,11 @@ module Stigg
                 #   @return [String, nil]
                 optional :connection_status, String, api_name: :connectionStatus
 
+                # @!attribute enabled_models
+                #
+                #   @return [Array<String>, nil]
+                optional :enabled_models, Stigg::Internal::Type::ArrayOf[String], api_name: :enabledModels
+
                 # @!attribute last_sync_status
                 #   Latest sync snapshot for the destination, refreshed by the provider webhook
                 #
@@ -65,7 +70,7 @@ module Stigg
                          -> { Stigg::Models::V1::Events::DataExport::DestinationCreateResponse::Data::Destination::LastSyncStatus },
                          api_name: :lastSyncStatus
 
-                # @!method initialize(connected_at:, destination_id:, type:, connection_status: nil, last_sync_status: nil)
+                # @!method initialize(connected_at:, destination_id:, type:, connection_status: nil, enabled_models: nil, last_sync_status: nil)
                 #   A single destination entry under the DATA_EXPORT integration.
                 #
                 #   @param connected_at [String] ISO8601 timestamp of when the destination was connected
@@ -75,6 +80,8 @@ module Stigg
                 #   @param type [String] Destination type (snowflake, bigquery, ...)
                 #
                 #   @param connection_status [String] Connection status of the destination (connected, failed)
+                #
+                #   @param enabled_models [Array<String>]
                 #
                 #   @param last_sync_status [Stigg::Models::V1::Events::DataExport::DestinationCreateResponse::Data::Destination::LastSyncStatus] Latest sync snapshot for the destination, refreshed by the provider webhook
 

@@ -25,6 +25,12 @@ module Stigg
             sig { returns(String) }
             attr_accessor :destination_type
 
+            sig { returns(T.nilable(T::Array[String])) }
+            attr_reader :enabled_models
+
+            sig { params(enabled_models: T::Array[String]).void }
+            attr_writer :enabled_models
+
             sig { returns(T.nilable(String)) }
             attr_reader :x_account_id
 
@@ -41,6 +47,7 @@ module Stigg
               params(
                 destination_id: String,
                 destination_type: String,
+                enabled_models: T::Array[String],
                 x_account_id: String,
                 x_environment_id: String,
                 request_options: Stigg::RequestOptions::OrHash
@@ -51,6 +58,7 @@ module Stigg
               destination_id:,
               # The destination type (e.g. snowflake, bigquery)
               destination_type:,
+              enabled_models: nil,
               x_account_id: nil,
               x_environment_id: nil,
               request_options: {}
@@ -62,6 +70,7 @@ module Stigg
                 {
                   destination_id: String,
                   destination_type: String,
+                  enabled_models: T::Array[String],
                   x_account_id: String,
                   x_environment_id: String,
                   request_options: Stigg::RequestOptions

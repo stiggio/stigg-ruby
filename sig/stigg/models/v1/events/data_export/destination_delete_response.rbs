@@ -41,6 +41,7 @@ module Stigg
                   destination_id: String,
                   type: String,
                   connection_status: String,
+                  enabled_models: ::Array[String],
                   last_sync_status: Stigg::Models::V1::Events::DataExport::DestinationDeleteResponse::Data::Destination::LastSyncStatus
                 }
 
@@ -55,6 +56,10 @@ module Stigg
 
                 def connection_status=: (String) -> String
 
+                attr_reader enabled_models: ::Array[String]?
+
+                def enabled_models=: (::Array[String]) -> ::Array[String]
+
                 attr_reader last_sync_status: Stigg::Models::V1::Events::DataExport::DestinationDeleteResponse::Data::Destination::LastSyncStatus?
 
                 def last_sync_status=: (
@@ -66,6 +71,7 @@ module Stigg
                   destination_id: String,
                   type: String,
                   ?connection_status: String,
+                  ?enabled_models: ::Array[String],
                   ?last_sync_status: Stigg::Models::V1::Events::DataExport::DestinationDeleteResponse::Data::Destination::LastSyncStatus
                 ) -> void
 
@@ -74,6 +80,7 @@ module Stigg
                   destination_id: String,
                   type: String,
                   connection_status: String,
+                  enabled_models: ::Array[String],
                   last_sync_status: Stigg::Models::V1::Events::DataExport::DestinationDeleteResponse::Data::Destination::LastSyncStatus
                 }
 
