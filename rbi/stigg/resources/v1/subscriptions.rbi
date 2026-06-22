@@ -78,6 +78,7 @@ module Stigg
                 Stigg::V1::SubscriptionUpdateParams::PriceOverride::OrHash
               ],
             promotion_code: String,
+            salesforce_id: T.nilable(String),
             schedule_strategy:
               Stigg::V1::SubscriptionUpdateParams::ScheduleStrategy::OrSymbol,
             trial_end_date: Time,
@@ -117,6 +118,8 @@ module Stigg
           price_overrides: nil,
           # Body param: Promotion code
           promotion_code: nil,
+          # Body param: Salesforce ID
+          salesforce_id: nil,
           # Body param
           schedule_strategy: nil,
           # Body param: Subscription trial end date
