@@ -55,7 +55,7 @@ module Stigg
         # Updates an active subscription's properties including billing period, add-ons,
         # unit quantities, and discounts.
         #
-        # @overload update(id, addons: nil, applied_coupon: nil, await_payment_confirmation: nil, billing_cycle_anchor: nil, billing_information: nil, billing_period: nil, budget: nil, cancellation_date: nil, charges: nil, entitlements: nil, metadata: nil, minimum_spend: nil, price_overrides: nil, promotion_code: nil, schedule_strategy: nil, trial_end_date: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        # @overload update(id, addons: nil, applied_coupon: nil, await_payment_confirmation: nil, billing_cycle_anchor: nil, billing_information: nil, billing_period: nil, budget: nil, cancellation_date: nil, charges: nil, entitlements: nil, metadata: nil, minimum_spend: nil, price_overrides: nil, promotion_code: nil, salesforce_id: nil, schedule_strategy: nil, trial_end_date: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #
         # @param id [String] Path param: The unique identifier of the entity
         #
@@ -86,6 +86,8 @@ module Stigg
         # @param price_overrides [Array<Stigg::Models::V1::SubscriptionUpdateParams::PriceOverride>] Body param
         #
         # @param promotion_code [String] Body param: Promotion code
+        #
+        # @param salesforce_id [String, nil] Body param: Salesforce ID
         #
         # @param schedule_strategy [Symbol, Stigg::Models::V1::SubscriptionUpdateParams::ScheduleStrategy] Body param
         #
