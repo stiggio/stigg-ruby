@@ -204,6 +204,10 @@ module Stigg
         sig { params(promotion_code: String).void }
         attr_writer :promotion_code
 
+        # Salesforce ID
+        sig { returns(T.nilable(String)) }
+        attr_accessor :salesforce_id
+
         sig do
           returns(
             T.nilable(
@@ -276,6 +280,7 @@ module Stigg
                 Stigg::V1::SubscriptionUpdateParams::PriceOverride::OrHash
               ],
             promotion_code: String,
+            salesforce_id: T.nilable(String),
             schedule_strategy:
               Stigg::V1::SubscriptionUpdateParams::ScheduleStrategy::OrSymbol,
             trial_end_date: Time,
@@ -305,6 +310,8 @@ module Stigg
           price_overrides: nil,
           # Promotion code
           promotion_code: nil,
+          # Salesforce ID
+          salesforce_id: nil,
           schedule_strategy: nil,
           # Subscription trial end date
           trial_end_date: nil,
@@ -344,6 +351,7 @@ module Stigg
               price_overrides:
                 T::Array[Stigg::V1::SubscriptionUpdateParams::PriceOverride],
               promotion_code: String,
+              salesforce_id: T.nilable(String),
               schedule_strategy:
                 Stigg::V1::SubscriptionUpdateParams::ScheduleStrategy::OrSymbol,
               trial_end_date: Time,

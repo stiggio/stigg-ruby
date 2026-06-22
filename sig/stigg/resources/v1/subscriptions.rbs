@@ -31,6 +31,7 @@ module Stigg
           ?minimum_spend: Stigg::V1::SubscriptionUpdateParams::MinimumSpend?,
           ?price_overrides: ::Array[Stigg::V1::SubscriptionUpdateParams::PriceOverride],
           ?promotion_code: String,
+          ?salesforce_id: String?,
           ?schedule_strategy: Stigg::Models::V1::SubscriptionUpdateParams::schedule_strategy,
           ?trial_end_date: Time,
           ?x_account_id: String,
