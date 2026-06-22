@@ -70,6 +70,24 @@ module Stigg
           sig { returns(Integer) }
           attr_accessor :value
 
+          # Optimistic credit balance for a credit-backed feature
+          sig do
+            returns(
+              T.nilable(Stigg::Models::V1::UsageReportResponse::Data::Credit)
+            )
+          end
+          attr_reader :credit
+
+          sig do
+            params(
+              credit:
+                T.nilable(
+                  Stigg::Models::V1::UsageReportResponse::Data::Credit::OrHash
+                )
+            ).void
+          end
+          attr_writer :credit
+
           # The current measured usage value
           sig { returns(T.nilable(Float)) }
           attr_accessor :current_usage
@@ -101,6 +119,10 @@ module Stigg
               feature_id: String,
               timestamp: Time,
               value: Integer,
+              credit:
+                T.nilable(
+                  Stigg::Models::V1::UsageReportResponse::Data::Credit::OrHash
+                ),
               current_usage: T.nilable(Float),
               next_reset_date: T.nilable(Time),
               resource_id: T.nilable(String),
@@ -121,6 +143,8 @@ module Stigg
             timestamp:,
             # The usage measurement record
             value:,
+            # Optimistic credit balance for a credit-backed feature
+            credit: nil,
             # The current measured usage value
             current_usage: nil,
             # The date when the next usage reset will occur
@@ -145,6 +169,10 @@ module Stigg
                 feature_id: String,
                 timestamp: Time,
                 value: Integer,
+                credit:
+                  T.nilable(
+                    Stigg::Models::V1::UsageReportResponse::Data::Credit
+                  ),
                 current_usage: T.nilable(Float),
                 next_reset_date: T.nilable(Time),
                 resource_id: T.nilable(String),
@@ -154,6 +182,68 @@ module Stigg
             )
           end
           def to_hash
+          end
+
+          class Credit < Stigg::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Stigg::Models::V1::UsageReportResponse::Data::Credit,
+                  Stigg::Internal::AnyHash
+                )
+              end
+
+            # The credit currency identifier
+            sig { returns(String) }
+            attr_accessor :currency_id
+
+            # The credits consumed (optimistic — includes not-yet-reconciled usage)
+            sig { returns(Float) }
+            attr_accessor :current_usage
+
+            # The grant-version timestamp of this balance, used by the SDK for last-write-wins
+            # reconciliation
+            sig { returns(Time) }
+            attr_accessor :timestamp
+
+            # The total credits granted
+            sig { returns(Float) }
+            attr_accessor :usage_limit
+
+            # Optimistic credit balance for a credit-backed feature
+            sig do
+              params(
+                currency_id: String,
+                current_usage: Float,
+                timestamp: Time,
+                usage_limit: Float
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The credit currency identifier
+              currency_id:,
+              # The credits consumed (optimistic — includes not-yet-reconciled usage)
+              current_usage:,
+              # The grant-version timestamp of this balance, used by the SDK for last-write-wins
+              # reconciliation
+              timestamp:,
+              # The total credits granted
+              usage_limit:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  currency_id: String,
+                  current_usage: Float,
+                  timestamp: Time,
+                  usage_limit: Float
+                }
+              )
+            end
+            def to_hash
+            end
           end
         end
       end

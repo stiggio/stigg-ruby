@@ -23,6 +23,7 @@ module Stigg
             feature_id: String,
             timestamp: Time,
             value: Integer,
+            credit: Stigg::Models::V1::UsageReportResponse::Data::Credit?,
             current_usage: Float?,
             next_reset_date: Time?,
             resource_id: String?,
@@ -43,6 +44,8 @@ module Stigg
 
           attr_accessor value: Integer
 
+          attr_accessor credit: Stigg::Models::V1::UsageReportResponse::Data::Credit?
+
           attr_accessor current_usage: Float?
 
           attr_accessor next_reset_date: Time?
@@ -60,6 +63,7 @@ module Stigg
             feature_id: String,
             timestamp: Time,
             value: Integer,
+            ?credit: Stigg::Models::V1::UsageReportResponse::Data::Credit?,
             ?current_usage: Float?,
             ?next_reset_date: Time?,
             ?resource_id: String?,
@@ -74,12 +78,45 @@ module Stigg
             feature_id: String,
             timestamp: Time,
             value: Integer,
+            credit: Stigg::Models::V1::UsageReportResponse::Data::Credit?,
             current_usage: Float?,
             next_reset_date: Time?,
             resource_id: String?,
             usage_period_end: Time?,
             usage_period_start: Time?
           }
+
+          type credit =
+            {
+              currency_id: String,
+              current_usage: Float,
+              timestamp: Time,
+              usage_limit: Float
+            }
+
+          class Credit < Stigg::Internal::Type::BaseModel
+            attr_accessor currency_id: String
+
+            attr_accessor current_usage: Float
+
+            attr_accessor timestamp: Time
+
+            attr_accessor usage_limit: Float
+
+            def initialize: (
+              currency_id: String,
+              current_usage: Float,
+              timestamp: Time,
+              usage_limit: Float
+            ) -> void
+
+            def to_hash: -> {
+              currency_id: String,
+              current_usage: Float,
+              timestamp: Time,
+              usage_limit: Float
+            }
+          end
         end
       end
     end
