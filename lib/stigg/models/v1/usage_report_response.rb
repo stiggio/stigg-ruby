@@ -54,6 +54,12 @@ module Stigg
           #   @return [Integer]
           required :value, Integer
 
+          # @!attribute credit
+          #   Optimistic credit balance for a credit-backed feature
+          #
+          #   @return [Stigg::Models::V1::UsageReportResponse::Data::Credit, nil]
+          optional :credit, -> { Stigg::Models::V1::UsageReportResponse::Data::Credit }, nil?: true
+
           # @!attribute current_usage
           #   The current measured usage value
           #
@@ -86,7 +92,7 @@ module Stigg
           #   @return [Time, nil]
           optional :usage_period_start, Time, api_name: :usagePeriodStart, nil?: true
 
-          # @!method initialize(id:, created_at:, customer_id:, feature_id:, timestamp:, value:, current_usage: nil, next_reset_date: nil, resource_id: nil, usage_period_end: nil, usage_period_start: nil)
+          # @!method initialize(id:, created_at:, customer_id:, feature_id:, timestamp:, value:, credit: nil, current_usage: nil, next_reset_date: nil, resource_id: nil, usage_period_end: nil, usage_period_start: nil)
           #   Some parameter documentations has been truncated, see
           #   {Stigg::Models::V1::UsageReportResponse::Data} for more details.
           #
@@ -104,6 +110,8 @@ module Stigg
           #
           #   @param value [Integer] The usage measurement record
           #
+          #   @param credit [Stigg::Models::V1::UsageReportResponse::Data::Credit, nil] Optimistic credit balance for a credit-backed feature
+          #
           #   @param current_usage [Float, nil] The current measured usage value
           #
           #   @param next_reset_date [Time, nil] The date when the next usage reset will occur
@@ -113,6 +121,48 @@ module Stigg
           #   @param usage_period_end [Time, nil] The end date of the usage period in which this measurement resides (for entitlem
           #
           #   @param usage_period_start [Time, nil] The start date of the usage period in which this measurement resides (for entitl
+
+          # @see Stigg::Models::V1::UsageReportResponse::Data#credit
+          class Credit < Stigg::Internal::Type::BaseModel
+            # @!attribute currency_id
+            #   The credit currency identifier
+            #
+            #   @return [String]
+            required :currency_id, String, api_name: :currencyId
+
+            # @!attribute current_usage
+            #   The credits consumed (optimistic — includes not-yet-reconciled usage)
+            #
+            #   @return [Float]
+            required :current_usage, Float, api_name: :currentUsage
+
+            # @!attribute timestamp
+            #   The grant-version timestamp of this balance, used by the SDK for last-write-wins
+            #   reconciliation
+            #
+            #   @return [Time]
+            required :timestamp, Time
+
+            # @!attribute usage_limit
+            #   The total credits granted
+            #
+            #   @return [Float]
+            required :usage_limit, Float, api_name: :usageLimit
+
+            # @!method initialize(currency_id:, current_usage:, timestamp:, usage_limit:)
+            #   Some parameter documentations has been truncated, see
+            #   {Stigg::Models::V1::UsageReportResponse::Data::Credit} for more details.
+            #
+            #   Optimistic credit balance for a credit-backed feature
+            #
+            #   @param currency_id [String] The credit currency identifier
+            #
+            #   @param current_usage [Float] The credits consumed (optimistic — includes not-yet-reconciled usage)
+            #
+            #   @param timestamp [Time] The grant-version timestamp of this balance, used by the SDK for last-write-wins
+            #
+            #   @param usage_limit [Float] The total credits granted
+          end
         end
       end
     end
