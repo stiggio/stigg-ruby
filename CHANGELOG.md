@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.28 (2026-06-22)
+
+Full Changelog: [v0.1.0-beta.27...v0.1.0-beta.28](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.27...v0.1.0-beta.28)
+
+### Features
+
+* **api:** add credit field to usage report response ([48da7e7](https://github.com/stiggio/stigg-ruby/commit/48da7e753acc8cb02f3f5719ec06fe48752eca34))
+
 ## 0.1.0-beta.27 (2026-06-21)
 
 Full Changelog: [v0.1.0-beta.26...v0.1.0-beta.27](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.26...v0.1.0-beta.27)
