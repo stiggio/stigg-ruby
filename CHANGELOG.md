@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.29 (2026-06-22)
+
+Full Changelog: [v0.1.0-beta.28...v0.1.0-beta.29](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.28...v0.1.0-beta.29)
+
+### Features
+
+* **api:** add salesforce_id parameter to subscription update ([4383bca](https://github.com/stiggio/stigg-ruby/commit/4383bcae2efe0749130f80967c661f33b0ed5d98))
+
 ## 0.1.0-beta.28 (2026-06-22)
 
 Full Changelog: [v0.1.0-beta.27...v0.1.0-beta.28](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.27...v0.1.0-beta.28)
