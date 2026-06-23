@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.31 (2026-06-23)
+
+Full Changelog: [v0.1.0-beta.30...v0.1.0-beta.31](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.30...v0.1.0-beta.31)
+
+### Features
+
+* **api:** add usage_period_end field to usage report credit ([ecc06df](https://github.com/stiggio/stigg-ruby/commit/ecc06df3022b64875c058427de2419dbcebab073))
+
 ## 0.1.0-beta.30 (2026-06-23)
 
 Full Changelog: [v0.1.0-beta.29...v0.1.0-beta.30](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.29...v0.1.0-beta.30)
