@@ -13,6 +13,15 @@ module Stigg
               ?request_options: Stigg::request_opts
             ) -> Stigg::Models::V1::Events::DataExport::DestinationCreateResponse
 
+            def update: (
+              String destination_id,
+              enabled_models: ::Array[String],
+              integration_id: String,
+              ?x_account_id: String,
+              ?x_environment_id: String,
+              ?request_options: Stigg::request_opts
+            ) -> Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse
+
             def delete: (
               String destination_id,
               ?x_account_id: String,

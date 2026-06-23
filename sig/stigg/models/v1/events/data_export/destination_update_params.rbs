@@ -1,0 +1,56 @@
+module Stigg
+  module Models
+    module V1
+      module Events
+        module DataExport
+          type destination_update_params =
+            {
+              destination_id: String,
+              enabled_models: ::Array[String],
+              integration_id: String,
+              x_account_id: String,
+              x_environment_id: String
+            }
+            & Stigg::Internal::Type::request_parameters
+
+          class DestinationUpdateParams < Stigg::Internal::Type::BaseModel
+            extend Stigg::Internal::Type::RequestParameters::Converter
+            include Stigg::Internal::Type::RequestParameters
+
+            attr_accessor destination_id: String
+
+            attr_accessor enabled_models: ::Array[String]
+
+            attr_accessor integration_id: String
+
+            attr_reader x_account_id: String?
+
+            def x_account_id=: (String) -> String
+
+            attr_reader x_environment_id: String?
+
+            def x_environment_id=: (String) -> String
+
+            def initialize: (
+              destination_id: String,
+              enabled_models: ::Array[String],
+              integration_id: String,
+              ?x_account_id: String,
+              ?x_environment_id: String,
+              ?request_options: Stigg::request_opts
+            ) -> void
+
+            def to_hash: -> {
+              destination_id: String,
+              enabled_models: ::Array[String],
+              integration_id: String,
+              x_account_id: String,
+              x_environment_id: String,
+              request_options: Stigg::RequestOptions
+            }
+          end
+        end
+      end
+    end
+  end
+end
