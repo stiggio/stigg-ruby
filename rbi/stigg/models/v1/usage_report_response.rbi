@@ -210,13 +210,19 @@ module Stigg
             sig { returns(Float) }
             attr_accessor :usage_limit
 
+            # End of the current credit grant period (when recurring credits reset), if
+            # applicable
+            sig { returns(T.nilable(Time)) }
+            attr_accessor :usage_period_end
+
             # Optimistic credit balance for a credit-backed feature
             sig do
               params(
                 currency_id: String,
                 current_usage: Float,
                 timestamp: Time,
-                usage_limit: Float
+                usage_limit: Float,
+                usage_period_end: T.nilable(Time)
               ).returns(T.attached_class)
             end
             def self.new(
@@ -228,7 +234,10 @@ module Stigg
               # reconciliation
               timestamp:,
               # The total credits granted
-              usage_limit:
+              usage_limit:,
+              # End of the current credit grant period (when recurring credits reset), if
+              # applicable
+              usage_period_end: nil
             )
             end
 
@@ -238,7 +247,8 @@ module Stigg
                   currency_id: String,
                   current_usage: Float,
                   timestamp: Time,
-                  usage_limit: Float
+                  usage_limit: Float,
+                  usage_period_end: T.nilable(Time)
                 }
               )
             end
