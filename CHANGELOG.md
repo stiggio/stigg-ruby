@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.32 (2026-06-23)
+
+Full Changelog: [v0.1.0-beta.31...v0.1.0-beta.32](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.31...v0.1.0-beta.32)
+
+### Features
+
+* **api:** add update method to data_export destinations ([a28cc2d](https://github.com/stiggio/stigg-ruby/commit/a28cc2d135579e2923fad3a6ab26b4185fea28b3))
+
 ## 0.1.0-beta.31 (2026-06-23)
 
 Full Changelog: [v0.1.0-beta.30...v0.1.0-beta.31](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.30...v0.1.0-beta.31)
