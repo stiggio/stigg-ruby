@@ -747,6 +747,12 @@ module Stigg
               sig { returns(T.nilable(String)) }
               attr_accessor :display_name_override
 
+              # Whether the credit wallet is soft-limited. When true, getEntitlement returns
+              # hasAccess=true past the limit; vendors decide whether to enforce. Defaults to
+              # false.
+              sig { returns(T.nilable(T::Boolean)) }
+              attr_accessor :has_soft_limit
+
               # Widget types where this entitlement is hidden
               sig do
                 returns(
@@ -797,6 +803,7 @@ module Stigg
                   created_at: Time,
                   description: T.nilable(String),
                   display_name_override: T.nilable(String),
+                  has_soft_limit: T.nilable(T::Boolean),
                   hidden_from_widgets:
                     T::Array[
                       Stigg::Models::V1::Plans::EntitlementListResponse::Data::Credit::HiddenFromWidget::OrSymbol
@@ -824,6 +831,10 @@ module Stigg
                 description:,
                 # Override display name for the entitlement
                 display_name_override:,
+                # Whether the credit wallet is soft-limited. When true, getEntitlement returns
+                # hasAccess=true past the limit; vendors decide whether to enforce. Defaults to
+                # false.
+                has_soft_limit:,
                 # Widget types where this entitlement is hidden
                 hidden_from_widgets:,
                 # Whether this is a custom entitlement
@@ -857,6 +868,7 @@ module Stigg
                     created_at: Time,
                     description: T.nilable(String),
                     display_name_override: T.nilable(String),
+                    has_soft_limit: T.nilable(T::Boolean),
                     hidden_from_widgets:
                       T::Array[
                         Stigg::Models::V1::Plans::EntitlementListResponse::Data::Credit::HiddenFromWidget::TaggedSymbol
