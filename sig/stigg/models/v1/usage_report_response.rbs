@@ -91,7 +91,8 @@ module Stigg
               currency_id: String,
               current_usage: Float,
               timestamp: Time,
-              usage_limit: Float
+              usage_limit: Float,
+              usage_period_end: Time?
             }
 
           class Credit < Stigg::Internal::Type::BaseModel
@@ -103,18 +104,22 @@ module Stigg
 
             attr_accessor usage_limit: Float
 
+            attr_accessor usage_period_end: Time?
+
             def initialize: (
               currency_id: String,
               current_usage: Float,
               timestamp: Time,
-              usage_limit: Float
+              usage_limit: Float,
+              ?usage_period_end: Time?
             ) -> void
 
             def to_hash: -> {
               currency_id: String,
               current_usage: Float,
               timestamp: Time,
-              usage_limit: Float
+              usage_limit: Float,
+              usage_period_end: Time?
             }
           end
         end
