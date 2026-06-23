@@ -281,6 +281,7 @@ module Stigg
                 created_at: Time,
                 description: String?,
                 display_name_override: String?,
+                has_soft_limit: bool?,
                 hidden_from_widgets: ::Array[Stigg::Models::V1::Plans::EntitlementListResponse::Data::Credit::hidden_from_widget],
                 is_custom: bool?,
                 is_granted: bool,
@@ -305,6 +306,8 @@ module Stigg
 
               attr_accessor display_name_override: String?
 
+              attr_accessor has_soft_limit: bool?
+
               attr_accessor hidden_from_widgets: ::Array[Stigg::Models::V1::Plans::EntitlementListResponse::Data::Credit::hidden_from_widget]
 
               attr_accessor is_custom: bool?
@@ -327,6 +330,7 @@ module Stigg
                 created_at: Time,
                 description: String?,
                 display_name_override: String?,
+                has_soft_limit: bool?,
                 hidden_from_widgets: ::Array[Stigg::Models::V1::Plans::EntitlementListResponse::Data::Credit::hidden_from_widget],
                 is_custom: bool?,
                 is_granted: bool,
@@ -344,6 +348,7 @@ module Stigg
                 created_at: Time,
                 description: String?,
                 display_name_override: String?,
+                has_soft_limit: bool?,
                 hidden_from_widgets: ::Array[Stigg::Models::V1::Plans::EntitlementListResponse::Data::Credit::hidden_from_widget],
                 is_custom: bool?,
                 is_granted: bool,

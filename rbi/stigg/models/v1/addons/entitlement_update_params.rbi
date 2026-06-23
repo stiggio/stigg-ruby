@@ -858,6 +858,15 @@ module Stigg
               sig { params(display_name_override: String).void }
               attr_writer :display_name_override
 
+              # Whether the credit wallet is soft-limited. When true, getEntitlement returns
+              # hasAccess=true past the limit; vendors decide whether to enforce. Defaults to
+              # false.
+              sig { returns(T.nilable(T::Boolean)) }
+              attr_reader :has_soft_limit
+
+              sig { params(has_soft_limit: T::Boolean).void }
+              attr_writer :has_soft_limit
+
               # Widget types where this entitlement is hidden
               sig do
                 returns(
@@ -912,6 +921,7 @@ module Stigg
                   dependency_feature_id: T.nilable(String),
                   description: String,
                   display_name_override: String,
+                  has_soft_limit: T::Boolean,
                   hidden_from_widgets:
                     T::Array[
                       Stigg::V1::Addons::EntitlementUpdateParams::Body::Credit::HiddenFromWidget::OrSymbol
@@ -936,6 +946,10 @@ module Stigg
                 description: nil,
                 # Override display name for the entitlement
                 display_name_override: nil,
+                # Whether the credit wallet is soft-limited. When true, getEntitlement returns
+                # hasAccess=true past the limit; vendors decide whether to enforce. Defaults to
+                # false.
+                has_soft_limit: nil,
                 # Widget types where this entitlement is hidden
                 hidden_from_widgets: nil,
                 # Whether this is a custom entitlement
@@ -961,6 +975,7 @@ module Stigg
                     dependency_feature_id: T.nilable(String),
                     description: String,
                     display_name_override: String,
+                    has_soft_limit: T::Boolean,
                     hidden_from_widgets:
                       T::Array[
                         Stigg::V1::Addons::EntitlementUpdateParams::Body::Credit::HiddenFromWidget::OrSymbol

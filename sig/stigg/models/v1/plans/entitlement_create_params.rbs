@@ -319,6 +319,7 @@ module Stigg
                 dependency_feature_id: String,
                 description: String,
                 display_name_override: String,
+                has_soft_limit: bool,
                 hidden_from_widgets: ::Array[Stigg::Models::V1::Plans::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget],
                 is_custom: bool,
                 is_granted: bool,
@@ -352,6 +353,10 @@ module Stigg
 
               def display_name_override=: (String) -> String
 
+              attr_reader has_soft_limit: bool?
+
+              def has_soft_limit=: (bool) -> bool
+
               attr_reader hidden_from_widgets: ::Array[Stigg::Models::V1::Plans::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget]?
 
               def hidden_from_widgets=: (
@@ -378,6 +383,7 @@ module Stigg
                 ?dependency_feature_id: String,
                 ?description: String,
                 ?display_name_override: String,
+                ?has_soft_limit: bool,
                 ?hidden_from_widgets: ::Array[Stigg::Models::V1::Plans::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget],
                 ?is_custom: bool,
                 ?is_granted: bool,
@@ -394,6 +400,7 @@ module Stigg
                 dependency_feature_id: String,
                 description: String,
                 display_name_override: String,
+                has_soft_limit: bool,
                 hidden_from_widgets: ::Array[Stigg::Models::V1::Plans::EntitlementCreateParams::Entitlement::Credit::hidden_from_widget],
                 is_custom: bool,
                 is_granted: bool,
