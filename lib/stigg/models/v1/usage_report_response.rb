@@ -149,7 +149,14 @@ module Stigg
             #   @return [Float]
             required :usage_limit, Float, api_name: :usageLimit
 
-            # @!method initialize(currency_id:, current_usage:, timestamp:, usage_limit:)
+            # @!attribute usage_period_end
+            #   End of the current credit grant period (when recurring credits reset), if
+            #   applicable
+            #
+            #   @return [Time, nil]
+            optional :usage_period_end, Time, api_name: :usagePeriodEnd, nil?: true
+
+            # @!method initialize(currency_id:, current_usage:, timestamp:, usage_limit:, usage_period_end: nil)
             #   Some parameter documentations has been truncated, see
             #   {Stigg::Models::V1::UsageReportResponse::Data::Credit} for more details.
             #
@@ -162,6 +169,8 @@ module Stigg
             #   @param timestamp [Time] The grant-version timestamp of this balance, used by the SDK for last-write-wins
             #
             #   @param usage_limit [Float] The total credits granted
+            #
+            #   @param usage_period_end [Time, nil] End of the current credit grant period (when recurring credits reset), if applic
           end
         end
       end
