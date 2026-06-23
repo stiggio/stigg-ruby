@@ -19,6 +19,23 @@ class Stigg::Test::Resources::V1::Events::DataExport::DestinationsTest < Stigg::
     end
   end
 
+  def test_update_required_params
+    skip("Mock server tests are disabled")
+
+    response =
+      @stigg.v1.events.data_export.destinations.update("x", enabled_models: ["x"], integration_id: "x")
+
+    assert_pattern do
+      response => Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data
+      }
+    end
+  end
+
   def test_delete
     skip("Mock server tests are disabled")
 
