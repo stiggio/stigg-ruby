@@ -386,6 +386,14 @@ module Stigg
               #   @return [String, nil]
               required :display_name_override, String, api_name: :displayNameOverride, nil?: true
 
+              # @!attribute has_soft_limit
+              #   Whether the credit wallet is soft-limited. When true, getEntitlement returns
+              #   hasAccess=true past the limit; vendors decide whether to enforce. Defaults to
+              #   false.
+              #
+              #   @return [Boolean, nil]
+              required :has_soft_limit, Stigg::Internal::Type::Boolean, api_name: :hasSoftLimit, nil?: true
+
               # @!attribute hidden_from_widgets
               #   Widget types where this entitlement is hidden
               #
@@ -434,7 +442,7 @@ module Stigg
               #   @return [String, nil]
               optional :dependency_feature_id, String, api_name: :dependencyFeatureId, nil?: true
 
-              # @!method initialize(id:, amount:, behavior:, cadence:, created_at:, description:, display_name_override:, hidden_from_widgets:, is_custom:, is_granted:, order:, updated_at:, dependency_feature_id: nil, type: :CREDIT)
+              # @!method initialize(id:, amount:, behavior:, cadence:, created_at:, description:, display_name_override:, has_soft_limit:, hidden_from_widgets:, is_custom:, is_granted:, order:, updated_at:, dependency_feature_id: nil, type: :CREDIT)
               #   Some parameter documentations has been truncated, see
               #   {Stigg::Models::V1::Addons::AddonPackageEntitlement::Data::Credit} for more
               #   details.
@@ -454,6 +462,8 @@ module Stigg
               #   @param description [String, nil] Optional description of the entitlement
               #
               #   @param display_name_override [String, nil] Override display name for the entitlement
+              #
+              #   @param has_soft_limit [Boolean, nil] Whether the credit wallet is soft-limited. When true, getEntitlement returns has
               #
               #   @param hidden_from_widgets [Array<Symbol, Stigg::Models::V1::Addons::AddonPackageEntitlement::Data::Credit::HiddenFromWidget>] Widget types where this entitlement is hidden
               #

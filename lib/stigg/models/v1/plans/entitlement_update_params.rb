@@ -396,6 +396,14 @@ module Stigg
               #   @return [String, nil]
               optional :display_name_override, String, api_name: :displayNameOverride
 
+              # @!attribute has_soft_limit
+              #   Whether the credit wallet is soft-limited. When true, getEntitlement returns
+              #   hasAccess=true past the limit; vendors decide whether to enforce. Defaults to
+              #   false.
+              #
+              #   @return [Boolean, nil]
+              optional :has_soft_limit, Stigg::Internal::Type::Boolean, api_name: :hasSoftLimit
+
               # @!attribute hidden_from_widgets
               #   Widget types where this entitlement is hidden
               #
@@ -424,7 +432,7 @@ module Stigg
               #   @return [Float, nil]
               optional :order, Float
 
-              # @!method initialize(amount: nil, behavior: nil, cadence: nil, dependency_feature_id: nil, description: nil, display_name_override: nil, hidden_from_widgets: nil, is_custom: nil, is_granted: nil, order: nil, type: :CREDIT)
+              # @!method initialize(amount: nil, behavior: nil, cadence: nil, dependency_feature_id: nil, description: nil, display_name_override: nil, has_soft_limit: nil, hidden_from_widgets: nil, is_custom: nil, is_granted: nil, order: nil, type: :CREDIT)
               #   Some parameter documentations has been truncated, see
               #   {Stigg::Models::V1::Plans::EntitlementUpdateParams::Body::Credit} for more
               #   details.
@@ -442,6 +450,8 @@ module Stigg
               #   @param description [String] Description of the entitlement
               #
               #   @param display_name_override [String] Override display name for the entitlement
+              #
+              #   @param has_soft_limit [Boolean] Whether the credit wallet is soft-limited. When true, getEntitlement returns has
               #
               #   @param hidden_from_widgets [Array<Symbol, Stigg::Models::V1::Plans::EntitlementUpdateParams::Body::Credit::HiddenFromWidget>] Widget types where this entitlement is hidden
               #
