@@ -45,6 +45,44 @@ module Stigg
             end
 
             # Some parameter documentations has been truncated, see
+            # {Stigg::Models::V1::Events::DataExport::DestinationUpdateParams} for more
+            # details.
+            #
+            # Update a destination's entity selection. Pushes the new enabled_models to the
+            # provider first, then persists the selection. Applies on the next scheduled
+            # transfer.
+            #
+            # @overload update(destination_id, enabled_models:, integration_id:, x_account_id: nil, x_environment_id: nil, request_options: {})
+            #
+            # @param destination_id [String] Path param: Provider destination ID to update
+            #
+            # @param enabled_models [Array<String>] Body param
+            #
+            # @param integration_id [String] Body param: Target integration row hosting the destination
+            #
+            # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
+            #
+            # @param x_environment_id [String] Header param: Environment ID — required when authenticating with a user JWT (Bea
+            #
+            # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
+            #
+            # @return [Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse]
+            #
+            # @see Stigg::Models::V1::Events::DataExport::DestinationUpdateParams
+            def update(destination_id, params)
+              parsed, options = Stigg::V1::Events::DataExport::DestinationUpdateParams.dump_request(params)
+              header_params = {x_account_id: "x-account-id", x_environment_id: "x-environment-id"}
+              @client.request(
+                method: :patch,
+                path: ["api/v1/data-export/destinations/%1$s", destination_id],
+                headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+                body: parsed.except(*header_params.keys),
+                model: Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse,
+                options: options
+              )
+            end
+
+            # Some parameter documentations has been truncated, see
             # {Stigg::Models::V1::Events::DataExport::DestinationDeleteParams} for more
             # details.
             #

@@ -1,0 +1,141 @@
+module Stigg
+  module Models
+    module V1
+      module Events
+        module DataExport
+          type destination_update_response =
+            {
+              data: Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data
+            }
+
+          class DestinationUpdateResponse < Stigg::Internal::Type::BaseModel
+            attr_accessor data: Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data
+
+            def initialize: (
+              data: Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data
+            ) -> void
+
+            def to_hash: -> {
+              data: Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data
+            }
+
+            type data =
+              {
+                destinations: ::Array[Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination]
+              }
+
+            class Data < Stigg::Internal::Type::BaseModel
+              attr_accessor destinations: ::Array[Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination]
+
+              def initialize: (
+                destinations: ::Array[Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination]
+              ) -> void
+
+              def to_hash: -> {
+                destinations: ::Array[Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination]
+              }
+
+              type destination =
+                {
+                  connected_at: String,
+                  destination_id: String,
+                  type: String,
+                  connection_status: String,
+                  enabled_models: ::Array[String],
+                  last_sync_status: Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination::LastSyncStatus
+                }
+
+              class Destination < Stigg::Internal::Type::BaseModel
+                attr_accessor connected_at: String
+
+                attr_accessor destination_id: String
+
+                attr_accessor type: String
+
+                attr_reader connection_status: String?
+
+                def connection_status=: (String) -> String
+
+                attr_reader enabled_models: ::Array[String]?
+
+                def enabled_models=: (::Array[String]) -> ::Array[String]
+
+                attr_reader last_sync_status: Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination::LastSyncStatus?
+
+                def last_sync_status=: (
+                  Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination::LastSyncStatus
+                ) -> Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination::LastSyncStatus
+
+                def initialize: (
+                  connected_at: String,
+                  destination_id: String,
+                  type: String,
+                  ?connection_status: String,
+                  ?enabled_models: ::Array[String],
+                  ?last_sync_status: Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination::LastSyncStatus
+                ) -> void
+
+                def to_hash: -> {
+                  connected_at: String,
+                  destination_id: String,
+                  type: String,
+                  connection_status: String,
+                  enabled_models: ::Array[String],
+                  last_sync_status: Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination::LastSyncStatus
+                }
+
+                type last_sync_status =
+                  {
+                    finished_at: String,
+                    status: String,
+                    transfer_id: String,
+                    blamed_party: String,
+                    failure_message: String,
+                    rows_transferred: Float
+                  }
+
+                class LastSyncStatus < Stigg::Internal::Type::BaseModel
+                  attr_accessor finished_at: String
+
+                  attr_accessor status: String
+
+                  attr_accessor transfer_id: String
+
+                  attr_reader blamed_party: String?
+
+                  def blamed_party=: (String) -> String
+
+                  attr_reader failure_message: String?
+
+                  def failure_message=: (String) -> String
+
+                  attr_reader rows_transferred: Float?
+
+                  def rows_transferred=: (Float) -> Float
+
+                  def initialize: (
+                    finished_at: String,
+                    status: String,
+                    transfer_id: String,
+                    ?blamed_party: String,
+                    ?failure_message: String,
+                    ?rows_transferred: Float
+                  ) -> void
+
+                  def to_hash: -> {
+                    finished_at: String,
+                    status: String,
+                    transfer_id: String,
+                    blamed_party: String,
+                    failure_message: String,
+                    rows_transferred: Float
+                  }
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end
