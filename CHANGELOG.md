@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.30 (2026-06-23)
+
+Full Changelog: [v0.1.0-beta.29...v0.1.0-beta.30](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.29...v0.1.0-beta.30)
+
+### Features
+
+* **api:** add has_soft_limit field to credit entitlements in addons/plans ([8a6af40](https://github.com/stiggio/stigg-ruby/commit/8a6af403cc2d9d4be0baf077ac4ad3629d4ec291))
+
 ## 0.1.0-beta.29 (2026-06-22)
 
 Full Changelog: [v0.1.0-beta.28...v0.1.0-beta.29](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.28...v0.1.0-beta.29)
