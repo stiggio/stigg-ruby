@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.33 (2026-06-28)
+
+Full Changelog: [v0.1.0-beta.32...v0.1.0-beta.33](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.32...v0.1.0-beta.33)
+
+### Features
+
+* **stainless:** update production server to edge.api.stigg.io ([9cccfd9](https://github.com/stiggio/stigg-ruby/commit/9cccfd9b87bd509e70f2992d262c0d41fa4dc73c))
+
 ## 0.1.0-beta.32 (2026-06-23)
 
 Full Changelog: [v0.1.0-beta.31...v0.1.0-beta.32](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.31...v0.1.0-beta.32)
