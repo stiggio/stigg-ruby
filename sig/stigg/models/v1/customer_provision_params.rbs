@@ -441,6 +441,7 @@ module Stigg
             | :APP_STORE
             | :RECEIVED
             | :PREQUEL
+            | :AIRWALLEX
 
           module VendorIdentifier
             extend Stigg::Internal::Type::Enum
@@ -457,6 +458,7 @@ module Stigg
             APP_STORE: :APP_STORE
             RECEIVED: :RECEIVED
             PREQUEL: :PREQUEL
+            AIRWALLEX: :AIRWALLEX
 
             def self?.values: -> ::Array[Stigg::Models::V1::CustomerProvisionParams::Integration::vendor_identifier]
           end
