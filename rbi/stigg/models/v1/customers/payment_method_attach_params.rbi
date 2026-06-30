@@ -183,6 +183,11 @@ module Stigg
                 :PREQUEL,
                 Stigg::V1::Customers::PaymentMethodAttachParams::VendorIdentifier::TaggedSymbol
               )
+            AIRWALLEX =
+              T.let(
+                :AIRWALLEX,
+                Stigg::V1::Customers::PaymentMethodAttachParams::VendorIdentifier::TaggedSymbol
+              )
 
             sig do
               override.returns(
