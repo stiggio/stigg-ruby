@@ -85,6 +85,7 @@ module Stigg
             APP_STORE = :APP_STORE
             RECEIVED = :RECEIVED
             PREQUEL = :PREQUEL
+            AIRWALLEX = :AIRWALLEX
 
             # @!method self.values
             #   @return [Array<Symbol>]

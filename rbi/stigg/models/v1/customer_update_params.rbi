@@ -952,6 +952,11 @@ module Stigg
                 :PREQUEL,
                 Stigg::V1::CustomerUpdateParams::Integration::VendorIdentifier::TaggedSymbol
               )
+            AIRWALLEX =
+              T.let(
+                :AIRWALLEX,
+                Stigg::V1::CustomerUpdateParams::Integration::VendorIdentifier::TaggedSymbol
+              )
 
             sig do
               override.returns(
