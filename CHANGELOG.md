@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-beta.34 (2026-06-30)
+
+Full Changelog: [v0.1.0-beta.33...v0.1.0-beta.34](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.33...v0.1.0-beta.34)
+
+### Features
+
+* **api:** add AIRWALLEX vendor identifier to customer models ([4bf7b9b](https://github.com/stiggio/stigg-ruby/commit/4bf7b9b507ce825f15eb95f283fa3eefca90c427))
+
+
+### Chores
+
+* **internal:** bound formatter parallelism to CPU count ([e502f28](https://github.com/stiggio/stigg-ruby/commit/e502f285ce741474835722363099025b01cfe87a))
+
 ## 0.1.0-beta.33 (2026-06-28)
 
 Full Changelog: [v0.1.0-beta.32...v0.1.0-beta.33](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.32...v0.1.0-beta.33)
