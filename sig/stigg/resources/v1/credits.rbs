@@ -6,6 +6,8 @@ module Stigg
 
         attr_reader custom_currencies: Stigg::Resources::V1::Credits::CustomCurrencies
 
+        attr_reader consumption: Stigg::Resources::V1::Credits::Consumption
+
         def get_auto_recharge: (
           currency_id: String,
           customer_id: String,

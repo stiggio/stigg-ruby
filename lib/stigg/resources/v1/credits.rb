@@ -12,6 +12,9 @@ module Stigg
         # @return [Stigg::Resources::V1::Credits::CustomCurrencies]
         attr_reader :custom_currencies
 
+        # @return [Stigg::Resources::V1::Credits::Consumption]
+        attr_reader :consumption
+
         # Some parameter documentations has been truncated, see
         # {Stigg::Models::V1::CreditGetAutoRechargeParams} for more details.
         #
@@ -181,6 +184,7 @@ module Stigg
           @client = client
           @grants = Stigg::Resources::V1::Credits::Grants.new(client: client)
           @custom_currencies = Stigg::Resources::V1::Credits::CustomCurrencies.new(client: client)
+          @consumption = Stigg::Resources::V1::Credits::Consumption.new(client: client)
         end
       end
     end
