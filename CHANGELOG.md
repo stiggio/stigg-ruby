@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.35 (2026-07-01)
+
+Full Changelog: [v0.1.0-beta.34...v0.1.0-beta.35](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.34...v0.1.0-beta.35)
+
+### Features
+
+* **api:** add consumption sub-resource to credits ([91984a0](https://github.com/stiggio/stigg-ruby/commit/91984a0134e60ec1b03ed1c0ad34fdbdabea9426))
+
 ## 0.1.0-beta.34 (2026-06-30)
 
 Full Changelog: [v0.1.0-beta.33...v0.1.0-beta.34](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.33...v0.1.0-beta.34)
