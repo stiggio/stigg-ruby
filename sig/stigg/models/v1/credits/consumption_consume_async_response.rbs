@@ -1,0 +1,17 @@
+module Stigg
+  module Models
+    module V1
+      module Credits
+        type consumption_consume_async_response = { data: top }
+
+        class ConsumptionConsumeAsyncResponse < Stigg::Internal::Type::BaseModel
+          attr_accessor data: top
+
+          def initialize: (data: top) -> void
+
+          def to_hash: -> { data: top }
+        end
+      end
+    end
+  end
+end

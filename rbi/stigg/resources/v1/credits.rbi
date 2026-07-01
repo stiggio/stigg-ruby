@@ -12,6 +12,9 @@ module Stigg
         sig { returns(Stigg::Resources::V1::Credits::CustomCurrencies) }
         attr_reader :custom_currencies
 
+        sig { returns(Stigg::Resources::V1::Credits::Consumption) }
+        attr_reader :consumption
+
         # Retrieves the automatic recharge configuration for a customer and currency.
         # Returns default settings if no configuration exists.
         sig do

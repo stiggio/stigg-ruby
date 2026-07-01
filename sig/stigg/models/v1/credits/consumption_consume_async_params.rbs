@@ -1,0 +1,107 @@
+module Stigg
+  module Models
+    module V1
+      module Credits
+        type consumption_consume_async_params =
+          {
+            consumptions: ::Array[Stigg::V1::Credits::ConsumptionConsumeAsyncParams::Consumption],
+            x_account_id: String,
+            x_environment_id: String
+          }
+          & Stigg::Internal::Type::request_parameters
+
+        class ConsumptionConsumeAsyncParams < Stigg::Internal::Type::BaseModel
+          extend Stigg::Internal::Type::RequestParameters::Converter
+          include Stigg::Internal::Type::RequestParameters
+
+          attr_accessor consumptions: ::Array[Stigg::V1::Credits::ConsumptionConsumeAsyncParams::Consumption]
+
+          attr_reader x_account_id: String?
+
+          def x_account_id=: (String) -> String
+
+          attr_reader x_environment_id: String?
+
+          def x_environment_id=: (String) -> String
+
+          def initialize: (
+            consumptions: ::Array[Stigg::V1::Credits::ConsumptionConsumeAsyncParams::Consumption],
+            ?x_account_id: String,
+            ?x_environment_id: String,
+            ?request_options: Stigg::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            consumptions: ::Array[Stigg::V1::Credits::ConsumptionConsumeAsyncParams::Consumption],
+            x_account_id: String,
+            x_environment_id: String,
+            request_options: Stigg::RequestOptions
+          }
+
+          type consumption =
+            {
+              amount: Float,
+              currency_id: String,
+              customer_id: String,
+              idempotency_key: String,
+              created_at: Time,
+              dimensions: ::Hash[Symbol, Stigg::Models::V1::Credits::ConsumptionConsumeAsyncParams::Consumption::dimension],
+              resource_id: String
+            }
+
+          class Consumption < Stigg::Internal::Type::BaseModel
+            attr_accessor amount: Float
+
+            attr_accessor currency_id: String
+
+            attr_accessor customer_id: String
+
+            attr_accessor idempotency_key: String
+
+            attr_reader created_at: Time?
+
+            def created_at=: (Time) -> Time
+
+            attr_reader dimensions: ::Hash[Symbol, Stigg::Models::V1::Credits::ConsumptionConsumeAsyncParams::Consumption::dimension]?
+
+            def dimensions=: (
+              ::Hash[Symbol, Stigg::Models::V1::Credits::ConsumptionConsumeAsyncParams::Consumption::dimension]
+            ) -> ::Hash[Symbol, Stigg::Models::V1::Credits::ConsumptionConsumeAsyncParams::Consumption::dimension]
+
+            attr_reader resource_id: String?
+
+            def resource_id=: (String) -> String
+
+            def initialize: (
+              amount: Float,
+              currency_id: String,
+              customer_id: String,
+              idempotency_key: String,
+              ?created_at: Time,
+              ?dimensions: ::Hash[Symbol, Stigg::Models::V1::Credits::ConsumptionConsumeAsyncParams::Consumption::dimension],
+              ?resource_id: String
+            ) -> void
+
+            def to_hash: -> {
+              amount: Float,
+              currency_id: String,
+              customer_id: String,
+              idempotency_key: String,
+              created_at: Time,
+              dimensions: ::Hash[Symbol, Stigg::Models::V1::Credits::ConsumptionConsumeAsyncParams::Consumption::dimension],
+              resource_id: String
+            }
+
+            type dimension = String | Float | bool
+
+            module Dimension
+              extend Stigg::Internal::Type::Union
+
+              def self?.variants: -> ::Array[Stigg::Models::V1::Credits::ConsumptionConsumeAsyncParams::Consumption::dimension]
+            end
+          end
+        end
+      end
+    end
+  end
+end

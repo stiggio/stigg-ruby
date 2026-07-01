@@ -1,0 +1,31 @@
+module Stigg
+  module Resources
+    class V1
+      class Credits
+        class Consumption
+          def consume: (
+            amount: Float,
+            currency_id: String,
+            customer_id: String,
+            idempotency_key: String,
+            ?created_at: Time,
+            ?dimensions: ::Hash[Symbol, Stigg::Models::V1::Credits::ConsumptionConsumeParams::dimension],
+            ?resource_id: String,
+            ?x_account_id: String,
+            ?x_environment_id: String,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Credits::ConsumptionConsumeResponse
+
+          def consume_async: (
+            consumptions: ::Array[Stigg::V1::Credits::ConsumptionConsumeAsyncParams::Consumption],
+            ?x_account_id: String,
+            ?x_environment_id: String,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Models::V1::Credits::ConsumptionConsumeAsyncResponse
+
+          def initialize: (client: Stigg::Client) -> void
+        end
+      end
+    end
+  end
+end
