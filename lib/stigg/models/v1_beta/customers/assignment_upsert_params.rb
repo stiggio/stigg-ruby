@@ -44,7 +44,7 @@ module Stigg
 
           class Assignment < Stigg::Internal::Type::BaseModel
             # @!attribute entity_id
-            #   The entity refId this assignment is attached to
+            #   The entity ID this assignment is attached to
             #
             #   @return [String]
             required :entity_id, String, api_name: :entityId
@@ -57,22 +57,22 @@ module Stigg
             optional :cadence, String
 
             # @!attribute currency_id
-            #   Currency refId this assignment grants (credit budgets). Mutually exclusive with
+            #   Currency ID this assignment grants (credit budgets). Mutually exclusive with
             #   `featureId`.
             #
             #   @return [String, nil]
             optional :currency_id, String, api_name: :currencyId
 
             # @!attribute feature_id
-            #   Feature refId this assignment grants. Mutually exclusive with `currencyId`.
+            #   Feature ID this assignment grants. Mutually exclusive with `currencyId`.
             #
             #   @return [String, nil]
             optional :feature_id, String, api_name: :featureId
 
             # @!attribute parent_id
-            #   Parent entity refId in the hierarchy. Omit to leave the current parent untouched
-            #   (a new node defaults to a root); `null` detaches to a root; a refId sets or
-            #   changes the parent. Reparenting an existing node is leaf-only.
+            #   Parent entity ID in the hierarchy. Omit to leave the current parent untouched (a
+            #   new node defaults to a root); `null` detaches to a root; an ID sets or changes
+            #   the parent. Reparenting an existing node is leaf-only.
             #
             #   @return [String, nil]
             optional :parent_id, String, api_name: :parentId, nil?: true
@@ -99,15 +99,15 @@ module Stigg
             #   `cadence` are required; on update they may be omitted individually to preserve
             #   the existing value.
             #
-            #   @param entity_id [String] The entity refId this assignment is attached to
+            #   @param entity_id [String] The entity ID this assignment is attached to
             #
             #   @param cadence [String] Usage-reset cadence (required on create) as an ISO-8601 single-unit duration, e.
             #
-            #   @param currency_id [String] Currency refId this assignment grants (credit budgets). Mutually exclusive with
+            #   @param currency_id [String] Currency ID this assignment grants (credit budgets). Mutually exclusive with `fe
             #
-            #   @param feature_id [String] Feature refId this assignment grants. Mutually exclusive with `currencyId`.
+            #   @param feature_id [String] Feature ID this assignment grants. Mutually exclusive with `currencyId`.
             #
-            #   @param parent_id [String, nil] Parent entity refId in the hierarchy. Omit to leave the current parent untouched
+            #   @param parent_id [String, nil] Parent entity ID in the hierarchy. Omit to leave the current parent untouched (a
             #
             #   @param scope_entity_ids [Array<String>]
             #

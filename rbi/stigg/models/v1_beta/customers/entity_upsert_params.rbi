@@ -91,6 +91,15 @@ module Stigg
             sig { returns(String) }
             attr_accessor :id
 
+            # The entity type ID this entity instantiates. Required when creating a new
+            # entity; on a re-upsert may be omitted to preserve the existing type. Governance
+            # returns 400 if missing on create.
+            sig { returns(T.nilable(String)) }
+            attr_reader :entity_type_id
+
+            sig { params(entity_type_id: String).void }
+            attr_writer :entity_type_id
+
             # Free-form key/value metadata. Patch semantics: empty-string value removes a key,
             # omitted keys are preserved.
             sig { returns(T.nilable(T::Hash[Symbol, String])) }
@@ -99,33 +108,24 @@ module Stigg
             sig { params(metadata: T::Hash[Symbol, String]).void }
             attr_writer :metadata
 
-            # The entity type refId this entity instantiates. Required when creating a new
-            # entity; on a re-upsert may be omitted to preserve the existing type. Governance
-            # returns 400 if missing on create.
-            sig { returns(T.nilable(String)) }
-            attr_reader :type_ref_id
-
-            sig { params(type_ref_id: String).void }
-            attr_writer :type_ref_id
-
             # A single entity to create or update.
             sig do
               params(
                 id: String,
-                metadata: T::Hash[Symbol, String],
-                type_ref_id: String
+                entity_type_id: String,
+                metadata: T::Hash[Symbol, String]
               ).returns(T.attached_class)
             end
             def self.new(
               # The unique identifier for the entity
               id:,
-              # Free-form key/value metadata. Patch semantics: empty-string value removes a key,
-              # omitted keys are preserved.
-              metadata: nil,
-              # The entity type refId this entity instantiates. Required when creating a new
+              # The entity type ID this entity instantiates. Required when creating a new
               # entity; on a re-upsert may be omitted to preserve the existing type. Governance
               # returns 400 if missing on create.
-              type_ref_id: nil
+              entity_type_id: nil,
+              # Free-form key/value metadata. Patch semantics: empty-string value removes a key,
+              # omitted keys are preserved.
+              metadata: nil
             )
             end
 
@@ -133,8 +133,8 @@ module Stigg
               override.returns(
                 {
                   id: String,
-                  metadata: T::Hash[Symbol, String],
-                  type_ref_id: String
+                  entity_type_id: String,
+                  metadata: T::Hash[Symbol, String]
                 }
               )
             end

@@ -12,7 +12,7 @@ module Stigg
           #
           # @overload retrieve(entity_id, id:, x_account_id: nil, x_environment_id: nil, request_options: {})
           #
-          # @param entity_id [String] Path param: The entity identifier (refId)
+          # @param entity_id [String] Path param: The entity identifier
           #
           # @param id [String] Path param: The customer identifier (owner) the entity belongs to
           #
@@ -48,7 +48,7 @@ module Stigg
           #
           # Retrieves a paginated list of entities for the given customer.
           #
-          # @overload list(id, after: nil, before: nil, include_archived: nil, limit: nil, type_ref_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+          # @overload list(id, after: nil, before: nil, entity_type_id: nil, include_archived: nil, limit: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
           #
           # @param id [String] Path param: The customer identifier (owner) the entities belong to
           #
@@ -56,11 +56,11 @@ module Stigg
           #
           # @param before [String] Query param: Return items that come before this cursor
           #
+          # @param entity_type_id [String] Query param: Filter results to entities of a specific entity type, by the type's
+          #
           # @param include_archived [Symbol, Stigg::Models::V1Beta::Customers::EntityListParams::IncludeArchived] Query param: Whether to include archived entities. One of: true, false
           #
           # @param limit [Integer] Query param: Maximum number of items to return
-          #
-          # @param type_ref_id [String] Query param: Filter results to entities of a specific entity type, by the type's
           #
           # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
           #
@@ -72,13 +72,16 @@ module Stigg
           #
           # @see Stigg::Models::V1Beta::Customers::EntityListParams
           def list(id, params = {})
-            query_params = [:after, :before, :include_archived, :limit, :type_ref_id]
+            query_params = [:after, :before, :entity_type_id, :include_archived, :limit]
             parsed, options = Stigg::V1Beta::Customers::EntityListParams.dump_request(params)
             query = Stigg::Internal::Util.encode_query_params(parsed.slice(*query_params))
             @client.request(
               method: :get,
               path: ["api/v1-beta/customers/%1$s/entities", id],
-              query: query.transform_keys(include_archived: "includeArchived", type_ref_id: "typeRefId"),
+              query: query.transform_keys(
+                entity_type_id: "entityTypeId",
+                include_archived: "includeArchived"
+              ),
               headers: parsed.except(*query_params).transform_keys(
                 x_account_id: "x-account-id",
                 x_environment_id: "x-environment-id"

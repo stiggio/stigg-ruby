@@ -69,18 +69,17 @@ module Stigg
             sig { returns(Time) }
             attr_accessor :created_at
 
-            # The entity refId this assignment is attached to
+            # The entity ID this assignment is attached to
             sig { returns(String) }
             attr_accessor :entity_id
 
-            # Parent entity refId in the hierarchy, or `null` for a root.
+            # Parent entity ID in the hierarchy, or `null` for a root.
             sig { returns(T.nilable(String)) }
             attr_accessor :parent_id
 
-            # Dimension-scoped sub-budget key: the set of entity refIds this budget applies
-            # to. Empty is the node-wide budget that always matches; a non-empty set only
-            # applies when every listed entity is present in the resolved set
-            # (order-insensitive).
+            # Dimension-scoped sub-budget key: the set of entity IDs this budget applies to.
+            # Empty is the node-wide budget that always matches; a non-empty set only applies
+            # when every listed entity is present in the resolved set (order-insensitive).
             sig { returns(T::Array[String]) }
             attr_accessor :scope_entity_ids
 
@@ -92,14 +91,14 @@ module Stigg
             sig { returns(T.nilable(Float)) }
             attr_accessor :usage_limit
 
-            # Currency refId this assignment grants (present for credit capabilities).
+            # Currency ID this assignment grants (present for credit capabilities).
             sig { returns(T.nilable(String)) }
             attr_reader :currency_id
 
             sig { params(currency_id: String).void }
             attr_writer :currency_id
 
-            # Feature refId this assignment grants (present for feature capabilities).
+            # Feature ID this assignment grants (present for feature capabilities).
             sig { returns(T.nilable(String)) }
             attr_reader :feature_id
 
@@ -131,22 +130,21 @@ module Stigg
               cadence:,
               # Timestamp of when the record was created
               created_at:,
-              # The entity refId this assignment is attached to
+              # The entity ID this assignment is attached to
               entity_id:,
-              # Parent entity refId in the hierarchy, or `null` for a root.
+              # Parent entity ID in the hierarchy, or `null` for a root.
               parent_id:,
-              # Dimension-scoped sub-budget key: the set of entity refIds this budget applies
-              # to. Empty is the node-wide budget that always matches; a non-empty set only
-              # applies when every listed entity is present in the resolved set
-              # (order-insensitive).
+              # Dimension-scoped sub-budget key: the set of entity IDs this budget applies to.
+              # Empty is the node-wide budget that always matches; a non-empty set only applies
+              # when every listed entity is present in the resolved set (order-insensitive).
               scope_entity_ids:,
               # Timestamp of when the record was last updated
               updated_at:,
               # Maximum usage allowed within one cadence window
               usage_limit:,
-              # Currency refId this assignment grants (present for credit capabilities).
+              # Currency ID this assignment grants (present for credit capabilities).
               currency_id: nil,
-              # Feature refId this assignment grants (present for feature capabilities).
+              # Feature ID this assignment grants (present for feature capabilities).
               feature_id: nil
             )
             end

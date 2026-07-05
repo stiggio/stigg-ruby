@@ -93,7 +93,7 @@ module Stigg
 
               # External id of the entity type (e.g. `team`, `user`).
               sig { returns(String) }
-              attr_accessor :entity_type
+              attr_accessor :entity_type_id
 
               # External id of the parent entity in the tree; `null` for a root. Use it to
               # rebuild the tree.
@@ -124,7 +124,7 @@ module Stigg
               sig { returns(T.nilable(Float)) }
               attr_accessor :utilization
 
-              # The metered currency refId (present when the configured capability is a credit
+              # The metered currency ID (present when the configured capability is a credit
               # currency).
               sig { returns(T.nilable(String)) }
               attr_reader :currency_id
@@ -132,7 +132,7 @@ module Stigg
               sig { params(currency_id: String).void }
               attr_writer :currency_id
 
-              # The metered feature refId (present when the configured capability is a feature).
+              # The metered feature ID (present when the configured capability is a feature).
               sig { returns(T.nilable(String)) }
               attr_reader :feature_id
 
@@ -148,7 +148,7 @@ module Stigg
                   cadence: T.nilable(String),
                   current_usage: T.nilable(Float),
                   entity_id: String,
-                  entity_type: String,
+                  entity_type_id: String,
                   parent_id: T.nilable(String),
                   scope_entity_ids: T::Array[String],
                   usage_limit: T.nilable(Float),
@@ -169,7 +169,7 @@ module Stigg
                 # External id of the entity at this node.
                 entity_id:,
                 # External id of the entity type (e.g. `team`, `user`).
-                entity_type:,
+                entity_type_id:,
                 # External id of the parent entity in the tree; `null` for a root. Use it to
                 # rebuild the tree.
                 parent_id:,
@@ -187,10 +187,10 @@ module Stigg
                 # `currentUsage / usageLimit` (1 when usageLimit is 0 — always at limit). The
                 # cross-capability-safe sort key.
                 utilization:,
-                # The metered currency refId (present when the configured capability is a credit
+                # The metered currency ID (present when the configured capability is a credit
                 # currency).
                 currency_id: nil,
-                # The metered feature refId (present when the configured capability is a feature).
+                # The metered feature ID (present when the configured capability is a feature).
                 feature_id: nil
               )
               end
@@ -201,7 +201,7 @@ module Stigg
                     cadence: T.nilable(String),
                     current_usage: T.nilable(Float),
                     entity_id: String,
-                    entity_type: String,
+                    entity_type_id: String,
                     parent_id: T.nilable(String),
                     scope_entity_ids: T::Array[String],
                     usage_limit: T.nilable(Float),

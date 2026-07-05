@@ -49,6 +49,14 @@ module Stigg
             #   @return [String]
             required :id, String
 
+            # @!attribute entity_type_id
+            #   The entity type ID this entity instantiates. Required when creating a new
+            #   entity; on a re-upsert may be omitted to preserve the existing type. Governance
+            #   returns 400 if missing on create.
+            #
+            #   @return [String, nil]
+            optional :entity_type_id, String, api_name: :entityTypeId
+
             # @!attribute metadata
             #   Free-form key/value metadata. Patch semantics: empty-string value removes a key,
             #   omitted keys are preserved.
@@ -56,15 +64,7 @@ module Stigg
             #   @return [Hash{Symbol=>String}, nil]
             optional :metadata, Stigg::Internal::Type::HashOf[String]
 
-            # @!attribute type_ref_id
-            #   The entity type refId this entity instantiates. Required when creating a new
-            #   entity; on a re-upsert may be omitted to preserve the existing type. Governance
-            #   returns 400 if missing on create.
-            #
-            #   @return [String, nil]
-            optional :type_ref_id, String, api_name: :typeRefId
-
-            # @!method initialize(id:, metadata: nil, type_ref_id: nil)
+            # @!method initialize(id:, entity_type_id: nil, metadata: nil)
             #   Some parameter documentations has been truncated, see
             #   {Stigg::Models::V1Beta::Customers::EntityUpsertParams::Entity} for more details.
             #
@@ -72,9 +72,9 @@ module Stigg
             #
             #   @param id [String] The unique identifier for the entity
             #
-            #   @param metadata [Hash{Symbol=>String}] Free-form key/value metadata. Patch semantics: empty-string value removes a key,
+            #   @param entity_type_id [String] The entity type ID this entity instantiates. Required when creating a new entity
             #
-            #   @param type_ref_id [String] The entity type refId this entity instantiates. Required when creating a new ent
+            #   @param metadata [Hash{Symbol=>String}] Free-form key/value metadata. Patch semantics: empty-string value removes a key,
           end
         end
       end

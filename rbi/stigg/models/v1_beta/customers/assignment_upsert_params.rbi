@@ -89,7 +89,7 @@ module Stigg
                 )
               end
 
-            # The entity refId this assignment is attached to
+            # The entity ID this assignment is attached to
             sig { returns(String) }
             attr_accessor :entity_id
 
@@ -101,7 +101,7 @@ module Stigg
             sig { params(cadence: String).void }
             attr_writer :cadence
 
-            # Currency refId this assignment grants (credit budgets). Mutually exclusive with
+            # Currency ID this assignment grants (credit budgets). Mutually exclusive with
             # `featureId`.
             sig { returns(T.nilable(String)) }
             attr_reader :currency_id
@@ -109,16 +109,16 @@ module Stigg
             sig { params(currency_id: String).void }
             attr_writer :currency_id
 
-            # Feature refId this assignment grants. Mutually exclusive with `currencyId`.
+            # Feature ID this assignment grants. Mutually exclusive with `currencyId`.
             sig { returns(T.nilable(String)) }
             attr_reader :feature_id
 
             sig { params(feature_id: String).void }
             attr_writer :feature_id
 
-            # Parent entity refId in the hierarchy. Omit to leave the current parent untouched
-            # (a new node defaults to a root); `null` detaches to a root; a refId sets or
-            # changes the parent. Reparenting an existing node is leaf-only.
+            # Parent entity ID in the hierarchy. Omit to leave the current parent untouched (a
+            # new node defaults to a root); `null` detaches to a root; an ID sets or changes
+            # the parent. Reparenting an existing node is leaf-only.
             sig { returns(T.nilable(String)) }
             attr_accessor :parent_id
 
@@ -149,19 +149,19 @@ module Stigg
               ).returns(T.attached_class)
             end
             def self.new(
-              # The entity refId this assignment is attached to
+              # The entity ID this assignment is attached to
               entity_id:,
               # Usage-reset cadence (required on create) as an ISO-8601 single-unit duration,
               # e.g. `P1M`, `P30D`, `PT1M`.
               cadence: nil,
-              # Currency refId this assignment grants (credit budgets). Mutually exclusive with
+              # Currency ID this assignment grants (credit budgets). Mutually exclusive with
               # `featureId`.
               currency_id: nil,
-              # Feature refId this assignment grants. Mutually exclusive with `currencyId`.
+              # Feature ID this assignment grants. Mutually exclusive with `currencyId`.
               feature_id: nil,
-              # Parent entity refId in the hierarchy. Omit to leave the current parent untouched
-              # (a new node defaults to a root); `null` detaches to a root; a refId sets or
-              # changes the parent. Reparenting an existing node is leaf-only.
+              # Parent entity ID in the hierarchy. Omit to leave the current parent untouched (a
+              # new node defaults to a root); `null` detaches to a root; an ID sets or changes
+              # the parent. Reparenting an existing node is leaf-only.
               parent_id: nil,
               scope_entity_ids: nil,
               # Maximum usage allowed within one cadence window (required on create)

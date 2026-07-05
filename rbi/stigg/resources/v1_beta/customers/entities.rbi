@@ -16,7 +16,7 @@ module Stigg
             ).returns(Stigg::Models::V1Beta::Customers::EntityRetrieveResponse)
           end
           def retrieve(
-            # Path param: The entity identifier (refId)
+            # Path param: The entity identifier
             entity_id,
             # Path param: The customer identifier (owner) the entity belongs to
             id:,
@@ -37,10 +37,10 @@ module Stigg
               id: String,
               after: String,
               before: String,
+              entity_type_id: String,
               include_archived:
                 Stigg::V1Beta::Customers::EntityListParams::IncludeArchived::OrSymbol,
               limit: Integer,
-              type_ref_id: String,
               x_account_id: String,
               x_environment_id: String,
               request_options: Stigg::RequestOptions::OrHash
@@ -57,13 +57,13 @@ module Stigg
             after: nil,
             # Query param: Return items that come before this cursor
             before: nil,
+            # Query param: Filter results to entities of a specific entity type, by the type's
+            # ID
+            entity_type_id: nil,
             # Query param: Whether to include archived entities. One of: true, false
             include_archived: nil,
             # Query param: Maximum number of items to return
             limit: nil,
-            # Query param: Filter results to entities of a specific entity type, by the type's
-            # refId
-            type_ref_id: nil,
             # Header param: Account ID — optional when authenticating with a user JWT (Bearer
             # token); falls back to the user's first membership. Ignored for API-key auth.
             x_account_id: nil,
