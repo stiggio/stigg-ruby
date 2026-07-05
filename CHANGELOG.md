@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.36 (2026-07-05)
+
+Full Changelog: [v0.1.0-beta.35...v0.1.0-beta.36](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.35...v0.1.0-beta.36)
+
+### Bug Fixes
+
+* **api:** rename entity type fields to entity_type_id across governance/entities/assignments ([6669a6e](https://github.com/stiggio/stigg-ruby/commit/6669a6eb36df20c1cecb70697e467cf5fd62fadc))
+
 ## 0.1.0-beta.35 (2026-07-01)
 
 Full Changelog: [v0.1.0-beta.34...v0.1.0-beta.35](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.34...v0.1.0-beta.35)
