@@ -20,9 +20,9 @@ module Stigg
           #
           # @param before [String] Query param: Return items that come before this cursor
           #
-          # @param capability_id [String] Query param: Filter assignments to a specific capability refId
+          # @param capability_id [String] Query param: Filter assignments to a specific capability ID
           #
-          # @param entity_id [String] Query param: Filter assignments to a specific entity refId
+          # @param entity_id [String] Query param: Filter assignments to a specific entity ID
           #
           # @param limit [Integer] Query param: Maximum number of items to return
           #

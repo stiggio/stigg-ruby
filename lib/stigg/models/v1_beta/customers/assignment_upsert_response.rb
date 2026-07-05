@@ -38,22 +38,21 @@ module Stigg
             required :created_at, Time, api_name: :createdAt
 
             # @!attribute entity_id
-            #   The entity refId this assignment is attached to
+            #   The entity ID this assignment is attached to
             #
             #   @return [String]
             required :entity_id, String, api_name: :entityId
 
             # @!attribute parent_id
-            #   Parent entity refId in the hierarchy, or `null` for a root.
+            #   Parent entity ID in the hierarchy, or `null` for a root.
             #
             #   @return [String, nil]
             required :parent_id, String, api_name: :parentId, nil?: true
 
             # @!attribute scope_entity_ids
-            #   Dimension-scoped sub-budget key: the set of entity refIds this budget applies
-            #   to. Empty is the node-wide budget that always matches; a non-empty set only
-            #   applies when every listed entity is present in the resolved set
-            #   (order-insensitive).
+            #   Dimension-scoped sub-budget key: the set of entity IDs this budget applies to.
+            #   Empty is the node-wide budget that always matches; a non-empty set only applies
+            #   when every listed entity is present in the resolved set (order-insensitive).
             #
             #   @return [Array<String>]
             required :scope_entity_ids, Stigg::Internal::Type::ArrayOf[String], api_name: :scopeEntityIds
@@ -71,13 +70,13 @@ module Stigg
             required :usage_limit, Float, api_name: :usageLimit, nil?: true
 
             # @!attribute currency_id
-            #   Currency refId this assignment grants (present for credit capabilities).
+            #   Currency ID this assignment grants (present for credit capabilities).
             #
             #   @return [String, nil]
             optional :currency_id, String, api_name: :currencyId
 
             # @!attribute feature_id
-            #   Feature refId this assignment grants (present for feature capabilities).
+            #   Feature ID this assignment grants (present for feature capabilities).
             #
             #   @return [String, nil]
             optional :feature_id, String, api_name: :featureId
@@ -97,19 +96,19 @@ module Stigg
             #
             #   @param created_at [Time] Timestamp of when the record was created
             #
-            #   @param entity_id [String] The entity refId this assignment is attached to
+            #   @param entity_id [String] The entity ID this assignment is attached to
             #
-            #   @param parent_id [String, nil] Parent entity refId in the hierarchy, or `null` for a root.
+            #   @param parent_id [String, nil] Parent entity ID in the hierarchy, or `null` for a root.
             #
-            #   @param scope_entity_ids [Array<String>] Dimension-scoped sub-budget key: the set of entity refIds this budget applies to
+            #   @param scope_entity_ids [Array<String>] Dimension-scoped sub-budget key: the set of entity IDs this budget applies to. E
             #
             #   @param updated_at [Time] Timestamp of when the record was last updated
             #
             #   @param usage_limit [Float, nil] Maximum usage allowed within one cadence window
             #
-            #   @param currency_id [String] Currency refId this assignment grants (present for credit capabilities).
+            #   @param currency_id [String] Currency ID this assignment grants (present for credit capabilities).
             #
-            #   @param feature_id [String] Feature refId this assignment grants (present for feature capabilities).
+            #   @param feature_id [String] Feature ID this assignment grants (present for feature capabilities).
           end
         end
       end

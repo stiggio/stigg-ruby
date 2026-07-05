@@ -32,9 +32,9 @@ module Stigg
             after: nil,
             # Query param: Return items that come before this cursor
             before: nil,
-            # Query param: Filter assignments to a specific capability refId
+            # Query param: Filter assignments to a specific capability ID
             capability_id: nil,
-            # Query param: Filter assignments to a specific entity refId
+            # Query param: Filter assignments to a specific entity ID
             entity_id: nil,
             # Query param: Maximum number of items to return
             limit: nil,

@@ -15,9 +15,9 @@ module Stigg
             String id,
             ?after: String,
             ?before: String,
+            ?entity_type_id: String,
             ?include_archived: Stigg::Models::V1Beta::Customers::EntityListParams::include_archived,
             ?limit: Integer,
-            ?type_ref_id: String,
             ?x_account_id: String,
             ?x_environment_id: String,
             ?request_options: Stigg::request_opts

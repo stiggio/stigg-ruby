@@ -29,7 +29,7 @@ module Stigg
                 cadence: String?,
                 current_usage: Float?,
                 entity_id: String,
-                entity_type: String,
+                entity_type_id: String,
                 parent_id: String?,
                 scope_entity_ids: ::Array[String],
                 usage_limit: Float?,
@@ -47,7 +47,7 @@ module Stigg
 
               attr_accessor entity_id: String
 
-              attr_accessor entity_type: String
+              attr_accessor entity_type_id: String
 
               attr_accessor parent_id: String?
 
@@ -73,7 +73,7 @@ module Stigg
                 cadence: String?,
                 current_usage: Float?,
                 entity_id: String,
-                entity_type: String,
+                entity_type_id: String,
                 parent_id: String?,
                 scope_entity_ids: ::Array[String],
                 usage_limit: Float?,
@@ -88,7 +88,7 @@ module Stigg
                 cadence: String?,
                 current_usage: Float?,
                 entity_id: String,
-                entity_type: String,
+                entity_type_id: String,
                 parent_id: String?,
                 scope_entity_ids: ::Array[String],
                 usage_limit: Float?,

@@ -24,17 +24,17 @@ module Stigg
           #   @return [Time]
           required :created_at, Time, api_name: :createdAt
 
+          # @!attribute entity_type_id
+          #   The entity type identifier this entity instantiates
+          #
+          #   @return [String]
+          required :entity_type_id, String, api_name: :entityTypeId
+
           # @!attribute metadata
           #   Free-form key/value metadata attached to the entity
           #
           #   @return [Hash{Symbol=>String}]
           required :metadata, Stigg::Internal::Type::HashOf[String]
-
-          # @!attribute type_id
-          #   The entity type identifier this entity instantiates
-          #
-          #   @return [String]
-          required :type_id, String, api_name: :typeId
 
           # @!attribute updated_at
           #   Timestamp of when the record was last updated
@@ -42,7 +42,7 @@ module Stigg
           #   @return [Time]
           required :updated_at, Time, api_name: :updatedAt
 
-          # @!method initialize(id:, archived_at:, created_at:, metadata:, type_id:, updated_at:)
+          # @!method initialize(id:, archived_at:, created_at:, entity_type_id:, metadata:, updated_at:)
           #   A stored entity instance tracked by the governance service for a given customer
           #
           #   @param id [String] The unique identifier for the entity
@@ -51,9 +51,9 @@ module Stigg
           #
           #   @param created_at [Time] Timestamp of when the record was created
           #
-          #   @param metadata [Hash{Symbol=>String}] Free-form key/value metadata attached to the entity
+          #   @param entity_type_id [String] The entity type identifier this entity instantiates
           #
-          #   @param type_id [String] The entity type identifier this entity instantiates
+          #   @param metadata [Hash{Symbol=>String}] Free-form key/value metadata attached to the entity
           #
           #   @param updated_at [Time] Timestamp of when the record was last updated
         end

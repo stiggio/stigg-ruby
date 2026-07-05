@@ -47,11 +47,11 @@ module Stigg
               #   @return [String]
               required :entity_id, String, api_name: :entityId
 
-              # @!attribute entity_type
+              # @!attribute entity_type_id
               #   External id of the entity type (e.g. `team`, `user`).
               #
               #   @return [String]
-              required :entity_type, String, api_name: :entityType
+              required :entity_type_id, String, api_name: :entityTypeId
 
               # @!attribute parent_id
               #   External id of the parent entity in the tree; `null` for a root. Use it to
@@ -95,19 +95,19 @@ module Stigg
               required :utilization, Float, nil?: true
 
               # @!attribute currency_id
-              #   The metered currency refId (present when the configured capability is a credit
+              #   The metered currency ID (present when the configured capability is a credit
               #   currency).
               #
               #   @return [String, nil]
               optional :currency_id, String, api_name: :currencyId
 
               # @!attribute feature_id
-              #   The metered feature refId (present when the configured capability is a feature).
+              #   The metered feature ID (present when the configured capability is a feature).
               #
               #   @return [String, nil]
               optional :feature_id, String, api_name: :featureId
 
-              # @!method initialize(cadence:, current_usage:, entity_id:, entity_type:, parent_id:, scope_entity_ids:, usage_limit:, usage_period_end:, usage_period_start:, utilization:, currency_id: nil, feature_id: nil)
+              # @!method initialize(cadence:, current_usage:, entity_id:, entity_type_id:, parent_id:, scope_entity_ids:, usage_limit:, usage_period_end:, usage_period_start:, utilization:, currency_id: nil, feature_id: nil)
               #   Some parameter documentations has been truncated, see
               #   {Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Data} for
               #   more details.
@@ -123,7 +123,7 @@ module Stigg
               #
               #   @param entity_id [String] External id of the entity at this node.
               #
-              #   @param entity_type [String] External id of the entity type (e.g. `team`, `user`).
+              #   @param entity_type_id [String] External id of the entity type (e.g. `team`, `user`).
               #
               #   @param parent_id [String, nil] External id of the parent entity in the tree; `null` for a root. Use it to rebui
               #
@@ -137,9 +137,9 @@ module Stigg
               #
               #   @param utilization [Float, nil] `currentUsage / usageLimit` (1 when usageLimit is 0 — always at limit). The cros
               #
-              #   @param currency_id [String] The metered currency refId (present when the configured capability is a credit c
+              #   @param currency_id [String] The metered currency ID (present when the configured capability is a credit curr
               #
-              #   @param feature_id [String] The metered feature refId (present when the configured capability is a feature).
+              #   @param feature_id [String] The metered feature ID (present when the configured capability is a feature).
             end
 
             # @see Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse#pagination
