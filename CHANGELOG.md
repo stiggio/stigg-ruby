@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.37 (2026-07-05)
+
+Full Changelog: [v0.1.0-beta.36...v0.1.0-beta.37](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.36...v0.1.0-beta.37)
+
+### Features
+
+* **api:** add feature_id, rename capability_id to currency_id in assignments list ([9304b33](https://github.com/stiggio/stigg-ruby/commit/9304b33beeee4bddc6feb37f62448ddc9ef57ad4))
+
 ## 0.1.0-beta.36 (2026-07-05)
 
 Full Changelog: [v0.1.0-beta.35...v0.1.0-beta.36](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.35...v0.1.0-beta.36)
