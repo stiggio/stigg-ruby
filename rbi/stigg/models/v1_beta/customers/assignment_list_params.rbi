@@ -33,12 +33,13 @@ module Stigg
           sig { params(before: String).void }
           attr_writer :before
 
-          # Filter assignments to a specific capability ID
+          # Filter assignments to a specific currency, by its ID. Mutually exclusive with
+          # `featureId`.
           sig { returns(T.nilable(String)) }
-          attr_reader :capability_id
+          attr_reader :currency_id
 
-          sig { params(capability_id: String).void }
-          attr_writer :capability_id
+          sig { params(currency_id: String).void }
+          attr_writer :currency_id
 
           # Filter assignments to a specific entity ID
           sig { returns(T.nilable(String)) }
@@ -46,6 +47,14 @@ module Stigg
 
           sig { params(entity_id: String).void }
           attr_writer :entity_id
+
+          # Filter assignments to a specific feature, by its ID. Mutually exclusive with
+          # `currencyId`.
+          sig { returns(T.nilable(String)) }
+          attr_reader :feature_id
+
+          sig { params(feature_id: String).void }
+          attr_writer :feature_id
 
           # Maximum number of items to return
           sig { returns(T.nilable(Integer)) }
@@ -71,8 +80,9 @@ module Stigg
               id: String,
               after: String,
               before: String,
-              capability_id: String,
+              currency_id: String,
               entity_id: String,
+              feature_id: String,
               limit: Integer,
               x_account_id: String,
               x_environment_id: String,
@@ -85,10 +95,14 @@ module Stigg
             after: nil,
             # Return items that come before this cursor
             before: nil,
-            # Filter assignments to a specific capability ID
-            capability_id: nil,
+            # Filter assignments to a specific currency, by its ID. Mutually exclusive with
+            # `featureId`.
+            currency_id: nil,
             # Filter assignments to a specific entity ID
             entity_id: nil,
+            # Filter assignments to a specific feature, by its ID. Mutually exclusive with
+            # `currencyId`.
+            feature_id: nil,
             # Maximum number of items to return
             limit: nil,
             x_account_id: nil,
@@ -103,8 +117,9 @@ module Stigg
                 id: String,
                 after: String,
                 before: String,
-                capability_id: String,
+                currency_id: String,
                 entity_id: String,
+                feature_id: String,
                 limit: Integer,
                 x_account_id: String,
                 x_environment_id: String,

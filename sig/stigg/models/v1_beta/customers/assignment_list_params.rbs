@@ -7,8 +7,9 @@ module Stigg
             id: String,
             after: String,
             before: String,
-            capability_id: String,
+            currency_id: String,
             entity_id: String,
+            feature_id: String,
             limit: Integer,
             x_account_id: String,
             x_environment_id: String
@@ -29,13 +30,17 @@ module Stigg
 
           def before=: (String) -> String
 
-          attr_reader capability_id: String?
+          attr_reader currency_id: String?
 
-          def capability_id=: (String) -> String
+          def currency_id=: (String) -> String
 
           attr_reader entity_id: String?
 
           def entity_id=: (String) -> String
+
+          attr_reader feature_id: String?
+
+          def feature_id=: (String) -> String
 
           attr_reader limit: Integer?
 
@@ -53,8 +58,9 @@ module Stigg
             id: String,
             ?after: String,
             ?before: String,
-            ?capability_id: String,
+            ?currency_id: String,
             ?entity_id: String,
+            ?feature_id: String,
             ?limit: Integer,
             ?x_account_id: String,
             ?x_environment_id: String,
@@ -65,8 +71,9 @@ module Stigg
             id: String,
             after: String,
             before: String,
-            capability_id: String,
+            currency_id: String,
             entity_id: String,
+            feature_id: String,
             limit: Integer,
             x_account_id: String,
             x_environment_id: String,

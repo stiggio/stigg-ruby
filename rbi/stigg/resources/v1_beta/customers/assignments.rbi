@@ -13,8 +13,9 @@ module Stigg
               id: String,
               after: String,
               before: String,
-              capability_id: String,
+              currency_id: String,
               entity_id: String,
+              feature_id: String,
               limit: Integer,
               x_account_id: String,
               x_environment_id: String,
@@ -32,10 +33,14 @@ module Stigg
             after: nil,
             # Query param: Return items that come before this cursor
             before: nil,
-            # Query param: Filter assignments to a specific capability ID
-            capability_id: nil,
+            # Query param: Filter assignments to a specific currency, by its ID. Mutually
+            # exclusive with `featureId`.
+            currency_id: nil,
             # Query param: Filter assignments to a specific entity ID
             entity_id: nil,
+            # Query param: Filter assignments to a specific feature, by its ID. Mutually
+            # exclusive with `currencyId`.
+            feature_id: nil,
             # Query param: Maximum number of items to return
             limit: nil,
             # Header param: Account ID — optional when authenticating with a user JWT (Bearer
