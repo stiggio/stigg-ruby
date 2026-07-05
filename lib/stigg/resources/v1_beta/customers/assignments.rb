@@ -12,7 +12,7 @@ module Stigg
           # customer. An assignment ties an entity to a capability with a usage limit and
           # reset cadence.
           #
-          # @overload list(id, after: nil, before: nil, capability_id: nil, entity_id: nil, limit: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+          # @overload list(id, after: nil, before: nil, currency_id: nil, entity_id: nil, feature_id: nil, limit: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
           #
           # @param id [String] Path param: The customer identifier (owner) the assignments belong to
           #
@@ -20,9 +20,11 @@ module Stigg
           #
           # @param before [String] Query param: Return items that come before this cursor
           #
-          # @param capability_id [String] Query param: Filter assignments to a specific capability ID
+          # @param currency_id [String] Query param: Filter assignments to a specific currency, by its ID. Mutually excl
           #
           # @param entity_id [String] Query param: Filter assignments to a specific entity ID
+          #
+          # @param feature_id [String] Query param: Filter assignments to a specific feature, by its ID. Mutually exclu
           #
           # @param limit [Integer] Query param: Maximum number of items to return
           #
@@ -36,13 +38,17 @@ module Stigg
           #
           # @see Stigg::Models::V1Beta::Customers::AssignmentListParams
           def list(id, params = {})
-            query_params = [:after, :before, :capability_id, :entity_id, :limit]
+            query_params = [:after, :before, :currency_id, :entity_id, :feature_id, :limit]
             parsed, options = Stigg::V1Beta::Customers::AssignmentListParams.dump_request(params)
             query = Stigg::Internal::Util.encode_query_params(parsed.slice(*query_params))
             @client.request(
               method: :get,
               path: ["api/v1-beta/customers/%1$s/assignments", id],
-              query: query.transform_keys(capability_id: "capabilityId", entity_id: "entityId"),
+              query: query.transform_keys(
+                currency_id: "currencyId",
+                entity_id: "entityId",
+                feature_id: "featureId"
+              ),
               headers: parsed.except(*query_params).transform_keys(
                 x_account_id: "x-account-id",
                 x_environment_id: "x-environment-id"
