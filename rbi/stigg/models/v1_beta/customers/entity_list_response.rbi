@@ -25,13 +25,13 @@ module Stigg
           sig { returns(Time) }
           attr_accessor :created_at
 
+          # The entity type identifier this entity instantiates
+          sig { returns(String) }
+          attr_accessor :entity_type_id
+
           # Free-form key/value metadata attached to the entity
           sig { returns(T::Hash[Symbol, String]) }
           attr_accessor :metadata
-
-          # The entity type identifier this entity instantiates
-          sig { returns(String) }
-          attr_accessor :type_id
 
           # Timestamp of when the record was last updated
           sig { returns(Time) }
@@ -43,8 +43,8 @@ module Stigg
               id: String,
               archived_at: T.nilable(Time),
               created_at: Time,
+              entity_type_id: String,
               metadata: T::Hash[Symbol, String],
-              type_id: String,
               updated_at: Time
             ).returns(T.attached_class)
           end
@@ -55,10 +55,10 @@ module Stigg
             archived_at:,
             # Timestamp of when the record was created
             created_at:,
+            # The entity type identifier this entity instantiates
+            entity_type_id:,
             # Free-form key/value metadata attached to the entity
             metadata:,
-            # The entity type identifier this entity instantiates
-            type_id:,
             # Timestamp of when the record was last updated
             updated_at:
           )
@@ -70,8 +70,8 @@ module Stigg
                 id: String,
                 archived_at: T.nilable(Time),
                 created_at: Time,
+                entity_type_id: String,
                 metadata: T::Hash[Symbol, String],
-                type_id: String,
                 updated_at: Time
               }
             )

@@ -33,14 +33,14 @@ module Stigg
           sig { params(before: String).void }
           attr_writer :before
 
-          # Filter assignments to a specific capability refId
+          # Filter assignments to a specific capability ID
           sig { returns(T.nilable(String)) }
           attr_reader :capability_id
 
           sig { params(capability_id: String).void }
           attr_writer :capability_id
 
-          # Filter assignments to a specific entity refId
+          # Filter assignments to a specific entity ID
           sig { returns(T.nilable(String)) }
           attr_reader :entity_id
 
@@ -85,9 +85,9 @@ module Stigg
             after: nil,
             # Return items that come before this cursor
             before: nil,
-            # Filter assignments to a specific capability refId
+            # Filter assignments to a specific capability ID
             capability_id: nil,
-            # Filter assignments to a specific entity refId
+            # Filter assignments to a specific entity ID
             entity_id: nil,
             # Maximum number of items to return
             limit: nil,

@@ -18,7 +18,7 @@ module Stigg
             #
             # @overload retrieve_governance(id, after: nil, currency_ids: nil, entity_id_search: nil, entity_type_ids: nil, feature_ids: nil, limit: nil, min_utilization: nil, order: nil, scope: nil, sort_by: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
             #
-            # @param id [String] Path param: The customer external id.
+            # @param id [String] Path param: The customer ID.
             #
             # @param after [String] Query param: Return items that come after this cursor
             #

@@ -27,13 +27,13 @@ module Stigg
           optional :before, String
 
           # @!attribute capability_id
-          #   Filter assignments to a specific capability refId
+          #   Filter assignments to a specific capability ID
           #
           #   @return [String, nil]
           optional :capability_id, String
 
           # @!attribute entity_id
-          #   Filter assignments to a specific entity refId
+          #   Filter assignments to a specific entity ID
           #
           #   @return [String, nil]
           optional :entity_id, String
@@ -61,9 +61,9 @@ module Stigg
           #
           #   @param before [String] Return items that come before this cursor
           #
-          #   @param capability_id [String] Filter assignments to a specific capability refId
+          #   @param capability_id [String] Filter assignments to a specific capability ID
           #
-          #   @param entity_id [String] Filter assignments to a specific entity refId
+          #   @param entity_id [String] Filter assignments to a specific entity ID
           #
           #   @param limit [Integer] Maximum number of items to return
           #

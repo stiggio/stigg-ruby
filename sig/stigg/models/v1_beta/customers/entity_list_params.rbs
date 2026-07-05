@@ -7,9 +7,9 @@ module Stigg
             id: String,
             after: String,
             before: String,
+            entity_type_id: String,
             include_archived: Stigg::Models::V1Beta::Customers::EntityListParams::include_archived,
             limit: Integer,
-            type_ref_id: String,
             x_account_id: String,
             x_environment_id: String
           }
@@ -29,6 +29,10 @@ module Stigg
 
           def before=: (String) -> String
 
+          attr_reader entity_type_id: String?
+
+          def entity_type_id=: (String) -> String
+
           attr_reader include_archived: Stigg::Models::V1Beta::Customers::EntityListParams::include_archived?
 
           def include_archived=: (
@@ -38,10 +42,6 @@ module Stigg
           attr_reader limit: Integer?
 
           def limit=: (Integer) -> Integer
-
-          attr_reader type_ref_id: String?
-
-          def type_ref_id=: (String) -> String
 
           attr_reader x_account_id: String?
 
@@ -55,9 +55,9 @@ module Stigg
             id: String,
             ?after: String,
             ?before: String,
+            ?entity_type_id: String,
             ?include_archived: Stigg::Models::V1Beta::Customers::EntityListParams::include_archived,
             ?limit: Integer,
-            ?type_ref_id: String,
             ?x_account_id: String,
             ?x_environment_id: String,
             ?request_options: Stigg::request_opts
@@ -67,9 +67,9 @@ module Stigg
             id: String,
             after: String,
             before: String,
+            entity_type_id: String,
             include_archived: Stigg::Models::V1Beta::Customers::EntityListParams::include_archived,
             limit: Integer,
-            type_ref_id: String,
             x_account_id: String,
             x_environment_id: String,
             request_options: Stigg::RequestOptions

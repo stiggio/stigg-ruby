@@ -33,6 +33,13 @@ module Stigg
           sig { params(before: String).void }
           attr_writer :before
 
+          # Filter results to entities of a specific entity type, by the type's ID
+          sig { returns(T.nilable(String)) }
+          attr_reader :entity_type_id
+
+          sig { params(entity_type_id: String).void }
+          attr_writer :entity_type_id
+
           # Whether to include archived entities. One of: true, false
           sig do
             returns(
@@ -58,13 +65,6 @@ module Stigg
           sig { params(limit: Integer).void }
           attr_writer :limit
 
-          # Filter results to entities of a specific entity type, by the type's refId
-          sig { returns(T.nilable(String)) }
-          attr_reader :type_ref_id
-
-          sig { params(type_ref_id: String).void }
-          attr_writer :type_ref_id
-
           sig { returns(T.nilable(String)) }
           attr_reader :x_account_id
 
@@ -82,10 +82,10 @@ module Stigg
               id: String,
               after: String,
               before: String,
+              entity_type_id: String,
               include_archived:
                 Stigg::V1Beta::Customers::EntityListParams::IncludeArchived::OrSymbol,
               limit: Integer,
-              type_ref_id: String,
               x_account_id: String,
               x_environment_id: String,
               request_options: Stigg::RequestOptions::OrHash
@@ -97,12 +97,12 @@ module Stigg
             after: nil,
             # Return items that come before this cursor
             before: nil,
+            # Filter results to entities of a specific entity type, by the type's ID
+            entity_type_id: nil,
             # Whether to include archived entities. One of: true, false
             include_archived: nil,
             # Maximum number of items to return
             limit: nil,
-            # Filter results to entities of a specific entity type, by the type's refId
-            type_ref_id: nil,
             x_account_id: nil,
             x_environment_id: nil,
             request_options: {}
@@ -115,10 +115,10 @@ module Stigg
                 id: String,
                 after: String,
                 before: String,
+                entity_type_id: String,
                 include_archived:
                   Stigg::V1Beta::Customers::EntityListParams::IncludeArchived::OrSymbol,
                 limit: Integer,
-                type_ref_id: String,
                 x_account_id: String,
                 x_environment_id: String,
                 request_options: Stigg::RequestOptions

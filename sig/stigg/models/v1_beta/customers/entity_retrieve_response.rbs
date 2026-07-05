@@ -23,8 +23,8 @@ module Stigg
               id: String,
               archived_at: Time?,
               created_at: Time,
+              entity_type_id: String,
               metadata: ::Hash[Symbol, String],
-              type_id: String,
               updated_at: Time
             }
 
@@ -35,9 +35,9 @@ module Stigg
 
             attr_accessor created_at: Time
 
-            attr_accessor metadata: ::Hash[Symbol, String]
+            attr_accessor entity_type_id: String
 
-            attr_accessor type_id: String
+            attr_accessor metadata: ::Hash[Symbol, String]
 
             attr_accessor updated_at: Time
 
@@ -45,8 +45,8 @@ module Stigg
               id: String,
               archived_at: Time?,
               created_at: Time,
+              entity_type_id: String,
               metadata: ::Hash[Symbol, String],
-              type_id: String,
               updated_at: Time
             ) -> void
 
@@ -54,8 +54,8 @@ module Stigg
               id: String,
               archived_at: Time?,
               created_at: Time,
+              entity_type_id: String,
               metadata: ::Hash[Symbol, String],
-              type_id: String,
               updated_at: Time
             }
           end

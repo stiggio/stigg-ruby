@@ -35,7 +35,7 @@ module Stigg
               )
             end
             def retrieve_governance(
-              # Path param: The customer external id.
+              # Path param: The customer ID.
               id,
               # Query param: Return items that come after this cursor
               after: nil,
