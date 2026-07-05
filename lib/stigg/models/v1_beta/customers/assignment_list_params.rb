@@ -26,17 +26,25 @@ module Stigg
           #   @return [String, nil]
           optional :before, String
 
-          # @!attribute capability_id
-          #   Filter assignments to a specific capability ID
+          # @!attribute currency_id
+          #   Filter assignments to a specific currency, by its ID. Mutually exclusive with
+          #   `featureId`.
           #
           #   @return [String, nil]
-          optional :capability_id, String
+          optional :currency_id, String
 
           # @!attribute entity_id
           #   Filter assignments to a specific entity ID
           #
           #   @return [String, nil]
           optional :entity_id, String
+
+          # @!attribute feature_id
+          #   Filter assignments to a specific feature, by its ID. Mutually exclusive with
+          #   `currencyId`.
+          #
+          #   @return [String, nil]
+          optional :feature_id, String
 
           # @!attribute limit
           #   Maximum number of items to return
@@ -54,16 +62,21 @@ module Stigg
           #   @return [String, nil]
           optional :x_environment_id, String
 
-          # @!method initialize(id:, after: nil, before: nil, capability_id: nil, entity_id: nil, limit: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+          # @!method initialize(id:, after: nil, before: nil, currency_id: nil, entity_id: nil, feature_id: nil, limit: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+          #   Some parameter documentations has been truncated, see
+          #   {Stigg::Models::V1Beta::Customers::AssignmentListParams} for more details.
+          #
           #   @param id [String]
           #
           #   @param after [String] Return items that come after this cursor
           #
           #   @param before [String] Return items that come before this cursor
           #
-          #   @param capability_id [String] Filter assignments to a specific capability ID
+          #   @param currency_id [String] Filter assignments to a specific currency, by its ID. Mutually exclusive with `f
           #
           #   @param entity_id [String] Filter assignments to a specific entity ID
+          #
+          #   @param feature_id [String] Filter assignments to a specific feature, by its ID. Mutually exclusive with `cu
           #
           #   @param limit [Integer] Maximum number of items to return
           #
