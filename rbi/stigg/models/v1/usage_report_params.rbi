@@ -110,6 +110,13 @@ module Stigg
           end
           attr_writer :dimensions
 
+          # Idempotency key
+          sig { returns(T.nilable(String)) }
+          attr_reader :idempotency_key
+
+          sig { params(idempotency_key: String).void }
+          attr_writer :idempotency_key
+
           # Resource id
           sig { returns(T.nilable(String)) }
           attr_accessor :resource_id
@@ -144,6 +151,7 @@ module Stigg
                   Symbol,
                   Stigg::V1::UsageReportParams::Usage::Dimension::Variants
                 ],
+              idempotency_key: String,
               resource_id: T.nilable(String),
               update_behavior:
                 Stigg::V1::UsageReportParams::Usage::UpdateBehavior::OrSymbol
@@ -160,6 +168,8 @@ module Stigg
             created_at: nil,
             # Additional dimensions for the usage report
             dimensions: nil,
+            # Idempotency key
+            idempotency_key: nil,
             # Resource id
             resource_id: nil,
             # The method by which the usage value should be updated
@@ -179,6 +189,7 @@ module Stigg
                     Symbol,
                     Stigg::V1::UsageReportParams::Usage::Dimension::Variants
                   ],
+                idempotency_key: String,
                 resource_id: T.nilable(String),
                 update_behavior:
                   Stigg::V1::UsageReportParams::Usage::UpdateBehavior::OrSymbol

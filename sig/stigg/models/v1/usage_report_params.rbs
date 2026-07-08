@@ -44,6 +44,7 @@ module Stigg
             value: Integer,
             created_at: Time,
             dimensions: ::Hash[Symbol, Stigg::Models::V1::UsageReportParams::Usage::dimension],
+            idempotency_key: String,
             resource_id: String?,
             update_behavior: Stigg::Models::V1::UsageReportParams::Usage::update_behavior
           }
@@ -65,6 +66,10 @@ module Stigg
             ::Hash[Symbol, Stigg::Models::V1::UsageReportParams::Usage::dimension]
           ) -> ::Hash[Symbol, Stigg::Models::V1::UsageReportParams::Usage::dimension]
 
+          attr_reader idempotency_key: String?
+
+          def idempotency_key=: (String) -> String
+
           attr_accessor resource_id: String?
 
           attr_reader update_behavior: Stigg::Models::V1::UsageReportParams::Usage::update_behavior?
@@ -79,6 +84,7 @@ module Stigg
             value: Integer,
             ?created_at: Time,
             ?dimensions: ::Hash[Symbol, Stigg::Models::V1::UsageReportParams::Usage::dimension],
+            ?idempotency_key: String,
             ?resource_id: String?,
             ?update_behavior: Stigg::Models::V1::UsageReportParams::Usage::update_behavior
           ) -> void
@@ -89,6 +95,7 @@ module Stigg
             value: Integer,
             created_at: Time,
             dimensions: ::Hash[Symbol, Stigg::Models::V1::UsageReportParams::Usage::dimension],
+            idempotency_key: String,
             resource_id: String?,
             update_behavior: Stigg::Models::V1::UsageReportParams::Usage::update_behavior
           }
