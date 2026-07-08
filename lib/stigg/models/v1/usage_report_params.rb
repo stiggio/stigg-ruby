@@ -65,6 +65,12 @@ module Stigg
           optional :dimensions,
                    -> { Stigg::Internal::Type::HashOf[union: Stigg::V1::UsageReportParams::Usage::Dimension] }
 
+          # @!attribute idempotency_key
+          #   Idempotency key
+          #
+          #   @return [String, nil]
+          optional :idempotency_key, String, api_name: :idempotencyKey
+
           # @!attribute resource_id
           #   Resource id
           #
@@ -79,7 +85,7 @@ module Stigg
                    enum: -> { Stigg::V1::UsageReportParams::Usage::UpdateBehavior },
                    api_name: :updateBehavior
 
-          # @!method initialize(customer_id:, feature_id:, value:, created_at: nil, dimensions: nil, resource_id: nil, update_behavior: nil)
+          # @!method initialize(customer_id:, feature_id:, value:, created_at: nil, dimensions: nil, idempotency_key: nil, resource_id: nil, update_behavior: nil)
           #   Single usage measurement
           #
           #   @param customer_id [String] Customer id
@@ -91,6 +97,8 @@ module Stigg
           #   @param created_at [Time] Timestamp of when the record was created
           #
           #   @param dimensions [Hash{Symbol=>String, Float, Boolean}] Additional dimensions for the usage report
+          #
+          #   @param idempotency_key [String] Idempotency key
           #
           #   @param resource_id [String, nil] Resource id
           #
