@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-beta.38 (2026-07-08)
+
+Full Changelog: [v0.1.0-beta.37...v0.1.0-beta.38](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.37...v0.1.0-beta.38)
+
+### Features
+
+* **api:** add idempotency_key parameter to usage report ([3a266d7](https://github.com/stiggio/stigg-ruby/commit/3a266d714c0a229cc3be9218f6781479324c3245))
+
+
+### Chores
+
+* **internal:** regenerate SDK with no functional changes ([7fdb2fb](https://github.com/stiggio/stigg-ruby/commit/7fdb2fbb70b0a5690eb6a3023952c550955f3146))
+* **internal:** regenerate SDK with no functional changes ([280466a](https://github.com/stiggio/stigg-ruby/commit/280466a7fe0faf8828b4a28476d9fee4b17f1682))
+
 ## 0.1.0-beta.37 (2026-07-05)
 
 Full Changelog: [v0.1.0-beta.36...v0.1.0-beta.37](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.36...v0.1.0-beta.37)
