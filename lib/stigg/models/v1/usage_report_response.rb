@@ -124,6 +124,15 @@ module Stigg
 
           # @see Stigg::Models::V1::UsageReportResponse::Data#credit
           class Credit < Stigg::Internal::Type::BaseModel
+            # @!attribute consumed
+            #   The credits this single reportUsage call deducted, in credit units — scoped to
+            #   this one measurement (0 for idempotency duplicates). Contrast `currentUsage`,
+            #   which is the wallet-wide running total shared across all features on this
+            #   currency. Use it to reconcile expected per-call deductions.
+            #
+            #   @return [Float]
+            required :consumed, Float
+
             # @!attribute currency_id
             #   The credit currency identifier
             #
@@ -131,7 +140,10 @@ module Stigg
             required :currency_id, String, api_name: :currencyId
 
             # @!attribute current_usage
-            #   The credits consumed (optimistic — includes not-yet-reconciled usage)
+            #   The wallet's total consumed credits for this currency (optimistic — includes
+            #   not-yet-reconciled usage), shared across every feature that draws on the
+            #   currency. This is the running balance, not this call's deduction — see
+            #   `consumed` for that.
             #
             #   @return [Float]
             required :current_usage, Float, api_name: :currentUsage
@@ -156,15 +168,17 @@ module Stigg
             #   @return [Time, nil]
             optional :usage_period_end, Time, api_name: :usagePeriodEnd, nil?: true
 
-            # @!method initialize(currency_id:, current_usage:, timestamp:, usage_limit:, usage_period_end: nil)
+            # @!method initialize(consumed:, currency_id:, current_usage:, timestamp:, usage_limit:, usage_period_end: nil)
             #   Some parameter documentations has been truncated, see
             #   {Stigg::Models::V1::UsageReportResponse::Data::Credit} for more details.
             #
             #   Optimistic credit balance for a credit-backed feature
             #
+            #   @param consumed [Float] The credits this single reportUsage call deducted, in credit units — scoped to t
+            #
             #   @param currency_id [String] The credit currency identifier
             #
-            #   @param current_usage [Float] The credits consumed (optimistic — includes not-yet-reconciled usage)
+            #   @param current_usage [Float] The wallet's total consumed credits for this currency (optimistic — includes not
             #
             #   @param timestamp [Time] The grant-version timestamp of this balance, used by the SDK for last-write-wins
             #

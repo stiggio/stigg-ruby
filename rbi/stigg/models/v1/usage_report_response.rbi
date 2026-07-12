@@ -193,11 +193,21 @@ module Stigg
                 )
               end
 
+            # The credits this single reportUsage call deducted, in credit units — scoped to
+            # this one measurement (0 for idempotency duplicates). Contrast `currentUsage`,
+            # which is the wallet-wide running total shared across all features on this
+            # currency. Use it to reconcile expected per-call deductions.
+            sig { returns(Float) }
+            attr_accessor :consumed
+
             # The credit currency identifier
             sig { returns(String) }
             attr_accessor :currency_id
 
-            # The credits consumed (optimistic — includes not-yet-reconciled usage)
+            # The wallet's total consumed credits for this currency (optimistic — includes
+            # not-yet-reconciled usage), shared across every feature that draws on the
+            # currency. This is the running balance, not this call's deduction — see
+            # `consumed` for that.
             sig { returns(Float) }
             attr_accessor :current_usage
 
@@ -218,6 +228,7 @@ module Stigg
             # Optimistic credit balance for a credit-backed feature
             sig do
               params(
+                consumed: Float,
                 currency_id: String,
                 current_usage: Float,
                 timestamp: Time,
@@ -226,9 +237,17 @@ module Stigg
               ).returns(T.attached_class)
             end
             def self.new(
+              # The credits this single reportUsage call deducted, in credit units — scoped to
+              # this one measurement (0 for idempotency duplicates). Contrast `currentUsage`,
+              # which is the wallet-wide running total shared across all features on this
+              # currency. Use it to reconcile expected per-call deductions.
+              consumed:,
               # The credit currency identifier
               currency_id:,
-              # The credits consumed (optimistic — includes not-yet-reconciled usage)
+              # The wallet's total consumed credits for this currency (optimistic — includes
+              # not-yet-reconciled usage), shared across every feature that draws on the
+              # currency. This is the running balance, not this call's deduction — see
+              # `consumed` for that.
               current_usage:,
               # The grant-version timestamp of this balance, used by the SDK for last-write-wins
               # reconciliation
@@ -244,6 +263,7 @@ module Stigg
             sig do
               override.returns(
                 {
+                  consumed: Float,
                   currency_id: String,
                   current_usage: Float,
                   timestamp: Time,
