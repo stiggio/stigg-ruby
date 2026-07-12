@@ -83,7 +83,10 @@ module Stigg
               required :currency_id, String, api_name: :currencyId
 
               # @!attribute current_usage
-              #   The credits consumed (optimistic — includes not-yet-reconciled usage)
+              #   The wallet's total consumed credits for this currency (optimistic — includes
+              #   not-yet-reconciled usage), shared across every feature that draws on the
+              #   currency. This is the running balance, not this call's deduction — see
+              #   `consumed` for that.
               #
               #   @return [Float]
               required :current_usage, Float, api_name: :currentUsage
@@ -118,7 +121,7 @@ module Stigg
               #
               #   @param currency_id [String] The credit currency identifier
               #
-              #   @param current_usage [Float] The credits consumed (optimistic — includes not-yet-reconciled usage)
+              #   @param current_usage [Float] The wallet's total consumed credits for this currency (optimistic — includes not
               #
               #   @param timestamp [Time] The grant-version timestamp of this balance, used by the SDK for last-write-wins
               #
