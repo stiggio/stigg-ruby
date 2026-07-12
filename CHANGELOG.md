@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.39 (2026-07-12)
+
+Full Changelog: [v0.1.0-beta.38...v0.1.0-beta.39](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.38...v0.1.0-beta.39)
+
+### Features
+
+* **api:** add consumed field to consumption/usage credit responses ([ee2eae5](https://github.com/stiggio/stigg-ruby/commit/ee2eae5db2e9042d5f47b1265fe638e07e955f6a))
+
 ## 0.1.0-beta.38 (2026-07-08)
 
 Full Changelog: [v0.1.0-beta.37...v0.1.0-beta.38](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.37...v0.1.0-beta.38)
