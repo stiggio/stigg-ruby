@@ -165,7 +165,10 @@ module Stigg
               sig { returns(String) }
               attr_accessor :currency_id
 
-              # The credits consumed (optimistic — includes not-yet-reconciled usage)
+              # The wallet's total consumed credits for this currency (optimistic — includes
+              # not-yet-reconciled usage), shared across every feature that draws on the
+              # currency. This is the running balance, not this call's deduction — see
+              # `consumed` for that.
               sig { returns(Float) }
               attr_accessor :current_usage
 
@@ -197,7 +200,10 @@ module Stigg
               def self.new(
                 # The credit currency identifier
                 currency_id:,
-                # The credits consumed (optimistic — includes not-yet-reconciled usage)
+                # The wallet's total consumed credits for this currency (optimistic — includes
+                # not-yet-reconciled usage), shared across every feature that draws on the
+                # currency. This is the running balance, not this call's deduction — see
+                # `consumed` for that.
                 current_usage:,
                 # The grant-version timestamp of this balance, used by the SDK for last-write-wins
                 # reconciliation
