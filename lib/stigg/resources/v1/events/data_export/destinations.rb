@@ -86,7 +86,9 @@ module Stigg
             # {Stigg::Models::V1::Events::DataExport::DestinationDeleteParams} for more
             # details.
             #
-            # Remove a destination from the DATA_EXPORT integration metadata. Idempotent.
+            # Disconnect a destination: stops the provider sync (deletes the provider
+            # destination) and removes it from the DATA_EXPORT integration. Non-destructive —
+            # the warehouse table is left intact. Idempotent.
             #
             # @overload delete(destination_id, x_account_id: nil, x_environment_id: nil, request_options: {})
             #
