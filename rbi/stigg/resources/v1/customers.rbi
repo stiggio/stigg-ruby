@@ -283,8 +283,7 @@ module Stigg
         )
         end
 
-        # Creates a new customer and optionally provisions an initial subscription in a
-        # single operation.
+        # Creates a new customer.
         sig do
           params(
             id: String,
