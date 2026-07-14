@@ -17,6 +17,12 @@ module Stigg
         sig { returns(Stigg::Resources::V1::Customers::Integrations) }
         attr_reader :integrations
 
+        sig { returns(Stigg::Resources::V1::Customers::Events) }
+        attr_reader :events
+
+        sig { returns(Stigg::Resources::V1::Customers::Usage) }
+        attr_reader :usage
+
         # Retrieves a customer by their unique identifier, including billing information
         # and subscription status.
         sig do

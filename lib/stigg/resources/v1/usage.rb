@@ -6,6 +6,49 @@ module Stigg
       # Operations related to usage & metering
       class Usage
         # Some parameter documentations has been truncated, see
+        # {Stigg::Models::V1::UsageEstimateCostParams} for more details.
+        #
+        # Estimates the credit cost of a usage report without recording it. Returns the
+        # estimated cost per credit currency, the current balance, and the balance after
+        # the estimated consumption.
+        #
+        # @overload estimate_cost(customer_id:, feature_id:, value:, dimensions: nil, resource_id: nil, update_behavior: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        #
+        # @param customer_id [String] Body param: Customer id
+        #
+        # @param feature_id [String] Body param: Feature id
+        #
+        # @param value [Integer] Body param: The value to report for usage
+        #
+        # @param dimensions [Hash{Symbol=>String, Float, Boolean}] Body param: Additional dimensions for the usage report
+        #
+        # @param resource_id [String, nil] Body param: Resource id
+        #
+        # @param update_behavior [Symbol, Stigg::Models::V1::UsageEstimateCostParams::UpdateBehavior] Body param: The method by which the usage value should be updated
+        #
+        # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
+        #
+        # @param x_environment_id [String] Header param: Environment ID — required when authenticating with a user JWT (Bea
+        #
+        # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [Stigg::Models::V1::UsageEstimateCostResponse]
+        #
+        # @see Stigg::Models::V1::UsageEstimateCostParams
+        def estimate_cost(params)
+          parsed, options = Stigg::V1::UsageEstimateCostParams.dump_request(params)
+          header_params = {x_account_id: "x-account-id", x_environment_id: "x-environment-id"}
+          @client.request(
+            method: :post,
+            path: "api/v1/usage/estimate",
+            headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+            body: parsed.except(*header_params.keys),
+            model: Stigg::Models::V1::UsageEstimateCostResponse,
+            options: options
+          )
+        end
+
+        # Some parameter documentations has been truncated, see
         # {Stigg::Models::V1::UsageHistoryParams} for more details.
         #
         # Retrieves historical usage data for a customer's metered feature over time.
