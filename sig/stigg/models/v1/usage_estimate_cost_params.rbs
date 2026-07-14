@@ -1,0 +1,94 @@
+module Stigg
+  module Models
+    module V1
+      type usage_estimate_cost_params =
+        {
+          customer_id: String,
+          feature_id: String,
+          value: Integer,
+          dimensions: ::Hash[Symbol, Stigg::Models::V1::UsageEstimateCostParams::dimension],
+          resource_id: String?,
+          update_behavior: Stigg::Models::V1::UsageEstimateCostParams::update_behavior,
+          x_account_id: String,
+          x_environment_id: String
+        }
+        & Stigg::Internal::Type::request_parameters
+
+      class UsageEstimateCostParams < Stigg::Internal::Type::BaseModel
+        extend Stigg::Internal::Type::RequestParameters::Converter
+        include Stigg::Internal::Type::RequestParameters
+
+        attr_accessor customer_id: String
+
+        attr_accessor feature_id: String
+
+        attr_accessor value: Integer
+
+        attr_reader dimensions: ::Hash[Symbol, Stigg::Models::V1::UsageEstimateCostParams::dimension]?
+
+        def dimensions=: (
+          ::Hash[Symbol, Stigg::Models::V1::UsageEstimateCostParams::dimension]
+        ) -> ::Hash[Symbol, Stigg::Models::V1::UsageEstimateCostParams::dimension]
+
+        attr_accessor resource_id: String?
+
+        attr_reader update_behavior: Stigg::Models::V1::UsageEstimateCostParams::update_behavior?
+
+        def update_behavior=: (
+          Stigg::Models::V1::UsageEstimateCostParams::update_behavior
+        ) -> Stigg::Models::V1::UsageEstimateCostParams::update_behavior
+
+        attr_reader x_account_id: String?
+
+        def x_account_id=: (String) -> String
+
+        attr_reader x_environment_id: String?
+
+        def x_environment_id=: (String) -> String
+
+        def initialize: (
+          customer_id: String,
+          feature_id: String,
+          value: Integer,
+          ?dimensions: ::Hash[Symbol, Stigg::Models::V1::UsageEstimateCostParams::dimension],
+          ?resource_id: String?,
+          ?update_behavior: Stigg::Models::V1::UsageEstimateCostParams::update_behavior,
+          ?x_account_id: String,
+          ?x_environment_id: String,
+          ?request_options: Stigg::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          customer_id: String,
+          feature_id: String,
+          value: Integer,
+          dimensions: ::Hash[Symbol, Stigg::Models::V1::UsageEstimateCostParams::dimension],
+          resource_id: String?,
+          update_behavior: Stigg::Models::V1::UsageEstimateCostParams::update_behavior,
+          x_account_id: String,
+          x_environment_id: String,
+          request_options: Stigg::RequestOptions
+        }
+
+        type dimension = String | Float | bool
+
+        module Dimension
+          extend Stigg::Internal::Type::Union
+
+          def self?.variants: -> ::Array[Stigg::Models::V1::UsageEstimateCostParams::dimension]
+        end
+
+        type update_behavior = :DELTA | :SET
+
+        module UpdateBehavior
+          extend Stigg::Internal::Type::Enum
+
+          DELTA: :DELTA
+          SET: :SET
+
+          def self?.values: -> ::Array[Stigg::Models::V1::UsageEstimateCostParams::update_behavior]
+        end
+      end
+    end
+  end
+end

@@ -5,6 +5,51 @@ module Stigg
     class V1
       # Operations related to usage & metering
       class Usage
+        # Estimates the credit cost of a usage report without recording it. Returns the
+        # estimated cost per credit currency, the current balance, and the balance after
+        # the estimated consumption.
+        sig do
+          params(
+            customer_id: String,
+            feature_id: String,
+            value: Integer,
+            dimensions:
+              T::Hash[
+                Symbol,
+                Stigg::V1::UsageEstimateCostParams::Dimension::Variants
+              ],
+            resource_id: T.nilable(String),
+            update_behavior:
+              Stigg::V1::UsageEstimateCostParams::UpdateBehavior::OrSymbol,
+            x_account_id: String,
+            x_environment_id: String,
+            request_options: Stigg::RequestOptions::OrHash
+          ).returns(Stigg::Models::V1::UsageEstimateCostResponse)
+        end
+        def estimate_cost(
+          # Body param: Customer id
+          customer_id:,
+          # Body param: Feature id
+          feature_id:,
+          # Body param: The value to report for usage
+          value:,
+          # Body param: Additional dimensions for the usage report
+          dimensions: nil,
+          # Body param: Resource id
+          resource_id: nil,
+          # Body param: The method by which the usage value should be updated
+          update_behavior: nil,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
+          request_options: {}
+        )
+        end
+
         # Retrieves historical usage data for a customer's metered feature over time.
         sig do
           params(
