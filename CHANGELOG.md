@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.41 (2026-07-14)
+
+Full Changelog: [v0.1.0-beta.40...v0.1.0-beta.41](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.40...v0.1.0-beta.41)
+
+### Features
+
+* **api:** add STRIPE_INVOICING vendor identifier to customer types ([3100731](https://github.com/stiggio/stigg-ruby/commit/31007312eb3d8a741ce9c93f4bef8defb7beed7d))
+
 ## 0.1.0-beta.40 (2026-07-14)
 
 Full Changelog: [v0.1.0-beta.39...v0.1.0-beta.40](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.39...v0.1.0-beta.40)
