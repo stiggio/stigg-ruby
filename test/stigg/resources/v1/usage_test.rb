@@ -3,6 +3,27 @@
 require_relative "../../test_helper"
 
 class Stigg::Test::Resources::V1::UsageTest < Stigg::Test::ResourceTest
+  def test_estimate_cost_required_params
+    skip("Mock server tests are disabled")
+
+    response =
+      @stigg.v1.usage.estimate_cost(
+        customer_id: "customerId",
+        feature_id: "featureId",
+        value: -9_007_199_254_740_991
+      )
+
+    assert_pattern do
+      response => Stigg::Models::V1::UsageEstimateCostResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: Stigg::Models::V1::UsageEstimateCostResponse::Data
+      }
+    end
+  end
+
   def test_history_required_params
     skip("Mock server tests are disabled")
 
