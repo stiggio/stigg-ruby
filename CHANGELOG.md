@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-beta.40 (2026-07-14)
+
+Full Changelog: [v0.1.0-beta.39...v0.1.0-beta.40](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.39...v0.1.0-beta.40)
+
+### Features
+
+* **api:** add estimate endpoints to customers events/usage ([0244f08](https://github.com/stiggio/stigg-ruby/commit/0244f0830e39c3ad7d65433baa8566a1259869af))
+
+
+### Documentation
+
+* **api:** clarify delete behavior in data_export destinations ([690040d](https://github.com/stiggio/stigg-ruby/commit/690040d89d32b2b09edd8a3da3012c82f7897116))
+* **api:** update customers provision method description ([5c2ef75](https://github.com/stiggio/stigg-ruby/commit/5c2ef756c66511a1a6ee1069ee9c10270303febc))
+
 ## 0.1.0-beta.39 (2026-07-12)
 
 Full Changelog: [v0.1.0-beta.38...v0.1.0-beta.39](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.38...v0.1.0-beta.39)
