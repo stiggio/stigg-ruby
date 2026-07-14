@@ -168,6 +168,11 @@ module Stigg
                 :AIRWALLEX,
                 Stigg::V1::Customers::IntegrationLinkParams::VendorIdentifier::TaggedSymbol
               )
+            STRIPE_INVOICING =
+              T.let(
+                :STRIPE_INVOICING,
+                Stigg::V1::Customers::IntegrationLinkParams::VendorIdentifier::TaggedSymbol
+              )
 
             sig do
               override.returns(

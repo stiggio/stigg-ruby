@@ -87,6 +87,7 @@ module Stigg
             RECEIVED = :RECEIVED
             PREQUEL = :PREQUEL
             AIRWALLEX = :AIRWALLEX
+            STRIPE_INVOICING = :STRIPE_INVOICING
 
             # @!method self.values
             #   @return [Array<Symbol>]
