@@ -72,6 +72,7 @@ module Stigg
             | :RECEIVED
             | :PREQUEL
             | :AIRWALLEX
+            | :STRIPE_INVOICING
 
           module VendorIdentifier
             extend Stigg::Internal::Type::Enum
@@ -89,6 +90,7 @@ module Stigg
             RECEIVED: :RECEIVED
             PREQUEL: :PREQUEL
             AIRWALLEX: :AIRWALLEX
+            STRIPE_INVOICING: :STRIPE_INVOICING
 
             def self?.values: -> ::Array[Stigg::Models::V1::Customers::PaymentMethodAttachParams::vendor_identifier]
           end
