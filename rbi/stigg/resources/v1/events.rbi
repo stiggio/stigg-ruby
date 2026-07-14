@@ -8,9 +8,6 @@ module Stigg
         sig { returns(Stigg::Resources::V1::Events::DataExport) }
         attr_reader :data_export
 
-        sig { returns(Stigg::Resources::V1::Events::Beta) }
-        attr_reader :beta
-
         # Estimates the credit cost of a usage event without ingesting it. Returns the
         # estimated cost per credit currency, the current balance, and the balance after
         # the estimated consumption.

@@ -6,9 +6,6 @@ module Stigg
       module Addons
       end
 
-      module Beta
-      end
-
       module Credits
       end
 
@@ -19,9 +16,6 @@ module Stigg
       end
 
       module Events
-        module Beta
-        end
-
         module DataExport
         end
       end
@@ -43,9 +37,6 @@ module Stigg
         end
 
         module Events
-          module Beta
-          end
-
           module DataExport
           end
         end
