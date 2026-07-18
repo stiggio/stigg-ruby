@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-beta.42 (2026-07-18)
+
+Full Changelog: [v0.1.0-beta.41...v0.1.0-beta.42](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.41...v0.1.0-beta.42)
+
+### Features
+
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([e1adb97](https://github.com/stiggio/stigg-ruby/commit/e1adb97da2b2c6b4bbdcd5ab511bd53b4d6dcef7))
+
+
+### Chores
+
+* **api:** move governance endpoint from events/beta to v1_beta namespace ([c1ad229](https://github.com/stiggio/stigg-ruby/commit/c1ad229d3436f542857fddcd7e01eba6e51fd582))
+
 ## 0.1.0-beta.41 (2026-07-14)
 
 Full Changelog: [v0.1.0-beta.40...v0.1.0-beta.41](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.40...v0.1.0-beta.41)
