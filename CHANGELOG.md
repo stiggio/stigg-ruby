@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.44 (2026-07-21)
+
+Full Changelog: [v0.1.0-beta.43...v0.1.0-beta.44](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.43...v0.1.0-beta.44)
+
+### Features
+
+* **api:** add sync_states field to credit grant responses ([3ed28af](https://github.com/stiggio/stigg-ruby/commit/3ed28af9bec2bc1b47e37ea312fef789d7f9abe0))
+
 ## 0.1.0-beta.43 (2026-07-21)
 
 Full Changelog: [v0.1.0-beta.42...v0.1.0-beta.43](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.42...v0.1.0-beta.43)
