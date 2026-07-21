@@ -37,6 +37,13 @@ module Stigg
         sig { params(currency_id: String).void }
         attr_writer :currency_id
 
+        # Filter by event type(s), comma-separated
+        sig { returns(T.nilable(String)) }
+        attr_reader :event_type
+
+        sig { params(event_type: String).void }
+        attr_writer :event_type
+
         # Maximum number of items to return
         sig { returns(T.nilable(Integer)) }
         attr_reader :limit
@@ -69,6 +76,7 @@ module Stigg
             after: String,
             before: String,
             currency_id: String,
+            event_type: String,
             limit: Integer,
             resource_id: String,
             x_account_id: String,
@@ -85,6 +93,8 @@ module Stigg
           before: nil,
           # Filter by currency ID
           currency_id: nil,
+          # Filter by event type(s), comma-separated
+          event_type: nil,
           # Maximum number of items to return
           limit: nil,
           # Filter by resource ID
@@ -102,6 +112,7 @@ module Stigg
               after: String,
               before: String,
               currency_id: String,
+              event_type: String,
               limit: Integer,
               resource_id: String,
               x_account_id: String,
