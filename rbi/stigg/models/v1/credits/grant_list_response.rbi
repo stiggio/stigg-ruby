@@ -134,6 +134,18 @@ module Stigg
           end
           attr_accessor :status
 
+          # The synchronization states of the entity with external systems
+          sig do
+            returns(
+              T.nilable(
+                T::Array[
+                  Stigg::Models::V1::Credits::GrantListResponse::SyncState
+                ]
+              )
+            )
+          end
+          attr_accessor :sync_states
+
           # Timestamp of when the record was last updated
           sig { returns(Time) }
           attr_accessor :updated_at
@@ -174,6 +186,12 @@ module Stigg
                 ),
               status:
                 Stigg::Models::V1::Credits::GrantListResponse::Status::OrSymbol,
+              sync_states:
+                T.nilable(
+                  T::Array[
+                    Stigg::Models::V1::Credits::GrantListResponse::SyncState::OrHash
+                  ]
+                ),
               updated_at: Time,
               voided_at: T.nilable(Time)
             ).returns(T.attached_class)
@@ -219,6 +237,8 @@ module Stigg
             source_type:,
             # The effective status of the credit grant
             status:,
+            # The synchronization states of the entity with external systems
+            sync_states:,
             # Timestamp of when the record was last updated
             updated_at:,
             # The date when the credit grant was voided
@@ -258,6 +278,12 @@ module Stigg
                   ),
                 status:
                   Stigg::Models::V1::Credits::GrantListResponse::Status::TaggedSymbol,
+                sync_states:
+                  T.nilable(
+                    T::Array[
+                      Stigg::Models::V1::Credits::GrantListResponse::SyncState
+                    ]
+                  ),
                 updated_at: Time,
                 voided_at: T.nilable(Time)
               }
@@ -710,6 +736,209 @@ module Stigg
               )
             end
             def self.values
+            end
+          end
+
+          class SyncState < Stigg::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Stigg::Models::V1::Credits::GrantListResponse::SyncState,
+                  Stigg::Internal::AnyHash
+                )
+              end
+
+            # Status of the integration sync
+            sig do
+              returns(
+                Stigg::Models::V1::Credits::GrantListResponse::SyncState::Status::TaggedSymbol
+              )
+            end
+            attr_accessor :status
+
+            # Synced entity id
+            sig { returns(T.nilable(String)) }
+            attr_accessor :synced_entity_id
+
+            # The vendor identifier of integration
+            sig do
+              returns(
+                Stigg::Models::V1::Credits::GrantListResponse::SyncState::VendorIdentifier::TaggedSymbol
+              )
+            end
+            attr_accessor :vendor_identifier
+
+            sig do
+              params(
+                status:
+                  Stigg::Models::V1::Credits::GrantListResponse::SyncState::Status::OrSymbol,
+                synced_entity_id: T.nilable(String),
+                vendor_identifier:
+                  Stigg::Models::V1::Credits::GrantListResponse::SyncState::VendorIdentifier::OrSymbol
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # Status of the integration sync
+              status:,
+              # Synced entity id
+              synced_entity_id:,
+              # The vendor identifier of integration
+              vendor_identifier:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  status:
+                    Stigg::Models::V1::Credits::GrantListResponse::SyncState::Status::TaggedSymbol,
+                  synced_entity_id: T.nilable(String),
+                  vendor_identifier:
+                    Stigg::Models::V1::Credits::GrantListResponse::SyncState::VendorIdentifier::TaggedSymbol
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # Status of the integration sync
+            module Status
+              extend Stigg::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Stigg::Models::V1::Credits::GrantListResponse::SyncState::Status
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              PENDING =
+                T.let(
+                  :PENDING,
+                  Stigg::Models::V1::Credits::GrantListResponse::SyncState::Status::TaggedSymbol
+                )
+              ERROR =
+                T.let(
+                  :ERROR,
+                  Stigg::Models::V1::Credits::GrantListResponse::SyncState::Status::TaggedSymbol
+                )
+              SUCCESS =
+                T.let(
+                  :SUCCESS,
+                  Stigg::Models::V1::Credits::GrantListResponse::SyncState::Status::TaggedSymbol
+                )
+              NO_SYNC_REQUIRED =
+                T.let(
+                  :NO_SYNC_REQUIRED,
+                  Stigg::Models::V1::Credits::GrantListResponse::SyncState::Status::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Stigg::Models::V1::Credits::GrantListResponse::SyncState::Status::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            # The vendor identifier of integration
+            module VendorIdentifier
+              extend Stigg::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Stigg::Models::V1::Credits::GrantListResponse::SyncState::VendorIdentifier
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              AUTH0 =
+                T.let(
+                  :AUTH0,
+                  Stigg::Models::V1::Credits::GrantListResponse::SyncState::VendorIdentifier::TaggedSymbol
+                )
+              ZUORA =
+                T.let(
+                  :ZUORA,
+                  Stigg::Models::V1::Credits::GrantListResponse::SyncState::VendorIdentifier::TaggedSymbol
+                )
+              STRIPE =
+                T.let(
+                  :STRIPE,
+                  Stigg::Models::V1::Credits::GrantListResponse::SyncState::VendorIdentifier::TaggedSymbol
+                )
+              HUBSPOT =
+                T.let(
+                  :HUBSPOT,
+                  Stigg::Models::V1::Credits::GrantListResponse::SyncState::VendorIdentifier::TaggedSymbol
+                )
+              AWS_MARKETPLACE =
+                T.let(
+                  :AWS_MARKETPLACE,
+                  Stigg::Models::V1::Credits::GrantListResponse::SyncState::VendorIdentifier::TaggedSymbol
+                )
+              SNOWFLAKE =
+                T.let(
+                  :SNOWFLAKE,
+                  Stigg::Models::V1::Credits::GrantListResponse::SyncState::VendorIdentifier::TaggedSymbol
+                )
+              SALESFORCE =
+                T.let(
+                  :SALESFORCE,
+                  Stigg::Models::V1::Credits::GrantListResponse::SyncState::VendorIdentifier::TaggedSymbol
+                )
+              BIG_QUERY =
+                T.let(
+                  :BIG_QUERY,
+                  Stigg::Models::V1::Credits::GrantListResponse::SyncState::VendorIdentifier::TaggedSymbol
+                )
+              OPEN_FGA =
+                T.let(
+                  :OPEN_FGA,
+                  Stigg::Models::V1::Credits::GrantListResponse::SyncState::VendorIdentifier::TaggedSymbol
+                )
+              APP_STORE =
+                T.let(
+                  :APP_STORE,
+                  Stigg::Models::V1::Credits::GrantListResponse::SyncState::VendorIdentifier::TaggedSymbol
+                )
+              RECEIVED =
+                T.let(
+                  :RECEIVED,
+                  Stigg::Models::V1::Credits::GrantListResponse::SyncState::VendorIdentifier::TaggedSymbol
+                )
+              PREQUEL =
+                T.let(
+                  :PREQUEL,
+                  Stigg::Models::V1::Credits::GrantListResponse::SyncState::VendorIdentifier::TaggedSymbol
+                )
+              AIRWALLEX =
+                T.let(
+                  :AIRWALLEX,
+                  Stigg::Models::V1::Credits::GrantListResponse::SyncState::VendorIdentifier::TaggedSymbol
+                )
+              STRIPE_INVOICING =
+                T.let(
+                  :STRIPE_INVOICING,
+                  Stigg::Models::V1::Credits::GrantListResponse::SyncState::VendorIdentifier::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Stigg::Models::V1::Credits::GrantListResponse::SyncState::VendorIdentifier::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
             end
           end
         end

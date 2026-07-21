@@ -149,6 +149,17 @@ module Stigg
             #   @return [Symbol, Stigg::Models::V1::Credits::CreditGrantResponse::Data::Status]
             required :status, enum: -> { Stigg::V1::Credits::CreditGrantResponse::Data::Status }
 
+            # @!attribute sync_states
+            #   The synchronization states of the entity with external systems
+            #
+            #   @return [Array<Stigg::Models::V1::Credits::CreditGrantResponse::Data::SyncState>, nil]
+            required :sync_states,
+                     -> {
+                       Stigg::Internal::Type::ArrayOf[Stigg::V1::Credits::CreditGrantResponse::Data::SyncState]
+                     },
+                     api_name: :syncStates,
+                     nil?: true
+
             # @!attribute updated_at
             #   Timestamp of when the record was last updated
             #
@@ -161,7 +172,7 @@ module Stigg
             #   @return [Time, nil]
             required :voided_at, Time, api_name: :voidedAt, nil?: true
 
-            # @!method initialize(id:, amount:, comment:, consumed_amount:, cost:, created_at:, currency_id:, customer_id:, display_name:, effective_at:, expire_at:, grant_type:, invoice_id:, latest_invoice:, metadata:, payment_collection:, priority:, resource_id:, source_type:, status:, updated_at:, voided_at:)
+            # @!method initialize(id:, amount:, comment:, consumed_amount:, cost:, created_at:, currency_id:, customer_id:, display_name:, effective_at:, expire_at:, grant_type:, invoice_id:, latest_invoice:, metadata:, payment_collection:, priority:, resource_id:, source_type:, status:, sync_states:, updated_at:, voided_at:)
             #   Credit grant object representing allocated credits for a customer
             #
             #   @param id [String] The unique readable identifier of the credit grant
@@ -203,6 +214,8 @@ module Stigg
             #   @param source_type [Symbol, Stigg::Models::V1::Credits::CreditGrantResponse::Data::SourceType, nil] The source type of the grant (PRICE, PLAN_ENTITLEMENT, ADDON_ENTITLEMENT)
             #
             #   @param status [Symbol, Stigg::Models::V1::Credits::CreditGrantResponse::Data::Status] The effective status of the credit grant
+            #
+            #   @param sync_states [Array<Stigg::Models::V1::Credits::CreditGrantResponse::Data::SyncState>, nil] The synchronization states of the entity with external systems
             #
             #   @param updated_at [Time] Timestamp of when the record was last updated
             #
@@ -438,6 +451,77 @@ module Stigg
 
               # @!method self.values
               #   @return [Array<Symbol>]
+            end
+
+            class SyncState < Stigg::Internal::Type::BaseModel
+              # @!attribute status
+              #   Status of the integration sync
+              #
+              #   @return [Symbol, Stigg::Models::V1::Credits::CreditGrantResponse::Data::SyncState::Status]
+              required :status, enum: -> { Stigg::V1::Credits::CreditGrantResponse::Data::SyncState::Status }
+
+              # @!attribute synced_entity_id
+              #   Synced entity id
+              #
+              #   @return [String, nil]
+              required :synced_entity_id, String, api_name: :syncedEntityId, nil?: true
+
+              # @!attribute vendor_identifier
+              #   The vendor identifier of integration
+              #
+              #   @return [Symbol, Stigg::Models::V1::Credits::CreditGrantResponse::Data::SyncState::VendorIdentifier]
+              required :vendor_identifier,
+                       enum: -> {
+                         Stigg::V1::Credits::CreditGrantResponse::Data::SyncState::VendorIdentifier
+                       },
+                       api_name: :vendorIdentifier
+
+              # @!method initialize(status:, synced_entity_id:, vendor_identifier:)
+              #   @param status [Symbol, Stigg::Models::V1::Credits::CreditGrantResponse::Data::SyncState::Status] Status of the integration sync
+              #
+              #   @param synced_entity_id [String, nil] Synced entity id
+              #
+              #   @param vendor_identifier [Symbol, Stigg::Models::V1::Credits::CreditGrantResponse::Data::SyncState::VendorIdentifier] The vendor identifier of integration
+
+              # Status of the integration sync
+              #
+              # @see Stigg::Models::V1::Credits::CreditGrantResponse::Data::SyncState#status
+              module Status
+                extend Stigg::Internal::Type::Enum
+
+                PENDING = :PENDING
+                ERROR = :ERROR
+                SUCCESS = :SUCCESS
+                NO_SYNC_REQUIRED = :NO_SYNC_REQUIRED
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
+
+              # The vendor identifier of integration
+              #
+              # @see Stigg::Models::V1::Credits::CreditGrantResponse::Data::SyncState#vendor_identifier
+              module VendorIdentifier
+                extend Stigg::Internal::Type::Enum
+
+                AUTH0 = :AUTH0
+                ZUORA = :ZUORA
+                STRIPE = :STRIPE
+                HUBSPOT = :HUBSPOT
+                AWS_MARKETPLACE = :AWS_MARKETPLACE
+                SNOWFLAKE = :SNOWFLAKE
+                SALESFORCE = :SALESFORCE
+                BIG_QUERY = :BIG_QUERY
+                OPEN_FGA = :OPEN_FGA
+                APP_STORE = :APP_STORE
+                RECEIVED = :RECEIVED
+                PREQUEL = :PREQUEL
+                AIRWALLEX = :AIRWALLEX
+                STRIPE_INVOICING = :STRIPE_INVOICING
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
             end
           end
         end
