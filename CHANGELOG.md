@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.43 (2026-07-21)
+
+Full Changelog: [v0.1.0-beta.42...v0.1.0-beta.43](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.42...v0.1.0-beta.43)
+
+### Features
+
+* **api:** add event_type parameter to credits list_ledger method ([cc72355](https://github.com/stiggio/stigg-ruby/commit/cc72355119dcb303be581d76c08ecbbabc8b3e20))
+
 ## 0.1.0-beta.42 (2026-07-18)
 
 Full Changelog: [v0.1.0-beta.41...v0.1.0-beta.42](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.41...v0.1.0-beta.42)
