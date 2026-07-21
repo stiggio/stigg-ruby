@@ -32,6 +32,12 @@ module Stigg
         #   @return [String, nil]
         optional :currency_id, String
 
+        # @!attribute event_type
+        #   Filter by event type(s), comma-separated
+        #
+        #   @return [String, nil]
+        optional :event_type, String
+
         # @!attribute limit
         #   Maximum number of items to return
         #
@@ -54,7 +60,7 @@ module Stigg
         #   @return [String, nil]
         optional :x_environment_id, String
 
-        # @!method initialize(customer_id:, after: nil, before: nil, currency_id: nil, limit: nil, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        # @!method initialize(customer_id:, after: nil, before: nil, currency_id: nil, event_type: nil, limit: nil, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #   @param customer_id [String] Filter by customer ID (required)
         #
         #   @param after [String] Return items that come after this cursor
@@ -62,6 +68,8 @@ module Stigg
         #   @param before [String] Return items that come before this cursor
         #
         #   @param currency_id [String] Filter by currency ID
+        #
+        #   @param event_type [String] Filter by event type(s), comma-separated
         #
         #   @param limit [Integer] Maximum number of items to return
         #

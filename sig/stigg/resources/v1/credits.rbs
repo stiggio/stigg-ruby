@@ -37,6 +37,7 @@ module Stigg
           ?after: String,
           ?before: String,
           ?currency_id: String,
+          ?event_type: String,
           ?limit: Integer,
           ?resource_id: String,
           ?x_account_id: String,

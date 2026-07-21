@@ -104,6 +104,7 @@ module Stigg
             after: String,
             before: String,
             currency_id: String,
+            event_type: String,
             limit: Integer,
             resource_id: String,
             x_account_id: String,
@@ -124,6 +125,8 @@ module Stigg
           before: nil,
           # Query param: Filter by currency ID
           currency_id: nil,
+          # Query param: Filter by event type(s), comma-separated
+          event_type: nil,
           # Query param: Maximum number of items to return
           limit: nil,
           # Query param: Filter by resource ID
