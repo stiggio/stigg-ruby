@@ -40,6 +40,7 @@ module Stigg
               resource_id: String?,
               source_type: Stigg::Models::V1::Credits::CreditGrantResponse::Data::source_type?,
               status: Stigg::Models::V1::Credits::CreditGrantResponse::Data::status,
+              sync_states: ::Array[Stigg::V1::Credits::CreditGrantResponse::Data::SyncState]?,
               updated_at: Time,
               voided_at: Time?
             }
@@ -85,6 +86,8 @@ module Stigg
 
             attr_accessor status: Stigg::Models::V1::Credits::CreditGrantResponse::Data::status
 
+            attr_accessor sync_states: ::Array[Stigg::V1::Credits::CreditGrantResponse::Data::SyncState]?
+
             attr_accessor updated_at: Time
 
             attr_accessor voided_at: Time?
@@ -110,6 +113,7 @@ module Stigg
               resource_id: String?,
               source_type: Stigg::Models::V1::Credits::CreditGrantResponse::Data::source_type?,
               status: Stigg::Models::V1::Credits::CreditGrantResponse::Data::status,
+              sync_states: ::Array[Stigg::V1::Credits::CreditGrantResponse::Data::SyncState]?,
               updated_at: Time,
               voided_at: Time?
             ) -> void
@@ -135,6 +139,7 @@ module Stigg
               resource_id: String?,
               source_type: Stigg::Models::V1::Credits::CreditGrantResponse::Data::source_type?,
               status: Stigg::Models::V1::Credits::CreditGrantResponse::Data::status,
+              sync_states: ::Array[Stigg::V1::Credits::CreditGrantResponse::Data::SyncState]?,
               updated_at: Time,
               voided_at: Time?
             }
@@ -308,6 +313,83 @@ module Stigg
               SCHEDULED: :SCHEDULED
 
               def self?.values: -> ::Array[Stigg::Models::V1::Credits::CreditGrantResponse::Data::status]
+            end
+
+            type sync_state =
+              {
+                status: Stigg::Models::V1::Credits::CreditGrantResponse::Data::SyncState::status,
+                synced_entity_id: String?,
+                vendor_identifier: Stigg::Models::V1::Credits::CreditGrantResponse::Data::SyncState::vendor_identifier
+              }
+
+            class SyncState < Stigg::Internal::Type::BaseModel
+              attr_accessor status: Stigg::Models::V1::Credits::CreditGrantResponse::Data::SyncState::status
+
+              attr_accessor synced_entity_id: String?
+
+              attr_accessor vendor_identifier: Stigg::Models::V1::Credits::CreditGrantResponse::Data::SyncState::vendor_identifier
+
+              def initialize: (
+                status: Stigg::Models::V1::Credits::CreditGrantResponse::Data::SyncState::status,
+                synced_entity_id: String?,
+                vendor_identifier: Stigg::Models::V1::Credits::CreditGrantResponse::Data::SyncState::vendor_identifier
+              ) -> void
+
+              def to_hash: -> {
+                status: Stigg::Models::V1::Credits::CreditGrantResponse::Data::SyncState::status,
+                synced_entity_id: String?,
+                vendor_identifier: Stigg::Models::V1::Credits::CreditGrantResponse::Data::SyncState::vendor_identifier
+              }
+
+              type status = :PENDING | :ERROR | :SUCCESS | :NO_SYNC_REQUIRED
+
+              module Status
+                extend Stigg::Internal::Type::Enum
+
+                PENDING: :PENDING
+                ERROR: :ERROR
+                SUCCESS: :SUCCESS
+                NO_SYNC_REQUIRED: :NO_SYNC_REQUIRED
+
+                def self?.values: -> ::Array[Stigg::Models::V1::Credits::CreditGrantResponse::Data::SyncState::status]
+              end
+
+              type vendor_identifier =
+                :AUTH0
+                | :ZUORA
+                | :STRIPE
+                | :HUBSPOT
+                | :AWS_MARKETPLACE
+                | :SNOWFLAKE
+                | :SALESFORCE
+                | :BIG_QUERY
+                | :OPEN_FGA
+                | :APP_STORE
+                | :RECEIVED
+                | :PREQUEL
+                | :AIRWALLEX
+                | :STRIPE_INVOICING
+
+              module VendorIdentifier
+                extend Stigg::Internal::Type::Enum
+
+                AUTH0: :AUTH0
+                ZUORA: :ZUORA
+                STRIPE: :STRIPE
+                HUBSPOT: :HUBSPOT
+                AWS_MARKETPLACE: :AWS_MARKETPLACE
+                SNOWFLAKE: :SNOWFLAKE
+                SALESFORCE: :SALESFORCE
+                BIG_QUERY: :BIG_QUERY
+                OPEN_FGA: :OPEN_FGA
+                APP_STORE: :APP_STORE
+                RECEIVED: :RECEIVED
+                PREQUEL: :PREQUEL
+                AIRWALLEX: :AIRWALLEX
+                STRIPE_INVOICING: :STRIPE_INVOICING
+
+                def self?.values: -> ::Array[Stigg::Models::V1::Credits::CreditGrantResponse::Data::SyncState::vendor_identifier]
+              end
             end
           end
         end

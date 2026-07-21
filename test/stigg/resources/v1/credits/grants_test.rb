@@ -64,6 +64,7 @@ class Stigg::Test::Resources::V1::Credits::GrantsTest < Stigg::Test::ResourceTes
         resource_id: String | nil,
         source_type: Stigg::Models::V1::Credits::GrantListResponse::SourceType | nil,
         status: Stigg::Models::V1::Credits::GrantListResponse::Status,
+        sync_states: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::Credits::GrantListResponse::SyncState]) | nil,
         updated_at: Time,
         voided_at: Time | nil
       }
