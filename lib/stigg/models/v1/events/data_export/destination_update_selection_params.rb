@@ -5,8 +5,8 @@ module Stigg
     module V1
       module Events
         module DataExport
-          # @see Stigg::Resources::V1::Events::DataExport::Destinations#update
-          class DestinationUpdateParams < Stigg::Internal::Type::BaseModel
+          # @see Stigg::Resources::V1::Events::DataExport::Destinations#update_selection
+          class DestinationUpdateSelectionParams < Stigg::Internal::Type::BaseModel
             extend Stigg::Internal::Type::RequestParameters::Converter
             include Stigg::Internal::Type::RequestParameters
 

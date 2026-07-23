@@ -3,8 +3,8 @@
 module Stigg
   module Models
     module V1
-      # @see Stigg::Resources::V1::Usage#estimate_cost
-      class UsageEstimateCostParams < Stigg::Internal::Type::BaseModel
+      # @see Stigg::Resources::V1::Usage#estimate
+      class UsageEstimateParams < Stigg::Internal::Type::BaseModel
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
@@ -31,7 +31,7 @@ module Stigg
         #
         #   @return [Hash{Symbol=>String, Float, Boolean}, nil]
         optional :dimensions,
-                 -> { Stigg::Internal::Type::HashOf[union: Stigg::V1::UsageEstimateCostParams::Dimension] }
+                 -> { Stigg::Internal::Type::HashOf[union: Stigg::V1::UsageEstimateParams::Dimension] }
 
         # @!attribute resource_id
         #   Resource id
@@ -42,9 +42,9 @@ module Stigg
         # @!attribute update_behavior
         #   The method by which the usage value should be updated
         #
-        #   @return [Symbol, Stigg::Models::V1::UsageEstimateCostParams::UpdateBehavior, nil]
+        #   @return [Symbol, Stigg::Models::V1::UsageEstimateParams::UpdateBehavior, nil]
         optional :update_behavior,
-                 enum: -> { Stigg::V1::UsageEstimateCostParams::UpdateBehavior },
+                 enum: -> { Stigg::V1::UsageEstimateParams::UpdateBehavior },
                  api_name: :updateBehavior
 
         # @!attribute x_account_id
@@ -68,7 +68,7 @@ module Stigg
         #
         #   @param resource_id [String, nil] Resource id
         #
-        #   @param update_behavior [Symbol, Stigg::Models::V1::UsageEstimateCostParams::UpdateBehavior] The method by which the usage value should be updated
+        #   @param update_behavior [Symbol, Stigg::Models::V1::UsageEstimateParams::UpdateBehavior] The method by which the usage value should be updated
         #
         #   @param x_account_id [String]
         #

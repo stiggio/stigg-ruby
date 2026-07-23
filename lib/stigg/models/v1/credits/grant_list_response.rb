@@ -73,7 +73,7 @@ module Stigg
           required :expire_at, Time, api_name: :expireAt, nil?: true
 
           # @!attribute grant_type
-          #   The type of credit grant (PAID, PROMOTIONAL, RECURRING)
+          #   The type of credit grant (PAID, PROMOTIONAL, RECURRING, OVERDRAFT)
           #
           #   @return [Symbol, Stigg::Models::V1::Credits::GrantListResponse::GrantType]
           required :grant_type,
@@ -182,7 +182,7 @@ module Stigg
           #
           #   @param expire_at [Time, nil] The date when the credit grant expires
           #
-          #   @param grant_type [Symbol, Stigg::Models::V1::Credits::GrantListResponse::GrantType] The type of credit grant (PAID, PROMOTIONAL, RECURRING)
+          #   @param grant_type [Symbol, Stigg::Models::V1::Credits::GrantListResponse::GrantType] The type of credit grant (PAID, PROMOTIONAL, RECURRING, OVERDRAFT)
           #
           #   @param invoice_id [String, nil] The billing invoice ID associated with this grant
           #
@@ -228,7 +228,7 @@ module Stigg
             #   @param currency [String] The currency code
           end
 
-          # The type of credit grant (PAID, PROMOTIONAL, RECURRING)
+          # The type of credit grant (PAID, PROMOTIONAL, RECURRING, OVERDRAFT)
           #
           # @see Stigg::Models::V1::Credits::GrantListResponse#grant_type
           module GrantType

@@ -8,6 +8,9 @@ module Stigg
         sig { returns(Stigg::Resources::V1::Events::DataExport) }
         attr_reader :data_export
 
+        sig { returns(Stigg::Resources::V1::Events::Beta) }
+        attr_reader :beta
+
         # Estimates the credit cost of a usage event without ingesting it. Returns the
         # estimated cost per credit currency, the current balance, and the balance after
         # the estimated consumption.
@@ -18,15 +21,15 @@ module Stigg
             dimensions:
               T::Hash[
                 Symbol,
-                Stigg::V1::EventEstimateCostParams::Dimension::Variants
+                Stigg::V1::EventEstimateParams::Dimension::Variants
               ],
             resource_id: T.nilable(String),
             x_account_id: String,
             x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
-          ).returns(Stigg::Models::V1::EventEstimateCostResponse)
+          ).returns(Stigg::Models::V1::EventEstimateResponse)
         end
-        def estimate_cost(
+        def estimate(
           # Body param: Customer id
           customer_id:,
           # Body param: The name of the usage event

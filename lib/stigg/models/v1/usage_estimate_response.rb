@@ -3,41 +3,41 @@
 module Stigg
   module Models
     module V1
-      # @see Stigg::Resources::V1::Events#estimate_cost
-      class EventEstimateCostResponse < Stigg::Internal::Type::BaseModel
+      # @see Stigg::Resources::V1::Usage#estimate
+      class UsageEstimateResponse < Stigg::Internal::Type::BaseModel
         # @!attribute data
         #   Estimated credit cost, current balance and balance after
         #
-        #   @return [Stigg::Models::V1::EventEstimateCostResponse::Data]
-        required :data, -> { Stigg::Models::V1::EventEstimateCostResponse::Data }
+        #   @return [Stigg::Models::V1::UsageEstimateResponse::Data]
+        required :data, -> { Stigg::Models::V1::UsageEstimateResponse::Data }
 
         # @!method initialize(data:)
         #   Response object
         #
-        #   @param data [Stigg::Models::V1::EventEstimateCostResponse::Data] Estimated credit cost, current balance and balance after
+        #   @param data [Stigg::Models::V1::UsageEstimateResponse::Data] Estimated credit cost, current balance and balance after
 
-        # @see Stigg::Models::V1::EventEstimateCostResponse#data
+        # @see Stigg::Models::V1::UsageEstimateResponse#data
         class Data < Stigg::Internal::Type::BaseModel
           # @!attribute estimates
           #   Per-currency cost estimates
           #
-          #   @return [Array<Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate>]
+          #   @return [Array<Stigg::Models::V1::UsageEstimateResponse::Data::Estimate>]
           required :estimates,
-                   -> { Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate] }
+                   -> { Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::UsageEstimateResponse::Data::Estimate] }
 
           # @!attribute warnings
           #   Request-level warnings about the estimation context
           #
-          #   @return [Array<Symbol, Stigg::Models::V1::EventEstimateCostResponse::Data::Warning>]
+          #   @return [Array<Symbol, Stigg::Models::V1::UsageEstimateResponse::Data::Warning>]
           required :warnings,
-                   -> { Stigg::Internal::Type::ArrayOf[enum: Stigg::Models::V1::EventEstimateCostResponse::Data::Warning] }
+                   -> { Stigg::Internal::Type::ArrayOf[enum: Stigg::Models::V1::UsageEstimateResponse::Data::Warning] }
 
           # @!method initialize(estimates:, warnings:)
           #   Estimated credit cost, current balance and balance after
           #
-          #   @param estimates [Array<Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate>] Per-currency cost estimates
+          #   @param estimates [Array<Stigg::Models::V1::UsageEstimateResponse::Data::Estimate>] Per-currency cost estimates
           #
-          #   @param warnings [Array<Symbol, Stigg::Models::V1::EventEstimateCostResponse::Data::Warning>] Request-level warnings about the estimation context
+          #   @param warnings [Array<Symbol, Stigg::Models::V1::UsageEstimateResponse::Data::Warning>] Request-level warnings about the estimation context
 
           class Estimate < Stigg::Internal::Type::BaseModel
             # @!attribute balance_after_estimate
@@ -49,9 +49,9 @@ module Stigg
             # @!attribute breakdown
             #   Estimated cost contribution per feature
             #
-            #   @return [Array<Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate::Breakdown>]
+            #   @return [Array<Stigg::Models::V1::UsageEstimateResponse::Data::Estimate::Breakdown>]
             required :breakdown,
-                     -> { Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate::Breakdown] }
+                     -> { Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::UsageEstimateResponse::Data::Estimate::Breakdown] }
 
             # @!attribute currency_id
             #   The credit currency identifier
@@ -80,7 +80,7 @@ module Stigg
             # @!method initialize(balance_after_estimate:, breakdown:, currency_id:, current_balance:, estimated_cost:, would_overdraft:)
             #   @param balance_after_estimate [Float] The credit balance after subtracting the estimated cost
             #
-            #   @param breakdown [Array<Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate::Breakdown>] Estimated cost contribution per feature
+            #   @param breakdown [Array<Stigg::Models::V1::UsageEstimateResponse::Data::Estimate::Breakdown>] Estimated cost contribution per feature
             #
             #   @param currency_id [String] The credit currency identifier
             #
@@ -106,9 +106,9 @@ module Stigg
               # @!attribute warning_code
               #   Warning explaining why this cost may be inaccurate, if any
               #
-              #   @return [Symbol, Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate::Breakdown::WarningCode, nil]
+              #   @return [Symbol, Stigg::Models::V1::UsageEstimateResponse::Data::Estimate::Breakdown::WarningCode, nil]
               required :warning_code,
-                       enum: -> { Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate::Breakdown::WarningCode },
+                       enum: -> { Stigg::Models::V1::UsageEstimateResponse::Data::Estimate::Breakdown::WarningCode },
                        api_name: :warningCode,
                        nil?: true
 
@@ -117,11 +117,11 @@ module Stigg
               #
               #   @param feature_id [String] The feature whose meter contributed this cost
               #
-              #   @param warning_code [Symbol, Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate::Breakdown::WarningCode, nil] Warning explaining why this cost may be inaccurate, if any
+              #   @param warning_code [Symbol, Stigg::Models::V1::UsageEstimateResponse::Data::Estimate::Breakdown::WarningCode, nil] Warning explaining why this cost may be inaccurate, if any
 
               # Warning explaining why this cost may be inaccurate, if any
               #
-              # @see Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate::Breakdown#warning_code
+              # @see Stigg::Models::V1::UsageEstimateResponse::Data::Estimate::Breakdown#warning_code
               module WarningCode
                 extend Stigg::Internal::Type::Enum
 

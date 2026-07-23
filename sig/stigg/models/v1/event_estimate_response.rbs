@@ -1,45 +1,43 @@
 module Stigg
   module Models
     module V1
-      type event_estimate_cost_response =
-        { data: Stigg::Models::V1::EventEstimateCostResponse::Data }
+      type event_estimate_response =
+        { data: Stigg::Models::V1::EventEstimateResponse::Data }
 
-      class EventEstimateCostResponse < Stigg::Internal::Type::BaseModel
-        attr_accessor data: Stigg::Models::V1::EventEstimateCostResponse::Data
+      class EventEstimateResponse < Stigg::Internal::Type::BaseModel
+        attr_accessor data: Stigg::Models::V1::EventEstimateResponse::Data
 
         def initialize: (
-          data: Stigg::Models::V1::EventEstimateCostResponse::Data
+          data: Stigg::Models::V1::EventEstimateResponse::Data
         ) -> void
 
-        def to_hash: -> {
-          data: Stigg::Models::V1::EventEstimateCostResponse::Data
-        }
+        def to_hash: -> { data: Stigg::Models::V1::EventEstimateResponse::Data }
 
         type data =
           {
-            estimates: ::Array[Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate],
-            warnings: ::Array[Stigg::Models::V1::EventEstimateCostResponse::Data::warning]
+            estimates: ::Array[Stigg::Models::V1::EventEstimateResponse::Data::Estimate],
+            warnings: ::Array[Stigg::Models::V1::EventEstimateResponse::Data::warning]
           }
 
         class Data < Stigg::Internal::Type::BaseModel
-          attr_accessor estimates: ::Array[Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate]
+          attr_accessor estimates: ::Array[Stigg::Models::V1::EventEstimateResponse::Data::Estimate]
 
-          attr_accessor warnings: ::Array[Stigg::Models::V1::EventEstimateCostResponse::Data::warning]
+          attr_accessor warnings: ::Array[Stigg::Models::V1::EventEstimateResponse::Data::warning]
 
           def initialize: (
-            estimates: ::Array[Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate],
-            warnings: ::Array[Stigg::Models::V1::EventEstimateCostResponse::Data::warning]
+            estimates: ::Array[Stigg::Models::V1::EventEstimateResponse::Data::Estimate],
+            warnings: ::Array[Stigg::Models::V1::EventEstimateResponse::Data::warning]
           ) -> void
 
           def to_hash: -> {
-            estimates: ::Array[Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate],
-            warnings: ::Array[Stigg::Models::V1::EventEstimateCostResponse::Data::warning]
+            estimates: ::Array[Stigg::Models::V1::EventEstimateResponse::Data::Estimate],
+            warnings: ::Array[Stigg::Models::V1::EventEstimateResponse::Data::warning]
           }
 
           type estimate =
             {
               balance_after_estimate: Float,
-              breakdown: ::Array[Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate::Breakdown],
+              breakdown: ::Array[Stigg::Models::V1::EventEstimateResponse::Data::Estimate::Breakdown],
               currency_id: String,
               current_balance: Float,
               estimated_cost: Float,
@@ -49,7 +47,7 @@ module Stigg
           class Estimate < Stigg::Internal::Type::BaseModel
             attr_accessor balance_after_estimate: Float
 
-            attr_accessor breakdown: ::Array[Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate::Breakdown]
+            attr_accessor breakdown: ::Array[Stigg::Models::V1::EventEstimateResponse::Data::Estimate::Breakdown]
 
             attr_accessor currency_id: String
 
@@ -61,7 +59,7 @@ module Stigg
 
             def initialize: (
               balance_after_estimate: Float,
-              breakdown: ::Array[Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate::Breakdown],
+              breakdown: ::Array[Stigg::Models::V1::EventEstimateResponse::Data::Estimate::Breakdown],
               currency_id: String,
               current_balance: Float,
               estimated_cost: Float,
@@ -70,7 +68,7 @@ module Stigg
 
             def to_hash: -> {
               balance_after_estimate: Float,
-              breakdown: ::Array[Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate::Breakdown],
+              breakdown: ::Array[Stigg::Models::V1::EventEstimateResponse::Data::Estimate::Breakdown],
               currency_id: String,
               current_balance: Float,
               estimated_cost: Float,
@@ -81,7 +79,7 @@ module Stigg
               {
                 cost: Float,
                 feature_id: String,
-                warning_code: Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate::Breakdown::warning_code?
+                warning_code: Stigg::Models::V1::EventEstimateResponse::Data::Estimate::Breakdown::warning_code?
               }
 
             class Breakdown < Stigg::Internal::Type::BaseModel
@@ -89,18 +87,18 @@ module Stigg
 
               attr_accessor feature_id: String
 
-              attr_accessor warning_code: Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate::Breakdown::warning_code?
+              attr_accessor warning_code: Stigg::Models::V1::EventEstimateResponse::Data::Estimate::Breakdown::warning_code?
 
               def initialize: (
                 cost: Float,
                 feature_id: String,
-                warning_code: Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate::Breakdown::warning_code?
+                warning_code: Stigg::Models::V1::EventEstimateResponse::Data::Estimate::Breakdown::warning_code?
               ) -> void
 
               def to_hash: -> {
                 cost: Float,
                 feature_id: String,
-                warning_code: Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate::Breakdown::warning_code?
+                warning_code: Stigg::Models::V1::EventEstimateResponse::Data::Estimate::Breakdown::warning_code?
               }
 
               type warning_code = :UNSUPPORTED_AGGREGATION
@@ -110,7 +108,7 @@ module Stigg
 
                 UNSUPPORTED_AGGREGATION: :UNSUPPORTED_AGGREGATION
 
-                def self?.values: -> ::Array[Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate::Breakdown::warning_code]
+                def self?.values: -> ::Array[Stigg::Models::V1::EventEstimateResponse::Data::Estimate::Breakdown::warning_code]
               end
             end
           end
@@ -127,7 +125,7 @@ module Stigg
             FEATURE_NOT_FOUND: :FEATURE_NOT_FOUND
             FEATURE_NOT_CREDIT_BASED: :FEATURE_NOT_CREDIT_BASED
 
-            def self?.values: -> ::Array[Stigg::Models::V1::EventEstimateCostResponse::Data::warning]
+            def self?.values: -> ::Array[Stigg::Models::V1::EventEstimateResponse::Data::warning]
           end
         end
       end

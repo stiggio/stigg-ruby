@@ -3,13 +3,13 @@
 module Stigg
   module Models
     module V1
-      class UsageEstimateCostParams < Stigg::Internal::Type::BaseModel
+      class UsageEstimateParams < Stigg::Internal::Type::BaseModel
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
         OrHash =
           T.type_alias do
-            T.any(Stigg::V1::UsageEstimateCostParams, Stigg::Internal::AnyHash)
+            T.any(Stigg::V1::UsageEstimateParams, Stigg::Internal::AnyHash)
           end
 
         # Customer id
@@ -30,7 +30,7 @@ module Stigg
             T.nilable(
               T::Hash[
                 Symbol,
-                Stigg::V1::UsageEstimateCostParams::Dimension::Variants
+                Stigg::V1::UsageEstimateParams::Dimension::Variants
               ]
             )
           )
@@ -42,7 +42,7 @@ module Stigg
             dimensions:
               T::Hash[
                 Symbol,
-                Stigg::V1::UsageEstimateCostParams::Dimension::Variants
+                Stigg::V1::UsageEstimateParams::Dimension::Variants
               ]
           ).void
         end
@@ -55,9 +55,7 @@ module Stigg
         # The method by which the usage value should be updated
         sig do
           returns(
-            T.nilable(
-              Stigg::V1::UsageEstimateCostParams::UpdateBehavior::OrSymbol
-            )
+            T.nilable(Stigg::V1::UsageEstimateParams::UpdateBehavior::OrSymbol)
           )
         end
         attr_reader :update_behavior
@@ -65,7 +63,7 @@ module Stigg
         sig do
           params(
             update_behavior:
-              Stigg::V1::UsageEstimateCostParams::UpdateBehavior::OrSymbol
+              Stigg::V1::UsageEstimateParams::UpdateBehavior::OrSymbol
           ).void
         end
         attr_writer :update_behavior
@@ -90,11 +88,11 @@ module Stigg
             dimensions:
               T::Hash[
                 Symbol,
-                Stigg::V1::UsageEstimateCostParams::Dimension::Variants
+                Stigg::V1::UsageEstimateParams::Dimension::Variants
               ],
             resource_id: T.nilable(String),
             update_behavior:
-              Stigg::V1::UsageEstimateCostParams::UpdateBehavior::OrSymbol,
+              Stigg::V1::UsageEstimateParams::UpdateBehavior::OrSymbol,
             x_account_id: String,
             x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
@@ -128,11 +126,11 @@ module Stigg
               dimensions:
                 T::Hash[
                   Symbol,
-                  Stigg::V1::UsageEstimateCostParams::Dimension::Variants
+                  Stigg::V1::UsageEstimateParams::Dimension::Variants
                 ],
               resource_id: T.nilable(String),
               update_behavior:
-                Stigg::V1::UsageEstimateCostParams::UpdateBehavior::OrSymbol,
+                Stigg::V1::UsageEstimateParams::UpdateBehavior::OrSymbol,
               x_account_id: String,
               x_environment_id: String,
               request_options: Stigg::RequestOptions
@@ -149,7 +147,7 @@ module Stigg
 
           sig do
             override.returns(
-              T::Array[Stigg::V1::UsageEstimateCostParams::Dimension::Variants]
+              T::Array[Stigg::V1::UsageEstimateParams::Dimension::Variants]
             )
           end
           def self.variants
@@ -162,25 +160,25 @@ module Stigg
 
           TaggedSymbol =
             T.type_alias do
-              T.all(Symbol, Stigg::V1::UsageEstimateCostParams::UpdateBehavior)
+              T.all(Symbol, Stigg::V1::UsageEstimateParams::UpdateBehavior)
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
           DELTA =
             T.let(
               :DELTA,
-              Stigg::V1::UsageEstimateCostParams::UpdateBehavior::TaggedSymbol
+              Stigg::V1::UsageEstimateParams::UpdateBehavior::TaggedSymbol
             )
           SET =
             T.let(
               :SET,
-              Stigg::V1::UsageEstimateCostParams::UpdateBehavior::TaggedSymbol
+              Stigg::V1::UsageEstimateParams::UpdateBehavior::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                Stigg::V1::UsageEstimateCostParams::UpdateBehavior::TaggedSymbol
+                Stigg::V1::UsageEstimateParams::UpdateBehavior::TaggedSymbol
               ]
             )
           end

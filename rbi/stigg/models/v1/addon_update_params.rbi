@@ -1182,6 +1182,13 @@ module Stigg
             end
             attr_writer :billing_cadence
 
+            # The refId of the custom currency this credit overage applies to
+            sig { returns(T.nilable(String)) }
+            attr_reader :currency_id
+
+            sig { params(currency_id: String).void }
+            attr_writer :currency_id
+
             # Entitlement configuration for the overage feature
             sig do
               returns(
@@ -1207,13 +1214,6 @@ module Stigg
             sig { params(feature_id: String).void }
             attr_writer :feature_id
 
-            # Custom currency ID for overage top-up
-            sig { returns(T.nilable(String)) }
-            attr_reader :top_up_custom_currency_id
-
-            sig { params(top_up_custom_currency_id: String).void }
-            attr_writer :top_up_custom_currency_id
-
             # Overage pricing model configuration.
             sig do
               params(
@@ -1225,10 +1225,10 @@ module Stigg
                   ],
                 billing_cadence:
                   Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::BillingCadence::OrSymbol,
+                currency_id: String,
                 entitlement:
                   Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::Entitlement::OrHash,
-                feature_id: String,
-                top_up_custom_currency_id: String
+                feature_id: String
               ).returns(T.attached_class)
             end
             def self.new(
@@ -1238,12 +1238,12 @@ module Stigg
               price_periods:,
               # The billing cadence for overages
               billing_cadence: nil,
+              # The refId of the custom currency this credit overage applies to
+              currency_id: nil,
               # Entitlement configuration for the overage feature
               entitlement: nil,
               # The feature ID for overage pricing
-              feature_id: nil,
-              # Custom currency ID for overage top-up
-              top_up_custom_currency_id: nil
+              feature_id: nil
             )
             end
 
@@ -1258,10 +1258,10 @@ module Stigg
                     ],
                   billing_cadence:
                     Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::BillingCadence::OrSymbol,
+                  currency_id: String,
                   entitlement:
                     Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::Entitlement,
-                  feature_id: String,
-                  top_up_custom_currency_id: String
+                  feature_id: String
                 }
               )
             end

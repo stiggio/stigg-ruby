@@ -472,9 +472,9 @@ module Stigg
               billing_model: Stigg::Models::V1::AddonUpdateParams::Charges::OveragePricingModel::billing_model,
               price_periods: ::Array[Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::PricePeriod],
               billing_cadence: Stigg::Models::V1::AddonUpdateParams::Charges::OveragePricingModel::billing_cadence,
+              currency_id: String,
               entitlement: Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::Entitlement,
-              feature_id: String,
-              top_up_custom_currency_id: String
+              feature_id: String
             }
 
           class OveragePricingModel < Stigg::Internal::Type::BaseModel
@@ -488,6 +488,10 @@ module Stigg
               Stigg::Models::V1::AddonUpdateParams::Charges::OveragePricingModel::billing_cadence
             ) -> Stigg::Models::V1::AddonUpdateParams::Charges::OveragePricingModel::billing_cadence
 
+            attr_reader currency_id: String?
+
+            def currency_id=: (String) -> String
+
             attr_reader entitlement: Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::Entitlement?
 
             def entitlement=: (
@@ -498,26 +502,22 @@ module Stigg
 
             def feature_id=: (String) -> String
 
-            attr_reader top_up_custom_currency_id: String?
-
-            def top_up_custom_currency_id=: (String) -> String
-
             def initialize: (
               billing_model: Stigg::Models::V1::AddonUpdateParams::Charges::OveragePricingModel::billing_model,
               price_periods: ::Array[Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::PricePeriod],
               ?billing_cadence: Stigg::Models::V1::AddonUpdateParams::Charges::OveragePricingModel::billing_cadence,
+              ?currency_id: String,
               ?entitlement: Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::Entitlement,
-              ?feature_id: String,
-              ?top_up_custom_currency_id: String
+              ?feature_id: String
             ) -> void
 
             def to_hash: -> {
               billing_model: Stigg::Models::V1::AddonUpdateParams::Charges::OveragePricingModel::billing_model,
               price_periods: ::Array[Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::PricePeriod],
               billing_cadence: Stigg::Models::V1::AddonUpdateParams::Charges::OveragePricingModel::billing_cadence,
+              currency_id: String,
               entitlement: Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::Entitlement,
-              feature_id: String,
-              top_up_custom_currency_id: String
+              feature_id: String
             }
 
             type billing_model =

@@ -3,36 +3,36 @@ module Stigg
     module V1
       module Events
         module DataExport
-          type destination_update_response =
+          type destination_update_selection_response =
             {
-              data: Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data
+              data: Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data
             }
 
-          class DestinationUpdateResponse < Stigg::Internal::Type::BaseModel
-            attr_accessor data: Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data
+          class DestinationUpdateSelectionResponse < Stigg::Internal::Type::BaseModel
+            attr_accessor data: Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data
 
             def initialize: (
-              data: Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data
+              data: Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data
             ) -> void
 
             def to_hash: -> {
-              data: Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data
+              data: Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data
             }
 
             type data =
               {
-                destinations: ::Array[Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination]
+                destinations: ::Array[Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::Destination]
               }
 
             class Data < Stigg::Internal::Type::BaseModel
-              attr_accessor destinations: ::Array[Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination]
+              attr_accessor destinations: ::Array[Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::Destination]
 
               def initialize: (
-                destinations: ::Array[Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination]
+                destinations: ::Array[Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::Destination]
               ) -> void
 
               def to_hash: -> {
-                destinations: ::Array[Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination]
+                destinations: ::Array[Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::Destination]
               }
 
               type destination =
@@ -42,7 +42,7 @@ module Stigg
                   type: String,
                   connection_status: String,
                   enabled_models: ::Array[String],
-                  last_sync_status: Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination::LastSyncStatus
+                  last_sync_status: Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::Destination::LastSyncStatus
                 }
 
               class Destination < Stigg::Internal::Type::BaseModel
@@ -60,11 +60,11 @@ module Stigg
 
                 def enabled_models=: (::Array[String]) -> ::Array[String]
 
-                attr_reader last_sync_status: Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination::LastSyncStatus?
+                attr_reader last_sync_status: Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::Destination::LastSyncStatus?
 
                 def last_sync_status=: (
-                  Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination::LastSyncStatus
-                ) -> Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination::LastSyncStatus
+                  Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::Destination::LastSyncStatus
+                ) -> Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::Destination::LastSyncStatus
 
                 def initialize: (
                   connected_at: String,
@@ -72,7 +72,7 @@ module Stigg
                   type: String,
                   ?connection_status: String,
                   ?enabled_models: ::Array[String],
-                  ?last_sync_status: Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination::LastSyncStatus
+                  ?last_sync_status: Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::Destination::LastSyncStatus
                 ) -> void
 
                 def to_hash: -> {
@@ -81,7 +81,7 @@ module Stigg
                   type: String,
                   connection_status: String,
                   enabled_models: ::Array[String],
-                  last_sync_status: Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination::LastSyncStatus
+                  last_sync_status: Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::Destination::LastSyncStatus
                 }
 
                 type last_sync_status =

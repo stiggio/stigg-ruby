@@ -5,32 +5,32 @@ module Stigg
     module V1
       module Events
         module DataExport
-          # @see Stigg::Resources::V1::Events::DataExport::Destinations#update
-          class DestinationUpdateResponse < Stigg::Internal::Type::BaseModel
+          # @see Stigg::Resources::V1::Events::DataExport::Destinations#update_selection
+          class DestinationUpdateSelectionResponse < Stigg::Internal::Type::BaseModel
             # @!attribute data
             #   Current destinations under the DATA_EXPORT integration.
             #
-            #   @return [Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data]
-            required :data, -> { Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data }
+            #   @return [Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data]
+            required :data, -> { Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data }
 
             # @!method initialize(data:)
             #   Response object
             #
-            #   @param data [Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data] Current destinations under the DATA_EXPORT integration.
+            #   @param data [Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data] Current destinations under the DATA_EXPORT integration.
 
-            # @see Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse#data
+            # @see Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse#data
             class Data < Stigg::Internal::Type::BaseModel
               # @!attribute destinations
               #   Current destinations under the DATA_EXPORT integration
               #
-              #   @return [Array<Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination>]
+              #   @return [Array<Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::Destination>]
               required :destinations,
-                       -> { Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination] }
+                       -> { Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::Destination] }
 
               # @!method initialize(destinations:)
               #   Current destinations under the DATA_EXPORT integration.
               #
-              #   @param destinations [Array<Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination>] Current destinations under the DATA_EXPORT integration
+              #   @param destinations [Array<Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::Destination>] Current destinations under the DATA_EXPORT integration
 
               class Destination < Stigg::Internal::Type::BaseModel
                 # @!attribute connected_at
@@ -65,9 +65,9 @@ module Stigg
                 # @!attribute last_sync_status
                 #   Latest sync snapshot for the destination, refreshed by the provider webhook
                 #
-                #   @return [Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination::LastSyncStatus, nil]
+                #   @return [Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::Destination::LastSyncStatus, nil]
                 optional :last_sync_status,
-                         -> { Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination::LastSyncStatus },
+                         -> { Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::Destination::LastSyncStatus },
                          api_name: :lastSyncStatus
 
                 # @!method initialize(connected_at:, destination_id:, type:, connection_status: nil, enabled_models: nil, last_sync_status: nil)
@@ -83,9 +83,9 @@ module Stigg
                 #
                 #   @param enabled_models [Array<String>]
                 #
-                #   @param last_sync_status [Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination::LastSyncStatus] Latest sync snapshot for the destination, refreshed by the provider webhook
+                #   @param last_sync_status [Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::Destination::LastSyncStatus] Latest sync snapshot for the destination, refreshed by the provider webhook
 
-                # @see Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination#last_sync_status
+                # @see Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::Destination#last_sync_status
                 class LastSyncStatus < Stigg::Internal::Type::BaseModel
                   # @!attribute finished_at
                   #   ISO8601 timestamp of when the latest sync finished

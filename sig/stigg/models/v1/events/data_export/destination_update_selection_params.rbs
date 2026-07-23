@@ -3,7 +3,7 @@ module Stigg
     module V1
       module Events
         module DataExport
-          type destination_update_params =
+          type destination_update_selection_params =
             {
               destination_id: String,
               enabled_models: ::Array[String],
@@ -13,7 +13,7 @@ module Stigg
             }
             & Stigg::Internal::Type::request_parameters
 
-          class DestinationUpdateParams < Stigg::Internal::Type::BaseModel
+          class DestinationUpdateSelectionParams < Stigg::Internal::Type::BaseModel
             extend Stigg::Internal::Type::RequestParameters::Converter
             include Stigg::Internal::Type::RequestParameters
 

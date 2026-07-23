@@ -4,15 +4,17 @@ module Stigg
       class Events
         attr_reader data_export: Stigg::Resources::V1::Events::DataExport
 
-        def estimate_cost: (
+        attr_reader beta: Stigg::Resources::V1::Events::Beta
+
+        def estimate: (
           customer_id: String,
           event_name: String,
-          ?dimensions: ::Hash[Symbol, Stigg::Models::V1::EventEstimateCostParams::dimension],
+          ?dimensions: ::Hash[Symbol, Stigg::Models::V1::EventEstimateParams::dimension],
           ?resource_id: String?,
           ?x_account_id: String,
           ?x_environment_id: String,
           ?request_options: Stigg::request_opts
-        ) -> Stigg::Models::V1::EventEstimateCostResponse
+        ) -> Stigg::Models::V1::EventEstimateResponse
 
         def report: (
           events: ::Array[Stigg::V1::EventReportParams::Event],

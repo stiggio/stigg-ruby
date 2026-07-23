@@ -1,18 +1,18 @@
 module Stigg
   module Models
     module V1
-      type event_estimate_cost_params =
+      type event_estimate_params =
         {
           customer_id: String,
           event_name: String,
-          dimensions: ::Hash[Symbol, Stigg::Models::V1::EventEstimateCostParams::dimension],
+          dimensions: ::Hash[Symbol, Stigg::Models::V1::EventEstimateParams::dimension],
           resource_id: String?,
           x_account_id: String,
           x_environment_id: String
         }
         & Stigg::Internal::Type::request_parameters
 
-      class EventEstimateCostParams < Stigg::Internal::Type::BaseModel
+      class EventEstimateParams < Stigg::Internal::Type::BaseModel
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
@@ -20,11 +20,11 @@ module Stigg
 
         attr_accessor event_name: String
 
-        attr_reader dimensions: ::Hash[Symbol, Stigg::Models::V1::EventEstimateCostParams::dimension]?
+        attr_reader dimensions: ::Hash[Symbol, Stigg::Models::V1::EventEstimateParams::dimension]?
 
         def dimensions=: (
-          ::Hash[Symbol, Stigg::Models::V1::EventEstimateCostParams::dimension]
-        ) -> ::Hash[Symbol, Stigg::Models::V1::EventEstimateCostParams::dimension]
+          ::Hash[Symbol, Stigg::Models::V1::EventEstimateParams::dimension]
+        ) -> ::Hash[Symbol, Stigg::Models::V1::EventEstimateParams::dimension]
 
         attr_accessor resource_id: String?
 
@@ -39,7 +39,7 @@ module Stigg
         def initialize: (
           customer_id: String,
           event_name: String,
-          ?dimensions: ::Hash[Symbol, Stigg::Models::V1::EventEstimateCostParams::dimension],
+          ?dimensions: ::Hash[Symbol, Stigg::Models::V1::EventEstimateParams::dimension],
           ?resource_id: String?,
           ?x_account_id: String,
           ?x_environment_id: String,
@@ -49,7 +49,7 @@ module Stigg
         def to_hash: -> {
           customer_id: String,
           event_name: String,
-          dimensions: ::Hash[Symbol, Stigg::Models::V1::EventEstimateCostParams::dimension],
+          dimensions: ::Hash[Symbol, Stigg::Models::V1::EventEstimateParams::dimension],
           resource_id: String?,
           x_account_id: String,
           x_environment_id: String,
@@ -61,7 +61,7 @@ module Stigg
         module Dimension
           extend Stigg::Internal::Type::Union
 
-          def self?.variants: -> ::Array[Stigg::Models::V1::EventEstimateCostParams::dimension]
+          def self?.variants: -> ::Array[Stigg::Models::V1::EventEstimateParams::dimension]
         end
       end
     end
