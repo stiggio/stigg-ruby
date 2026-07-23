@@ -3,13 +3,13 @@
 module Stigg
   module Models
     module V1
-      class EventEstimateCostParams < Stigg::Internal::Type::BaseModel
+      class EventEstimateParams < Stigg::Internal::Type::BaseModel
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
         OrHash =
           T.type_alias do
-            T.any(Stigg::V1::EventEstimateCostParams, Stigg::Internal::AnyHash)
+            T.any(Stigg::V1::EventEstimateParams, Stigg::Internal::AnyHash)
           end
 
         # Customer id
@@ -26,7 +26,7 @@ module Stigg
             T.nilable(
               T::Hash[
                 Symbol,
-                Stigg::V1::EventEstimateCostParams::Dimension::Variants
+                Stigg::V1::EventEstimateParams::Dimension::Variants
               ]
             )
           )
@@ -38,7 +38,7 @@ module Stigg
             dimensions:
               T::Hash[
                 Symbol,
-                Stigg::V1::EventEstimateCostParams::Dimension::Variants
+                Stigg::V1::EventEstimateParams::Dimension::Variants
               ]
           ).void
         end
@@ -67,7 +67,7 @@ module Stigg
             dimensions:
               T::Hash[
                 Symbol,
-                Stigg::V1::EventEstimateCostParams::Dimension::Variants
+                Stigg::V1::EventEstimateParams::Dimension::Variants
               ],
             resource_id: T.nilable(String),
             x_account_id: String,
@@ -98,7 +98,7 @@ module Stigg
               dimensions:
                 T::Hash[
                   Symbol,
-                  Stigg::V1::EventEstimateCostParams::Dimension::Variants
+                  Stigg::V1::EventEstimateParams::Dimension::Variants
                 ],
               resource_id: T.nilable(String),
               x_account_id: String,
@@ -117,7 +117,7 @@ module Stigg
 
           sig do
             override.returns(
-              T::Array[Stigg::V1::EventEstimateCostParams::Dimension::Variants]
+              T::Array[Stigg::V1::EventEstimateParams::Dimension::Variants]
             )
           end
           def self.variants

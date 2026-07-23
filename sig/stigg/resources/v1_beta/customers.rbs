@@ -8,23 +8,6 @@ module Stigg
 
         attr_reader assignments: Stigg::Resources::V1Beta::Customers::Assignments
 
-        def retrieve_governance: (
-          String id,
-          ?after: String,
-          ?currency_ids: ::Array[String],
-          ?entity_id_search: String,
-          ?entity_type_ids: ::Array[String],
-          ?feature_ids: ::Array[String],
-          ?limit: Integer,
-          ?min_utilization: Float,
-          ?order: Stigg::Models::V1Beta::CustomerRetrieveGovernanceParams::order,
-          ?scope: Stigg::Models::V1Beta::CustomerRetrieveGovernanceParams::scope,
-          ?sort_by: Stigg::Models::V1Beta::CustomerRetrieveGovernanceParams::sort_by,
-          ?x_account_id: String,
-          ?x_environment_id: String,
-          ?request_options: Stigg::request_opts
-        ) -> Stigg::Models::V1Beta::CustomerRetrieveGovernanceResponse
-
         def initialize: (client: Stigg::Client) -> void
       end
     end

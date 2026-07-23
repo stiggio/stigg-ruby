@@ -3,22 +3,22 @@
 module Stigg
   module Models
     module V1
-      class EventEstimateCostResponse < Stigg::Internal::Type::BaseModel
+      class EventEstimateResponse < Stigg::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              Stigg::Models::V1::EventEstimateCostResponse,
+              Stigg::Models::V1::EventEstimateResponse,
               Stigg::Internal::AnyHash
             )
           end
 
         # Estimated credit cost, current balance and balance after
-        sig { returns(Stigg::Models::V1::EventEstimateCostResponse::Data) }
+        sig { returns(Stigg::Models::V1::EventEstimateResponse::Data) }
         attr_reader :data
 
         sig do
           params(
-            data: Stigg::Models::V1::EventEstimateCostResponse::Data::OrHash
+            data: Stigg::Models::V1::EventEstimateResponse::Data::OrHash
           ).void
         end
         attr_writer :data
@@ -26,7 +26,7 @@ module Stigg
         # Response object
         sig do
           params(
-            data: Stigg::Models::V1::EventEstimateCostResponse::Data::OrHash
+            data: Stigg::Models::V1::EventEstimateResponse::Data::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
@@ -37,7 +37,7 @@ module Stigg
 
         sig do
           override.returns(
-            { data: Stigg::Models::V1::EventEstimateCostResponse::Data }
+            { data: Stigg::Models::V1::EventEstimateResponse::Data }
           )
         end
         def to_hash
@@ -47,7 +47,7 @@ module Stigg
           OrHash =
             T.type_alias do
               T.any(
-                Stigg::Models::V1::EventEstimateCostResponse::Data,
+                Stigg::Models::V1::EventEstimateResponse::Data,
                 Stigg::Internal::AnyHash
               )
             end
@@ -55,9 +55,7 @@ module Stigg
           # Per-currency cost estimates
           sig do
             returns(
-              T::Array[
-                Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate
-              ]
+              T::Array[Stigg::Models::V1::EventEstimateResponse::Data::Estimate]
             )
           end
           attr_accessor :estimates
@@ -66,7 +64,7 @@ module Stigg
           sig do
             returns(
               T::Array[
-                Stigg::Models::V1::EventEstimateCostResponse::Data::Warning::TaggedSymbol
+                Stigg::Models::V1::EventEstimateResponse::Data::Warning::TaggedSymbol
               ]
             )
           end
@@ -77,11 +75,11 @@ module Stigg
             params(
               estimates:
                 T::Array[
-                  Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate::OrHash
+                  Stigg::Models::V1::EventEstimateResponse::Data::Estimate::OrHash
                 ],
               warnings:
                 T::Array[
-                  Stigg::Models::V1::EventEstimateCostResponse::Data::Warning::OrSymbol
+                  Stigg::Models::V1::EventEstimateResponse::Data::Warning::OrSymbol
                 ]
             ).returns(T.attached_class)
           end
@@ -98,11 +96,11 @@ module Stigg
               {
                 estimates:
                   T::Array[
-                    Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate
+                    Stigg::Models::V1::EventEstimateResponse::Data::Estimate
                   ],
                 warnings:
                   T::Array[
-                    Stigg::Models::V1::EventEstimateCostResponse::Data::Warning::TaggedSymbol
+                    Stigg::Models::V1::EventEstimateResponse::Data::Warning::TaggedSymbol
                   ]
               }
             )
@@ -114,7 +112,7 @@ module Stigg
             OrHash =
               T.type_alias do
                 T.any(
-                  Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate,
+                  Stigg::Models::V1::EventEstimateResponse::Data::Estimate,
                   Stigg::Internal::AnyHash
                 )
               end
@@ -127,7 +125,7 @@ module Stigg
             sig do
               returns(
                 T::Array[
-                  Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate::Breakdown
+                  Stigg::Models::V1::EventEstimateResponse::Data::Estimate::Breakdown
                 ]
               )
             end
@@ -154,7 +152,7 @@ module Stigg
                 balance_after_estimate: Float,
                 breakdown:
                   T::Array[
-                    Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate::Breakdown::OrHash
+                    Stigg::Models::V1::EventEstimateResponse::Data::Estimate::Breakdown::OrHash
                   ],
                 currency_id: String,
                 current_balance: Float,
@@ -184,7 +182,7 @@ module Stigg
                   balance_after_estimate: Float,
                   breakdown:
                     T::Array[
-                      Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate::Breakdown
+                      Stigg::Models::V1::EventEstimateResponse::Data::Estimate::Breakdown
                     ],
                   currency_id: String,
                   current_balance: Float,
@@ -200,7 +198,7 @@ module Stigg
               OrHash =
                 T.type_alias do
                   T.any(
-                    Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate::Breakdown,
+                    Stigg::Models::V1::EventEstimateResponse::Data::Estimate::Breakdown,
                     Stigg::Internal::AnyHash
                   )
                 end
@@ -217,7 +215,7 @@ module Stigg
               sig do
                 returns(
                   T.nilable(
-                    Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate::Breakdown::WarningCode::TaggedSymbol
+                    Stigg::Models::V1::EventEstimateResponse::Data::Estimate::Breakdown::WarningCode::TaggedSymbol
                   )
                 )
               end
@@ -229,7 +227,7 @@ module Stigg
                   feature_id: String,
                   warning_code:
                     T.nilable(
-                      Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate::Breakdown::WarningCode::OrSymbol
+                      Stigg::Models::V1::EventEstimateResponse::Data::Estimate::Breakdown::WarningCode::OrSymbol
                     )
                 ).returns(T.attached_class)
               end
@@ -250,7 +248,7 @@ module Stigg
                     feature_id: String,
                     warning_code:
                       T.nilable(
-                        Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate::Breakdown::WarningCode::TaggedSymbol
+                        Stigg::Models::V1::EventEstimateResponse::Data::Estimate::Breakdown::WarningCode::TaggedSymbol
                       )
                   }
                 )
@@ -266,7 +264,7 @@ module Stigg
                   T.type_alias do
                     T.all(
                       Symbol,
-                      Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate::Breakdown::WarningCode
+                      Stigg::Models::V1::EventEstimateResponse::Data::Estimate::Breakdown::WarningCode
                     )
                   end
                 OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -274,13 +272,13 @@ module Stigg
                 UNSUPPORTED_AGGREGATION =
                   T.let(
                     :UNSUPPORTED_AGGREGATION,
-                    Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate::Breakdown::WarningCode::TaggedSymbol
+                    Stigg::Models::V1::EventEstimateResponse::Data::Estimate::Breakdown::WarningCode::TaggedSymbol
                   )
 
                 sig do
                   override.returns(
                     T::Array[
-                      Stigg::Models::V1::EventEstimateCostResponse::Data::Estimate::Breakdown::WarningCode::TaggedSymbol
+                      Stigg::Models::V1::EventEstimateResponse::Data::Estimate::Breakdown::WarningCode::TaggedSymbol
                     ]
                   )
                 end
@@ -297,7 +295,7 @@ module Stigg
               T.type_alias do
                 T.all(
                   Symbol,
-                  Stigg::Models::V1::EventEstimateCostResponse::Data::Warning
+                  Stigg::Models::V1::EventEstimateResponse::Data::Warning
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -305,23 +303,23 @@ module Stigg
             RESOURCE_SCOPED_SUBSCRIPTION_EXISTS =
               T.let(
                 :RESOURCE_SCOPED_SUBSCRIPTION_EXISTS,
-                Stigg::Models::V1::EventEstimateCostResponse::Data::Warning::TaggedSymbol
+                Stigg::Models::V1::EventEstimateResponse::Data::Warning::TaggedSymbol
               )
             FEATURE_NOT_FOUND =
               T.let(
                 :FEATURE_NOT_FOUND,
-                Stigg::Models::V1::EventEstimateCostResponse::Data::Warning::TaggedSymbol
+                Stigg::Models::V1::EventEstimateResponse::Data::Warning::TaggedSymbol
               )
             FEATURE_NOT_CREDIT_BASED =
               T.let(
                 :FEATURE_NOT_CREDIT_BASED,
-                Stigg::Models::V1::EventEstimateCostResponse::Data::Warning::TaggedSymbol
+                Stigg::Models::V1::EventEstimateResponse::Data::Warning::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  Stigg::Models::V1::EventEstimateCostResponse::Data::Warning::TaggedSymbol
+                  Stigg::Models::V1::EventEstimateResponse::Data::Warning::TaggedSymbol
                 ]
               )
             end
