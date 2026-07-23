@@ -5,14 +5,14 @@ module Stigg
     module V1
       module Events
         module DataExport
-          class DestinationUpdateParams < Stigg::Internal::Type::BaseModel
+          class DestinationUpdateSelectionParams < Stigg::Internal::Type::BaseModel
             extend Stigg::Internal::Type::RequestParameters::Converter
             include Stigg::Internal::Type::RequestParameters
 
             OrHash =
               T.type_alias do
                 T.any(
-                  Stigg::V1::Events::DataExport::DestinationUpdateParams,
+                  Stigg::V1::Events::DataExport::DestinationUpdateSelectionParams,
                   Stigg::Internal::AnyHash
                 )
               end

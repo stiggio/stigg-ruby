@@ -3,8 +3,8 @@
 module Stigg
   module Models
     module V1
-      # @see Stigg::Resources::V1::Events#estimate_cost
-      class EventEstimateCostParams < Stigg::Internal::Type::BaseModel
+      # @see Stigg::Resources::V1::Events#estimate
+      class EventEstimateParams < Stigg::Internal::Type::BaseModel
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
@@ -25,7 +25,7 @@ module Stigg
         #
         #   @return [Hash{Symbol=>String, Float, Boolean}, nil]
         optional :dimensions,
-                 -> { Stigg::Internal::Type::HashOf[union: Stigg::V1::EventEstimateCostParams::Dimension] }
+                 -> { Stigg::Internal::Type::HashOf[union: Stigg::V1::EventEstimateParams::Dimension] }
 
         # @!attribute resource_id
         #   Resource id

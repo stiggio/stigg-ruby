@@ -5,11 +5,11 @@ module Stigg
     module V1
       module Events
         module DataExport
-          class DestinationUpdateResponse < Stigg::Internal::Type::BaseModel
+          class DestinationUpdateSelectionResponse < Stigg::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse,
+                  Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse,
                   Stigg::Internal::AnyHash
                 )
               end
@@ -17,7 +17,7 @@ module Stigg
             # Current destinations under the DATA_EXPORT integration.
             sig do
               returns(
-                Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data
+                Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data
               )
             end
             attr_reader :data
@@ -25,7 +25,7 @@ module Stigg
             sig do
               params(
                 data:
-                  Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::OrHash
+                  Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::OrHash
               ).void
             end
             attr_writer :data
@@ -34,7 +34,7 @@ module Stigg
             sig do
               params(
                 data:
-                  Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::OrHash
+                  Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::OrHash
               ).returns(T.attached_class)
             end
             def self.new(
@@ -47,7 +47,7 @@ module Stigg
               override.returns(
                 {
                   data:
-                    Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data
+                    Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data
                 }
               )
             end
@@ -58,7 +58,7 @@ module Stigg
               OrHash =
                 T.type_alias do
                   T.any(
-                    Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data,
+                    Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data,
                     Stigg::Internal::AnyHash
                   )
                 end
@@ -67,7 +67,7 @@ module Stigg
               sig do
                 returns(
                   T::Array[
-                    Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination
+                    Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::Destination
                   ]
                 )
               end
@@ -78,7 +78,7 @@ module Stigg
                 params(
                   destinations:
                     T::Array[
-                      Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination::OrHash
+                      Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::Destination::OrHash
                     ]
                 ).returns(T.attached_class)
               end
@@ -93,7 +93,7 @@ module Stigg
                   {
                     destinations:
                       T::Array[
-                        Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination
+                        Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::Destination
                       ]
                   }
                 )
@@ -105,7 +105,7 @@ module Stigg
                 OrHash =
                   T.type_alias do
                     T.any(
-                      Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination,
+                      Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::Destination,
                       Stigg::Internal::AnyHash
                     )
                   end
@@ -139,7 +139,7 @@ module Stigg
                 sig do
                   returns(
                     T.nilable(
-                      Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination::LastSyncStatus
+                      Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::Destination::LastSyncStatus
                     )
                   )
                 end
@@ -148,7 +148,7 @@ module Stigg
                 sig do
                   params(
                     last_sync_status:
-                      Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination::LastSyncStatus::OrHash
+                      Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::Destination::LastSyncStatus::OrHash
                   ).void
                 end
                 attr_writer :last_sync_status
@@ -162,7 +162,7 @@ module Stigg
                     connection_status: String,
                     enabled_models: T::Array[String],
                     last_sync_status:
-                      Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination::LastSyncStatus::OrHash
+                      Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::Destination::LastSyncStatus::OrHash
                   ).returns(T.attached_class)
                 end
                 def self.new(
@@ -189,7 +189,7 @@ module Stigg
                       connection_status: String,
                       enabled_models: T::Array[String],
                       last_sync_status:
-                        Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination::LastSyncStatus
+                        Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::Destination::LastSyncStatus
                     }
                   )
                 end
@@ -200,7 +200,7 @@ module Stigg
                   OrHash =
                     T.type_alias do
                       T.any(
-                        Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse::Data::Destination::LastSyncStatus,
+                        Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse::Data::Destination::LastSyncStatus,
                         Stigg::Internal::AnyHash
                       )
                     end

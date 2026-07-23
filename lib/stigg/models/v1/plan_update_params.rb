@@ -405,6 +405,12 @@ module Stigg
                      enum: -> { Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::BillingCadence },
                      api_name: :billingCadence
 
+            # @!attribute currency_id
+            #   The refId of the custom currency this credit overage applies to
+            #
+            #   @return [String, nil]
+            optional :currency_id, String, api_name: :currencyId
+
             # @!attribute entitlement
             #   Entitlement configuration for the overage feature
             #
@@ -417,13 +423,7 @@ module Stigg
             #   @return [String, nil]
             optional :feature_id, String, api_name: :featureId
 
-            # @!attribute top_up_custom_currency_id
-            #   Custom currency ID for overage top-up
-            #
-            #   @return [String, nil]
-            optional :top_up_custom_currency_id, String, api_name: :topUpCustomCurrencyId
-
-            # @!method initialize(billing_model:, price_periods:, billing_cadence: nil, entitlement: nil, feature_id: nil, top_up_custom_currency_id: nil)
+            # @!method initialize(billing_model:, price_periods:, billing_cadence: nil, currency_id: nil, entitlement: nil, feature_id: nil)
             #   Overage pricing model configuration.
             #
             #   @param billing_model [Symbol, Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::BillingModel] The billing model for overages
@@ -432,11 +432,11 @@ module Stigg
             #
             #   @param billing_cadence [Symbol, Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::BillingCadence] The billing cadence for overages
             #
+            #   @param currency_id [String] The refId of the custom currency this credit overage applies to
+            #
             #   @param entitlement [Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::Entitlement] Entitlement configuration for the overage feature
             #
             #   @param feature_id [String] The feature ID for overage pricing
-            #
-            #   @param top_up_custom_currency_id [String] Custom currency ID for overage top-up
 
             # The billing model for overages
             #

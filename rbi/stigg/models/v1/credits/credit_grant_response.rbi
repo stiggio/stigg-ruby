@@ -107,7 +107,7 @@ module Stigg
             sig { returns(T.nilable(Time)) }
             attr_accessor :expire_at
 
-            # The type of credit grant (PAID, PROMOTIONAL, RECURRING)
+            # The type of credit grant (PAID, PROMOTIONAL, RECURRING, OVERDRAFT)
             sig do
               returns(
                 Stigg::V1::Credits::CreditGrantResponse::Data::GrantType::TaggedSymbol
@@ -263,7 +263,7 @@ module Stigg
               effective_at:,
               # The date when the credit grant expires
               expire_at:,
-              # The type of credit grant (PAID, PROMOTIONAL, RECURRING)
+              # The type of credit grant (PAID, PROMOTIONAL, RECURRING, OVERDRAFT)
               grant_type:,
               # The billing invoice ID associated with this grant
               invoice_id:,
@@ -372,7 +372,7 @@ module Stigg
               end
             end
 
-            # The type of credit grant (PAID, PROMOTIONAL, RECURRING)
+            # The type of credit grant (PAID, PROMOTIONAL, RECURRING, OVERDRAFT)
             module GrantType
               extend Stigg::Internal::Type::Enum
 

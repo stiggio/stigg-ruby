@@ -1,0 +1,166 @@
+module Stigg
+  module Models
+    module V1
+      module Events
+        module Beta
+          type customer_retrieve_governance_params =
+            {
+              id: String,
+              after: String,
+              currency_ids: ::Array[String],
+              entity_id_search: String,
+              entity_type_ids: ::Array[String],
+              feature_ids: ::Array[String],
+              limit: Integer,
+              min_utilization: Float,
+              order: Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceParams::order,
+              scope: Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceParams::scope,
+              sort_by: Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceParams::sort_by,
+              x_account_id: String,
+              x_environment_id: String
+            }
+            & Stigg::Internal::Type::request_parameters
+
+          class CustomerRetrieveGovernanceParams < Stigg::Internal::Type::BaseModel
+            extend Stigg::Internal::Type::RequestParameters::Converter
+            include Stigg::Internal::Type::RequestParameters
+
+            attr_accessor id: String
+
+            attr_reader after: String?
+
+            def after=: (String) -> String
+
+            attr_reader currency_ids: ::Array[String]?
+
+            def currency_ids=: (::Array[String]) -> ::Array[String]
+
+            attr_reader entity_id_search: String?
+
+            def entity_id_search=: (String) -> String
+
+            attr_reader entity_type_ids: ::Array[String]?
+
+            def entity_type_ids=: (::Array[String]) -> ::Array[String]
+
+            attr_reader feature_ids: ::Array[String]?
+
+            def feature_ids=: (::Array[String]) -> ::Array[String]
+
+            attr_reader limit: Integer?
+
+            def limit=: (Integer) -> Integer
+
+            attr_reader min_utilization: Float?
+
+            def min_utilization=: (Float) -> Float
+
+            attr_reader order: Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceParams::order?
+
+            def order=: (
+              Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceParams::order
+            ) -> Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceParams::order
+
+            attr_reader scope: Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceParams::scope?
+
+            def scope=: (
+              Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceParams::scope
+            ) -> Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceParams::scope
+
+            attr_reader sort_by: Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceParams::sort_by?
+
+            def sort_by=: (
+              Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceParams::sort_by
+            ) -> Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceParams::sort_by
+
+            attr_reader x_account_id: String?
+
+            def x_account_id=: (String) -> String
+
+            attr_reader x_environment_id: String?
+
+            def x_environment_id=: (String) -> String
+
+            def initialize: (
+              id: String,
+              ?after: String,
+              ?currency_ids: ::Array[String],
+              ?entity_id_search: String,
+              ?entity_type_ids: ::Array[String],
+              ?feature_ids: ::Array[String],
+              ?limit: Integer,
+              ?min_utilization: Float,
+              ?order: Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceParams::order,
+              ?scope: Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceParams::scope,
+              ?sort_by: Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceParams::sort_by,
+              ?x_account_id: String,
+              ?x_environment_id: String,
+              ?request_options: Stigg::request_opts
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              after: String,
+              currency_ids: ::Array[String],
+              entity_id_search: String,
+              entity_type_ids: ::Array[String],
+              feature_ids: ::Array[String],
+              limit: Integer,
+              min_utilization: Float,
+              order: Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceParams::order,
+              scope: Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceParams::scope,
+              sort_by: Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceParams::sort_by,
+              x_account_id: String,
+              x_environment_id: String,
+              request_options: Stigg::RequestOptions
+            }
+
+            type order = :asc | :desc
+
+            module Order
+              extend Stigg::Internal::Type::Enum
+
+              ASC: :asc
+              DESC: :desc
+
+              def self?.values: -> ::Array[Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceParams::order]
+            end
+
+            type scope = :all | :nodeWide | :scoped
+
+            module Scope
+              extend Stigg::Internal::Type::Enum
+
+              ALL: :all
+              NODE_WIDE: :nodeWide
+              SCOPED: :scoped
+
+              def self?.values: -> ::Array[Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceParams::scope]
+            end
+
+            type sort_by =
+              :utilization
+              | :currentUsage
+              | :usageLimit
+              | :scopeSize
+              | :id
+              | :createdAt
+
+            module SortBy
+              extend Stigg::Internal::Type::Enum
+
+              UTILIZATION: :utilization
+              CURRENT_USAGE: :currentUsage
+              USAGE_LIMIT: :usageLimit
+              SCOPE_SIZE: :scopeSize
+              ID: :id
+              CREATED_AT: :createdAt
+
+              def self?.values: -> ::Array[Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceParams::sort_by]
+            end
+          end
+        end
+      end
+    end
+  end
+end
