@@ -39,39 +39,6 @@ module Stigg
             )
             end
 
-            # Update a destination's entity selection. Pushes the new enabled_models to the
-            # provider first, then persists the selection. Applies on the next scheduled
-            # transfer.
-            sig do
-              params(
-                destination_id: String,
-                enabled_models: T::Array[String],
-                integration_id: String,
-                x_account_id: String,
-                x_environment_id: String,
-                request_options: Stigg::RequestOptions::OrHash
-              ).returns(
-                Stigg::Models::V1::Events::DataExport::DestinationUpdateResponse
-              )
-            end
-            def update(
-              # Path param: Provider destination ID to update
-              destination_id,
-              # Body param
-              enabled_models:,
-              # Body param: Target integration row hosting the destination
-              integration_id:,
-              # Header param: Account ID — optional when authenticating with a user JWT (Bearer
-              # token); falls back to the user's first membership. Ignored for API-key auth.
-              x_account_id: nil,
-              # Header param: Environment ID — required when authenticating with a user JWT
-              # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
-              # intrinsic to the key).
-              x_environment_id: nil,
-              request_options: {}
-            )
-            end
-
             # Disconnect a destination: stops the provider sync (deletes the provider
             # destination) and removes it from the DATA_EXPORT integration. Non-destructive —
             # the warehouse table is left intact. Idempotent.
@@ -94,6 +61,39 @@ module Stigg
               # Environment ID — required when authenticating with a user JWT (Bearer token) on
               # environment-scoped endpoints. Ignored for API-key auth (env is intrinsic to the
               # key).
+              x_environment_id: nil,
+              request_options: {}
+            )
+            end
+
+            # Update a destination's entity selection. Pushes the new enabled_models to the
+            # provider first, then persists the selection. Applies on the next scheduled
+            # transfer.
+            sig do
+              params(
+                destination_id: String,
+                enabled_models: T::Array[String],
+                integration_id: String,
+                x_account_id: String,
+                x_environment_id: String,
+                request_options: Stigg::RequestOptions::OrHash
+              ).returns(
+                Stigg::Models::V1::Events::DataExport::DestinationUpdateSelectionResponse
+              )
+            end
+            def update_selection(
+              # Path param: Provider destination ID to update
+              destination_id,
+              # Body param
+              enabled_models:,
+              # Body param: Target integration row hosting the destination
+              integration_id:,
+              # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+              # token); falls back to the user's first membership. Ignored for API-key auth.
+              x_account_id: nil,
+              # Header param: Environment ID — required when authenticating with a user JWT
+              # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+              # intrinsic to the key).
               x_environment_id: nil,
               request_options: {}
             )

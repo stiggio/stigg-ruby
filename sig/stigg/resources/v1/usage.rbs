@@ -2,17 +2,17 @@ module Stigg
   module Resources
     class V1
       class Usage
-        def estimate_cost: (
+        def estimate: (
           customer_id: String,
           feature_id: String,
           value: Integer,
-          ?dimensions: ::Hash[Symbol, Stigg::Models::V1::UsageEstimateCostParams::dimension],
+          ?dimensions: ::Hash[Symbol, Stigg::Models::V1::UsageEstimateParams::dimension],
           ?resource_id: String?,
-          ?update_behavior: Stigg::Models::V1::UsageEstimateCostParams::update_behavior,
+          ?update_behavior: Stigg::Models::V1::UsageEstimateParams::update_behavior,
           ?x_account_id: String,
           ?x_environment_id: String,
           ?request_options: Stigg::request_opts
-        ) -> Stigg::Models::V1::UsageEstimateCostResponse
+        ) -> Stigg::Models::V1::UsageEstimateResponse
 
         def history: (
           String feature_id,

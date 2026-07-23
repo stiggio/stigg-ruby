@@ -3,18 +3,18 @@
 require_relative "../../test_helper"
 
 class Stigg::Test::Resources::V1::EventsTest < Stigg::Test::ResourceTest
-  def test_estimate_cost_required_params
+  def test_estimate_required_params
     skip("Mock server tests are disabled")
 
-    response = @stigg.v1.events.estimate_cost(customer_id: "customerId", event_name: "x")
+    response = @stigg.v1.events.estimate(customer_id: "customerId", event_name: "x")
 
     assert_pattern do
-      response => Stigg::Models::V1::EventEstimateCostResponse
+      response => Stigg::Models::V1::EventEstimateResponse
     end
 
     assert_pattern do
       response => {
-        data: Stigg::Models::V1::EventEstimateCostResponse::Data
+        data: Stigg::Models::V1::EventEstimateResponse::Data
       }
     end
   end

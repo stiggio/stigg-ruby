@@ -1,20 +1,20 @@
 module Stigg
   module Models
     module V1
-      type usage_estimate_cost_params =
+      type usage_estimate_params =
         {
           customer_id: String,
           feature_id: String,
           value: Integer,
-          dimensions: ::Hash[Symbol, Stigg::Models::V1::UsageEstimateCostParams::dimension],
+          dimensions: ::Hash[Symbol, Stigg::Models::V1::UsageEstimateParams::dimension],
           resource_id: String?,
-          update_behavior: Stigg::Models::V1::UsageEstimateCostParams::update_behavior,
+          update_behavior: Stigg::Models::V1::UsageEstimateParams::update_behavior,
           x_account_id: String,
           x_environment_id: String
         }
         & Stigg::Internal::Type::request_parameters
 
-      class UsageEstimateCostParams < Stigg::Internal::Type::BaseModel
+      class UsageEstimateParams < Stigg::Internal::Type::BaseModel
         extend Stigg::Internal::Type::RequestParameters::Converter
         include Stigg::Internal::Type::RequestParameters
 
@@ -24,19 +24,19 @@ module Stigg
 
         attr_accessor value: Integer
 
-        attr_reader dimensions: ::Hash[Symbol, Stigg::Models::V1::UsageEstimateCostParams::dimension]?
+        attr_reader dimensions: ::Hash[Symbol, Stigg::Models::V1::UsageEstimateParams::dimension]?
 
         def dimensions=: (
-          ::Hash[Symbol, Stigg::Models::V1::UsageEstimateCostParams::dimension]
-        ) -> ::Hash[Symbol, Stigg::Models::V1::UsageEstimateCostParams::dimension]
+          ::Hash[Symbol, Stigg::Models::V1::UsageEstimateParams::dimension]
+        ) -> ::Hash[Symbol, Stigg::Models::V1::UsageEstimateParams::dimension]
 
         attr_accessor resource_id: String?
 
-        attr_reader update_behavior: Stigg::Models::V1::UsageEstimateCostParams::update_behavior?
+        attr_reader update_behavior: Stigg::Models::V1::UsageEstimateParams::update_behavior?
 
         def update_behavior=: (
-          Stigg::Models::V1::UsageEstimateCostParams::update_behavior
-        ) -> Stigg::Models::V1::UsageEstimateCostParams::update_behavior
+          Stigg::Models::V1::UsageEstimateParams::update_behavior
+        ) -> Stigg::Models::V1::UsageEstimateParams::update_behavior
 
         attr_reader x_account_id: String?
 
@@ -50,9 +50,9 @@ module Stigg
           customer_id: String,
           feature_id: String,
           value: Integer,
-          ?dimensions: ::Hash[Symbol, Stigg::Models::V1::UsageEstimateCostParams::dimension],
+          ?dimensions: ::Hash[Symbol, Stigg::Models::V1::UsageEstimateParams::dimension],
           ?resource_id: String?,
-          ?update_behavior: Stigg::Models::V1::UsageEstimateCostParams::update_behavior,
+          ?update_behavior: Stigg::Models::V1::UsageEstimateParams::update_behavior,
           ?x_account_id: String,
           ?x_environment_id: String,
           ?request_options: Stigg::request_opts
@@ -62,9 +62,9 @@ module Stigg
           customer_id: String,
           feature_id: String,
           value: Integer,
-          dimensions: ::Hash[Symbol, Stigg::Models::V1::UsageEstimateCostParams::dimension],
+          dimensions: ::Hash[Symbol, Stigg::Models::V1::UsageEstimateParams::dimension],
           resource_id: String?,
-          update_behavior: Stigg::Models::V1::UsageEstimateCostParams::update_behavior,
+          update_behavior: Stigg::Models::V1::UsageEstimateParams::update_behavior,
           x_account_id: String,
           x_environment_id: String,
           request_options: Stigg::RequestOptions
@@ -75,7 +75,7 @@ module Stigg
         module Dimension
           extend Stigg::Internal::Type::Union
 
-          def self?.variants: -> ::Array[Stigg::Models::V1::UsageEstimateCostParams::dimension]
+          def self?.variants: -> ::Array[Stigg::Models::V1::UsageEstimateParams::dimension]
         end
 
         type update_behavior = :DELTA | :SET
@@ -86,7 +86,7 @@ module Stigg
           DELTA: :DELTA
           SET: :SET
 
-          def self?.values: -> ::Array[Stigg::Models::V1::UsageEstimateCostParams::update_behavior]
+          def self?.values: -> ::Array[Stigg::Models::V1::UsageEstimateParams::update_behavior]
         end
       end
     end

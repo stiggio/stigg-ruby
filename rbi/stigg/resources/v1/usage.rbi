@@ -16,17 +16,17 @@ module Stigg
             dimensions:
               T::Hash[
                 Symbol,
-                Stigg::V1::UsageEstimateCostParams::Dimension::Variants
+                Stigg::V1::UsageEstimateParams::Dimension::Variants
               ],
             resource_id: T.nilable(String),
             update_behavior:
-              Stigg::V1::UsageEstimateCostParams::UpdateBehavior::OrSymbol,
+              Stigg::V1::UsageEstimateParams::UpdateBehavior::OrSymbol,
             x_account_id: String,
             x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
-          ).returns(Stigg::Models::V1::UsageEstimateCostResponse)
+          ).returns(Stigg::Models::V1::UsageEstimateResponse)
         end
-        def estimate_cost(
+        def estimate(
           # Body param: Customer id
           customer_id:,
           # Body param: Feature id

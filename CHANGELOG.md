@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.45 (2026-07-23)
+
+Full Changelog: [v0.1.0-beta.44...v0.1.0-beta.45](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.44...v0.1.0-beta.45)
+
+### Chores
+
+* **internal:** regenerate SDK with no functional changes ([0ec3e2e](https://github.com/stiggio/stigg-ruby/commit/0ec3e2e23ee5088f27abeb230a7b695daa362886))
+
 ## 0.1.0-beta.44 (2026-07-21)
 
 Full Changelog: [v0.1.0-beta.43...v0.1.0-beta.44](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.43...v0.1.0-beta.44)
