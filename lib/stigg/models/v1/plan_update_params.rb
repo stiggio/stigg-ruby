@@ -405,6 +405,15 @@ module Stigg
                      enum: -> { Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::BillingCadence },
                      api_name: :billingCadence
 
+            # @!attribute credit_entitlement
+            #   Credit entitlement to grant when a credit overage targets a currency not yet
+            #   granted on the plan
+            #
+            #   @return [Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::CreditEntitlement, nil]
+            optional :credit_entitlement,
+                     -> { Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::CreditEntitlement },
+                     api_name: :creditEntitlement
+
             # @!attribute currency_id
             #   The refId of the custom currency this credit overage applies to
             #
@@ -423,7 +432,11 @@ module Stigg
             #   @return [String, nil]
             optional :feature_id, String, api_name: :featureId
 
-            # @!method initialize(billing_model:, price_periods:, billing_cadence: nil, currency_id: nil, entitlement: nil, feature_id: nil)
+            # @!method initialize(billing_model:, price_periods:, billing_cadence: nil, credit_entitlement: nil, currency_id: nil, entitlement: nil, feature_id: nil)
+            #   Some parameter documentations has been truncated, see
+            #   {Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel} for more
+            #   details.
+            #
             #   Overage pricing model configuration.
             #
             #   @param billing_model [Symbol, Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::BillingModel] The billing model for overages
@@ -431,6 +444,8 @@ module Stigg
             #   @param price_periods [Array<Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::PricePeriod>] Price periods for overage pricing
             #
             #   @param billing_cadence [Symbol, Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::BillingCadence] The billing cadence for overages
+            #
+            #   @param credit_entitlement [Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::CreditEntitlement] Credit entitlement to grant when a credit overage targets a currency not yet gra
             #
             #   @param currency_id [String] The refId of the custom currency this credit overage applies to
             #
@@ -1082,6 +1097,51 @@ module Stigg
 
               # @!method self.values
               #   @return [Array<Symbol>]
+            end
+
+            # @see Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel#credit_entitlement
+            class CreditEntitlement < Stigg::Internal::Type::BaseModel
+              # @!attribute amount
+              #   The base credit balance granted per cadence
+              #
+              #   @return [Float]
+              required :amount, Float
+
+              # @!attribute cadence
+              #   The credit grant cadence (MONTH or YEAR)
+              #
+              #   @return [Symbol, Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::CreditEntitlement::Cadence]
+              required :cadence,
+                       enum: -> { Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::CreditEntitlement::Cadence }
+
+              # @!attribute custom_currency_id
+              #   The refId of the custom currency to grant
+              #
+              #   @return [String]
+              required :custom_currency_id, String, api_name: :customCurrencyId
+
+              # @!method initialize(amount:, cadence:, custom_currency_id:)
+              #   Credit entitlement to grant when a credit overage targets a currency not yet
+              #   granted on the plan
+              #
+              #   @param amount [Float] The base credit balance granted per cadence
+              #
+              #   @param cadence [Symbol, Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::CreditEntitlement::Cadence] The credit grant cadence (MONTH or YEAR)
+              #
+              #   @param custom_currency_id [String] The refId of the custom currency to grant
+
+              # The credit grant cadence (MONTH or YEAR)
+              #
+              # @see Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::CreditEntitlement#cadence
+              module Cadence
+                extend Stigg::Internal::Type::Enum
+
+                MONTH = :MONTH
+                YEAR = :YEAR
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
             end
 
             # @see Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel#entitlement

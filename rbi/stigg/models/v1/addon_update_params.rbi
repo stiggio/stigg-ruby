@@ -1182,6 +1182,25 @@ module Stigg
             end
             attr_writer :billing_cadence
 
+            # Credit entitlement to grant when a credit overage targets a currency not yet
+            # granted on the plan
+            sig do
+              returns(
+                T.nilable(
+                  Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::CreditEntitlement
+                )
+              )
+            end
+            attr_reader :credit_entitlement
+
+            sig do
+              params(
+                credit_entitlement:
+                  Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::CreditEntitlement::OrHash
+              ).void
+            end
+            attr_writer :credit_entitlement
+
             # The refId of the custom currency this credit overage applies to
             sig { returns(T.nilable(String)) }
             attr_reader :currency_id
@@ -1225,6 +1244,8 @@ module Stigg
                   ],
                 billing_cadence:
                   Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::BillingCadence::OrSymbol,
+                credit_entitlement:
+                  Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::CreditEntitlement::OrHash,
                 currency_id: String,
                 entitlement:
                   Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::Entitlement::OrHash,
@@ -1238,6 +1259,9 @@ module Stigg
               price_periods:,
               # The billing cadence for overages
               billing_cadence: nil,
+              # Credit entitlement to grant when a credit overage targets a currency not yet
+              # granted on the plan
+              credit_entitlement: nil,
               # The refId of the custom currency this credit overage applies to
               currency_id: nil,
               # Entitlement configuration for the overage feature
@@ -1258,6 +1282,8 @@ module Stigg
                     ],
                   billing_cadence:
                     Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::BillingCadence::OrSymbol,
+                  credit_entitlement:
+                    Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::CreditEntitlement,
                   currency_id: String,
                   entitlement:
                     Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::Entitlement,
@@ -3721,6 +3747,100 @@ module Stigg
                 )
               end
               def self.values
+              end
+            end
+
+            class CreditEntitlement < Stigg::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::CreditEntitlement,
+                    Stigg::Internal::AnyHash
+                  )
+                end
+
+              # The base credit balance granted per cadence
+              sig { returns(Float) }
+              attr_accessor :amount
+
+              # The credit grant cadence (MONTH or YEAR)
+              sig do
+                returns(
+                  Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::CreditEntitlement::Cadence::OrSymbol
+                )
+              end
+              attr_accessor :cadence
+
+              # The refId of the custom currency to grant
+              sig { returns(String) }
+              attr_accessor :custom_currency_id
+
+              # Credit entitlement to grant when a credit overage targets a currency not yet
+              # granted on the plan
+              sig do
+                params(
+                  amount: Float,
+                  cadence:
+                    Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::CreditEntitlement::Cadence::OrSymbol,
+                  custom_currency_id: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # The base credit balance granted per cadence
+                amount:,
+                # The credit grant cadence (MONTH or YEAR)
+                cadence:,
+                # The refId of the custom currency to grant
+                custom_currency_id:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    amount: Float,
+                    cadence:
+                      Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::CreditEntitlement::Cadence::OrSymbol,
+                    custom_currency_id: String
+                  }
+                )
+              end
+              def to_hash
+              end
+
+              # The credit grant cadence (MONTH or YEAR)
+              module Cadence
+                extend Stigg::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::CreditEntitlement::Cadence
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                MONTH =
+                  T.let(
+                    :MONTH,
+                    Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::CreditEntitlement::Cadence::TaggedSymbol
+                  )
+                YEAR =
+                  T.let(
+                    :YEAR,
+                    Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::CreditEntitlement::Cadence::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::CreditEntitlement::Cadence::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
               end
             end
 
