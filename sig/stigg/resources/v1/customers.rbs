@@ -71,6 +71,29 @@ module Stigg
           ?request_options: Stigg::request_opts
         ) -> Stigg::Models::V1::CustomerImportResponse
 
+        def list_contracts: (
+          String id,
+          ?x_account_id: String,
+          ?x_environment_id: String,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::Models::V1::CustomerListContractsResponse
+
+        def list_invoices: (
+          String id,
+          ?after: String,
+          ?before: String,
+          ?contract_external_id: String,
+          ?issued_after: Time,
+          ?issued_before: Time,
+          ?limit: Integer,
+          ?order_by: Stigg::Models::V1::CustomerListInvoicesParams::order_by,
+          ?order_dir: Stigg::Models::V1::CustomerListInvoicesParams::order_dir,
+          ?state_in: String,
+          ?x_account_id: String,
+          ?x_environment_id: String,
+          ?request_options: Stigg::request_opts
+        ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::CustomerListInvoicesResponse]
+
         def list_resources: (
           String id,
           ?after: String,
