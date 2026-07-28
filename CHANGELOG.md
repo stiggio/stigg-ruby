@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.46 (2026-07-28)
+
+Full Changelog: [v0.1.0-beta.45...v0.1.0-beta.46](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.45...v0.1.0-beta.46)
+
+### Features
+
+* **contracts:** create contracts backed by shared Received enterprise contract ([7f03d08](https://github.com/stiggio/stigg-ruby/commit/7f03d0807ef95b18c210db0ced83c816e876349b))
+
 ## 0.1.0-beta.45 (2026-07-26)
 
 Full Changelog: [v0.1.0-beta.44...v0.1.0-beta.45](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.44...v0.1.0-beta.45)
