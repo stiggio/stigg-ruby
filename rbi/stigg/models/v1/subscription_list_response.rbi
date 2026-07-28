@@ -115,6 +115,10 @@ module Stigg
         end
         attr_accessor :cancel_reason
 
+        # The Stigg contract this subscription is linked to, when any
+        sig { returns(T.nilable(String)) }
+        attr_accessor :contract_id
+
         # Coupons applied to the subscription
         sig do
           returns(
@@ -326,6 +330,7 @@ module Stigg
               T.nilable(
                 Stigg::Models::V1::SubscriptionListResponse::CancelReason::OrSymbol
               ),
+            contract_id: T.nilable(String),
             coupons:
               T::Array[
                 Stigg::Models::V1::SubscriptionListResponse::Coupon::OrHash
@@ -396,6 +401,8 @@ module Stigg
           cancellation_date: nil,
           # Subscription cancel reason
           cancel_reason: nil,
+          # The Stigg contract this subscription is linked to, when any
+          contract_id: nil,
           # Coupons applied to the subscription
           coupons: nil,
           # End of the current billing period
@@ -455,6 +462,7 @@ module Stigg
                 T.nilable(
                   Stigg::Models::V1::SubscriptionListResponse::CancelReason::TaggedSymbol
                 ),
+              contract_id: T.nilable(String),
               coupons:
                 T::Array[Stigg::Models::V1::SubscriptionListResponse::Coupon],
               current_billing_period_end: T.nilable(Time),

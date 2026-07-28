@@ -110,6 +110,12 @@ module Stigg
                    api_name: :cancelReason,
                    nil?: true
 
+          # @!attribute contract_id
+          #   The Stigg contract this subscription is linked to, when any
+          #
+          #   @return [String, nil]
+          optional :contract_id, String, api_name: :contractId, nil?: true
+
           # @!attribute coupons
           #   Coupons applied to the subscription
           #
@@ -220,7 +226,7 @@ module Stigg
           #   @return [Time, nil]
           optional :trial_end_date, Time, api_name: :trialEndDate, nil?: true
 
-          # @!method initialize(id:, billing_id:, created_at:, customer_id:, payment_collection:, plan_id:, pricing_type:, start_date:, status:, addons: nil, billing_cycle_anchor: nil, budget: nil, cancellation_date: nil, cancel_reason: nil, coupons: nil, current_billing_period_end: nil, current_billing_period_start: nil, effective_end_date: nil, end_date: nil, future_updates: nil, latest_invoice: nil, metadata: nil, minimum_spend: nil, paying_customer_id: nil, payment_collection_method: nil, prices: nil, resource_id: nil, subscription_entitlements: nil, trial: nil, trial_end_date: nil)
+          # @!method initialize(id:, billing_id:, created_at:, customer_id:, payment_collection:, plan_id:, pricing_type:, start_date:, status:, addons: nil, billing_cycle_anchor: nil, budget: nil, cancellation_date: nil, cancel_reason: nil, contract_id: nil, coupons: nil, current_billing_period_end: nil, current_billing_period_start: nil, effective_end_date: nil, end_date: nil, future_updates: nil, latest_invoice: nil, metadata: nil, minimum_spend: nil, paying_customer_id: nil, payment_collection_method: nil, prices: nil, resource_id: nil, subscription_entitlements: nil, trial: nil, trial_end_date: nil)
           #   Customer subscription to a plan
           #
           #   @param id [String] Subscription ID
@@ -250,6 +256,8 @@ module Stigg
           #   @param cancellation_date [Time, nil] Subscription cancellation date
           #
           #   @param cancel_reason [Symbol, Stigg::Models::V1::Subscription::Data::CancelReason, nil] Subscription cancel reason
+          #
+          #   @param contract_id [String, nil] The Stigg contract this subscription is linked to, when any
           #
           #   @param coupons [Array<Stigg::Models::V1::Subscription::Data::Coupon>] Coupons applied to the subscription
           #

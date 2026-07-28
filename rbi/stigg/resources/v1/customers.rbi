@@ -247,6 +247,97 @@ module Stigg
         )
         end
 
+        # Retrieves a customer's contracts, fetched live from the connected billing
+        # provider, each enriched with a preview of its upcoming (next) invoice when
+        # available. Returns an empty list when no billing provider is connected or the
+        # customer is not synced.
+        sig do
+          params(
+            id: String,
+            x_account_id: String,
+            x_environment_id: String,
+            request_options: Stigg::RequestOptions::OrHash
+          ).returns(Stigg::Models::V1::CustomerListContractsResponse)
+        end
+        def list_contracts(
+          # The external identifier of the customer the contract belongs to
+          id,
+          # Account ID — optional when authenticating with a user JWT (Bearer token); falls
+          # back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Environment ID — required when authenticating with a user JWT (Bearer token) on
+          # environment-scoped endpoints. Ignored for API-key auth (env is intrinsic to the
+          # key).
+          x_environment_id: nil,
+          request_options: {}
+        )
+        end
+
+        # Retrieves a cursor-paginated list of a customer's invoices, fetched live from
+        # the connected billing provider. Ordered by issue date ascending by default;
+        # override with orderBy (issueDate | dueDate | total) and orderDir (ASC | DESC).
+        # Optionally narrowed to one contract, an issue-date range, and/or a set of
+        # invoice states. Returns an empty list when no billing provider is connected or
+        # the customer is not synced.
+        sig do
+          params(
+            id: String,
+            after: String,
+            before: String,
+            contract_external_id: String,
+            issued_after: Time,
+            issued_before: Time,
+            limit: Integer,
+            order_by: Stigg::V1::CustomerListInvoicesParams::OrderBy::OrSymbol,
+            order_dir:
+              Stigg::V1::CustomerListInvoicesParams::OrderDir::OrSymbol,
+            state_in: String,
+            x_account_id: String,
+            x_environment_id: String,
+            request_options: Stigg::RequestOptions::OrHash
+          ).returns(
+            Stigg::Internal::MyCursorIDPage[
+              Stigg::Models::V1::CustomerListInvoicesResponse
+            ]
+          )
+        end
+        def list_invoices(
+          # Path param: External ID of the customer the invoice belongs to: your customer
+          # ref when mapped, otherwise the Received customer ID
+          id,
+          # Query param: Return items that come after this cursor
+          after: nil,
+          # Query param: Return items that come before this cursor
+          before: nil,
+          # Query param: Filter to invoices for this contract only (contract external ID or
+          # Received contract ID). Omit for all contracts.
+          contract_external_id: nil,
+          # Query param: Filter to invoices issued on or after this date, inclusive
+          # (ISO 8601)
+          issued_after: nil,
+          # Query param: Filter to invoices issued on or before this date, inclusive
+          # (ISO 8601)
+          issued_before: nil,
+          # Query param: Maximum number of items to return
+          limit: nil,
+          # Query param: Field to sort by: issueDate (default), dueDate, or total
+          order_by: nil,
+          # Query param: Sort direction: ASC (default) or DESC
+          order_dir: nil,
+          # Query param: Filter by invoice state. Supports comma-separated values for
+          # multiple states
+          state_in: nil,
+          # Header param: Account ID — optional when authenticating with a user JWT (Bearer
+          # token); falls back to the user's first membership. Ignored for API-key auth.
+          x_account_id: nil,
+          # Header param: Environment ID — required when authenticating with a user JWT
+          # (Bearer token) on environment-scoped endpoints. Ignored for API-key auth (env is
+          # intrinsic to the key).
+          x_environment_id: nil,
+          request_options: {}
+        )
+        end
+
         # Retrieves a paginated list of resources within the same customer.
         sig do
           params(

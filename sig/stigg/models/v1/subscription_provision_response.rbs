@@ -473,6 +473,7 @@ module Stigg
               budget: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Budget?,
               cancellation_date: Time?,
               cancel_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::cancel_reason?,
+              contract_id: String?,
               coupons: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Coupon],
               current_billing_period_end: Time?,
               current_billing_period_start: Time?,
@@ -523,6 +524,8 @@ module Stigg
             attr_accessor cancellation_date: Time?
 
             attr_accessor cancel_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::cancel_reason?
+
+            attr_accessor contract_id: String?
 
             attr_reader coupons: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Coupon]?
 
@@ -589,6 +592,7 @@ module Stigg
               ?budget: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Budget?,
               ?cancellation_date: Time?,
               ?cancel_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::cancel_reason?,
+              ?contract_id: String?,
               ?coupons: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Coupon],
               ?current_billing_period_end: Time?,
               ?current_billing_period_start: Time?,
@@ -622,6 +626,7 @@ module Stigg
               budget: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Budget?,
               cancellation_date: Time?,
               cancel_reason: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::cancel_reason?,
+              contract_id: String?,
               coupons: ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Subscription::Coupon],
               current_billing_period_end: Time?,
               current_billing_period_start: Time?,
