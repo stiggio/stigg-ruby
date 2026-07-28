@@ -40,6 +40,9 @@ module Stigg
       sig { returns(Stigg::Resources::V1::Products) }
       attr_reader :products
 
+      sig { returns(Stigg::Resources::V1::Contracts) }
+      attr_reader :contracts
+
       # @api private
       sig { params(client: Stigg::Client).returns(T.attached_class) }
       def self.new(client:)

@@ -1,0 +1,534 @@
+module Stigg
+  module Models
+    module V1
+      type customer_list_contracts_response =
+        {
+          data: ::Array[Stigg::Models::V1::CustomerListContractsResponse::Data]
+        }
+
+      class CustomerListContractsResponse < Stigg::Internal::Type::BaseModel
+        attr_accessor data: ::Array[Stigg::Models::V1::CustomerListContractsResponse::Data]
+
+        def initialize: (
+          data: ::Array[Stigg::Models::V1::CustomerListContractsResponse::Data]
+        ) -> void
+
+        def to_hash: -> {
+          data: ::Array[Stigg::Models::V1::CustomerListContractsResponse::Data]
+        }
+
+        type data =
+          {
+            id: String?,
+            activation_end_date: Time?,
+            activation_start_date: Time?,
+            billing_id: String?,
+            contract_id: String,
+            created_at: Time?,
+            customer_external_id: String?,
+            external_id: String,
+            latest_invoice: Stigg::Models::V1::CustomerListContractsResponse::Data::LatestInvoice?,
+            name: String?,
+            next_invoice: Stigg::Models::V1::CustomerListContractsResponse::Data::NextInvoice?,
+            po_number: String?,
+            ref_id: String?,
+            state: Stigg::Models::V1::CustomerListContractsResponse::Data::state,
+            subscriptions: ::Array[Stigg::Models::V1::CustomerListContractsResponse::Data::Subscription]
+          }
+
+        class Data < Stigg::Internal::Type::BaseModel
+          attr_accessor id: String?
+
+          attr_accessor activation_end_date: Time?
+
+          attr_accessor activation_start_date: Time?
+
+          attr_accessor billing_id: String?
+
+          attr_accessor contract_id: String
+
+          attr_accessor created_at: Time?
+
+          attr_accessor customer_external_id: String?
+
+          attr_accessor external_id: String
+
+          attr_accessor latest_invoice: Stigg::Models::V1::CustomerListContractsResponse::Data::LatestInvoice?
+
+          attr_accessor name: String?
+
+          attr_accessor next_invoice: Stigg::Models::V1::CustomerListContractsResponse::Data::NextInvoice?
+
+          attr_accessor po_number: String?
+
+          attr_accessor ref_id: String?
+
+          attr_accessor state: Stigg::Models::V1::CustomerListContractsResponse::Data::state
+
+          attr_accessor subscriptions: ::Array[Stigg::Models::V1::CustomerListContractsResponse::Data::Subscription]
+
+          def initialize: (
+            id: String?,
+            activation_end_date: Time?,
+            activation_start_date: Time?,
+            billing_id: String?,
+            contract_id: String,
+            created_at: Time?,
+            customer_external_id: String?,
+            external_id: String,
+            latest_invoice: Stigg::Models::V1::CustomerListContractsResponse::Data::LatestInvoice?,
+            name: String?,
+            next_invoice: Stigg::Models::V1::CustomerListContractsResponse::Data::NextInvoice?,
+            po_number: String?,
+            ref_id: String?,
+            state: Stigg::Models::V1::CustomerListContractsResponse::Data::state,
+            subscriptions: ::Array[Stigg::Models::V1::CustomerListContractsResponse::Data::Subscription]
+          ) -> void
+
+          def to_hash: -> {
+            id: String?,
+            activation_end_date: Time?,
+            activation_start_date: Time?,
+            billing_id: String?,
+            contract_id: String,
+            created_at: Time?,
+            customer_external_id: String?,
+            external_id: String,
+            latest_invoice: Stigg::Models::V1::CustomerListContractsResponse::Data::LatestInvoice?,
+            name: String?,
+            next_invoice: Stigg::Models::V1::CustomerListContractsResponse::Data::NextInvoice?,
+            po_number: String?,
+            ref_id: String?,
+            state: Stigg::Models::V1::CustomerListContractsResponse::Data::state,
+            subscriptions: ::Array[Stigg::Models::V1::CustomerListContractsResponse::Data::Subscription]
+          }
+
+          type latest_invoice =
+            {
+              billing_id: String,
+              created_at: Time,
+              requires_action: bool,
+              status: Stigg::Models::V1::CustomerListContractsResponse::Data::LatestInvoice::status,
+              amount_due: Float?,
+              billing_reason: Stigg::Models::V1::CustomerListContractsResponse::Data::LatestInvoice::billing_reason?,
+              currency: String?,
+              pdf_url: String?,
+              total: Float?
+            }
+
+          class LatestInvoice < Stigg::Internal::Type::BaseModel
+            attr_accessor billing_id: String
+
+            attr_accessor created_at: Time
+
+            attr_accessor requires_action: bool
+
+            attr_accessor status: Stigg::Models::V1::CustomerListContractsResponse::Data::LatestInvoice::status
+
+            attr_accessor amount_due: Float?
+
+            attr_accessor billing_reason: Stigg::Models::V1::CustomerListContractsResponse::Data::LatestInvoice::billing_reason?
+
+            attr_accessor currency: String?
+
+            attr_accessor pdf_url: String?
+
+            attr_accessor total: Float?
+
+            def initialize: (
+              billing_id: String,
+              created_at: Time,
+              requires_action: bool,
+              status: Stigg::Models::V1::CustomerListContractsResponse::Data::LatestInvoice::status,
+              ?amount_due: Float?,
+              ?billing_reason: Stigg::Models::V1::CustomerListContractsResponse::Data::LatestInvoice::billing_reason?,
+              ?currency: String?,
+              ?pdf_url: String?,
+              ?total: Float?
+            ) -> void
+
+            def to_hash: -> {
+              billing_id: String,
+              created_at: Time,
+              requires_action: bool,
+              status: Stigg::Models::V1::CustomerListContractsResponse::Data::LatestInvoice::status,
+              amount_due: Float?,
+              billing_reason: Stigg::Models::V1::CustomerListContractsResponse::Data::LatestInvoice::billing_reason?,
+              currency: String?,
+              pdf_url: String?,
+              total: Float?
+            }
+
+            type status = :OPEN | :CANCELED | :PAID
+
+            module Status
+              extend Stigg::Internal::Type::Enum
+
+              OPEN: :OPEN
+              CANCELED: :CANCELED
+              PAID: :PAID
+
+              def self?.values: -> ::Array[Stigg::Models::V1::CustomerListContractsResponse::Data::LatestInvoice::status]
+            end
+
+            type billing_reason =
+              :BILLING_CYCLE
+              | :SUBSCRIPTION_CREATION
+              | :SUBSCRIPTION_UPDATE
+              | :MANUAL
+              | :MINIMUM_INVOICE_AMOUNT_EXCEEDED
+              | :OTHER
+
+            module BillingReason
+              extend Stigg::Internal::Type::Enum
+
+              BILLING_CYCLE: :BILLING_CYCLE
+              SUBSCRIPTION_CREATION: :SUBSCRIPTION_CREATION
+              SUBSCRIPTION_UPDATE: :SUBSCRIPTION_UPDATE
+              MANUAL: :MANUAL
+              MINIMUM_INVOICE_AMOUNT_EXCEEDED: :MINIMUM_INVOICE_AMOUNT_EXCEEDED
+              OTHER: :OTHER
+
+              def self?.values: -> ::Array[Stigg::Models::V1::CustomerListContractsResponse::Data::LatestInvoice::billing_reason]
+            end
+          end
+
+          type next_invoice =
+            {
+              amount: Stigg::Models::V1::CustomerListContractsResponse::Data::NextInvoice::Amount,
+              due_date: Time?,
+              period_end: Time?,
+              period_start: Time?
+            }
+
+          class NextInvoice < Stigg::Internal::Type::BaseModel
+            attr_accessor amount: Stigg::Models::V1::CustomerListContractsResponse::Data::NextInvoice::Amount
+
+            attr_accessor due_date: Time?
+
+            attr_accessor period_end: Time?
+
+            attr_accessor period_start: Time?
+
+            def initialize: (
+              amount: Stigg::Models::V1::CustomerListContractsResponse::Data::NextInvoice::Amount,
+              due_date: Time?,
+              period_end: Time?,
+              period_start: Time?
+            ) -> void
+
+            def to_hash: -> {
+              amount: Stigg::Models::V1::CustomerListContractsResponse::Data::NextInvoice::Amount,
+              due_date: Time?,
+              period_end: Time?,
+              period_start: Time?
+            }
+
+            type amount =
+              {
+                amount: Float,
+                currency: Stigg::Models::V1::CustomerListContractsResponse::Data::NextInvoice::Amount::currency
+              }
+
+            class Amount < Stigg::Internal::Type::BaseModel
+              attr_accessor amount: Float
+
+              attr_accessor currency: Stigg::Models::V1::CustomerListContractsResponse::Data::NextInvoice::Amount::currency
+
+              def initialize: (
+                amount: Float,
+                currency: Stigg::Models::V1::CustomerListContractsResponse::Data::NextInvoice::Amount::currency
+              ) -> void
+
+              def to_hash: -> {
+                amount: Float,
+                currency: Stigg::Models::V1::CustomerListContractsResponse::Data::NextInvoice::Amount::currency
+              }
+
+              type currency =
+                :usd
+                | :aed
+                | :all
+                | :amd
+                | :ang
+                | :aud
+                | :awg
+                | :azn
+                | :bam
+                | :bbd
+                | :bdt
+                | :bgn
+                | :bif
+                | :bmd
+                | :bnd
+                | :bsd
+                | :bwp
+                | :byn
+                | :bzd
+                | :brl
+                | :cad
+                | :cdf
+                | :chf
+                | :cny
+                | :czk
+                | :dkk
+                | :dop
+                | :dzd
+                | :egp
+                | :etb
+                | :eur
+                | :fjd
+                | :gbp
+                | :gel
+                | :gip
+                | :gmd
+                | :gyd
+                | :hkd
+                | :hrk
+                | :htg
+                | :idr
+                | :ils
+                | :inr
+                | :isk
+                | :jmd
+                | :jpy
+                | :kes
+                | :kgs
+                | :khr
+                | :kmf
+                | :krw
+                | :kyd
+                | :kzt
+                | :lbp
+                | :lkr
+                | :lrd
+                | :lsl
+                | :mad
+                | :mdl
+                | :mga
+                | :mkd
+                | :mmk
+                | :mnt
+                | :mop
+                | :mro
+                | :mvr
+                | :mwk
+                | :mxn
+                | :myr
+                | :mzn
+                | :nad
+                | :ngn
+                | :nok
+                | :npr
+                | :nzd
+                | :pgk
+                | :php
+                | :pkr
+                | :pln
+                | :qar
+                | :ron
+                | :rsd
+                | :rub
+                | :rwf
+                | :sar
+                | :sbd
+                | :scr
+                | :sek
+                | :sgd
+                | :sle
+                | :sll
+                | :sos
+                | :szl
+                | :thb
+                | :tjs
+                | :top
+                | :try
+                | :ttd
+                | :tzs
+                | :uah
+                | :uzs
+                | :vnd
+                | :vuv
+                | :wst
+                | :xaf
+                | :xcd
+                | :yer
+                | :zar
+                | :zmw
+                | :clp
+                | :djf
+                | :gnf
+                | :ugx
+                | :pyg
+                | :xof
+                | :xpf
+
+              module Currency
+                extend Stigg::Internal::Type::Enum
+
+                USD: :usd
+                AED: :aed
+                ALL: :all
+                AMD: :amd
+                ANG: :ang
+                AUD: :aud
+                AWG: :awg
+                AZN: :azn
+                BAM: :bam
+                BBD: :bbd
+                BDT: :bdt
+                BGN: :bgn
+                BIF: :bif
+                BMD: :bmd
+                BND: :bnd
+                BSD: :bsd
+                BWP: :bwp
+                BYN: :byn
+                BZD: :bzd
+                BRL: :brl
+                CAD: :cad
+                CDF: :cdf
+                CHF: :chf
+                CNY: :cny
+                CZK: :czk
+                DKK: :dkk
+                DOP: :dop
+                DZD: :dzd
+                EGP: :egp
+                ETB: :etb
+                EUR: :eur
+                FJD: :fjd
+                GBP: :gbp
+                GEL: :gel
+                GIP: :gip
+                GMD: :gmd
+                GYD: :gyd
+                HKD: :hkd
+                HRK: :hrk
+                HTG: :htg
+                IDR: :idr
+                ILS: :ils
+                INR: :inr
+                ISK: :isk
+                JMD: :jmd
+                JPY: :jpy
+                KES: :kes
+                KGS: :kgs
+                KHR: :khr
+                KMF: :kmf
+                KRW: :krw
+                KYD: :kyd
+                KZT: :kzt
+                LBP: :lbp
+                LKR: :lkr
+                LRD: :lrd
+                LSL: :lsl
+                MAD: :mad
+                MDL: :mdl
+                MGA: :mga
+                MKD: :mkd
+                MMK: :mmk
+                MNT: :mnt
+                MOP: :mop
+                MRO: :mro
+                MVR: :mvr
+                MWK: :mwk
+                MXN: :mxn
+                MYR: :myr
+                MZN: :mzn
+                NAD: :nad
+                NGN: :ngn
+                NOK: :nok
+                NPR: :npr
+                NZD: :nzd
+                PGK: :pgk
+                PHP: :php
+                PKR: :pkr
+                PLN: :pln
+                QAR: :qar
+                RON: :ron
+                RSD: :rsd
+                RUB: :rub
+                RWF: :rwf
+                SAR: :sar
+                SBD: :sbd
+                SCR: :scr
+                SEK: :sek
+                SGD: :sgd
+                SLE: :sle
+                SLL: :sll
+                SOS: :sos
+                SZL: :szl
+                THB: :thb
+                TJS: :tjs
+                TOP: :top
+                TRY: :try
+                TTD: :ttd
+                TZS: :tzs
+                UAH: :uah
+                UZS: :uzs
+                VND: :vnd
+                VUV: :vuv
+                WST: :wst
+                XAF: :xaf
+                XCD: :xcd
+                YER: :yer
+                ZAR: :zar
+                ZMW: :zmw
+                CLP: :clp
+                DJF: :djf
+                GNF: :gnf
+                UGX: :ugx
+                PYG: :pyg
+                XOF: :xof
+                XPF: :xpf
+
+                def self?.values: -> ::Array[Stigg::Models::V1::CustomerListContractsResponse::Data::NextInvoice::Amount::currency]
+              end
+            end
+          end
+
+          type state = :DRAFT | :ACTIVE | :CANCELED | :END_BILLING
+
+          module State
+            extend Stigg::Internal::Type::Enum
+
+            DRAFT: :DRAFT
+            ACTIVE: :ACTIVE
+            CANCELED: :CANCELED
+            END_BILLING: :END_BILLING
+
+            def self?.values: -> ::Array[Stigg::Models::V1::CustomerListContractsResponse::Data::state]
+          end
+
+          type subscription =
+            {
+              plan_display_name: String?,
+              product_display_name: String?,
+              subscription_id: String
+            }
+
+          class Subscription < Stigg::Internal::Type::BaseModel
+            attr_accessor plan_display_name: String?
+
+            attr_accessor product_display_name: String?
+
+            attr_accessor subscription_id: String
+
+            def initialize: (
+              plan_display_name: String?,
+              product_display_name: String?,
+              subscription_id: String
+            ) -> void
+
+            def to_hash: -> {
+              plan_display_name: String?,
+              product_display_name: String?,
+              subscription_id: String
+            }
+          end
+        end
+      end
+    end
+  end
+end

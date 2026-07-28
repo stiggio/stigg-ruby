@@ -272,6 +272,118 @@ module Stigg
         end
 
         # Some parameter documentations has been truncated, see
+        # {Stigg::Models::V1::CustomerListContractsParams} for more details.
+        #
+        # Retrieves a customer's contracts, fetched live from the connected billing
+        # provider, each enriched with a preview of its upcoming (next) invoice when
+        # available. Returns an empty list when no billing provider is connected or the
+        # customer is not synced.
+        #
+        # @overload list_contracts(id, x_account_id: nil, x_environment_id: nil, request_options: {})
+        #
+        # @param id [String] The external identifier of the customer the contract belongs to
+        #
+        # @param x_account_id [String] Account ID — optional when authenticating with a user JWT (Bearer token); falls
+        #
+        # @param x_environment_id [String] Environment ID — required when authenticating with a user JWT (Bearer token) on
+        #
+        # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [Stigg::Models::V1::CustomerListContractsResponse]
+        #
+        # @see Stigg::Models::V1::CustomerListContractsParams
+        def list_contracts(id, params = {})
+          parsed, options = Stigg::V1::CustomerListContractsParams.dump_request(params)
+          @client.request(
+            method: :get,
+            path: ["api/v1/customers/%1$s/contracts", id],
+            headers: parsed.transform_keys(
+              x_account_id: "x-account-id",
+              x_environment_id: "x-environment-id"
+            ),
+            model: Stigg::Models::V1::CustomerListContractsResponse,
+            options: options
+          )
+        end
+
+        # Some parameter documentations has been truncated, see
+        # {Stigg::Models::V1::CustomerListInvoicesParams} for more details.
+        #
+        # Retrieves a cursor-paginated list of a customer's invoices, fetched live from
+        # the connected billing provider. Ordered by issue date ascending by default;
+        # override with orderBy (issueDate | dueDate | total) and orderDir (ASC | DESC).
+        # Optionally narrowed to one contract, an issue-date range, and/or a set of
+        # invoice states. Returns an empty list when no billing provider is connected or
+        # the customer is not synced.
+        #
+        # @overload list_invoices(id, after: nil, before: nil, contract_external_id: nil, issued_after: nil, issued_before: nil, limit: nil, order_by: nil, order_dir: nil, state_in: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        #
+        # @param id [String] Path param: External ID of the customer the invoice belongs to: your customer re
+        #
+        # @param after [String] Query param: Return items that come after this cursor
+        #
+        # @param before [String] Query param: Return items that come before this cursor
+        #
+        # @param contract_external_id [String] Query param: Filter to invoices for this contract only (contract external ID or
+        #
+        # @param issued_after [Time] Query param: Filter to invoices issued on or after this date, inclusive (ISO 860
+        #
+        # @param issued_before [Time] Query param: Filter to invoices issued on or before this date, inclusive (ISO 86
+        #
+        # @param limit [Integer] Query param: Maximum number of items to return
+        #
+        # @param order_by [Symbol, Stigg::Models::V1::CustomerListInvoicesParams::OrderBy] Query param: Field to sort by: issueDate (default), dueDate, or total
+        #
+        # @param order_dir [Symbol, Stigg::Models::V1::CustomerListInvoicesParams::OrderDir] Query param: Sort direction: ASC (default) or DESC
+        #
+        # @param state_in [String] Query param: Filter by invoice state. Supports comma-separated values for multip
+        #
+        # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
+        #
+        # @param x_environment_id [String] Header param: Environment ID — required when authenticating with a user JWT (Bea
+        #
+        # @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [Stigg::Internal::MyCursorIDPage<Stigg::Models::V1::CustomerListInvoicesResponse>]
+        #
+        # @see Stigg::Models::V1::CustomerListInvoicesParams
+        def list_invoices(id, params = {})
+          query_params =
+            [
+              :after,
+              :before,
+              :contract_external_id,
+              :issued_after,
+              :issued_before,
+              :limit,
+              :order_by,
+              :order_dir,
+              :state_in
+            ]
+          parsed, options = Stigg::V1::CustomerListInvoicesParams.dump_request(params)
+          query = Stigg::Internal::Util.encode_query_params(parsed.slice(*query_params))
+          @client.request(
+            method: :get,
+            path: ["api/v1/customers/%1$s/invoices", id],
+            query: query.transform_keys(
+              contract_external_id: "contractExternalId",
+              issued_after: "issuedAfter",
+              issued_before: "issuedBefore",
+              order_by: "orderBy",
+              order_dir: "orderDir",
+              state_in: "stateIn"
+            ),
+            headers: parsed.except(*query_params).transform_keys(
+              x_account_id: "x-account-id",
+              x_environment_id: "x-environment-id"
+            ),
+            page: Stigg::Internal::MyCursorIDPage,
+            model: Stigg::Models::V1::CustomerListInvoicesResponse,
+            options: options
+          )
+        end
+
+        # Some parameter documentations has been truncated, see
         # {Stigg::Models::V1::CustomerListResourcesParams} for more details.
         #
         # Retrieves a paginated list of resources within the same customer.

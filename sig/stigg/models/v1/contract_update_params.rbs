@@ -1,0 +1,80 @@
+module Stigg
+  module Models
+    module V1
+      type contract_update_params =
+        {
+          id: String,
+          activation_end_date: Time,
+          activation_start_date: Time,
+          name: String?,
+          po_number: String?,
+          setup_billing: bool,
+          subscription_ids: ::Array[String],
+          x_account_id: String,
+          x_environment_id: String
+        }
+        & Stigg::Internal::Type::request_parameters
+
+      class ContractUpdateParams < Stigg::Internal::Type::BaseModel
+        extend Stigg::Internal::Type::RequestParameters::Converter
+        include Stigg::Internal::Type::RequestParameters
+
+        attr_accessor id: String
+
+        attr_reader activation_end_date: Time?
+
+        def activation_end_date=: (Time) -> Time
+
+        attr_reader activation_start_date: Time?
+
+        def activation_start_date=: (Time) -> Time
+
+        attr_accessor name: String?
+
+        attr_accessor po_number: String?
+
+        attr_reader setup_billing: bool?
+
+        def setup_billing=: (bool) -> bool
+
+        attr_reader subscription_ids: ::Array[String]?
+
+        def subscription_ids=: (::Array[String]) -> ::Array[String]
+
+        attr_reader x_account_id: String?
+
+        def x_account_id=: (String) -> String
+
+        attr_reader x_environment_id: String?
+
+        def x_environment_id=: (String) -> String
+
+        def initialize: (
+          id: String,
+          ?activation_end_date: Time,
+          ?activation_start_date: Time,
+          ?name: String?,
+          ?po_number: String?,
+          ?setup_billing: bool,
+          ?subscription_ids: ::Array[String],
+          ?x_account_id: String,
+          ?x_environment_id: String,
+          ?request_options: Stigg::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          activation_end_date: Time,
+          activation_start_date: Time,
+          name: String?,
+          po_number: String?,
+          setup_billing: bool,
+          subscription_ids: ::Array[String],
+          x_account_id: String,
+          x_environment_id: String,
+          request_options: Stigg::RequestOptions
+        }
+      end
+    end
+  end
+end
