@@ -53,7 +53,14 @@ module Stigg
           #   @return [String]
           required :display_name, String, api_name: :displayName
 
-          # @!method initialize(id:, attribution_keys:, display_name:)
+          # @!attribute description
+          #   What this entity type represents and what it is for governing. Omit to preserve
+          #   the stored value, or send an empty string or null to clear it.
+          #
+          #   @return [String, nil]
+          optional :description, String, nil?: true
+
+          # @!method initialize(id:, attribution_keys:, display_name:, description: nil)
           #   Some parameter documentations has been truncated, see
           #   {Stigg::Models::V1Beta::EntityTypeUpsertParams::Type} for more details.
           #
@@ -64,6 +71,8 @@ module Stigg
           #   @param attribution_keys [Array<String>] Dimension keys used to attribute usage events to instances of this type (e.g. ["
           #
           #   @param display_name [String] The display name for the entity type
+          #
+          #   @param description [String, nil] What this entity type represents and what it is for governing. Omit to preserve
         end
       end
     end

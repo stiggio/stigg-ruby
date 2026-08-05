@@ -24,7 +24,7 @@ module Stigg
             #
             # @param currency_ids [Array<String>] Query param: Currency ids to include, repeated per value (e.g. `?currencyIds=cre
             #
-            # @param entity_id_search [String] Query param: Case-insensitive substring match on the entity id (`%`/`_` matched
+            # @param entity_id_search [String] Query param: Case-insensitive substring match on the entity id or its display na
             #
             # @param entity_type_ids [Array<String>] Query param: Filter to one or more entity types, repeated per value (e.g. `?enti
             #

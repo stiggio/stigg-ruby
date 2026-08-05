@@ -49,6 +49,13 @@ module Stigg
             #   @return [String]
             required :id, String
 
+            # @!attribute display_name
+            #   Human-readable name for the entity. Omit to preserve the stored value, or send
+            #   an empty string or null to clear it.
+            #
+            #   @return [String, nil]
+            optional :display_name, String, api_name: :displayName, nil?: true
+
             # @!attribute entity_type_id
             #   The entity type ID this entity instantiates. Required when creating a new
             #   entity; on a re-upsert may be omitted to preserve the existing type. Governance
@@ -64,13 +71,15 @@ module Stigg
             #   @return [Hash{Symbol=>String}, nil]
             optional :metadata, Stigg::Internal::Type::HashOf[String]
 
-            # @!method initialize(id:, entity_type_id: nil, metadata: nil)
+            # @!method initialize(id:, display_name: nil, entity_type_id: nil, metadata: nil)
             #   Some parameter documentations has been truncated, see
             #   {Stigg::Models::V1Beta::Customers::EntityUpsertParams::Entity} for more details.
             #
             #   A single entity to create or update.
             #
             #   @param id [String] The unique identifier for the entity
+            #
+            #   @param display_name [String, nil] Human-readable name for the entity. Omit to preserve the stored value, or send a
             #
             #   @param entity_type_id [String] The entity type ID this entity instantiates. Required when creating a new entity
             #

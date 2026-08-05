@@ -91,6 +91,11 @@ module Stigg
             sig { returns(String) }
             attr_accessor :id
 
+            # Human-readable name for the entity. Omit to preserve the stored value, or send
+            # an empty string or null to clear it.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :display_name
+
             # The entity type ID this entity instantiates. Required when creating a new
             # entity; on a re-upsert may be omitted to preserve the existing type. Governance
             # returns 400 if missing on create.
@@ -112,6 +117,7 @@ module Stigg
             sig do
               params(
                 id: String,
+                display_name: T.nilable(String),
                 entity_type_id: String,
                 metadata: T::Hash[Symbol, String]
               ).returns(T.attached_class)
@@ -119,6 +125,9 @@ module Stigg
             def self.new(
               # The unique identifier for the entity
               id:,
+              # Human-readable name for the entity. Omit to preserve the stored value, or send
+              # an empty string or null to clear it.
+              display_name: nil,
               # The entity type ID this entity instantiates. Required when creating a new
               # entity; on a re-upsert may be omitted to preserve the existing type. Governance
               # returns 400 if missing on create.
@@ -133,6 +142,7 @@ module Stigg
               override.returns(
                 {
                   id: String,
+                  display_name: T.nilable(String),
                   entity_type_id: String,
                   metadata: T::Hash[Symbol, String]
                 }

@@ -25,6 +25,11 @@ module Stigg
         sig { returns(Time) }
         attr_accessor :created_at
 
+        # What this entity type represents and what it is for governing, or null when none
+        # is set
+        sig { returns(T.nilable(String)) }
+        attr_accessor :description
+
         # The display name for the entity type
         sig { returns(String) }
         attr_accessor :display_name
@@ -42,6 +47,7 @@ module Stigg
             id: String,
             attribution_keys: T::Array[String],
             created_at: Time,
+            description: T.nilable(String),
             display_name: String,
             updated_at: Time
           ).returns(T.attached_class)
@@ -54,6 +60,9 @@ module Stigg
           attribution_keys:,
           # Timestamp of when the record was created
           created_at:,
+          # What this entity type represents and what it is for governing, or null when none
+          # is set
+          description:,
           # The display name for the entity type
           display_name:,
           # Timestamp of when the record was last updated
@@ -67,6 +76,7 @@ module Stigg
               id: String,
               attribution_keys: T::Array[String],
               created_at: Time,
+              description: T.nilable(String),
               display_name: String,
               updated_at: Time
             }
