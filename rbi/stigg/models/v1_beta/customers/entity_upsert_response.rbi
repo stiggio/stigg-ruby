@@ -68,6 +68,11 @@ module Stigg
             sig { returns(Time) }
             attr_accessor :created_at
 
+            # Human-readable name for the entity, or null when none is set — in which case
+            # clients display the entity ID
+            sig { returns(T.nilable(String)) }
+            attr_accessor :display_name
+
             # The entity type identifier this entity instantiates
             sig { returns(String) }
             attr_accessor :entity_type_id
@@ -86,6 +91,7 @@ module Stigg
                 id: String,
                 archived_at: T.nilable(Time),
                 created_at: Time,
+                display_name: T.nilable(String),
                 entity_type_id: String,
                 metadata: T::Hash[Symbol, String],
                 updated_at: Time
@@ -98,6 +104,9 @@ module Stigg
               archived_at:,
               # Timestamp of when the record was created
               created_at:,
+              # Human-readable name for the entity, or null when none is set — in which case
+              # clients display the entity ID
+              display_name:,
               # The entity type identifier this entity instantiates
               entity_type_id:,
               # Free-form key/value metadata attached to the entity
@@ -113,6 +122,7 @@ module Stigg
                   id: String,
                   archived_at: T.nilable(Time),
                   created_at: Time,
+                  display_name: T.nilable(String),
                   entity_type_id: String,
                   metadata: T::Hash[Symbol, String],
                   updated_at: Time

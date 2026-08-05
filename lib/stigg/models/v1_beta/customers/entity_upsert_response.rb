@@ -36,6 +36,13 @@ module Stigg
             #   @return [Time]
             required :created_at, Time, api_name: :createdAt
 
+            # @!attribute display_name
+            #   Human-readable name for the entity, or null when none is set — in which case
+            #   clients display the entity ID
+            #
+            #   @return [String, nil]
+            required :display_name, String, api_name: :displayName, nil?: true
+
             # @!attribute entity_type_id
             #   The entity type identifier this entity instantiates
             #
@@ -54,7 +61,10 @@ module Stigg
             #   @return [Time]
             required :updated_at, Time, api_name: :updatedAt
 
-            # @!method initialize(id:, archived_at:, created_at:, entity_type_id:, metadata:, updated_at:)
+            # @!method initialize(id:, archived_at:, created_at:, display_name:, entity_type_id:, metadata:, updated_at:)
+            #   Some parameter documentations has been truncated, see
+            #   {Stigg::Models::V1Beta::Customers::EntityUpsertResponse::Data} for more details.
+            #
             #   A stored entity instance tracked by the governance service for a given customer
             #
             #   @param id [String] The unique identifier for the entity
@@ -62,6 +72,8 @@ module Stigg
             #   @param archived_at [Time, nil] Timestamp of when the record was deleted
             #
             #   @param created_at [Time] Timestamp of when the record was created
+            #
+            #   @param display_name [String, nil] Human-readable name for the entity, or null when none is set — in which case cli
             #
             #   @param entity_type_id [String] The entity type identifier this entity instantiates
             #

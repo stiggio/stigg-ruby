@@ -468,9 +468,10 @@ module Stigg
               billing_model: Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::billing_model,
               price_periods: ::Array[Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::PricePeriod],
               billing_cadence: Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::billing_cadence,
+              credit_entitlement: Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::CreditEntitlement,
+              currency_id: String,
               entitlement: Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::Entitlement,
-              feature_id: String,
-              top_up_custom_currency_id: String
+              feature_id: String
             }
 
           class OveragePricingModel < Stigg::Internal::Type::BaseModel
@@ -484,6 +485,16 @@ module Stigg
               Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::billing_cadence
             ) -> Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::billing_cadence
 
+            attr_reader credit_entitlement: Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::CreditEntitlement?
+
+            def credit_entitlement=: (
+              Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::CreditEntitlement
+            ) -> Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::CreditEntitlement
+
+            attr_reader currency_id: String?
+
+            def currency_id=: (String) -> String
+
             attr_reader entitlement: Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::Entitlement?
 
             def entitlement=: (
@@ -494,26 +505,24 @@ module Stigg
 
             def feature_id=: (String) -> String
 
-            attr_reader top_up_custom_currency_id: String?
-
-            def top_up_custom_currency_id=: (String) -> String
-
             def initialize: (
               billing_model: Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::billing_model,
               price_periods: ::Array[Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::PricePeriod],
               ?billing_cadence: Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::billing_cadence,
+              ?credit_entitlement: Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::CreditEntitlement,
+              ?currency_id: String,
               ?entitlement: Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::Entitlement,
-              ?feature_id: String,
-              ?top_up_custom_currency_id: String
+              ?feature_id: String
             ) -> void
 
             def to_hash: -> {
               billing_model: Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::billing_model,
               price_periods: ::Array[Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::PricePeriod],
               billing_cadence: Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::billing_cadence,
+              credit_entitlement: Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::CreditEntitlement,
+              currency_id: String,
               entitlement: Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::Entitlement,
-              feature_id: String,
-              top_up_custom_currency_id: String
+              feature_id: String
             }
 
             type billing_model =
@@ -1497,6 +1506,44 @@ module Stigg
               ONE_OFF: :ONE_OFF
 
               def self?.values: -> ::Array[Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::billing_cadence]
+            end
+
+            type credit_entitlement =
+              {
+                amount: Float,
+                cadence: Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::CreditEntitlement::cadence,
+                custom_currency_id: String
+              }
+
+            class CreditEntitlement < Stigg::Internal::Type::BaseModel
+              attr_accessor amount: Float
+
+              attr_accessor cadence: Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::CreditEntitlement::cadence
+
+              attr_accessor custom_currency_id: String
+
+              def initialize: (
+                amount: Float,
+                cadence: Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::CreditEntitlement::cadence,
+                custom_currency_id: String
+              ) -> void
+
+              def to_hash: -> {
+                amount: Float,
+                cadence: Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::CreditEntitlement::cadence,
+                custom_currency_id: String
+              }
+
+              type cadence = :MONTH | :YEAR
+
+              module Cadence
+                extend Stigg::Internal::Type::Enum
+
+                MONTH: :MONTH
+                YEAR: :YEAR
+
+                def self?.values: -> ::Array[Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::CreditEntitlement::cadence]
+              end
             end
 
             type entitlement =

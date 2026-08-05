@@ -1,0 +1,141 @@
+module Stigg
+  module Models
+    module V1
+      type customer_list_invoices_response =
+        {
+          contract_external_id: String?,
+          currency: String?,
+          customer_external_id: String?,
+          discount: Float?,
+          due_date: Time?,
+          invoice_external_id: String?,
+          invoice_id: String,
+          invoice_number: String?,
+          issue_date: Time?,
+          line_items: ::Array[Stigg::Models::V1::CustomerListInvoicesResponse::LineItem],
+          paid_date: Time?,
+          state: Stigg::Models::V1::CustomerListInvoicesResponse::state,
+          subtotal: Float?,
+          tax: Float?,
+          total: Float?
+        }
+
+      class CustomerListInvoicesResponse < Stigg::Internal::Type::BaseModel
+        attr_accessor contract_external_id: String?
+
+        attr_accessor currency: String?
+
+        attr_accessor customer_external_id: String?
+
+        attr_accessor discount: Float?
+
+        attr_accessor due_date: Time?
+
+        attr_accessor invoice_external_id: String?
+
+        attr_accessor invoice_id: String
+
+        attr_accessor invoice_number: String?
+
+        attr_accessor issue_date: Time?
+
+        attr_accessor line_items: ::Array[Stigg::Models::V1::CustomerListInvoicesResponse::LineItem]
+
+        attr_accessor paid_date: Time?
+
+        attr_accessor state: Stigg::Models::V1::CustomerListInvoicesResponse::state
+
+        attr_accessor subtotal: Float?
+
+        attr_accessor tax: Float?
+
+        attr_accessor total: Float?
+
+        def initialize: (
+          contract_external_id: String?,
+          currency: String?,
+          customer_external_id: String?,
+          discount: Float?,
+          due_date: Time?,
+          invoice_external_id: String?,
+          invoice_id: String,
+          invoice_number: String?,
+          issue_date: Time?,
+          line_items: ::Array[Stigg::Models::V1::CustomerListInvoicesResponse::LineItem],
+          paid_date: Time?,
+          state: Stigg::Models::V1::CustomerListInvoicesResponse::state,
+          subtotal: Float?,
+          tax: Float?,
+          total: Float?
+        ) -> void
+
+        def to_hash: -> {
+          contract_external_id: String?,
+          currency: String?,
+          customer_external_id: String?,
+          discount: Float?,
+          due_date: Time?,
+          invoice_external_id: String?,
+          invoice_id: String,
+          invoice_number: String?,
+          issue_date: Time?,
+          line_items: ::Array[Stigg::Models::V1::CustomerListInvoicesResponse::LineItem],
+          paid_date: Time?,
+          state: Stigg::Models::V1::CustomerListInvoicesResponse::state,
+          subtotal: Float?,
+          tax: Float?,
+          total: Float?
+        }
+
+        type line_item =
+          {
+            amount: Float?,
+            description: String?,
+            product_external_id: String?,
+            quantity: Float?,
+            unit_price: Float?
+          }
+
+        class LineItem < Stigg::Internal::Type::BaseModel
+          attr_accessor amount: Float?
+
+          attr_accessor description: String?
+
+          attr_accessor product_external_id: String?
+
+          attr_accessor quantity: Float?
+
+          attr_accessor unit_price: Float?
+
+          def initialize: (
+            amount: Float?,
+            description: String?,
+            product_external_id: String?,
+            quantity: Float?,
+            unit_price: Float?
+          ) -> void
+
+          def to_hash: -> {
+            amount: Float?,
+            description: String?,
+            product_external_id: String?,
+            quantity: Float?,
+            unit_price: Float?
+          }
+        end
+
+        type state = :OPEN | :CANCELED | :PAID
+
+        module State
+          extend Stigg::Internal::Type::Enum
+
+          OPEN: :OPEN
+          CANCELED: :CANCELED
+          PAID: :PAID
+
+          def self?.values: -> ::Array[Stigg::Models::V1::CustomerListInvoicesResponse::state]
+        end
+      end
+    end
+  end
+end

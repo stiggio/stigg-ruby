@@ -1,0 +1,132 @@
+module Stigg
+  module Models
+    module V1
+      type customer_list_invoices_params =
+        {
+          id: String,
+          after: String,
+          before: String,
+          contract_external_id: String,
+          issued_after: Time,
+          issued_before: Time,
+          limit: Integer,
+          order_by: Stigg::Models::V1::CustomerListInvoicesParams::order_by,
+          order_dir: Stigg::Models::V1::CustomerListInvoicesParams::order_dir,
+          state_in: String,
+          x_account_id: String,
+          x_environment_id: String
+        }
+        & Stigg::Internal::Type::request_parameters
+
+      class CustomerListInvoicesParams < Stigg::Internal::Type::BaseModel
+        extend Stigg::Internal::Type::RequestParameters::Converter
+        include Stigg::Internal::Type::RequestParameters
+
+        attr_accessor id: String
+
+        attr_reader after: String?
+
+        def after=: (String) -> String
+
+        attr_reader before: String?
+
+        def before=: (String) -> String
+
+        attr_reader contract_external_id: String?
+
+        def contract_external_id=: (String) -> String
+
+        attr_reader issued_after: Time?
+
+        def issued_after=: (Time) -> Time
+
+        attr_reader issued_before: Time?
+
+        def issued_before=: (Time) -> Time
+
+        attr_reader limit: Integer?
+
+        def limit=: (Integer) -> Integer
+
+        attr_reader order_by: Stigg::Models::V1::CustomerListInvoicesParams::order_by?
+
+        def order_by=: (
+          Stigg::Models::V1::CustomerListInvoicesParams::order_by
+        ) -> Stigg::Models::V1::CustomerListInvoicesParams::order_by
+
+        attr_reader order_dir: Stigg::Models::V1::CustomerListInvoicesParams::order_dir?
+
+        def order_dir=: (
+          Stigg::Models::V1::CustomerListInvoicesParams::order_dir
+        ) -> Stigg::Models::V1::CustomerListInvoicesParams::order_dir
+
+        attr_reader state_in: String?
+
+        def state_in=: (String) -> String
+
+        attr_reader x_account_id: String?
+
+        def x_account_id=: (String) -> String
+
+        attr_reader x_environment_id: String?
+
+        def x_environment_id=: (String) -> String
+
+        def initialize: (
+          id: String,
+          ?after: String,
+          ?before: String,
+          ?contract_external_id: String,
+          ?issued_after: Time,
+          ?issued_before: Time,
+          ?limit: Integer,
+          ?order_by: Stigg::Models::V1::CustomerListInvoicesParams::order_by,
+          ?order_dir: Stigg::Models::V1::CustomerListInvoicesParams::order_dir,
+          ?state_in: String,
+          ?x_account_id: String,
+          ?x_environment_id: String,
+          ?request_options: Stigg::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          after: String,
+          before: String,
+          contract_external_id: String,
+          issued_after: Time,
+          issued_before: Time,
+          limit: Integer,
+          order_by: Stigg::Models::V1::CustomerListInvoicesParams::order_by,
+          order_dir: Stigg::Models::V1::CustomerListInvoicesParams::order_dir,
+          state_in: String,
+          x_account_id: String,
+          x_environment_id: String,
+          request_options: Stigg::RequestOptions
+        }
+
+        type order_by = :issueDate | :dueDate | :total
+
+        module OrderBy
+          extend Stigg::Internal::Type::Enum
+
+          ISSUE_DATE: :issueDate
+          DUE_DATE: :dueDate
+          TOTAL: :total
+
+          def self?.values: -> ::Array[Stigg::Models::V1::CustomerListInvoicesParams::order_by]
+        end
+
+        type order_dir = :ASC | :DESC
+
+        module OrderDir
+          extend Stigg::Internal::Type::Enum
+
+          ASC: :ASC
+          DESC: :DESC
+
+          def self?.values: -> ::Array[Stigg::Models::V1::CustomerListInvoicesParams::order_dir]
+        end
+      end
+    end
+  end
+end

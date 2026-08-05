@@ -120,6 +120,59 @@ class Stigg::Test::Resources::V1::CustomersTest < Stigg::Test::ResourceTest
     end
   end
 
+  def test_list_contracts
+    skip("Mock server tests are disabled")
+
+    response = @stigg.v1.customers.list_contracts("id")
+
+    assert_pattern do
+      response => Stigg::Models::V1::CustomerListContractsResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::CustomerListContractsResponse::Data])
+      }
+    end
+  end
+
+  def test_list_invoices
+    skip("Mock server tests are disabled")
+
+    response = @stigg.v1.customers.list_invoices("id")
+
+    assert_pattern do
+      response => Stigg::Internal::MyCursorIDPage
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => Stigg::Models::V1::CustomerListInvoicesResponse
+    end
+
+    assert_pattern do
+      row => {
+        contract_external_id: String | nil,
+        currency: String | nil,
+        customer_external_id: String | nil,
+        discount: Float | nil,
+        due_date: Time | nil,
+        invoice_external_id: String | nil,
+        invoice_id: String,
+        invoice_number: String | nil,
+        issue_date: Time | nil,
+        line_items: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::CustomerListInvoicesResponse::LineItem]),
+        paid_date: Time | nil,
+        state: Stigg::Models::V1::CustomerListInvoicesResponse::State,
+        subtotal: Float | nil,
+        tax: Float | nil,
+        total: Float | nil
+      }
+    end
+  end
+
   def test_list_resources
     skip("Mock server tests are disabled")
 

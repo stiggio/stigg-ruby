@@ -40,6 +40,7 @@ class Stigg::Test::Resources::V1Beta::Customers::EntitiesTest < Stigg::Test::Res
         id: String,
         archived_at: Time | nil,
         created_at: Time,
+        display_name: String | nil,
         entity_type_id: String,
         metadata: ^(Stigg::Internal::Type::HashOf[String]),
         updated_at: Time

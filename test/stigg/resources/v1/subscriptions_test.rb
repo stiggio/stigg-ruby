@@ -67,6 +67,7 @@ class Stigg::Test::Resources::V1::SubscriptionsTest < Stigg::Test::ResourceTest
         budget: Stigg::Models::V1::SubscriptionListResponse::Budget | nil,
         cancellation_date: Time | nil,
         cancel_reason: Stigg::Models::V1::SubscriptionListResponse::CancelReason | nil,
+        contract_id: String | nil,
         coupons: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::SubscriptionListResponse::Coupon]) | nil,
         current_billing_period_end: Time | nil,
         current_billing_period_start: Time | nil,

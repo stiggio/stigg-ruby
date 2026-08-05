@@ -36,6 +36,13 @@ module Stigg
           #   @return [Time]
           required :created_at, Time, api_name: :createdAt
 
+          # @!attribute description
+          #   What this entity type represents and what it is for governing, or null when none
+          #   is set
+          #
+          #   @return [String, nil]
+          required :description, String, nil?: true
+
           # @!attribute display_name
           #   The display name for the entity type
           #
@@ -48,7 +55,7 @@ module Stigg
           #   @return [Time]
           required :updated_at, Time, api_name: :updatedAt
 
-          # @!method initialize(id:, attribution_keys:, created_at:, display_name:, updated_at:)
+          # @!method initialize(id:, attribution_keys:, created_at:, description:, display_name:, updated_at:)
           #   Some parameter documentations has been truncated, see
           #   {Stigg::Models::V1Beta::EntityTypeUpsertResponse::Data} for more details.
           #
@@ -62,6 +69,8 @@ module Stigg
           #   @param attribution_keys [Array<String>] Dimension keys used to attribute usage events to instances of this type (e.g. ["
           #
           #   @param created_at [Time] Timestamp of when the record was created
+          #
+          #   @param description [String, nil] What this entity type represents and what it is for governing, or null when none
           #
           #   @param display_name [String] The display name for the entity type
           #
