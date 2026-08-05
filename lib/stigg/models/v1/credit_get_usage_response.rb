@@ -126,6 +126,14 @@ module Stigg
           end
 
           class Series < Stigg::Internal::Type::BaseModel
+            # @!attribute event_count
+            #   Number of distinct usage events that consumed credits in this series. This count
+            #   is not additive across series, because an event matched by several meters
+            #   appears in more than one series.
+            #
+            #   @return [Float]
+            required :event_count, Float, api_name: :eventCount
+
             # @!attribute feature_id
             #   The feature ID; null when grouping by dimensions only
             #
@@ -158,8 +166,13 @@ module Stigg
             optional :tags,
                      -> { Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Tag] }
 
-            # @!method initialize(feature_id:, feature_name:, points:, total_credits:, tags: nil)
+            # @!method initialize(event_count:, feature_id:, feature_name:, points:, total_credits:, tags: nil)
+            #   Some parameter documentations has been truncated, see
+            #   {Stigg::Models::V1::CreditGetUsageResponse::Data::Series} for more details.
+            #
             #   Credit usage data for a single feature
+            #
+            #   @param event_count [Float] Number of distinct usage events that consumed credits in this series. This count
             #
             #   @param feature_id [String, nil] The feature ID; null when grouping by dimensions only
             #
@@ -172,6 +185,12 @@ module Stigg
             #   @param tags [Array<Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Tag>] Dimension key/value pairs identifying this series when groupBy is applied
 
             class Point < Stigg::Internal::Type::BaseModel
+              # @!attribute event_count
+              #   Number of distinct usage events that consumed credits in this time bucket
+              #
+              #   @return [Float]
+              required :event_count, Float, api_name: :eventCount
+
               # @!attribute timestamp
               #   The timestamp of the data point
               #
@@ -184,8 +203,10 @@ module Stigg
               #   @return [Float]
               required :value, Float
 
-              # @!method initialize(timestamp:, value:)
+              # @!method initialize(event_count:, timestamp:, value:)
               #   A single data point in the credit usage time series
+              #
+              #   @param event_count [Float] Number of distinct usage events that consumed credits in this time bucket
               #
               #   @param timestamp [Time] The timestamp of the data point
               #

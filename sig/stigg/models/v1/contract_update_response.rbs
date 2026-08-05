@@ -21,6 +21,7 @@ module Stigg
             activation_end_date: Time?,
             activation_start_date: Time?,
             billing_id: String?,
+            billing_state: Stigg::Models::V1::ContractUpdateResponse::Data::billing_state?,
             contract_id: String,
             created_at: Time?,
             customer_external_id: String?,
@@ -42,6 +43,8 @@ module Stigg
           attr_accessor activation_start_date: Time?
 
           attr_accessor billing_id: String?
+
+          attr_accessor billing_state: Stigg::Models::V1::ContractUpdateResponse::Data::billing_state?
 
           attr_accessor contract_id: String
 
@@ -70,6 +73,7 @@ module Stigg
             activation_end_date: Time?,
             activation_start_date: Time?,
             billing_id: String?,
+            billing_state: Stigg::Models::V1::ContractUpdateResponse::Data::billing_state?,
             contract_id: String,
             created_at: Time?,
             customer_external_id: String?,
@@ -88,6 +92,7 @@ module Stigg
             activation_end_date: Time?,
             activation_start_date: Time?,
             billing_id: String?,
+            billing_state: Stigg::Models::V1::ContractUpdateResponse::Data::billing_state?,
             contract_id: String,
             created_at: Time?,
             customer_external_id: String?,
@@ -100,6 +105,19 @@ module Stigg
             state: Stigg::Models::V1::ContractUpdateResponse::Data::state,
             subscriptions: ::Array[Stigg::Models::V1::ContractUpdateResponse::Data::Subscription]
           }
+
+          type billing_state = :DRAFT | :ACTIVE | :CANCELED | :END_BILLING
+
+          module BillingState
+            extend Stigg::Internal::Type::Enum
+
+            DRAFT: :DRAFT
+            ACTIVE: :ACTIVE
+            CANCELED: :CANCELED
+            END_BILLING: :END_BILLING
+
+            def self?.values: -> ::Array[Stigg::Models::V1::ContractUpdateResponse::Data::billing_state]
+          end
 
           type latest_invoice =
             {

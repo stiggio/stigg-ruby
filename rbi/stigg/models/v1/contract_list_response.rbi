@@ -30,6 +30,16 @@ module Stigg
         sig { returns(T.nilable(String)) }
         attr_accessor :billing_id
 
+        # The current state of the contract
+        sig do
+          returns(
+            T.nilable(
+              Stigg::Models::V1::ContractListResponse::BillingState::TaggedSymbol
+            )
+          )
+        end
+        attr_accessor :billing_state
+
         # The Stigg contract ref ID (the key used to fetch/update/delete this contract)
         sig { returns(String) }
         attr_accessor :contract_id
@@ -118,6 +128,10 @@ module Stigg
             activation_end_date: T.nilable(Time),
             activation_start_date: T.nilable(Time),
             billing_id: T.nilable(String),
+            billing_state:
+              T.nilable(
+                Stigg::Models::V1::ContractListResponse::BillingState::OrSymbol
+              ),
             contract_id: String,
             created_at: T.nilable(Time),
             customer_external_id: T.nilable(String),
@@ -151,6 +165,8 @@ module Stigg
           # The billing provider (Received) contract ID; null until the contract has synced
           # to the billing provider
           billing_id:,
+          # The current state of the contract
+          billing_state:,
           # The Stigg contract ref ID (the key used to fetch/update/delete this contract)
           contract_id:,
           # The date the contract was created
@@ -186,6 +202,10 @@ module Stigg
               activation_end_date: T.nilable(Time),
               activation_start_date: T.nilable(Time),
               billing_id: T.nilable(String),
+              billing_state:
+                T.nilable(
+                  Stigg::Models::V1::ContractListResponse::BillingState::TaggedSymbol
+                ),
               contract_id: String,
               created_at: T.nilable(Time),
               customer_external_id: T.nilable(String),
@@ -207,6 +227,51 @@ module Stigg
           )
         end
         def to_hash
+        end
+
+        # The current state of the contract
+        module BillingState
+          extend Stigg::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Stigg::Models::V1::ContractListResponse::BillingState
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          DRAFT =
+            T.let(
+              :DRAFT,
+              Stigg::Models::V1::ContractListResponse::BillingState::TaggedSymbol
+            )
+          ACTIVE =
+            T.let(
+              :ACTIVE,
+              Stigg::Models::V1::ContractListResponse::BillingState::TaggedSymbol
+            )
+          CANCELED =
+            T.let(
+              :CANCELED,
+              Stigg::Models::V1::ContractListResponse::BillingState::TaggedSymbol
+            )
+          END_BILLING =
+            T.let(
+              :END_BILLING,
+              Stigg::Models::V1::ContractListResponse::BillingState::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Stigg::Models::V1::ContractListResponse::BillingState::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
 
         class LatestInvoice < Stigg::Internal::Type::BaseModel

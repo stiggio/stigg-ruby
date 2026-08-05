@@ -73,6 +73,7 @@ class Stigg::Test::Resources::V1::ContractsTest < Stigg::Test::ResourceTest
         activation_end_date: Time | nil,
         activation_start_date: Time | nil,
         billing_id: String | nil,
+        billing_state: Stigg::Models::V1::ContractListResponse::BillingState | nil,
         contract_id: String,
         created_at: Time | nil,
         customer_external_id: String | nil,
