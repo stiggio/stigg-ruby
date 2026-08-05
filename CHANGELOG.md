@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.47 (2026-08-05)
+
+Full Changelog: [v0.1.0-beta.46...v0.1.0-beta.47](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.46...v0.1.0-beta.47)
+
+### Features
+
+* **api:** add event_count to credit_get_usage_response Series/Point models ([50c4511](https://github.com/stiggio/stigg-ruby/commit/50c4511632676df80fe380cb2d8ce0ada1bc9e4a))
+
 ## 0.1.0-beta.46 (2026-07-28)
 
 Full Changelog: [v0.1.0-beta.45...v0.1.0-beta.46](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.45...v0.1.0-beta.46)
