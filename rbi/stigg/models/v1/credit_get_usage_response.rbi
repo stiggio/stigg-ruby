@@ -263,6 +263,12 @@ module Stigg
                 )
               end
 
+            # Number of distinct usage events that consumed credits in this series. This count
+            # is not additive across series, because an event matched by several meters
+            # appears in more than one series.
+            sig { returns(Float) }
+            attr_accessor :event_count
+
             # The feature ID; null when grouping by dimensions only
             sig { returns(T.nilable(String)) }
             attr_accessor :feature_id
@@ -310,6 +316,7 @@ module Stigg
             # Credit usage data for a single feature
             sig do
               params(
+                event_count: Float,
                 feature_id: T.nilable(String),
                 feature_name: T.nilable(String),
                 points:
@@ -324,6 +331,10 @@ module Stigg
               ).returns(T.attached_class)
             end
             def self.new(
+              # Number of distinct usage events that consumed credits in this series. This count
+              # is not additive across series, because an event matched by several meters
+              # appears in more than one series.
+              event_count:,
               # The feature ID; null when grouping by dimensions only
               feature_id:,
               # The display name of the feature; null when grouping by dimensions only
@@ -340,6 +351,7 @@ module Stigg
             sig do
               override.returns(
                 {
+                  event_count: Float,
                   feature_id: T.nilable(String),
                   feature_name: T.nilable(String),
                   points:
@@ -366,6 +378,10 @@ module Stigg
                   )
                 end
 
+              # Number of distinct usage events that consumed credits in this time bucket
+              sig { returns(Float) }
+              attr_accessor :event_count
+
               # The timestamp of the data point
               sig { returns(Time) }
               attr_accessor :timestamp
@@ -376,9 +392,15 @@ module Stigg
 
               # A single data point in the credit usage time series
               sig do
-                params(timestamp: Time, value: Float).returns(T.attached_class)
+                params(
+                  event_count: Float,
+                  timestamp: Time,
+                  value: Float
+                ).returns(T.attached_class)
               end
               def self.new(
+                # Number of distinct usage events that consumed credits in this time bucket
+                event_count:,
                 # The timestamp of the data point
                 timestamp:,
                 # The credit usage value at this point
@@ -386,7 +408,11 @@ module Stigg
               )
               end
 
-              sig { override.returns({ timestamp: Time, value: Float }) }
+              sig do
+                override.returns(
+                  { event_count: Float, timestamp: Time, value: Float }
+                )
+              end
               def to_hash
               end
             end
