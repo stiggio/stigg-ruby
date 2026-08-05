@@ -24,6 +24,7 @@ class Stigg::Test::Resources::V1Beta::EntityTypesTest < Stigg::Test::ResourceTes
         id: String,
         attribution_keys: ^(Stigg::Internal::Type::ArrayOf[String]),
         created_at: Time,
+        description: String | nil,
         display_name: String,
         updated_at: Time
       }

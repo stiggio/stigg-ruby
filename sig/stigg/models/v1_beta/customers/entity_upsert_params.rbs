@@ -46,12 +46,15 @@ module Stigg
           type entity =
             {
               id: String,
+              display_name: String?,
               entity_type_id: String,
               metadata: ::Hash[Symbol, String]
             }
 
           class Entity < Stigg::Internal::Type::BaseModel
             attr_accessor id: String
+
+            attr_accessor display_name: String?
 
             attr_reader entity_type_id: String?
 
@@ -63,12 +66,14 @@ module Stigg
 
             def initialize: (
               id: String,
+              ?display_name: String?,
               ?entity_type_id: String,
               ?metadata: ::Hash[Symbol, String]
             ) -> void
 
             def to_hash: -> {
               id: String,
+              display_name: String?,
               entity_type_id: String,
               metadata: ::Hash[Symbol, String]
             }

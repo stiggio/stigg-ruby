@@ -28,6 +28,7 @@ module Stigg
               {
                 cadence: String?,
                 current_usage: Float?,
+                display_name: String?,
                 entity_id: String,
                 entity_type_id: String,
                 parent_id: String?,
@@ -44,6 +45,8 @@ module Stigg
               attr_accessor cadence: String?
 
               attr_accessor current_usage: Float?
+
+              attr_accessor display_name: String?
 
               attr_accessor entity_id: String
 
@@ -72,6 +75,7 @@ module Stigg
               def initialize: (
                 cadence: String?,
                 current_usage: Float?,
+                display_name: String?,
                 entity_id: String,
                 entity_type_id: String,
                 parent_id: String?,
@@ -87,6 +91,7 @@ module Stigg
               def to_hash: -> {
                 cadence: String?,
                 current_usage: Float?,
+                display_name: String?,
                 entity_id: String,
                 entity_type_id: String,
                 parent_id: String?,
