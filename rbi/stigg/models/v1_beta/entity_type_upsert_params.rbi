@@ -84,12 +84,18 @@ module Stigg
           sig { returns(String) }
           attr_accessor :display_name
 
+          # What this entity type represents and what it is for governing. Omit to preserve
+          # the stored value, or send an empty string or null to clear it.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :description
+
           # A single entity type definition.
           sig do
             params(
               id: String,
               attribution_keys: T::Array[String],
-              display_name: String
+              display_name: String,
+              description: T.nilable(String)
             ).returns(T.attached_class)
           end
           def self.new(
@@ -99,7 +105,10 @@ module Stigg
             # ["orgId"]). Empty array means no attribution.
             attribution_keys:,
             # The display name for the entity type
-            display_name:
+            display_name:,
+            # What this entity type represents and what it is for governing. Omit to preserve
+            # the stored value, or send an empty string or null to clear it.
+            description: nil
           )
           end
 
@@ -108,7 +117,8 @@ module Stigg
               {
                 id: String,
                 attribution_keys: T::Array[String],
-                display_name: String
+                display_name: String,
+                description: T.nilable(String)
               }
             )
           end

@@ -35,7 +35,8 @@ module Stigg
             sig { params(currency_ids: T::Array[String]).void }
             attr_writer :currency_ids
 
-            # Case-insensitive substring match on the entity id (`%`/`_` matched literally).
+            # Case-insensitive substring match on the entity id or its display name (`%`/`_`
+            # matched literally).
             sig { returns(T.nilable(String)) }
             attr_reader :entity_id_search
 
@@ -171,7 +172,8 @@ module Stigg
               # Currency ids to include, repeated per value (e.g. `?currencyIds=credits`). Omit
               # both featureIds and currencyIds for tree mode.
               currency_ids: nil,
-              # Case-insensitive substring match on the entity id (`%`/`_` matched literally).
+              # Case-insensitive substring match on the entity id or its display name (`%`/`_`
+              # matched literally).
               entity_id_search: nil,
               # Filter to one or more entity types, repeated per value (e.g.
               # `?entityTypeIds=team&entityTypeIds=user`).

@@ -29,7 +29,8 @@ module Stigg
             optional :currency_ids, Stigg::Internal::Type::ArrayOf[String]
 
             # @!attribute entity_id_search
-            #   Case-insensitive substring match on the entity id (`%`/`_` matched literally).
+            #   Case-insensitive substring match on the entity id or its display name (`%`/`_`
+            #   matched literally).
             #
             #   @return [String, nil]
             optional :entity_id_search, String
@@ -104,7 +105,7 @@ module Stigg
             #
             #   @param currency_ids [Array<String>] Currency ids to include, repeated per value (e.g. `?currencyIds=credits`). Omit
             #
-            #   @param entity_id_search [String] Case-insensitive substring match on the entity id (`%`/`_` matched literally).
+            #   @param entity_id_search [String] Case-insensitive substring match on the entity id or its display name (`%`/`_` m
             #
             #   @param entity_type_ids [Array<String>] Filter to one or more entity types, repeated per value (e.g. `?entityTypeIds=tea
             #

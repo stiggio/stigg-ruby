@@ -42,8 +42,8 @@ module Stigg
               # Query param: Currency ids to include, repeated per value (e.g.
               # `?currencyIds=credits`). Omit both featureIds and currencyIds for tree mode.
               currency_ids: nil,
-              # Query param: Case-insensitive substring match on the entity id (`%`/`_` matched
-              # literally).
+              # Query param: Case-insensitive substring match on the entity id or its display
+              # name (`%`/`_` matched literally).
               entity_id_search: nil,
               # Query param: Filter to one or more entity types, repeated per value (e.g.
               # `?entityTypeIds=team&entityTypeIds=user`).

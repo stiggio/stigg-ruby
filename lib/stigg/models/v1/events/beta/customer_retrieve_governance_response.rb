@@ -41,6 +41,13 @@ module Stigg
               #   @return [Float, nil]
               required :current_usage, Float, api_name: :currentUsage, nil?: true
 
+              # @!attribute display_name
+              #   Human-readable name of the entity, or null when none is set (display the entity
+              #   id instead).
+              #
+              #   @return [String, nil]
+              required :display_name, String, api_name: :displayName, nil?: true
+
               # @!attribute entity_id
               #   External id of the entity at this node.
               #
@@ -54,8 +61,10 @@ module Stigg
               required :entity_type_id, String, api_name: :entityTypeId
 
               # @!attribute parent_id
-              #   External id of the parent entity in the tree; `null` for a root. Use it to
-              #   rebuild the tree.
+              #   External id of the parent entity in the tree. `null` means the entity is either
+              #   a root or not yet placed in the hierarchy — placement rides on an assignment, so
+              #   an entity with no limits set has no parent yet. Both render at the top level;
+              #   use it to rebuild the tree.
               #
               #   @return [String, nil]
               required :parent_id, String, api_name: :parentId, nil?: true
@@ -74,15 +83,17 @@ module Stigg
               required :usage_limit, Float, api_name: :usageLimit, nil?: true
 
               # @!attribute usage_period_end
-              #   Exclusive end of the cadence period — when usage resets; `null` once the period
-              #   has rolled over.
+              #   Exclusive end of the cadence period in progress now — when usage resets. `null`
+              #   when the node has no usage configuration, or when a stored cadence cannot be
+              #   parsed.
               #
               #   @return [Time, nil]
               required :usage_period_end, Time, api_name: :usagePeriodEnd, nil?: true
 
               # @!attribute usage_period_start
-              #   Start of the cadence period the usage snapshot belongs to; `null` once the
-              #   period has rolled over.
+              #   Start of the cadence period in progress now, derived from the cadence and the
+              #   assignment anchor — it stays correct across a rollover. `null` when the node has
+              #   no usage configuration, or when a stored cadence cannot be parsed.
               #
               #   @return [Time, nil]
               required :usage_period_start, Time, api_name: :usagePeriodStart, nil?: true
@@ -107,7 +118,7 @@ module Stigg
               #   @return [String, nil]
               optional :feature_id, String, api_name: :featureId
 
-              # @!method initialize(cadence:, current_usage:, entity_id:, entity_type_id:, parent_id:, scope_entity_ids:, usage_limit:, usage_period_end:, usage_period_start:, utilization:, currency_id: nil, feature_id: nil)
+              # @!method initialize(cadence:, current_usage:, display_name:, entity_id:, entity_type_id:, parent_id:, scope_entity_ids:, usage_limit:, usage_period_end:, usage_period_start:, utilization:, currency_id: nil, feature_id: nil)
               #   Some parameter documentations has been truncated, see
               #   {Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Data} for
               #   more details.
@@ -121,19 +132,21 @@ module Stigg
               #
               #   @param current_usage [Float, nil] Usage consumed in the current cadence period (may lag the live counter by a shor
               #
+              #   @param display_name [String, nil] Human-readable name of the entity, or null when none is set (display the entity
+              #
               #   @param entity_id [String] External id of the entity at this node.
               #
               #   @param entity_type_id [String] External id of the entity type (e.g. `team`, `user`).
               #
-              #   @param parent_id [String, nil] External id of the parent entity in the tree; `null` for a root. Use it to rebui
+              #   @param parent_id [String, nil] External id of the parent entity in the tree. `null` means the entity is either
               #
               #   @param scope_entity_ids [Array<String>] The configuration scope (entity ids). Empty is the node-wide configuration; a no
               #
               #   @param usage_limit [Float, nil] Hard usage limit for this node per cadence period.
               #
-              #   @param usage_period_end [Time, nil] Exclusive end of the cadence period — when usage resets; `null` once the period
+              #   @param usage_period_end [Time, nil] Exclusive end of the cadence period in progress now — when usage resets. `null`
               #
-              #   @param usage_period_start [Time, nil] Start of the cadence period the usage snapshot belongs to; `null` once the perio
+              #   @param usage_period_start [Time, nil] Start of the cadence period in progress now, derived from the cadence and the as
               #
               #   @param utilization [Float, nil] `currentUsage / usageLimit` (1 when usageLimit is 0 — always at limit). The cros
               #

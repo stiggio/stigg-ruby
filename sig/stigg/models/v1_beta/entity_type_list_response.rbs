@@ -6,6 +6,7 @@ module Stigg
           id: String,
           attribution_keys: ::Array[String],
           created_at: Time,
+          description: String?,
           display_name: String,
           updated_at: Time
         }
@@ -17,6 +18,8 @@ module Stigg
 
         attr_accessor created_at: Time
 
+        attr_accessor description: String?
+
         attr_accessor display_name: String
 
         attr_accessor updated_at: Time
@@ -25,6 +28,7 @@ module Stigg
           id: String,
           attribution_keys: ::Array[String],
           created_at: Time,
+          description: String?,
           display_name: String,
           updated_at: Time
         ) -> void
@@ -33,6 +37,7 @@ module Stigg
           id: String,
           attribution_keys: ::Array[String],
           created_at: Time,
+          description: String?,
           display_name: String,
           updated_at: Time
         }
