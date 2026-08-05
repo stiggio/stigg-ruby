@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.48 (2026-08-05)
+
+Full Changelog: [v0.1.0-beta.47...v0.1.0-beta.48](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.47...v0.1.0-beta.48)
+
+### Features
+
+* **api:** add display_name to entities, description to entity_types ([64cb63a](https://github.com/stiggio/stigg-ruby/commit/64cb63ae53c03e6abbba16b1bebcbd25c2d2ca00))
+
 ## 0.1.0-beta.47 (2026-08-05)
 
 Full Changelog: [v0.1.0-beta.46...v0.1.0-beta.47](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.46...v0.1.0-beta.47)
