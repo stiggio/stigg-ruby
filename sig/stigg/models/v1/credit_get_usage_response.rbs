@@ -92,6 +92,7 @@ module Stigg
 
           type series =
             {
+              event_count: Float,
               feature_id: String?,
               feature_name: String?,
               points: ::Array[Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Point],
@@ -100,6 +101,8 @@ module Stigg
             }
 
           class Series < Stigg::Internal::Type::BaseModel
+            attr_accessor event_count: Float
+
             attr_accessor feature_id: String?
 
             attr_accessor feature_name: String?
@@ -115,6 +118,7 @@ module Stigg
             ) -> ::Array[Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Tag]
 
             def initialize: (
+              event_count: Float,
               feature_id: String?,
               feature_name: String?,
               points: ::Array[Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Point],
@@ -123,6 +127,7 @@ module Stigg
             ) -> void
 
             def to_hash: -> {
+              event_count: Float,
               feature_id: String?,
               feature_name: String?,
               points: ::Array[Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Point],
@@ -130,16 +135,26 @@ module Stigg
               tags: ::Array[Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Tag]
             }
 
-            type point = { timestamp: Time, value: Float }
+            type point = { event_count: Float, timestamp: Time, value: Float }
 
             class Point < Stigg::Internal::Type::BaseModel
+              attr_accessor event_count: Float
+
               attr_accessor timestamp: Time
 
               attr_accessor value: Float
 
-              def initialize: (timestamp: Time, value: Float) -> void
+              def initialize: (
+                event_count: Float,
+                timestamp: Time,
+                value: Float
+              ) -> void
 
-              def to_hash: -> { timestamp: Time, value: Float }
+              def to_hash: -> {
+                event_count: Float,
+                timestamp: Time,
+                value: Float
+              }
             end
 
             type tag = { key: String, value: String }

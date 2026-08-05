@@ -44,6 +44,15 @@ module Stigg
           #   @return [String, nil]
           required :billing_id, String, api_name: :billingId, nil?: true
 
+          # @!attribute billing_state
+          #   The current state of the contract
+          #
+          #   @return [Symbol, Stigg::Models::V1::ContractCreateResponse::Data::BillingState, nil]
+          required :billing_state,
+                   enum: -> { Stigg::Models::V1::ContractCreateResponse::Data::BillingState },
+                   api_name: :billingState,
+                   nil?: true
+
           # @!attribute contract_id
           #   The Stigg contract ref ID (the key used to fetch/update/delete this contract)
           #
@@ -120,7 +129,7 @@ module Stigg
           required :subscriptions,
                    -> { Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::ContractCreateResponse::Data::Subscription] }
 
-          # @!method initialize(id:, activation_end_date:, activation_start_date:, billing_id:, contract_id:, created_at:, customer_external_id:, external_id:, latest_invoice:, name:, next_invoice:, po_number:, ref_id:, state:, subscriptions:)
+          # @!method initialize(id:, activation_end_date:, activation_start_date:, billing_id:, billing_state:, contract_id:, created_at:, customer_external_id:, external_id:, latest_invoice:, name:, next_invoice:, po_number:, ref_id:, state:, subscriptions:)
           #   Some parameter documentations has been truncated, see
           #   {Stigg::Models::V1::ContractCreateResponse::Data} for more details.
           #
@@ -133,6 +142,8 @@ module Stigg
           #   @param activation_start_date [Time, nil] The date the contract becomes active
           #
           #   @param billing_id [String, nil] The billing provider (Received) contract ID; null until the contract has synced
+          #
+          #   @param billing_state [Symbol, Stigg::Models::V1::ContractCreateResponse::Data::BillingState, nil] The current state of the contract
           #
           #   @param contract_id [String] The Stigg contract ref ID (the key used to fetch/update/delete this contract)
           #
@@ -155,6 +166,21 @@ module Stigg
           #   @param state [Symbol, Stigg::Models::V1::ContractCreateResponse::Data::State] The current state of the contract
           #
           #   @param subscriptions [Array<Stigg::Models::V1::ContractCreateResponse::Data::Subscription>] The custom subscriptions attached to this contract (empty when none)
+
+          # The current state of the contract
+          #
+          # @see Stigg::Models::V1::ContractCreateResponse::Data#billing_state
+          module BillingState
+            extend Stigg::Internal::Type::Enum
+
+            DRAFT = :DRAFT
+            ACTIVE = :ACTIVE
+            CANCELED = :CANCELED
+            END_BILLING = :END_BILLING
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
 
           # @see Stigg::Models::V1::ContractCreateResponse::Data#latest_invoice
           class LatestInvoice < Stigg::Internal::Type::BaseModel
