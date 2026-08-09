@@ -1,5 +1,42 @@
 # Changelog
 
+## 0.1.0-beta.48 (2026-08-05)
+
+Full Changelog: [v0.1.0-beta.47...v0.1.0-beta.48](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.47...v0.1.0-beta.48)
+
+### Features
+
+* **api:** add display_name to entities, description to entity_types ([64cb63a](https://github.com/stiggio/stigg-ruby/commit/64cb63ae53c03e6abbba16b1bebcbd25c2d2ca00))
+
+## 0.1.0-beta.47 (2026-08-05)
+
+Full Changelog: [v0.1.0-beta.46...v0.1.0-beta.47](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.46...v0.1.0-beta.47)
+
+### Features
+
+* **api:** add event_count to credit_get_usage_response Series/Point models ([50c4511](https://github.com/stiggio/stigg-ruby/commit/50c4511632676df80fe380cb2d8ce0ada1bc9e4a))
+
+## 0.1.0-beta.46 (2026-07-28)
+
+Full Changelog: [v0.1.0-beta.45...v0.1.0-beta.46](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.45...v0.1.0-beta.46)
+
+### Features
+
+* **contracts:** create contracts backed by shared Received enterprise contract ([7f03d08](https://github.com/stiggio/stigg-ruby/commit/7f03d0807ef95b18c210db0ced83c816e876349b))
+
+## 0.1.0-beta.45 (2026-07-26)
+
+Full Changelog: [v0.1.0-beta.44...v0.1.0-beta.45](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.44...v0.1.0-beta.45)
+
+### Features
+
+* **api:** add credit_entitlement parameter to addon/plan update params ([2ae6de4](https://github.com/stiggio/stigg-ruby/commit/2ae6de4c869d839537de19fcef36469979cccea2))
+
+
+### Chores
+
+* **internal:** regenerate SDK with no functional changes ([0ec3e2e](https://github.com/stiggio/stigg-ruby/commit/0ec3e2e23ee5088f27abeb230a7b695daa362886))
+
 ## 0.1.0-beta.44 (2026-07-21)
 
 Full Changelog: [v0.1.0-beta.43...v0.1.0-beta.44](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.43...v0.1.0-beta.44)
