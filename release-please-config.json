@@ -61,7 +61,5 @@
   ],
   "release-type": "ruby",
   "version-file": "lib/stigg/version.rb",
-  "extra-files": [
-    "README.md"
-  ]
+  "extra-files": []
 }
