@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 module Stigg
-  VERSION = "0.1.0.pre.beta.49"
+  VERSION = "0.1.0.pre.beta.50"
 end

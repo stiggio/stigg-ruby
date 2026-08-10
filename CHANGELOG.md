@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.0-beta.50 (2026-08-10)
+
+Full Changelog: [v0.1.0-beta.49...v0.1.0-beta.50](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.49...v0.1.0-beta.50)
+
 ## 0.1.0-beta.49 (2026-08-10)
 
 Full Changelog: [v0.1.0-beta.48...v0.1.0-beta.49](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.48...v0.1.0-beta.49)
