@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.0-beta.51](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.50...v0.1.0-beta.51) (2026-08-10)
+
+
+### Bug Fixes
+
+* correct the malformed gem version in README ([ddb5cd7](https://github.com/stiggio/stigg-ruby/commit/ddb5cd7bfa70d69c661cf1b1d20ac288f035783c))
+
 ## 0.1.0-beta.50 (2026-08-10)
 
 Full Changelog: [v0.1.0-beta.49...v0.1.0-beta.50](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.49...v0.1.0-beta.50)
