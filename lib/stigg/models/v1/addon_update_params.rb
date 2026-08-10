@@ -374,14 +374,6 @@ module Stigg
           end
 
           class OveragePricingModel < Stigg::Internal::Type::BaseModel
-            # @!attribute billing_model
-            #   The billing model for overages
-            #
-            #   @return [Symbol, Stigg::Models::V1::AddonUpdateParams::Charges::OveragePricingModel::BillingModel]
-            required :billing_model,
-                     enum: -> { Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::BillingModel },
-                     api_name: :billingModel
-
             # @!attribute price_periods
             #   Price periods for overage pricing
             #
@@ -391,14 +383,6 @@ module Stigg
                        Stigg::Internal::Type::ArrayOf[Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::PricePeriod]
                      },
                      api_name: :pricePeriods
-
-            # @!attribute billing_cadence
-            #   The billing cadence for overages
-            #
-            #   @return [Symbol, Stigg::Models::V1::AddonUpdateParams::Charges::OveragePricingModel::BillingCadence, nil]
-            optional :billing_cadence,
-                     enum: -> { Stigg::V1::AddonUpdateParams::Charges::OveragePricingModel::BillingCadence },
-                     api_name: :billingCadence
 
             # @!attribute credit_entitlement
             #   Credit entitlement to grant when a credit overage targets a currency not yet
@@ -427,18 +411,14 @@ module Stigg
             #   @return [String, nil]
             optional :feature_id, String, api_name: :featureId
 
-            # @!method initialize(billing_model:, price_periods:, billing_cadence: nil, credit_entitlement: nil, currency_id: nil, entitlement: nil, feature_id: nil)
+            # @!method initialize(price_periods:, credit_entitlement: nil, currency_id: nil, entitlement: nil, feature_id: nil)
             #   Some parameter documentations has been truncated, see
             #   {Stigg::Models::V1::AddonUpdateParams::Charges::OveragePricingModel} for more
             #   details.
             #
             #   Overage pricing model configuration.
             #
-            #   @param billing_model [Symbol, Stigg::Models::V1::AddonUpdateParams::Charges::OveragePricingModel::BillingModel] The billing model for overages
-            #
             #   @param price_periods [Array<Stigg::Models::V1::AddonUpdateParams::Charges::OveragePricingModel::PricePeriod>] Price periods for overage pricing
-            #
-            #   @param billing_cadence [Symbol, Stigg::Models::V1::AddonUpdateParams::Charges::OveragePricingModel::BillingCadence] The billing cadence for overages
             #
             #   @param credit_entitlement [Stigg::Models::V1::AddonUpdateParams::Charges::OveragePricingModel::CreditEntitlement] Credit entitlement to grant when a credit overage targets a currency not yet gra
             #
@@ -447,22 +427,6 @@ module Stigg
             #   @param entitlement [Stigg::Models::V1::AddonUpdateParams::Charges::OveragePricingModel::Entitlement] Entitlement configuration for the overage feature
             #
             #   @param feature_id [String] The feature ID for overage pricing
-
-            # The billing model for overages
-            #
-            # @see Stigg::Models::V1::AddonUpdateParams::Charges::OveragePricingModel#billing_model
-            module BillingModel
-              extend Stigg::Internal::Type::Enum
-
-              FLAT_FEE = :FLAT_FEE
-              MINIMUM_SPEND = :MINIMUM_SPEND
-              PER_UNIT = :PER_UNIT
-              USAGE_BASED = :USAGE_BASED
-              CREDIT_BASED = :CREDIT_BASED
-
-              # @!method self.values
-              #   @return [Array<Symbol>]
-            end
 
             class PricePeriod < Stigg::Internal::Type::BaseModel
               # @!attribute billing_period
@@ -1079,19 +1043,6 @@ module Stigg
                   end
                 end
               end
-            end
-
-            # The billing cadence for overages
-            #
-            # @see Stigg::Models::V1::AddonUpdateParams::Charges::OveragePricingModel#billing_cadence
-            module BillingCadence
-              extend Stigg::Internal::Type::Enum
-
-              RECURRING = :RECURRING
-              ONE_OFF = :ONE_OFF
-
-              # @!method self.values
-              #   @return [Array<Symbol>]
             end
 
             # @see Stigg::Models::V1::AddonUpdateParams::Charges::OveragePricingModel#credit_entitlement

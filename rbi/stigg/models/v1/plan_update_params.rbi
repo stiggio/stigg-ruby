@@ -1144,14 +1144,6 @@ module Stigg
                 )
               end
 
-            # The billing model for overages
-            sig do
-              returns(
-                Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::BillingModel::OrSymbol
-              )
-            end
-            attr_accessor :billing_model
-
             # Price periods for overage pricing
             sig do
               returns(
@@ -1161,24 +1153,6 @@ module Stigg
               )
             end
             attr_accessor :price_periods
-
-            # The billing cadence for overages
-            sig do
-              returns(
-                T.nilable(
-                  Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::BillingCadence::OrSymbol
-                )
-              )
-            end
-            attr_reader :billing_cadence
-
-            sig do
-              params(
-                billing_cadence:
-                  Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::BillingCadence::OrSymbol
-              ).void
-            end
-            attr_writer :billing_cadence
 
             # Credit entitlement to grant when a credit overage targets a currency not yet
             # granted on the plan
@@ -1234,14 +1208,10 @@ module Stigg
             # Overage pricing model configuration.
             sig do
               params(
-                billing_model:
-                  Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::BillingModel::OrSymbol,
                 price_periods:
                   T::Array[
                     Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::PricePeriod::OrHash
                   ],
-                billing_cadence:
-                  Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::BillingCadence::OrSymbol,
                 credit_entitlement:
                   Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::CreditEntitlement::OrHash,
                 currency_id: String,
@@ -1251,12 +1221,8 @@ module Stigg
               ).returns(T.attached_class)
             end
             def self.new(
-              # The billing model for overages
-              billing_model:,
               # Price periods for overage pricing
               price_periods:,
-              # The billing cadence for overages
-              billing_cadence: nil,
               # Credit entitlement to grant when a credit overage targets a currency not yet
               # granted on the plan
               credit_entitlement: nil,
@@ -1272,14 +1238,10 @@ module Stigg
             sig do
               override.returns(
                 {
-                  billing_model:
-                    Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::BillingModel::OrSymbol,
                   price_periods:
                     T::Array[
                       Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::PricePeriod
                     ],
-                  billing_cadence:
-                    Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::BillingCadence::OrSymbol,
                   credit_entitlement:
                     Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::CreditEntitlement,
                   currency_id: String,
@@ -1290,56 +1252,6 @@ module Stigg
               )
             end
             def to_hash
-            end
-
-            # The billing model for overages
-            module BillingModel
-              extend Stigg::Internal::Type::Enum
-
-              TaggedSymbol =
-                T.type_alias do
-                  T.all(
-                    Symbol,
-                    Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::BillingModel
-                  )
-                end
-              OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-              FLAT_FEE =
-                T.let(
-                  :FLAT_FEE,
-                  Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::BillingModel::TaggedSymbol
-                )
-              MINIMUM_SPEND =
-                T.let(
-                  :MINIMUM_SPEND,
-                  Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::BillingModel::TaggedSymbol
-                )
-              PER_UNIT =
-                T.let(
-                  :PER_UNIT,
-                  Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::BillingModel::TaggedSymbol
-                )
-              USAGE_BASED =
-                T.let(
-                  :USAGE_BASED,
-                  Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::BillingModel::TaggedSymbol
-                )
-              CREDIT_BASED =
-                T.let(
-                  :CREDIT_BASED,
-                  Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::BillingModel::TaggedSymbol
-                )
-
-              sig do
-                override.returns(
-                  T::Array[
-                    Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::BillingModel::TaggedSymbol
-                  ]
-                )
-              end
-              def self.values
-              end
             end
 
             class PricePeriod < Stigg::Internal::Type::BaseModel
@@ -3710,41 +3622,6 @@ module Stigg
                     end
                   end
                 end
-              end
-            end
-
-            # The billing cadence for overages
-            module BillingCadence
-              extend Stigg::Internal::Type::Enum
-
-              TaggedSymbol =
-                T.type_alias do
-                  T.all(
-                    Symbol,
-                    Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::BillingCadence
-                  )
-                end
-              OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-              RECURRING =
-                T.let(
-                  :RECURRING,
-                  Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::BillingCadence::TaggedSymbol
-                )
-              ONE_OFF =
-                T.let(
-                  :ONE_OFF,
-                  Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::BillingCadence::TaggedSymbol
-                )
-
-              sig do
-                override.returns(
-                  T::Array[
-                    Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::BillingCadence::TaggedSymbol
-                  ]
-                )
-              end
-              def self.values
               end
             end
 

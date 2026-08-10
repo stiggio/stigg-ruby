@@ -465,9 +465,7 @@ module Stigg
 
           type overage_pricing_model =
             {
-              billing_model: Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::billing_model,
               price_periods: ::Array[Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::PricePeriod],
-              billing_cadence: Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::billing_cadence,
               credit_entitlement: Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::CreditEntitlement,
               currency_id: String,
               entitlement: Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::Entitlement,
@@ -475,15 +473,7 @@ module Stigg
             }
 
           class OveragePricingModel < Stigg::Internal::Type::BaseModel
-            attr_accessor billing_model: Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::billing_model
-
             attr_accessor price_periods: ::Array[Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::PricePeriod]
-
-            attr_reader billing_cadence: Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::billing_cadence?
-
-            def billing_cadence=: (
-              Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::billing_cadence
-            ) -> Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::billing_cadence
 
             attr_reader credit_entitlement: Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::CreditEntitlement?
 
@@ -506,9 +496,7 @@ module Stigg
             def feature_id=: (String) -> String
 
             def initialize: (
-              billing_model: Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::billing_model,
               price_periods: ::Array[Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::PricePeriod],
-              ?billing_cadence: Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::billing_cadence,
               ?credit_entitlement: Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::CreditEntitlement,
               ?currency_id: String,
               ?entitlement: Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::Entitlement,
@@ -516,33 +504,12 @@ module Stigg
             ) -> void
 
             def to_hash: -> {
-              billing_model: Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::billing_model,
               price_periods: ::Array[Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::PricePeriod],
-              billing_cadence: Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::billing_cadence,
               credit_entitlement: Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::CreditEntitlement,
               currency_id: String,
               entitlement: Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::Entitlement,
               feature_id: String
             }
-
-            type billing_model =
-              :FLAT_FEE
-              | :MINIMUM_SPEND
-              | :PER_UNIT
-              | :USAGE_BASED
-              | :CREDIT_BASED
-
-            module BillingModel
-              extend Stigg::Internal::Type::Enum
-
-              FLAT_FEE: :FLAT_FEE
-              MINIMUM_SPEND: :MINIMUM_SPEND
-              PER_UNIT: :PER_UNIT
-              USAGE_BASED: :USAGE_BASED
-              CREDIT_BASED: :CREDIT_BASED
-
-              def self?.values: -> ::Array[Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::billing_model]
-            end
 
             type price_period =
               {
@@ -1495,17 +1462,6 @@ module Stigg
                   end
                 end
               end
-            end
-
-            type billing_cadence = :RECURRING | :ONE_OFF
-
-            module BillingCadence
-              extend Stigg::Internal::Type::Enum
-
-              RECURRING: :RECURRING
-              ONE_OFF: :ONE_OFF
-
-              def self?.values: -> ::Array[Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::billing_cadence]
             end
 
             type credit_entitlement =
