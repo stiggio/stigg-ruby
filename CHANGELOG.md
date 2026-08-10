@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-beta.49 (2026-08-10)
+
+Full Changelog: [v0.1.0-beta.48...v0.1.0-beta.49](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.48...v0.1.0-beta.49)
+
+### Bug Fixes
+
+* **api:** remove billing_model/billing_cadence from addon/plan overage pricing ([78f11bd](https://github.com/stiggio/stigg-ruby/commit/78f11bdcbdfdaf27dec49e975361d0e43d67d9e0))
+
 ## 0.1.0-beta.48 (2026-08-05)
 
 Full Changelog: [v0.1.0-beta.47...v0.1.0-beta.48](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.47...v0.1.0-beta.48)
