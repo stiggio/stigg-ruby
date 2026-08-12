@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.0-beta.52](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.51...v0.1.0-beta.52) (2026-08-12)
+
+
+### Bug Fixes
+
+* stop release-please corrupting the README gem version ([8e9febd](https://github.com/stiggio/stigg-ruby/commit/8e9febd240512ebb994a115705cc1ec59a03c6cc))
+
+
+### Styles
+
+* satisfy prettier in the trunk-sync lock ([d046155](https://github.com/stiggio/stigg-ruby/commit/d046155244c752c60e73ed15e1b6bbed420532d6))
+
 ## 0.1.0-beta.51 (2026-08-10)
 
 Full Changelog: [v0.1.0-beta.50...v0.1.0-beta.51](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.50...v0.1.0-beta.51)
