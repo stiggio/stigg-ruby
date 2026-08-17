@@ -309,6 +309,12 @@ module Stigg
             #   @return [Time, nil]
             required :due_date, Time, api_name: :dueDate, nil?: true
 
+            # @!attribute invoice_id
+            #   The billing provider ID of the draft invoice this preview describes
+            #
+            #   @return [String, nil]
+            required :invoice_id, String, api_name: :invoiceId, nil?: true
+
             # @!attribute period_end
             #   The end of the billing period the upcoming invoice covers
             #
@@ -321,12 +327,14 @@ module Stigg
             #   @return [Time, nil]
             required :period_start, Time, api_name: :periodStart, nil?: true
 
-            # @!method initialize(amount:, due_date:, period_end:, period_start:)
+            # @!method initialize(amount:, due_date:, invoice_id:, period_end:, period_start:)
             #   A preview of the contract's upcoming invoice, or null when none is available
             #
             #   @param amount [Stigg::Models::V1::ContractCreateResponse::Data::NextInvoice::Amount] The total amount of the upcoming invoice
             #
             #   @param due_date [Time, nil] The date the upcoming invoice is due
+            #
+            #   @param invoice_id [String, nil] The billing provider ID of the draft invoice this preview describes
             #
             #   @param period_end [Time, nil] The end of the billing period the upcoming invoice covers
             #

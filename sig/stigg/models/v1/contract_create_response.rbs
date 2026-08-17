@@ -213,6 +213,7 @@ module Stigg
             {
               amount: Stigg::Models::V1::ContractCreateResponse::Data::NextInvoice::Amount,
               due_date: Time?,
+              invoice_id: String?,
               period_end: Time?,
               period_start: Time?
             }
@@ -222,6 +223,8 @@ module Stigg
 
             attr_accessor due_date: Time?
 
+            attr_accessor invoice_id: String?
+
             attr_accessor period_end: Time?
 
             attr_accessor period_start: Time?
@@ -229,6 +232,7 @@ module Stigg
             def initialize: (
               amount: Stigg::Models::V1::ContractCreateResponse::Data::NextInvoice::Amount,
               due_date: Time?,
+              invoice_id: String?,
               period_end: Time?,
               period_start: Time?
             ) -> void
@@ -236,6 +240,7 @@ module Stigg
             def to_hash: -> {
               amount: Stigg::Models::V1::ContractCreateResponse::Data::NextInvoice::Amount,
               due_date: Time?,
+              invoice_id: String?,
               period_end: Time?,
               period_start: Time?
             }

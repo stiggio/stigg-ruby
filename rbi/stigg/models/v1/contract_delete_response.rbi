@@ -570,6 +570,10 @@ module Stigg
             sig { returns(T.nilable(Time)) }
             attr_accessor :due_date
 
+            # The billing provider ID of the draft invoice this preview describes
+            sig { returns(T.nilable(String)) }
+            attr_accessor :invoice_id
+
             # The end of the billing period the upcoming invoice covers
             sig { returns(T.nilable(Time)) }
             attr_accessor :period_end
@@ -584,6 +588,7 @@ module Stigg
                 amount:
                   Stigg::Models::V1::ContractDeleteResponse::Data::NextInvoice::Amount::OrHash,
                 due_date: T.nilable(Time),
+                invoice_id: T.nilable(String),
                 period_end: T.nilable(Time),
                 period_start: T.nilable(Time)
               ).returns(T.attached_class)
@@ -593,6 +598,8 @@ module Stigg
               amount:,
               # The date the upcoming invoice is due
               due_date:,
+              # The billing provider ID of the draft invoice this preview describes
+              invoice_id:,
               # The end of the billing period the upcoming invoice covers
               period_end:,
               # The start of the billing period the upcoming invoice covers
@@ -606,6 +613,7 @@ module Stigg
                   amount:
                     Stigg::Models::V1::ContractDeleteResponse::Data::NextInvoice::Amount,
                   due_date: T.nilable(Time),
+                  invoice_id: T.nilable(String),
                   period_end: T.nilable(Time),
                   period_start: T.nilable(Time)
                 }
