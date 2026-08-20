@@ -1176,7 +1176,8 @@ module Stigg
                   id: String,
                   amount: Float,
                   cadence: Stigg::Models::V1::ContractCreateParams::Subscription::NewSubscription::Entitlement::Credit::cadence,
-                  type: :CREDIT
+                  type: :CREDIT,
+                  has_soft_limit: bool
                 }
 
               class Credit < Stigg::Internal::Type::BaseModel
@@ -1188,10 +1189,15 @@ module Stigg
 
                 attr_accessor type: :CREDIT
 
+                attr_reader has_soft_limit: bool?
+
+                def has_soft_limit=: (bool) -> bool
+
                 def initialize: (
                   id: String,
                   amount: Float,
                   cadence: Stigg::Models::V1::ContractCreateParams::Subscription::NewSubscription::Entitlement::Credit::cadence,
+                  ?has_soft_limit: bool,
                   ?type: :CREDIT
                 ) -> void
 
@@ -1199,7 +1205,8 @@ module Stigg
                   id: String,
                   amount: Float,
                   cadence: Stigg::Models::V1::ContractCreateParams::Subscription::NewSubscription::Entitlement::Credit::cadence,
-                  type: :CREDIT
+                  type: :CREDIT,
+                  has_soft_limit: bool
                 }
 
                 type cadence = :MONTH | :YEAR

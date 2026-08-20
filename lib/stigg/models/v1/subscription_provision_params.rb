@@ -1104,7 +1104,13 @@ module Stigg
             #   @return [Symbol, :CREDIT]
             required :type, const: :CREDIT
 
-            # @!method initialize(id:, amount:, cadence:, type: :CREDIT)
+            # @!attribute has_soft_limit
+            #   Whether the credit balance is a soft limit
+            #
+            #   @return [Boolean, nil]
+            optional :has_soft_limit, Stigg::Internal::Type::Boolean, api_name: :hasSoftLimit
+
+            # @!method initialize(id:, amount:, cadence:, has_soft_limit: nil, type: :CREDIT)
             #   Credit entitlement configuration for a subscription
             #
             #   @param id [String] The custom currency ID for the credit entitlement
@@ -1112,6 +1118,8 @@ module Stigg
             #   @param amount [Float] Credit grant amount
             #
             #   @param cadence [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit::Cadence] Credit grant cadence (MONTH or YEAR)
+            #
+            #   @param has_soft_limit [Boolean] Whether the credit balance is a soft limit
             #
             #   @param type [Symbol, :CREDIT] SubscriptionCreditEntitlementRequest
 

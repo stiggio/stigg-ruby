@@ -2824,6 +2824,13 @@ module Stigg
                 sig { returns(Symbol) }
                 attr_accessor :type
 
+                # Whether the credit balance is a soft limit
+                sig { returns(T.nilable(T::Boolean)) }
+                attr_reader :has_soft_limit
+
+                sig { params(has_soft_limit: T::Boolean).void }
+                attr_writer :has_soft_limit
+
                 # Credit entitlement configuration for a subscription
                 sig do
                   params(
@@ -2831,6 +2838,7 @@ module Stigg
                     amount: Float,
                     cadence:
                       Stigg::V1::ContractCreateParams::Subscription::NewSubscription::Entitlement::Credit::Cadence::OrSymbol,
+                    has_soft_limit: T::Boolean,
                     type: Symbol
                   ).returns(T.attached_class)
                 end
@@ -2841,6 +2849,8 @@ module Stigg
                   amount:,
                   # Credit grant cadence (MONTH or YEAR)
                   cadence:,
+                  # Whether the credit balance is a soft limit
+                  has_soft_limit: nil,
                   # SubscriptionCreditEntitlementRequest
                   type: :CREDIT
                 )
@@ -2853,7 +2863,8 @@ module Stigg
                       amount: Float,
                       cadence:
                         Stigg::V1::ContractCreateParams::Subscription::NewSubscription::Entitlement::Credit::Cadence::OrSymbol,
-                      type: Symbol
+                      type: Symbol,
+                      has_soft_limit: T::Boolean
                     }
                   )
                 end
