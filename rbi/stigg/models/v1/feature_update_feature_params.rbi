@@ -73,6 +73,7 @@ module Stigg
         sig { params(metadata: T::Hash[Symbol, String]).void }
         attr_writer :metadata
 
+        # Event meter that turns reported events into usage for a metered feature
         sig { returns(T.nilable(Stigg::V1::FeatureUpdateFeatureParams::Meter)) }
         attr_reader :meter
 
@@ -149,6 +150,7 @@ module Stigg
           feature_units_plural: nil,
           # The additional metadata for the feature
           metadata: nil,
+          # Event meter that turns reported events into usage for a metered feature
           meter: nil,
           # Unit transformation to be applied to the reported usage
           unit_transformation: nil,
@@ -229,6 +231,7 @@ module Stigg
               )
             end
 
+          # How the matching events are aggregated into a usage value
           sig do
             returns(Stigg::V1::FeatureUpdateFeatureParams::Meter::Aggregation)
           end
@@ -242,6 +245,7 @@ module Stigg
           end
           attr_writer :aggregation
 
+          # Event filters. Conditions within a filter are ANDed, and filters are ORed
           sig do
             returns(
               T::Array[Stigg::V1::FeatureUpdateFeatureParams::Meter::Filter]
@@ -249,6 +253,7 @@ module Stigg
           end
           attr_accessor :filters
 
+          # Event meter that turns reported events into usage for a metered feature
           sig do
             params(
               aggregation:
@@ -259,7 +264,12 @@ module Stigg
                 ]
             ).returns(T.attached_class)
           end
-          def self.new(aggregation:, filters:)
+          def self.new(
+            # How the matching events are aggregated into a usage value
+            aggregation:,
+            # Event filters. Conditions within a filter are ANDed, and filters are ORed
+            filters:
+          )
           end
 
           sig do
@@ -284,6 +294,7 @@ module Stigg
                 )
               end
 
+            # Aggregation function applied to the matching events
             sig do
               returns(
                 Stigg::V1::FeatureUpdateFeatureParams::Meter::Aggregation::Function::OrSymbol
@@ -298,6 +309,7 @@ module Stigg
             sig { params(field: String).void }
             attr_writer :field
 
+            # How the matching events are aggregated into a usage value
             sig do
               params(
                 function:
@@ -306,6 +318,7 @@ module Stigg
               ).returns(T.attached_class)
             end
             def self.new(
+              # Aggregation function applied to the matching events
               function:,
               # Aggregation field name
               field: nil
@@ -324,6 +337,7 @@ module Stigg
             def to_hash
             end
 
+            # Aggregation function applied to the matching events
             module Function
               extend Stigg::Internal::Type::Enum
 
@@ -388,6 +402,7 @@ module Stigg
                 )
               end
 
+            # Conditions the event must match
             sig do
               returns(
                 T::Array[
@@ -405,7 +420,10 @@ module Stigg
                   ]
               ).returns(T.attached_class)
             end
-            def self.new(conditions:)
+            def self.new(
+              # Conditions the event must match
+              conditions:
+            )
             end
 
             sig do
@@ -434,6 +452,7 @@ module Stigg
               sig { returns(String) }
               attr_accessor :field
 
+              # Comparison applied to the condition field
               sig do
                 returns(
                   Stigg::V1::FeatureUpdateFeatureParams::Meter::Filter::Condition::Operation::OrSymbol
@@ -466,6 +485,7 @@ module Stigg
               def self.new(
                 # Condition field name
                 field:,
+                # Comparison applied to the condition field
                 operation:,
                 # Condition value
                 value: nil,
@@ -487,6 +507,7 @@ module Stigg
               def to_hash
               end
 
+              # Comparison applied to the condition field
               module Operation
                 extend Stigg::Internal::Type::Enum
 

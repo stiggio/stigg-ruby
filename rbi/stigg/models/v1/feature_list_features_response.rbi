@@ -68,6 +68,24 @@ module Stigg
         sig { returns(T::Hash[Symbol, String]) }
         attr_accessor :metadata
 
+        # Event meter that turns reported events into usage for a metered feature
+        sig do
+          returns(
+            T.nilable(Stigg::Models::V1::FeatureListFeaturesResponse::Meter)
+          )
+        end
+        attr_reader :meter
+
+        sig do
+          params(
+            meter:
+              T.nilable(
+                Stigg::Models::V1::FeatureListFeaturesResponse::Meter::OrHash
+              )
+          ).void
+        end
+        attr_writer :meter
+
         # The meter type for the feature
         sig do
           returns(
@@ -120,6 +138,10 @@ module Stigg
             feature_units: T.nilable(String),
             feature_units_plural: T.nilable(String),
             metadata: T::Hash[Symbol, String],
+            meter:
+              T.nilable(
+                Stigg::Models::V1::FeatureListFeaturesResponse::Meter::OrHash
+              ),
             meter_type:
               Stigg::Models::V1::FeatureListFeaturesResponse::MeterType::OrSymbol,
             unit_transformation:
@@ -150,6 +172,8 @@ module Stigg
           feature_units_plural:,
           # The additional metadata for the feature
           metadata:,
+          # Event meter that turns reported events into usage for a metered feature
+          meter:,
           # The meter type for the feature
           meter_type:,
           # Unit transformation to be applied to the reported usage
@@ -179,6 +203,10 @@ module Stigg
               feature_units: T.nilable(String),
               feature_units_plural: T.nilable(String),
               metadata: T::Hash[Symbol, String],
+              meter:
+                T.nilable(
+                  Stigg::Models::V1::FeatureListFeaturesResponse::Meter
+                ),
               meter_type:
                 Stigg::Models::V1::FeatureListFeaturesResponse::MeterType::TaggedSymbol,
               unit_transformation:
@@ -304,6 +332,378 @@ module Stigg
             )
           end
           def self.values
+          end
+        end
+
+        class Meter < Stigg::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Stigg::Models::V1::FeatureListFeaturesResponse::Meter,
+                Stigg::Internal::AnyHash
+              )
+            end
+
+          # How the matching events are aggregated into a usage value
+          sig do
+            returns(
+              Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Aggregation
+            )
+          end
+          attr_reader :aggregation
+
+          sig do
+            params(
+              aggregation:
+                Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Aggregation::OrHash
+            ).void
+          end
+          attr_writer :aggregation
+
+          # Event filters. Conditions within a filter are ANDed, and filters are ORed
+          sig do
+            returns(
+              T::Array[
+                Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Filter
+              ]
+            )
+          end
+          attr_accessor :filters
+
+          # Event meter that turns reported events into usage for a metered feature
+          sig do
+            params(
+              aggregation:
+                Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Aggregation::OrHash,
+              filters:
+                T::Array[
+                  Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Filter::OrHash
+                ]
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # How the matching events are aggregated into a usage value
+            aggregation:,
+            # Event filters. Conditions within a filter are ANDed, and filters are ORed
+            filters:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                aggregation:
+                  Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Aggregation,
+                filters:
+                  T::Array[
+                    Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Filter
+                  ]
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class Aggregation < Stigg::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Aggregation,
+                  Stigg::Internal::AnyHash
+                )
+              end
+
+            # Aggregation function applied to the matching events
+            sig do
+              returns(
+                Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Aggregation::Function::TaggedSymbol
+              )
+            end
+            attr_accessor :function
+
+            # Aggregation field name
+            sig { returns(T.nilable(String)) }
+            attr_accessor :field
+
+            # How the matching events are aggregated into a usage value
+            sig do
+              params(
+                function:
+                  Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Aggregation::Function::OrSymbol,
+                field: T.nilable(String)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # Aggregation function applied to the matching events
+              function:,
+              # Aggregation field name
+              field: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  function:
+                    Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Aggregation::Function::TaggedSymbol,
+                  field: T.nilable(String)
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # Aggregation function applied to the matching events
+            module Function
+              extend Stigg::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Aggregation::Function
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              SUM =
+                T.let(
+                  :SUM,
+                  Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Aggregation::Function::TaggedSymbol
+                )
+              MAX =
+                T.let(
+                  :MAX,
+                  Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Aggregation::Function::TaggedSymbol
+                )
+              MIN =
+                T.let(
+                  :MIN,
+                  Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Aggregation::Function::TaggedSymbol
+                )
+              AVG =
+                T.let(
+                  :AVG,
+                  Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Aggregation::Function::TaggedSymbol
+                )
+              COUNT =
+                T.let(
+                  :COUNT,
+                  Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Aggregation::Function::TaggedSymbol
+                )
+              UNIQUE =
+                T.let(
+                  :UNIQUE,
+                  Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Aggregation::Function::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Aggregation::Function::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+
+          class Filter < Stigg::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Filter,
+                  Stigg::Internal::AnyHash
+                )
+              end
+
+            # Conditions the event must match
+            sig do
+              returns(
+                T::Array[
+                  Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Filter::Condition
+                ]
+              )
+            end
+            attr_accessor :conditions
+
+            # A set of conditions an event must all match
+            sig do
+              params(
+                conditions:
+                  T::Array[
+                    Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Filter::Condition::OrHash
+                  ]
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # Conditions the event must match
+              conditions:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  conditions:
+                    T::Array[
+                      Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Filter::Condition
+                    ]
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class Condition < Stigg::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Filter::Condition,
+                    Stigg::Internal::AnyHash
+                  )
+                end
+
+              # Condition field name
+              sig { returns(String) }
+              attr_accessor :field
+
+              # Comparison applied to the condition field
+              sig do
+                returns(
+                  Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Filter::Condition::Operation::TaggedSymbol
+                )
+              end
+              attr_accessor :operation
+
+              # Condition value
+              sig { returns(T.nilable(String)) }
+              attr_accessor :value
+
+              sig { returns(T.nilable(T::Array[String])) }
+              attr_accessor :values
+
+              # Meter filter condition
+              sig do
+                params(
+                  field: String,
+                  operation:
+                    Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Filter::Condition::Operation::OrSymbol,
+                  value: T.nilable(String),
+                  values: T.nilable(T::Array[String])
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Condition field name
+                field:,
+                # Comparison applied to the condition field
+                operation:,
+                # Condition value
+                value: nil,
+                values: nil
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    field: String,
+                    operation:
+                      Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Filter::Condition::Operation::TaggedSymbol,
+                    value: T.nilable(String),
+                    values: T.nilable(T::Array[String])
+                  }
+                )
+              end
+              def to_hash
+              end
+
+              # Comparison applied to the condition field
+              module Operation
+                extend Stigg::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Filter::Condition::Operation
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                EQUALS =
+                  T.let(
+                    :EQUALS,
+                    Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Filter::Condition::Operation::TaggedSymbol
+                  )
+                NOT_EQUALS =
+                  T.let(
+                    :NOT_EQUALS,
+                    Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Filter::Condition::Operation::TaggedSymbol
+                  )
+                GREATER_THAN =
+                  T.let(
+                    :GREATER_THAN,
+                    Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Filter::Condition::Operation::TaggedSymbol
+                  )
+                GREATER_THAN_OR_EQUAL =
+                  T.let(
+                    :GREATER_THAN_OR_EQUAL,
+                    Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Filter::Condition::Operation::TaggedSymbol
+                  )
+                LESS_THAN =
+                  T.let(
+                    :LESS_THAN,
+                    Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Filter::Condition::Operation::TaggedSymbol
+                  )
+                LESS_THAN_OR_EQUAL =
+                  T.let(
+                    :LESS_THAN_OR_EQUAL,
+                    Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Filter::Condition::Operation::TaggedSymbol
+                  )
+                IS_NULL =
+                  T.let(
+                    :IS_NULL,
+                    Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Filter::Condition::Operation::TaggedSymbol
+                  )
+                IS_NOT_NULL =
+                  T.let(
+                    :IS_NOT_NULL,
+                    Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Filter::Condition::Operation::TaggedSymbol
+                  )
+                CONTAINS =
+                  T.let(
+                    :CONTAINS,
+                    Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Filter::Condition::Operation::TaggedSymbol
+                  )
+                STARTS_WITH =
+                  T.let(
+                    :STARTS_WITH,
+                    Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Filter::Condition::Operation::TaggedSymbol
+                  )
+                ENDS_WITH =
+                  T.let(
+                    :ENDS_WITH,
+                    Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Filter::Condition::Operation::TaggedSymbol
+                  )
+                IN =
+                  T.let(
+                    :IN,
+                    Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Filter::Condition::Operation::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Stigg::Models::V1::FeatureListFeaturesResponse::Meter::Filter::Condition::Operation::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+            end
           end
         end
 

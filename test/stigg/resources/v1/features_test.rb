@@ -64,6 +64,7 @@ class Stigg::Test::Resources::V1::FeaturesTest < Stigg::Test::ResourceTest
         feature_units: String | nil,
         feature_units_plural: String | nil,
         metadata: ^(Stigg::Internal::Type::HashOf[String]),
+        meter: Stigg::Models::V1::FeatureListFeaturesResponse::Meter | nil,
         meter_type: Stigg::Models::V1::FeatureListFeaturesResponse::MeterType,
         unit_transformation: Stigg::Models::V1::FeatureListFeaturesResponse::UnitTransformation | nil,
         updated_at: Time

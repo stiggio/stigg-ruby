@@ -19,6 +19,7 @@ module Stigg
           ?feature_units: String,
           ?feature_units_plural: String,
           ?metadata: ::Hash[Symbol, String],
+          ?meter: Stigg::V1::FeatureCreateFeatureParams::Meter,
           ?meter_type: Stigg::Models::V1::FeatureCreateFeatureParams::meter_type,
           ?unit_transformation: Stigg::V1::FeatureCreateFeatureParams::UnitTransformation?,
           ?x_account_id: String,

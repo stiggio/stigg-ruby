@@ -22,6 +22,7 @@ module Stigg
             feature_units: String?,
             feature_units_plural: String?,
             metadata: ::Hash[Symbol, String],
+            meter: Stigg::V1::Feature::Data::Meter?,
             meter_type: Stigg::Models::V1::Feature::Data::meter_type,
             unit_transformation: Stigg::V1::Feature::Data::UnitTransformation?,
             updated_at: Time
@@ -48,6 +49,8 @@ module Stigg
 
           attr_accessor metadata: ::Hash[Symbol, String]
 
+          attr_accessor meter: Stigg::V1::Feature::Data::Meter?
+
           attr_accessor meter_type: Stigg::Models::V1::Feature::Data::meter_type
 
           attr_accessor unit_transformation: Stigg::V1::Feature::Data::UnitTransformation?
@@ -65,6 +68,7 @@ module Stigg
             feature_units: String?,
             feature_units_plural: String?,
             metadata: ::Hash[Symbol, String],
+            meter: Stigg::V1::Feature::Data::Meter?,
             meter_type: Stigg::Models::V1::Feature::Data::meter_type,
             unit_transformation: Stigg::V1::Feature::Data::UnitTransformation?,
             updated_at: Time
@@ -81,6 +85,7 @@ module Stigg
             feature_units: String?,
             feature_units_plural: String?,
             metadata: ::Hash[Symbol, String],
+            meter: Stigg::V1::Feature::Data::Meter?,
             meter_type: Stigg::Models::V1::Feature::Data::meter_type,
             unit_transformation: Stigg::V1::Feature::Data::UnitTransformation?,
             updated_at: Time
@@ -120,6 +125,147 @@ module Stigg
             ENUM: :ENUM
 
             def self?.values: -> ::Array[Stigg::Models::V1::Feature::Data::feature_type]
+          end
+
+          type meter =
+            {
+              aggregation: Stigg::V1::Feature::Data::Meter::Aggregation,
+              filters: ::Array[Stigg::V1::Feature::Data::Meter::Filter]
+            }
+
+          class Meter < Stigg::Internal::Type::BaseModel
+            attr_accessor aggregation: Stigg::V1::Feature::Data::Meter::Aggregation
+
+            attr_accessor filters: ::Array[Stigg::V1::Feature::Data::Meter::Filter]
+
+            def initialize: (
+              aggregation: Stigg::V1::Feature::Data::Meter::Aggregation,
+              filters: ::Array[Stigg::V1::Feature::Data::Meter::Filter]
+            ) -> void
+
+            def to_hash: -> {
+              aggregation: Stigg::V1::Feature::Data::Meter::Aggregation,
+              filters: ::Array[Stigg::V1::Feature::Data::Meter::Filter]
+            }
+
+            type aggregation =
+              {
+                function: Stigg::Models::V1::Feature::Data::Meter::Aggregation::function,
+                field: String?
+              }
+
+            class Aggregation < Stigg::Internal::Type::BaseModel
+              attr_accessor function: Stigg::Models::V1::Feature::Data::Meter::Aggregation::function
+
+              attr_accessor field: String?
+
+              def initialize: (
+                function: Stigg::Models::V1::Feature::Data::Meter::Aggregation::function,
+                ?field: String?
+              ) -> void
+
+              def to_hash: -> {
+                function: Stigg::Models::V1::Feature::Data::Meter::Aggregation::function,
+                field: String?
+              }
+
+              type function = :SUM | :MAX | :MIN | :AVG | :COUNT | :UNIQUE
+
+              module Function
+                extend Stigg::Internal::Type::Enum
+
+                SUM: :SUM
+                MAX: :MAX
+                MIN: :MIN
+                AVG: :AVG
+                COUNT: :COUNT
+                UNIQUE: :UNIQUE
+
+                def self?.values: -> ::Array[Stigg::Models::V1::Feature::Data::Meter::Aggregation::function]
+              end
+            end
+
+            type filter =
+              {
+                conditions: ::Array[Stigg::V1::Feature::Data::Meter::Filter::Condition]
+              }
+
+            class Filter < Stigg::Internal::Type::BaseModel
+              attr_accessor conditions: ::Array[Stigg::V1::Feature::Data::Meter::Filter::Condition]
+
+              def initialize: (
+                conditions: ::Array[Stigg::V1::Feature::Data::Meter::Filter::Condition]
+              ) -> void
+
+              def to_hash: -> {
+                conditions: ::Array[Stigg::V1::Feature::Data::Meter::Filter::Condition]
+              }
+
+              type condition =
+                {
+                  field: String,
+                  operation: Stigg::Models::V1::Feature::Data::Meter::Filter::Condition::operation,
+                  value: String?,
+                  values: ::Array[String]?
+                }
+
+              class Condition < Stigg::Internal::Type::BaseModel
+                attr_accessor field: String
+
+                attr_accessor operation: Stigg::Models::V1::Feature::Data::Meter::Filter::Condition::operation
+
+                attr_accessor value: String?
+
+                attr_accessor values: ::Array[String]?
+
+                def initialize: (
+                  field: String,
+                  operation: Stigg::Models::V1::Feature::Data::Meter::Filter::Condition::operation,
+                  ?value: String?,
+                  ?values: ::Array[String]?
+                ) -> void
+
+                def to_hash: -> {
+                  field: String,
+                  operation: Stigg::Models::V1::Feature::Data::Meter::Filter::Condition::operation,
+                  value: String?,
+                  values: ::Array[String]?
+                }
+
+                type operation =
+                  :EQUALS
+                  | :NOT_EQUALS
+                  | :GREATER_THAN
+                  | :GREATER_THAN_OR_EQUAL
+                  | :LESS_THAN
+                  | :LESS_THAN_OR_EQUAL
+                  | :IS_NULL
+                  | :IS_NOT_NULL
+                  | :CONTAINS
+                  | :STARTS_WITH
+                  | :ENDS_WITH
+                  | :IN
+
+                module Operation
+                  extend Stigg::Internal::Type::Enum
+
+                  EQUALS: :EQUALS
+                  NOT_EQUALS: :NOT_EQUALS
+                  GREATER_THAN: :GREATER_THAN
+                  GREATER_THAN_OR_EQUAL: :GREATER_THAN_OR_EQUAL
+                  LESS_THAN: :LESS_THAN
+                  LESS_THAN_OR_EQUAL: :LESS_THAN_OR_EQUAL
+                  IS_NULL: :IS_NULL
+                  IS_NOT_NULL: :IS_NOT_NULL
+                  CONTAINS: :CONTAINS
+                  STARTS_WITH: :STARTS_WITH
+                  ENDS_WITH: :ENDS_WITH
+                  IN: :IN
+
+                  def self?.values: -> ::Array[Stigg::Models::V1::Feature::Data::Meter::Filter::Condition::operation]
+                end
+              end
+            end
           end
 
           type meter_type = :None | :FLUCTUATING | :INCREMENTAL

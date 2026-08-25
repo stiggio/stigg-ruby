@@ -70,6 +70,12 @@ module Stigg
         #   @return [Hash{Symbol=>String}, nil]
         optional :metadata, Stigg::Internal::Type::HashOf[String]
 
+        # @!attribute meter
+        #   Event meter that turns reported events into usage for a metered feature
+        #
+        #   @return [Stigg::Models::V1::FeatureCreateFeatureParams::Meter, nil]
+        optional :meter, -> { Stigg::V1::FeatureCreateFeatureParams::Meter }
+
         # @!attribute meter_type
         #   The meter type for the feature
         #
@@ -99,7 +105,7 @@ module Stigg
         #   @return [String, nil]
         optional :x_environment_id, String
 
-        # @!method initialize(id:, display_name:, feature_type:, description: nil, enum_configuration: nil, feature_status: nil, feature_units: nil, feature_units_plural: nil, metadata: nil, meter_type: nil, unit_transformation: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        # @!method initialize(id:, display_name:, feature_type:, description: nil, enum_configuration: nil, feature_status: nil, feature_units: nil, feature_units_plural: nil, metadata: nil, meter: nil, meter_type: nil, unit_transformation: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #   @param id [String] The unique identifier for the feature
         #
         #   @param display_name [String] The display name for the feature
@@ -117,6 +123,8 @@ module Stigg
         #   @param feature_units_plural [String] The plural units for the feature
         #
         #   @param metadata [Hash{Symbol=>String}] The additional metadata for the feature
+        #
+        #   @param meter [Stigg::Models::V1::FeatureCreateFeatureParams::Meter] Event meter that turns reported events into usage for a metered feature
         #
         #   @param meter_type [Symbol, Stigg::Models::V1::FeatureCreateFeatureParams::MeterType] The meter type for the feature
         #
@@ -169,6 +177,137 @@ module Stigg
 
           # @!method self.values
           #   @return [Array<Symbol>]
+        end
+
+        class Meter < Stigg::Internal::Type::BaseModel
+          # @!attribute aggregation
+          #   How the matching events are aggregated into a usage value
+          #
+          #   @return [Stigg::Models::V1::FeatureCreateFeatureParams::Meter::Aggregation]
+          required :aggregation, -> { Stigg::V1::FeatureCreateFeatureParams::Meter::Aggregation }
+
+          # @!attribute filters
+          #   Event filters. Conditions within a filter are ANDed, and filters are ORed
+          #
+          #   @return [Array<Stigg::Models::V1::FeatureCreateFeatureParams::Meter::Filter>]
+          required :filters,
+                   -> { Stigg::Internal::Type::ArrayOf[Stigg::V1::FeatureCreateFeatureParams::Meter::Filter] }
+
+          # @!method initialize(aggregation:, filters:)
+          #   Event meter that turns reported events into usage for a metered feature
+          #
+          #   @param aggregation [Stigg::Models::V1::FeatureCreateFeatureParams::Meter::Aggregation] How the matching events are aggregated into a usage value
+          #
+          #   @param filters [Array<Stigg::Models::V1::FeatureCreateFeatureParams::Meter::Filter>] Event filters. Conditions within a filter are ANDed, and filters are ORed
+
+          # @see Stigg::Models::V1::FeatureCreateFeatureParams::Meter#aggregation
+          class Aggregation < Stigg::Internal::Type::BaseModel
+            # @!attribute function
+            #   Aggregation function applied to the matching events
+            #
+            #   @return [Symbol, Stigg::Models::V1::FeatureCreateFeatureParams::Meter::Aggregation::Function]
+            required :function, enum: -> { Stigg::V1::FeatureCreateFeatureParams::Meter::Aggregation::Function }
+
+            # @!attribute field
+            #   Aggregation field name
+            #
+            #   @return [String, nil]
+            optional :field, String
+
+            # @!method initialize(function:, field: nil)
+            #   How the matching events are aggregated into a usage value
+            #
+            #   @param function [Symbol, Stigg::Models::V1::FeatureCreateFeatureParams::Meter::Aggregation::Function] Aggregation function applied to the matching events
+            #
+            #   @param field [String] Aggregation field name
+
+            # Aggregation function applied to the matching events
+            #
+            # @see Stigg::Models::V1::FeatureCreateFeatureParams::Meter::Aggregation#function
+            module Function
+              extend Stigg::Internal::Type::Enum
+
+              SUM = :SUM
+              MAX = :MAX
+              MIN = :MIN
+              AVG = :AVG
+              COUNT = :COUNT
+              UNIQUE = :UNIQUE
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+          end
+
+          class Filter < Stigg::Internal::Type::BaseModel
+            # @!attribute conditions
+            #   Conditions the event must match
+            #
+            #   @return [Array<Stigg::Models::V1::FeatureCreateFeatureParams::Meter::Filter::Condition>]
+            required :conditions,
+                     -> { Stigg::Internal::Type::ArrayOf[Stigg::V1::FeatureCreateFeatureParams::Meter::Filter::Condition] }
+
+            # @!method initialize(conditions:)
+            #   @param conditions [Array<Stigg::Models::V1::FeatureCreateFeatureParams::Meter::Filter::Condition>] Conditions the event must match
+
+            class Condition < Stigg::Internal::Type::BaseModel
+              # @!attribute field
+              #   Condition field name
+              #
+              #   @return [String]
+              required :field, String
+
+              # @!attribute operation
+              #   Comparison applied to the condition field
+              #
+              #   @return [Symbol, Stigg::Models::V1::FeatureCreateFeatureParams::Meter::Filter::Condition::Operation]
+              required :operation,
+                       enum: -> { Stigg::V1::FeatureCreateFeatureParams::Meter::Filter::Condition::Operation }
+
+              # @!attribute value
+              #   Condition value
+              #
+              #   @return [String, nil]
+              optional :value, String
+
+              # @!attribute values
+              #
+              #   @return [Array<String>, nil]
+              optional :values, Stigg::Internal::Type::ArrayOf[String]
+
+              # @!method initialize(field:, operation:, value: nil, values: nil)
+              #   @param field [String] Condition field name
+              #
+              #   @param operation [Symbol, Stigg::Models::V1::FeatureCreateFeatureParams::Meter::Filter::Condition::Operation] Comparison applied to the condition field
+              #
+              #   @param value [String] Condition value
+              #
+              #   @param values [Array<String>]
+
+              # Comparison applied to the condition field
+              #
+              # @see Stigg::Models::V1::FeatureCreateFeatureParams::Meter::Filter::Condition#operation
+              module Operation
+                extend Stigg::Internal::Type::Enum
+
+                EQUALS = :EQUALS
+                NOT_EQUALS = :NOT_EQUALS
+                GREATER_THAN = :GREATER_THAN
+                GREATER_THAN_OR_EQUAL = :GREATER_THAN_OR_EQUAL
+                LESS_THAN = :LESS_THAN
+                LESS_THAN_OR_EQUAL = :LESS_THAN_OR_EQUAL
+                IS_NULL = :IS_NULL
+                IS_NOT_NULL = :IS_NOT_NULL
+                CONTAINS = :CONTAINS
+                STARTS_WITH = :STARTS_WITH
+                ENDS_WITH = :ENDS_WITH
+                IN = :IN
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
+            end
+          end
         end
 
         # The meter type for the feature

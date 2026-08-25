@@ -45,6 +45,7 @@ module Stigg
             feature_units: String,
             feature_units_plural: String,
             metadata: T::Hash[Symbol, String],
+            meter: Stigg::V1::FeatureCreateFeatureParams::Meter::OrHash,
             meter_type:
               Stigg::V1::FeatureCreateFeatureParams::MeterType::OrSymbol,
             unit_transformation:
@@ -75,6 +76,9 @@ module Stigg
           feature_units_plural: nil,
           # Body param: The additional metadata for the feature
           metadata: nil,
+          # Body param: Event meter that turns reported events into usage for a metered
+          # feature
+          meter: nil,
           # Body param: The meter type for the feature
           meter_type: nil,
           # Body param: Unit transformation to be applied to the reported usage
@@ -233,7 +237,8 @@ module Stigg
           feature_units_plural: nil,
           # Body param: The additional metadata for the feature
           metadata: nil,
-          # Body param
+          # Body param: Event meter that turns reported events into usage for a metered
+          # feature
           meter: nil,
           # Body param: Unit transformation to be applied to the reported usage
           unit_transformation: nil,

@@ -42,7 +42,7 @@ module Stigg
         #
         # Creates a new feature with the specified type, metering, and configuration.
         #
-        # @overload create_feature(id:, display_name:, feature_type:, description: nil, enum_configuration: nil, feature_status: nil, feature_units: nil, feature_units_plural: nil, metadata: nil, meter_type: nil, unit_transformation: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        # @overload create_feature(id:, display_name:, feature_type:, description: nil, enum_configuration: nil, feature_status: nil, feature_units: nil, feature_units_plural: nil, metadata: nil, meter: nil, meter_type: nil, unit_transformation: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #
         # @param id [String] Body param: The unique identifier for the feature
         #
@@ -61,6 +61,8 @@ module Stigg
         # @param feature_units_plural [String] Body param: The plural units for the feature
         #
         # @param metadata [Hash{Symbol=>String}] Body param: The additional metadata for the feature
+        #
+        # @param meter [Stigg::Models::V1::FeatureCreateFeatureParams::Meter] Body param: Event meter that turns reported events into usage for a metered feat
         #
         # @param meter_type [Symbol, Stigg::Models::V1::FeatureCreateFeatureParams::MeterType] Body param: The meter type for the feature
         #
@@ -228,7 +230,7 @@ module Stigg
         #
         # @param metadata [Hash{Symbol=>String}] Body param: The additional metadata for the feature
         #
-        # @param meter [Stigg::Models::V1::FeatureUpdateFeatureParams::Meter] Body param
+        # @param meter [Stigg::Models::V1::FeatureUpdateFeatureParams::Meter] Body param: Event meter that turns reported events into usage for a metered feat
         #
         # @param unit_transformation [Stigg::Models::V1::FeatureUpdateFeatureParams::UnitTransformation, nil] Body param: Unit transformation to be applied to the reported usage
         #
