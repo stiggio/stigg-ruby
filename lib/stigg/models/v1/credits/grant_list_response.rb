@@ -131,7 +131,11 @@ module Stigg
                    nil?: true
 
           # @!attribute status
-          #   The effective status of the credit grant
+          #   The effective status of the credit grant. A grant with paymentCollectionMethod
+          #   NONE or CHARGE becomes ACTIVE (and its credits become usable) as soon as it's
+          #   created (or as soon as the charge succeeds). A grant with
+          #   paymentCollectionMethod INVOICE stays PAYMENT_PENDING — its credits are not
+          #   usable — until the invoice is paid.
           #
           #   @return [Symbol, Stigg::Models::V1::Credits::GrantListResponse::Status]
           required :status, enum: -> { Stigg::Models::V1::Credits::GrantListResponse::Status }
@@ -158,7 +162,13 @@ module Stigg
           required :voided_at, Time, api_name: :voidedAt, nil?: true
 
           # @!method initialize(id:, amount:, comment:, consumed_amount:, cost:, created_at:, currency_id:, customer_id:, display_name:, effective_at:, expire_at:, grant_type:, invoice_id:, latest_invoice:, metadata:, payment_collection:, priority:, resource_id:, source_type:, status:, sync_states:, updated_at:, voided_at:)
-          #   Credit grant object representing allocated credits for a customer
+          #   Some parameter documentations has been truncated, see
+          #   {Stigg::Models::V1::Credits::GrantListResponse} for more details.
+          #
+          #   Credit grant object representing allocated credits for a customer. Credit grants
+          #   cannot be edited after creation via this API — void the grant to stop further
+          #   consumption from it, then create a new grant with the corrected amount,
+          #   priority, or expiration.
           #
           #   @param id [String] The unique readable identifier of the credit grant
           #
@@ -198,7 +208,7 @@ module Stigg
           #
           #   @param source_type [Symbol, Stigg::Models::V1::Credits::GrantListResponse::SourceType, nil] The source type of the grant (PRICE, PLAN_ENTITLEMENT, ADDON_ENTITLEMENT)
           #
-          #   @param status [Symbol, Stigg::Models::V1::Credits::GrantListResponse::Status] The effective status of the credit grant
+          #   @param status [Symbol, Stigg::Models::V1::Credits::GrantListResponse::Status] The effective status of the credit grant. A grant with paymentCollectionMethod N
           #
           #   @param sync_states [Array<Stigg::Models::V1::Credits::GrantListResponse::SyncState>, nil] The synchronization states of the entity with external systems
           #
@@ -420,7 +430,11 @@ module Stigg
             #   @return [Array<Symbol>]
           end
 
-          # The effective status of the credit grant
+          # The effective status of the credit grant. A grant with paymentCollectionMethod
+          # NONE or CHARGE becomes ACTIVE (and its credits become usable) as soon as it's
+          # created (or as soon as the charge succeeds). A grant with
+          # paymentCollectionMethod INVOICE stays PAYMENT_PENDING — its credits are not
+          # usable — until the invoice is paid.
           #
           # @see Stigg::Models::V1::Credits::GrantListResponse#status
           module Status
@@ -444,13 +458,15 @@ module Stigg
             required :status, enum: -> { Stigg::Models::V1::Credits::GrantListResponse::SyncState::Status }
 
             # @!attribute synced_entity_id
-            #   Synced entity id
+            #   The external entity ID this record is linked to in the vendor system (e.g. the
+            #   Stripe customer ID). Null until the link has synced; required when creating the
+            #   link.
             #
             #   @return [String, nil]
             required :synced_entity_id, String, api_name: :syncedEntityId, nil?: true
 
             # @!attribute vendor_identifier
-            #   The vendor identifier of integration
+            #   The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
             #
             #   @return [Symbol, Stigg::Models::V1::Credits::GrantListResponse::SyncState::VendorIdentifier]
             required :vendor_identifier,
@@ -458,11 +474,14 @@ module Stigg
                      api_name: :vendorIdentifier
 
             # @!method initialize(status:, synced_entity_id:, vendor_identifier:)
+            #   Some parameter documentations has been truncated, see
+            #   {Stigg::Models::V1::Credits::GrantListResponse::SyncState} for more details.
+            #
             #   @param status [Symbol, Stigg::Models::V1::Credits::GrantListResponse::SyncState::Status] Status of the integration sync
             #
-            #   @param synced_entity_id [String, nil] Synced entity id
+            #   @param synced_entity_id [String, nil] The external entity ID this record is linked to in the vendor system (e.g. the S
             #
-            #   @param vendor_identifier [Symbol, Stigg::Models::V1::Credits::GrantListResponse::SyncState::VendorIdentifier] The vendor identifier of integration
+            #   @param vendor_identifier [Symbol, Stigg::Models::V1::Credits::GrantListResponse::SyncState::VendorIdentifier] The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
 
             # Status of the integration sync
             #
@@ -479,7 +498,7 @@ module Stigg
               #   @return [Array<Symbol>]
             end
 
-            # The vendor identifier of integration
+            # The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
             #
             # @see Stigg::Models::V1::Credits::GrantListResponse::SyncState#vendor_identifier
             module VendorIdentifier

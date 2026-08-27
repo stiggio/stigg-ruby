@@ -36,7 +36,10 @@ module Stigg
         sig { params(group_by: String).void }
         attr_writer :group_by
 
-        # Resource id
+        # The customer resource this usage applies to. Optional — only required if the
+        # customer has multiple resources (for example, one subscription per workspace or
+        # site) and usage needs to be tracked separately per resource; omit it to report
+        # usage at the customer level.
         sig { returns(T.nilable(String)) }
         attr_accessor :resource_id
 
@@ -74,7 +77,10 @@ module Stigg
           end_date: nil,
           # Criteria by which to group the usage history
           group_by: nil,
-          # Resource id
+          # The customer resource this usage applies to. Optional — only required if the
+          # customer has multiple resources (for example, one subscription per workspace or
+          # site) and usage needs to be tracked separately per resource; omit it to report
+          # usage at the customer level.
           resource_id: nil,
           x_account_id: nil,
           x_environment_id: nil,

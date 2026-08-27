@@ -26,7 +26,7 @@ module Stigg
         #
         # @param dimensions [Hash{Symbol=>String, Float, Boolean}] Body param: Dimensions associated with the usage event
         #
-        # @param resource_id [String, nil] Body param: Resource id
+        # @param resource_id [String, nil] Body param: The customer resource this usage applies to. Optional — only require
         #
         # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
         #
@@ -53,8 +53,8 @@ module Stigg
         # Some parameter documentations has been truncated, see
         # {Stigg::Models::V1::EventReportParams} for more details.
         #
-        # Reports raw usage events for event-based metering. Events are ingested
-        # asynchronously and aggregated into usage totals.
+        # Reports raw usage events for event-based metering. Events are validated and
+        # stored synchronously, then aggregated into usage totals asynchronously.
         #
         # @overload report(events:, x_account_id: nil, x_environment_id: nil, request_options: {})
         #

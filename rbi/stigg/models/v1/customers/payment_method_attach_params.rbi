@@ -19,15 +19,18 @@ module Stigg
           sig { returns(String) }
           attr_accessor :id
 
-          # Integration details
+          # The internal ID of the integration this record is linked to
           sig { returns(String) }
           attr_accessor :integration_id
 
-          # Billing provider payment method id
+          # Billing provider payment method id. Attaching it makes it the customer's new
+          # default payment method for future charges; any previously attached payment
+          # method is no longer used as the default, though it is not removed from the
+          # billing provider.
           sig { returns(String) }
           attr_accessor :payment_method_id
 
-          # The vendor identifier of integration
+          # The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
           sig do
             returns(
               Stigg::V1::Customers::PaymentMethodAttachParams::VendorIdentifier::OrSymbol
@@ -75,11 +78,14 @@ module Stigg
           end
           def self.new(
             id:,
-            # Integration details
+            # The internal ID of the integration this record is linked to
             integration_id:,
-            # Billing provider payment method id
+            # Billing provider payment method id. Attaching it makes it the customer's new
+            # default payment method for future charges; any previously attached payment
+            # method is no longer used as the default, though it is not removed from the
+            # billing provider.
             payment_method_id:,
-            # The vendor identifier of integration
+            # The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
             vendor_identifier:,
             # Customers selected currency
             billing_currency: nil,
@@ -110,7 +116,7 @@ module Stigg
           def to_hash
           end
 
-          # The vendor identifier of integration
+          # The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
           module VendorIdentifier
             extend Stigg::Internal::Type::Enum
 

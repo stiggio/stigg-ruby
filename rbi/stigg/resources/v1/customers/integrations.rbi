@@ -16,7 +16,7 @@ module Stigg
             ).returns(Stigg::V1::CustomerIntegrationResponse)
           end
           def retrieve(
-            # Path param: Integration details
+            # Path param: The internal ID of the integration this record is linked to
             integration_id,
             # Path param: Customer slug
             id:,
@@ -44,11 +44,13 @@ module Stigg
             ).returns(Stigg::V1::CustomerIntegrationResponse)
           end
           def update(
-            # Path param: Integration details
+            # Path param: The internal ID of the integration this record is linked to
             integration_id,
             # Path param: Customer slug
             id:,
-            # Body param: Synced entity id
+            # Body param: The external entity ID this record is linked to in the vendor system
+            # (e.g. the Stripe customer ID). Null until the link has synced; required when
+            # creating the link.
             synced_entity_id:,
             # Header param: Account ID — optional when authenticating with a user JWT (Bearer
             # token); falls back to the user's first membership. Ignored for API-key auth.
@@ -122,11 +124,14 @@ module Stigg
           def link(
             # Path param: The unique identifier of the entity
             path_id,
-            # Body param: Integration details
+            # Body param: The internal ID of the integration this record is linked to
             body_id:,
-            # Body param: Synced entity id
+            # Body param: The external entity ID this record is linked to in the vendor system
+            # (e.g. the Stripe customer ID). Null until the link has synced; required when
+            # creating the link.
             synced_entity_id:,
-            # Body param: The vendor identifier of integration
+            # Body param: The vendor identifier of the integration (e.g. STRIPE, SALESFORCE,
+            # SNOWFLAKE)
             vendor_identifier:,
             # Header param: Account ID — optional when authenticating with a user JWT (Bearer
             # token); falls back to the user's first membership. Ignored for API-key auth.
@@ -150,7 +155,7 @@ module Stigg
             ).returns(Stigg::V1::CustomerIntegrationResponse)
           end
           def unlink(
-            # Path param: Integration details
+            # Path param: The internal ID of the integration this record is linked to
             integration_id,
             # Path param: Customer slug
             id:,

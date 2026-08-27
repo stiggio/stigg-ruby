@@ -23,13 +23,13 @@ module Stigg
         #
         # @param billing_id [String, nil] Body param: The unique identifier for the entity in the billing provider
         #
-        # @param default_trial_config [Stigg::Models::V1::PlanCreateParams::DefaultTrialConfig, nil] Body param: Default trial configuration for the plan
+        # @param default_trial_config [Stigg::Models::V1::PlanCreateParams::DefaultTrialConfig, nil] Body param: Default trial configuration for the plan. When set, subscriptions pr
         #
         # @param description [String, nil] Body param: The description of the package
         #
         # @param metadata [Hash{Symbol=>String}] Body param: Metadata associated with the entity
         #
-        # @param parent_plan_id [String, nil] Body param: The ID of the parent plan, if applicable
+        # @param parent_plan_id [String, nil] Body param: The ID of the parent plan, if this plan should inherit entitlements
         #
         # @param pricing_type [Symbol, Stigg::Models::V1::PlanCreateParams::PricingType, nil] Body param: The pricing type of the package
         #
@@ -102,11 +102,11 @@ module Stigg
         #
         # @param billing_id [String, nil] Body param: The unique identifier for the entity in the billing provider
         #
-        # @param charges [Stigg::Models::V1::PlanUpdateParams::Charges] Body param: Pricing configuration to set on the plan draft
+        # @param charges [Stigg::Models::V1::PlanUpdateParams::Charges] Body param: Pricing configuration to set on the plan draft. Unlike the rest of t
         #
         # @param compatible_addon_ids [Array<String>, nil] Body param
         #
-        # @param default_trial_config [Stigg::Models::V1::PlanUpdateParams::DefaultTrialConfig, nil] Body param: Default trial configuration for the plan
+        # @param default_trial_config [Stigg::Models::V1::PlanUpdateParams::DefaultTrialConfig, nil] Body param: Default trial configuration for the plan. When set, subscriptions pr
         #
         # @param description [String, nil] Body param: The description of the package
         #
@@ -114,7 +114,7 @@ module Stigg
         #
         # @param metadata [Hash{Symbol=>String}] Body param: Metadata associated with the entity
         #
-        # @param parent_plan_id [String, nil] Body param: The ID of the parent plan, if applicable
+        # @param parent_plan_id [String, nil] Body param: The ID of the parent plan, if this plan should inherit entitlements
         #
         # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
         #
@@ -335,13 +335,17 @@ module Stigg
         # Some parameter documentations has been truncated, see
         # {Stigg::Models::V1::PlanPublishParams} for more details.
         #
-        # Publishes a draft plan, making it available for use in subscriptions.
+        # Publishes a draft plan, making it available for use in subscriptions. The
+        # required `migrationType` field controls whether existing subscribers are moved
+        # onto the new version immediately (`ALL_CUSTOMERS`) or stay on the version they
+        # subscribed to — grandfathered — until you explicitly migrate them, e.g. via the
+        # migrate subscription endpoint (`NEW_CUSTOMERS`).
         #
         # @overload publish(id, migration_type:, x_account_id: nil, x_environment_id: nil, request_options: {})
         #
         # @param id [String] Path param: The unique identifier of the entity
         #
-        # @param migration_type [Symbol, Stigg::Models::V1::PlanPublishParams::MigrationType] Body param: The migration type of the package
+        # @param migration_type [Symbol, Stigg::Models::V1::PlanPublishParams::MigrationType] Body param: Who the published version applies to: NEW_CUSTOMERS (default) leaves
         #
         # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
         #

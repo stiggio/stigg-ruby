@@ -21,7 +21,8 @@ module Stigg
         required :display_name, String, api_name: :displayName
 
         # @!attribute feature_type
-        #   The type of the feature
+        #   The type of the feature: BOOLEAN (on/off access), NUMBER (a numeric limit or
+        #   quantity), or ENUM (one of a fixed set of values).
         #
         #   @return [Symbol, Stigg::Models::V1::FeatureCreateFeatureParams::FeatureType]
         required :feature_type,
@@ -77,7 +78,11 @@ module Stigg
         optional :meter, -> { Stigg::V1::FeatureCreateFeatureParams::Meter }
 
         # @!attribute meter_type
-        #   The meter type for the feature
+        #   How usage accumulates for this feature. `Incremental` and `Fluctuating` features
+        #   track usage from reported events; `None` means the feature's value isn't
+        #   usage-tracked — it's just a numeric or enum value carried by the plan (for
+        #   example, a seat count or a tier setting) rather than something customers
+        #   consume.
         #
         #   @return [Symbol, Stigg::Models::V1::FeatureCreateFeatureParams::MeterType, nil]
         optional :meter_type,
@@ -106,11 +111,14 @@ module Stigg
         optional :x_environment_id, String
 
         # @!method initialize(id:, display_name:, feature_type:, description: nil, enum_configuration: nil, feature_status: nil, feature_units: nil, feature_units_plural: nil, metadata: nil, meter: nil, meter_type: nil, unit_transformation: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        #   Some parameter documentations has been truncated, see
+        #   {Stigg::Models::V1::FeatureCreateFeatureParams} for more details.
+        #
         #   @param id [String] The unique identifier for the feature
         #
         #   @param display_name [String] The display name for the feature
         #
-        #   @param feature_type [Symbol, Stigg::Models::V1::FeatureCreateFeatureParams::FeatureType] The type of the feature
+        #   @param feature_type [Symbol, Stigg::Models::V1::FeatureCreateFeatureParams::FeatureType] The type of the feature: BOOLEAN (on/off access), NUMBER (a numeric limit or qua
         #
         #   @param description [String] The description for the feature
         #
@@ -126,7 +134,7 @@ module Stigg
         #
         #   @param meter [Stigg::Models::V1::FeatureCreateFeatureParams::Meter] Event meter that turns reported events into usage for a metered feature
         #
-        #   @param meter_type [Symbol, Stigg::Models::V1::FeatureCreateFeatureParams::MeterType] The meter type for the feature
+        #   @param meter_type [Symbol, Stigg::Models::V1::FeatureCreateFeatureParams::MeterType] How usage accumulates for this feature. `Incremental` and `Fluctuating` features
         #
         #   @param unit_transformation [Stigg::Models::V1::FeatureCreateFeatureParams::UnitTransformation, nil] Unit transformation to be applied to the reported usage
         #
@@ -136,7 +144,8 @@ module Stigg
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 
-        # The type of the feature
+        # The type of the feature: BOOLEAN (on/off access), NUMBER (a numeric limit or
+        # quantity), or ENUM (one of a fixed set of values).
         module FeatureType
           extend Stigg::Internal::Type::Enum
 
@@ -310,7 +319,11 @@ module Stigg
           end
         end
 
-        # The meter type for the feature
+        # How usage accumulates for this feature. `Incremental` and `Fluctuating` features
+        # track usage from reported events; `None` means the feature's value isn't
+        # usage-tracked — it's just a numeric or enum value carried by the plan (for
+        # example, a seat count or a tier setting) rather than something customers
+        # consume.
         module MeterType
           extend Stigg::Internal::Type::Enum
 

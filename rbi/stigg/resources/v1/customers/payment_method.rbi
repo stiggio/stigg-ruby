@@ -27,11 +27,15 @@ module Stigg
           def attach(
             # Path param: The unique identifier of the entity
             id,
-            # Body param: Integration details
+            # Body param: The internal ID of the integration this record is linked to
             integration_id:,
-            # Body param: Billing provider payment method id
+            # Body param: Billing provider payment method id. Attaching it makes it the
+            # customer's new default payment method for future charges; any previously
+            # attached payment method is no longer used as the default, though it is not
+            # removed from the billing provider.
             payment_method_id:,
-            # Body param: The vendor identifier of integration
+            # Body param: The vendor identifier of the integration (e.g. STRIPE, SALESFORCE,
+            # SNOWFLAKE)
             vendor_identifier:,
             # Body param: Customers selected currency
             billing_currency: nil,

@@ -40,7 +40,8 @@ module Stigg
           sig { returns(String) }
           attr_accessor :id
 
-          # Fixed amount discounts in different currencies
+          # Fixed amount discounts in different currencies. Provide exactly one of
+          # percentOff or amountsOff — not both, not neither.
           sig do
             returns(T.nilable(T::Array[Stigg::V1::Coupon::Data::AmountsOff]))
           end
@@ -62,7 +63,8 @@ module Stigg
           sig { returns(T.nilable(String)) }
           attr_accessor :description
 
-          # Duration of the coupon validity in months
+          # How many billing cycles the discount applies for once redeemed. Leave unset for
+          # a discount that lasts for the lifetime of the subscription.
           sig { returns(T.nilable(Integer)) }
           attr_accessor :duration_in_months
 
@@ -74,7 +76,8 @@ module Stigg
           sig { returns(String) }
           attr_accessor :name
 
-          # Percentage discount off the original price
+          # Percentage discount off the original price. Provide exactly one of percentOff or
+          # amountsOff — not both, not neither.
           sig { returns(T.nilable(Integer)) }
           attr_accessor :percent_off
 
@@ -121,7 +124,8 @@ module Stigg
           def self.new(
             # The unique identifier for the entity
             id:,
-            # Fixed amount discounts in different currencies
+            # Fixed amount discounts in different currencies. Provide exactly one of
+            # percentOff or amountsOff — not both, not neither.
             amounts_off:,
             # The unique identifier for the entity in the billing provider
             billing_id:,
@@ -131,13 +135,15 @@ module Stigg
             created_at:,
             # Description of the coupon
             description:,
-            # Duration of the coupon validity in months
+            # How many billing cycles the discount applies for once redeemed. Leave unset for
+            # a discount that lasts for the lifetime of the subscription.
             duration_in_months:,
             # Metadata associated with the entity
             metadata:,
             # Name of the coupon
             name:,
-            # Percentage discount off the original price
+            # Percentage discount off the original price. Provide exactly one of percentOff or
+            # amountsOff — not both, not neither.
             percent_off:,
             # The source of the coupon
             source:,

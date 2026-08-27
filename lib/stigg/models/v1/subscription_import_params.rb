@@ -94,7 +94,8 @@ module Stigg
           optional :end_date, Time, api_name: :endDate, nil?: true
 
           # @!attribute metadata
-          #   Additional metadata for the subscription
+          #   Additional metadata for the subscription, stored as an arbitrary flat key-value
+          #   object.
           #
           #   @return [Hash{Symbol=>String}, nil]
           optional :metadata, Stigg::Internal::Type::HashOf[String]
@@ -112,6 +113,9 @@ module Stigg
           optional :start_date, Time, api_name: :startDate
 
           # @!method initialize(id:, customer_id:, plan_id:, addons: nil, billing_id: nil, billing_period: nil, charges: nil, end_date: nil, metadata: nil, resource_id: nil, start_date: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Stigg::Models::V1::SubscriptionImportParams::Subscription} for more details.
+          #
           #   @param id [String] Subscription ID
           #
           #   @param customer_id [String] Customer ID
@@ -128,7 +132,7 @@ module Stigg
           #
           #   @param end_date [Time, nil] Subscription end date
           #
-          #   @param metadata [Hash{Symbol=>String}] Additional metadata for the subscription
+          #   @param metadata [Hash{Symbol=>String}] Additional metadata for the subscription, stored as an arbitrary flat key-value
           #
           #   @param resource_id [String, nil] Resource ID
           #

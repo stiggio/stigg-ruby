@@ -96,7 +96,10 @@ module Stigg
           sig { returns(T.nilable(Time)) }
           attr_accessor :next_reset_date
 
-          # Resource id
+          # The customer resource this usage applies to. Optional — only required if the
+          # customer has multiple resources (for example, one subscription per workspace or
+          # site) and usage needs to be tracked separately per resource; omit it to report
+          # usage at the customer level.
           sig { returns(T.nilable(String)) }
           attr_accessor :resource_id
 
@@ -149,7 +152,10 @@ module Stigg
             current_usage: nil,
             # The date when the next usage reset will occur
             next_reset_date: nil,
-            # Resource id
+            # The customer resource this usage applies to. Optional — only required if the
+            # customer has multiple resources (for example, one subscription per workspace or
+            # site) and usage needs to be tracked separately per resource; omit it to report
+            # usage at the customer level.
             resource_id: nil,
             # The end date of the usage period in which this measurement resides (for
             # entitlements with a reset period)

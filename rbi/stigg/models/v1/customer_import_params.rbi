@@ -16,7 +16,7 @@ module Stigg
         sig { returns(T::Array[Stigg::V1::CustomerImportParams::Customer]) }
         attr_accessor :customers
 
-        # Integration details
+        # The internal ID of the integration this record is linked to
         sig { returns(T.nilable(String)) }
         attr_reader :integration_id
 
@@ -48,7 +48,7 @@ module Stigg
         def self.new(
           # List of customer objects to import
           customers:,
-          # Integration details
+          # The internal ID of the integration this record is linked to
           integration_id: nil,
           x_account_id: nil,
           x_environment_id: nil,
@@ -98,14 +98,21 @@ module Stigg
           sig { params(billing_id: String).void }
           attr_writer :billing_id
 
-          # Additional metadata
+          # Custom key-value metadata to attach to the customer. When creating a customer,
+          # this sets the initial metadata. When updating a customer, this replaces the
+          # customer's existing metadata object entirely — it is not merged key by key. Omit
+          # this field on update to leave the customer's existing metadata untouched; pass
+          # an empty object to clear it.
           sig { returns(T.nilable(T::Hash[Symbol, String])) }
           attr_reader :metadata
 
           sig { params(metadata: T::Hash[Symbol, String]).void }
           attr_writer :metadata
 
-          # Billing provider payment method id
+          # Billing provider payment method id. Attaching it makes it the customer's new
+          # default payment method for future charges; any previously attached payment
+          # method is no longer used as the default, though it is not removed from the
+          # billing provider.
           sig { returns(T.nilable(String)) }
           attr_reader :payment_method_id
 
@@ -147,9 +154,16 @@ module Stigg
             name:,
             # Id in the billing provider
             billing_id: nil,
-            # Additional metadata
+            # Custom key-value metadata to attach to the customer. When creating a customer,
+            # this sets the initial metadata. When updating a customer, this replaces the
+            # customer's existing metadata object entirely — it is not merged key by key. Omit
+            # this field on update to leave the customer's existing metadata untouched; pass
+            # an empty object to clear it.
             metadata: nil,
-            # Billing provider payment method id
+            # Billing provider payment method id. Attaching it makes it the customer's new
+            # default payment method for future charges; any previously attached payment
+            # method is no longer used as the default, though it is not removed from the
+            # billing provider.
             payment_method_id: nil,
             # The unique identifier for the customer in Salesforce integration
             salesforce_id: nil,

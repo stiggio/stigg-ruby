@@ -13,15 +13,17 @@ module Stigg
               )
             end
 
-          # Integration details
+          # The internal ID of the integration this record is linked to
           sig { returns(String) }
           attr_accessor :id
 
-          # Synced entity id
+          # The external entity ID this record is linked to in the vendor system (e.g. the
+          # Stripe customer ID). Null until the link has synced; required when creating the
+          # link.
           sig { returns(T.nilable(String)) }
           attr_accessor :synced_entity_id
 
-          # The vendor identifier of integration
+          # The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
           sig do
             returns(
               Stigg::Models::V1::Customers::IntegrationListResponse::VendorIdentifier::TaggedSymbol
@@ -40,7 +42,9 @@ module Stigg
           end
           attr_accessor :sync_data
 
-          # External billing or CRM integration link
+          # Links this customer to their record in a specific configured integration (e.g.
+          # their Stripe customer ID under your Stripe integration). A customer has at most
+          # one link per integration.
           sig do
             params(
               id: String,
@@ -58,11 +62,13 @@ module Stigg
             ).returns(T.attached_class)
           end
           def self.new(
-            # Integration details
+            # The internal ID of the integration this record is linked to
             id:,
-            # Synced entity id
+            # The external entity ID this record is linked to in the vendor system (e.g. the
+            # Stripe customer ID). Null until the link has synced; required when creating the
+            # link.
             synced_entity_id:,
-            # The vendor identifier of integration
+            # The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
             vendor_identifier:,
             # Price billing sync revision data containing billing ID, link URL, and price
             # group package billing ID
@@ -87,7 +93,7 @@ module Stigg
           def to_hash
           end
 
-          # The vendor identifier of integration
+          # The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
           module VendorIdentifier
             extend Stigg::Internal::Type::Enum
 

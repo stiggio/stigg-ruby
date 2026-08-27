@@ -15,7 +15,7 @@ module Stigg
         required :customers, -> { Stigg::Internal::Type::ArrayOf[Stigg::V1::CustomerImportParams::Customer] }
 
         # @!attribute integration_id
-        #   Integration details
+        #   The internal ID of the integration this record is linked to
         #
         #   @return [String, nil]
         optional :integration_id, String, api_name: :integrationId
@@ -33,7 +33,7 @@ module Stigg
         # @!method initialize(customers:, integration_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #   @param customers [Array<Stigg::Models::V1::CustomerImportParams::Customer>] List of customer objects to import
         #
-        #   @param integration_id [String] Integration details
+        #   @param integration_id [String] The internal ID of the integration this record is linked to
         #
         #   @param x_account_id [String]
         #
@@ -67,13 +67,20 @@ module Stigg
           optional :billing_id, String, api_name: :billingId
 
           # @!attribute metadata
-          #   Additional metadata
+          #   Custom key-value metadata to attach to the customer. When creating a customer,
+          #   this sets the initial metadata. When updating a customer, this replaces the
+          #   customer's existing metadata object entirely — it is not merged key by key. Omit
+          #   this field on update to leave the customer's existing metadata untouched; pass
+          #   an empty object to clear it.
           #
           #   @return [Hash{Symbol=>String}, nil]
           optional :metadata, Stigg::Internal::Type::HashOf[String]
 
           # @!attribute payment_method_id
-          #   Billing provider payment method id
+          #   Billing provider payment method id. Attaching it makes it the customer's new
+          #   default payment method for future charges; any previously attached payment
+          #   method is no longer used as the default, though it is not removed from the
+          #   billing provider.
           #
           #   @return [String, nil]
           optional :payment_method_id, String, api_name: :paymentMethodId
@@ -91,6 +98,9 @@ module Stigg
           optional :updated_at, Time, api_name: :updatedAt
 
           # @!method initialize(id:, email:, name:, billing_id: nil, metadata: nil, payment_method_id: nil, salesforce_id: nil, updated_at: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Stigg::Models::V1::CustomerImportParams::Customer} for more details.
+          #
           #   @param id [String] Customer slug
           #
           #   @param email [String, nil] The email of the customer
@@ -99,9 +109,9 @@ module Stigg
           #
           #   @param billing_id [String] Id in the billing provider
           #
-          #   @param metadata [Hash{Symbol=>String}] Additional metadata
+          #   @param metadata [Hash{Symbol=>String}] Custom key-value metadata to attach to the customer. When creating a customer, t
           #
-          #   @param payment_method_id [String] Billing provider payment method id
+          #   @param payment_method_id [String] Billing provider payment method id. Attaching it makes it the customer's new def
           #
           #   @param salesforce_id [String] The unique identifier for the customer in Salesforce integration
           #

@@ -137,7 +137,8 @@ module Stigg
                      api_name: :subscriptionStartSetup
 
             # @!attribute downgrade_plan_id
-            #   ID of the plan to downgrade to at the end of the billing period
+            #   ID of the plan to downgrade to at the end of the billing period. Only relevant
+            #   when subscriptionEndSetup is DOWNGRADE_TO_FREE — ignored otherwise.
             #
             #   @return [String, nil]
             optional :downgrade_plan_id, String, api_name: :downgradePlanId, nil?: true
@@ -153,7 +154,8 @@ module Stigg
                      nil?: true
 
             # @!attribute subscription_start_plan_id
-            #   ID of the plan to start the subscription with
+            #   ID of the plan to start the subscription with. Only relevant when
+            #   subscriptionStartSetup is PLAN_SELECTION — ignored otherwise.
             #
             #   @return [String, nil]
             optional :subscription_start_plan_id, String, api_name: :subscriptionStartPlanId, nil?: true
@@ -170,11 +172,11 @@ module Stigg
             #
             #   @param subscription_start_setup [Symbol, Stigg::Models::V1::Product::Data::ProductSettings::SubscriptionStartSetup] Setup for the start of the subscription
             #
-            #   @param downgrade_plan_id [String, nil] ID of the plan to downgrade to at the end of the billing period
+            #   @param downgrade_plan_id [String, nil] ID of the plan to downgrade to at the end of the billing period. Only relevant w
             #
             #   @param prorate_at_end_of_billing_period [Boolean, nil] Indicates if the subscription should be prorated at the end of the billing perio
             #
-            #   @param subscription_start_plan_id [String, nil] ID of the plan to start the subscription with
+            #   @param subscription_start_plan_id [String, nil] ID of the plan to start the subscription with. Only relevant when subscriptionSt
 
             # Time when the subscription will be cancelled
             #

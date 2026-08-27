@@ -47,7 +47,9 @@ module Stigg
           required :event_name, String, api_name: :eventName
 
           # @!attribute idempotency_key
-          #   Idempotency key
+          #   A key you provide to safely retry the same usage report without double-counting
+          #   it. Reports with a previously-seen idempotency key are deduplicated for 7 days;
+          #   after that window a retry is treated as new usage.
           #
           #   @return [String]
           required :idempotency_key, String, api_name: :idempotencyKey
@@ -60,7 +62,10 @@ module Stigg
                    -> { Stigg::Internal::Type::HashOf[union: Stigg::V1::EventReportParams::Event::Dimension] }
 
           # @!attribute resource_id
-          #   Resource id
+          #   The customer resource this usage applies to. Optional — only required if the
+          #   customer has multiple resources (for example, one subscription per workspace or
+          #   site) and usage needs to be tracked separately per resource; omit it to report
+          #   usage at the customer level.
           #
           #   @return [String, nil]
           optional :resource_id, String, api_name: :resourceId, nil?: true
@@ -72,17 +77,20 @@ module Stigg
           optional :timestamp, Time
 
           # @!method initialize(customer_id:, event_name:, idempotency_key:, dimensions: nil, resource_id: nil, timestamp: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Stigg::Models::V1::EventReportParams::Event} for more details.
+          #
           #   Raw usage event
           #
           #   @param customer_id [String] Customer id
           #
           #   @param event_name [String] The name of the usage event
           #
-          #   @param idempotency_key [String] Idempotency key
+          #   @param idempotency_key [String] A key you provide to safely retry the same usage report without double-counting
           #
           #   @param dimensions [Hash{Symbol=>String, Float, Boolean}] Dimensions associated with the usage event
           #
-          #   @param resource_id [String, nil] Resource id
+          #   @param resource_id [String, nil] The customer resource this usage applies to. Optional — only required if the cus
           #
           #   @param timestamp [Time] Timestamp
 

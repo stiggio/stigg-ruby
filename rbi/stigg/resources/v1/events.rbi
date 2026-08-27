@@ -36,7 +36,10 @@ module Stigg
           event_name:,
           # Body param: Dimensions associated with the usage event
           dimensions: nil,
-          # Body param: Resource id
+          # Body param: The customer resource this usage applies to. Optional — only
+          # required if the customer has multiple resources (for example, one subscription
+          # per workspace or site) and usage needs to be tracked separately per resource;
+          # omit it to report usage at the customer level.
           resource_id: nil,
           # Header param: Account ID — optional when authenticating with a user JWT (Bearer
           # token); falls back to the user's first membership. Ignored for API-key auth.
@@ -49,8 +52,8 @@ module Stigg
         )
         end
 
-        # Reports raw usage events for event-based metering. Events are ingested
-        # asynchronously and aggregated into usage totals.
+        # Reports raw usage events for event-based metering. Events are validated and
+        # stored synchronously, then aggregated into usage totals asynchronously.
         sig do
           params(
             events: T::Array[Stigg::V1::EventReportParams::Event::OrHash],

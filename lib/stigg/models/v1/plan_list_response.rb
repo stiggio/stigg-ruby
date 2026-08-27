@@ -32,7 +32,9 @@ module Stigg
         required :created_at, Time, api_name: :createdAt
 
         # @!attribute default_trial_config
-        #   Default trial configuration for the plan
+        #   Default trial configuration for the plan. When set, subscriptions provisioned on
+        #   this plan without explicit trial settings automatically start in trial for the
+        #   configured duration; leave unset for no automatic trial.
         #
         #   @return [Stigg::Models::V1::PlanListResponse::DefaultTrialConfig, nil]
         required :default_trial_config,
@@ -72,7 +74,9 @@ module Stigg
         required :metadata, Stigg::Internal::Type::HashOf[String]
 
         # @!attribute parent_plan_id
-        #   The ID of the parent plan, if applicable
+        #   The ID of the parent plan, if this plan should inherit entitlements from another
+        #   plan. Optional — omit to create a standalone plan with no inherited
+        #   entitlements.
         #
         #   @return [String, nil]
         required :parent_plan_id, String, api_name: :parentPlanId, nil?: true
@@ -111,6 +115,9 @@ module Stigg
         required :version_number, Integer, api_name: :versionNumber
 
         # @!method initialize(id:, billing_id:, compatible_addon_ids:, created_at:, default_trial_config:, description:, display_name:, entitlements:, is_latest:, metadata:, parent_plan_id:, pricing_type:, product_id:, status:, updated_at:, version_number:)
+        #   Some parameter documentations has been truncated, see
+        #   {Stigg::Models::V1::PlanListResponse} for more details.
+        #
         #   Plan configuration object
         #
         #   @param id [String] The unique identifier for the entity
@@ -121,7 +128,7 @@ module Stigg
         #
         #   @param created_at [Time] Timestamp of when the record was created
         #
-        #   @param default_trial_config [Stigg::Models::V1::PlanListResponse::DefaultTrialConfig, nil] Default trial configuration for the plan
+        #   @param default_trial_config [Stigg::Models::V1::PlanListResponse::DefaultTrialConfig, nil] Default trial configuration for the plan. When set, subscriptions provisioned on
         #
         #   @param description [String, nil] The description of the package
         #
@@ -133,7 +140,7 @@ module Stigg
         #
         #   @param metadata [Hash{Symbol=>String}] Metadata associated with the entity
         #
-        #   @param parent_plan_id [String, nil] The ID of the parent plan, if applicable
+        #   @param parent_plan_id [String, nil] The ID of the parent plan, if this plan should inherit entitlements from another
         #
         #   @param pricing_type [Symbol, Stigg::Models::V1::PlanListResponse::PricingType, nil] The pricing type of the package
         #
@@ -175,7 +182,9 @@ module Stigg
                    nil?: true
 
           # @!method initialize(duration:, units:, budget: nil, trial_end_behavior: nil)
-          #   Default trial configuration for the plan
+          #   Default trial configuration for the plan. When set, subscriptions provisioned on
+          #   this plan without explicit trial settings automatically start in trial for the
+          #   configured duration; leave unset for no automatic trial.
           #
           #   @param duration [Float] The duration of the trial in the specified units
           #

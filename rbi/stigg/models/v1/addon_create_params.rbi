@@ -32,7 +32,8 @@ module Stigg
         sig { returns(T.nilable(String)) }
         attr_accessor :description
 
-        # The maximum quantity of this addon that can be added to a subscription
+        # The maximum quantity of this addon that can be added to a subscription. Leave
+        # unset for no upper bound.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :max_quantity
 
@@ -102,7 +103,8 @@ module Stigg
           billing_id: nil,
           # The description of the package
           description: nil,
-          # The maximum quantity of this addon that can be added to a subscription
+          # The maximum quantity of this addon that can be added to a subscription. Leave
+          # unset for no upper bound.
           max_quantity: nil,
           # Metadata associated with the entity
           metadata: nil,

@@ -150,7 +150,9 @@ module Stigg
             #   {Stigg::Models::V1::Customers::PromotionalEntitlementCreateParams::PromotionalEntitlement}
             #   for more details.
             #
-            #   Single entitlement grant config
+            #   Single entitlement grant config. Granting again for the same customer and
+            #   feature replaces the existing promotional entitlement for that feature rather
+            #   than stacking a second one.
             #
             #   @param custom_end_date [Time, nil] The custom end date of the promotional entitlement
             #

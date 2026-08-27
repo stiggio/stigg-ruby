@@ -19,15 +19,17 @@ module Stigg
           sig { returns(String) }
           attr_accessor :path_id
 
-          # Integration details
+          # The internal ID of the integration this record is linked to
           sig { returns(String) }
           attr_accessor :body_id
 
-          # Synced entity id
+          # The external entity ID this record is linked to in the vendor system (e.g. the
+          # Stripe customer ID). Null until the link has synced; required when creating the
+          # link.
           sig { returns(String) }
           attr_accessor :synced_entity_id
 
-          # The vendor identifier of integration
+          # The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
           sig do
             returns(
               Stigg::V1::Customers::IntegrationLinkParams::VendorIdentifier::OrSymbol
@@ -61,11 +63,13 @@ module Stigg
           end
           def self.new(
             path_id:,
-            # Integration details
+            # The internal ID of the integration this record is linked to
             body_id:,
-            # Synced entity id
+            # The external entity ID this record is linked to in the vendor system (e.g. the
+            # Stripe customer ID). Null until the link has synced; required when creating the
+            # link.
             synced_entity_id:,
-            # The vendor identifier of integration
+            # The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
             vendor_identifier:,
             x_account_id: nil,
             x_environment_id: nil,
@@ -90,7 +94,7 @@ module Stigg
           def to_hash
           end
 
-          # The vendor identifier of integration
+          # The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
           module VendorIdentifier
             extend Stigg::Internal::Type::Enum
 

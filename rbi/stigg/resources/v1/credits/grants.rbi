@@ -45,9 +45,13 @@ module Stigg
             # Body param: The type of credit grant (PAID, PROMOTIONAL)
             grant_type:,
             # Body param: Whether to wait for payment confirmation before returning (default:
-            # true)
+            # true). When false, the request returns immediately while payment (if any) is
+            # collected asynchronously; check the returned status to see whether the credits
+            # are already usable.
             await_payment_confirmation: nil,
-            # Body param: Billing information for the credit grant
+            # Body param: Billing information for the credit grant, used when the grant has a
+            # payment collection method that requires collecting payment (e.g. invoice due
+            # date, billing address).
             billing_information: nil,
             # Body param: An optional comment on the credit grant
             comment: nil,
@@ -59,9 +63,19 @@ module Stigg
             expire_at: nil,
             # Body param: Additional metadata for the credit grant
             metadata: nil,
-            # Body param: The payment collection method (CHARGE, INVOICE, NONE)
+            # Body param: The payment collection method (CHARGE, INVOICE, NONE). Optional if
+            # the grant has no `cost`, since there is nothing to collect payment for. With
+            # NONE or CHARGE, the grant is active and its credits are usable right away (or as
+            # soon as the charge succeeds). With INVOICE, the grant stays pending — its
+            # credits are not usable — until the generated invoice is paid.
             payment_collection_method: nil,
-            # Body param: The priority of the credit grant (lower number = higher priority)
+            # Body param: Determines which grant is drawn down first when the customer has
+            # multiple active grants in the same currency (0-100). Lower numbers are consumed
+            # first. Defaults to 50 — the same default used for recurring credits granted by a
+            # plan or price — so without setting this explicitly, draw order against
+            # plan-included credits falls back to expiration date and grant type. To have this
+            # grant consumed before or after plan-included credits, set a lower or higher
+            # priority than the plan/price credit configuration.
             priority: nil,
             # Body param: The resource ID to scope the grant to
             resource_id: nil,

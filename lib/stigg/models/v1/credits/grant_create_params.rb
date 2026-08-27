@@ -44,7 +44,10 @@ module Stigg
                    api_name: :grantType
 
           # @!attribute await_payment_confirmation
-          #   Whether to wait for payment confirmation before returning (default: true)
+          #   Whether to wait for payment confirmation before returning (default: true). When
+          #   false, the request returns immediately while payment (if any) is collected
+          #   asynchronously; check the returned status to see whether the credits are already
+          #   usable.
           #
           #   @return [Boolean, nil]
           optional :await_payment_confirmation,
@@ -52,7 +55,9 @@ module Stigg
                    api_name: :awaitPaymentConfirmation
 
           # @!attribute billing_information
-          #   Billing information for the credit grant
+          #   Billing information for the credit grant, used when the grant has a payment
+          #   collection method that requires collecting payment (e.g. invoice due date,
+          #   billing address).
           #
           #   @return [Stigg::Models::V1::Credits::GrantCreateParams::BillingInformation, nil]
           optional :billing_information,
@@ -90,7 +95,11 @@ module Stigg
           optional :metadata, Stigg::Internal::Type::HashOf[String]
 
           # @!attribute payment_collection_method
-          #   The payment collection method (CHARGE, INVOICE, NONE)
+          #   The payment collection method (CHARGE, INVOICE, NONE). Optional if the grant has
+          #   no `cost`, since there is nothing to collect payment for. With NONE or CHARGE,
+          #   the grant is active and its credits are usable right away (or as soon as the
+          #   charge succeeds). With INVOICE, the grant stays pending — its credits are not
+          #   usable — until the generated invoice is paid.
           #
           #   @return [Symbol, Stigg::Models::V1::Credits::GrantCreateParams::PaymentCollectionMethod, nil]
           optional :payment_collection_method,
@@ -98,7 +107,13 @@ module Stigg
                    api_name: :paymentCollectionMethod
 
           # @!attribute priority
-          #   The priority of the credit grant (lower number = higher priority)
+          #   Determines which grant is drawn down first when the customer has multiple active
+          #   grants in the same currency (0-100). Lower numbers are consumed first. Defaults
+          #   to 50 — the same default used for recurring credits granted by a plan or price —
+          #   so without setting this explicitly, draw order against plan-included credits
+          #   falls back to expiration date and grant type. To have this grant consumed before
+          #   or after plan-included credits, set a lower or higher priority than the
+          #   plan/price credit configuration.
           #
           #   @return [Integer, nil]
           optional :priority, Integer
@@ -120,6 +135,9 @@ module Stigg
           optional :x_environment_id, String
 
           # @!method initialize(amount:, currency_id:, customer_id:, display_name:, grant_type:, await_payment_confirmation: nil, billing_information: nil, comment: nil, cost: nil, effective_at: nil, expire_at: nil, metadata: nil, payment_collection_method: nil, priority: nil, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+          #   Some parameter documentations has been truncated, see
+          #   {Stigg::Models::V1::Credits::GrantCreateParams} for more details.
+          #
           #   @param amount [Float] The credit amount to grant
           #
           #   @param currency_id [String] The credit currency ID (required)
@@ -130,9 +148,9 @@ module Stigg
           #
           #   @param grant_type [Symbol, Stigg::Models::V1::Credits::GrantCreateParams::GrantType] The type of credit grant (PAID, PROMOTIONAL)
           #
-          #   @param await_payment_confirmation [Boolean] Whether to wait for payment confirmation before returning (default: true)
+          #   @param await_payment_confirmation [Boolean] Whether to wait for payment confirmation before returning (default: true). When
           #
-          #   @param billing_information [Stigg::Models::V1::Credits::GrantCreateParams::BillingInformation] Billing information for the credit grant
+          #   @param billing_information [Stigg::Models::V1::Credits::GrantCreateParams::BillingInformation] Billing information for the credit grant, used when the grant has a payment coll
           #
           #   @param comment [String] An optional comment on the credit grant
           #
@@ -144,9 +162,9 @@ module Stigg
           #
           #   @param metadata [Hash{Symbol=>String}] Additional metadata for the credit grant
           #
-          #   @param payment_collection_method [Symbol, Stigg::Models::V1::Credits::GrantCreateParams::PaymentCollectionMethod] The payment collection method (CHARGE, INVOICE, NONE)
+          #   @param payment_collection_method [Symbol, Stigg::Models::V1::Credits::GrantCreateParams::PaymentCollectionMethod] The payment collection method (CHARGE, INVOICE, NONE). Optional if the grant has
           #
-          #   @param priority [Integer] The priority of the credit grant (lower number = higher priority)
+          #   @param priority [Integer] Determines which grant is drawn down first when the customer has multiple active
           #
           #   @param resource_id [String] The resource ID to scope the grant to
           #
@@ -189,7 +207,9 @@ module Stigg
             optional :is_invoice_paid, Stigg::Internal::Type::Boolean, api_name: :isInvoicePaid
 
             # @!method initialize(billing_address: nil, invoice_days_until_due: nil, is_invoice_paid: nil)
-            #   Billing information for the credit grant
+            #   Billing information for the credit grant, used when the grant has a payment
+            #   collection method that requires collecting payment (e.g. invoice due date,
+            #   billing address).
             #
             #   @param billing_address [Stigg::Models::V1::Credits::GrantCreateParams::BillingInformation::BillingAddress] The billing address
             #
@@ -400,7 +420,11 @@ module Stigg
             end
           end
 
-          # The payment collection method (CHARGE, INVOICE, NONE)
+          # The payment collection method (CHARGE, INVOICE, NONE). Optional if the grant has
+          # no `cost`, since there is nothing to collect payment for. With NONE or CHARGE,
+          # the grant is active and its credits are usable right away (or as soon as the
+          # charge succeeds). With INVOICE, the grant stays pending — its credits are not
+          # usable — until the generated invoice is paid.
           module PaymentCollectionMethod
             extend Stigg::Internal::Type::Enum
 

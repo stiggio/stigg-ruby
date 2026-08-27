@@ -188,7 +188,9 @@ module Stigg
           description: nil,
           # Body param: Display name of the product
           display_name: nil,
-          # Body param: Additional metadata for the product
+          # Body param: Additional metadata for the product. When included, this replaces
+          # the product's entire metadata object rather than merging with the existing keys
+          # — omit the field to leave existing metadata untouched.
           metadata: nil,
           # Body param: Indicates if multiple subscriptions to this product are allowed
           multiple_subscriptions: nil,

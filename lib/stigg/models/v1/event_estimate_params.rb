@@ -28,7 +28,10 @@ module Stigg
                  -> { Stigg::Internal::Type::HashOf[union: Stigg::V1::EventEstimateParams::Dimension] }
 
         # @!attribute resource_id
-        #   Resource id
+        #   The customer resource this usage applies to. Optional — only required if the
+        #   customer has multiple resources (for example, one subscription per workspace or
+        #   site) and usage needs to be tracked separately per resource; omit it to report
+        #   usage at the customer level.
         #
         #   @return [String, nil]
         optional :resource_id, String, api_name: :resourceId, nil?: true
@@ -44,13 +47,16 @@ module Stigg
         optional :x_environment_id, String
 
         # @!method initialize(customer_id:, event_name:, dimensions: nil, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        #   Some parameter documentations has been truncated, see
+        #   {Stigg::Models::V1::EventEstimateParams} for more details.
+        #
         #   @param customer_id [String] Customer id
         #
         #   @param event_name [String] The name of the usage event
         #
         #   @param dimensions [Hash{Symbol=>String, Float, Boolean}] Dimensions associated with the usage event
         #
-        #   @param resource_id [String, nil] Resource id
+        #   @param resource_id [String, nil] The customer resource this usage applies to. Optional — only required if the cus
         #
         #   @param x_account_id [String]
         #

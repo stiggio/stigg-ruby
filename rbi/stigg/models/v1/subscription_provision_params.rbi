@@ -207,7 +207,8 @@ module Stigg
         end
         attr_writer :entitlements
 
-        # Additional metadata for the subscription
+        # Additional metadata for the subscription, stored as an arbitrary flat key-value
+        # object.
         sig { returns(T.nilable(T::Hash[Symbol, String])) }
         attr_reader :metadata
 
@@ -428,7 +429,8 @@ module Stigg
           # Checkout page configuration for payment collection
           checkout_options: nil,
           entitlements: nil,
-          # Additional metadata for the subscription
+          # Additional metadata for the subscription, stored as an arbitrary flat key-value
+          # object.
           metadata: nil,
           # Minimum spend amount
           minimum_spend: nil,
@@ -1525,7 +1527,8 @@ module Stigg
           sig { params(is_invoice_paid: T::Boolean).void }
           attr_writer :is_invoice_paid
 
-          # Additional metadata for the subscription
+          # Additional metadata for the subscription, stored as an arbitrary flat key-value
+          # object.
           sig { returns(T.nilable(T::Hash[Symbol, String])) }
           attr_reader :metadata
 
@@ -1619,7 +1622,8 @@ module Stigg
             is_backdated: nil,
             # Whether the invoice is marked as paid
             is_invoice_paid: nil,
-            # Additional metadata for the subscription
+            # Additional metadata for the subscription, stored as an arbitrary flat key-value
+            # object.
             metadata: nil,
             # How to handle proration for billing changes
             proration_behavior: nil,
@@ -3441,7 +3445,9 @@ module Stigg
           sig { params(base_charge: T::Boolean).void }
           attr_writer :base_charge
 
-          # The billing country code of the price
+          # ISO 3166-1 alpha-2 country code this price applies to. Omit for the default
+          # price shown to all countries; set one or more country-specific price periods on
+          # the same currency to localize the amount by billing country.
           sig { returns(T.nilable(String)) }
           attr_reader :billing_country_code
 
@@ -3560,7 +3566,9 @@ module Stigg
             amount: nil,
             # Whether this is a base charge override
             base_charge: nil,
-            # The billing country code of the price
+            # ISO 3166-1 alpha-2 country code this price applies to. Omit for the default
+            # price shown to all countries; set one or more country-specific price periods on
+            # the same currency to localize the amount by billing country.
             billing_country_code: nil,
             # Block size for pricing
             block_size: nil,

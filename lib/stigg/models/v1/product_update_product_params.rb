@@ -26,7 +26,9 @@ module Stigg
         optional :display_name, String, api_name: :displayName
 
         # @!attribute metadata
-        #   Additional metadata for the product
+        #   Additional metadata for the product. When included, this replaces the product's
+        #   entire metadata object rather than merging with the existing keys — omit the
+        #   field to leave existing metadata untouched.
         #
         #   @return [Hash{Symbol=>String}, nil]
         optional :metadata, Stigg::Internal::Type::HashOf[String], nil?: true
@@ -63,13 +65,16 @@ module Stigg
         optional :x_environment_id, String
 
         # @!method initialize(id:, description: nil, display_name: nil, metadata: nil, multiple_subscriptions: nil, product_settings: nil, usage_reset_cutoff_rule: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        #   Some parameter documentations has been truncated, see
+        #   {Stigg::Models::V1::ProductUpdateProductParams} for more details.
+        #
         #   @param id [String]
         #
         #   @param description [String, nil] Description of the product
         #
         #   @param display_name [String] Display name of the product
         #
-        #   @param metadata [Hash{Symbol=>String}, nil] Additional metadata for the product
+        #   @param metadata [Hash{Symbol=>String}, nil] Additional metadata for the product. When included, this replaces the product's
         #
         #   @param multiple_subscriptions [Boolean] Indicates if multiple subscriptions to this product are allowed
         #
@@ -113,7 +118,8 @@ module Stigg
                    api_name: :subscriptionStartSetup
 
           # @!attribute downgrade_plan_id
-          #   ID of the plan to downgrade to at the end of the billing period
+          #   ID of the plan to downgrade to at the end of the billing period. Only relevant
+          #   when subscriptionEndSetup is DOWNGRADE_TO_FREE — ignored otherwise.
           #
           #   @return [String, nil]
           optional :downgrade_plan_id, String, api_name: :downgradePlanId, nil?: true
@@ -129,7 +135,8 @@ module Stigg
                    nil?: true
 
           # @!attribute subscription_start_plan_id
-          #   ID of the plan to start the subscription with
+          #   ID of the plan to start the subscription with. Only relevant when
+          #   subscriptionStartSetup is PLAN_SELECTION — ignored otherwise.
           #
           #   @return [String, nil]
           optional :subscription_start_plan_id, String, api_name: :subscriptionStartPlanId, nil?: true
@@ -145,11 +152,11 @@ module Stigg
           #
           #   @param subscription_start_setup [Symbol, Stigg::Models::V1::ProductUpdateProductParams::ProductSettings::SubscriptionStartSetup] Setup for the start of the subscription
           #
-          #   @param downgrade_plan_id [String, nil] ID of the plan to downgrade to at the end of the billing period
+          #   @param downgrade_plan_id [String, nil] ID of the plan to downgrade to at the end of the billing period. Only relevant w
           #
           #   @param prorate_at_end_of_billing_period [Boolean, nil] Indicates if the subscription should be prorated at the end of the billing perio
           #
-          #   @param subscription_start_plan_id [String, nil] ID of the plan to start the subscription with
+          #   @param subscription_start_plan_id [String, nil] ID of the plan to start the subscription with. Only relevant when subscriptionSt
 
           # Time when the subscription will be cancelled
           #

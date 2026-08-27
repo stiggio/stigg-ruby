@@ -14,9 +14,9 @@ module Stigg
         required :id, String
 
         # @!attribute target_customer_id
-        #   The unique identifier of the customer who will assume payment responsibility for
-        #   this subscription. This customer must already exist in your Stigg account and
-        #   have a valid payment method if the subscription requires payment.
+        #   The unique identifier of the customer who will manage this subscription going
+        #   forward. This customer must already exist in your Stigg account. The paying
+        #   customer for the subscription does not change as a result of this request.
         #
         #   @return [String]
         required :target_customer_id, String, api_name: :targetCustomerId
@@ -37,7 +37,7 @@ module Stigg
         #
         #   @param id [String]
         #
-        #   @param target_customer_id [String] The unique identifier of the customer who will assume payment responsibility for
+        #   @param target_customer_id [String] The unique identifier of the customer who will manage this subscription going fo
         #
         #   @param x_account_id [String]
         #

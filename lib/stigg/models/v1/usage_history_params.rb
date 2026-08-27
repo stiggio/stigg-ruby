@@ -37,7 +37,10 @@ module Stigg
         optional :group_by, String
 
         # @!attribute resource_id
-        #   Resource id
+        #   The customer resource this usage applies to. Optional — only required if the
+        #   customer has multiple resources (for example, one subscription per workspace or
+        #   site) and usage needs to be tracked separately per resource; omit it to report
+        #   usage at the customer level.
         #
         #   @return [String, nil]
         optional :resource_id, String, nil?: true
@@ -53,6 +56,9 @@ module Stigg
         optional :x_environment_id, String
 
         # @!method initialize(customer_id:, feature_id:, start_date:, end_date: nil, group_by: nil, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        #   Some parameter documentations has been truncated, see
+        #   {Stigg::Models::V1::UsageHistoryParams} for more details.
+        #
         #   @param customer_id [String]
         #
         #   @param feature_id [String]
@@ -63,7 +69,7 @@ module Stigg
         #
         #   @param group_by [String] Criteria by which to group the usage history
         #
-        #   @param resource_id [String, nil] Resource id
+        #   @param resource_id [String, nil] The customer resource this usage applies to. Optional — only required if the cus
         #
         #   @param x_account_id [String]
         #

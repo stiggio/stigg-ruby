@@ -26,7 +26,7 @@ module Stigg
           #
           # @param await_payment_confirmation [Boolean] Body param: Whether to wait for payment confirmation before returning (default:
           #
-          # @param billing_information [Stigg::Models::V1::Credits::GrantCreateParams::BillingInformation] Body param: Billing information for the credit grant
+          # @param billing_information [Stigg::Models::V1::Credits::GrantCreateParams::BillingInformation] Body param: Billing information for the credit grant, used when the grant has a
           #
           # @param comment [String] Body param: An optional comment on the credit grant
           #
@@ -38,9 +38,9 @@ module Stigg
           #
           # @param metadata [Hash{Symbol=>String}] Body param: Additional metadata for the credit grant
           #
-          # @param payment_collection_method [Symbol, Stigg::Models::V1::Credits::GrantCreateParams::PaymentCollectionMethod] Body param: The payment collection method (CHARGE, INVOICE, NONE)
+          # @param payment_collection_method [Symbol, Stigg::Models::V1::Credits::GrantCreateParams::PaymentCollectionMethod] Body param: The payment collection method (CHARGE, INVOICE, NONE). Optional if t
           #
-          # @param priority [Integer] Body param: The priority of the credit grant (lower number = higher priority)
+          # @param priority [Integer] Body param: Determines which grant is drawn down first when the customer has mul
           #
           # @param resource_id [String] Body param: The resource ID to scope the grant to
           #

@@ -126,7 +126,11 @@ module Stigg
           end
           attr_accessor :source_type
 
-          # The effective status of the credit grant
+          # The effective status of the credit grant. A grant with paymentCollectionMethod
+          # NONE or CHARGE becomes ACTIVE (and its credits become usable) as soon as it's
+          # created (or as soon as the charge succeeds). A grant with
+          # paymentCollectionMethod INVOICE stays PAYMENT_PENDING — its credits are not
+          # usable — until the invoice is paid.
           sig do
             returns(
               Stigg::Models::V1::Credits::GrantListResponse::Status::TaggedSymbol
@@ -154,7 +158,10 @@ module Stigg
           sig { returns(T.nilable(Time)) }
           attr_accessor :voided_at
 
-          # Credit grant object representing allocated credits for a customer
+          # Credit grant object representing allocated credits for a customer. Credit grants
+          # cannot be edited after creation via this API — void the grant to stop further
+          # consumption from it, then create a new grant with the corrected amount,
+          # priority, or expiration.
           sig do
             params(
               id: String,
@@ -235,7 +242,11 @@ module Stigg
             resource_id:,
             # The source type of the grant (PRICE, PLAN_ENTITLEMENT, ADDON_ENTITLEMENT)
             source_type:,
-            # The effective status of the credit grant
+            # The effective status of the credit grant. A grant with paymentCollectionMethod
+            # NONE or CHARGE becomes ACTIVE (and its credits become usable) as soon as it's
+            # created (or as soon as the charge succeeds). A grant with
+            # paymentCollectionMethod INVOICE stays PAYMENT_PENDING — its credits are not
+            # usable — until the invoice is paid.
             status:,
             # The synchronization states of the entity with external systems
             sync_states:,
@@ -689,7 +700,11 @@ module Stigg
             end
           end
 
-          # The effective status of the credit grant
+          # The effective status of the credit grant. A grant with paymentCollectionMethod
+          # NONE or CHARGE becomes ACTIVE (and its credits become usable) as soon as it's
+          # created (or as soon as the charge succeeds). A grant with
+          # paymentCollectionMethod INVOICE stays PAYMENT_PENDING — its credits are not
+          # usable — until the invoice is paid.
           module Status
             extend Stigg::Internal::Type::Enum
 
@@ -756,11 +771,13 @@ module Stigg
             end
             attr_accessor :status
 
-            # Synced entity id
+            # The external entity ID this record is linked to in the vendor system (e.g. the
+            # Stripe customer ID). Null until the link has synced; required when creating the
+            # link.
             sig { returns(T.nilable(String)) }
             attr_accessor :synced_entity_id
 
-            # The vendor identifier of integration
+            # The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
             sig do
               returns(
                 Stigg::Models::V1::Credits::GrantListResponse::SyncState::VendorIdentifier::TaggedSymbol
@@ -780,9 +797,11 @@ module Stigg
             def self.new(
               # Status of the integration sync
               status:,
-              # Synced entity id
+              # The external entity ID this record is linked to in the vendor system (e.g. the
+              # Stripe customer ID). Null until the link has synced; required when creating the
+              # link.
               synced_entity_id:,
-              # The vendor identifier of integration
+              # The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
               vendor_identifier:
             )
             end
@@ -846,7 +865,7 @@ module Stigg
               end
             end
 
-            # The vendor identifier of integration
+            # The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
             module VendorIdentifier
               extend Stigg::Internal::Type::Enum
 

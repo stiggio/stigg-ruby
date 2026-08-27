@@ -47,7 +47,9 @@ module Stigg
           required :feature_id, String, api_name: :featureId
 
           # @!attribute value
-          #   The value to report for usage
+          #   The value to report for usage. Must be a whole number — the REST API does not
+          #   accept fractional (float) usage values; scale up (e.g. report cents instead of
+          #   dollars, or milliseconds instead of seconds) if you need sub-unit precision.
           #
           #   @return [Integer]
           required :value, Integer
@@ -66,19 +68,26 @@ module Stigg
                    -> { Stigg::Internal::Type::HashOf[union: Stigg::V1::UsageReportParams::Usage::Dimension] }
 
           # @!attribute idempotency_key
-          #   Idempotency key
+          #   A key you provide to safely retry the same usage report without double-counting
+          #   it. Reports with a previously-seen idempotency key are deduplicated for 7 days;
+          #   after that window a retry is treated as new usage.
           #
           #   @return [String, nil]
           optional :idempotency_key, String, api_name: :idempotencyKey
 
           # @!attribute resource_id
-          #   Resource id
+          #   The customer resource this usage applies to. Optional — only required if the
+          #   customer has multiple resources (for example, one subscription per workspace or
+          #   site) and usage needs to be tracked separately per resource; omit it to report
+          #   usage at the customer level.
           #
           #   @return [String, nil]
           optional :resource_id, String, api_name: :resourceId, nil?: true
 
           # @!attribute update_behavior
-          #   The method by which the usage value should be updated
+          #   How the reported value is applied: DELTA (default) adds it to the feature's
+          #   current usage; SET treats it as the new absolute usage total, and Stigg computes
+          #   the delta internally.
           #
           #   @return [Symbol, Stigg::Models::V1::UsageReportParams::Usage::UpdateBehavior, nil]
           optional :update_behavior,
@@ -86,23 +95,26 @@ module Stigg
                    api_name: :updateBehavior
 
           # @!method initialize(customer_id:, feature_id:, value:, created_at: nil, dimensions: nil, idempotency_key: nil, resource_id: nil, update_behavior: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Stigg::Models::V1::UsageReportParams::Usage} for more details.
+          #
           #   Single usage measurement
           #
           #   @param customer_id [String] Customer id
           #
           #   @param feature_id [String] Feature id
           #
-          #   @param value [Integer] The value to report for usage
+          #   @param value [Integer] The value to report for usage. Must be a whole number — the REST API does not ac
           #
           #   @param created_at [Time] Timestamp of when the record was created
           #
           #   @param dimensions [Hash{Symbol=>String, Float, Boolean}] Additional dimensions for the usage report
           #
-          #   @param idempotency_key [String] Idempotency key
+          #   @param idempotency_key [String] A key you provide to safely retry the same usage report without double-counting
           #
-          #   @param resource_id [String, nil] Resource id
+          #   @param resource_id [String, nil] The customer resource this usage applies to. Optional — only required if the cus
           #
-          #   @param update_behavior [Symbol, Stigg::Models::V1::UsageReportParams::Usage::UpdateBehavior] The method by which the usage value should be updated
+          #   @param update_behavior [Symbol, Stigg::Models::V1::UsageReportParams::Usage::UpdateBehavior] How the reported value is applied: DELTA (default) adds it to the feature's curr
 
           module Dimension
             extend Stigg::Internal::Type::Union
@@ -117,7 +129,9 @@ module Stigg
             #   @return [Array(String, Float, Boolean)]
           end
 
-          # The method by which the usage value should be updated
+          # How the reported value is applied: DELTA (default) adds it to the feature's
+          # current usage; SET treats it as the new absolute usage total, and Stigg computes
+          # the delta internally.
           #
           # @see Stigg::Models::V1::UsageReportParams::Usage#update_behavior
           module UpdateBehavior

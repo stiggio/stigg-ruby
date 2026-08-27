@@ -15,19 +15,22 @@ module Stigg
           required :id, String
 
           # @!attribute integration_id
-          #   Integration details
+          #   The internal ID of the integration this record is linked to
           #
           #   @return [String]
           required :integration_id, String, api_name: :integrationId
 
           # @!attribute payment_method_id
-          #   Billing provider payment method id
+          #   Billing provider payment method id. Attaching it makes it the customer's new
+          #   default payment method for future charges; any previously attached payment
+          #   method is no longer used as the default, though it is not removed from the
+          #   billing provider.
           #
           #   @return [String]
           required :payment_method_id, String, api_name: :paymentMethodId
 
           # @!attribute vendor_identifier
-          #   The vendor identifier of integration
+          #   The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
           #
           #   @return [Symbol, Stigg::Models::V1::Customers::PaymentMethodAttachParams::VendorIdentifier]
           required :vendor_identifier,
@@ -54,13 +57,16 @@ module Stigg
           optional :x_environment_id, String
 
           # @!method initialize(id:, integration_id:, payment_method_id:, vendor_identifier:, billing_currency: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+          #   Some parameter documentations has been truncated, see
+          #   {Stigg::Models::V1::Customers::PaymentMethodAttachParams} for more details.
+          #
           #   @param id [String]
           #
-          #   @param integration_id [String] Integration details
+          #   @param integration_id [String] The internal ID of the integration this record is linked to
           #
-          #   @param payment_method_id [String] Billing provider payment method id
+          #   @param payment_method_id [String] Billing provider payment method id. Attaching it makes it the customer's new def
           #
-          #   @param vendor_identifier [Symbol, Stigg::Models::V1::Customers::PaymentMethodAttachParams::VendorIdentifier] The vendor identifier of integration
+          #   @param vendor_identifier [Symbol, Stigg::Models::V1::Customers::PaymentMethodAttachParams::VendorIdentifier] The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
           #
           #   @param billing_currency [Symbol, Stigg::Models::V1::Customers::PaymentMethodAttachParams::BillingCurrency, nil] Customers selected currency
           #
@@ -70,7 +76,7 @@ module Stigg
           #
           #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 
-          # The vendor identifier of integration
+          # The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
           module VendorIdentifier
             extend Stigg::Internal::Type::Enum
 

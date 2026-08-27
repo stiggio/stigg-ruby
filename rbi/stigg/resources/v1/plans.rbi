@@ -39,13 +39,17 @@ module Stigg
           product_id:,
           # Body param: The unique identifier for the entity in the billing provider
           billing_id: nil,
-          # Body param: Default trial configuration for the plan
+          # Body param: Default trial configuration for the plan. When set, subscriptions
+          # provisioned on this plan without explicit trial settings automatically start in
+          # trial for the configured duration; leave unset for no automatic trial.
           default_trial_config: nil,
           # Body param: The description of the package
           description: nil,
           # Body param: Metadata associated with the entity
           metadata: nil,
-          # Body param: The ID of the parent plan, if applicable
+          # Body param: The ID of the parent plan, if this plan should inherit entitlements
+          # from another plan. Optional — omit to create a standalone plan with no inherited
+          # entitlements.
           parent_plan_id: nil,
           # Body param: The pricing type of the package
           pricing_type: nil,
@@ -112,11 +116,15 @@ module Stigg
           id,
           # Body param: The unique identifier for the entity in the billing provider
           billing_id: nil,
-          # Body param: Pricing configuration to set on the plan draft
+          # Body param: Pricing configuration to set on the plan draft. Unlike the rest of
+          # this request, this is a full replace of the pricing configuration, not a merge —
+          # see SetPackagePricingRequest.
           charges: nil,
           # Body param
           compatible_addon_ids: nil,
-          # Body param: Default trial configuration for the plan
+          # Body param: Default trial configuration for the plan. When set, subscriptions
+          # provisioned on this plan without explicit trial settings automatically start in
+          # trial for the configured duration; leave unset for no automatic trial.
           default_trial_config: nil,
           # Body param: The description of the package
           description: nil,
@@ -124,7 +132,9 @@ module Stigg
           display_name: nil,
           # Body param: Metadata associated with the entity
           metadata: nil,
-          # Body param: The ID of the parent plan, if applicable
+          # Body param: The ID of the parent plan, if this plan should inherit entitlements
+          # from another plan. Optional — omit to create a standalone plan with no inherited
+          # entitlements.
           parent_plan_id: nil,
           # Header param: Account ID — optional when authenticating with a user JWT (Bearer
           # token); falls back to the user's first membership. Ignored for API-key auth.
@@ -296,7 +306,11 @@ module Stigg
         )
         end
 
-        # Publishes a draft plan, making it available for use in subscriptions.
+        # Publishes a draft plan, making it available for use in subscriptions. The
+        # required `migrationType` field controls whether existing subscribers are moved
+        # onto the new version immediately (`ALL_CUSTOMERS`) or stay on the version they
+        # subscribed to — grandfathered — until you explicitly migrate them, e.g. via the
+        # migrate subscription endpoint (`NEW_CUSTOMERS`).
         sig do
           params(
             id: String,
@@ -310,7 +324,9 @@ module Stigg
         def publish(
           # Path param: The unique identifier of the entity
           id,
-          # Body param: The migration type of the package
+          # Body param: Who the published version applies to: NEW_CUSTOMERS (default) leaves
+          # existing subscribers on their current version, ALL_CUSTOMERS moves them onto the
+          # new version immediately.
           migration_type:,
           # Header param: Account ID — optional when authenticating with a user JWT (Bearer
           # token); falls back to the user's first membership. Ignored for API-key auth.

@@ -75,7 +75,9 @@ module Stigg
           sig { returns(String) }
           attr_accessor :feature_id
 
-          # The value to report for usage
+          # The value to report for usage. Must be a whole number — the REST API does not
+          # accept fractional (float) usage values; scale up (e.g. report cents instead of
+          # dollars, or milliseconds instead of seconds) if you need sub-unit precision.
           sig { returns(Integer) }
           attr_accessor :value
 
@@ -110,18 +112,25 @@ module Stigg
           end
           attr_writer :dimensions
 
-          # Idempotency key
+          # A key you provide to safely retry the same usage report without double-counting
+          # it. Reports with a previously-seen idempotency key are deduplicated for 7 days;
+          # after that window a retry is treated as new usage.
           sig { returns(T.nilable(String)) }
           attr_reader :idempotency_key
 
           sig { params(idempotency_key: String).void }
           attr_writer :idempotency_key
 
-          # Resource id
+          # The customer resource this usage applies to. Optional — only required if the
+          # customer has multiple resources (for example, one subscription per workspace or
+          # site) and usage needs to be tracked separately per resource; omit it to report
+          # usage at the customer level.
           sig { returns(T.nilable(String)) }
           attr_accessor :resource_id
 
-          # The method by which the usage value should be updated
+          # How the reported value is applied: DELTA (default) adds it to the feature's
+          # current usage; SET treats it as the new absolute usage total, and Stigg computes
+          # the delta internally.
           sig do
             returns(
               T.nilable(
@@ -162,17 +171,26 @@ module Stigg
             customer_id:,
             # Feature id
             feature_id:,
-            # The value to report for usage
+            # The value to report for usage. Must be a whole number — the REST API does not
+            # accept fractional (float) usage values; scale up (e.g. report cents instead of
+            # dollars, or milliseconds instead of seconds) if you need sub-unit precision.
             value:,
             # Timestamp of when the record was created
             created_at: nil,
             # Additional dimensions for the usage report
             dimensions: nil,
-            # Idempotency key
+            # A key you provide to safely retry the same usage report without double-counting
+            # it. Reports with a previously-seen idempotency key are deduplicated for 7 days;
+            # after that window a retry is treated as new usage.
             idempotency_key: nil,
-            # Resource id
+            # The customer resource this usage applies to. Optional — only required if the
+            # customer has multiple resources (for example, one subscription per workspace or
+            # site) and usage needs to be tracked separately per resource; omit it to report
+            # usage at the customer level.
             resource_id: nil,
-            # The method by which the usage value should be updated
+            # How the reported value is applied: DELTA (default) adds it to the feature's
+            # current usage; SET treats it as the new absolute usage total, and Stigg computes
+            # the delta internally.
             update_behavior: nil
           )
           end
@@ -215,7 +233,9 @@ module Stigg
             end
           end
 
-          # The method by which the usage value should be updated
+          # How the reported value is applied: DELTA (default) adds it to the feature's
+          # current usage; SET treats it as the new absolute usage total, and Stigg computes
+          # the delta internally.
           module UpdateBehavior
             extend Stigg::Internal::Type::Enum
 

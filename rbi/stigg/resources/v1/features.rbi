@@ -62,7 +62,8 @@ module Stigg
           id:,
           # Body param: The display name for the feature
           display_name:,
-          # Body param: The type of the feature
+          # Body param: The type of the feature: BOOLEAN (on/off access), NUMBER (a numeric
+          # limit or quantity), or ENUM (one of a fixed set of values).
           feature_type:,
           # Body param: The description for the feature
           description: nil,
@@ -79,7 +80,11 @@ module Stigg
           # Body param: Event meter that turns reported events into usage for a metered
           # feature
           meter: nil,
-          # Body param: The meter type for the feature
+          # Body param: How usage accumulates for this feature. `Incremental` and
+          # `Fluctuating` features track usage from reported events; `None` means the
+          # feature's value isn't usage-tracked — it's just a numeric or enum value carried
+          # by the plan (for example, a seat count or a tier setting) rather than something
+          # customers consume.
           meter_type: nil,
           # Body param: Unit transformation to be applied to the reported usage
           unit_transformation: nil,

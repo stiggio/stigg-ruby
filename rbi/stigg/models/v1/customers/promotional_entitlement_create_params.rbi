@@ -198,7 +198,9 @@ module Stigg
             end
             attr_writer :yearly_reset_period_configuration
 
-            # Single entitlement grant config
+            # Single entitlement grant config. Granting again for the same customer and
+            # feature replaces the existing promotional entitlement for that feature rather
+            # than stacking a second one.
             sig do
               params(
                 custom_end_date: T.nilable(Time),

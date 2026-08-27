@@ -41,7 +41,13 @@ module Stigg
         end
 
         # Updates an active subscription's properties including billing period, add-ons,
-        # unit quantities, and discounts.
+        # unit quantities, and discounts. This is a partial update — only the fields
+        # present in the request body change. Object fields such as `metadata` are
+        # replaced wholesale rather than merged, and list fields such as `addons` and
+        # `priceOverrides` must be sent in full: any existing item that isn't included in
+        # the array is removed from the subscription. Changes classified as a downgrade
+        # may be scheduled for the end of the current billing period instead of applying
+        # immediately, depending on your update scheduling configuration.
         sig do
           params(
             id: String,
@@ -110,7 +116,8 @@ module Stigg
           charges: nil,
           # Body param
           entitlements: nil,
-          # Body param: Additional metadata for the subscription
+          # Body param: Additional metadata for the subscription, stored as an arbitrary
+          # flat key-value object.
           metadata: nil,
           # Body param: Minimum spend amount
           minimum_spend: nil,
@@ -232,8 +239,10 @@ module Stigg
         )
         end
 
-        # Delegates the payment responsibility of a subscription to a different customer.
-        # The delegated customer will be billed for this subscription.
+        # Delegates a subscription to a different customer, who becomes responsible for
+        # managing it. The original customer remains the paying customer for this
+        # subscription, unless payment was already delegated to the target customer, in
+        # which case the target customer becomes the paying customer as well.
         sig do
           params(
             id: String,
@@ -246,10 +255,10 @@ module Stigg
         def delegate(
           # Path param: The unique identifier of the entity
           id,
-          # Body param: The unique identifier of the customer who will assume payment
-          # responsibility for this subscription. This customer must already exist in your
-          # Stigg account and have a valid payment method if the subscription requires
-          # payment.
+          # Body param: The unique identifier of the customer who will manage this
+          # subscription going forward. This customer must already exist in your Stigg
+          # account. The paying customer for the subscription does not change as a result of
+          # this request.
           target_customer_id:,
           # Header param: Account ID — optional when authenticating with a user JWT (Bearer
           # token); falls back to the user's first membership. Ignored for API-key auth.
@@ -493,7 +502,8 @@ module Stigg
           checkout_options: nil,
           # Body param
           entitlements: nil,
-          # Body param: Additional metadata for the subscription
+          # Body param: Additional metadata for the subscription, stored as an arbitrary
+          # flat key-value object.
           metadata: nil,
           # Body param: Minimum spend amount
           minimum_spend: nil,

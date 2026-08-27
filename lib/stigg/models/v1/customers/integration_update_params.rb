@@ -20,7 +20,9 @@ module Stigg
           required :integration_id, String
 
           # @!attribute synced_entity_id
-          #   Synced entity id
+          #   The external entity ID this record is linked to in the vendor system (e.g. the
+          #   Stripe customer ID). Null until the link has synced; required when creating the
+          #   link.
           #
           #   @return [String, nil]
           required :synced_entity_id, String, api_name: :syncedEntityId, nil?: true
@@ -36,11 +38,14 @@ module Stigg
           optional :x_environment_id, String
 
           # @!method initialize(id:, integration_id:, synced_entity_id:, x_account_id: nil, x_environment_id: nil, request_options: {})
+          #   Some parameter documentations has been truncated, see
+          #   {Stigg::Models::V1::Customers::IntegrationUpdateParams} for more details.
+          #
           #   @param id [String]
           #
           #   @param integration_id [String]
           #
-          #   @param synced_entity_id [String, nil] Synced entity id
+          #   @param synced_entity_id [String, nil] The external entity ID this record is linked to in the vendor system (e.g. the S
           #
           #   @param x_account_id [String]
           #

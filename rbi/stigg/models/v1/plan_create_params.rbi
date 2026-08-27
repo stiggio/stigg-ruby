@@ -28,7 +28,9 @@ module Stigg
         sig { returns(T.nilable(String)) }
         attr_accessor :billing_id
 
-        # Default trial configuration for the plan
+        # Default trial configuration for the plan. When set, subscriptions provisioned on
+        # this plan without explicit trial settings automatically start in trial for the
+        # configured duration; leave unset for no automatic trial.
         sig do
           returns(T.nilable(Stigg::V1::PlanCreateParams::DefaultTrialConfig))
         end
@@ -53,7 +55,9 @@ module Stigg
         sig { params(metadata: T::Hash[Symbol, String]).void }
         attr_writer :metadata
 
-        # The ID of the parent plan, if applicable
+        # The ID of the parent plan, if this plan should inherit entitlements from another
+        # plan. Optional — omit to create a standalone plan with no inherited
+        # entitlements.
         sig { returns(T.nilable(String)) }
         attr_accessor :parent_plan_id
 
@@ -116,13 +120,17 @@ module Stigg
           product_id:,
           # The unique identifier for the entity in the billing provider
           billing_id: nil,
-          # Default trial configuration for the plan
+          # Default trial configuration for the plan. When set, subscriptions provisioned on
+          # this plan without explicit trial settings automatically start in trial for the
+          # configured duration; leave unset for no automatic trial.
           default_trial_config: nil,
           # The description of the package
           description: nil,
           # Metadata associated with the entity
           metadata: nil,
-          # The ID of the parent plan, if applicable
+          # The ID of the parent plan, if this plan should inherit entitlements from another
+          # plan. Optional — omit to create a standalone plan with no inherited
+          # entitlements.
           parent_plan_id: nil,
           # The pricing type of the package
           pricing_type: nil,
@@ -207,7 +215,9 @@ module Stigg
           end
           attr_accessor :trial_end_behavior
 
-          # Default trial configuration for the plan
+          # Default trial configuration for the plan. When set, subscriptions provisioned on
+          # this plan without explicit trial settings automatically start in trial for the
+          # configured duration; leave unset for no automatic trial.
           sig do
             params(
               duration: Float,

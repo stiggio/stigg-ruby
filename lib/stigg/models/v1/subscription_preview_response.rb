@@ -49,7 +49,12 @@ module Stigg
           optional :has_scheduled_updates, Stigg::Internal::Type::Boolean, api_name: :hasScheduledUpdates
 
           # @!attribute is_plan_downgrade
-          #   Whether this is a downgrade
+          #   Whether this change is classified as a downgrade. Stigg determines this by
+          #   ranking the target plan against the customer's current plan — primarily by
+          #   calculated price (or by plan parent/child inheritance, when your catalog uses
+          #   it) — rather than by a manually assigned plan order. Downgrades can be scheduled
+          #   to take effect at the end of the current billing period instead of immediately,
+          #   depending on your update scheduling configuration.
           #
           #   @return [Boolean, nil]
           optional :is_plan_downgrade, Stigg::Internal::Type::Boolean, api_name: :isPlanDowngrade
@@ -63,6 +68,9 @@ module Stigg
                    api_name: :recurringInvoice
 
           # @!method initialize(immediate_invoice:, billing_period_range: nil, free_items: nil, has_scheduled_updates: nil, is_plan_downgrade: nil, recurring_invoice: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Stigg::Models::V1::SubscriptionPreviewResponse::Data} for more details.
+          #
           #   Pricing preview with invoices
           #
           #   @param immediate_invoice [Stigg::Models::V1::SubscriptionPreviewResponse::Data::ImmediateInvoice] Invoice due immediately
@@ -73,7 +81,7 @@ module Stigg
           #
           #   @param has_scheduled_updates [Boolean] Whether updates are scheduled
           #
-          #   @param is_plan_downgrade [Boolean] Whether this is a downgrade
+          #   @param is_plan_downgrade [Boolean] Whether this change is classified as a downgrade. Stigg determines this by ranki
           #
           #   @param recurring_invoice [Stigg::Models::V1::SubscriptionPreviewResponse::Data::RecurringInvoice] Recurring invoice preview
 

@@ -16,11 +16,11 @@ module Stigg
           #
           # @param id [String] Path param: The unique identifier of the entity
           #
-          # @param integration_id [String] Body param: Integration details
+          # @param integration_id [String] Body param: The internal ID of the integration this record is linked to
           #
-          # @param payment_method_id [String] Body param: Billing provider payment method id
+          # @param payment_method_id [String] Body param: Billing provider payment method id. Attaching it makes it the custom
           #
-          # @param vendor_identifier [Symbol, Stigg::Models::V1::Customers::PaymentMethodAttachParams::VendorIdentifier] Body param: The vendor identifier of integration
+          # @param vendor_identifier [Symbol, Stigg::Models::V1::Customers::PaymentMethodAttachParams::VendorIdentifier] Body param: The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, S
           #
           # @param billing_currency [Symbol, Stigg::Models::V1::Customers::PaymentMethodAttachParams::BillingCurrency, nil] Body param: Customers selected currency
           #

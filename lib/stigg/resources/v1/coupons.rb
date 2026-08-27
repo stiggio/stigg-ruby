@@ -15,17 +15,17 @@ module Stigg
         #
         # @param id [String] Body param: The unique identifier for the entity
         #
-        # @param amounts_off [Array<Stigg::Models::V1::CouponCreateParams::AmountsOff>, nil] Body param: Fixed amount discounts in different currencies
+        # @param amounts_off [Array<Stigg::Models::V1::CouponCreateParams::AmountsOff>, nil] Body param: Fixed amount discounts in different currencies. Provide exactly one
         #
         # @param description [String, nil] Body param: Description of the coupon
         #
-        # @param duration_in_months [Integer, nil] Body param: Duration of the coupon validity in months
+        # @param duration_in_months [Integer, nil] Body param: How many billing cycles the discount applies for once redeemed. Leav
         #
         # @param metadata [Hash{Symbol=>String}, nil] Body param: Metadata associated with the entity
         #
         # @param name [String] Body param: Name of the coupon
         #
-        # @param percent_off [Float, nil] Body param: Percentage discount off the original price
+        # @param percent_off [Float, nil] Body param: Percentage discount off the original price. Provide exactly one of p
         #
         # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
         #

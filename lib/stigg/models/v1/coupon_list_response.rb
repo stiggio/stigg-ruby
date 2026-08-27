@@ -12,7 +12,8 @@ module Stigg
         required :id, String
 
         # @!attribute amounts_off
-        #   Fixed amount discounts in different currencies
+        #   Fixed amount discounts in different currencies. Provide exactly one of
+        #   percentOff or amountsOff — not both, not neither.
         #
         #   @return [Array<Stigg::Models::V1::CouponListResponse::AmountsOff>, nil]
         required :amounts_off,
@@ -45,7 +46,8 @@ module Stigg
         required :description, String, nil?: true
 
         # @!attribute duration_in_months
-        #   Duration of the coupon validity in months
+        #   How many billing cycles the discount applies for once redeemed. Leave unset for
+        #   a discount that lasts for the lifetime of the subscription.
         #
         #   @return [Integer, nil]
         required :duration_in_months, Integer, api_name: :durationInMonths, nil?: true
@@ -63,7 +65,8 @@ module Stigg
         required :name, String
 
         # @!attribute percent_off
-        #   Percentage discount off the original price
+        #   Percentage discount off the original price. Provide exactly one of percentOff or
+        #   amountsOff — not both, not neither.
         #
         #   @return [Integer, nil]
         required :percent_off, Integer, api_name: :percentOff, nil?: true
@@ -93,11 +96,14 @@ module Stigg
         required :updated_at, Time, api_name: :updatedAt
 
         # @!method initialize(id:, amounts_off:, billing_id:, billing_link_url:, created_at:, description:, duration_in_months:, metadata:, name:, percent_off:, source:, status:, type:, updated_at:)
+        #   Some parameter documentations has been truncated, see
+        #   {Stigg::Models::V1::CouponListResponse} for more details.
+        #
         #   Discount instrument with percentage or fixed amount
         #
         #   @param id [String] The unique identifier for the entity
         #
-        #   @param amounts_off [Array<Stigg::Models::V1::CouponListResponse::AmountsOff>, nil] Fixed amount discounts in different currencies
+        #   @param amounts_off [Array<Stigg::Models::V1::CouponListResponse::AmountsOff>, nil] Fixed amount discounts in different currencies. Provide exactly one of percentOf
         #
         #   @param billing_id [String, nil] The unique identifier for the entity in the billing provider
         #
@@ -107,13 +113,13 @@ module Stigg
         #
         #   @param description [String, nil] Description of the coupon
         #
-        #   @param duration_in_months [Integer, nil] Duration of the coupon validity in months
+        #   @param duration_in_months [Integer, nil] How many billing cycles the discount applies for once redeemed. Leave unset for
         #
         #   @param metadata [Hash{Symbol=>String}, nil] Metadata associated with the entity
         #
         #   @param name [String] Name of the coupon
         #
-        #   @param percent_off [Integer, nil] Percentage discount off the original price
+        #   @param percent_off [Integer, nil] Percentage discount off the original price. Provide exactly one of percentOff or
         #
         #   @param source [Symbol, Stigg::Models::V1::CouponListResponse::Source, nil] The source of the coupon
         #

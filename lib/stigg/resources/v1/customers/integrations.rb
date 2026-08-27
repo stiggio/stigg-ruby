@@ -12,7 +12,7 @@ module Stigg
           #
           # @overload retrieve(integration_id, id:, x_account_id: nil, x_environment_id: nil, request_options: {})
           #
-          # @param integration_id [String] Path param: Integration details
+          # @param integration_id [String] Path param: The internal ID of the integration this record is linked to
           #
           # @param id [String] Path param: Customer slug
           #
@@ -51,11 +51,11 @@ module Stigg
           #
           # @overload update(integration_id, id:, synced_entity_id:, x_account_id: nil, x_environment_id: nil, request_options: {})
           #
-          # @param integration_id [String] Path param: Integration details
+          # @param integration_id [String] Path param: The internal ID of the integration this record is linked to
           #
           # @param id [String] Path param: Customer slug
           #
-          # @param synced_entity_id [String, nil] Body param: Synced entity id
+          # @param synced_entity_id [String, nil] Body param: The external entity ID this record is linked to in the vendor system
           #
           # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
           #
@@ -138,11 +138,11 @@ module Stigg
           #
           # @param path_id [String] Path param: The unique identifier of the entity
           #
-          # @param body_id [String] Body param: Integration details
+          # @param body_id [String] Body param: The internal ID of the integration this record is linked to
           #
-          # @param synced_entity_id [String] Body param: Synced entity id
+          # @param synced_entity_id [String] Body param: The external entity ID this record is linked to in the vendor system
           #
-          # @param vendor_identifier [Symbol, Stigg::Models::V1::Customers::IntegrationLinkParams::VendorIdentifier] Body param: The vendor identifier of integration
+          # @param vendor_identifier [Symbol, Stigg::Models::V1::Customers::IntegrationLinkParams::VendorIdentifier] Body param: The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, S
           #
           # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
           #
@@ -173,7 +173,7 @@ module Stigg
           #
           # @overload unlink(integration_id, id:, x_account_id: nil, x_environment_id: nil, request_options: {})
           #
-          # @param integration_id [String] Path param: Integration details
+          # @param integration_id [String] Path param: The internal ID of the integration this record is linked to
           #
           # @param id [String] Path param: Customer slug
           #

@@ -48,7 +48,7 @@ module Stigg
         #
         # @param display_name [String] Body param: The display name for the feature
         #
-        # @param feature_type [Symbol, Stigg::Models::V1::FeatureCreateFeatureParams::FeatureType] Body param: The type of the feature
+        # @param feature_type [Symbol, Stigg::Models::V1::FeatureCreateFeatureParams::FeatureType] Body param: The type of the feature: BOOLEAN (on/off access), NUMBER (a numeric
         #
         # @param description [String] Body param: The description for the feature
         #
@@ -64,7 +64,7 @@ module Stigg
         #
         # @param meter [Stigg::Models::V1::FeatureCreateFeatureParams::Meter] Body param: Event meter that turns reported events into usage for a metered feat
         #
-        # @param meter_type [Symbol, Stigg::Models::V1::FeatureCreateFeatureParams::MeterType] Body param: The meter type for the feature
+        # @param meter_type [Symbol, Stigg::Models::V1::FeatureCreateFeatureParams::MeterType] Body param: How usage accumulates for this feature. `Incremental` and `Fluctuati
         #
         # @param unit_transformation [Stigg::Models::V1::FeatureCreateFeatureParams::UnitTransformation, nil] Body param: Unit transformation to be applied to the reported usage
         #

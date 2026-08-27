@@ -19,7 +19,9 @@ module Stigg
         sig { returns(T.nilable(String)) }
         attr_accessor :billing_id
 
-        # Pricing configuration to set on the plan draft
+        # Pricing configuration to set on the plan draft. Unlike the rest of this request,
+        # this is a full replace of the pricing configuration, not a merge — see
+        # SetPackagePricingRequest.
         sig { returns(T.nilable(Stigg::V1::PlanUpdateParams::Charges)) }
         attr_reader :charges
 
@@ -31,7 +33,9 @@ module Stigg
         sig { returns(T.nilable(T::Array[String])) }
         attr_accessor :compatible_addon_ids
 
-        # Default trial configuration for the plan
+        # Default trial configuration for the plan. When set, subscriptions provisioned on
+        # this plan without explicit trial settings automatically start in trial for the
+        # configured duration; leave unset for no automatic trial.
         sig do
           returns(T.nilable(Stigg::V1::PlanUpdateParams::DefaultTrialConfig))
         end
@@ -63,7 +67,9 @@ module Stigg
         sig { params(metadata: T::Hash[Symbol, String]).void }
         attr_writer :metadata
 
-        # The ID of the parent plan, if applicable
+        # The ID of the parent plan, if this plan should inherit entitlements from another
+        # plan. Optional — omit to create a standalone plan with no inherited
+        # entitlements.
         sig { returns(T.nilable(String)) }
         attr_accessor :parent_plan_id
 
@@ -102,10 +108,14 @@ module Stigg
           id:,
           # The unique identifier for the entity in the billing provider
           billing_id: nil,
-          # Pricing configuration to set on the plan draft
+          # Pricing configuration to set on the plan draft. Unlike the rest of this request,
+          # this is a full replace of the pricing configuration, not a merge — see
+          # SetPackagePricingRequest.
           charges: nil,
           compatible_addon_ids: nil,
-          # Default trial configuration for the plan
+          # Default trial configuration for the plan. When set, subscriptions provisioned on
+          # this plan without explicit trial settings automatically start in trial for the
+          # configured duration; leave unset for no automatic trial.
           default_trial_config: nil,
           # The description of the package
           description: nil,
@@ -113,7 +123,9 @@ module Stigg
           display_name: nil,
           # Metadata associated with the entity
           metadata: nil,
-          # The ID of the parent plan, if applicable
+          # The ID of the parent plan, if this plan should inherit entitlements from another
+          # plan. Optional — omit to create a standalone plan with no inherited
+          # entitlements.
           parent_plan_id: nil,
           x_account_id: nil,
           x_environment_id: nil,
@@ -193,7 +205,8 @@ module Stigg
           end
           attr_writer :overage_billing_period
 
-          # Array of overage pricing model configurations
+          # Array of overage pricing model configurations. Replaces all existing overage
+          # pricing models on the draft — omit this to end up with no overage pricing.
           sig do
             returns(
               T.nilable(
@@ -215,7 +228,8 @@ module Stigg
           end
           attr_writer :overage_pricing_models
 
-          # Array of pricing model configurations
+          # Array of pricing model configurations. Replaces all existing base pricing models
+          # on the draft — omit this to end up with no base pricing.
           sig do
             returns(
               T.nilable(
@@ -235,7 +249,9 @@ module Stigg
           end
           attr_writer :pricing_models
 
-          # Pricing configuration to set on the plan draft
+          # Pricing configuration to set on the plan draft. Unlike the rest of this request,
+          # this is a full replace of the pricing configuration, not a merge — see
+          # SetPackagePricingRequest.
           sig do
             params(
               pricing_type:
@@ -268,9 +284,11 @@ module Stigg
             minimum_spend: nil,
             # When overage charges are billed
             overage_billing_period: nil,
-            # Array of overage pricing model configurations
+            # Array of overage pricing model configurations. Replaces all existing overage
+            # pricing models on the draft — omit this to end up with no overage pricing.
             overage_pricing_models: nil,
-            # Array of pricing model configurations
+            # Array of pricing model configurations. Replaces all existing base pricing models
+            # on the draft — omit this to end up with no base pricing.
             pricing_models: nil
           )
           end
@@ -7288,7 +7306,9 @@ module Stigg
           end
           attr_accessor :trial_end_behavior
 
-          # Default trial configuration for the plan
+          # Default trial configuration for the plan. When set, subscriptions provisioned on
+          # this plan without explicit trial settings automatically start in trial for the
+          # configured duration; leave unset for no automatic trial.
           sig do
             params(
               duration: Float,

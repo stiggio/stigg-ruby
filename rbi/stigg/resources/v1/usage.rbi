@@ -31,13 +31,21 @@ module Stigg
           customer_id:,
           # Body param: Feature id
           feature_id:,
-          # Body param: The value to report for usage
+          # Body param: The value to report for usage. Must be a whole number — the REST API
+          # does not accept fractional (float) usage values; scale up (e.g. report cents
+          # instead of dollars, or milliseconds instead of seconds) if you need sub-unit
+          # precision.
           value:,
           # Body param: Additional dimensions for the usage report
           dimensions: nil,
-          # Body param: Resource id
+          # Body param: The customer resource this usage applies to. Optional — only
+          # required if the customer has multiple resources (for example, one subscription
+          # per workspace or site) and usage needs to be tracked separately per resource;
+          # omit it to report usage at the customer level.
           resource_id: nil,
-          # Body param: The method by which the usage value should be updated
+          # Body param: How the reported value is applied: DELTA (default) adds it to the
+          # feature's current usage; SET treats it as the new absolute usage total, and
+          # Stigg computes the delta internally.
           update_behavior: nil,
           # Header param: Account ID — optional when authenticating with a user JWT (Bearer
           # token); falls back to the user's first membership. Ignored for API-key auth.
@@ -75,7 +83,10 @@ module Stigg
           end_date: nil,
           # Query param: Criteria by which to group the usage history
           group_by: nil,
-          # Query param: Resource id
+          # Query param: The customer resource this usage applies to. Optional — only
+          # required if the customer has multiple resources (for example, one subscription
+          # per workspace or site) and usage needs to be tracked separately per resource;
+          # omit it to report usage at the customer level.
           resource_id: nil,
           # Header param: Account ID — optional when authenticating with a user JWT (Bearer
           # token); falls back to the user's first membership. Ignored for API-key auth.

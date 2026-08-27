@@ -18,13 +18,13 @@ module Stigg
         #
         # @param feature_id [String] Body param: Feature id
         #
-        # @param value [Integer] Body param: The value to report for usage
+        # @param value [Integer] Body param: The value to report for usage. Must be a whole number — the REST API
         #
         # @param dimensions [Hash{Symbol=>String, Float, Boolean}] Body param: Additional dimensions for the usage report
         #
-        # @param resource_id [String, nil] Body param: Resource id
+        # @param resource_id [String, nil] Body param: The customer resource this usage applies to. Optional — only require
         #
-        # @param update_behavior [Symbol, Stigg::Models::V1::UsageEstimateParams::UpdateBehavior] Body param: The method by which the usage value should be updated
+        # @param update_behavior [Symbol, Stigg::Models::V1::UsageEstimateParams::UpdateBehavior] Body param: How the reported value is applied: DELTA (default) adds it to the fe
         #
         # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
         #
@@ -65,7 +65,7 @@ module Stigg
         #
         # @param group_by [String] Query param: Criteria by which to group the usage history
         #
-        # @param resource_id [String, nil] Query param: Resource id
+        # @param resource_id [String, nil] Query param: The customer resource this usage applies to. Optional — only requir
         #
         # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
         #

@@ -22,7 +22,9 @@ module Stigg
           sig { returns(String) }
           attr_accessor :integration_id
 
-          # Synced entity id
+          # The external entity ID this record is linked to in the vendor system (e.g. the
+          # Stripe customer ID). Null until the link has synced; required when creating the
+          # link.
           sig { returns(T.nilable(String)) }
           attr_accessor :synced_entity_id
 
@@ -51,7 +53,9 @@ module Stigg
           def self.new(
             id:,
             integration_id:,
-            # Synced entity id
+            # The external entity ID this record is linked to in the vendor system (e.g. the
+            # Stripe customer ID). Null until the link has synced; required when creating the
+            # link.
             synced_entity_id:,
             x_account_id: nil,
             x_environment_id: nil,

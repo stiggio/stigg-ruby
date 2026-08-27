@@ -115,7 +115,12 @@ module Stigg
           sig { params(has_scheduled_updates: T::Boolean).void }
           attr_writer :has_scheduled_updates
 
-          # Whether this is a downgrade
+          # Whether this change is classified as a downgrade. Stigg determines this by
+          # ranking the target plan against the customer's current plan — primarily by
+          # calculated price (or by plan parent/child inheritance, when your catalog uses
+          # it) — rather than by a manually assigned plan order. Downgrades can be scheduled
+          # to take effect at the end of the current billing period instead of immediately,
+          # depending on your update scheduling configuration.
           sig { returns(T.nilable(T::Boolean)) }
           attr_reader :is_plan_downgrade
 
@@ -166,7 +171,12 @@ module Stigg
             free_items: nil,
             # Whether updates are scheduled
             has_scheduled_updates: nil,
-            # Whether this is a downgrade
+            # Whether this change is classified as a downgrade. Stigg determines this by
+            # ranking the target plan against the customer's current plan — primarily by
+            # calculated price (or by plan parent/child inheritance, when your catalog uses
+            # it) — rather than by a manually assigned plan order. Downgrades can be scheduled
+            # to take effect at the end of the current billing period instead of immediately,
+            # depending on your update scheduling configuration.
             is_plan_downgrade: nil,
             # Recurring invoice preview
             recurring_invoice: nil

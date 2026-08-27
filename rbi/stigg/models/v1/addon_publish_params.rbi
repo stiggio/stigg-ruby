@@ -15,7 +15,9 @@ module Stigg
         sig { returns(String) }
         attr_accessor :id
 
-        # The migration type of the package
+        # Who the published version applies to: NEW_CUSTOMERS (default) leaves existing
+        # subscribers on their current version, ALL_CUSTOMERS moves them onto the new
+        # version immediately.
         sig { returns(Stigg::V1::AddonPublishParams::MigrationType::OrSymbol) }
         attr_accessor :migration_type
 
@@ -43,7 +45,9 @@ module Stigg
         end
         def self.new(
           id:,
-          # The migration type of the package
+          # Who the published version applies to: NEW_CUSTOMERS (default) leaves existing
+          # subscribers on their current version, ALL_CUSTOMERS moves them onto the new
+          # version immediately.
           migration_type:,
           x_account_id: nil,
           x_environment_id: nil,
@@ -66,7 +70,9 @@ module Stigg
         def to_hash
         end
 
-        # The migration type of the package
+        # Who the published version applies to: NEW_CUSTOMERS (default) leaves existing
+        # subscribers on their current version, ALL_CUSTOMERS moves them onto the new
+        # version immediately.
         module MigrationType
           extend Stigg::Internal::Type::Enum
 

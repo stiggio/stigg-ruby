@@ -127,7 +127,11 @@ module Stigg
           required :usage_limit, Float, api_name: :usageLimit, nil?: true
 
           # @!method initialize(id:, created_at:, description:, end_date:, enum_values:, environment_id:, feature_group_ids:, feature_id:, has_soft_limit:, has_unlimited_usage:, is_visible:, period:, reset_period:, reset_period_configuration:, start_date:, status:, updated_at:, usage_limit:)
-          #   Granted feature entitlement
+          #   A feature entitlement granted to a customer outside of their subscription plan.
+          #   Promotional entitlements are applied on top of whatever the subscription already
+          #   grants and are not removed when a plan or subscription changes; once past their
+          #   end date they keep appearing in the customer's entitlement list with an Expired
+          #   status rather than disappearing.
           #
           #   @param id [String] Unique identifier for the entity
           #

@@ -20,7 +20,9 @@ module Stigg
         optional :billing_id, String, api_name: :billingId, nil?: true
 
         # @!attribute charges
-        #   Pricing configuration to set on the plan draft
+        #   Pricing configuration to set on the plan draft. Unlike the rest of this request,
+        #   this is a full replace of the pricing configuration, not a merge — see
+        #   SetPackagePricingRequest.
         #
         #   @return [Stigg::Models::V1::PlanUpdateParams::Charges, nil]
         optional :charges, -> { Stigg::V1::PlanUpdateParams::Charges }
@@ -34,7 +36,9 @@ module Stigg
                  nil?: true
 
         # @!attribute default_trial_config
-        #   Default trial configuration for the plan
+        #   Default trial configuration for the plan. When set, subscriptions provisioned on
+        #   this plan without explicit trial settings automatically start in trial for the
+        #   configured duration; leave unset for no automatic trial.
         #
         #   @return [Stigg::Models::V1::PlanUpdateParams::DefaultTrialConfig, nil]
         optional :default_trial_config,
@@ -61,7 +65,9 @@ module Stigg
         optional :metadata, Stigg::Internal::Type::HashOf[String]
 
         # @!attribute parent_plan_id
-        #   The ID of the parent plan, if applicable
+        #   The ID of the parent plan, if this plan should inherit entitlements from another
+        #   plan. Optional — omit to create a standalone plan with no inherited
+        #   entitlements.
         #
         #   @return [String, nil]
         optional :parent_plan_id, String, api_name: :parentPlanId, nil?: true
@@ -77,15 +83,18 @@ module Stigg
         optional :x_environment_id, String
 
         # @!method initialize(id:, billing_id: nil, charges: nil, compatible_addon_ids: nil, default_trial_config: nil, description: nil, display_name: nil, metadata: nil, parent_plan_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        #   Some parameter documentations has been truncated, see
+        #   {Stigg::Models::V1::PlanUpdateParams} for more details.
+        #
         #   @param id [String]
         #
         #   @param billing_id [String, nil] The unique identifier for the entity in the billing provider
         #
-        #   @param charges [Stigg::Models::V1::PlanUpdateParams::Charges] Pricing configuration to set on the plan draft
+        #   @param charges [Stigg::Models::V1::PlanUpdateParams::Charges] Pricing configuration to set on the plan draft. Unlike the rest of this request,
         #
         #   @param compatible_addon_ids [Array<String>, nil]
         #
-        #   @param default_trial_config [Stigg::Models::V1::PlanUpdateParams::DefaultTrialConfig, nil] Default trial configuration for the plan
+        #   @param default_trial_config [Stigg::Models::V1::PlanUpdateParams::DefaultTrialConfig, nil] Default trial configuration for the plan. When set, subscriptions provisioned on
         #
         #   @param description [String, nil] The description of the package
         #
@@ -93,7 +102,7 @@ module Stigg
         #
         #   @param metadata [Hash{Symbol=>String}] Metadata associated with the entity
         #
-        #   @param parent_plan_id [String, nil] The ID of the parent plan, if applicable
+        #   @param parent_plan_id [String, nil] The ID of the parent plan, if this plan should inherit entitlements from another
         #
         #   @param x_account_id [String]
         #
@@ -134,7 +143,8 @@ module Stigg
                    api_name: :overageBillingPeriod
 
           # @!attribute overage_pricing_models
-          #   Array of overage pricing model configurations
+          #   Array of overage pricing model configurations. Replaces all existing overage
+          #   pricing models on the draft — omit this to end up with no overage pricing.
           #
           #   @return [Array<Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel>, nil]
           optional :overage_pricing_models,
@@ -144,7 +154,8 @@ module Stigg
                    api_name: :overagePricingModels
 
           # @!attribute pricing_models
-          #   Array of pricing model configurations
+          #   Array of pricing model configurations. Replaces all existing base pricing models
+          #   on the draft — omit this to end up with no base pricing.
           #
           #   @return [Array<Stigg::Models::V1::PlanUpdateParams::Charges::PricingModel>, nil]
           optional :pricing_models,
@@ -152,7 +163,12 @@ module Stigg
                    api_name: :pricingModels
 
           # @!method initialize(pricing_type:, billing_id: nil, minimum_spend: nil, overage_billing_period: nil, overage_pricing_models: nil, pricing_models: nil)
-          #   Pricing configuration to set on the plan draft
+          #   Some parameter documentations has been truncated, see
+          #   {Stigg::Models::V1::PlanUpdateParams::Charges} for more details.
+          #
+          #   Pricing configuration to set on the plan draft. Unlike the rest of this request,
+          #   this is a full replace of the pricing configuration, not a merge — see
+          #   SetPackagePricingRequest.
           #
           #   @param pricing_type [Symbol, Stigg::Models::V1::PlanUpdateParams::Charges::PricingType] The pricing type (FREE, PAID, or CUSTOM)
           #
@@ -162,9 +178,9 @@ module Stigg
           #
           #   @param overage_billing_period [Symbol, Stigg::Models::V1::PlanUpdateParams::Charges::OverageBillingPeriod] When overage charges are billed
           #
-          #   @param overage_pricing_models [Array<Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel>] Array of overage pricing model configurations
+          #   @param overage_pricing_models [Array<Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel>] Array of overage pricing model configurations. Replaces all existing overage pri
           #
-          #   @param pricing_models [Array<Stigg::Models::V1::PlanUpdateParams::Charges::PricingModel>] Array of pricing model configurations
+          #   @param pricing_models [Array<Stigg::Models::V1::PlanUpdateParams::Charges::PricingModel>] Array of pricing model configurations. Replaces all existing base pricing models
 
           # The pricing type (FREE, PAID, or CUSTOM)
           #
@@ -2222,7 +2238,9 @@ module Stigg
                    nil?: true
 
           # @!method initialize(duration:, units:, budget: nil, trial_end_behavior: nil)
-          #   Default trial configuration for the plan
+          #   Default trial configuration for the plan. When set, subscriptions provisioned on
+          #   this plan without explicit trial settings automatically start in trial for the
+          #   configured duration; leave unset for no automatic trial.
           #
           #   @param duration [Float] The duration of the trial in the specified units
           #

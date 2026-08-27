@@ -39,7 +39,8 @@ module Stigg
         optional :description, String, nil?: true
 
         # @!attribute max_quantity
-        #   The maximum quantity of this addon that can be added to a subscription
+        #   The maximum quantity of this addon that can be added to a subscription. Leave
+        #   unset for no upper bound.
         #
         #   @return [Integer, nil]
         optional :max_quantity, Integer, api_name: :maxQuantity, nil?: true
@@ -76,6 +77,9 @@ module Stigg
         optional :x_environment_id, String
 
         # @!method initialize(id:, display_name:, product_id:, billing_id: nil, description: nil, max_quantity: nil, metadata: nil, pricing_type: nil, status: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        #   Some parameter documentations has been truncated, see
+        #   {Stigg::Models::V1::AddonCreateParams} for more details.
+        #
         #   @param id [String] The unique identifier for the entity
         #
         #   @param display_name [String] The display name of the package
@@ -86,7 +90,7 @@ module Stigg
         #
         #   @param description [String, nil] The description of the package
         #
-        #   @param max_quantity [Integer, nil] The maximum quantity of this addon that can be added to a subscription
+        #   @param max_quantity [Integer, nil] The maximum quantity of this addon that can be added to a subscription. Leave un
         #
         #   @param metadata [Hash{Symbol=>String}] Metadata associated with the entity
         #

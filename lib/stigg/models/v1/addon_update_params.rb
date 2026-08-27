@@ -20,7 +20,9 @@ module Stigg
         optional :billing_id, String, api_name: :billingId, nil?: true
 
         # @!attribute charges
-        #   Pricing configuration to set on the addon draft
+        #   Pricing configuration to set on the addon draft. Unlike the rest of this
+        #   request, this is a full replace of the pricing configuration, not a merge — see
+        #   SetPackagePricingRequest.
         #
         #   @return [Stigg::Models::V1::AddonUpdateParams::Charges, nil]
         optional :charges, -> { Stigg::V1::AddonUpdateParams::Charges }
@@ -44,7 +46,8 @@ module Stigg
         optional :display_name, String, api_name: :displayName
 
         # @!attribute max_quantity
-        #   The maximum quantity of this addon that can be added to a subscription
+        #   The maximum quantity of this addon that can be added to a subscription. Leave
+        #   unset for no upper bound.
         #
         #   @return [Integer, nil]
         optional :max_quantity, Integer, api_name: :maxQuantity, nil?: true
@@ -72,11 +75,14 @@ module Stigg
         optional :x_environment_id, String
 
         # @!method initialize(id:, billing_id: nil, charges: nil, dependencies: nil, description: nil, display_name: nil, max_quantity: nil, metadata: nil, status: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        #   Some parameter documentations has been truncated, see
+        #   {Stigg::Models::V1::AddonUpdateParams} for more details.
+        #
         #   @param id [String]
         #
         #   @param billing_id [String, nil] The unique identifier for the entity in the billing provider
         #
-        #   @param charges [Stigg::Models::V1::AddonUpdateParams::Charges] Pricing configuration to set on the addon draft
+        #   @param charges [Stigg::Models::V1::AddonUpdateParams::Charges] Pricing configuration to set on the addon draft. Unlike the rest of this request
         #
         #   @param dependencies [Array<String>, nil] List of addons the addon is dependant on
         #
@@ -84,7 +90,7 @@ module Stigg
         #
         #   @param display_name [String] The display name of the package
         #
-        #   @param max_quantity [Integer, nil] The maximum quantity of this addon that can be added to a subscription
+        #   @param max_quantity [Integer, nil] The maximum quantity of this addon that can be added to a subscription. Leave un
         #
         #   @param metadata [Hash{Symbol=>String}] Metadata associated with the entity
         #
@@ -129,7 +135,8 @@ module Stigg
                    api_name: :overageBillingPeriod
 
           # @!attribute overage_pricing_models
-          #   Array of overage pricing model configurations
+          #   Array of overage pricing model configurations. Replaces all existing overage
+          #   pricing models on the draft — omit this to end up with no overage pricing.
           #
           #   @return [Array<Stigg::Models::V1::AddonUpdateParams::Charges::OveragePricingModel>, nil]
           optional :overage_pricing_models,
@@ -139,7 +146,8 @@ module Stigg
                    api_name: :overagePricingModels
 
           # @!attribute pricing_models
-          #   Array of pricing model configurations
+          #   Array of pricing model configurations. Replaces all existing base pricing models
+          #   on the draft — omit this to end up with no base pricing.
           #
           #   @return [Array<Stigg::Models::V1::AddonUpdateParams::Charges::PricingModel>, nil]
           optional :pricing_models,
@@ -147,7 +155,12 @@ module Stigg
                    api_name: :pricingModels
 
           # @!method initialize(pricing_type:, billing_id: nil, minimum_spend: nil, overage_billing_period: nil, overage_pricing_models: nil, pricing_models: nil)
-          #   Pricing configuration to set on the addon draft
+          #   Some parameter documentations has been truncated, see
+          #   {Stigg::Models::V1::AddonUpdateParams::Charges} for more details.
+          #
+          #   Pricing configuration to set on the addon draft. Unlike the rest of this
+          #   request, this is a full replace of the pricing configuration, not a merge — see
+          #   SetPackagePricingRequest.
           #
           #   @param pricing_type [Symbol, Stigg::Models::V1::AddonUpdateParams::Charges::PricingType] The pricing type (FREE, PAID, or CUSTOM)
           #
@@ -157,9 +170,9 @@ module Stigg
           #
           #   @param overage_billing_period [Symbol, Stigg::Models::V1::AddonUpdateParams::Charges::OverageBillingPeriod] When overage charges are billed
           #
-          #   @param overage_pricing_models [Array<Stigg::Models::V1::AddonUpdateParams::Charges::OveragePricingModel>] Array of overage pricing model configurations
+          #   @param overage_pricing_models [Array<Stigg::Models::V1::AddonUpdateParams::Charges::OveragePricingModel>] Array of overage pricing model configurations. Replaces all existing overage pri
           #
-          #   @param pricing_models [Array<Stigg::Models::V1::AddonUpdateParams::Charges::PricingModel>] Array of pricing model configurations
+          #   @param pricing_models [Array<Stigg::Models::V1::AddonUpdateParams::Charges::PricingModel>] Array of pricing model configurations. Replaces all existing base pricing models
 
           # The pricing type (FREE, PAID, or CUSTOM)
           #

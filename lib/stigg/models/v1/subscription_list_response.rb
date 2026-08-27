@@ -151,7 +151,8 @@ module Stigg
                  nil?: true
 
         # @!attribute metadata
-        #   Additional metadata for the subscription
+        #   Additional metadata for the subscription, stored as an arbitrary flat key-value
+        #   object.
         #
         #   @return [Hash{Symbol=>String}, nil]
         optional :metadata, Stigg::Internal::Type::HashOf[String]
@@ -213,6 +214,9 @@ module Stigg
         optional :trial_end_date, Time, api_name: :trialEndDate, nil?: true
 
         # @!method initialize(id:, billing_id:, created_at:, customer_id:, payment_collection:, plan_id:, pricing_type:, start_date:, status:, addons: nil, billing_cycle_anchor: nil, budget: nil, cancellation_date: nil, cancel_reason: nil, contract_id: nil, coupons: nil, current_billing_period_end: nil, current_billing_period_start: nil, effective_end_date: nil, end_date: nil, future_updates: nil, latest_invoice: nil, metadata: nil, minimum_spend: nil, paying_customer_id: nil, payment_collection_method: nil, prices: nil, resource_id: nil, subscription_entitlements: nil, trial: nil, trial_end_date: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {Stigg::Models::V1::SubscriptionListResponse} for more details.
+        #
         #   Customer subscription to a plan
         #
         #   @param id [String] Subscription ID
@@ -259,7 +263,7 @@ module Stigg
         #
         #   @param latest_invoice [Stigg::Models::V1::SubscriptionListResponse::LatestInvoice, nil] Latest invoice for the subscription
         #
-        #   @param metadata [Hash{Symbol=>String}] Additional metadata for the subscription
+        #   @param metadata [Hash{Symbol=>String}] Additional metadata for the subscription, stored as an arbitrary flat key-value
         #
         #   @param minimum_spend [Stigg::Models::V1::SubscriptionListResponse::MinimumSpend, nil] Minimum spend configuration
         #
@@ -987,7 +991,9 @@ module Stigg
           optional :base_charge, Stigg::Internal::Type::Boolean, api_name: :baseCharge
 
           # @!attribute billing_country_code
-          #   The billing country code of the price
+          #   ISO 3166-1 alpha-2 country code this price applies to. Omit for the default
+          #   price shown to all countries; set one or more country-specific price periods on
+          #   the same currency to localize the amount by billing country.
           #
           #   @return [String, nil]
           optional :billing_country_code, String, api_name: :billingCountryCode
@@ -1018,13 +1024,16 @@ module Stigg
                    -> { Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::SubscriptionListResponse::Price::Tier] }
 
           # @!method initialize(addon_id: nil, amount: nil, base_charge: nil, billing_country_code: nil, block_size: nil, currency: nil, feature_id: nil, tiers: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Stigg::Models::V1::SubscriptionListResponse::Price} for more details.
+          #
           #   @param addon_id [String, nil] Addon identifier for the price override
           #
           #   @param amount [Float] The price amount
           #
           #   @param base_charge [Boolean] Whether this is a base charge override
           #
-          #   @param billing_country_code [String] The billing country code of the price
+          #   @param billing_country_code [String] ISO 3166-1 alpha-2 country code this price applies to. Omit for the default pric
           #
           #   @param block_size [Float] Block size for pricing
           #

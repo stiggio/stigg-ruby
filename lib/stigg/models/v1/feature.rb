@@ -62,7 +62,8 @@ module Stigg
                    api_name: :featureStatus
 
           # @!attribute feature_type
-          #   The type of the feature
+          #   The type of the feature: BOOLEAN (on/off access), NUMBER (a numeric limit or
+          #   quantity), or ENUM (one of a fixed set of values).
           #
           #   @return [Symbol, Stigg::Models::V1::Feature::Data::FeatureType]
           required :feature_type, enum: -> { Stigg::V1::Feature::Data::FeatureType }, api_name: :featureType
@@ -92,7 +93,11 @@ module Stigg
           required :meter, -> { Stigg::V1::Feature::Data::Meter }, nil?: true
 
           # @!attribute meter_type
-          #   The meter type for the feature
+          #   How usage accumulates for this feature. `Incremental` and `Fluctuating` features
+          #   track usage from reported events; `None` means the feature's value isn't
+          #   usage-tracked — it's just a numeric or enum value carried by the plan (for
+          #   example, a seat count or a tier setting) rather than something customers
+          #   consume.
           #
           #   @return [Symbol, Stigg::Models::V1::Feature::Data::MeterType]
           required :meter_type, enum: -> { Stigg::V1::Feature::Data::MeterType }, api_name: :meterType
@@ -113,6 +118,9 @@ module Stigg
           required :updated_at, Time, api_name: :updatedAt
 
           # @!method initialize(id:, created_at:, description:, display_name:, enum_configuration:, feature_status:, feature_type:, feature_units:, feature_units_plural:, metadata:, meter:, meter_type:, unit_transformation:, updated_at:)
+          #   Some parameter documentations has been truncated, see
+          #   {Stigg::Models::V1::Feature::Data} for more details.
+          #
           #   Feature configuration object
           #
           #   @param id [String] The unique identifier for the feature
@@ -127,7 +135,7 @@ module Stigg
           #
           #   @param feature_status [Symbol, Stigg::Models::V1::Feature::Data::FeatureStatus] The status of the feature
           #
-          #   @param feature_type [Symbol, Stigg::Models::V1::Feature::Data::FeatureType] The type of the feature
+          #   @param feature_type [Symbol, Stigg::Models::V1::Feature::Data::FeatureType] The type of the feature: BOOLEAN (on/off access), NUMBER (a numeric limit or qua
           #
           #   @param feature_units [String, nil] The units for the feature
           #
@@ -137,7 +145,7 @@ module Stigg
           #
           #   @param meter [Stigg::Models::V1::Feature::Data::Meter, nil] Event meter that turns reported events into usage for a metered feature
           #
-          #   @param meter_type [Symbol, Stigg::Models::V1::Feature::Data::MeterType] The meter type for the feature
+          #   @param meter_type [Symbol, Stigg::Models::V1::Feature::Data::MeterType] How usage accumulates for this feature. `Incremental` and `Fluctuating` features
           #
           #   @param unit_transformation [Stigg::Models::V1::Feature::Data::UnitTransformation, nil] Unit transformation to be applied to the reported usage
           #
@@ -176,7 +184,8 @@ module Stigg
             #   @return [Array<Symbol>]
           end
 
-          # The type of the feature
+          # The type of the feature: BOOLEAN (on/off access), NUMBER (a numeric limit or
+          # quantity), or ENUM (one of a fixed set of values).
           #
           # @see Stigg::Models::V1::Feature::Data#feature_type
           module FeatureType
@@ -324,7 +333,11 @@ module Stigg
             end
           end
 
-          # The meter type for the feature
+          # How usage accumulates for this feature. `Incremental` and `Fluctuating` features
+          # track usage from reported events; `None` means the feature's value isn't
+          # usage-tracked — it's just a numeric or enum value carried by the plan (for
+          # example, a seat count or a tier setting) rather than something customers
+          # consume.
           #
           # @see Stigg::Models::V1::Feature::Data#meter_type
           module MeterType

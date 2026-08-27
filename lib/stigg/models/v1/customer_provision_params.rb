@@ -67,7 +67,11 @@ module Stigg
         optional :language, String, nil?: true
 
         # @!attribute metadata
-        #   Additional metadata
+        #   Custom key-value metadata to attach to the customer. When creating a customer,
+        #   this sets the initial metadata. When updating a customer, this replaces the
+        #   customer's existing metadata object entirely — it is not merged key by key. Omit
+        #   this field on update to leave the customer's existing metadata untouched; pass
+        #   an empty object to clear it.
         #
         #   @return [Hash{Symbol=>String}, nil]
         optional :metadata, Stigg::Internal::Type::HashOf[String]
@@ -101,6 +105,9 @@ module Stigg
         optional :x_environment_id, String
 
         # @!method initialize(id:, billing_currency: nil, billing_id: nil, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, language: nil, metadata: nil, name: nil, passthrough: nil, timezone: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        #   Some parameter documentations has been truncated, see
+        #   {Stigg::Models::V1::CustomerProvisionParams} for more details.
+        #
         #   @param id [String] Customer slug
         #
         #   @param billing_currency [Symbol, Stigg::Models::V1::CustomerProvisionParams::BillingCurrency, nil] The billing currency of the customer
@@ -117,7 +124,7 @@ module Stigg
         #
         #   @param language [String, nil] Language to use for this customer
         #
-        #   @param metadata [Hash{Symbol=>String}] Additional metadata
+        #   @param metadata [Hash{Symbol=>String}] Custom key-value metadata to attach to the customer. When creating a customer, t
         #
         #   @param name [String, nil] The name of the customer
         #
@@ -340,19 +347,21 @@ module Stigg
 
         class Integration < Stigg::Internal::Type::BaseModel
           # @!attribute id
-          #   Integration details
+          #   The internal ID of the integration this record is linked to
           #
           #   @return [String]
           required :id, String
 
           # @!attribute synced_entity_id
-          #   Synced entity id
+          #   The external entity ID this record is linked to in the vendor system (e.g. the
+          #   Stripe customer ID). Null until the link has synced; required when creating the
+          #   link.
           #
           #   @return [String, nil]
           required :synced_entity_id, String, api_name: :syncedEntityId, nil?: true
 
           # @!attribute vendor_identifier
-          #   The vendor identifier of integration
+          #   The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
           #
           #   @return [Symbol, Stigg::Models::V1::CustomerProvisionParams::Integration::VendorIdentifier]
           required :vendor_identifier,
@@ -360,15 +369,20 @@ module Stigg
                    api_name: :vendorIdentifier
 
           # @!method initialize(id:, synced_entity_id:, vendor_identifier:)
-          #   External billing or CRM integration link
+          #   Some parameter documentations has been truncated, see
+          #   {Stigg::Models::V1::CustomerProvisionParams::Integration} for more details.
           #
-          #   @param id [String] Integration details
+          #   Links this customer to their record in a specific configured integration (e.g.
+          #   their Stripe customer ID under your Stripe integration). A customer has at most
+          #   one link per integration.
           #
-          #   @param synced_entity_id [String, nil] Synced entity id
+          #   @param id [String] The internal ID of the integration this record is linked to
           #
-          #   @param vendor_identifier [Symbol, Stigg::Models::V1::CustomerProvisionParams::Integration::VendorIdentifier] The vendor identifier of integration
+          #   @param synced_entity_id [String, nil] The external entity ID this record is linked to in the vendor system (e.g. the S
+          #
+          #   @param vendor_identifier [Symbol, Stigg::Models::V1::CustomerProvisionParams::Integration::VendorIdentifier] The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
 
-          # The vendor identifier of integration
+          # The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
           #
           # @see Stigg::Models::V1::CustomerProvisionParams::Integration#vendor_identifier
           module VendorIdentifier
@@ -439,7 +453,9 @@ module Stigg
                      api_name: :invoiceCustomFields
 
             # @!attribute metadata
-            #   Additional metadata
+            #   Additional metadata to pass through to the billing provider on the customer's
+            #   record there. This is separate from the customer's own metadata field — it's
+            #   stored only on the billing-provider side, not on the Stigg customer object.
             #
             #   @return [Hash{Symbol=>String}, nil]
             optional :metadata, Stigg::Internal::Type::HashOf[String]
@@ -469,6 +485,10 @@ module Stigg
                      api_name: :taxIds
 
             # @!method initialize(billing_address: nil, customer_name: nil, invoice_custom_fields: nil, metadata: nil, payment_method_id: nil, shipping_address: nil, tax_ids: nil)
+            #   Some parameter documentations has been truncated, see
+            #   {Stigg::Models::V1::CustomerProvisionParams::Passthrough::Stripe} for more
+            #   details.
+            #
             #   Stripe-specific billing fields for the customer.
             #
             #   @param billing_address [Stigg::Models::V1::CustomerProvisionParams::Passthrough::Stripe::BillingAddress] Physical address
@@ -477,7 +497,7 @@ module Stigg
             #
             #   @param invoice_custom_fields [Hash{Symbol=>String}] Invoice custom fields
             #
-            #   @param metadata [Hash{Symbol=>String}] Additional metadata
+            #   @param metadata [Hash{Symbol=>String}] Additional metadata to pass through to the billing provider on the customer's re
             #
             #   @param payment_method_id [String] Billing provider payment method id, attached to this customer
             #
@@ -632,7 +652,9 @@ module Stigg
             optional :currency, enum: -> { Stigg::V1::CustomerProvisionParams::Passthrough::Zuora::Currency }
 
             # @!attribute metadata
-            #   Additional metadata
+            #   Additional metadata to pass through to the billing provider on the customer's
+            #   record there. This is separate from the customer's own metadata field — it's
+            #   stored only on the billing-provider side, not on the Stigg customer object.
             #
             #   @return [Hash{Symbol=>String}, nil]
             optional :metadata, Stigg::Internal::Type::HashOf[String]
@@ -644,13 +666,17 @@ module Stigg
             optional :payment_method_id, String, api_name: :paymentMethodId
 
             # @!method initialize(billing_address: nil, currency: nil, metadata: nil, payment_method_id: nil)
+            #   Some parameter documentations has been truncated, see
+            #   {Stigg::Models::V1::CustomerProvisionParams::Passthrough::Zuora} for more
+            #   details.
+            #
             #   Zuora-specific billing fields for the customer.
             #
             #   @param billing_address [Stigg::Models::V1::CustomerProvisionParams::Passthrough::Zuora::BillingAddress] Physical address
             #
             #   @param currency [Symbol, Stigg::Models::V1::CustomerProvisionParams::Passthrough::Zuora::Currency] Customers selected currency
             #
-            #   @param metadata [Hash{Symbol=>String}] Additional metadata
+            #   @param metadata [Hash{Symbol=>String}] Additional metadata to pass through to the billing provider on the customer's re
             #
             #   @param payment_method_id [String] Billing provider payment method id, attached to this customer
 

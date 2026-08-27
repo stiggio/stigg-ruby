@@ -24,7 +24,12 @@ module Stigg
         sig { returns(Time) }
         attr_accessor :updated_at
 
-        # Resource object that belongs to a customer
+        # Resource object that belongs to a customer, used to scope subscriptions and
+        # entitlements to a specific instance within the customer's account (e.g. a
+        # website, project, or workspace) for multi-resource pricing. A resource is
+        # identified only by its resourceId — there's no separate display name or metadata
+        # field on the resource itself; if you need to attach descriptive data, keep it in
+        # your own system keyed by resourceId.
         sig do
           params(id: String, created_at: Time, updated_at: Time).returns(
             T.attached_class

@@ -64,7 +64,8 @@ module Stigg
           sig { returns(Stigg::V1::Feature::Data::FeatureStatus::TaggedSymbol) }
           attr_accessor :feature_status
 
-          # The type of the feature
+          # The type of the feature: BOOLEAN (on/off access), NUMBER (a numeric limit or
+          # quantity), or ENUM (one of a fixed set of values).
           sig { returns(Stigg::V1::Feature::Data::FeatureType::TaggedSymbol) }
           attr_accessor :feature_type
 
@@ -91,7 +92,11 @@ module Stigg
           end
           attr_writer :meter
 
-          # The meter type for the feature
+          # How usage accumulates for this feature. `Incremental` and `Fluctuating` features
+          # track usage from reported events; `None` means the feature's value isn't
+          # usage-tracked — it's just a numeric or enum value carried by the plan (for
+          # example, a seat count or a tier setting) rather than something customers
+          # consume.
           sig { returns(Stigg::V1::Feature::Data::MeterType::TaggedSymbol) }
           attr_accessor :meter_type
 
@@ -149,7 +154,8 @@ module Stigg
             enum_configuration:,
             # The status of the feature
             feature_status:,
-            # The type of the feature
+            # The type of the feature: BOOLEAN (on/off access), NUMBER (a numeric limit or
+            # quantity), or ENUM (one of a fixed set of values).
             feature_type:,
             # The units for the feature
             feature_units:,
@@ -159,7 +165,11 @@ module Stigg
             metadata:,
             # Event meter that turns reported events into usage for a metered feature
             meter:,
-            # The meter type for the feature
+            # How usage accumulates for this feature. `Incremental` and `Fluctuating` features
+            # track usage from reported events; `None` means the feature's value isn't
+            # usage-tracked — it's just a numeric or enum value carried by the plan (for
+            # example, a seat count or a tier setting) rather than something customers
+            # consume.
             meter_type:,
             # Unit transformation to be applied to the reported usage
             unit_transformation:,
@@ -264,7 +274,8 @@ module Stigg
             end
           end
 
-          # The type of the feature
+          # The type of the feature: BOOLEAN (on/off access), NUMBER (a numeric limit or
+          # quantity), or ENUM (one of a fixed set of values).
           module FeatureType
             extend Stigg::Internal::Type::Enum
 
@@ -647,7 +658,11 @@ module Stigg
             end
           end
 
-          # The meter type for the feature
+          # How usage accumulates for this feature. `Incremental` and `Fluctuating` features
+          # track usage from reported events; `None` means the feature's value isn't
+          # usage-tracked — it's just a numeric or enum value carried by the plan (for
+          # example, a seat count or a tier setting) rather than something customers
+          # consume.
           module MeterType
             extend Stigg::Internal::Type::Enum
 

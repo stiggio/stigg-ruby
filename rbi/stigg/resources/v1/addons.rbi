@@ -38,7 +38,7 @@ module Stigg
           # Body param: The description of the package
           description: nil,
           # Body param: The maximum quantity of this addon that can be added to a
-          # subscription
+          # subscription. Leave unset for no upper bound.
           max_quantity: nil,
           # Body param: Metadata associated with the entity
           metadata: nil,
@@ -104,7 +104,9 @@ module Stigg
           id,
           # Body param: The unique identifier for the entity in the billing provider
           billing_id: nil,
-          # Body param: Pricing configuration to set on the addon draft
+          # Body param: Pricing configuration to set on the addon draft. Unlike the rest of
+          # this request, this is a full replace of the pricing configuration, not a merge —
+          # see SetPackagePricingRequest.
           charges: nil,
           # Body param: List of addons the addon is dependant on
           dependencies: nil,
@@ -113,7 +115,7 @@ module Stigg
           # Body param: The display name of the package
           display_name: nil,
           # Body param: The maximum quantity of this addon that can be added to a
-          # subscription
+          # subscription. Leave unset for no upper bound.
           max_quantity: nil,
           # Body param: Metadata associated with the entity
           metadata: nil,
@@ -255,7 +257,11 @@ module Stigg
         )
         end
 
-        # Publishes a draft addon, making it available for use in subscriptions.
+        # Publishes a draft addon, making it available for use in subscriptions. The
+        # required `migrationType` field controls whether subscriptions already using this
+        # addon are moved onto the new version immediately (`ALL_CUSTOMERS`) or stay on
+        # the version they were using — grandfathered — until you explicitly migrate them
+        # (`NEW_CUSTOMERS`).
         sig do
           params(
             id: String,
@@ -269,7 +275,9 @@ module Stigg
         def publish(
           # Path param: The unique identifier of the entity
           id,
-          # Body param: The migration type of the package
+          # Body param: Who the published version applies to: NEW_CUSTOMERS (default) leaves
+          # existing subscribers on their current version, ALL_CUSTOMERS moves them onto the
+          # new version immediately.
           migration_type:,
           # Header param: Account ID — optional when authenticating with a user JWT (Bearer
           # token); falls back to the user's first membership. Ignored for API-key auth.

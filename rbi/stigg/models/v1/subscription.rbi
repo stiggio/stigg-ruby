@@ -184,7 +184,8 @@ module Stigg
           end
           attr_writer :latest_invoice
 
-          # Additional metadata for the subscription
+          # Additional metadata for the subscription, stored as an arbitrary flat key-value
+          # object.
           sig { returns(T.nilable(T::Hash[Symbol, String])) }
           attr_reader :metadata
 
@@ -364,7 +365,8 @@ module Stigg
             future_updates: nil,
             # Latest invoice for the subscription
             latest_invoice: nil,
-            # Additional metadata for the subscription
+            # Additional metadata for the subscription, stored as an arbitrary flat key-value
+            # object.
             metadata: nil,
             # Minimum spend configuration
             minimum_spend: nil,
@@ -2707,7 +2709,9 @@ module Stigg
             sig { params(base_charge: T::Boolean).void }
             attr_writer :base_charge
 
-            # The billing country code of the price
+            # ISO 3166-1 alpha-2 country code this price applies to. Omit for the default
+            # price shown to all countries; set one or more country-specific price periods on
+            # the same currency to localize the amount by billing country.
             sig { returns(T.nilable(String)) }
             attr_reader :billing_country_code
 
@@ -2780,7 +2784,9 @@ module Stigg
               amount: nil,
               # Whether this is a base charge override
               base_charge: nil,
-              # The billing country code of the price
+              # ISO 3166-1 alpha-2 country code this price applies to. Omit for the default
+              # price shown to all countries; set one or more country-specific price periods on
+              # the same currency to localize the amount by billing country.
               billing_country_code: nil,
               # Block size for pricing
               block_size: nil,

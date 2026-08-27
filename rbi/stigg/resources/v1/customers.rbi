@@ -86,7 +86,11 @@ module Stigg
           integrations: nil,
           # Body param: Language to use for this customer
           language: nil,
-          # Body param: Additional metadata
+          # Body param: Custom key-value metadata to attach to the customer. When creating a
+          # customer, this sets the initial metadata. When updating a customer, this
+          # replaces the customer's existing metadata object entirely — it is not merged key
+          # by key. Omit this field on update to leave the customer's existing metadata
+          # untouched; pass an empty object to clear it.
           metadata: nil,
           # Body param: The name of the customer
           name: nil,
@@ -173,12 +177,12 @@ module Stigg
 
         # Checks a single entitlement (feature or credit) for a customer or resource.
         # Supports `requestedUsage` and `requestedValues` to evaluate against limits or
-        # enum values.
-        #
-        # **Warning:** This REST API endpoint lacks built-in client-side caching, fallback
-        # mechanisms, and low-latency guarantees. It is not recommended for hot-path
-        # entitlement checks. For production use, consider using the Stigg Node Server SDK
-        # with caching or the Sidecar for low-latency cached responses.
+        # enum values. Each call reaches the Stigg API directly, so latency reflects a
+        # network round trip. For entitlement checks on a hot path (e.g. gating a request
+        # in real time), the Stigg Node Server SDK (with its built-in cache) or the
+        # Sidecar will typically respond faster and keep working through brief Stigg
+        # outages; reach for this endpoint when a live HTTP call is the natural fit, such
+        # as from a non-Node backend or a server-side job.
         sig do
           params(
             id: String,
@@ -234,7 +238,7 @@ module Stigg
         def import(
           # Body param: List of customer objects to import
           customers:,
-          # Body param: Integration details
+          # Body param: The internal ID of the integration this record is linked to
           integration_id: nil,
           # Header param: Account ID — optional when authenticating with a user JWT (Bearer
           # token); falls back to the user's first membership. Ignored for API-key auth.
@@ -425,7 +429,11 @@ module Stigg
           integrations: nil,
           # Body param: Language to use for this customer
           language: nil,
-          # Body param: Additional metadata
+          # Body param: Custom key-value metadata to attach to the customer. When creating a
+          # customer, this sets the initial metadata. When updating a customer, this
+          # replaces the customer's existing metadata object entirely — it is not merged key
+          # by key. Omit this field on update to leave the customer's existing metadata
+          # untouched; pass an empty object to clear it.
           metadata: nil,
           # Body param: The name of the customer
           name: nil,
@@ -445,12 +453,12 @@ module Stigg
         end
 
         # Retrieves the effective entitlements for a customer or resource, including
-        # feature and credit entitlements.
-        #
-        # **Warning:** This REST API endpoint lacks built-in client-side caching, fallback
-        # mechanisms, and low-latency guarantees. It is not recommended for hot-path
-        # entitlement checks. For production use, consider using the Stigg Node Server SDK
-        # with caching or the Sidecar for low-latency cached responses.
+        # feature and credit entitlements. Each call reaches the Stigg API directly, so
+        # latency reflects a network round trip. For entitlement checks on a hot path
+        # (e.g. gating a request in real time), the Stigg Node Server SDK (with its
+        # built-in cache) or the Sidecar will typically respond faster and keep working
+        # through brief Stigg outages; reach for this endpoint when a live HTTP call is
+        # the natural fit, such as from a non-Node backend or a server-side job.
         sig do
           params(
             id: String,

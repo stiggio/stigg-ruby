@@ -206,7 +206,7 @@ module Stigg
         #
         # @param display_name [String] Body param: Display name of the product
         #
-        # @param metadata [Hash{Symbol=>String}, nil] Body param: Additional metadata for the product
+        # @param metadata [Hash{Symbol=>String}, nil] Body param: Additional metadata for the product. When included, this replaces th
         #
         # @param multiple_subscriptions [Boolean] Body param: Indicates if multiple subscriptions to this product are allowed
         #

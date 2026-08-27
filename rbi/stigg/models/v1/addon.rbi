@@ -66,7 +66,8 @@ module Stigg
           sig { returns(T.nilable(T::Boolean)) }
           attr_accessor :is_latest
 
-          # The maximum quantity of this addon that can be added to a subscription
+          # The maximum quantity of this addon that can be added to a subscription. Leave
+          # unset for no upper bound.
           sig { returns(T.nilable(Integer)) }
           attr_accessor :max_quantity
 
@@ -137,7 +138,8 @@ module Stigg
             entitlements:,
             # Indicates if the package is the latest version
             is_latest:,
-            # The maximum quantity of this addon that can be added to a subscription
+            # The maximum quantity of this addon that can be added to a subscription. Leave
+            # unset for no upper bound.
             max_quantity:,
             # Metadata associated with the entity
             metadata:,

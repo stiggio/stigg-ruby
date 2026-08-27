@@ -192,7 +192,8 @@ module Stigg
           end
           attr_accessor :subscription_start_setup
 
-          # ID of the plan to downgrade to at the end of the billing period
+          # ID of the plan to downgrade to at the end of the billing period. Only relevant
+          # when subscriptionEndSetup is DOWNGRADE_TO_FREE — ignored otherwise.
           sig { returns(T.nilable(String)) }
           attr_accessor :downgrade_plan_id
 
@@ -201,7 +202,8 @@ module Stigg
           sig { returns(T.nilable(T::Boolean)) }
           attr_accessor :prorate_at_end_of_billing_period
 
-          # ID of the plan to start the subscription with
+          # ID of the plan to start the subscription with. Only relevant when
+          # subscriptionStartSetup is PLAN_SELECTION — ignored otherwise.
           sig { returns(T.nilable(String)) }
           attr_accessor :subscription_start_plan_id
 
@@ -226,12 +228,14 @@ module Stigg
             subscription_end_setup:,
             # Setup for the start of the subscription
             subscription_start_setup:,
-            # ID of the plan to downgrade to at the end of the billing period
+            # ID of the plan to downgrade to at the end of the billing period. Only relevant
+            # when subscriptionEndSetup is DOWNGRADE_TO_FREE — ignored otherwise.
             downgrade_plan_id: nil,
             # Indicates if the subscription should be prorated at the end of the billing
             # period
             prorate_at_end_of_billing_period: nil,
-            # ID of the plan to start the subscription with
+            # ID of the plan to start the subscription with. Only relevant when
+            # subscriptionStartSetup is PLAN_SELECTION — ignored otherwise.
             subscription_start_plan_id: nil
           )
           end

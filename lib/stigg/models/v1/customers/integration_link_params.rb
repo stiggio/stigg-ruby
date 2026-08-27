@@ -15,19 +15,21 @@ module Stigg
           required :path_id, String
 
           # @!attribute body_id
-          #   Integration details
+          #   The internal ID of the integration this record is linked to
           #
           #   @return [String]
           required :body_id, String, api_name: :id
 
           # @!attribute synced_entity_id
-          #   Synced entity id
+          #   The external entity ID this record is linked to in the vendor system (e.g. the
+          #   Stripe customer ID). Null until the link has synced; required when creating the
+          #   link.
           #
           #   @return [String]
           required :synced_entity_id, String, api_name: :syncedEntityId
 
           # @!attribute vendor_identifier
-          #   The vendor identifier of integration
+          #   The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
           #
           #   @return [Symbol, Stigg::Models::V1::Customers::IntegrationLinkParams::VendorIdentifier]
           required :vendor_identifier,
@@ -45,13 +47,16 @@ module Stigg
           optional :x_environment_id, String
 
           # @!method initialize(path_id:, body_id:, synced_entity_id:, vendor_identifier:, x_account_id: nil, x_environment_id: nil, request_options: {})
+          #   Some parameter documentations has been truncated, see
+          #   {Stigg::Models::V1::Customers::IntegrationLinkParams} for more details.
+          #
           #   @param path_id [String]
           #
-          #   @param body_id [String] Integration details
+          #   @param body_id [String] The internal ID of the integration this record is linked to
           #
-          #   @param synced_entity_id [String] Synced entity id
+          #   @param synced_entity_id [String] The external entity ID this record is linked to in the vendor system (e.g. the S
           #
-          #   @param vendor_identifier [Symbol, Stigg::Models::V1::Customers::IntegrationLinkParams::VendorIdentifier] The vendor identifier of integration
+          #   @param vendor_identifier [Symbol, Stigg::Models::V1::Customers::IntegrationLinkParams::VendorIdentifier] The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
           #
           #   @param x_account_id [String]
           #
@@ -59,7 +64,7 @@ module Stigg
           #
           #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 
-          # The vendor identifier of integration
+          # The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
           module VendorIdentifier
             extend Stigg::Internal::Type::Enum
 

@@ -100,7 +100,7 @@ module Stigg
         #
         # @param billing_id [String, nil] Body param: The unique identifier for the entity in the billing provider
         #
-        # @param charges [Stigg::Models::V1::AddonUpdateParams::Charges] Body param: Pricing configuration to set on the addon draft
+        # @param charges [Stigg::Models::V1::AddonUpdateParams::Charges] Body param: Pricing configuration to set on the addon draft. Unlike the rest of
         #
         # @param dependencies [Array<String>, nil] Body param: List of addons the addon is dependant on
         #
@@ -291,13 +291,17 @@ module Stigg
         # Some parameter documentations has been truncated, see
         # {Stigg::Models::V1::AddonPublishParams} for more details.
         #
-        # Publishes a draft addon, making it available for use in subscriptions.
+        # Publishes a draft addon, making it available for use in subscriptions. The
+        # required `migrationType` field controls whether subscriptions already using this
+        # addon are moved onto the new version immediately (`ALL_CUSTOMERS`) or stay on
+        # the version they were using — grandfathered — until you explicitly migrate them
+        # (`NEW_CUSTOMERS`).
         #
         # @overload publish(id, migration_type:, x_account_id: nil, x_environment_id: nil, request_options: {})
         #
         # @param id [String] Path param: The unique identifier of the entity
         #
-        # @param migration_type [Symbol, Stigg::Models::V1::AddonPublishParams::MigrationType] Body param: The migration type of the package
+        # @param migration_type [Symbol, Stigg::Models::V1::AddonPublishParams::MigrationType] Body param: Who the published version applies to: NEW_CUSTOMERS (default) leaves
         #
         # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
         #

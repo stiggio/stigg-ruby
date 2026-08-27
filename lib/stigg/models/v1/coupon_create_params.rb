@@ -15,7 +15,8 @@ module Stigg
         required :id, String
 
         # @!attribute amounts_off
-        #   Fixed amount discounts in different currencies
+        #   Fixed amount discounts in different currencies. Provide exactly one of
+        #   percentOff or amountsOff — not both, not neither.
         #
         #   @return [Array<Stigg::Models::V1::CouponCreateParams::AmountsOff>, nil]
         required :amounts_off,
@@ -30,7 +31,8 @@ module Stigg
         required :description, String, nil?: true
 
         # @!attribute duration_in_months
-        #   Duration of the coupon validity in months
+        #   How many billing cycles the discount applies for once redeemed. Leave unset for
+        #   a discount that lasts for the lifetime of the subscription.
         #
         #   @return [Integer, nil]
         required :duration_in_months, Integer, api_name: :durationInMonths, nil?: true
@@ -48,7 +50,8 @@ module Stigg
         required :name, String
 
         # @!attribute percent_off
-        #   Percentage discount off the original price
+        #   Percentage discount off the original price. Provide exactly one of percentOff or
+        #   amountsOff — not both, not neither.
         #
         #   @return [Float, nil]
         required :percent_off, Float, api_name: :percentOff, nil?: true
@@ -64,19 +67,22 @@ module Stigg
         optional :x_environment_id, String
 
         # @!method initialize(id:, amounts_off:, description:, duration_in_months:, metadata:, name:, percent_off:, x_account_id: nil, x_environment_id: nil, request_options: {})
+        #   Some parameter documentations has been truncated, see
+        #   {Stigg::Models::V1::CouponCreateParams} for more details.
+        #
         #   @param id [String] The unique identifier for the entity
         #
-        #   @param amounts_off [Array<Stigg::Models::V1::CouponCreateParams::AmountsOff>, nil] Fixed amount discounts in different currencies
+        #   @param amounts_off [Array<Stigg::Models::V1::CouponCreateParams::AmountsOff>, nil] Fixed amount discounts in different currencies. Provide exactly one of percentOf
         #
         #   @param description [String, nil] Description of the coupon
         #
-        #   @param duration_in_months [Integer, nil] Duration of the coupon validity in months
+        #   @param duration_in_months [Integer, nil] How many billing cycles the discount applies for once redeemed. Leave unset for
         #
         #   @param metadata [Hash{Symbol=>String}, nil] Metadata associated with the entity
         #
         #   @param name [String] Name of the coupon
         #
-        #   @param percent_off [Float, nil] Percentage discount off the original price
+        #   @param percent_off [Float, nil] Percentage discount off the original price. Provide exactly one of percentOff or
         #
         #   @param x_account_id [String]
         #

@@ -70,7 +70,7 @@ module Stigg
         #
         # @param language [String, nil] Body param: Language to use for this customer
         #
-        # @param metadata [Hash{Symbol=>String}] Body param: Additional metadata
+        # @param metadata [Hash{Symbol=>String}] Body param: Custom key-value metadata to attach to the customer. When creating a
         #
         # @param name [String, nil] Body param: The name of the customer
         #
@@ -184,12 +184,12 @@ module Stigg
         #
         # Checks a single entitlement (feature or credit) for a customer or resource.
         # Supports `requestedUsage` and `requestedValues` to evaluate against limits or
-        # enum values.
-        #
-        # **Warning:** This REST API endpoint lacks built-in client-side caching, fallback
-        # mechanisms, and low-latency guarantees. It is not recommended for hot-path
-        # entitlement checks. For production use, consider using the Stigg Node Server SDK
-        # with caching or the Sidecar for low-latency cached responses.
+        # enum values. Each call reaches the Stigg API directly, so latency reflects a
+        # network round trip. For entitlement checks on a hot path (e.g. gating a request
+        # in real time), the Stigg Node Server SDK (with its built-in cache) or the
+        # Sidecar will typically respond faster and keep working through brief Stigg
+        # outages; reach for this endpoint when a live HTTP call is the natural fit, such
+        # as from a non-Node backend or a server-side job.
         #
         # @overload check_entitlement(id, currency_id: nil, feature_id: nil, requested_usage: nil, requested_values: nil, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #
@@ -247,7 +247,7 @@ module Stigg
         #
         # @param customers [Array<Stigg::Models::V1::CustomerImportParams::Customer>] Body param: List of customer objects to import
         #
-        # @param integration_id [String] Body param: Integration details
+        # @param integration_id [String] Body param: The internal ID of the integration this record is linked to
         #
         # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
         #
@@ -448,7 +448,7 @@ module Stigg
         #
         # @param language [String, nil] Body param: Language to use for this customer
         #
-        # @param metadata [Hash{Symbol=>String}] Body param: Additional metadata
+        # @param metadata [Hash{Symbol=>String}] Body param: Custom key-value metadata to attach to the customer. When creating a
         #
         # @param name [String, nil] Body param: The name of the customer
         #
@@ -482,12 +482,12 @@ module Stigg
         # {Stigg::Models::V1::CustomerRetrieveEntitlementsParams} for more details.
         #
         # Retrieves the effective entitlements for a customer or resource, including
-        # feature and credit entitlements.
-        #
-        # **Warning:** This REST API endpoint lacks built-in client-side caching, fallback
-        # mechanisms, and low-latency guarantees. It is not recommended for hot-path
-        # entitlement checks. For production use, consider using the Stigg Node Server SDK
-        # with caching or the Sidecar for low-latency cached responses.
+        # feature and credit entitlements. Each call reaches the Stigg API directly, so
+        # latency reflects a network round trip. For entitlement checks on a hot path
+        # (e.g. gating a request in real time), the Stigg Node Server SDK (with its
+        # built-in cache) or the Sidecar will typically respond faster and keep working
+        # through brief Stigg outages; reach for this endpoint when a live HTTP call is
+        # the natural fit, such as from a non-Node backend or a server-side job.
         #
         # @overload retrieve_entitlements(id, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #

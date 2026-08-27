@@ -18,9 +18,9 @@ module Stigg
         sig { returns(String) }
         attr_accessor :id
 
-        # The unique identifier of the customer who will assume payment responsibility for
-        # this subscription. This customer must already exist in your Stigg account and
-        # have a valid payment method if the subscription requires payment.
+        # The unique identifier of the customer who will manage this subscription going
+        # forward. This customer must already exist in your Stigg account. The paying
+        # customer for the subscription does not change as a result of this request.
         sig { returns(String) }
         attr_accessor :target_customer_id
 
@@ -47,9 +47,9 @@ module Stigg
         end
         def self.new(
           id:,
-          # The unique identifier of the customer who will assume payment responsibility for
-          # this subscription. This customer must already exist in your Stigg account and
-          # have a valid payment method if the subscription requires payment.
+          # The unique identifier of the customer who will manage this subscription going
+          # forward. This customer must already exist in your Stigg account. The paying
+          # customer for the subscription does not change as a result of this request.
           target_customer_id:,
           x_account_id: nil,
           x_environment_id: nil,

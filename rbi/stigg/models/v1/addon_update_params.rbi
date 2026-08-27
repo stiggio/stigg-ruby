@@ -19,7 +19,9 @@ module Stigg
         sig { returns(T.nilable(String)) }
         attr_accessor :billing_id
 
-        # Pricing configuration to set on the addon draft
+        # Pricing configuration to set on the addon draft. Unlike the rest of this
+        # request, this is a full replace of the pricing configuration, not a merge — see
+        # SetPackagePricingRequest.
         sig { returns(T.nilable(Stigg::V1::AddonUpdateParams::Charges)) }
         attr_reader :charges
 
@@ -43,7 +45,8 @@ module Stigg
         sig { params(display_name: String).void }
         attr_writer :display_name
 
-        # The maximum quantity of this addon that can be added to a subscription
+        # The maximum quantity of this addon that can be added to a subscription. Leave
+        # unset for no upper bound.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :max_quantity
 
@@ -97,7 +100,9 @@ module Stigg
           id:,
           # The unique identifier for the entity in the billing provider
           billing_id: nil,
-          # Pricing configuration to set on the addon draft
+          # Pricing configuration to set on the addon draft. Unlike the rest of this
+          # request, this is a full replace of the pricing configuration, not a merge — see
+          # SetPackagePricingRequest.
           charges: nil,
           # List of addons the addon is dependant on
           dependencies: nil,
@@ -105,7 +110,8 @@ module Stigg
           description: nil,
           # The display name of the package
           display_name: nil,
-          # The maximum quantity of this addon that can be added to a subscription
+          # The maximum quantity of this addon that can be added to a subscription. Leave
+          # unset for no upper bound.
           max_quantity: nil,
           # Metadata associated with the entity
           metadata: nil,
@@ -190,7 +196,8 @@ module Stigg
           end
           attr_writer :overage_billing_period
 
-          # Array of overage pricing model configurations
+          # Array of overage pricing model configurations. Replaces all existing overage
+          # pricing models on the draft — omit this to end up with no overage pricing.
           sig do
             returns(
               T.nilable(
@@ -212,7 +219,8 @@ module Stigg
           end
           attr_writer :overage_pricing_models
 
-          # Array of pricing model configurations
+          # Array of pricing model configurations. Replaces all existing base pricing models
+          # on the draft — omit this to end up with no base pricing.
           sig do
             returns(
               T.nilable(
@@ -232,7 +240,9 @@ module Stigg
           end
           attr_writer :pricing_models
 
-          # Pricing configuration to set on the addon draft
+          # Pricing configuration to set on the addon draft. Unlike the rest of this
+          # request, this is a full replace of the pricing configuration, not a merge — see
+          # SetPackagePricingRequest.
           sig do
             params(
               pricing_type:
@@ -265,9 +275,11 @@ module Stigg
             minimum_spend: nil,
             # When overage charges are billed
             overage_billing_period: nil,
-            # Array of overage pricing model configurations
+            # Array of overage pricing model configurations. Replaces all existing overage
+            # pricing models on the draft — omit this to end up with no overage pricing.
             overage_pricing_models: nil,
-            # Array of pricing model configurations
+            # Array of pricing model configurations. Replaces all existing base pricing models
+            # on the draft — omit this to end up with no base pricing.
             pricing_models: nil
           )
           end

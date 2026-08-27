@@ -44,7 +44,10 @@ module Stigg
         end
         attr_writer :dimensions
 
-        # Resource id
+        # The customer resource this usage applies to. Optional — only required if the
+        # customer has multiple resources (for example, one subscription per workspace or
+        # site) and usage needs to be tracked separately per resource; omit it to report
+        # usage at the customer level.
         sig { returns(T.nilable(String)) }
         attr_accessor :resource_id
 
@@ -82,7 +85,10 @@ module Stigg
           event_name:,
           # Dimensions associated with the usage event
           dimensions: nil,
-          # Resource id
+          # The customer resource this usage applies to. Optional — only required if the
+          # customer has multiple resources (for example, one subscription per workspace or
+          # site) and usage needs to be tracked separately per resource; omit it to report
+          # usage at the customer level.
           resource_id: nil,
           x_account_id: nil,
           x_environment_id: nil,

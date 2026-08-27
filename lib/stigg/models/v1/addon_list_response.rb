@@ -55,7 +55,8 @@ module Stigg
         required :is_latest, Stigg::Internal::Type::Boolean, api_name: :isLatest, nil?: true
 
         # @!attribute max_quantity
-        #   The maximum quantity of this addon that can be added to a subscription
+        #   The maximum quantity of this addon that can be added to a subscription. Leave
+        #   unset for no upper bound.
         #
         #   @return [Integer, nil]
         required :max_quantity, Integer, api_name: :maxQuantity, nil?: true
@@ -100,6 +101,9 @@ module Stigg
         required :version_number, Integer, api_name: :versionNumber
 
         # @!method initialize(id:, billing_id:, created_at:, dependencies:, description:, display_name:, entitlements:, is_latest:, max_quantity:, metadata:, pricing_type:, product_id:, status:, updated_at:, version_number:)
+        #   Some parameter documentations has been truncated, see
+        #   {Stigg::Models::V1::AddonListResponse} for more details.
+        #
         #   Addon configuration object
         #
         #   @param id [String] The unique identifier for the entity
@@ -118,7 +122,7 @@ module Stigg
         #
         #   @param is_latest [Boolean, nil] Indicates if the package is the latest version
         #
-        #   @param max_quantity [Integer, nil] The maximum quantity of this addon that can be added to a subscription
+        #   @param max_quantity [Integer, nil] The maximum quantity of this addon that can be added to a subscription. Leave un
         #
         #   @param metadata [Hash{Symbol=>String}] Metadata associated with the entity
         #

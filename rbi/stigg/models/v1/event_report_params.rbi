@@ -75,7 +75,9 @@ module Stigg
           sig { returns(String) }
           attr_accessor :event_name
 
-          # Idempotency key
+          # A key you provide to safely retry the same usage report without double-counting
+          # it. Reports with a previously-seen idempotency key are deduplicated for 7 days;
+          # after that window a retry is treated as new usage.
           sig { returns(String) }
           attr_accessor :idempotency_key
 
@@ -103,7 +105,10 @@ module Stigg
           end
           attr_writer :dimensions
 
-          # Resource id
+          # The customer resource this usage applies to. Optional — only required if the
+          # customer has multiple resources (for example, one subscription per workspace or
+          # site) and usage needs to be tracked separately per resource; omit it to report
+          # usage at the customer level.
           sig { returns(T.nilable(String)) }
           attr_accessor :resource_id
 
@@ -134,11 +139,16 @@ module Stigg
             customer_id:,
             # The name of the usage event
             event_name:,
-            # Idempotency key
+            # A key you provide to safely retry the same usage report without double-counting
+            # it. Reports with a previously-seen idempotency key are deduplicated for 7 days;
+            # after that window a retry is treated as new usage.
             idempotency_key:,
             # Dimensions associated with the usage event
             dimensions: nil,
-            # Resource id
+            # The customer resource this usage applies to. Optional — only required if the
+            # customer has multiple resources (for example, one subscription per workspace or
+            # site) and usage needs to be tracked separately per resource; omit it to report
+            # usage at the customer level.
             resource_id: nil,
             # Timestamp
             timestamp: nil

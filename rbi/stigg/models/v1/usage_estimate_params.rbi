@@ -20,7 +20,9 @@ module Stigg
         sig { returns(String) }
         attr_accessor :feature_id
 
-        # The value to report for usage
+        # The value to report for usage. Must be a whole number — the REST API does not
+        # accept fractional (float) usage values; scale up (e.g. report cents instead of
+        # dollars, or milliseconds instead of seconds) if you need sub-unit precision.
         sig { returns(Integer) }
         attr_accessor :value
 
@@ -48,11 +50,16 @@ module Stigg
         end
         attr_writer :dimensions
 
-        # Resource id
+        # The customer resource this usage applies to. Optional — only required if the
+        # customer has multiple resources (for example, one subscription per workspace or
+        # site) and usage needs to be tracked separately per resource; omit it to report
+        # usage at the customer level.
         sig { returns(T.nilable(String)) }
         attr_accessor :resource_id
 
-        # The method by which the usage value should be updated
+        # How the reported value is applied: DELTA (default) adds it to the feature's
+        # current usage; SET treats it as the new absolute usage total, and Stigg computes
+        # the delta internally.
         sig do
           returns(
             T.nilable(Stigg::V1::UsageEstimateParams::UpdateBehavior::OrSymbol)
@@ -103,13 +110,20 @@ module Stigg
           customer_id:,
           # Feature id
           feature_id:,
-          # The value to report for usage
+          # The value to report for usage. Must be a whole number — the REST API does not
+          # accept fractional (float) usage values; scale up (e.g. report cents instead of
+          # dollars, or milliseconds instead of seconds) if you need sub-unit precision.
           value:,
           # Additional dimensions for the usage report
           dimensions: nil,
-          # Resource id
+          # The customer resource this usage applies to. Optional — only required if the
+          # customer has multiple resources (for example, one subscription per workspace or
+          # site) and usage needs to be tracked separately per resource; omit it to report
+          # usage at the customer level.
           resource_id: nil,
-          # The method by which the usage value should be updated
+          # How the reported value is applied: DELTA (default) adds it to the feature's
+          # current usage; SET treats it as the new absolute usage total, and Stigg computes
+          # the delta internally.
           update_behavior: nil,
           x_account_id: nil,
           x_environment_id: nil,
@@ -154,7 +168,9 @@ module Stigg
           end
         end
 
-        # The method by which the usage value should be updated
+        # How the reported value is applied: DELTA (default) adds it to the feature's
+        # current usage; SET treats it as the new absolute usage total, and Stigg computes
+        # the delta internally.
         module UpdateBehavior
           extend Stigg::Internal::Type::Enum
 

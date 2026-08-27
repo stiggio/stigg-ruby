@@ -27,17 +27,20 @@ module Stigg
         def create(
           # Body param: The unique identifier for the entity
           id:,
-          # Body param: Fixed amount discounts in different currencies
+          # Body param: Fixed amount discounts in different currencies. Provide exactly one
+          # of percentOff or amountsOff — not both, not neither.
           amounts_off:,
           # Body param: Description of the coupon
           description:,
-          # Body param: Duration of the coupon validity in months
+          # Body param: How many billing cycles the discount applies for once redeemed.
+          # Leave unset for a discount that lasts for the lifetime of the subscription.
           duration_in_months:,
           # Body param: Metadata associated with the entity
           metadata:,
           # Body param: Name of the coupon
           name:,
-          # Body param: Percentage discount off the original price
+          # Body param: Percentage discount off the original price. Provide exactly one of
+          # percentOff or amountsOff — not both, not neither.
           percent_off:,
           # Header param: Account ID — optional when authenticating with a user JWT (Bearer
           # token); falls back to the user's first membership. Ignored for API-key auth.

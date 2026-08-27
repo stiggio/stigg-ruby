@@ -7,19 +7,21 @@ module Stigg
         # @see Stigg::Resources::V1::Customers::Integrations#list
         class IntegrationListResponse < Stigg::Internal::Type::BaseModel
           # @!attribute id
-          #   Integration details
+          #   The internal ID of the integration this record is linked to
           #
           #   @return [String]
           required :id, String
 
           # @!attribute synced_entity_id
-          #   Synced entity id
+          #   The external entity ID this record is linked to in the vendor system (e.g. the
+          #   Stripe customer ID). Null until the link has synced; required when creating the
+          #   link.
           #
           #   @return [String, nil]
           required :synced_entity_id, String, api_name: :syncedEntityId, nil?: true
 
           # @!attribute vendor_identifier
-          #   The vendor identifier of integration
+          #   The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
           #
           #   @return [Symbol, Stigg::Models::V1::Customers::IntegrationListResponse::VendorIdentifier]
           required :vendor_identifier,
@@ -40,17 +42,19 @@ module Stigg
           #   Some parameter documentations has been truncated, see
           #   {Stigg::Models::V1::Customers::IntegrationListResponse} for more details.
           #
-          #   External billing or CRM integration link
+          #   Links this customer to their record in a specific configured integration (e.g.
+          #   their Stripe customer ID under your Stripe integration). A customer has at most
+          #   one link per integration.
           #
-          #   @param id [String] Integration details
+          #   @param id [String] The internal ID of the integration this record is linked to
           #
-          #   @param synced_entity_id [String, nil] Synced entity id
+          #   @param synced_entity_id [String, nil] The external entity ID this record is linked to in the vendor system (e.g. the S
           #
-          #   @param vendor_identifier [Symbol, Stigg::Models::V1::Customers::IntegrationListResponse::VendorIdentifier] The vendor identifier of integration
+          #   @param vendor_identifier [Symbol, Stigg::Models::V1::Customers::IntegrationListResponse::VendorIdentifier] The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
           #
           #   @param sync_data [Stigg::Models::V1::Customers::IntegrationListResponse::SyncData::SyncRevisionPriceBillingData, Stigg::Models::V1::Customers::IntegrationListResponse::SyncData::SyncRevisionBillingData, Stigg::Models::V1::Customers::IntegrationListResponse::SyncData::SyncRevisionMarketplaceData, nil] Price billing sync revision data containing billing ID, link URL, and price grou
 
-          # The vendor identifier of integration
+          # The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
           #
           # @see Stigg::Models::V1::Customers::IntegrationListResponse#vendor_identifier
           module VendorIdentifier

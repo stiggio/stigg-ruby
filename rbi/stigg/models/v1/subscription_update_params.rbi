@@ -155,7 +155,8 @@ module Stigg
         end
         attr_writer :entitlements
 
-        # Additional metadata for the subscription
+        # Additional metadata for the subscription, stored as an arbitrary flat key-value
+        # object.
         sig { returns(T.nilable(T::Hash[Symbol, String])) }
         attr_reader :metadata
 
@@ -303,7 +304,8 @@ module Stigg
           cancellation_date: nil,
           charges: nil,
           entitlements: nil,
-          # Additional metadata for the subscription
+          # Additional metadata for the subscription, stored as an arbitrary flat key-value
+          # object.
           metadata: nil,
           # Minimum spend amount
           minimum_spend: nil,
@@ -1362,7 +1364,8 @@ module Stigg
           sig { params(is_invoice_paid: T::Boolean).void }
           attr_writer :is_invoice_paid
 
-          # Additional metadata for the subscription
+          # Additional metadata for the subscription, stored as an arbitrary flat key-value
+          # object.
           sig { returns(T.nilable(T::Hash[Symbol, String])) }
           attr_reader :metadata
 
@@ -1449,7 +1452,8 @@ module Stigg
             invoice_days_until_due: nil,
             is_backdated: nil,
             is_invoice_paid: nil,
-            # Additional metadata for the subscription
+            # Additional metadata for the subscription, stored as an arbitrary flat key-value
+            # object.
             metadata: nil,
             proration_behavior: nil,
             tax_ids: nil,

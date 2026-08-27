@@ -161,7 +161,8 @@ module Stigg
           sig { returns(T.nilable(Time)) }
           attr_accessor :end_date
 
-          # Additional metadata for the subscription
+          # Additional metadata for the subscription, stored as an arbitrary flat key-value
+          # object.
           sig { returns(T.nilable(T::Hash[Symbol, String])) }
           attr_reader :metadata
 
@@ -216,7 +217,8 @@ module Stigg
             charges: nil,
             # Subscription end date
             end_date: nil,
-            # Additional metadata for the subscription
+            # Additional metadata for the subscription, stored as an arbitrary flat key-value
+            # object.
             metadata: nil,
             # Resource ID
             resource_id: nil,

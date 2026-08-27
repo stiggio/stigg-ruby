@@ -85,7 +85,11 @@ module Stigg
         sig { returns(T.nilable(String)) }
         attr_accessor :language
 
-        # Additional metadata
+        # Custom key-value metadata to attach to the customer. When creating a customer,
+        # this sets the initial metadata. When updating a customer, this replaces the
+        # customer's existing metadata object entirely — it is not merged key by key. Omit
+        # this field on update to leave the customer's existing metadata untouched; pass
+        # an empty object to clear it.
         sig { returns(T.nilable(T::Hash[Symbol, String])) }
         attr_reader :metadata
 
@@ -175,7 +179,11 @@ module Stigg
           integrations: nil,
           # Language to use for this customer
           language: nil,
-          # Additional metadata
+          # Custom key-value metadata to attach to the customer. When creating a customer,
+          # this sets the initial metadata. When updating a customer, this replaces the
+          # customer's existing metadata object entirely — it is not merged key by key. Omit
+          # this field on update to leave the customer's existing metadata untouched; pass
+          # an empty object to clear it.
           metadata: nil,
           # The name of the customer
           name: nil,
@@ -984,15 +992,17 @@ module Stigg
               )
             end
 
-          # Integration details
+          # The internal ID of the integration this record is linked to
           sig { returns(String) }
           attr_accessor :id
 
-          # Synced entity id
+          # The external entity ID this record is linked to in the vendor system (e.g. the
+          # Stripe customer ID). Null until the link has synced; required when creating the
+          # link.
           sig { returns(T.nilable(String)) }
           attr_accessor :synced_entity_id
 
-          # The vendor identifier of integration
+          # The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
           sig do
             returns(
               Stigg::V1::CustomerProvisionParams::Integration::VendorIdentifier::OrSymbol
@@ -1000,7 +1010,9 @@ module Stigg
           end
           attr_accessor :vendor_identifier
 
-          # External billing or CRM integration link
+          # Links this customer to their record in a specific configured integration (e.g.
+          # their Stripe customer ID under your Stripe integration). A customer has at most
+          # one link per integration.
           sig do
             params(
               id: String,
@@ -1010,11 +1022,13 @@ module Stigg
             ).returns(T.attached_class)
           end
           def self.new(
-            # Integration details
+            # The internal ID of the integration this record is linked to
             id:,
-            # Synced entity id
+            # The external entity ID this record is linked to in the vendor system (e.g. the
+            # Stripe customer ID). Null until the link has synced; required when creating the
+            # link.
             synced_entity_id:,
-            # The vendor identifier of integration
+            # The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
             vendor_identifier:
           )
           end
@@ -1032,7 +1046,7 @@ module Stigg
           def to_hash
           end
 
-          # The vendor identifier of integration
+          # The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
           module VendorIdentifier
             extend Stigg::Internal::Type::Enum
 
@@ -1238,7 +1252,9 @@ module Stigg
             sig { params(invoice_custom_fields: T::Hash[Symbol, String]).void }
             attr_writer :invoice_custom_fields
 
-            # Additional metadata
+            # Additional metadata to pass through to the billing provider on the customer's
+            # record there. This is separate from the customer's own metadata field — it's
+            # stored only on the billing-provider side, not on the Stigg customer object.
             sig { returns(T.nilable(T::Hash[Symbol, String])) }
             attr_reader :metadata
 
@@ -1316,7 +1332,9 @@ module Stigg
               customer_name: nil,
               # Invoice custom fields
               invoice_custom_fields: nil,
-              # Additional metadata
+              # Additional metadata to pass through to the billing provider on the customer's
+              # record there. This is separate from the customer's own metadata field — it's
+              # stored only on the billing-provider side, not on the Stigg customer object.
               metadata: nil,
               # Billing provider payment method id, attached to this customer
               payment_method_id: nil,
@@ -1616,7 +1634,9 @@ module Stigg
             end
             attr_writer :currency
 
-            # Additional metadata
+            # Additional metadata to pass through to the billing provider on the customer's
+            # record there. This is separate from the customer's own metadata field — it's
+            # stored only on the billing-provider side, not on the Stigg customer object.
             sig { returns(T.nilable(T::Hash[Symbol, String])) }
             attr_reader :metadata
 
@@ -1646,7 +1666,9 @@ module Stigg
               billing_address: nil,
               # Customers selected currency
               currency: nil,
-              # Additional metadata
+              # Additional metadata to pass through to the billing provider on the customer's
+              # record there. This is separate from the customer's own metadata field — it's
+              # stored only on the billing-provider side, not on the Stigg customer object.
               metadata: nil,
               # Billing provider payment method id, attached to this customer
               payment_method_id: nil

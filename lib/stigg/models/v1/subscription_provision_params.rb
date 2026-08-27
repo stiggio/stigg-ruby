@@ -113,7 +113,8 @@ module Stigg
                  -> { Stigg::Internal::Type::ArrayOf[union: Stigg::V1::SubscriptionProvisionParams::Entitlement] }
 
         # @!attribute metadata
-        #   Additional metadata for the subscription
+        #   Additional metadata for the subscription, stored as an arbitrary flat key-value
+        #   object.
         #
         #   @return [Hash{Symbol=>String}, nil]
         optional :metadata, Stigg::Internal::Type::HashOf[String]
@@ -199,6 +200,9 @@ module Stigg
         optional :x_environment_id, String
 
         # @!method initialize(customer_id:, plan_id:, id: nil, addons: nil, applied_coupon: nil, await_payment_confirmation: nil, billing_country_code: nil, billing_cycle_anchor: nil, billing_id: nil, billing_information: nil, billing_period: nil, budget: nil, cancellation_date: nil, charges: nil, checkout_options: nil, entitlements: nil, metadata: nil, minimum_spend: nil, paying_customer_id: nil, payment_collection_method: nil, price_overrides: nil, resource_id: nil, salesforce_id: nil, schedule_strategy: nil, start_date: nil, trial_override_configuration: nil, unit_quantity: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        #   Some parameter documentations has been truncated, see
+        #   {Stigg::Models::V1::SubscriptionProvisionParams} for more details.
+        #
         #   @param customer_id [String] Customer ID to provision the subscription for
         #
         #   @param plan_id [String] Plan ID to provision
@@ -231,7 +235,7 @@ module Stigg
         #
         #   @param entitlements [Array<Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Feature, Stigg::Models::V1::SubscriptionProvisionParams::Entitlement::Credit>]
         #
-        #   @param metadata [Hash{Symbol=>String}] Additional metadata for the subscription
+        #   @param metadata [Hash{Symbol=>String}] Additional metadata for the subscription, stored as an arbitrary flat key-value
         #
         #   @param minimum_spend [Stigg::Models::V1::SubscriptionProvisionParams::MinimumSpend, nil] Minimum spend amount
         #
@@ -588,7 +592,8 @@ module Stigg
           optional :is_invoice_paid, Stigg::Internal::Type::Boolean, api_name: :isInvoicePaid
 
           # @!attribute metadata
-          #   Additional metadata for the subscription
+          #   Additional metadata for the subscription, stored as an arbitrary flat key-value
+          #   object.
           #
           #   @return [Hash{Symbol=>String}, nil]
           optional :metadata, Stigg::Internal::Type::HashOf[String]
@@ -624,6 +629,10 @@ module Stigg
           optional :tax_rate_ids, Stigg::Internal::Type::ArrayOf[String], api_name: :taxRateIds
 
           # @!method initialize(billing_address: nil, charge_on_behalf_of_account: nil, integration_id: nil, invoice_days_until_due: nil, is_backdated: nil, is_invoice_paid: nil, metadata: nil, proration_behavior: nil, tax_ids: nil, tax_percentage: nil, tax_rate_ids: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Stigg::Models::V1::SubscriptionProvisionParams::BillingInformation} for more
+          #   details.
+          #
           #   @param billing_address [Stigg::Models::V1::SubscriptionProvisionParams::BillingInformation::BillingAddress] Billing address for the subscription
           #
           #   @param charge_on_behalf_of_account [String, nil] Stripe Connect account to charge on behalf of
@@ -636,7 +645,7 @@ module Stigg
           #
           #   @param is_invoice_paid [Boolean] Whether the invoice is marked as paid
           #
-          #   @param metadata [Hash{Symbol=>String}] Additional metadata for the subscription
+          #   @param metadata [Hash{Symbol=>String}] Additional metadata for the subscription, stored as an arbitrary flat key-value
           #
           #   @param proration_behavior [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::BillingInformation::ProrationBehavior] How to handle proration for billing changes
           #
@@ -1321,7 +1330,9 @@ module Stigg
           optional :base_charge, Stigg::Internal::Type::Boolean, api_name: :baseCharge
 
           # @!attribute billing_country_code
-          #   The billing country code of the price
+          #   ISO 3166-1 alpha-2 country code this price applies to. Omit for the default
+          #   price shown to all countries; set one or more country-specific price periods on
+          #   the same currency to localize the amount by billing country.
           #
           #   @return [String, nil]
           optional :billing_country_code, String, api_name: :billingCountryCode
@@ -1366,13 +1377,17 @@ module Stigg
                    -> { Stigg::Internal::Type::ArrayOf[Stigg::V1::SubscriptionProvisionParams::PriceOverride::Tier] }
 
           # @!method initialize(addon_id: nil, amount: nil, base_charge: nil, billing_country_code: nil, block_size: nil, credit_grant_cadence: nil, credit_rate: nil, currency: nil, feature_id: nil, tiers: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {Stigg::Models::V1::SubscriptionProvisionParams::PriceOverride} for more
+          #   details.
+          #
           #   @param addon_id [String, nil] Addon identifier for the price override
           #
           #   @param amount [Float] The price amount
           #
           #   @param base_charge [Boolean] Whether this is a base charge override
           #
-          #   @param billing_country_code [String] The billing country code of the price
+          #   @param billing_country_code [String] ISO 3166-1 alpha-2 country code this price applies to. Omit for the default pric
           #
           #   @param block_size [Float] Block size for pricing
           #
