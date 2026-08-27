@@ -75,7 +75,8 @@ module Stigg
         end
         attr_writer :billable_features
 
-        # ISO 3166-1 country code for localization
+        # Country code selecting a localized price ("eu" for Eurozone); the default price
+        # applies when none matches
         sig { returns(T.nilable(String)) }
         attr_reader :billing_country_code
 
@@ -271,7 +272,8 @@ module Stigg
           applied_coupon: nil,
           # Billable features with quantities
           billable_features: nil,
-          # ISO 3166-1 country code for localization
+          # Country code selecting a localized price ("eu" for Eurozone); the default price
+          # applies when none matches
           billing_country_code: nil,
           # Billing cycle anchor behavior for the subscription
           billing_cycle_anchor: nil,

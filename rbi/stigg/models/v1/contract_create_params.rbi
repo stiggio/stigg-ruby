@@ -260,7 +260,8 @@ module Stigg
             sig { params(await_payment_confirmation: T::Boolean).void }
             attr_writer :await_payment_confirmation
 
-            # The ISO 3166-1 alpha-2 country code for billing
+            # The country code used to select a localized price (or "eu" for Eurozone),
+            # falling back to the default price when none matches
             sig { returns(T.nilable(String)) }
             attr_accessor :billing_country_code
 
@@ -616,7 +617,8 @@ module Stigg
               applied_coupon: nil,
               # Whether to wait for payment confirmation before returning the subscription
               await_payment_confirmation: nil,
-              # The ISO 3166-1 alpha-2 country code for billing
+              # The country code used to select a localized price (or "eu" for Eurozone),
+              # falling back to the default price when none matches
               billing_country_code: nil,
               # Billing cycle anchor behavior for the subscription
               billing_cycle_anchor: nil,
@@ -3657,9 +3659,10 @@ module Stigg
               sig { params(base_charge: T::Boolean).void }
               attr_writer :base_charge
 
-              # ISO 3166-1 alpha-2 country code this price applies to. Omit for the default
-              # price shown to all countries; set one or more country-specific price periods on
-              # the same currency to localize the amount by billing country.
+              # ISO 3166-1 alpha-2 country code this price applies to, or "eu" for the Eurozone
+              # region. Omit for the default price shown to all countries; set one or more
+              # country-specific price periods on the same currency to localize the amount by
+              # billing country.
               sig { returns(T.nilable(String)) }
               attr_reader :billing_country_code
 
@@ -3778,9 +3781,10 @@ module Stigg
                 amount: nil,
                 # Whether this is a base charge override
                 base_charge: nil,
-                # ISO 3166-1 alpha-2 country code this price applies to. Omit for the default
-                # price shown to all countries; set one or more country-specific price periods on
-                # the same currency to localize the amount by billing country.
+                # ISO 3166-1 alpha-2 country code this price applies to, or "eu" for the Eurozone
+                # region. Omit for the default price shown to all countries; set one or more
+                # country-specific price periods on the same currency to localize the amount by
+                # billing country.
                 billing_country_code: nil,
                 # Block size for pricing
                 block_size: nil,

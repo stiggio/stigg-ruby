@@ -1285,7 +1285,7 @@ module Stigg
               end
               attr_accessor :billing_period
 
-              # ISO country code for localized pricing
+              # ISO country code (or "eu" for Eurozone) for localized pricing
               sig { returns(T.nilable(String)) }
               attr_reader :billing_country_code
 
@@ -1397,7 +1397,7 @@ module Stigg
               def self.new(
                 # The billing period (MONTHLY or ANNUALLY)
                 billing_period:,
-                # ISO country code for localized pricing
+                # ISO country code (or "eu" for Eurozone) for localized pricing
                 billing_country_code: nil,
                 # Block size for usage-based pricing
                 block_size: nil,
@@ -4521,7 +4521,7 @@ module Stigg
               end
               attr_accessor :billing_period
 
-              # ISO country code for localized pricing
+              # ISO country code (or "eu" for Eurozone) for localized pricing
               sig { returns(T.nilable(String)) }
               attr_reader :billing_country_code
 
@@ -4633,7 +4633,7 @@ module Stigg
               def self.new(
                 # The billing period (MONTHLY or ANNUALLY)
                 billing_period:,
-                # ISO country code for localized pricing
+                # ISO country code (or "eu" for Eurozone) for localized pricing
                 billing_country_code: nil,
                 # Block size for usage-based pricing
                 block_size: nil,

@@ -2709,9 +2709,10 @@ module Stigg
             sig { params(base_charge: T::Boolean).void }
             attr_writer :base_charge
 
-            # ISO 3166-1 alpha-2 country code this price applies to. Omit for the default
-            # price shown to all countries; set one or more country-specific price periods on
-            # the same currency to localize the amount by billing country.
+            # ISO 3166-1 alpha-2 country code this price applies to, or "eu" for the Eurozone
+            # region. Omit for the default price shown to all countries; set one or more
+            # country-specific price periods on the same currency to localize the amount by
+            # billing country.
             sig { returns(T.nilable(String)) }
             attr_reader :billing_country_code
 
@@ -2784,9 +2785,10 @@ module Stigg
               amount: nil,
               # Whether this is a base charge override
               base_charge: nil,
-              # ISO 3166-1 alpha-2 country code this price applies to. Omit for the default
-              # price shown to all countries; set one or more country-specific price periods on
-              # the same currency to localize the amount by billing country.
+              # ISO 3166-1 alpha-2 country code this price applies to, or "eu" for the Eurozone
+              # region. Omit for the default price shown to all countries; set one or more
+              # country-specific price periods on the same currency to localize the amount by
+              # billing country.
               billing_country_code: nil,
               # Block size for pricing
               block_size: nil,

@@ -376,7 +376,8 @@ module Stigg
           applied_coupon: nil,
           # Body param: Billable features with quantities
           billable_features: nil,
-          # Body param: ISO 3166-1 country code for localization
+          # Body param: Country code selecting a localized price ("eu" for Eurozone); the
+          # default price applies when none matches
           billing_country_code: nil,
           # Body param: Billing cycle anchor behavior for the subscription
           billing_cycle_anchor: nil,
@@ -482,7 +483,8 @@ module Stigg
           # Body param: Whether to wait for payment confirmation before returning the
           # subscription
           await_payment_confirmation: nil,
-          # Body param: The ISO 3166-1 alpha-2 country code for billing
+          # Body param: The country code used to select a localized price (or "eu" for
+          # Eurozone), falling back to the default price when none matches
           billing_country_code: nil,
           # Body param: Billing cycle anchor behavior for the subscription
           billing_cycle_anchor: nil,

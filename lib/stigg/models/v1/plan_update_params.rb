@@ -461,7 +461,7 @@ module Stigg
                        api_name: :billingPeriod
 
               # @!attribute billing_country_code
-              #   ISO country code for localized pricing
+              #   ISO country code (or "eu" for Eurozone) for localized pricing
               #
               #   @return [String, nil]
               optional :billing_country_code, String, api_name: :billingCountryCode
@@ -510,7 +510,7 @@ module Stigg
               #
               #   @param billing_period [Symbol, Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::PricePeriod::BillingPeriod] The billing period (MONTHLY or ANNUALLY)
               #
-              #   @param billing_country_code [String] ISO country code for localized pricing
+              #   @param billing_country_code [String] ISO country code (or "eu" for Eurozone) for localized pricing
               #
               #   @param block_size [Float] Block size for usage-based pricing
               #
@@ -1464,7 +1464,7 @@ module Stigg
                        api_name: :billingPeriod
 
               # @!attribute billing_country_code
-              #   ISO country code for localized pricing
+              #   ISO country code (or "eu" for Eurozone) for localized pricing
               #
               #   @return [String, nil]
               optional :billing_country_code, String, api_name: :billingCountryCode
@@ -1511,7 +1511,7 @@ module Stigg
               #
               #   @param billing_period [Symbol, Stigg::Models::V1::PlanUpdateParams::Charges::PricingModel::PricePeriod::BillingPeriod] The billing period (MONTHLY or ANNUALLY)
               #
-              #   @param billing_country_code [String] ISO country code for localized pricing
+              #   @param billing_country_code [String] ISO country code (or "eu" for Eurozone) for localized pricing
               #
               #   @param block_size [Float] Block size for usage-based pricing
               #

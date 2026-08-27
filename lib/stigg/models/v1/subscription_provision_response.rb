@@ -1501,9 +1501,10 @@ module Stigg
               optional :base_charge, Stigg::Internal::Type::Boolean, api_name: :baseCharge
 
               # @!attribute billing_country_code
-              #   ISO 3166-1 alpha-2 country code this price applies to. Omit for the default
-              #   price shown to all countries; set one or more country-specific price periods on
-              #   the same currency to localize the amount by billing country.
+              #   ISO 3166-1 alpha-2 country code this price applies to, or "eu" for the Eurozone
+              #   region. Omit for the default price shown to all countries; set one or more
+              #   country-specific price periods on the same currency to localize the amount by
+              #   billing country.
               #
               #   @return [String, nil]
               optional :billing_country_code, String, api_name: :billingCountryCode
@@ -1545,7 +1546,7 @@ module Stigg
               #
               #   @param base_charge [Boolean] Whether this is a base charge override
               #
-              #   @param billing_country_code [String] ISO 3166-1 alpha-2 country code this price applies to. Omit for the default pric
+              #   @param billing_country_code [String] ISO 3166-1 alpha-2 country code this price applies to, or "eu" for the Eurozone
               #
               #   @param block_size [Float] Block size for pricing
               #
