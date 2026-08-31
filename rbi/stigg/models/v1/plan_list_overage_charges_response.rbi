@@ -44,7 +44,8 @@ module Stigg
         sig { returns(Time) }
         attr_accessor :created_at
 
-        # ISO country code (or "eu" for Eurozone) for localized pricing, if any
+        # ISO country code for localized pricing, or "eu" for the European Union group you
+        # map countries into, if any
         sig { returns(T.nilable(String)) }
         attr_accessor :billing_country_code
 
@@ -210,7 +211,8 @@ module Stigg
           billing_period:,
           # Timestamp when the charge was created
           created_at:,
-          # ISO country code (or "eu" for Eurozone) for localized pricing, if any
+          # ISO country code for localized pricing, or "eu" for the European Union group you
+          # map countries into, if any
           billing_country_code: nil,
           # Identifier in the external billing integration (e.g. Stripe price id), if any
           billing_id: nil,

@@ -42,7 +42,8 @@ module Stigg
         required :created_at, Time, api_name: :createdAt
 
         # @!attribute billing_country_code
-        #   ISO country code (or "eu" for Eurozone) for localized pricing, if any
+        #   ISO country code for localized pricing, or "eu" for the European Union group you
+        #   map countries into, if any
         #
         #   @return [String, nil]
         optional :billing_country_code, String, api_name: :billingCountryCode, nil?: true
@@ -163,7 +164,7 @@ module Stigg
         #
         #   @param created_at [Time] Timestamp when the charge was created
         #
-        #   @param billing_country_code [String, nil] ISO country code (or "eu" for Eurozone) for localized pricing, if any
+        #   @param billing_country_code [String, nil] ISO country code for localized pricing, or "eu" for the European Union group you
         #
         #   @param billing_id [String, nil] Identifier in the external billing integration (e.g. Stripe price id), if any
         #

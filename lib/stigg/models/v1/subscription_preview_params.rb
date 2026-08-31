@@ -43,8 +43,8 @@ module Stigg
                  api_name: :billableFeatures
 
         # @!attribute billing_country_code
-        #   Country code selecting a localized price ("eu" for Eurozone); the default price
-        #   applies when none matches
+        #   Country code selecting a localized price, or "eu" for the European Union group
+        #   you map countries into; the default price applies when none matches
         #
         #   @return [String, nil]
         optional :billing_country_code, String, api_name: :billingCountryCode
@@ -143,7 +143,7 @@ module Stigg
         #
         #   @param billable_features [Array<Stigg::Models::V1::SubscriptionPreviewParams::BillableFeature>] Billable features with quantities
         #
-        #   @param billing_country_code [String] Country code selecting a localized price ("eu" for Eurozone); the default price
+        #   @param billing_country_code [String] Country code selecting a localized price, or "eu" for the European Union group y
         #
         #   @param billing_cycle_anchor [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::BillingCycleAnchor] Billing cycle anchor behavior for the subscription
         #

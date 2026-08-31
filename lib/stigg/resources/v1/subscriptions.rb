@@ -353,7 +353,7 @@ module Stigg
         #
         # @param billable_features [Array<Stigg::Models::V1::SubscriptionPreviewParams::BillableFeature>] Body param: Billable features with quantities
         #
-        # @param billing_country_code [String] Body param: Country code selecting a localized price ("eu" for Eurozone); the de
+        # @param billing_country_code [String] Body param: Country code selecting a localized price, or "eu" for the European U
         #
         # @param billing_cycle_anchor [Symbol, Stigg::Models::V1::SubscriptionPreviewParams::BillingCycleAnchor] Body param: Billing cycle anchor behavior for the subscription
         #
@@ -417,7 +417,7 @@ module Stigg
         #
         # @param await_payment_confirmation [Boolean] Body param: Whether to wait for payment confirmation before returning the subscr
         #
-        # @param billing_country_code [String, nil] Body param: The country code used to select a localized price (or "eu" for Euroz
+        # @param billing_country_code [String, nil] Body param: The country code used to select a localized price, or "eu" for the E
         #
         # @param billing_cycle_anchor [Symbol, Stigg::Models::V1::SubscriptionProvisionParams::BillingCycleAnchor] Body param: Billing cycle anchor behavior for the subscription
         #

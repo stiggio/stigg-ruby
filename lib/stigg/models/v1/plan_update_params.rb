@@ -461,7 +461,8 @@ module Stigg
                        api_name: :billingPeriod
 
               # @!attribute billing_country_code
-              #   ISO country code (or "eu" for Eurozone) for localized pricing
+              #   ISO country code for localized pricing, or "eu" for the European Union group you
+              #   map countries into
               #
               #   @return [String, nil]
               optional :billing_country_code, String, api_name: :billingCountryCode
@@ -506,11 +507,15 @@ module Stigg
                        -> { Stigg::Internal::Type::ArrayOf[Stigg::V1::PlanUpdateParams::Charges::OveragePricingModel::PricePeriod::Tier] }
 
               # @!method initialize(billing_period:, billing_country_code: nil, block_size: nil, credit_grant_cadence: nil, credit_rate: nil, price: nil, tiers: nil)
+              #   Some parameter documentations has been truncated, see
+              #   {Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::PricePeriod}
+              #   for more details.
+              #
               #   Price configuration for a specific billing period.
               #
               #   @param billing_period [Symbol, Stigg::Models::V1::PlanUpdateParams::Charges::OveragePricingModel::PricePeriod::BillingPeriod] The billing period (MONTHLY or ANNUALLY)
               #
-              #   @param billing_country_code [String] ISO country code (or "eu" for Eurozone) for localized pricing
+              #   @param billing_country_code [String] ISO country code for localized pricing, or "eu" for the European Union group you
               #
               #   @param block_size [Float] Block size for usage-based pricing
               #
@@ -1464,7 +1469,8 @@ module Stigg
                        api_name: :billingPeriod
 
               # @!attribute billing_country_code
-              #   ISO country code (or "eu" for Eurozone) for localized pricing
+              #   ISO country code for localized pricing, or "eu" for the European Union group you
+              #   map countries into
               #
               #   @return [String, nil]
               optional :billing_country_code, String, api_name: :billingCountryCode
@@ -1507,11 +1513,15 @@ module Stigg
                        -> { Stigg::Internal::Type::ArrayOf[Stigg::V1::PlanUpdateParams::Charges::PricingModel::PricePeriod::Tier] }
 
               # @!method initialize(billing_period:, billing_country_code: nil, block_size: nil, credit_grant_cadence: nil, credit_rate: nil, price: nil, tiers: nil)
+              #   Some parameter documentations has been truncated, see
+              #   {Stigg::Models::V1::PlanUpdateParams::Charges::PricingModel::PricePeriod} for
+              #   more details.
+              #
               #   Price configuration for a specific billing period.
               #
               #   @param billing_period [Symbol, Stigg::Models::V1::PlanUpdateParams::Charges::PricingModel::PricePeriod::BillingPeriod] The billing period (MONTHLY or ANNUALLY)
               #
-              #   @param billing_country_code [String] ISO country code (or "eu" for Eurozone) for localized pricing
+              #   @param billing_country_code [String] ISO country code for localized pricing, or "eu" for the European Union group you
               #
               #   @param block_size [Float] Block size for usage-based pricing
               #

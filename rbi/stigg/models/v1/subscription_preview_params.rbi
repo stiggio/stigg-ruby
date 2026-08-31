@@ -75,8 +75,8 @@ module Stigg
         end
         attr_writer :billable_features
 
-        # Country code selecting a localized price ("eu" for Eurozone); the default price
-        # applies when none matches
+        # Country code selecting a localized price, or "eu" for the European Union group
+        # you map countries into; the default price applies when none matches
         sig { returns(T.nilable(String)) }
         attr_reader :billing_country_code
 
@@ -272,8 +272,8 @@ module Stigg
           applied_coupon: nil,
           # Billable features with quantities
           billable_features: nil,
-          # Country code selecting a localized price ("eu" for Eurozone); the default price
-          # applies when none matches
+          # Country code selecting a localized price, or "eu" for the European Union group
+          # you map countries into; the default price applies when none matches
           billing_country_code: nil,
           # Billing cycle anchor behavior for the subscription
           billing_cycle_anchor: nil,
