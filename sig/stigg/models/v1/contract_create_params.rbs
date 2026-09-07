@@ -4,12 +4,13 @@ module Stigg
       type contract_create_params =
         {
           customer_id: String,
-          subscriptions: ::Array[Stigg::V1::ContractCreateParams::Subscription],
           activation_end_date: Time,
           activation_start_date: Time,
+          contract_id: String,
           name: String?,
           po_number: String?,
           setup_billing: bool,
+          subscriptions: ::Array[Stigg::V1::ContractCreateParams::Subscription],
           x_account_id: String,
           x_environment_id: String
         }
@@ -21,8 +22,6 @@ module Stigg
 
         attr_accessor customer_id: String
 
-        attr_accessor subscriptions: ::Array[Stigg::V1::ContractCreateParams::Subscription]
-
         attr_reader activation_end_date: Time?
 
         def activation_end_date=: (Time) -> Time
@@ -31,6 +30,10 @@ module Stigg
 
         def activation_start_date=: (Time) -> Time
 
+        attr_reader contract_id: String?
+
+        def contract_id=: (String) -> String
+
         attr_accessor name: String?
 
         attr_accessor po_number: String?
@@ -38,6 +41,12 @@ module Stigg
         attr_reader setup_billing: bool?
 
         def setup_billing=: (bool) -> bool
+
+        attr_reader subscriptions: ::Array[Stigg::V1::ContractCreateParams::Subscription]?
+
+        def subscriptions=: (
+          ::Array[Stigg::V1::ContractCreateParams::Subscription]
+        ) -> ::Array[Stigg::V1::ContractCreateParams::Subscription]
 
         attr_reader x_account_id: String?
 
@@ -49,12 +58,13 @@ module Stigg
 
         def initialize: (
           customer_id: String,
-          subscriptions: ::Array[Stigg::V1::ContractCreateParams::Subscription],
           ?activation_end_date: Time,
           ?activation_start_date: Time,
+          ?contract_id: String,
           ?name: String?,
           ?po_number: String?,
           ?setup_billing: bool,
+          ?subscriptions: ::Array[Stigg::V1::ContractCreateParams::Subscription],
           ?x_account_id: String,
           ?x_environment_id: String,
           ?request_options: Stigg::request_opts
@@ -62,12 +72,13 @@ module Stigg
 
         def to_hash: -> {
           customer_id: String,
-          subscriptions: ::Array[Stigg::V1::ContractCreateParams::Subscription],
           activation_end_date: Time,
           activation_start_date: Time,
+          contract_id: String,
           name: String?,
           po_number: String?,
           setup_billing: bool,
+          subscriptions: ::Array[Stigg::V1::ContractCreateParams::Subscription],
           x_account_id: String,
           x_environment_id: String,
           request_options: Stigg::RequestOptions

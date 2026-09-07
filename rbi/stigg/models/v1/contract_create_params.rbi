@@ -16,12 +16,6 @@ module Stigg
         sig { returns(String) }
         attr_accessor :customer_id
 
-        # The subscriptions to attach to the contract (must be non-empty). Each entry is
-        # either a new subscription to create or a reference to an existing custom
-        # subscription.
-        sig { returns(T::Array[Stigg::V1::ContractCreateParams::Subscription]) }
-        attr_accessor :subscriptions
-
         # Optional contract activation end date
         sig { returns(T.nilable(Time)) }
         attr_reader :activation_end_date
@@ -35,6 +29,17 @@ module Stigg
 
         sig { params(activation_start_date: Time).void }
         attr_writer :activation_start_date
+
+        # Your own ID for the contract, which makes this call idempotent: sending the same
+        # one again returns the existing contract instead of creating a second. Omit it
+        # and one is generated for you, but then a retry cannot be told apart from a new
+        # contract — and contracts cannot be deleted. Recommended whenever a retry is
+        # possible, e.g. building a contract from an order form.
+        sig { returns(T.nilable(String)) }
+        attr_reader :contract_id
+
+        sig { params(contract_id: String).void }
+        attr_writer :contract_id
 
         # Optional contract name
         sig { returns(T.nilable(String)) }
@@ -53,6 +58,25 @@ module Stigg
         sig { params(setup_billing: T::Boolean).void }
         attr_writer :setup_billing
 
+        # The subscriptions to attach to the contract. Each entry is either a new
+        # subscription to create or a reference to an existing custom subscription.
+        # Optional — omit it (or pass an empty list) to create a contract with no
+        # subscriptions and attach them later.
+        sig do
+          returns(
+            T.nilable(T::Array[Stigg::V1::ContractCreateParams::Subscription])
+          )
+        end
+        attr_reader :subscriptions
+
+        sig do
+          params(
+            subscriptions:
+              T::Array[Stigg::V1::ContractCreateParams::Subscription::OrHash]
+          ).void
+        end
+        attr_writer :subscriptions
+
         sig { returns(T.nilable(String)) }
         attr_reader :x_account_id
 
@@ -68,13 +92,14 @@ module Stigg
         sig do
           params(
             customer_id: String,
-            subscriptions:
-              T::Array[Stigg::V1::ContractCreateParams::Subscription::OrHash],
             activation_end_date: Time,
             activation_start_date: Time,
+            contract_id: String,
             name: T.nilable(String),
             po_number: T.nilable(String),
             setup_billing: T::Boolean,
+            subscriptions:
+              T::Array[Stigg::V1::ContractCreateParams::Subscription::OrHash],
             x_account_id: String,
             x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
@@ -83,14 +108,16 @@ module Stigg
         def self.new(
           # The customer ref ID the contract belongs to
           customer_id:,
-          # The subscriptions to attach to the contract (must be non-empty). Each entry is
-          # either a new subscription to create or a reference to an existing custom
-          # subscription.
-          subscriptions:,
           # Optional contract activation end date
           activation_end_date: nil,
           # Optional contract activation start date
           activation_start_date: nil,
+          # Your own ID for the contract, which makes this call idempotent: sending the same
+          # one again returns the existing contract instead of creating a second. Omit it
+          # and one is generated for you, but then a retry cannot be told apart from a new
+          # contract — and contracts cannot be deleted. Recommended whenever a retry is
+          # possible, e.g. building a contract from an order form.
+          contract_id: nil,
           # Optional contract name
           name: nil,
           # Optional purchase-order number
@@ -99,6 +126,11 @@ module Stigg
           # connected billing provider. When false, the contract only provisions access
           # (grants entitlements) and no billing contract is created. Defaults to true.
           setup_billing: nil,
+          # The subscriptions to attach to the contract. Each entry is either a new
+          # subscription to create or a reference to an existing custom subscription.
+          # Optional — omit it (or pass an empty list) to create a contract with no
+          # subscriptions and attach them later.
+          subscriptions: nil,
           x_account_id: nil,
           x_environment_id: nil,
           request_options: {}
@@ -109,13 +141,14 @@ module Stigg
           override.returns(
             {
               customer_id: String,
-              subscriptions:
-                T::Array[Stigg::V1::ContractCreateParams::Subscription],
               activation_end_date: Time,
               activation_start_date: Time,
+              contract_id: String,
               name: T.nilable(String),
               po_number: T.nilable(String),
               setup_billing: T::Boolean,
+              subscriptions:
+                T::Array[Stigg::V1::ContractCreateParams::Subscription],
               x_account_id: String,
               x_environment_id: String,
               request_options: Stigg::RequestOptions

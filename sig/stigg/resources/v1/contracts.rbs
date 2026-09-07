@@ -4,12 +4,13 @@ module Stigg
       class Contracts
         def create: (
           customer_id: String,
-          subscriptions: ::Array[Stigg::V1::ContractCreateParams::Subscription],
           ?activation_end_date: Time,
           ?activation_start_date: Time,
+          ?contract_id: String,
           ?name: String?,
           ?po_number: String?,
           ?setup_billing: bool,
+          ?subscriptions: ::Array[Stigg::V1::ContractCreateParams::Subscription],
           ?x_account_id: String,
           ?x_environment_id: String,
           ?request_options: Stigg::request_opts

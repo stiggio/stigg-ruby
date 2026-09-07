@@ -274,10 +274,9 @@ module Stigg
         # Some parameter documentations has been truncated, see
         # {Stigg::Models::V1::CustomerListContractsParams} for more details.
         #
-        # Retrieves a customer's contracts, fetched live from the connected billing
-        # provider, each enriched with a preview of its upcoming (next) invoice when
-        # available. Returns an empty list when no billing provider is connected or the
-        # customer is not synced.
+        # Retrieves a customer's contracts. Each contract that has a billing contract is
+        # enriched with a preview of its upcoming (next) invoice when available. Returns
+        # an empty list when the customer has no contracts.
         #
         # @overload list_contracts(id, x_account_id: nil, x_environment_id: nil, request_options: {})
         #

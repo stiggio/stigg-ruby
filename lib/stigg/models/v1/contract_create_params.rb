@@ -14,15 +14,6 @@ module Stigg
         #   @return [String]
         required :customer_id, String, api_name: :customerId
 
-        # @!attribute subscriptions
-        #   The subscriptions to attach to the contract (must be non-empty). Each entry is
-        #   either a new subscription to create or a reference to an existing custom
-        #   subscription.
-        #
-        #   @return [Array<Stigg::Models::V1::ContractCreateParams::Subscription>]
-        required :subscriptions,
-                 -> { Stigg::Internal::Type::ArrayOf[Stigg::V1::ContractCreateParams::Subscription] }
-
         # @!attribute activation_end_date
         #   Optional contract activation end date
         #
@@ -34,6 +25,16 @@ module Stigg
         #
         #   @return [Time, nil]
         optional :activation_start_date, Time, api_name: :activationStartDate
+
+        # @!attribute contract_id
+        #   Your own ID for the contract, which makes this call idempotent: sending the same
+        #   one again returns the existing contract instead of creating a second. Omit it
+        #   and one is generated for you, but then a retry cannot be told apart from a new
+        #   contract — and contracts cannot be deleted. Recommended whenever a retry is
+        #   possible, e.g. building a contract from an order form.
+        #
+        #   @return [String, nil]
+        optional :contract_id, String, api_name: :contractId
 
         # @!attribute name
         #   Optional contract name
@@ -55,6 +56,16 @@ module Stigg
         #   @return [Boolean, nil]
         optional :setup_billing, Stigg::Internal::Type::Boolean, api_name: :setupBilling
 
+        # @!attribute subscriptions
+        #   The subscriptions to attach to the contract. Each entry is either a new
+        #   subscription to create or a reference to an existing custom subscription.
+        #   Optional — omit it (or pass an empty list) to create a contract with no
+        #   subscriptions and attach them later.
+        #
+        #   @return [Array<Stigg::Models::V1::ContractCreateParams::Subscription>, nil]
+        optional :subscriptions,
+                 -> { Stigg::Internal::Type::ArrayOf[Stigg::V1::ContractCreateParams::Subscription] }
+
         # @!attribute x_account_id
         #
         #   @return [String, nil]
@@ -65,23 +76,25 @@ module Stigg
         #   @return [String, nil]
         optional :x_environment_id, String
 
-        # @!method initialize(customer_id:, subscriptions:, activation_end_date: nil, activation_start_date: nil, name: nil, po_number: nil, setup_billing: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        # @!method initialize(customer_id:, activation_end_date: nil, activation_start_date: nil, contract_id: nil, name: nil, po_number: nil, setup_billing: nil, subscriptions: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {Stigg::Models::V1::ContractCreateParams} for more details.
         #
         #   @param customer_id [String] The customer ref ID the contract belongs to
         #
-        #   @param subscriptions [Array<Stigg::Models::V1::ContractCreateParams::Subscription>] The subscriptions to attach to the contract (must be non-empty). Each entry is e
-        #
         #   @param activation_end_date [Time] Optional contract activation end date
         #
         #   @param activation_start_date [Time] Optional contract activation start date
+        #
+        #   @param contract_id [String] Your own ID for the contract, which makes this call idempotent: sending the same
         #
         #   @param name [String, nil] Optional contract name
         #
         #   @param po_number [String, nil] Optional purchase-order number
         #
         #   @param setup_billing [Boolean] Whether to set up billing for the contract by creating a billing contract in the
+        #
+        #   @param subscriptions [Array<Stigg::Models::V1::ContractCreateParams::Subscription>] The subscriptions to attach to the contract. Each entry is either a new subscrip
         #
         #   @param x_account_id [String]
         #

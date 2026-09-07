@@ -13,21 +13,23 @@ module Stigg
         # contract back. Each subscription entry is either a new subscription to create or
         # a reference to an existing custom subscription. Returns the created contract.
         #
-        # @overload create(customer_id:, subscriptions:, activation_end_date: nil, activation_start_date: nil, name: nil, po_number: nil, setup_billing: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        # @overload create(customer_id:, activation_end_date: nil, activation_start_date: nil, contract_id: nil, name: nil, po_number: nil, setup_billing: nil, subscriptions: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #
         # @param customer_id [String] Body param: The customer ref ID the contract belongs to
-        #
-        # @param subscriptions [Array<Stigg::Models::V1::ContractCreateParams::Subscription>] Body param: The subscriptions to attach to the contract (must be non-empty). Eac
         #
         # @param activation_end_date [Time] Body param: Optional contract activation end date
         #
         # @param activation_start_date [Time] Body param: Optional contract activation start date
+        #
+        # @param contract_id [String] Body param: Your own ID for the contract, which makes this call idempotent: send
         #
         # @param name [String, nil] Body param: Optional contract name
         #
         # @param po_number [String, nil] Body param: Optional purchase-order number
         #
         # @param setup_billing [Boolean] Body param: Whether to set up billing for the contract by creating a billing con
+        #
+        # @param subscriptions [Array<Stigg::Models::V1::ContractCreateParams::Subscription>] Body param: The subscriptions to attach to the contract. Each entry is either a
         #
         # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
         #
@@ -133,10 +135,9 @@ module Stigg
         # Some parameter documentations has been truncated, see
         # {Stigg::Models::V1::ContractListParams} for more details.
         #
-        # Retrieves a cursor-paginated list of contracts in the environment, fetched live
-        # from the connected billing provider. Each contract is enriched with a preview of
-        # its upcoming (next) invoice when one is available. Returns an empty list when no
-        # billing provider is connected. Supports filtering by customer external ID,
+        # Retrieves a cursor-paginated list of contracts in the environment. Each contract
+        # that has a billing contract is enriched with a preview of its upcoming (next)
+        # invoice when one is available. Supports filtering by customer external ID,
         # state, and name.
         #
         # @overload list(after: nil, before: nil, customer_external_id: nil, limit: nil, name: nil, state: nil, x_account_id: nil, x_environment_id: nil, request_options: {})

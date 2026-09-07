@@ -6,7 +6,7 @@ class Stigg::Test::Resources::V1::ContractsTest < Stigg::Test::ResourceTest
   def test_create_required_params
     skip("Mock server tests are disabled")
 
-    response = @stigg.v1.contracts.create(customer_id: "customerId", subscriptions: [{}])
+    response = @stigg.v1.contracts.create(customer_id: "customerId")
 
     assert_pattern do
       response => Stigg::Models::V1::ContractCreateResponse

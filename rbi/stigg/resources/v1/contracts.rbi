@@ -12,13 +12,14 @@ module Stigg
         sig do
           params(
             customer_id: String,
-            subscriptions:
-              T::Array[Stigg::V1::ContractCreateParams::Subscription::OrHash],
             activation_end_date: Time,
             activation_start_date: Time,
+            contract_id: String,
             name: T.nilable(String),
             po_number: T.nilable(String),
             setup_billing: T::Boolean,
+            subscriptions:
+              T::Array[Stigg::V1::ContractCreateParams::Subscription::OrHash],
             x_account_id: String,
             x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
@@ -27,14 +28,16 @@ module Stigg
         def create(
           # Body param: The customer ref ID the contract belongs to
           customer_id:,
-          # Body param: The subscriptions to attach to the contract (must be non-empty).
-          # Each entry is either a new subscription to create or a reference to an existing
-          # custom subscription.
-          subscriptions:,
           # Body param: Optional contract activation end date
           activation_end_date: nil,
           # Body param: Optional contract activation start date
           activation_start_date: nil,
+          # Body param: Your own ID for the contract, which makes this call idempotent:
+          # sending the same one again returns the existing contract instead of creating a
+          # second. Omit it and one is generated for you, but then a retry cannot be told
+          # apart from a new contract — and contracts cannot be deleted. Recommended
+          # whenever a retry is possible, e.g. building a contract from an order form.
+          contract_id: nil,
           # Body param: Optional contract name
           name: nil,
           # Body param: Optional purchase-order number
@@ -44,6 +47,11 @@ module Stigg
           # provisions access (grants entitlements) and no billing contract is created.
           # Defaults to true.
           setup_billing: nil,
+          # Body param: The subscriptions to attach to the contract. Each entry is either a
+          # new subscription to create or a reference to an existing custom subscription.
+          # Optional — omit it (or pass an empty list) to create a contract with no
+          # subscriptions and attach them later.
+          subscriptions: nil,
           # Header param: Account ID — optional when authenticating with a user JWT (Bearer
           # token); falls back to the user's first membership. Ignored for API-key auth.
           x_account_id: nil,
@@ -127,10 +135,9 @@ module Stigg
         )
         end
 
-        # Retrieves a cursor-paginated list of contracts in the environment, fetched live
-        # from the connected billing provider. Each contract is enriched with a preview of
-        # its upcoming (next) invoice when one is available. Returns an empty list when no
-        # billing provider is connected. Supports filtering by customer external ID,
+        # Retrieves a cursor-paginated list of contracts in the environment. Each contract
+        # that has a billing contract is enriched with a preview of its upcoming (next)
+        # invoice when one is available. Supports filtering by customer external ID,
         # state, and name.
         sig do
           params(
