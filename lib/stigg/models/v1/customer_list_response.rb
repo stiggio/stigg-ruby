@@ -326,8 +326,10 @@ module Stigg
           # @!attribute type
           #   The default payment method type
           #
-          #   @return [Symbol, Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::Type]
-          required :type, enum: -> { Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::Type }
+          #   @return [Symbol, Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::Type, nil]
+          required :type,
+                   enum: -> { Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::Type },
+                   nil?: true
 
           # @!method initialize(billing_id:, card_expiry_month:, card_expiry_year:, card_last4_digits:, type:)
           #   The default payment method details
@@ -340,7 +342,7 @@ module Stigg
           #
           #   @param card_last4_digits [String, nil] The last 4 digits of the default payment method
           #
-          #   @param type [Symbol, Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::Type] The default payment method type
+          #   @param type [Symbol, Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::Type, nil] The default payment method type
 
           # The default payment method type
           #
@@ -351,6 +353,7 @@ module Stigg
             CARD = :CARD
             BANK = :BANK
             CASH_APP = :CASH_APP
+            PAYPAL = :PAYPAL
 
             # @!method self.values
             #   @return [Array<Symbol>]

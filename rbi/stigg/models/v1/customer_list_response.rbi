@@ -911,7 +911,9 @@ module Stigg
           # The default payment method type
           sig do
             returns(
-              Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::Type::TaggedSymbol
+              T.nilable(
+                Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::Type::TaggedSymbol
+              )
             )
           end
           attr_accessor :type
@@ -924,7 +926,9 @@ module Stigg
               card_expiry_year: T.nilable(Float),
               card_last4_digits: T.nilable(String),
               type:
-                Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::Type::OrSymbol
+                T.nilable(
+                  Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::Type::OrSymbol
+                )
             ).returns(T.attached_class)
           end
           def self.new(
@@ -949,7 +953,9 @@ module Stigg
                 card_expiry_year: T.nilable(Float),
                 card_last4_digits: T.nilable(String),
                 type:
-                  Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::Type::TaggedSymbol
+                  T.nilable(
+                    Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::Type::TaggedSymbol
+                  )
               }
             )
           end
@@ -982,6 +988,11 @@ module Stigg
             CASH_APP =
               T.let(
                 :CASH_APP,
+                Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::Type::TaggedSymbol
+              )
+            PAYPAL =
+              T.let(
+                :PAYPAL,
                 Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::Type::TaggedSymbol
               )
 

@@ -359,7 +359,7 @@ module Stigg
             card_expiry_month: Float?,
             card_expiry_year: Float?,
             :card_last4_digits => String?,
-            type: Stigg::Models::V1::CustomerProvisionParams::DefaultPaymentMethod::type_
+            type: Stigg::Models::V1::CustomerProvisionParams::DefaultPaymentMethod::type_?
           }
 
         class DefaultPaymentMethod < Stigg::Internal::Type::BaseModel
@@ -371,14 +371,14 @@ module Stigg
 
           attr_accessor card_last4_digits: String?
 
-          attr_accessor type: Stigg::Models::V1::CustomerProvisionParams::DefaultPaymentMethod::type_
+          attr_accessor type: Stigg::Models::V1::CustomerProvisionParams::DefaultPaymentMethod::type_?
 
           def initialize: (
             billing_id: String?,
             card_expiry_month: Float?,
             card_expiry_year: Float?,
             card_last4_digits: String?,
-            type: Stigg::Models::V1::CustomerProvisionParams::DefaultPaymentMethod::type_
+            type: Stigg::Models::V1::CustomerProvisionParams::DefaultPaymentMethod::type_?
           ) -> void
 
           def to_hash: -> {
@@ -386,10 +386,10 @@ module Stigg
             card_expiry_month: Float?,
             card_expiry_year: Float?,
             :card_last4_digits => String?,
-            type: Stigg::Models::V1::CustomerProvisionParams::DefaultPaymentMethod::type_
+            type: Stigg::Models::V1::CustomerProvisionParams::DefaultPaymentMethod::type_?
           }
 
-          type type_ = :CARD | :BANK | :CASH_APP
+          type type_ = :CARD | :BANK | :CASH_APP | :PAYPAL
 
           module Type
             extend Stigg::Internal::Type::Enum
@@ -397,6 +397,7 @@ module Stigg
             CARD: :CARD
             BANK: :BANK
             CASH_APP: :CASH_APP
+            PAYPAL: :PAYPAL
 
             def self?.values: -> ::Array[Stigg::Models::V1::CustomerProvisionParams::DefaultPaymentMethod::type_]
           end
