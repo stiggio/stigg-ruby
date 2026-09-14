@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.0-beta.53](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.52...v0.1.0-beta.53) (2026-08-13)
+
+
+### Bug Fixes
+
+* gem prerelease version format in version.rb (align with stlc codegen) ([0bbaa6c](https://github.com/stiggio/stigg-ruby/commit/0bbaa6c7302564c1e4041a9785750e5418737548))
+
 ## [0.1.0-beta.52](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.51...v0.1.0-beta.52) (2026-08-12)
 
 
