@@ -164,8 +164,6 @@ require_relative "stigg/models/v1/events/data_export/destination_update_selectio
 require_relative "stigg/models/v1/events/data_export/destination_update_selection_response"
 require_relative "stigg/models/v1/events/data_export_list_models_params"
 require_relative "stigg/models/v1/events/data_export_list_models_response"
-require_relative "stigg/models/v1/events/data_export_mint_scoped_token_params"
-require_relative "stigg/models/v1/events/data_export_mint_scoped_token_response"
 require_relative "stigg/models/v1/events/data_export_trigger_sync_params"
 require_relative "stigg/models/v1/events/data_export_trigger_sync_response"
 require_relative "stigg/models/v1/feature"
