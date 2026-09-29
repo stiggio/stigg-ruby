@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.1.0-beta.54](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.53...v0.1.0-beta.54) (2026-09-29)
+
+
+### Bug Fixes
+
+* **STIGG-9660:** back-sync production into staging to un-fork the trunks ([d953be5](https://github.com/stiggio/stigg-ruby/commit/d953be57fbb741cac3a622baf55a12d6ef8d04e6))
+* **STIGG-9768:** stop exporting skipped workflow runs as failures ([b21fe43](https://github.com/stiggio/stigg-ruby/commit/b21fe43f39ec328ce04140c72c24016fa229be00))
+* **STIGG-9768:** stop exporting skipped workflow runs as failures ([4c92e1b](https://github.com/stiggio/stigg-ruby/commit/4c92e1b93ec774836838b4f946cd1e060390c87c))
+* sync OpenAPI spec from stigg-api ([451be2e](https://github.com/stiggio/stigg-ruby/commit/451be2ec055df4958a7390aacf48ebfd765ba813))
+
+
+### Chores
+
+* normalize version.rb to gem prerelease format for stlc codegen ([bfd7daa](https://github.com/stiggio/stigg-ruby/commit/bfd7daa1f34940208e9a71a459f7420c1be8ef64))
+* normalize version.rb to gem prerelease format for stlc codegen ([ea186c7](https://github.com/stiggio/stigg-ruby/commit/ea186c7f0174bb68baadaf28d365317a24f07f74))
+
 ## [0.1.0-beta.53](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.52...v0.1.0-beta.53) (2026-08-13)
 
 
