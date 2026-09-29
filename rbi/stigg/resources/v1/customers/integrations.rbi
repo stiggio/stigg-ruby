@@ -130,8 +130,7 @@ module Stigg
             # (e.g. the Stripe customer ID). Null until the link has synced; required when
             # creating the link.
             synced_entity_id:,
-            # Body param: The vendor identifier of the integration (e.g. STRIPE, SALESFORCE,
-            # SNOWFLAKE)
+            # Body param: The vendor whose system holds the customer record
             vendor_identifier:,
             # Header param: Account ID — optional when authenticating with a user JWT (Bearer
             # token); falls back to the user's first membership. Ignored for API-key auth.

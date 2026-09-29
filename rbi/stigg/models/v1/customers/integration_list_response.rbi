@@ -23,7 +23,7 @@ module Stigg
           sig { returns(T.nilable(String)) }
           attr_accessor :synced_entity_id
 
-          # The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
+          # The vendor whose system holds the customer record
           sig do
             returns(
               Stigg::Models::V1::Customers::IntegrationListResponse::VendorIdentifier::TaggedSymbol
@@ -68,7 +68,7 @@ module Stigg
             # Stripe customer ID). Null until the link has synced; required when creating the
             # link.
             synced_entity_id:,
-            # The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
+            # The vendor whose system holds the customer record
             vendor_identifier:,
             # Price billing sync revision data containing billing ID, link URL, and price
             # group package billing ID
@@ -93,7 +93,7 @@ module Stigg
           def to_hash
           end
 
-          # The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
+          # The vendor whose system holds the customer record
           module VendorIdentifier
             extend Stigg::Internal::Type::Enum
 
@@ -106,19 +106,14 @@ module Stigg
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-            AUTH0 =
+            STRIPE =
               T.let(
-                :AUTH0,
+                :STRIPE,
                 Stigg::Models::V1::Customers::IntegrationListResponse::VendorIdentifier::TaggedSymbol
               )
             ZUORA =
               T.let(
                 :ZUORA,
-                Stigg::Models::V1::Customers::IntegrationListResponse::VendorIdentifier::TaggedSymbol
-              )
-            STRIPE =
-              T.let(
-                :STRIPE,
                 Stigg::Models::V1::Customers::IntegrationListResponse::VendorIdentifier::TaggedSymbol
               )
             HUBSPOT =
@@ -129,51 +124,6 @@ module Stigg
             AWS_MARKETPLACE =
               T.let(
                 :AWS_MARKETPLACE,
-                Stigg::Models::V1::Customers::IntegrationListResponse::VendorIdentifier::TaggedSymbol
-              )
-            SNOWFLAKE =
-              T.let(
-                :SNOWFLAKE,
-                Stigg::Models::V1::Customers::IntegrationListResponse::VendorIdentifier::TaggedSymbol
-              )
-            SALESFORCE =
-              T.let(
-                :SALESFORCE,
-                Stigg::Models::V1::Customers::IntegrationListResponse::VendorIdentifier::TaggedSymbol
-              )
-            BIG_QUERY =
-              T.let(
-                :BIG_QUERY,
-                Stigg::Models::V1::Customers::IntegrationListResponse::VendorIdentifier::TaggedSymbol
-              )
-            OPEN_FGA =
-              T.let(
-                :OPEN_FGA,
-                Stigg::Models::V1::Customers::IntegrationListResponse::VendorIdentifier::TaggedSymbol
-              )
-            APP_STORE =
-              T.let(
-                :APP_STORE,
-                Stigg::Models::V1::Customers::IntegrationListResponse::VendorIdentifier::TaggedSymbol
-              )
-            RECEIVED =
-              T.let(
-                :RECEIVED,
-                Stigg::Models::V1::Customers::IntegrationListResponse::VendorIdentifier::TaggedSymbol
-              )
-            PREQUEL =
-              T.let(
-                :PREQUEL,
-                Stigg::Models::V1::Customers::IntegrationListResponse::VendorIdentifier::TaggedSymbol
-              )
-            AIRWALLEX =
-              T.let(
-                :AIRWALLEX,
-                Stigg::Models::V1::Customers::IntegrationListResponse::VendorIdentifier::TaggedSymbol
-              )
-            STRIPE_INVOICING =
-              T.let(
-                :STRIPE_INVOICING,
                 Stigg::Models::V1::Customers::IntegrationListResponse::VendorIdentifier::TaggedSymbol
               )
 

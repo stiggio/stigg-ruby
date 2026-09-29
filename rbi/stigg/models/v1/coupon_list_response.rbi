@@ -43,8 +43,9 @@ module Stigg
         sig { returns(T.nilable(String)) }
         attr_accessor :description
 
-        # How many billing cycles the discount applies for once redeemed. Leave unset for
-        # a discount that lasts for the lifetime of the subscription.
+        # How many calendar months the discount applies for once redeemed, counted from
+        # when the coupon is applied (not tied to the subscription's billing period).
+        # Leave unset for a discount that lasts for the lifetime of the subscription.
         sig { returns(T.nilable(Integer)) }
         attr_accessor :duration_in_months
 
@@ -128,8 +129,9 @@ module Stigg
           created_at:,
           # Description of the coupon
           description:,
-          # How many billing cycles the discount applies for once redeemed. Leave unset for
-          # a discount that lasts for the lifetime of the subscription.
+          # How many calendar months the discount applies for once redeemed, counted from
+          # when the coupon is applied (not tied to the subscription's billing period).
+          # Leave unset for a discount that lasts for the lifetime of the subscription.
           duration_in_months:,
           # Metadata associated with the entity
           metadata:,

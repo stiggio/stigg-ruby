@@ -29,7 +29,7 @@ module Stigg
           required :synced_entity_id, String, api_name: :syncedEntityId
 
           # @!attribute vendor_identifier
-          #   The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
+          #   The vendor whose system holds the customer record
           #
           #   @return [Symbol, Stigg::Models::V1::Customers::IntegrationLinkParams::VendorIdentifier]
           required :vendor_identifier,
@@ -56,7 +56,7 @@ module Stigg
           #
           #   @param synced_entity_id [String] The external entity ID this record is linked to in the vendor system (e.g. the S
           #
-          #   @param vendor_identifier [Symbol, Stigg::Models::V1::Customers::IntegrationLinkParams::VendorIdentifier] The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
+          #   @param vendor_identifier [Symbol, Stigg::Models::V1::Customers::IntegrationLinkParams::VendorIdentifier] The vendor whose system holds the customer record
           #
           #   @param x_account_id [String]
           #
@@ -64,24 +64,14 @@ module Stigg
           #
           #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
 
-          # The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
+          # The vendor whose system holds the customer record
           module VendorIdentifier
             extend Stigg::Internal::Type::Enum
 
-            AUTH0 = :AUTH0
-            ZUORA = :ZUORA
             STRIPE = :STRIPE
+            ZUORA = :ZUORA
             HUBSPOT = :HUBSPOT
             AWS_MARKETPLACE = :AWS_MARKETPLACE
-            SNOWFLAKE = :SNOWFLAKE
-            SALESFORCE = :SALESFORCE
-            BIG_QUERY = :BIG_QUERY
-            OPEN_FGA = :OPEN_FGA
-            APP_STORE = :APP_STORE
-            RECEIVED = :RECEIVED
-            PREQUEL = :PREQUEL
-            AIRWALLEX = :AIRWALLEX
-            STRIPE_INVOICING = :STRIPE_INVOICING
 
             # @!method self.values
             #   @return [Array<Symbol>]

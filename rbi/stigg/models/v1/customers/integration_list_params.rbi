@@ -139,19 +139,14 @@ module Stigg
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-            AUTH0 =
+            STRIPE =
               T.let(
-                :AUTH0,
+                :STRIPE,
                 Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::TaggedSymbol
               )
             ZUORA =
               T.let(
                 :ZUORA,
-                Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::TaggedSymbol
-              )
-            STRIPE =
-              T.let(
-                :STRIPE,
                 Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::TaggedSymbol
               )
             HUBSPOT =
@@ -162,51 +157,6 @@ module Stigg
             AWS_MARKETPLACE =
               T.let(
                 :AWS_MARKETPLACE,
-                Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::TaggedSymbol
-              )
-            SNOWFLAKE =
-              T.let(
-                :SNOWFLAKE,
-                Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::TaggedSymbol
-              )
-            SALESFORCE =
-              T.let(
-                :SALESFORCE,
-                Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::TaggedSymbol
-              )
-            BIG_QUERY =
-              T.let(
-                :BIG_QUERY,
-                Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::TaggedSymbol
-              )
-            OPEN_FGA =
-              T.let(
-                :OPEN_FGA,
-                Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::TaggedSymbol
-              )
-            APP_STORE =
-              T.let(
-                :APP_STORE,
-                Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::TaggedSymbol
-              )
-            RECEIVED =
-              T.let(
-                :RECEIVED,
-                Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::TaggedSymbol
-              )
-            PREQUEL =
-              T.let(
-                :PREQUEL,
-                Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::TaggedSymbol
-              )
-            AIRWALLEX =
-              T.let(
-                :AIRWALLEX,
-                Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::TaggedSymbol
-              )
-            STRIPE_INVOICING =
-              T.let(
-                :STRIPE_INVOICING,
                 Stigg::V1::Customers::IntegrationListParams::VendorIdentifier::TaggedSymbol
               )
 

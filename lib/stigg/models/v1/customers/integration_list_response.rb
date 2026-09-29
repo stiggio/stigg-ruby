@@ -21,7 +21,7 @@ module Stigg
           required :synced_entity_id, String, api_name: :syncedEntityId, nil?: true
 
           # @!attribute vendor_identifier
-          #   The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
+          #   The vendor whose system holds the customer record
           #
           #   @return [Symbol, Stigg::Models::V1::Customers::IntegrationListResponse::VendorIdentifier]
           required :vendor_identifier,
@@ -50,30 +50,20 @@ module Stigg
           #
           #   @param synced_entity_id [String, nil] The external entity ID this record is linked to in the vendor system (e.g. the S
           #
-          #   @param vendor_identifier [Symbol, Stigg::Models::V1::Customers::IntegrationListResponse::VendorIdentifier] The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
+          #   @param vendor_identifier [Symbol, Stigg::Models::V1::Customers::IntegrationListResponse::VendorIdentifier] The vendor whose system holds the customer record
           #
           #   @param sync_data [Stigg::Models::V1::Customers::IntegrationListResponse::SyncData::SyncRevisionPriceBillingData, Stigg::Models::V1::Customers::IntegrationListResponse::SyncData::SyncRevisionBillingData, Stigg::Models::V1::Customers::IntegrationListResponse::SyncData::SyncRevisionMarketplaceData, nil] Price billing sync revision data containing billing ID, link URL, and price grou
 
-          # The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, SNOWFLAKE)
+          # The vendor whose system holds the customer record
           #
           # @see Stigg::Models::V1::Customers::IntegrationListResponse#vendor_identifier
           module VendorIdentifier
             extend Stigg::Internal::Type::Enum
 
-            AUTH0 = :AUTH0
-            ZUORA = :ZUORA
             STRIPE = :STRIPE
+            ZUORA = :ZUORA
             HUBSPOT = :HUBSPOT
             AWS_MARKETPLACE = :AWS_MARKETPLACE
-            SNOWFLAKE = :SNOWFLAKE
-            SALESFORCE = :SALESFORCE
-            BIG_QUERY = :BIG_QUERY
-            OPEN_FGA = :OPEN_FGA
-            APP_STORE = :APP_STORE
-            RECEIVED = :RECEIVED
-            PREQUEL = :PREQUEL
-            AIRWALLEX = :AIRWALLEX
-            STRIPE_INVOICING = :STRIPE_INVOICING
 
             # @!method self.values
             #   @return [Array<Symbol>]

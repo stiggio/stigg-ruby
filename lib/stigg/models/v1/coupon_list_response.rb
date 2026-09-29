@@ -46,8 +46,9 @@ module Stigg
         required :description, String, nil?: true
 
         # @!attribute duration_in_months
-        #   How many billing cycles the discount applies for once redeemed. Leave unset for
-        #   a discount that lasts for the lifetime of the subscription.
+        #   How many calendar months the discount applies for once redeemed, counted from
+        #   when the coupon is applied (not tied to the subscription's billing period).
+        #   Leave unset for a discount that lasts for the lifetime of the subscription.
         #
         #   @return [Integer, nil]
         required :duration_in_months, Integer, api_name: :durationInMonths, nil?: true
@@ -113,7 +114,7 @@ module Stigg
         #
         #   @param description [String, nil] Description of the coupon
         #
-        #   @param duration_in_months [Integer, nil] How many billing cycles the discount applies for once redeemed. Leave unset for
+        #   @param duration_in_months [Integer, nil] How many calendar months the discount applies for once redeemed, counted from wh
         #
         #   @param metadata [Hash{Symbol=>String}, nil] Metadata associated with the entity
         #

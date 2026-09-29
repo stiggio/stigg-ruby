@@ -73,20 +73,10 @@ module Stigg
           module VendorIdentifier
             extend Stigg::Internal::Type::Enum
 
-            AUTH0 = :AUTH0
-            ZUORA = :ZUORA
             STRIPE = :STRIPE
+            ZUORA = :ZUORA
             HUBSPOT = :HUBSPOT
             AWS_MARKETPLACE = :AWS_MARKETPLACE
-            SNOWFLAKE = :SNOWFLAKE
-            SALESFORCE = :SALESFORCE
-            BIG_QUERY = :BIG_QUERY
-            OPEN_FGA = :OPEN_FGA
-            APP_STORE = :APP_STORE
-            RECEIVED = :RECEIVED
-            PREQUEL = :PREQUEL
-            AIRWALLEX = :AIRWALLEX
-            STRIPE_INVOICING = :STRIPE_INVOICING
 
             # @!method self.values
             #   @return [Array<Symbol>]

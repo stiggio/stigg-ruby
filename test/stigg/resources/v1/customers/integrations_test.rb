@@ -70,7 +70,7 @@ class Stigg::Test::Resources::V1::Customers::IntegrationsTest < Stigg::Test::Res
         "x",
         body_id: "id",
         synced_entity_id: "syncedEntityId",
-        vendor_identifier: :AUTH0
+        vendor_identifier: :STRIPE
       )
 
     assert_pattern do

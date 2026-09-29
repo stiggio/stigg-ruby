@@ -142,7 +142,7 @@ module Stigg
           #
           # @param synced_entity_id [String] Body param: The external entity ID this record is linked to in the vendor system
           #
-          # @param vendor_identifier [Symbol, Stigg::Models::V1::Customers::IntegrationLinkParams::VendorIdentifier] Body param: The vendor identifier of the integration (e.g. STRIPE, SALESFORCE, S
+          # @param vendor_identifier [Symbol, Stigg::Models::V1::Customers::IntegrationLinkParams::VendorIdentifier] Body param: The vendor whose system holds the customer record
           #
           # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
           #

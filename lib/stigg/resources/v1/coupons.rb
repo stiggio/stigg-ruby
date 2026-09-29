@@ -19,7 +19,7 @@ module Stigg
         #
         # @param description [String, nil] Body param: Description of the coupon
         #
-        # @param duration_in_months [Integer, nil] Body param: How many billing cycles the discount applies for once redeemed. Leav
+        # @param duration_in_months [Integer, nil] Body param: How many calendar months the discount applies for once redeemed, cou
         #
         # @param metadata [Hash{Symbol=>String}, nil] Body param: Metadata associated with the entity
         #
