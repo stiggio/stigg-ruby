@@ -351,14 +351,18 @@ module Stigg
         type default_payment_method =
           {
             billing_id: String?,
+            card_brand: String?,
             card_expiry_month: Float?,
             card_expiry_year: Float?,
             :card_last4_digits => String?,
-            type: Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::type_?
+            type: Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::type_?,
+            wallet_type: String?
           }
 
         class DefaultPaymentMethod < Stigg::Internal::Type::BaseModel
           attr_accessor billing_id: String?
+
+          attr_accessor card_brand: String?
 
           attr_accessor card_expiry_month: Float?
 
@@ -368,20 +372,26 @@ module Stigg
 
           attr_accessor type: Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::type_?
 
+          attr_accessor wallet_type: String?
+
           def initialize: (
             billing_id: String?,
+            card_brand: String?,
             card_expiry_month: Float?,
             card_expiry_year: Float?,
             card_last4_digits: String?,
-            type: Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::type_?
+            type: Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::type_?,
+            wallet_type: String?
           ) -> void
 
           def to_hash: -> {
             billing_id: String?,
+            card_brand: String?,
             card_expiry_month: Float?,
             card_expiry_year: Float?,
             :card_last4_digits => String?,
-            type: Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::type_?
+            type: Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::type_?,
+            wallet_type: String?
           }
 
           type type_ = :CARD | :BANK | :CASH_APP | :PAYPAL

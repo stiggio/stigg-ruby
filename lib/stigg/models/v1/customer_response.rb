@@ -318,6 +318,13 @@ module Stigg
             #   @return [String, nil]
             required :billing_id, String, api_name: :billingId, nil?: true
 
+            # @!attribute card_brand
+            #   The card brand of the default payment method, as reported by the billing
+            #   provider (e.g. visa, mastercard, amex)
+            #
+            #   @return [String, nil]
+            required :card_brand, String, api_name: :cardBrand, nil?: true
+
             # @!attribute card_expiry_month
             #   The expiration month of the default payment method
             #
@@ -346,10 +353,23 @@ module Stigg
                      },
                      nil?: true
 
-            # @!method initialize(billing_id:, card_expiry_month:, card_expiry_year:, card_last4_digits:, type:)
+            # @!attribute wallet_type
+            #   The digital wallet used to add the default card payment method, as reported by
+            #   the billing provider (e.g. apple_pay, google_pay)
+            #
+            #   @return [String, nil]
+            required :wallet_type, String, api_name: :walletType, nil?: true
+
+            # @!method initialize(billing_id:, card_brand:, card_expiry_month:, card_expiry_year:, card_last4_digits:, type:, wallet_type:)
+            #   Some parameter documentations has been truncated, see
+            #   {Stigg::Models::V1::CustomerResponse::Data::DefaultPaymentMethod} for more
+            #   details.
+            #
             #   The default payment method details
             #
             #   @param billing_id [String, nil] The default payment method id
+            #
+            #   @param card_brand [String, nil] The card brand of the default payment method, as reported by the billing provide
             #
             #   @param card_expiry_month [Float, nil] The expiration month of the default payment method
             #
@@ -358,6 +378,8 @@ module Stigg
             #   @param card_last4_digits [String, nil] The last 4 digits of the default payment method
             #
             #   @param type [Symbol, Stigg::Models::V1::CustomerResponse::Data::DefaultPaymentMethod::Type, nil] The default payment method type
+            #
+            #   @param wallet_type [String, nil] The digital wallet used to add the default card payment method, as reported by t
 
             # The default payment method type
             #

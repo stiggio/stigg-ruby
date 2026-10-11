@@ -896,6 +896,11 @@ module Stigg
           sig { returns(T.nilable(String)) }
           attr_accessor :billing_id
 
+          # The card brand of the default payment method, as reported by the billing
+          # provider (e.g. visa, mastercard, amex)
+          sig { returns(T.nilable(String)) }
+          attr_accessor :card_brand
+
           # The expiration month of the default payment method
           sig { returns(T.nilable(Float)) }
           attr_accessor :card_expiry_month
@@ -918,22 +923,32 @@ module Stigg
           end
           attr_accessor :type
 
+          # The digital wallet used to add the default card payment method, as reported by
+          # the billing provider (e.g. apple_pay, google_pay)
+          sig { returns(T.nilable(String)) }
+          attr_accessor :wallet_type
+
           # The default payment method details
           sig do
             params(
               billing_id: T.nilable(String),
+              card_brand: T.nilable(String),
               card_expiry_month: T.nilable(Float),
               card_expiry_year: T.nilable(Float),
               card_last4_digits: T.nilable(String),
               type:
                 T.nilable(
                   Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::Type::OrSymbol
-                )
+                ),
+              wallet_type: T.nilable(String)
             ).returns(T.attached_class)
           end
           def self.new(
             # The default payment method id
             billing_id:,
+            # The card brand of the default payment method, as reported by the billing
+            # provider (e.g. visa, mastercard, amex)
+            card_brand:,
             # The expiration month of the default payment method
             card_expiry_month:,
             # The expiration year of the default payment method
@@ -941,7 +956,10 @@ module Stigg
             # The last 4 digits of the default payment method
             card_last4_digits:,
             # The default payment method type
-            type:
+            type:,
+            # The digital wallet used to add the default card payment method, as reported by
+            # the billing provider (e.g. apple_pay, google_pay)
+            wallet_type:
           )
           end
 
@@ -949,13 +967,15 @@ module Stigg
             override.returns(
               {
                 billing_id: T.nilable(String),
+                card_brand: T.nilable(String),
                 card_expiry_month: T.nilable(Float),
                 card_expiry_year: T.nilable(Float),
                 card_last4_digits: T.nilable(String),
                 type:
                   T.nilable(
                     Stigg::Models::V1::CustomerListResponse::DefaultPaymentMethod::Type::TaggedSymbol
-                  )
+                  ),
+                wallet_type: T.nilable(String)
               }
             )
           end
