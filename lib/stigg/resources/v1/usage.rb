@@ -102,11 +102,14 @@ module Stigg
           )
         end
 
+        # @deprecated
+        #
         # Some parameter documentations has been truncated, see
         # {Stigg::Models::V1::UsageReportParams} for more details.
         #
         # Reports usage measurements for metered features. The reported usage is used to
-        # track, limit, and bill customer consumption.
+        # track, limit, and bill customer consumption. Deprecated: use
+        # `POST /api/v2/usage`.
         #
         # @overload report(usages:, x_account_id: nil, x_environment_id: nil, request_options: {})
         #

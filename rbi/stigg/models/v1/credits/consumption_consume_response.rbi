@@ -99,6 +99,31 @@ module Stigg
             end
             attr_writer :credit
 
+            # The current usage of each governance entitlement this request counted towards.
+            # Absent when governance is not enabled or the usage is unknown. Entitlements
+            # whose usage could not be read, and those of repeated idempotent requests, are
+            # left out
+            sig do
+              returns(
+                T.nilable(
+                  T::Array[
+                    Stigg::Models::V1::Credits::ConsumptionConsumeResponse::Data::Entity
+                  ]
+                )
+              )
+            end
+            attr_reader :entities
+
+            sig do
+              params(
+                entities:
+                  T::Array[
+                    Stigg::Models::V1::Credits::ConsumptionConsumeResponse::Data::Entity::OrHash
+                  ]
+              ).void
+            end
+            attr_writer :entities
+
             # The resource the consumption was attributed to
             sig { returns(T.nilable(String)) }
             attr_accessor :resource_id
@@ -114,6 +139,10 @@ module Stigg
                   T.nilable(
                     Stigg::Models::V1::Credits::ConsumptionConsumeResponse::Data::Credit::OrHash
                   ),
+                entities:
+                  T::Array[
+                    Stigg::Models::V1::Credits::ConsumptionConsumeResponse::Data::Entity::OrHash
+                  ],
                 resource_id: T.nilable(String)
               ).returns(T.attached_class)
             end
@@ -129,6 +158,11 @@ module Stigg
               # The optimistic credit balance after consumption (when sync credit consumption is
               # enabled)
               credit: nil,
+              # The current usage of each governance entitlement this request counted towards.
+              # Absent when governance is not enabled or the usage is unknown. Entitlements
+              # whose usage could not be read, and those of repeated idempotent requests, are
+              # left out
+              entities: nil,
               # The resource the consumption was attributed to
               resource_id: nil
             )
@@ -145,6 +179,10 @@ module Stigg
                     T.nilable(
                       Stigg::Models::V1::Credits::ConsumptionConsumeResponse::Data::Credit
                     ),
+                  entities:
+                    T::Array[
+                      Stigg::Models::V1::Credits::ConsumptionConsumeResponse::Data::Entity
+                    ],
                   resource_id: T.nilable(String)
                 }
               )
@@ -224,6 +262,116 @@ module Stigg
                     timestamp: Time,
                     usage_limit: Float,
                     usage_period_end: T.nilable(Time)
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+
+            class Entity < Stigg::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Stigg::Models::V1::Credits::ConsumptionConsumeResponse::Data::Entity,
+                    Stigg::Internal::AnyHash
+                  )
+                end
+
+              # The absolute usage counted against the entitlement
+              sig { returns(Float) }
+              attr_accessor :current_usage
+
+              # The customer whose usage counted towards the entitlement
+              sig { returns(String) }
+              attr_accessor :customer_id
+
+              # The governance entitlement the usage counts towards
+              sig { returns(String) }
+              attr_accessor :entitlement_id
+
+              # The governance entity the entitlement belongs to
+              sig { returns(String) }
+              attr_accessor :entity_id
+
+              # The customer resource the usage counted from; `null` for customer-level usage
+              sig { returns(T.nilable(String)) }
+              attr_accessor :resource_id
+
+              # The entities the entitlement is scoped to (empty when it is not scoped)
+              sig { returns(T::Array[String]) }
+              attr_accessor :scope_entity_ids
+
+              # When the entitlement usage was last updated
+              sig { returns(Time) }
+              attr_accessor :usage_updated_at
+
+              # The credit currency the entitlement governs (exactly one of featureId and
+              # currencyId is set)
+              sig { returns(T.nilable(String)) }
+              attr_reader :currency_id
+
+              sig { params(currency_id: String).void }
+              attr_writer :currency_id
+
+              # The feature the entitlement governs (exactly one of featureId and currencyId is
+              # set)
+              sig { returns(T.nilable(String)) }
+              attr_reader :feature_id
+
+              sig { params(feature_id: String).void }
+              attr_writer :feature_id
+
+              # The usage counted against one governance entitlement
+              sig do
+                params(
+                  current_usage: Float,
+                  customer_id: String,
+                  entitlement_id: String,
+                  entity_id: String,
+                  resource_id: T.nilable(String),
+                  scope_entity_ids: T::Array[String],
+                  usage_updated_at: Time,
+                  currency_id: String,
+                  feature_id: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # The absolute usage counted against the entitlement
+                current_usage:,
+                # The customer whose usage counted towards the entitlement
+                customer_id:,
+                # The governance entitlement the usage counts towards
+                entitlement_id:,
+                # The governance entity the entitlement belongs to
+                entity_id:,
+                # The customer resource the usage counted from; `null` for customer-level usage
+                resource_id:,
+                # The entities the entitlement is scoped to (empty when it is not scoped)
+                scope_entity_ids:,
+                # When the entitlement usage was last updated
+                usage_updated_at:,
+                # The credit currency the entitlement governs (exactly one of featureId and
+                # currencyId is set)
+                currency_id: nil,
+                # The feature the entitlement governs (exactly one of featureId and currencyId is
+                # set)
+                feature_id: nil
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    current_usage: Float,
+                    customer_id: String,
+                    entitlement_id: String,
+                    entity_id: String,
+                    resource_id: T.nilable(String),
+                    scope_entity_ids: T::Array[String],
+                    usage_updated_at: Time,
+                    currency_id: String,
+                    feature_id: String
                   }
                 )
               end

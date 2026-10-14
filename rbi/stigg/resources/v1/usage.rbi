@@ -100,7 +100,8 @@ module Stigg
         end
 
         # Reports usage measurements for metered features. The reported usage is used to
-        # track, limit, and bill customer consumption.
+        # track, limit, and bill customer consumption. Deprecated: use
+        # `POST /api/v2/usage`.
         sig do
           params(
             usages: T::Array[Stigg::V1::UsageReportParams::Usage::OrHash],
