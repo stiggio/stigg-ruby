@@ -135,13 +135,14 @@ module Stigg
             required :event_count, Float, api_name: :eventCount
 
             # @!attribute feature_id
-            #   The feature ID; null when grouping by dimensions only
+            #   The feature ID; null when grouping by dimensions without `featureId`
             #
             #   @return [String, nil]
             required :feature_id, String, api_name: :featureId, nil?: true
 
             # @!attribute feature_name
-            #   The display name of the feature; null when grouping by dimensions only
+            #   The display name of the feature; null when grouping by dimensions without
+            #   `featureId`
             #
             #   @return [String, nil]
             required :feature_name, String, api_name: :featureName, nil?: true
@@ -160,7 +161,8 @@ module Stigg
             required :total_credits, Float, api_name: :totalCredits
 
             # @!attribute tags
-            #   Dimension key/value pairs identifying this series when groupBy is applied
+            #   Dimension key/value pairs identifying this series when groupBy includes
+            #   dimension keys (`featureId` is returned in its own field, not as a tag)
             #
             #   @return [Array<Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Tag>, nil]
             optional :tags,
@@ -174,15 +176,15 @@ module Stigg
             #
             #   @param event_count [Float] Number of distinct usage events that consumed credits in this series. This count
             #
-            #   @param feature_id [String, nil] The feature ID; null when grouping by dimensions only
+            #   @param feature_id [String, nil] The feature ID; null when grouping by dimensions without `featureId`
             #
-            #   @param feature_name [String, nil] The display name of the feature; null when grouping by dimensions only
+            #   @param feature_name [String, nil] The display name of the feature; null when grouping by dimensions without `featu
             #
             #   @param points [Array<Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Point>] Time-series data points for this feature
             #
             #   @param total_credits [Float] Total credits consumed by this feature in the time range
             #
-            #   @param tags [Array<Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Tag>] Dimension key/value pairs identifying this series when groupBy is applied
+            #   @param tags [Array<Stigg::Models::V1::CreditGetUsageResponse::Data::Series::Tag>] Dimension key/value pairs identifying this series when groupBy includes dimensio
 
             class Point < Stigg::Internal::Type::BaseModel
               # @!attribute event_count

@@ -73,8 +73,10 @@ module Stigg
           # Query param: End date for the credit usage time range (ISO 8601). Defaults to
           # now when startDate is provided
           end_date: nil,
-          # Query param: Comma-separated list of feature dimension keys to group usage
-          # series by (up to 3). Each key matches /^[a-zA-Z0-9_$-]+$/
+          # Query param: Comma-separated list of keys to group usage series by: up to 3
+          # custom dimension keys, optionally combined with the reserved key `featureId` to
+          # also split each series by feature (e.g. `featureId,userId`). Each key matches
+          # /^[a-zA-Z0-9_$-]+$/
           group_by: nil,
           # Query param: Maximum number of items to return
           limit: nil,

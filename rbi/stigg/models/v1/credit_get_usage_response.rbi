@@ -269,11 +269,12 @@ module Stigg
             sig { returns(Float) }
             attr_accessor :event_count
 
-            # The feature ID; null when grouping by dimensions only
+            # The feature ID; null when grouping by dimensions without `featureId`
             sig { returns(T.nilable(String)) }
             attr_accessor :feature_id
 
-            # The display name of the feature; null when grouping by dimensions only
+            # The display name of the feature; null when grouping by dimensions without
+            # `featureId`
             sig { returns(T.nilable(String)) }
             attr_accessor :feature_name
 
@@ -291,7 +292,8 @@ module Stigg
             sig { returns(Float) }
             attr_accessor :total_credits
 
-            # Dimension key/value pairs identifying this series when groupBy is applied
+            # Dimension key/value pairs identifying this series when groupBy includes
+            # dimension keys (`featureId` is returned in its own field, not as a tag)
             sig do
               returns(
                 T.nilable(
@@ -335,15 +337,17 @@ module Stigg
               # is not additive across series, because an event matched by several meters
               # appears in more than one series.
               event_count:,
-              # The feature ID; null when grouping by dimensions only
+              # The feature ID; null when grouping by dimensions without `featureId`
               feature_id:,
-              # The display name of the feature; null when grouping by dimensions only
+              # The display name of the feature; null when grouping by dimensions without
+              # `featureId`
               feature_name:,
               # Time-series data points for this feature
               points:,
               # Total credits consumed by this feature in the time range
               total_credits:,
-              # Dimension key/value pairs identifying this series when groupBy is applied
+              # Dimension key/value pairs identifying this series when groupBy includes
+              # dimension keys (`featureId` is returned in its own field, not as a tag)
               tags: nil
             )
             end

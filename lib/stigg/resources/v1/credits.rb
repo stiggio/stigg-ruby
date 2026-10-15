@@ -71,7 +71,7 @@ module Stigg
         #
         # @param end_date [Time] Query param: End date for the credit usage time range (ISO 8601). Defaults to no
         #
-        # @param group_by [String] Query param: Comma-separated list of feature dimension keys to group usage serie
+        # @param group_by [String] Query param: Comma-separated list of keys to group usage series by: up to 3 cust
         #
         # @param limit [Integer] Query param: Maximum number of items to return
         #

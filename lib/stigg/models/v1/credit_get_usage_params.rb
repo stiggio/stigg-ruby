@@ -40,8 +40,10 @@ module Stigg
         optional :end_date, Time
 
         # @!attribute group_by
-        #   Comma-separated list of feature dimension keys to group usage series by (up to
-        #   3). Each key matches /^[a-zA-Z0-9_$-]+$/
+        #   Comma-separated list of keys to group usage series by: up to 3 custom dimension
+        #   keys, optionally combined with the reserved key `featureId` to also split each
+        #   series by feature (e.g. `featureId,userId`). Each key matches
+        #   /^[a-zA-Z0-9_$-]+$/
         #
         #   @return [String, nil]
         optional :group_by, String
@@ -96,7 +98,7 @@ module Stigg
         #
         #   @param end_date [Time] End date for the credit usage time range (ISO 8601). Defaults to now when startD
         #
-        #   @param group_by [String] Comma-separated list of feature dimension keys to group usage series by (up to 3
+        #   @param group_by [String] Comma-separated list of keys to group usage series by: up to 3 custom dimension
         #
         #   @param limit [Integer] Maximum number of items to return
         #
