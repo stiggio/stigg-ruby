@@ -61,6 +61,9 @@ module Stigg
         module Customers
         end
       end
+
+      module V2
+      end
     end
   end
 end

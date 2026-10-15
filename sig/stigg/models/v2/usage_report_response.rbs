@@ -1,0 +1,245 @@
+module Stigg
+  module Models
+    module V2
+      type usage_report_response =
+        { data: Stigg::Models::V2::UsageReportResponse::Data }
+
+      class UsageReportResponse < Stigg::Internal::Type::BaseModel
+        attr_accessor data: Stigg::Models::V2::UsageReportResponse::Data
+
+        def initialize: (
+          data: Stigg::Models::V2::UsageReportResponse::Data
+        ) -> void
+
+        def to_hash: -> { data: Stigg::Models::V2::UsageReportResponse::Data }
+
+        type data =
+          {
+            usages: ::Array[Stigg::Models::V2::UsageReportResponse::Data::Usage],
+            credits: ::Array[Stigg::Models::V2::UsageReportResponse::Data::Credit],
+            entities: ::Array[Stigg::Models::V2::UsageReportResponse::Data::Entity]
+          }
+
+        class Data < Stigg::Internal::Type::BaseModel
+          attr_accessor usages: ::Array[Stigg::Models::V2::UsageReportResponse::Data::Usage]
+
+          attr_reader credits: ::Array[Stigg::Models::V2::UsageReportResponse::Data::Credit]?
+
+          def credits=: (
+            ::Array[Stigg::Models::V2::UsageReportResponse::Data::Credit]
+          ) -> ::Array[Stigg::Models::V2::UsageReportResponse::Data::Credit]
+
+          attr_reader entities: ::Array[Stigg::Models::V2::UsageReportResponse::Data::Entity]?
+
+          def entities=: (
+            ::Array[Stigg::Models::V2::UsageReportResponse::Data::Entity]
+          ) -> ::Array[Stigg::Models::V2::UsageReportResponse::Data::Entity]
+
+          def initialize: (
+            usages: ::Array[Stigg::Models::V2::UsageReportResponse::Data::Usage],
+            ?credits: ::Array[Stigg::Models::V2::UsageReportResponse::Data::Credit],
+            ?entities: ::Array[Stigg::Models::V2::UsageReportResponse::Data::Entity]
+          ) -> void
+
+          def to_hash: -> {
+            usages: ::Array[Stigg::Models::V2::UsageReportResponse::Data::Usage],
+            credits: ::Array[Stigg::Models::V2::UsageReportResponse::Data::Credit],
+            entities: ::Array[Stigg::Models::V2::UsageReportResponse::Data::Entity]
+          }
+
+          type usage =
+            {
+              id: String,
+              created_at: Time,
+              customer_id: String,
+              feature_id: String,
+              timestamp: Time,
+              value: Integer,
+              credit: Stigg::Models::V2::UsageReportResponse::Data::Usage::Credit?,
+              current_usage: Float?,
+              next_reset_date: Time?,
+              resource_id: String?,
+              usage_period_end: Time?,
+              usage_period_start: Time?
+            }
+
+          class Usage < Stigg::Internal::Type::BaseModel
+            attr_accessor id: String
+
+            attr_accessor created_at: Time
+
+            attr_accessor customer_id: String
+
+            attr_accessor feature_id: String
+
+            attr_accessor timestamp: Time
+
+            attr_accessor value: Integer
+
+            attr_accessor credit: Stigg::Models::V2::UsageReportResponse::Data::Usage::Credit?
+
+            attr_accessor current_usage: Float?
+
+            attr_accessor next_reset_date: Time?
+
+            attr_accessor resource_id: String?
+
+            attr_accessor usage_period_end: Time?
+
+            attr_accessor usage_period_start: Time?
+
+            def initialize: (
+              id: String,
+              created_at: Time,
+              customer_id: String,
+              feature_id: String,
+              timestamp: Time,
+              value: Integer,
+              ?credit: Stigg::Models::V2::UsageReportResponse::Data::Usage::Credit?,
+              ?current_usage: Float?,
+              ?next_reset_date: Time?,
+              ?resource_id: String?,
+              ?usage_period_end: Time?,
+              ?usage_period_start: Time?
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              created_at: Time,
+              customer_id: String,
+              feature_id: String,
+              timestamp: Time,
+              value: Integer,
+              credit: Stigg::Models::V2::UsageReportResponse::Data::Usage::Credit?,
+              current_usage: Float?,
+              next_reset_date: Time?,
+              resource_id: String?,
+              usage_period_end: Time?,
+              usage_period_start: Time?
+            }
+
+            type credit = { consumed: Float, currency_id: String }
+
+            class Credit < Stigg::Internal::Type::BaseModel
+              attr_accessor consumed: Float
+
+              attr_accessor currency_id: String
+
+              def initialize: (consumed: Float, currency_id: String) -> void
+
+              def to_hash: -> { consumed: Float, currency_id: String }
+            end
+          end
+
+          type credit =
+            {
+              currency_id: String,
+              current_usage: Float,
+              customer_id: String,
+              resource_id: String?,
+              timestamp: Time,
+              usage_limit: Float,
+              usage_period_end: Time?
+            }
+
+          class Credit < Stigg::Internal::Type::BaseModel
+            attr_accessor currency_id: String
+
+            attr_accessor current_usage: Float
+
+            attr_accessor customer_id: String
+
+            attr_accessor resource_id: String?
+
+            attr_accessor timestamp: Time
+
+            attr_accessor usage_limit: Float
+
+            attr_accessor usage_period_end: Time?
+
+            def initialize: (
+              currency_id: String,
+              current_usage: Float,
+              customer_id: String,
+              resource_id: String?,
+              timestamp: Time,
+              usage_limit: Float,
+              ?usage_period_end: Time?
+            ) -> void
+
+            def to_hash: -> {
+              currency_id: String,
+              current_usage: Float,
+              customer_id: String,
+              resource_id: String?,
+              timestamp: Time,
+              usage_limit: Float,
+              usage_period_end: Time?
+            }
+          end
+
+          type entity =
+            {
+              current_usage: Float,
+              customer_id: String,
+              entitlement_id: String,
+              entity_id: String,
+              resource_id: String?,
+              scope_entity_ids: ::Array[String],
+              usage_updated_at: Time,
+              currency_id: String,
+              feature_id: String
+            }
+
+          class Entity < Stigg::Internal::Type::BaseModel
+            attr_accessor current_usage: Float
+
+            attr_accessor customer_id: String
+
+            attr_accessor entitlement_id: String
+
+            attr_accessor entity_id: String
+
+            attr_accessor resource_id: String?
+
+            attr_accessor scope_entity_ids: ::Array[String]
+
+            attr_accessor usage_updated_at: Time
+
+            attr_reader currency_id: String?
+
+            def currency_id=: (String) -> String
+
+            attr_reader feature_id: String?
+
+            def feature_id=: (String) -> String
+
+            def initialize: (
+              current_usage: Float,
+              customer_id: String,
+              entitlement_id: String,
+              entity_id: String,
+              resource_id: String?,
+              scope_entity_ids: ::Array[String],
+              usage_updated_at: Time,
+              ?currency_id: String,
+              ?feature_id: String
+            ) -> void
+
+            def to_hash: -> {
+              current_usage: Float,
+              customer_id: String,
+              entitlement_id: String,
+              entity_id: String,
+              resource_id: String?,
+              scope_entity_ids: ::Array[String],
+              usage_updated_at: Time,
+              currency_id: String,
+              feature_id: String
+            }
+          end
+        end
+      end
+    end
+  end
+end

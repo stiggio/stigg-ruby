@@ -24,6 +24,9 @@ module Stigg
     # @return [Stigg::Resources::V1Beta]
     attr_reader :v1_beta
 
+    # @return [Stigg::Resources::V2]
+    attr_reader :v2
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -85,6 +88,7 @@ module Stigg
 
       @v1 = Stigg::Resources::V1.new(client: self)
       @v1_beta = Stigg::Resources::V1Beta.new(client: self)
+      @v2 = Stigg::Resources::V2.new(client: self)
     end
   end
 end
