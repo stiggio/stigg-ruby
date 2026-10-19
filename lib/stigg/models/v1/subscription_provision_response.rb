@@ -365,6 +365,30 @@ module Stigg
               #   @return [Time, nil]
               optional :entitlement_updated_at, Time, api_name: :entitlementUpdatedAt
 
+              # @!attribute reservation
+              #   The reservation created by this request, when it asked to reserve credits and
+              #   was granted.
+              #
+              #   @return [Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionObjectVariant1::Reservation, nil]
+              optional :reservation,
+                       -> { Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionObjectVariant1::Reservation },
+                       nil?: true
+
+              # @!attribute reserved
+              #   Credits held by open reservations on active grants. Already included in
+              #   currentUsage, so usageLimit - currentUsage is the available balance.
+              #
+              #   @return [Float, nil]
+              optional :reserved, Float
+
+              # @!attribute reserved_on_expired_grants
+              #   Credits still held by open reservations on grants that expired during the hold.
+              #   They can still be released, but are not part of currentUsage or the balance and
+              #   must not be subtracted from it.
+              #
+              #   @return [Float, nil]
+              optional :reserved_on_expired_grants, Float, api_name: :reservedOnExpiredGrants
+
               # @!attribute usage_period_end
               #   The end date of the current billing period for recurring credit grants.
               #
@@ -377,7 +401,11 @@ module Stigg
               #   @return [Time, nil]
               optional :valid_until, Time, api_name: :validUntil
 
-              # @!method initialize(access_denied_reason:, currency:, current_usage:, is_granted:, type:, usage_limit:, usage_updated_at:, entitlement_updated_at: nil, usage_period_end: nil, valid_until: nil)
+              # @!method initialize(access_denied_reason:, currency:, current_usage:, is_granted:, type:, usage_limit:, usage_updated_at:, entitlement_updated_at: nil, reservation: nil, reserved: nil, reserved_on_expired_grants: nil, usage_period_end: nil, valid_until: nil)
+              #   Some parameter documentations has been truncated, see
+              #   {Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionObjectVariant1}
+              #   for more details.
+              #
               #   @param access_denied_reason [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionObjectVariant1::AccessDeniedReason, nil]
               #
               #   @param currency [Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionObjectVariant1::Currency] The currency associated with a credit entitlement.
@@ -393,6 +421,12 @@ module Stigg
               #   @param usage_updated_at [Time] Timestamp of the last update to the credit usage.
               #
               #   @param entitlement_updated_at [Time] Timestamp of the last update to the entitlement grant or configuration.
+              #
+              #   @param reservation [Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionObjectVariant1::Reservation, nil] The reservation created by this request, when it asked to reserve credits and wa
+              #
+              #   @param reserved [Float] Credits held by open reservations on active grants. Already included in currentU
+              #
+              #   @param reserved_on_expired_grants [Float] Credits still held by open reservations on grants that expired during the hold.
               #
               #   @param usage_period_end [Time] The end date of the current billing period for recurring credit grants.
               #
@@ -483,6 +517,64 @@ module Stigg
 
                 # @!method self.values
                 #   @return [Array<Symbol>]
+              end
+
+              # @see Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionObjectVariant1#reservation
+              class Reservation < Stigg::Internal::Type::BaseModel
+                # @!attribute id
+                #   The client-provided reservation ID.
+                #
+                #   @return [String]
+                required :id, String
+
+                # @!attribute amount
+                #   The amount of credits held.
+                #
+                #   @return [Float]
+                required :amount, Float
+
+                # @!attribute expires_at
+                #   When the reservation expires. Unreleased credits return to the balance at this
+                #   time.
+                #
+                #   @return [Time]
+                required :expires_at, Time, api_name: :expiresAt
+
+                # @!attribute status
+                #   The status of the reservation.
+                #
+                #   @return [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionObjectVariant1::Reservation::Status]
+                required :status,
+                         enum: -> { Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionObjectVariant1::Reservation::Status }
+
+                # @!method initialize(id:, amount:, expires_at:, status:)
+                #   Some parameter documentations has been truncated, see
+                #   {Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionObjectVariant1::Reservation}
+                #   for more details.
+                #
+                #   The reservation created by this request, when it asked to reserve credits and
+                #   was granted.
+                #
+                #   @param id [String] The client-provided reservation ID.
+                #
+                #   @param amount [Float] The amount of credits held.
+                #
+                #   @param expires_at [Time] When the reservation expires. Unreleased credits return to the balance at this t
+                #
+                #   @param status [Symbol, Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionObjectVariant1::Reservation::Status] The status of the reservation.
+
+                # The status of the reservation.
+                #
+                # @see Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionObjectVariant1::Reservation#status
+                module Status
+                  extend Stigg::Internal::Type::Enum
+
+                  ACTIVE = :ACTIVE
+                  RELEASED = :RELEASED
+
+                  # @!method self.values
+                  #   @return [Array<Symbol>]
+                end
               end
             end
 

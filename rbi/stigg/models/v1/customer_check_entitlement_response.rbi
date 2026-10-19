@@ -587,6 +587,44 @@ module Stigg
             sig { params(entitlement_updated_at: Time).void }
             attr_writer :entitlement_updated_at
 
+            # The reservation created by this request, when it asked to reserve credits and
+            # was granted.
+            sig do
+              returns(
+                T.nilable(
+                  Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Reservation
+                )
+              )
+            end
+            attr_reader :reservation
+
+            sig do
+              params(
+                reservation:
+                  T.nilable(
+                    Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Reservation::OrHash
+                  )
+              ).void
+            end
+            attr_writer :reservation
+
+            # Credits held by open reservations on active grants. Already included in
+            # currentUsage, so usageLimit - currentUsage is the available balance.
+            sig { returns(T.nilable(Float)) }
+            attr_reader :reserved
+
+            sig { params(reserved: Float).void }
+            attr_writer :reserved
+
+            # Credits still held by open reservations on grants that expired during the hold.
+            # They can still be released, but are not part of currentUsage or the balance and
+            # must not be subtracted from it.
+            sig { returns(T.nilable(Float)) }
+            attr_reader :reserved_on_expired_grants
+
+            sig { params(reserved_on_expired_grants: Float).void }
+            attr_writer :reserved_on_expired_grants
+
             # The end date of the current billing period for recurring credit grants.
             sig { returns(T.nilable(Time)) }
             attr_reader :usage_period_end
@@ -614,6 +652,12 @@ module Stigg
                 usage_limit: Float,
                 usage_updated_at: Time,
                 entitlement_updated_at: Time,
+                reservation:
+                  T.nilable(
+                    Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Reservation::OrHash
+                  ),
+                reserved: Float,
+                reserved_on_expired_grants: Float,
                 usage_period_end: Time,
                 valid_until: Time,
                 type: Symbol
@@ -630,6 +674,16 @@ module Stigg
               usage_updated_at:,
               # Timestamp of the last update to the entitlement grant or configuration.
               entitlement_updated_at: nil,
+              # The reservation created by this request, when it asked to reserve credits and
+              # was granted.
+              reservation: nil,
+              # Credits held by open reservations on active grants. Already included in
+              # currentUsage, so usageLimit - currentUsage is the available balance.
+              reserved: nil,
+              # Credits still held by open reservations on grants that expired during the hold.
+              # They can still be released, but are not part of currentUsage or the balance and
+              # must not be subtracted from it.
+              reserved_on_expired_grants: nil,
               # The end date of the current billing period for recurring credit grants.
               usage_period_end: nil,
               # The next time the entitlement should be recalculated
@@ -653,6 +707,12 @@ module Stigg
                   usage_limit: Float,
                   usage_updated_at: Time,
                   entitlement_updated_at: Time,
+                  reservation:
+                    T.nilable(
+                      Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Reservation
+                    ),
+                  reserved: Float,
+                  reserved_on_expired_grants: Float,
                   usage_period_end: Time,
                   valid_until: Time
                 }
@@ -828,6 +888,110 @@ module Stigg
                 )
               end
               def to_hash
+              end
+            end
+
+            class Reservation < Stigg::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Reservation,
+                    Stigg::Internal::AnyHash
+                  )
+                end
+
+              # The client-provided reservation ID.
+              sig { returns(String) }
+              attr_accessor :id
+
+              # The amount of credits held.
+              sig { returns(Float) }
+              attr_accessor :amount
+
+              # When the reservation expires. Unreleased credits return to the balance at this
+              # time.
+              sig { returns(Time) }
+              attr_accessor :expires_at
+
+              # The status of the reservation.
+              sig do
+                returns(
+                  Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Reservation::Status::TaggedSymbol
+                )
+              end
+              attr_accessor :status
+
+              # The reservation created by this request, when it asked to reserve credits and
+              # was granted.
+              sig do
+                params(
+                  id: String,
+                  amount: Float,
+                  expires_at: Time,
+                  status:
+                    Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Reservation::Status::OrSymbol
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # The client-provided reservation ID.
+                id:,
+                # The amount of credits held.
+                amount:,
+                # When the reservation expires. Unreleased credits return to the balance at this
+                # time.
+                expires_at:,
+                # The status of the reservation.
+                status:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    id: String,
+                    amount: Float,
+                    expires_at: Time,
+                    status:
+                      Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Reservation::Status::TaggedSymbol
+                  }
+                )
+              end
+              def to_hash
+              end
+
+              # The status of the reservation.
+              module Status
+                extend Stigg::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Reservation::Status
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                ACTIVE =
+                  T.let(
+                    :ACTIVE,
+                    Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Reservation::Status::TaggedSymbol
+                  )
+                RELEASED =
+                  T.let(
+                    :RELEASED,
+                    Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Reservation::Status::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Reservation::Status::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
               end
             end
           end

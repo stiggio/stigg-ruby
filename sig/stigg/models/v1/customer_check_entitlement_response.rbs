@@ -234,6 +234,9 @@ module Stigg
               usage_limit: Float,
               usage_updated_at: Time,
               entitlement_updated_at: Time,
+              reservation: Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Reservation?,
+              reserved: Float,
+              reserved_on_expired_grants: Float,
               usage_period_end: Time,
               valid_until: Time
             }
@@ -257,6 +260,16 @@ module Stigg
 
             def entitlement_updated_at=: (Time) -> Time
 
+            attr_accessor reservation: Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Reservation?
+
+            attr_reader reserved: Float?
+
+            def reserved=: (Float) -> Float
+
+            attr_reader reserved_on_expired_grants: Float?
+
+            def reserved_on_expired_grants=: (Float) -> Float
+
             attr_reader usage_period_end: Time?
 
             def usage_period_end=: (Time) -> Time
@@ -273,6 +286,9 @@ module Stigg
               usage_limit: Float,
               usage_updated_at: Time,
               ?entitlement_updated_at: Time,
+              ?reservation: Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Reservation?,
+              ?reserved: Float,
+              ?reserved_on_expired_grants: Float,
               ?usage_period_end: Time,
               ?valid_until: Time,
               ?type: :CREDIT
@@ -287,6 +303,9 @@ module Stigg
               usage_limit: Float,
               usage_updated_at: Time,
               entitlement_updated_at: Time,
+              reservation: Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Reservation?,
+              reserved: Float,
+              reserved_on_expired_grants: Float,
               usage_period_end: Time,
               valid_until: Time
             }
@@ -368,6 +387,49 @@ module Stigg
                 unit_plural: String?,
                 unit_singular: String?
               }
+            end
+
+            type reservation =
+              {
+                id: String,
+                amount: Float,
+                expires_at: Time,
+                status: Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Reservation::status
+              }
+
+            class Reservation < Stigg::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              attr_accessor amount: Float
+
+              attr_accessor expires_at: Time
+
+              attr_accessor status: Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Reservation::status
+
+              def initialize: (
+                id: String,
+                amount: Float,
+                expires_at: Time,
+                status: Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Reservation::status
+              ) -> void
+
+              def to_hash: -> {
+                id: String,
+                amount: Float,
+                expires_at: Time,
+                status: Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Reservation::status
+              }
+
+              type status = :ACTIVE | :RELEASED
+
+              module Status
+                extend Stigg::Internal::Type::Enum
+
+                ACTIVE: :ACTIVE
+                RELEASED: :RELEASED
+
+                def self?.values: -> ::Array[Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Reservation::status]
+              end
             end
           end
 
