@@ -190,6 +190,11 @@ module Stigg
             feature_id: String,
             requested_usage: Integer,
             requested_values: T::Array[String],
+            reservation_expires_at: Time,
+            reservation_id: String,
+            reservation_metadata: String,
+            reservation_ttl_seconds: Integer,
+            reserve_amount: Float,
             resource_id: String,
             x_account_id: String,
             x_environment_id: String,
@@ -210,6 +215,21 @@ module Stigg
           # Query param: Requested values to evaluate against allowed values (enum features
           # only)
           requested_values: nil,
+          # Query param: When the reservation expires (ISO 8601, at most 24 hours ahead).
+          # Mutually exclusive with `reservationTtlSeconds`.
+          reservation_expires_at: nil,
+          # Query param: Client-provided reservation ID, required with `reserveAmount`.
+          # Retry with the same ID to get the same result; reuse with different parameters
+          # is a conflict.
+          reservation_id: nil,
+          # Query param: JSON-encoded object of string values to attach to the reservation.
+          reservation_metadata: nil,
+          # Query param: How long the reservation holds the credits, in seconds (1–86400,
+          # default 3600). Mutually exclusive with `reservationExpiresAt`.
+          reservation_ttl_seconds: nil,
+          # Query param: Credits to reserve (credit entitlements only). The check is decided
+          # and the credits held atomically; `requestedUsage` is ignored.
+          reserve_amount: nil,
           # Query param: Resource ID to scope the entitlement check to a specific resource
           resource_id: nil,
           # Header param: Account ID — optional when authenticating with a user JWT (Bearer

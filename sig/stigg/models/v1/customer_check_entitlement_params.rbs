@@ -8,6 +8,11 @@ module Stigg
           feature_id: String,
           requested_usage: Integer,
           requested_values: ::Array[String],
+          reservation_expires_at: Time,
+          reservation_id: String,
+          reservation_metadata: String,
+          reservation_ttl_seconds: Integer,
+          reserve_amount: Float,
           resource_id: String,
           x_account_id: String,
           x_environment_id: String
@@ -36,6 +41,26 @@ module Stigg
 
         def requested_values=: (::Array[String]) -> ::Array[String]
 
+        attr_reader reservation_expires_at: Time?
+
+        def reservation_expires_at=: (Time) -> Time
+
+        attr_reader reservation_id: String?
+
+        def reservation_id=: (String) -> String
+
+        attr_reader reservation_metadata: String?
+
+        def reservation_metadata=: (String) -> String
+
+        attr_reader reservation_ttl_seconds: Integer?
+
+        def reservation_ttl_seconds=: (Integer) -> Integer
+
+        attr_reader reserve_amount: Float?
+
+        def reserve_amount=: (Float) -> Float
+
         attr_reader resource_id: String?
 
         def resource_id=: (String) -> String
@@ -54,6 +79,11 @@ module Stigg
           ?feature_id: String,
           ?requested_usage: Integer,
           ?requested_values: ::Array[String],
+          ?reservation_expires_at: Time,
+          ?reservation_id: String,
+          ?reservation_metadata: String,
+          ?reservation_ttl_seconds: Integer,
+          ?reserve_amount: Float,
           ?resource_id: String,
           ?x_account_id: String,
           ?x_environment_id: String,
@@ -66,6 +96,11 @@ module Stigg
           feature_id: String,
           requested_usage: Integer,
           requested_values: ::Array[String],
+          reservation_expires_at: Time,
+          reservation_id: String,
+          reservation_metadata: String,
+          reservation_ttl_seconds: Integer,
+          reserve_amount: Float,
           resource_id: String,
           x_account_id: String,
           x_environment_id: String,

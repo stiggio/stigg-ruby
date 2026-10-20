@@ -39,6 +39,40 @@ module Stigg
         #   @return [Array<String>, nil]
         optional :requested_values, Stigg::Internal::Type::ArrayOf[String]
 
+        # @!attribute reservation_expires_at
+        #   When the reservation expires (ISO 8601, at most 24 hours ahead). Mutually
+        #   exclusive with `reservationTtlSeconds`.
+        #
+        #   @return [Time, nil]
+        optional :reservation_expires_at, Time
+
+        # @!attribute reservation_id
+        #   Client-provided reservation ID, required with `reserveAmount`. Retry with the
+        #   same ID to get the same result; reuse with different parameters is a conflict.
+        #
+        #   @return [String, nil]
+        optional :reservation_id, String
+
+        # @!attribute reservation_metadata
+        #   JSON-encoded object of string values to attach to the reservation.
+        #
+        #   @return [String, nil]
+        optional :reservation_metadata, String
+
+        # @!attribute reservation_ttl_seconds
+        #   How long the reservation holds the credits, in seconds (1–86400, default 3600).
+        #   Mutually exclusive with `reservationExpiresAt`.
+        #
+        #   @return [Integer, nil]
+        optional :reservation_ttl_seconds, Integer
+
+        # @!attribute reserve_amount
+        #   Credits to reserve (credit entitlements only). The check is decided and the
+        #   credits held atomically; `requestedUsage` is ignored.
+        #
+        #   @return [Float, nil]
+        optional :reserve_amount, Float
+
         # @!attribute resource_id
         #   Resource ID to scope the entitlement check to a specific resource
         #
@@ -55,7 +89,7 @@ module Stigg
         #   @return [String, nil]
         optional :x_environment_id, String
 
-        # @!method initialize(id:, currency_id: nil, feature_id: nil, requested_usage: nil, requested_values: nil, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        # @!method initialize(id:, currency_id: nil, feature_id: nil, requested_usage: nil, requested_values: nil, reservation_expires_at: nil, reservation_id: nil, reservation_metadata: nil, reservation_ttl_seconds: nil, reserve_amount: nil, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {Stigg::Models::V1::CustomerCheckEntitlementParams} for more details.
         #
@@ -68,6 +102,16 @@ module Stigg
         #   @param requested_usage [Integer] Requested usage amount to evaluate against the entitlement limit (numeric featur
         #
         #   @param requested_values [Array<String>] Requested values to evaluate against allowed values (enum features only)
+        #
+        #   @param reservation_expires_at [Time] When the reservation expires (ISO 8601, at most 24 hours ahead). Mutually exclus
+        #
+        #   @param reservation_id [String] Client-provided reservation ID, required with `reserveAmount`. Retry with the sa
+        #
+        #   @param reservation_metadata [String] JSON-encoded object of string values to attach to the reservation.
+        #
+        #   @param reservation_ttl_seconds [Integer] How long the reservation holds the credits, in seconds (1–86400, default 3600).
+        #
+        #   @param reserve_amount [Float] Credits to reserve (credit entitlements only). The check is decided and the cred
         #
         #   @param resource_id [String] Resource ID to scope the entitlement check to a specific resource
         #

@@ -48,6 +48,45 @@ module Stigg
         sig { params(requested_values: T::Array[String]).void }
         attr_writer :requested_values
 
+        # When the reservation expires (ISO 8601, at most 24 hours ahead). Mutually
+        # exclusive with `reservationTtlSeconds`.
+        sig { returns(T.nilable(Time)) }
+        attr_reader :reservation_expires_at
+
+        sig { params(reservation_expires_at: Time).void }
+        attr_writer :reservation_expires_at
+
+        # Client-provided reservation ID, required with `reserveAmount`. Retry with the
+        # same ID to get the same result; reuse with different parameters is a conflict.
+        sig { returns(T.nilable(String)) }
+        attr_reader :reservation_id
+
+        sig { params(reservation_id: String).void }
+        attr_writer :reservation_id
+
+        # JSON-encoded object of string values to attach to the reservation.
+        sig { returns(T.nilable(String)) }
+        attr_reader :reservation_metadata
+
+        sig { params(reservation_metadata: String).void }
+        attr_writer :reservation_metadata
+
+        # How long the reservation holds the credits, in seconds (1–86400, default 3600).
+        # Mutually exclusive with `reservationExpiresAt`.
+        sig { returns(T.nilable(Integer)) }
+        attr_reader :reservation_ttl_seconds
+
+        sig { params(reservation_ttl_seconds: Integer).void }
+        attr_writer :reservation_ttl_seconds
+
+        # Credits to reserve (credit entitlements only). The check is decided and the
+        # credits held atomically; `requestedUsage` is ignored.
+        sig { returns(T.nilable(Float)) }
+        attr_reader :reserve_amount
+
+        sig { params(reserve_amount: Float).void }
+        attr_writer :reserve_amount
+
         # Resource ID to scope the entitlement check to a specific resource
         sig { returns(T.nilable(String)) }
         attr_reader :resource_id
@@ -74,6 +113,11 @@ module Stigg
             feature_id: String,
             requested_usage: Integer,
             requested_values: T::Array[String],
+            reservation_expires_at: Time,
+            reservation_id: String,
+            reservation_metadata: String,
+            reservation_ttl_seconds: Integer,
+            reserve_amount: Float,
             resource_id: String,
             x_account_id: String,
             x_environment_id: String,
@@ -92,6 +136,20 @@ module Stigg
           requested_usage: nil,
           # Requested values to evaluate against allowed values (enum features only)
           requested_values: nil,
+          # When the reservation expires (ISO 8601, at most 24 hours ahead). Mutually
+          # exclusive with `reservationTtlSeconds`.
+          reservation_expires_at: nil,
+          # Client-provided reservation ID, required with `reserveAmount`. Retry with the
+          # same ID to get the same result; reuse with different parameters is a conflict.
+          reservation_id: nil,
+          # JSON-encoded object of string values to attach to the reservation.
+          reservation_metadata: nil,
+          # How long the reservation holds the credits, in seconds (1–86400, default 3600).
+          # Mutually exclusive with `reservationExpiresAt`.
+          reservation_ttl_seconds: nil,
+          # Credits to reserve (credit entitlements only). The check is decided and the
+          # credits held atomically; `requestedUsage` is ignored.
+          reserve_amount: nil,
           # Resource ID to scope the entitlement check to a specific resource
           resource_id: nil,
           x_account_id: nil,
@@ -108,6 +166,11 @@ module Stigg
               feature_id: String,
               requested_usage: Integer,
               requested_values: T::Array[String],
+              reservation_expires_at: Time,
+              reservation_id: String,
+              reservation_metadata: String,
+              reservation_ttl_seconds: Integer,
+              reserve_amount: Float,
               resource_id: String,
               x_account_id: String,
               x_environment_id: String,

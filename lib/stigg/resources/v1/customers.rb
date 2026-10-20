@@ -191,7 +191,7 @@ module Stigg
         # outages; reach for this endpoint when a live HTTP call is the natural fit, such
         # as from a non-Node backend or a server-side job.
         #
-        # @overload check_entitlement(id, currency_id: nil, feature_id: nil, requested_usage: nil, requested_values: nil, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        # @overload check_entitlement(id, currency_id: nil, feature_id: nil, requested_usage: nil, requested_values: nil, reservation_expires_at: nil, reservation_id: nil, reservation_metadata: nil, reservation_ttl_seconds: nil, reserve_amount: nil, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #
         # @param id [String] Path param: The unique identifier of the entity
         #
@@ -202,6 +202,16 @@ module Stigg
         # @param requested_usage [Integer] Query param: Requested usage amount to evaluate against the entitlement limit (n
         #
         # @param requested_values [Array<String>] Query param: Requested values to evaluate against allowed values (enum features
+        #
+        # @param reservation_expires_at [Time] Query param: When the reservation expires (ISO 8601, at most 24 hours ahead). Mu
+        #
+        # @param reservation_id [String] Query param: Client-provided reservation ID, required with `reserveAmount`. Retr
+        #
+        # @param reservation_metadata [String] Query param: JSON-encoded object of string values to attach to the reservation.
+        #
+        # @param reservation_ttl_seconds [Integer] Query param: How long the reservation holds the credits, in seconds (1–86400, de
+        #
+        # @param reserve_amount [Float] Query param: Credits to reserve (credit entitlements only). The check is decided
         #
         # @param resource_id [String] Query param: Resource ID to scope the entitlement check to a specific resource
         #
@@ -215,7 +225,19 @@ module Stigg
         #
         # @see Stigg::Models::V1::CustomerCheckEntitlementParams
         def check_entitlement(id, params = {})
-          query_params = [:currency_id, :feature_id, :requested_usage, :requested_values, :resource_id]
+          query_params =
+            [
+              :currency_id,
+              :feature_id,
+              :requested_usage,
+              :requested_values,
+              :reservation_expires_at,
+              :reservation_id,
+              :reservation_metadata,
+              :reservation_ttl_seconds,
+              :reserve_amount,
+              :resource_id
+            ]
           parsed, options = Stigg::V1::CustomerCheckEntitlementParams.dump_request(params)
           query = Stigg::Internal::Util.encode_query_params(parsed.slice(*query_params))
           @client.request(
@@ -226,6 +248,11 @@ module Stigg
               feature_id: "featureId",
               requested_usage: "requestedUsage",
               requested_values: "requestedValues",
+              reservation_expires_at: "reservationExpiresAt",
+              reservation_id: "reservationId",
+              reservation_metadata: "reservationMetadata",
+              reservation_ttl_seconds: "reservationTtlSeconds",
+              reserve_amount: "reserveAmount",
               resource_id: "resourceId"
             ),
             headers: parsed.except(*query_params).transform_keys(
