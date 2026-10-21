@@ -47,12 +47,13 @@ module Stigg
           required :feature_id, String, api_name: :featureId
 
           # @!attribute value
-          #   The value to report for usage. Must be a whole number — the REST API does not
-          #   accept fractional (float) usage values; scale up (e.g. report cents instead of
-          #   dollars, or milliseconds instead of seconds) if you need sub-unit precision.
+          #   The value to report for usage. Fractional values are accepted and rounded half
+          #   away from zero to 5 decimal places. A value with a fractional part must have an
+          #   absolute value below 34,359,738,368 (2^35); whole numbers are accepted up to
+          #   ±9,007,199,254,740,991.
           #
-          #   @return [Integer]
-          required :value, Integer
+          #   @return [Float]
+          required :value, Float
 
           # @!attribute created_at
           #   Timestamp of when the record was created
@@ -104,7 +105,7 @@ module Stigg
           #
           #   @param feature_id [String] Feature id
           #
-          #   @param value [Integer] The value to report for usage. Must be a whole number — the REST API does not ac
+          #   @param value [Float] The value to report for usage. Fractional values are accepted and rounded half a
           #
           #   @param created_at [Time] Timestamp of when the record was created
           #

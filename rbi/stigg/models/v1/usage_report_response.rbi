@@ -67,7 +67,7 @@ module Stigg
           attr_accessor :timestamp
 
           # The usage measurement record
-          sig { returns(Integer) }
+          sig { returns(Float) }
           attr_accessor :value
 
           # Optimistic credit balance for a credit-backed feature
@@ -121,7 +121,7 @@ module Stigg
               customer_id: String,
               feature_id: String,
               timestamp: Time,
-              value: Integer,
+              value: Float,
               credit:
                 T.nilable(
                   Stigg::Models::V1::UsageReportResponse::Data::Credit::OrHash
@@ -174,7 +174,7 @@ module Stigg
                 customer_id: String,
                 feature_id: String,
                 timestamp: Time,
-                value: Integer,
+                value: Float,
                 credit:
                   T.nilable(
                     Stigg::Models::V1::UsageReportResponse::Data::Credit

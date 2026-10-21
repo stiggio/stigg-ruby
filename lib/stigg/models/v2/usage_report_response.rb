@@ -92,8 +92,8 @@ module Stigg
             # @!attribute value
             #   The usage measurement record
             #
-            #   @return [Integer]
-            required :value, Integer
+            #   @return [Float]
+            required :value, Float
 
             # @!attribute credit
             #   The credits this measurement deducted. `null` when the measurement drew from no
@@ -154,7 +154,7 @@ module Stigg
             #
             #   @param timestamp [Time] Timestamp
             #
-            #   @param value [Integer] The usage measurement record
+            #   @param value [Float] The usage measurement record
             #
             #   @param credit [Stigg::Models::V2::UsageReportResponse::Data::Usage::Credit, nil] The credits this measurement deducted. `null` when the measurement drew from no
             #

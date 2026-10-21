@@ -51,8 +51,8 @@ module Stigg
           # @!attribute value
           #   The usage measurement record
           #
-          #   @return [Integer]
-          required :value, Integer
+          #   @return [Float]
+          required :value, Float
 
           # @!attribute credit
           #   Optimistic credit balance for a credit-backed feature
@@ -111,7 +111,7 @@ module Stigg
           #
           #   @param timestamp [Time] Timestamp
           #
-          #   @param value [Integer] The usage measurement record
+          #   @param value [Float] The usage measurement record
           #
           #   @param credit [Stigg::Models::V1::UsageReportResponse::Data::Credit, nil] Optimistic credit balance for a credit-backed feature
           #

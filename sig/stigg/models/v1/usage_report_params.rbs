@@ -41,7 +41,7 @@ module Stigg
           {
             customer_id: String,
             feature_id: String,
-            value: Integer,
+            value: Float,
             created_at: Time,
             dimensions: ::Hash[Symbol, Stigg::Models::V1::UsageReportParams::Usage::dimension],
             idempotency_key: String,
@@ -54,7 +54,7 @@ module Stigg
 
           attr_accessor feature_id: String
 
-          attr_accessor value: Integer
+          attr_accessor value: Float
 
           attr_reader created_at: Time?
 
@@ -81,7 +81,7 @@ module Stigg
           def initialize: (
             customer_id: String,
             feature_id: String,
-            value: Integer,
+            value: Float,
             ?created_at: Time,
             ?dimensions: ::Hash[Symbol, Stigg::Models::V1::UsageReportParams::Usage::dimension],
             ?idempotency_key: String,
@@ -92,7 +92,7 @@ module Stigg
           def to_hash: -> {
             customer_id: String,
             feature_id: String,
-            value: Integer,
+            value: Float,
             created_at: Time,
             dimensions: ::Hash[Symbol, Stigg::Models::V1::UsageReportParams::Usage::dimension],
             idempotency_key: String,

@@ -5,7 +5,7 @@ module Stigg
         def estimate: (
           customer_id: String,
           feature_id: String,
-          value: Integer,
+          value: Float,
           ?dimensions: ::Hash[Symbol, Stigg::Models::V1::UsageEstimateParams::dimension],
           ?resource_id: String?,
           ?update_behavior: Stigg::Models::V1::UsageEstimateParams::update_behavior,

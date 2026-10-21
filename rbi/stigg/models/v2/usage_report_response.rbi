@@ -186,7 +186,7 @@ module Stigg
             attr_accessor :timestamp
 
             # The usage measurement record
-            sig { returns(Integer) }
+            sig { returns(Float) }
             attr_accessor :value
 
             # The credits this measurement deducted. `null` when the measurement drew from no
@@ -244,7 +244,7 @@ module Stigg
                 customer_id: String,
                 feature_id: String,
                 timestamp: Time,
-                value: Integer,
+                value: Float,
                 credit:
                   T.nilable(
                     Stigg::Models::V2::UsageReportResponse::Data::Usage::Credit::OrHash
@@ -299,7 +299,7 @@ module Stigg
                   customer_id: String,
                   feature_id: String,
                   timestamp: Time,
-                  value: Integer,
+                  value: Float,
                   credit:
                     T.nilable(
                       Stigg::Models::V2::UsageReportResponse::Data::Usage::Credit

@@ -22,7 +22,7 @@ module Stigg
             customer_id: String,
             feature_id: String,
             timestamp: Time,
-            value: Integer,
+            value: Float,
             credit: Stigg::Models::V1::UsageReportResponse::Data::Credit?,
             current_usage: Float?,
             next_reset_date: Time?,
@@ -42,7 +42,7 @@ module Stigg
 
           attr_accessor timestamp: Time
 
-          attr_accessor value: Integer
+          attr_accessor value: Float
 
           attr_accessor credit: Stigg::Models::V1::UsageReportResponse::Data::Credit?
 
@@ -62,7 +62,7 @@ module Stigg
             customer_id: String,
             feature_id: String,
             timestamp: Time,
-            value: Integer,
+            value: Float,
             ?credit: Stigg::Models::V1::UsageReportResponse::Data::Credit?,
             ?current_usage: Float?,
             ?next_reset_date: Time?,
@@ -77,7 +77,7 @@ module Stigg
             customer_id: String,
             feature_id: String,
             timestamp: Time,
-            value: Integer,
+            value: Float,
             credit: Stigg::Models::V1::UsageReportResponse::Data::Credit?,
             current_usage: Float?,
             next_reset_date: Time?,

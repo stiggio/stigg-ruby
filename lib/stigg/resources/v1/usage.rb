@@ -18,7 +18,7 @@ module Stigg
         #
         # @param feature_id [String] Body param: Feature id
         #
-        # @param value [Integer] Body param: The value to report for usage. Must be a whole number — the REST API
+        # @param value [Float] Body param: The value to report for usage. Fractional values are accepted and ro
         #
         # @param dimensions [Hash{Symbol=>String, Float, Boolean}] Body param: Additional dimensions for the usage report
         #
