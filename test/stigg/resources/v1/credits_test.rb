@@ -54,12 +54,16 @@ class Stigg::Test::Resources::V1::CreditsTest < Stigg::Test::ResourceTest
     assert_pattern do
       row => {
         amount: Float,
+        breakdown: ^(Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::CreditListLedgerResponse::Breakdown]) | nil,
         credit_currency_id: String,
         credit_grant_id: String,
         customer_id: String,
         event_id: String | nil,
         event_type: Stigg::Models::V1::CreditListLedgerResponse::EventType,
         feature_id: String | nil,
+        hold_returned_amount: Float | nil,
+        metadata: ^(Stigg::Internal::Type::HashOf[String]) | nil,
+        reservation_id: String | nil,
         resource_id: String | nil,
         timestamp: Time
       }

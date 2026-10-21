@@ -4,18 +4,24 @@ module Stigg
       type credit_list_ledger_response =
         {
           amount: Float,
+          breakdown: ::Array[Stigg::Models::V1::CreditListLedgerResponse::Breakdown]?,
           credit_currency_id: String,
           credit_grant_id: String,
           customer_id: String,
           event_id: String?,
           event_type: Stigg::Models::V1::CreditListLedgerResponse::event_type,
           feature_id: String?,
+          hold_returned_amount: Float?,
+          metadata: ::Hash[Symbol, String]?,
+          reservation_id: String?,
           resource_id: String?,
           timestamp: Time
         }
 
       class CreditListLedgerResponse < Stigg::Internal::Type::BaseModel
         attr_accessor amount: Float
+
+        attr_accessor breakdown: ::Array[Stigg::Models::V1::CreditListLedgerResponse::Breakdown]?
 
         attr_accessor credit_currency_id: String
 
@@ -29,33 +35,138 @@ module Stigg
 
         attr_accessor feature_id: String?
 
+        attr_accessor hold_returned_amount: Float?
+
+        attr_accessor metadata: ::Hash[Symbol, String]?
+
+        attr_accessor reservation_id: String?
+
         attr_accessor resource_id: String?
 
         attr_accessor timestamp: Time
 
         def initialize: (
           amount: Float,
+          breakdown: ::Array[Stigg::Models::V1::CreditListLedgerResponse::Breakdown]?,
           credit_currency_id: String,
           credit_grant_id: String,
           customer_id: String,
           event_id: String?,
           event_type: Stigg::Models::V1::CreditListLedgerResponse::event_type,
           feature_id: String?,
+          hold_returned_amount: Float?,
+          metadata: ::Hash[Symbol, String]?,
+          reservation_id: String?,
           resource_id: String?,
           timestamp: Time
         ) -> void
 
         def to_hash: -> {
           amount: Float,
+          breakdown: ::Array[Stigg::Models::V1::CreditListLedgerResponse::Breakdown]?,
           credit_currency_id: String,
           credit_grant_id: String,
           customer_id: String,
           event_id: String?,
           event_type: Stigg::Models::V1::CreditListLedgerResponse::event_type,
           feature_id: String?,
+          hold_returned_amount: Float?,
+          metadata: ::Hash[Symbol, String]?,
+          reservation_id: String?,
           resource_id: String?,
           timestamp: Time
         }
+
+        type breakdown =
+          {
+            amount: Float,
+            credit_currency_id: String,
+            credit_grant_id: String,
+            customer_id: String,
+            event_id: String?,
+            event_type: Stigg::Models::V1::CreditListLedgerResponse::Breakdown::event_type,
+            feature_id: String?,
+            reservation_id: String?,
+            resource_id: String?,
+            timestamp: Time
+          }
+
+        class Breakdown < Stigg::Internal::Type::BaseModel
+          attr_accessor amount: Float
+
+          attr_accessor credit_currency_id: String
+
+          attr_accessor credit_grant_id: String
+
+          attr_accessor customer_id: String
+
+          attr_accessor event_id: String?
+
+          attr_accessor event_type: Stigg::Models::V1::CreditListLedgerResponse::Breakdown::event_type
+
+          attr_accessor feature_id: String?
+
+          attr_accessor reservation_id: String?
+
+          attr_accessor resource_id: String?
+
+          attr_accessor timestamp: Time
+
+          def initialize: (
+            amount: Float,
+            credit_currency_id: String,
+            credit_grant_id: String,
+            customer_id: String,
+            event_id: String?,
+            event_type: Stigg::Models::V1::CreditListLedgerResponse::Breakdown::event_type,
+            feature_id: String?,
+            reservation_id: String?,
+            resource_id: String?,
+            timestamp: Time
+          ) -> void
+
+          def to_hash: -> {
+            amount: Float,
+            credit_currency_id: String,
+            credit_grant_id: String,
+            customer_id: String,
+            event_id: String?,
+            event_type: Stigg::Models::V1::CreditListLedgerResponse::Breakdown::event_type,
+            feature_id: String?,
+            reservation_id: String?,
+            resource_id: String?,
+            timestamp: Time
+          }
+
+          type event_type =
+            :CREDITS_GRANTED
+            | :CREDITS_EXPIRED
+            | :CREDITS_CONSUMED
+            | :CREDITS_VOIDED
+            | :CREDITS_UPDATED
+            | :CREDITS_CONSUMPTION_TRANSFER_SOURCE
+            | :CREDITS_CONSUMPTION_TRANSFER_TARGET
+            | :CREDITS_RESERVED
+            | :CREDITS_RESERVATION_RELEASED
+            | :CREDITS_RESERVATION_EXPIRED
+
+          module EventType
+            extend Stigg::Internal::Type::Enum
+
+            CREDITS_GRANTED: :CREDITS_GRANTED
+            CREDITS_EXPIRED: :CREDITS_EXPIRED
+            CREDITS_CONSUMED: :CREDITS_CONSUMED
+            CREDITS_VOIDED: :CREDITS_VOIDED
+            CREDITS_UPDATED: :CREDITS_UPDATED
+            CREDITS_CONSUMPTION_TRANSFER_SOURCE: :CREDITS_CONSUMPTION_TRANSFER_SOURCE
+            CREDITS_CONSUMPTION_TRANSFER_TARGET: :CREDITS_CONSUMPTION_TRANSFER_TARGET
+            CREDITS_RESERVED: :CREDITS_RESERVED
+            CREDITS_RESERVATION_RELEASED: :CREDITS_RESERVATION_RELEASED
+            CREDITS_RESERVATION_EXPIRED: :CREDITS_RESERVATION_EXPIRED
+
+            def self?.values: -> ::Array[Stigg::Models::V1::CreditListLedgerResponse::Breakdown::event_type]
+          end
+        end
 
         type event_type =
           :CREDITS_GRANTED
@@ -65,6 +176,9 @@ module Stigg
           | :CREDITS_UPDATED
           | :CREDITS_CONSUMPTION_TRANSFER_SOURCE
           | :CREDITS_CONSUMPTION_TRANSFER_TARGET
+          | :CREDITS_RESERVED
+          | :CREDITS_RESERVATION_RELEASED
+          | :CREDITS_RESERVATION_EXPIRED
 
         module EventType
           extend Stigg::Internal::Type::Enum
@@ -76,6 +190,9 @@ module Stigg
           CREDITS_UPDATED: :CREDITS_UPDATED
           CREDITS_CONSUMPTION_TRANSFER_SOURCE: :CREDITS_CONSUMPTION_TRANSFER_SOURCE
           CREDITS_CONSUMPTION_TRANSFER_TARGET: :CREDITS_CONSUMPTION_TRANSFER_TARGET
+          CREDITS_RESERVED: :CREDITS_RESERVED
+          CREDITS_RESERVATION_RELEASED: :CREDITS_RESERVATION_RELEASED
+          CREDITS_RESERVATION_EXPIRED: :CREDITS_RESERVATION_EXPIRED
 
           def self?.values: -> ::Array[Stigg::Models::V1::CreditListLedgerResponse::event_type]
         end

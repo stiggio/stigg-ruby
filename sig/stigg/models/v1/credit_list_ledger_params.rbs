@@ -9,6 +9,7 @@ module Stigg
           currency_id: String,
           event_type: String,
           limit: Integer,
+          reservation_id: String,
           resource_id: String,
           x_account_id: String,
           x_environment_id: String
@@ -41,6 +42,10 @@ module Stigg
 
         def limit=: (Integer) -> Integer
 
+        attr_reader reservation_id: String?
+
+        def reservation_id=: (String) -> String
+
         attr_reader resource_id: String?
 
         def resource_id=: (String) -> String
@@ -60,6 +65,7 @@ module Stigg
           ?currency_id: String,
           ?event_type: String,
           ?limit: Integer,
+          ?reservation_id: String,
           ?resource_id: String,
           ?x_account_id: String,
           ?x_environment_id: String,
@@ -73,6 +79,7 @@ module Stigg
           currency_id: String,
           event_type: String,
           limit: Integer,
+          reservation_id: String,
           resource_id: String,
           x_account_id: String,
           x_environment_id: String,

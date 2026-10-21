@@ -108,6 +108,7 @@ module Stigg
             currency_id: String,
             event_type: String,
             limit: Integer,
+            reservation_id: String,
             resource_id: String,
             x_account_id: String,
             x_environment_id: String,
@@ -131,6 +132,8 @@ module Stigg
           event_type: nil,
           # Query param: Maximum number of items to return
           limit: nil,
+          # Query param: Filter by credit reservation ID
+          reservation_id: nil,
           # Query param: Filter by resource ID
           resource_id: nil,
           # Header param: Account ID — optional when authenticating with a user JWT (Bearer

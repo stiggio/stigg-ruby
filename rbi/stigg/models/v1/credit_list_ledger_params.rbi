@@ -51,6 +51,13 @@ module Stigg
         sig { params(limit: Integer).void }
         attr_writer :limit
 
+        # Filter by credit reservation ID
+        sig { returns(T.nilable(String)) }
+        attr_reader :reservation_id
+
+        sig { params(reservation_id: String).void }
+        attr_writer :reservation_id
+
         # Filter by resource ID
         sig { returns(T.nilable(String)) }
         attr_reader :resource_id
@@ -78,6 +85,7 @@ module Stigg
             currency_id: String,
             event_type: String,
             limit: Integer,
+            reservation_id: String,
             resource_id: String,
             x_account_id: String,
             x_environment_id: String,
@@ -97,6 +105,8 @@ module Stigg
           event_type: nil,
           # Maximum number of items to return
           limit: nil,
+          # Filter by credit reservation ID
+          reservation_id: nil,
           # Filter by resource ID
           resource_id: nil,
           x_account_id: nil,
@@ -114,6 +124,7 @@ module Stigg
               currency_id: String,
               event_type: String,
               limit: Integer,
+              reservation_id: String,
               resource_id: String,
               x_account_id: String,
               x_environment_id: String,

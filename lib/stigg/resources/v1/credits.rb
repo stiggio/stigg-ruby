@@ -132,7 +132,7 @@ module Stigg
         #
         # Retrieves a paginated list of credit ledger events for a customer.
         #
-        # @overload list_ledger(customer_id:, after: nil, before: nil, currency_id: nil, event_type: nil, limit: nil, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        # @overload list_ledger(customer_id:, after: nil, before: nil, currency_id: nil, event_type: nil, limit: nil, reservation_id: nil, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #
         # @param customer_id [String] Query param: Filter by customer ID (required)
         #
@@ -146,6 +146,8 @@ module Stigg
         #
         # @param limit [Integer] Query param: Maximum number of items to return
         #
+        # @param reservation_id [String] Query param: Filter by credit reservation ID
+        #
         # @param resource_id [String] Query param: Filter by resource ID
         #
         # @param x_account_id [String] Header param: Account ID — optional when authenticating with a user JWT (Bearer
@@ -158,7 +160,8 @@ module Stigg
         #
         # @see Stigg::Models::V1::CreditListLedgerParams
         def list_ledger(params)
-          query_params = [:customer_id, :after, :before, :currency_id, :event_type, :limit, :resource_id]
+          query_params =
+            [:customer_id, :after, :before, :currency_id, :event_type, :limit, :reservation_id, :resource_id]
           parsed, options = Stigg::V1::CreditListLedgerParams.dump_request(params)
           query = Stigg::Internal::Util.encode_query_params(parsed.slice(*query_params))
           @client.request(
@@ -168,6 +171,7 @@ module Stigg
               customer_id: "customerId",
               currency_id: "currencyId",
               event_type: "eventType",
+              reservation_id: "reservationId",
               resource_id: "resourceId"
             ),
             headers: parsed.except(*query_params).transform_keys(

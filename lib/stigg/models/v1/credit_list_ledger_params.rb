@@ -44,6 +44,12 @@ module Stigg
         #   @return [Integer, nil]
         optional :limit, Integer
 
+        # @!attribute reservation_id
+        #   Filter by credit reservation ID
+        #
+        #   @return [String, nil]
+        optional :reservation_id, String
+
         # @!attribute resource_id
         #   Filter by resource ID
         #
@@ -60,7 +66,7 @@ module Stigg
         #   @return [String, nil]
         optional :x_environment_id, String
 
-        # @!method initialize(customer_id:, after: nil, before: nil, currency_id: nil, event_type: nil, limit: nil, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        # @!method initialize(customer_id:, after: nil, before: nil, currency_id: nil, event_type: nil, limit: nil, reservation_id: nil, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #   @param customer_id [String] Filter by customer ID (required)
         #
         #   @param after [String] Return items that come after this cursor
@@ -72,6 +78,8 @@ module Stigg
         #   @param event_type [String] Filter by event type(s), comma-separated
         #
         #   @param limit [Integer] Maximum number of items to return
+        #
+        #   @param reservation_id [String] Filter by credit reservation ID
         #
         #   @param resource_id [String] Filter by resource ID
         #
