@@ -4259,7 +4259,7 @@ module Stigg
             sig { params(feature_id: String).void }
             attr_writer :feature_id
 
-            # Maximum number of units (max 999999)
+            # Maximum number of units
             sig { returns(T.nilable(Integer)) }
             attr_reader :max_unit_quantity
 
@@ -4406,7 +4406,7 @@ module Stigg
               billing_cadence: nil,
               # The feature ID this pricing model is associated with
               feature_id: nil,
-              # Maximum number of units (max 999999)
+              # Maximum number of units
               max_unit_quantity: nil,
               # Minimum number of units
               min_unit_quantity: nil,

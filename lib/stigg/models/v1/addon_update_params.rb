@@ -1343,7 +1343,7 @@ module Stigg
             optional :feature_id, String, api_name: :featureId
 
             # @!attribute max_unit_quantity
-            #   Maximum number of units (max 999999)
+            #   Maximum number of units
             #
             #   @return [Integer, nil]
             optional :max_unit_quantity, Integer, api_name: :maxUnitQuantity
@@ -1417,7 +1417,7 @@ module Stigg
             #
             #   @param feature_id [String] The feature ID this pricing model is associated with
             #
-            #   @param max_unit_quantity [Integer] Maximum number of units (max 999999)
+            #   @param max_unit_quantity [Integer] Maximum number of units
             #
             #   @param min_unit_quantity [Integer] Minimum number of units
             #
