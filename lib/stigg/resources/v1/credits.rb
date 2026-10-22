@@ -15,6 +15,9 @@ module Stigg
         # @return [Stigg::Resources::V1::Credits::Consumption]
         attr_reader :consumption
 
+        # @return [Stigg::Resources::V1::Credits::Reservations]
+        attr_reader :reservations
+
         # Some parameter documentations has been truncated, see
         # {Stigg::Models::V1::CreditGetAutoRechargeParams} for more details.
         #
@@ -192,6 +195,7 @@ module Stigg
           @grants = Stigg::Resources::V1::Credits::Grants.new(client: client)
           @custom_currencies = Stigg::Resources::V1::Credits::CustomCurrencies.new(client: client)
           @consumption = Stigg::Resources::V1::Credits::Consumption.new(client: client)
+          @reservations = Stigg::Resources::V1::Credits::Reservations.new(client: client)
         end
       end
     end

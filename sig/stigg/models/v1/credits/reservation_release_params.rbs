@@ -1,0 +1,66 @@
+module Stigg
+  module Models
+    module V1
+      module Credits
+        type reservation_release_params =
+          {
+            reservation_id: String,
+            consumed_amount: Float,
+            currency_id: String,
+            customer_id: String,
+            resource_id: String,
+            x_account_id: String,
+            x_environment_id: String
+          }
+          & Stigg::Internal::Type::request_parameters
+
+        class ReservationReleaseParams < Stigg::Internal::Type::BaseModel
+          extend Stigg::Internal::Type::RequestParameters::Converter
+          include Stigg::Internal::Type::RequestParameters
+
+          attr_accessor reservation_id: String
+
+          attr_accessor consumed_amount: Float
+
+          attr_accessor currency_id: String
+
+          attr_accessor customer_id: String
+
+          attr_reader resource_id: String?
+
+          def resource_id=: (String) -> String
+
+          attr_reader x_account_id: String?
+
+          def x_account_id=: (String) -> String
+
+          attr_reader x_environment_id: String?
+
+          def x_environment_id=: (String) -> String
+
+          def initialize: (
+            reservation_id: String,
+            consumed_amount: Float,
+            currency_id: String,
+            customer_id: String,
+            ?resource_id: String,
+            ?x_account_id: String,
+            ?x_environment_id: String,
+            ?request_options: Stigg::request_opts
+          ) -> void
+
+          def to_hash: -> {
+            reservation_id: String,
+            consumed_amount: Float,
+            currency_id: String,
+            customer_id: String,
+            resource_id: String,
+            x_account_id: String,
+            x_environment_id: String,
+            request_options: Stigg::RequestOptions
+          }
+        end
+      end
+    end
+  end
+end

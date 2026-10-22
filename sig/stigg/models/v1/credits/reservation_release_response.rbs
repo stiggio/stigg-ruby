@@ -1,0 +1,129 @@
+module Stigg
+  module Models
+    module V1
+      module Credits
+        type reservation_release_response =
+          { data: Stigg::Models::V1::Credits::ReservationReleaseResponse::Data }
+
+        class ReservationReleaseResponse < Stigg::Internal::Type::BaseModel
+          attr_accessor data: Stigg::Models::V1::Credits::ReservationReleaseResponse::Data
+
+          def initialize: (
+            data: Stigg::Models::V1::Credits::ReservationReleaseResponse::Data
+          ) -> void
+
+          def to_hash: -> {
+            data: Stigg::Models::V1::Credits::ReservationReleaseResponse::Data
+          }
+
+          type data =
+            {
+              credit: Stigg::Models::V1::Credits::ReservationReleaseResponse::Data::Credit?,
+              reservation: Stigg::Models::V1::Credits::ReservationReleaseResponse::Data::Reservation
+            }
+
+          class Data < Stigg::Internal::Type::BaseModel
+            attr_accessor credit: Stigg::Models::V1::Credits::ReservationReleaseResponse::Data::Credit?
+
+            attr_accessor reservation: Stigg::Models::V1::Credits::ReservationReleaseResponse::Data::Reservation
+
+            def initialize: (
+              credit: Stigg::Models::V1::Credits::ReservationReleaseResponse::Data::Credit?,
+              reservation: Stigg::Models::V1::Credits::ReservationReleaseResponse::Data::Reservation
+            ) -> void
+
+            def to_hash: -> {
+              credit: Stigg::Models::V1::Credits::ReservationReleaseResponse::Data::Credit?,
+              reservation: Stigg::Models::V1::Credits::ReservationReleaseResponse::Data::Reservation
+            }
+
+            type credit =
+              {
+                currency_id: String,
+                current_usage: Float,
+                timestamp: Time,
+                usage_limit: Float,
+                usage_period_end: Time?
+              }
+
+            class Credit < Stigg::Internal::Type::BaseModel
+              attr_accessor currency_id: String
+
+              attr_accessor current_usage: Float
+
+              attr_accessor timestamp: Time
+
+              attr_accessor usage_limit: Float
+
+              attr_accessor usage_period_end: Time?
+
+              def initialize: (
+                currency_id: String,
+                current_usage: Float,
+                timestamp: Time,
+                usage_limit: Float,
+                ?usage_period_end: Time?
+              ) -> void
+
+              def to_hash: -> {
+                currency_id: String,
+                current_usage: Float,
+                timestamp: Time,
+                usage_limit: Float,
+                usage_period_end: Time?
+              }
+            end
+
+            type reservation =
+              {
+                id: String,
+                amount: Float,
+                consumed_amount: Float?,
+                expires_at: Time,
+                status: Stigg::Models::V1::Credits::ReservationReleaseResponse::Data::Reservation::status
+              }
+
+            class Reservation < Stigg::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              attr_accessor amount: Float
+
+              attr_accessor consumed_amount: Float?
+
+              attr_accessor expires_at: Time
+
+              attr_accessor status: Stigg::Models::V1::Credits::ReservationReleaseResponse::Data::Reservation::status
+
+              def initialize: (
+                id: String,
+                amount: Float,
+                consumed_amount: Float?,
+                expires_at: Time,
+                status: Stigg::Models::V1::Credits::ReservationReleaseResponse::Data::Reservation::status
+              ) -> void
+
+              def to_hash: -> {
+                id: String,
+                amount: Float,
+                consumed_amount: Float?,
+                expires_at: Time,
+                status: Stigg::Models::V1::Credits::ReservationReleaseResponse::Data::Reservation::status
+              }
+
+              type status = :ACTIVE | :RELEASED
+
+              module Status
+                extend Stigg::Internal::Type::Enum
+
+                ACTIVE: :ACTIVE
+                RELEASED: :RELEASED
+
+                def self?.values: -> ::Array[Stigg::Models::V1::Credits::ReservationReleaseResponse::Data::Reservation::status]
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end
