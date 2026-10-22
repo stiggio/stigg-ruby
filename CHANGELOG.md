@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.1.0-beta.59](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.58...v0.1.0-beta.59) (2026-10-22)
+
+
+### Features
+
+* **STIGG-10078:** credit reservation release in the sdks ([1304cf9](https://github.com/stiggio/stigg-ruby/commit/1304cf9c429ff4a0e4b3e8ef189e514e826d4f19))
+
+
+### Bug Fixes
+
+* sync OpenAPI spec from stigg-api ([5802632](https://github.com/stiggio/stigg-ruby/commit/5802632aea5bea5172def86c993df4a5939178d2))
+* sync OpenAPI spec from stigg-api ([7bca63d](https://github.com/stiggio/stigg-ruby/commit/7bca63d0923f273c08252b867fe5735aae7a6d94))
+* sync OpenAPI spec from stigg-api ([1308798](https://github.com/stiggio/stigg-ruby/commit/13087983769464b32eceea095e9b360db2529d2b))
+* sync OpenAPI spec from stigg-api ([5ee5986](https://github.com/stiggio/stigg-ruby/commit/5ee5986d11a9122559e8ec364c8059bb26b0f5a6))
+* sync OpenAPI spec from stigg-api ([61ee37f](https://github.com/stiggio/stigg-ruby/commit/61ee37f0461ae7ead5876618a5bae322ab21910c))
+
+
+### Chores
+
+* normalize version.rb to gem prerelease format for stlc codegen ([732312c](https://github.com/stiggio/stigg-ruby/commit/732312c75f6f23c560fd49244f76af8a10643f2c))
+
 ## [0.1.0-beta.58](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.57...v0.1.0-beta.58) (2026-10-20)
 
 
