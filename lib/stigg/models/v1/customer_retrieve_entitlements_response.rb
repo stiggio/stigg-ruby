@@ -527,6 +527,7 @@ module Stigg
 
                   ACTIVE = :ACTIVE
                   RELEASED = :RELEASED
+                  EXPIRED = :EXPIRED
 
                   # @!method self.values
                   #   @return [Array<Symbol>]

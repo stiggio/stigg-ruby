@@ -492,13 +492,14 @@ module Stigg
                   status: Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionObjectVariant1::Reservation::status
                 }
 
-                type status = :ACTIVE | :RELEASED
+                type status = :ACTIVE | :RELEASED | :EXPIRED
 
                 module Status
                   extend Stigg::Internal::Type::Enum
 
                   ACTIVE: :ACTIVE
                   RELEASED: :RELEASED
+                  EXPIRED: :EXPIRED
 
                   def self?.values: -> ::Array[Stigg::Models::V1::SubscriptionProvisionResponse::Data::Entitlement::UnionObjectVariant1::Reservation::status]
                 end

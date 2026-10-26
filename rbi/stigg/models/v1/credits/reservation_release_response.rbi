@@ -308,6 +308,11 @@ module Stigg
                     :RELEASED,
                     Stigg::Models::V1::Credits::ReservationReleaseResponse::Data::Reservation::Status::TaggedSymbol
                   )
+                EXPIRED =
+                  T.let(
+                    :EXPIRED,
+                    Stigg::Models::V1::Credits::ReservationReleaseResponse::Data::Reservation::Status::TaggedSymbol
+                  )
 
                 sig do
                   override.returns(
