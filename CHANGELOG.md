@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.1.0-beta.60](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.59...v0.1.0-beta.60) (2026-10-28)
+
+
+### Features
+
+* **STIGG-10529:** governance query as paginated v1Beta.customers.governance.list ([2fc1286](https://github.com/stiggio/stigg-ruby/commit/2fc128611f63f6d1f9796f809ce0e544e3180a2b))
+
+
+### Bug Fixes
+
+* sync OpenAPI spec from stigg-api ([52f3751](https://github.com/stiggio/stigg-ruby/commit/52f37510727f8e194121d9a25653604b5fc5effd))
+* sync OpenAPI spec from stigg-api ([a9f365b](https://github.com/stiggio/stigg-ruby/commit/a9f365b4575f6fcf1533b41ab8fa6ce7cb4a6572))
+* sync OpenAPI spec from stigg-api ([02707c8](https://github.com/stiggio/stigg-ruby/commit/02707c8c8d471921155cfcc15e5ab95088fa32c3))
+* sync OpenAPI spec from stigg-api ([38173fc](https://github.com/stiggio/stigg-ruby/commit/38173fc2c35268bfcd3e85cc0520a542cc567b3f))
+
+
+### Chores
+
+* normalize version.rb to gem prerelease format for stlc codegen ([9071057](https://github.com/stiggio/stigg-ruby/commit/9071057684924855f38983cc91fca3f9095af8fc))
+
 ## [0.1.0-beta.59](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.58...v0.1.0-beta.59) (2026-10-22)
 
 
