@@ -13,6 +13,9 @@ module Stigg
         # @return [Stigg::Resources::V1Beta::Customers::Assignments]
         attr_reader :assignments
 
+        # @return [Stigg::Resources::V1Beta::Customers::Governance]
+        attr_reader :governance
+
         # @api private
         #
         # @param client [Stigg::Client]
@@ -21,6 +24,7 @@ module Stigg
           @entitlements = Stigg::Resources::V1Beta::Customers::Entitlements.new(client: client)
           @entities = Stigg::Resources::V1Beta::Customers::Entities.new(client: client)
           @assignments = Stigg::Resources::V1Beta::Customers::Assignments.new(client: client)
+          @governance = Stigg::Resources::V1Beta::Customers::Governance.new(client: client)
         end
       end
     end

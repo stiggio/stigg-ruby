@@ -13,6 +13,9 @@ module Stigg
         sig { returns(Stigg::Resources::V1Beta::Customers::Assignments) }
         attr_reader :assignments
 
+        sig { returns(Stigg::Resources::V1Beta::Customers::Governance) }
+        attr_reader :governance
+
         # @api private
         sig { params(client: Stigg::Client).returns(T.attached_class) }
         def self.new(client:)

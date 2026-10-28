@@ -8,6 +8,8 @@ module Stigg
 
         attr_reader assignments: Stigg::Resources::V1Beta::Customers::Assignments
 
+        attr_reader governance: Stigg::Resources::V1Beta::Customers::Governance
+
         def initialize: (client: Stigg::Client) -> void
       end
     end

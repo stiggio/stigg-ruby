@@ -1,0 +1,29 @@
+module Stigg
+  module Resources
+    class V1Beta
+      class Customers
+        class Governance
+          def list: (
+            String id,
+            ?after: String,
+            ?before: String,
+            ?currency_ids: ::Array[String],
+            ?entity_id_search: String,
+            ?entity_type_ids: ::Array[String],
+            ?feature_ids: ::Array[String],
+            ?limit: Integer,
+            ?min_utilization: Float,
+            ?order: Stigg::Models::V1Beta::Customers::GovernanceListParams::order,
+            ?scope: Stigg::Models::V1Beta::Customers::GovernanceListParams::scope,
+            ?sort_by: Stigg::Models::V1Beta::Customers::GovernanceListParams::sort_by,
+            ?x_account_id: String,
+            ?x_environment_id: String,
+            ?request_options: Stigg::request_opts
+          ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1Beta::Customers::GovernanceListResponse]
+
+          def initialize: (client: Stigg::Client) -> void
+        end
+      end
+    end
+  end
+end
