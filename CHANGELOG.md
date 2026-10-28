@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.0-beta.61](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.60...v0.1.0-beta.61) (2026-10-28)
+
+
+### Bug Fixes
+
+* **stainless:** restore edge.api.stigg.io as the production server ([d0c44ea](https://github.com/stiggio/stigg-ruby/commit/d0c44eadad52a1f458eee8176aa33e88952e1dd4))
+* sync OpenAPI spec from stigg-api ([847d6bb](https://github.com/stiggio/stigg-ruby/commit/847d6bbc0e8426b1ae9559fbd35ffc712d0d54f6))
+
+
+### Chores
+
+* normalize version.rb to gem prerelease format for stlc codegen ([45c00b0](https://github.com/stiggio/stigg-ruby/commit/45c00b079035295798e8b2e7e44e296e1d67dcd4))
+
 ## [0.1.0-beta.60](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.59...v0.1.0-beta.60) (2026-10-28)
 
 
