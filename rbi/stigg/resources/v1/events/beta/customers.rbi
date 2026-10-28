@@ -15,6 +15,7 @@ module Stigg
               params(
                 id: String,
                 after: String,
+                before: String,
                 currency_ids: T::Array[String],
                 entity_id_search: String,
                 entity_type_ids: T::Array[String],
@@ -37,19 +38,24 @@ module Stigg
             def retrieve_governance(
               # Path param: The customer ID.
               id,
-              # Query param: Return items that come after this cursor
+              # Query param: Opaque cursor from a page’s `next`; returns the page after it.
+              # Mutually exclusive with `before`.
               after: nil,
-              # Query param: Currency ids to include, repeated per value (e.g.
-              # `?currencyIds=credits`). Omit both featureIds and currencyIds for tree mode.
+              # Query param: Opaque cursor from a page’s `prev`; returns the page before it.
+              # Mutually exclusive with `after`.
+              before: nil,
+              # Query param: Currency ids to include, comma-separated (e.g.
+              # `?currencyIds=credits`), up to 100. Omit both featureIds and currencyIds for
+              # tree mode.
               currency_ids: nil,
               # Query param: Case-insensitive substring match on the entity id or its display
               # name (`%`/`_` matched literally).
               entity_id_search: nil,
-              # Query param: Filter to one or more entity types, repeated per value (e.g.
-              # `?entityTypeIds=team&entityTypeIds=user`).
+              # Query param: Filter to one or more entity types, comma-separated (e.g.
+              # `?entityTypeIds=team,user`), up to 100.
               entity_type_ids: nil,
-              # Query param: Feature ids to include, repeated per value (e.g.
-              # `?featureIds=ai-tokens&featureIds=seats`). Omit both featureIds and currencyIds
+              # Query param: Feature ids to include, comma-separated (e.g.
+              # `?featureIds=ai-tokens,seats`), up to 100. Omit both featureIds and currencyIds
               # for tree mode — every node in the hierarchy with no usage configuration
               # attached.
               feature_ids: nil,

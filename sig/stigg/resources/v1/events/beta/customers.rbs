@@ -7,6 +7,7 @@ module Stigg
             def retrieve_governance: (
               String id,
               ?after: String,
+              ?before: String,
               ?currency_ids: ::Array[String],
               ?entity_id_search: String,
               ?entity_type_ids: ::Array[String],

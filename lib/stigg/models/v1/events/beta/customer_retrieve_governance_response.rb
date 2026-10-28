@@ -164,12 +164,20 @@ module Stigg
               #   @return [String, nil]
               required :next_, String, api_name: :next, nil?: true
 
-              # @!method initialize(next_:)
+              # @!attribute prev
+              #   Cursor for fetching the previous page of results, or null if at the beginning
+              #
+              #   @return [String, nil]
+              required :prev, String, nil?: true
+
+              # @!method initialize(next_:, prev:)
               #   Some parameter documentations has been truncated, see
               #   {Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Pagination}
               #   for more details.
               #
               #   @param next_ [String, nil] Cursor for fetching the next page of results, or null if no additional pages exi
+              #
+              #   @param prev [String, nil] Cursor for fetching the previous page of results, or null if at the beginning
             end
           end
         end

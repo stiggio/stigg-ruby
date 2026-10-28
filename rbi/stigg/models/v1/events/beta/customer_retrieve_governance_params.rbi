@@ -20,15 +20,24 @@ module Stigg
             sig { returns(String) }
             attr_accessor :id
 
-            # Return items that come after this cursor
+            # Opaque cursor from a page’s `next`; returns the page after it. Mutually
+            # exclusive with `before`.
             sig { returns(T.nilable(String)) }
             attr_reader :after
 
             sig { params(after: String).void }
             attr_writer :after
 
-            # Currency ids to include, repeated per value (e.g. `?currencyIds=credits`). Omit
-            # both featureIds and currencyIds for tree mode.
+            # Opaque cursor from a page’s `prev`; returns the page before it. Mutually
+            # exclusive with `after`.
+            sig { returns(T.nilable(String)) }
+            attr_reader :before
+
+            sig { params(before: String).void }
+            attr_writer :before
+
+            # Currency ids to include, comma-separated (e.g. `?currencyIds=credits`), up
+            # to 100. Omit both featureIds and currencyIds for tree mode.
             sig { returns(T.nilable(T::Array[String])) }
             attr_reader :currency_ids
 
@@ -43,18 +52,17 @@ module Stigg
             sig { params(entity_id_search: String).void }
             attr_writer :entity_id_search
 
-            # Filter to one or more entity types, repeated per value (e.g.
-            # `?entityTypeIds=team&entityTypeIds=user`).
+            # Filter to one or more entity types, comma-separated (e.g.
+            # `?entityTypeIds=team,user`), up to 100.
             sig { returns(T.nilable(T::Array[String])) }
             attr_reader :entity_type_ids
 
             sig { params(entity_type_ids: T::Array[String]).void }
             attr_writer :entity_type_ids
 
-            # Feature ids to include, repeated per value (e.g.
-            # `?featureIds=ai-tokens&featureIds=seats`). Omit both featureIds and currencyIds
-            # for tree mode — every node in the hierarchy with no usage configuration
-            # attached.
+            # Feature ids to include, comma-separated (e.g. `?featureIds=ai-tokens,seats`), up
+            # to 100. Omit both featureIds and currencyIds for tree mode — every node in the
+            # hierarchy with no usage configuration attached.
             sig { returns(T.nilable(T::Array[String])) }
             attr_reader :feature_ids
 
@@ -148,6 +156,7 @@ module Stigg
               params(
                 id: String,
                 after: String,
+                before: String,
                 currency_ids: T::Array[String],
                 entity_id_search: String,
                 entity_type_ids: T::Array[String],
@@ -167,21 +176,24 @@ module Stigg
             end
             def self.new(
               id:,
-              # Return items that come after this cursor
+              # Opaque cursor from a page’s `next`; returns the page after it. Mutually
+              # exclusive with `before`.
               after: nil,
-              # Currency ids to include, repeated per value (e.g. `?currencyIds=credits`). Omit
-              # both featureIds and currencyIds for tree mode.
+              # Opaque cursor from a page’s `prev`; returns the page before it. Mutually
+              # exclusive with `after`.
+              before: nil,
+              # Currency ids to include, comma-separated (e.g. `?currencyIds=credits`), up
+              # to 100. Omit both featureIds and currencyIds for tree mode.
               currency_ids: nil,
               # Case-insensitive substring match on the entity id or its display name (`%`/`_`
               # matched literally).
               entity_id_search: nil,
-              # Filter to one or more entity types, repeated per value (e.g.
-              # `?entityTypeIds=team&entityTypeIds=user`).
+              # Filter to one or more entity types, comma-separated (e.g.
+              # `?entityTypeIds=team,user`), up to 100.
               entity_type_ids: nil,
-              # Feature ids to include, repeated per value (e.g.
-              # `?featureIds=ai-tokens&featureIds=seats`). Omit both featureIds and currencyIds
-              # for tree mode — every node in the hierarchy with no usage configuration
-              # attached.
+              # Feature ids to include, comma-separated (e.g. `?featureIds=ai-tokens,seats`), up
+              # to 100. Omit both featureIds and currencyIds for tree mode — every node in the
+              # hierarchy with no usage configuration attached.
               feature_ids: nil,
               # Maximum number of items to return
               limit: nil,
@@ -207,6 +219,7 @@ module Stigg
                 {
                   id: String,
                   after: String,
+                  before: String,
                   currency_ids: T::Array[String],
                   entity_id_search: String,
                   entity_type_ids: T::Array[String],

@@ -249,15 +249,30 @@ module Stigg
               sig { returns(T.nilable(String)) }
               attr_accessor :next_
 
-              sig { params(next_: T.nilable(String)).returns(T.attached_class) }
+              # Cursor for fetching the previous page of results, or null if at the beginning
+              sig { returns(T.nilable(String)) }
+              attr_accessor :prev
+
+              sig do
+                params(
+                  next_: T.nilable(String),
+                  prev: T.nilable(String)
+                ).returns(T.attached_class)
+              end
               def self.new(
                 # Cursor for fetching the next page of results, or null if no additional pages
                 # exist
-                next_:
+                next_:,
+                # Cursor for fetching the previous page of results, or null if at the beginning
+                prev:
               )
               end
 
-              sig { override.returns({ next_: T.nilable(String) }) }
+              sig do
+                override.returns(
+                  { next_: T.nilable(String), prev: T.nilable(String) }
+                )
+              end
               def to_hash
               end
             end

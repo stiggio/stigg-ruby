@@ -16,14 +16,22 @@ module Stigg
             required :id, String
 
             # @!attribute after
-            #   Return items that come after this cursor
+            #   Opaque cursor from a page’s `next`; returns the page after it. Mutually
+            #   exclusive with `before`.
             #
             #   @return [String, nil]
             optional :after, String
 
+            # @!attribute before
+            #   Opaque cursor from a page’s `prev`; returns the page before it. Mutually
+            #   exclusive with `after`.
+            #
+            #   @return [String, nil]
+            optional :before, String
+
             # @!attribute currency_ids
-            #   Currency ids to include, repeated per value (e.g. `?currencyIds=credits`). Omit
-            #   both featureIds and currencyIds for tree mode.
+            #   Currency ids to include, comma-separated (e.g. `?currencyIds=credits`), up
+            #   to 100. Omit both featureIds and currencyIds for tree mode.
             #
             #   @return [Array<String>, nil]
             optional :currency_ids, Stigg::Internal::Type::ArrayOf[String]
@@ -36,17 +44,16 @@ module Stigg
             optional :entity_id_search, String
 
             # @!attribute entity_type_ids
-            #   Filter to one or more entity types, repeated per value (e.g.
-            #   `?entityTypeIds=team&entityTypeIds=user`).
+            #   Filter to one or more entity types, comma-separated (e.g.
+            #   `?entityTypeIds=team,user`), up to 100.
             #
             #   @return [Array<String>, nil]
             optional :entity_type_ids, Stigg::Internal::Type::ArrayOf[String]
 
             # @!attribute feature_ids
-            #   Feature ids to include, repeated per value (e.g.
-            #   `?featureIds=ai-tokens&featureIds=seats`). Omit both featureIds and currencyIds
-            #   for tree mode — every node in the hierarchy with no usage configuration
-            #   attached.
+            #   Feature ids to include, comma-separated (e.g. `?featureIds=ai-tokens,seats`), up
+            #   to 100. Omit both featureIds and currencyIds for tree mode — every node in the
+            #   hierarchy with no usage configuration attached.
             #
             #   @return [Array<String>, nil]
             optional :feature_ids, Stigg::Internal::Type::ArrayOf[String]
@@ -94,22 +101,24 @@ module Stigg
             #   @return [String, nil]
             optional :x_environment_id, String
 
-            # @!method initialize(id:, after: nil, currency_ids: nil, entity_id_search: nil, entity_type_ids: nil, feature_ids: nil, limit: nil, min_utilization: nil, order: nil, scope: nil, sort_by: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+            # @!method initialize(id:, after: nil, before: nil, currency_ids: nil, entity_id_search: nil, entity_type_ids: nil, feature_ids: nil, limit: nil, min_utilization: nil, order: nil, scope: nil, sort_by: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
             #   Some parameter documentations has been truncated, see
             #   {Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceParams} for more
             #   details.
             #
             #   @param id [String]
             #
-            #   @param after [String] Return items that come after this cursor
+            #   @param after [String] Opaque cursor from a page’s `next`; returns the page after it. Mutually exclusiv
             #
-            #   @param currency_ids [Array<String>] Currency ids to include, repeated per value (e.g. `?currencyIds=credits`). Omit
+            #   @param before [String] Opaque cursor from a page’s `prev`; returns the page before it. Mutually exclusi
+            #
+            #   @param currency_ids [Array<String>] Currency ids to include, comma-separated (e.g. `?currencyIds=credits`), up to 10
             #
             #   @param entity_id_search [String] Case-insensitive substring match on the entity id or its display name (`%`/`_` m
             #
-            #   @param entity_type_ids [Array<String>] Filter to one or more entity types, repeated per value (e.g. `?entityTypeIds=tea
+            #   @param entity_type_ids [Array<String>] Filter to one or more entity types, comma-separated (e.g. `?entityTypeIds=team,u
             #
-            #   @param feature_ids [Array<String>] Feature ids to include, repeated per value (e.g. `?featureIds=ai-tokens&featureI
+            #   @param feature_ids [Array<String>] Feature ids to include, comma-separated (e.g. `?featureIds=ai-tokens,seats`), up
             #
             #   @param limit [Integer] Maximum number of items to return
             #

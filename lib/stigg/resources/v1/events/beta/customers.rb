@@ -16,19 +16,21 @@ module Stigg
             # tree can be rebuilt client-side. Usage is read from a periodically-refreshed
             # read model and never gates access.
             #
-            # @overload retrieve_governance(id, after: nil, currency_ids: nil, entity_id_search: nil, entity_type_ids: nil, feature_ids: nil, limit: nil, min_utilization: nil, order: nil, scope: nil, sort_by: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+            # @overload retrieve_governance(id, after: nil, before: nil, currency_ids: nil, entity_id_search: nil, entity_type_ids: nil, feature_ids: nil, limit: nil, min_utilization: nil, order: nil, scope: nil, sort_by: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
             #
             # @param id [String] Path param: The customer ID.
             #
-            # @param after [String] Query param: Return items that come after this cursor
+            # @param after [String] Query param: Opaque cursor from a page’s `next`; returns the page after it. Mutu
             #
-            # @param currency_ids [Array<String>] Query param: Currency ids to include, repeated per value (e.g. `?currencyIds=cre
+            # @param before [String] Query param: Opaque cursor from a page’s `prev`; returns the page before it. Mut
+            #
+            # @param currency_ids [Array<String>] Query param: Currency ids to include, comma-separated (e.g. `?currencyIds=credit
             #
             # @param entity_id_search [String] Query param: Case-insensitive substring match on the entity id or its display na
             #
-            # @param entity_type_ids [Array<String>] Query param: Filter to one or more entity types, repeated per value (e.g. `?enti
+            # @param entity_type_ids [Array<String>] Query param: Filter to one or more entity types, comma-separated (e.g. `?entityT
             #
-            # @param feature_ids [Array<String>] Query param: Feature ids to include, repeated per value (e.g. `?featureIds=ai-to
+            # @param feature_ids [Array<String>] Query param: Feature ids to include, comma-separated (e.g. `?featureIds=ai-token
             #
             # @param limit [Integer] Query param: Maximum number of items to return
             #
@@ -53,6 +55,7 @@ module Stigg
               query_params =
                 [
                   :after,
+                  :before,
                   :currency_ids,
                   :entity_id_search,
                   :entity_type_ids,
