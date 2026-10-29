@@ -116,13 +116,19 @@ module Stigg
           #   @return [Stigg::Models::V1::CustomerResponse::Data::Passthrough, nil]
           optional :passthrough, -> { Stigg::V1::CustomerResponse::Data::Passthrough }
 
+          # @!attribute salesforce_id
+          #   The unique identifier for the customer in Salesforce integration
+          #
+          #   @return [String, nil]
+          optional :salesforce_id, String, api_name: :salesforceId, nil?: true
+
           # @!attribute timezone
           #   Timezone to use for this customer
           #
           #   @return [String, nil]
           optional :timezone, String, nil?: true
 
-          # @!method initialize(id:, archived_at:, created_at:, updated_at:, billing_currency: nil, billing_id: nil, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, language: nil, metadata: nil, name: nil, passthrough: nil, timezone: nil)
+          # @!method initialize(id:, archived_at:, created_at:, updated_at:, billing_currency: nil, billing_id: nil, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, language: nil, metadata: nil, name: nil, passthrough: nil, salesforce_id: nil, timezone: nil)
           #   Some parameter documentations has been truncated, see
           #   {Stigg::Models::V1::CustomerResponse::Data} for more details.
           #
@@ -155,6 +161,8 @@ module Stigg
           #   @param name [String, nil] The name of the customer
           #
           #   @param passthrough [Stigg::Models::V1::CustomerResponse::Data::Passthrough] Vendor-specific billing passthrough fields.
+          #
+          #   @param salesforce_id [String, nil] The unique identifier for the customer in Salesforce integration
           #
           #   @param timezone [String, nil] Timezone to use for this customer
 

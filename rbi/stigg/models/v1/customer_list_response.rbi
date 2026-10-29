@@ -131,6 +131,10 @@ module Stigg
         end
         attr_writer :passthrough
 
+        # The unique identifier for the customer in Salesforce integration
+        sig { returns(T.nilable(String)) }
+        attr_accessor :salesforce_id
+
         # Timezone to use for this customer
         sig { returns(T.nilable(String)) }
         attr_accessor :timezone
@@ -168,6 +172,7 @@ module Stigg
             name: T.nilable(String),
             passthrough:
               Stigg::Models::V1::CustomerListResponse::Passthrough::OrHash,
+            salesforce_id: T.nilable(String),
             timezone: T.nilable(String)
           ).returns(T.attached_class)
         end
@@ -204,6 +209,8 @@ module Stigg
           name: nil,
           # Vendor-specific billing passthrough fields.
           passthrough: nil,
+          # The unique identifier for the customer in Salesforce integration
+          salesforce_id: nil,
           # Timezone to use for this customer
           timezone: nil
         )
@@ -236,6 +243,7 @@ module Stigg
               metadata: T::Hash[Symbol, String],
               name: T.nilable(String),
               passthrough: Stigg::Models::V1::CustomerListResponse::Passthrough,
+              salesforce_id: T.nilable(String),
               timezone: T.nilable(String)
             }
           )

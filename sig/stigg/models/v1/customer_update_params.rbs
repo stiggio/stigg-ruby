@@ -13,6 +13,7 @@ module Stigg
           metadata: ::Hash[Symbol, String],
           name: String?,
           passthrough: Stigg::V1::CustomerUpdateParams::Passthrough,
+          salesforce_id: String?,
           timezone: String?,
           x_account_id: String,
           x_environment_id: String
@@ -53,6 +54,8 @@ module Stigg
           Stigg::V1::CustomerUpdateParams::Passthrough
         ) -> Stigg::V1::CustomerUpdateParams::Passthrough
 
+        attr_accessor salesforce_id: String?
+
         attr_accessor timezone: String?
 
         attr_reader x_account_id: String?
@@ -74,6 +77,7 @@ module Stigg
           ?metadata: ::Hash[Symbol, String],
           ?name: String?,
           ?passthrough: Stigg::V1::CustomerUpdateParams::Passthrough,
+          ?salesforce_id: String?,
           ?timezone: String?,
           ?x_account_id: String,
           ?x_environment_id: String,
@@ -91,6 +95,7 @@ module Stigg
           metadata: ::Hash[Symbol, String],
           name: String?,
           passthrough: Stigg::V1::CustomerUpdateParams::Passthrough,
+          salesforce_id: String?,
           timezone: String?,
           x_account_id: String,
           x_environment_id: String,

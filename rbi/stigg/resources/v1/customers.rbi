@@ -65,6 +65,7 @@ module Stigg
             metadata: T::Hash[Symbol, String],
             name: T.nilable(String),
             passthrough: Stigg::V1::CustomerUpdateParams::Passthrough::OrHash,
+            salesforce_id: T.nilable(String),
             timezone: T.nilable(String),
             x_account_id: String,
             x_environment_id: String,
@@ -96,6 +97,8 @@ module Stigg
           name: nil,
           # Body param: Vendor-specific billing passthrough fields.
           passthrough: nil,
+          # Body param: The unique identifier for the customer in Salesforce integration
+          salesforce_id: nil,
           # Body param: Timezone to use for this customer
           timezone: nil,
           # Header param: Account ID — optional when authenticating with a user JWT (Bearer
@@ -425,6 +428,7 @@ module Stigg
             name: T.nilable(String),
             passthrough:
               Stigg::V1::CustomerProvisionParams::Passthrough::OrHash,
+            salesforce_id: T.nilable(String),
             timezone: T.nilable(String),
             x_account_id: String,
             x_environment_id: String,
@@ -458,6 +462,8 @@ module Stigg
           name: nil,
           # Body param: Vendor-specific billing passthrough fields.
           passthrough: nil,
+          # Body param: The unique identifier for the customer in Salesforce integration
+          salesforce_id: nil,
           # Body param: Timezone to use for this customer
           timezone: nil,
           # Header param: Account ID — optional when authenticating with a user JWT (Bearer

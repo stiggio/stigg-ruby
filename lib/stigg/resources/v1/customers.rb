@@ -54,7 +54,7 @@ module Stigg
         # Updates an existing customer's properties such as name, email, and billing
         # information.
         #
-        # @overload update(id, billing_currency: nil, billing_id: nil, coupon_id: nil, email: nil, integrations: nil, language: nil, metadata: nil, name: nil, passthrough: nil, timezone: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        # @overload update(id, billing_currency: nil, billing_id: nil, coupon_id: nil, email: nil, integrations: nil, language: nil, metadata: nil, name: nil, passthrough: nil, salesforce_id: nil, timezone: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #
         # @param id [String] Path param: The unique identifier of the entity
         #
@@ -75,6 +75,8 @@ module Stigg
         # @param name [String, nil] Body param: The name of the customer
         #
         # @param passthrough [Stigg::Models::V1::CustomerUpdateParams::Passthrough] Body param: Vendor-specific billing passthrough fields.
+        #
+        # @param salesforce_id [String, nil] Body param: The unique identifier for the customer in Salesforce integration
         #
         # @param timezone [String, nil] Body param: Timezone to use for this customer
         #
@@ -456,7 +458,7 @@ module Stigg
         #
         # Creates a new customer.
         #
-        # @overload provision(id:, billing_currency: nil, billing_id: nil, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, language: nil, metadata: nil, name: nil, passthrough: nil, timezone: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        # @overload provision(id:, billing_currency: nil, billing_id: nil, coupon_id: nil, default_payment_method: nil, email: nil, integrations: nil, language: nil, metadata: nil, name: nil, passthrough: nil, salesforce_id: nil, timezone: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #
         # @param id [String] Body param: Customer slug
         #
@@ -479,6 +481,8 @@ module Stigg
         # @param name [String, nil] Body param: The name of the customer
         #
         # @param passthrough [Stigg::Models::V1::CustomerProvisionParams::Passthrough] Body param: Vendor-specific billing passthrough fields.
+        #
+        # @param salesforce_id [String, nil] Body param: The unique identifier for the customer in Salesforce integration
         #
         # @param timezone [String, nil] Body param: Timezone to use for this customer
         #

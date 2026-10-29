@@ -26,6 +26,7 @@ module Stigg
             metadata: ::Hash[Symbol, String],
             name: String?,
             passthrough: Stigg::V1::CustomerResponse::Data::Passthrough,
+            salesforce_id: String?,
             timezone: String?
           }
 
@@ -68,6 +69,8 @@ module Stigg
             Stigg::V1::CustomerResponse::Data::Passthrough
           ) -> Stigg::V1::CustomerResponse::Data::Passthrough
 
+          attr_accessor salesforce_id: String?
+
           attr_accessor timezone: String?
 
           def initialize: (
@@ -85,6 +88,7 @@ module Stigg
             ?metadata: ::Hash[Symbol, String],
             ?name: String?,
             ?passthrough: Stigg::V1::CustomerResponse::Data::Passthrough,
+            ?salesforce_id: String?,
             ?timezone: String?
           ) -> void
 
@@ -103,6 +107,7 @@ module Stigg
             metadata: ::Hash[Symbol, String],
             name: String?,
             passthrough: Stigg::V1::CustomerResponse::Data::Passthrough,
+            salesforce_id: String?,
             timezone: String?
           }
 

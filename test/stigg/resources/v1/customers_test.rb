@@ -67,6 +67,7 @@ class Stigg::Test::Resources::V1::CustomersTest < Stigg::Test::ResourceTest
         metadata: ^(Stigg::Internal::Type::HashOf[String]) | nil,
         name: String | nil,
         passthrough: Stigg::Models::V1::CustomerListResponse::Passthrough | nil,
+        salesforce_id: String | nil,
         timezone: String | nil
       }
     end
