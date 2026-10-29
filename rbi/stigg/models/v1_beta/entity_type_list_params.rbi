@@ -26,6 +26,24 @@ module Stigg
         sig { params(before: String).void }
         attr_writer :before
 
+        # Whether to include archived entity types. One of: true, false
+        sig do
+          returns(
+            T.nilable(
+              Stigg::V1Beta::EntityTypeListParams::IncludeArchived::OrSymbol
+            )
+          )
+        end
+        attr_reader :include_archived
+
+        sig do
+          params(
+            include_archived:
+              Stigg::V1Beta::EntityTypeListParams::IncludeArchived::OrSymbol
+          ).void
+        end
+        attr_writer :include_archived
+
         # Maximum number of items to return
         sig { returns(T.nilable(Integer)) }
         attr_reader :limit
@@ -49,6 +67,8 @@ module Stigg
           params(
             after: String,
             before: String,
+            include_archived:
+              Stigg::V1Beta::EntityTypeListParams::IncludeArchived::OrSymbol,
             limit: Integer,
             x_account_id: String,
             x_environment_id: String,
@@ -60,6 +80,8 @@ module Stigg
           after: nil,
           # Return items that come before this cursor
           before: nil,
+          # Whether to include archived entity types. One of: true, false
+          include_archived: nil,
           # Maximum number of items to return
           limit: nil,
           x_account_id: nil,
@@ -73,6 +95,8 @@ module Stigg
             {
               after: String,
               before: String,
+              include_archived:
+                Stigg::V1Beta::EntityTypeListParams::IncludeArchived::OrSymbol,
               limit: Integer,
               x_account_id: String,
               x_environment_id: String,
@@ -81,6 +105,41 @@ module Stigg
           )
         end
         def to_hash
+        end
+
+        # Whether to include archived entity types. One of: true, false
+        module IncludeArchived
+          extend Stigg::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Stigg::V1Beta::EntityTypeListParams::IncludeArchived
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          TRUE =
+            T.let(
+              :true,
+              Stigg::V1Beta::EntityTypeListParams::IncludeArchived::TaggedSymbol
+            )
+          FALSE =
+            T.let(
+              :false,
+              Stigg::V1Beta::EntityTypeListParams::IncludeArchived::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Stigg::V1Beta::EntityTypeListParams::IncludeArchived::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
       end
     end

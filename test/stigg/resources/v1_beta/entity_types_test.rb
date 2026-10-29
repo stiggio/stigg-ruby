@@ -22,6 +22,7 @@ class Stigg::Test::Resources::V1Beta::EntityTypesTest < Stigg::Test::ResourceTes
     assert_pattern do
       row => {
         id: String,
+        archived_at: Time | nil,
         attribution_keys: ^(Stigg::Internal::Type::ArrayOf[String]),
         created_at: Time,
         description: String | nil,

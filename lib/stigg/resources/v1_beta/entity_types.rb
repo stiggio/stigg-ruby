@@ -9,13 +9,16 @@ module Stigg
         #
         # Returns a cursor-paginated list of entity types defined in the environment.
         # Entity types are vendor-defined categories of resource that can be governed
-        # (e.g. Org, Team, User).
+        # (e.g. Org, Team, User). Archived entity types are excluded unless
+        # includeArchived=true.
         #
-        # @overload list(after: nil, before: nil, limit: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        # @overload list(after: nil, before: nil, include_archived: nil, limit: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #
         # @param after [String] Query param: Return items that come after this cursor
         #
         # @param before [String] Query param: Return items that come before this cursor
+        #
+        # @param include_archived [Symbol, Stigg::Models::V1Beta::EntityTypeListParams::IncludeArchived] Query param: Whether to include archived entity types. One of: true, false
         #
         # @param limit [Integer] Query param: Maximum number of items to return
         #
@@ -29,13 +32,13 @@ module Stigg
         #
         # @see Stigg::Models::V1Beta::EntityTypeListParams
         def list(params = {})
-          query_params = [:after, :before, :limit]
+          query_params = [:after, :before, :include_archived, :limit]
           parsed, options = Stigg::V1Beta::EntityTypeListParams.dump_request(params)
           query = Stigg::Internal::Util.encode_query_params(parsed.slice(*query_params))
           @client.request(
             method: :get,
             path: "api/v1-beta/entity-types",
-            query: query,
+            query: query.transform_keys(include_archived: "includeArchived"),
             headers: parsed.except(*query_params).transform_keys(
               x_account_id: "x-account-id",
               x_environment_id: "x-environment-id"
@@ -51,7 +54,7 @@ module Stigg
         #
         # Batched create-or-update of entity types. Existing types matched by id are
         # updated; new ids are created. Idempotent — re-submitting the same payload
-        # converges to the same state.
+        # converges to the same state. An upsert of an archived entity type restores it.
         #
         # @overload upsert(types:, x_account_id: nil, x_environment_id: nil, request_options: {})
         #

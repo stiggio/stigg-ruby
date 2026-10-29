@@ -6,11 +6,14 @@ module Stigg
       class EntityTypes
         # Returns a cursor-paginated list of entity types defined in the environment.
         # Entity types are vendor-defined categories of resource that can be governed
-        # (e.g. Org, Team, User).
+        # (e.g. Org, Team, User). Archived entity types are excluded unless
+        # includeArchived=true.
         sig do
           params(
             after: String,
             before: String,
+            include_archived:
+              Stigg::V1Beta::EntityTypeListParams::IncludeArchived::OrSymbol,
             limit: Integer,
             x_account_id: String,
             x_environment_id: String,
@@ -26,6 +29,8 @@ module Stigg
           after: nil,
           # Query param: Return items that come before this cursor
           before: nil,
+          # Query param: Whether to include archived entity types. One of: true, false
+          include_archived: nil,
           # Query param: Maximum number of items to return
           limit: nil,
           # Header param: Account ID — optional when authenticating with a user JWT (Bearer
@@ -41,7 +46,7 @@ module Stigg
 
         # Batched create-or-update of entity types. Existing types matched by id are
         # updated; new ids are created. Idempotent — re-submitting the same payload
-        # converges to the same state.
+        # converges to the same state. An upsert of an archived entity type restores it.
         sig do
           params(
             types:

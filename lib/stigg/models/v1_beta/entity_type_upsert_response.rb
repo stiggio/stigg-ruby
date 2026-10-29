@@ -23,6 +23,12 @@ module Stigg
           #   @return [String]
           required :id, String
 
+          # @!attribute archived_at
+          #   Timestamp of when the record was deleted
+          #
+          #   @return [Time, nil]
+          required :archived_at, Time, api_name: :archivedAt, nil?: true
+
           # @!attribute attribution_keys
           #   Dimension keys used to attribute usage events to instances of this type (e.g.
           #   ["orgId"]). Empty array means no attribution.
@@ -55,7 +61,7 @@ module Stigg
           #   @return [Time]
           required :updated_at, Time, api_name: :updatedAt
 
-          # @!method initialize(id:, attribution_keys:, created_at:, description:, display_name:, updated_at:)
+          # @!method initialize(id:, archived_at:, attribution_keys:, created_at:, description:, display_name:, updated_at:)
           #   Some parameter documentations has been truncated, see
           #   {Stigg::Models::V1Beta::EntityTypeUpsertResponse::Data} for more details.
           #
@@ -65,6 +71,8 @@ module Stigg
           #   enforces limits per instance.
           #
           #   @param id [String] The unique identifier for the entity
+          #
+          #   @param archived_at [Time, nil] Timestamp of when the record was deleted
           #
           #   @param attribution_keys [Array<String>] Dimension keys used to attribute usage events to instances of this type (e.g. ["
           #

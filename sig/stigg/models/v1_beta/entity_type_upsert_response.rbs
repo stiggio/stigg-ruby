@@ -18,6 +18,7 @@ module Stigg
         type data =
           {
             id: String,
+            archived_at: Time?,
             attribution_keys: ::Array[String],
             created_at: Time,
             description: String?,
@@ -27,6 +28,8 @@ module Stigg
 
         class Data < Stigg::Internal::Type::BaseModel
           attr_accessor id: String
+
+          attr_accessor archived_at: Time?
 
           attr_accessor attribution_keys: ::Array[String]
 
@@ -40,6 +43,7 @@ module Stigg
 
           def initialize: (
             id: String,
+            archived_at: Time?,
             attribution_keys: ::Array[String],
             created_at: Time,
             description: String?,
@@ -49,6 +53,7 @@ module Stigg
 
           def to_hash: -> {
             id: String,
+            archived_at: Time?,
             attribution_keys: ::Array[String],
             created_at: Time,
             description: String?,

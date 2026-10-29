@@ -125,10 +125,13 @@ module Stigg
             )
           end
 
+          # @deprecated
+          #
           # Some parameter documentations has been truncated, see
           # {Stigg::Models::V1Beta::Customers::EntityUnarchiveParams} for more details.
           #
-          # Restores previously archived entities in bulk for the given customer by id.
+          # Deprecated: upsert an entity to restore it. Restores previously archived
+          # entities in bulk for the given customer by id.
           #
           # @overload unarchive(id, ids:, x_account_id: nil, x_environment_id: nil, request_options: {})
           #
@@ -162,7 +165,8 @@ module Stigg
           # {Stigg::Models::V1Beta::Customers::EntityUpsertParams} for more details.
           #
           # Creates or updates entities in bulk for the given customer. Existing entities
-          # matched by id are updated; new ids are created.
+          # matched by id are updated; new ids are created. An upsert of an archived entity
+          # restores it. An entity on an archived entity type fails with 400.
           #
           # @overload upsert(id, entities:, x_account_id: nil, x_environment_id: nil, request_options: {})
           #

@@ -16,6 +16,10 @@ module Stigg
         sig { returns(String) }
         attr_accessor :id
 
+        # Timestamp of when the record was deleted
+        sig { returns(T.nilable(Time)) }
+        attr_accessor :archived_at
+
         # Dimension keys used to attribute usage events to instances of this type (e.g.
         # ["orgId"]). Empty array means no attribution.
         sig { returns(T::Array[String]) }
@@ -45,6 +49,7 @@ module Stigg
         sig do
           params(
             id: String,
+            archived_at: T.nilable(Time),
             attribution_keys: T::Array[String],
             created_at: Time,
             description: T.nilable(String),
@@ -55,6 +60,8 @@ module Stigg
         def self.new(
           # The unique identifier for the entity
           id:,
+          # Timestamp of when the record was deleted
+          archived_at:,
           # Dimension keys used to attribute usage events to instances of this type (e.g.
           # ["orgId"]). Empty array means no attribution.
           attribution_keys:,
@@ -74,6 +81,7 @@ module Stigg
           override.returns(
             {
               id: String,
+              archived_at: T.nilable(Time),
               attribution_keys: T::Array[String],
               created_at: Time,
               description: T.nilable(String),

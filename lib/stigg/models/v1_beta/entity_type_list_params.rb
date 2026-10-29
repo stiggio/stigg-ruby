@@ -20,6 +20,12 @@ module Stigg
         #   @return [String, nil]
         optional :before, String
 
+        # @!attribute include_archived
+        #   Whether to include archived entity types. One of: true, false
+        #
+        #   @return [Symbol, Stigg::Models::V1Beta::EntityTypeListParams::IncludeArchived, nil]
+        optional :include_archived, enum: -> { Stigg::V1Beta::EntityTypeListParams::IncludeArchived }
+
         # @!attribute limit
         #   Maximum number of items to return
         #
@@ -36,10 +42,12 @@ module Stigg
         #   @return [String, nil]
         optional :x_environment_id, String
 
-        # @!method initialize(after: nil, before: nil, limit: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        # @!method initialize(after: nil, before: nil, include_archived: nil, limit: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #   @param after [String] Return items that come after this cursor
         #
         #   @param before [String] Return items that come before this cursor
+        #
+        #   @param include_archived [Symbol, Stigg::Models::V1Beta::EntityTypeListParams::IncludeArchived] Whether to include archived entity types. One of: true, false
         #
         #   @param limit [Integer] Maximum number of items to return
         #
@@ -48,6 +56,17 @@ module Stigg
         #   @param x_environment_id [String]
         #
         #   @param request_options [Stigg::RequestOptions, Hash{Symbol=>Object}]
+
+        # Whether to include archived entity types. One of: true, false
+        module IncludeArchived
+          extend Stigg::Internal::Type::Enum
+
+          TRUE = :true
+          FALSE = :false
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
     end
   end

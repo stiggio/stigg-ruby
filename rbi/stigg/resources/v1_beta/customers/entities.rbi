@@ -101,7 +101,8 @@ module Stigg
           )
           end
 
-          # Restores previously archived entities in bulk for the given customer by id.
+          # Deprecated: upsert an entity to restore it. Restores previously archived
+          # entities in bulk for the given customer by id.
           sig do
             params(
               id: String,
@@ -128,7 +129,8 @@ module Stigg
           end
 
           # Creates or updates entities in bulk for the given customer. Existing entities
-          # matched by id are updated; new ids are created.
+          # matched by id are updated; new ids are created. An upsert of an archived entity
+          # restores it. An entity on an archived entity type fails with 400.
           sig do
             params(
               id: String,
