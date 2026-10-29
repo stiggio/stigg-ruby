@@ -79,6 +79,9 @@ module Stigg
             optional :parent_id, String, api_name: :parentId, nil?: true
 
             # @!attribute scope_entity_ids
+            #   Dimension-scoped sub-budget: the set of entity IDs this budget applies to
+            #   (order-insensitive, unique, at most 5). Omit or leave empty for the node-wide
+            #   budget.
             #
             #   @return [Array<String>, nil]
             optional :scope_entity_ids, Stigg::Internal::Type::ArrayOf[String], api_name: :scopeEntityIds
@@ -110,7 +113,7 @@ module Stigg
             #
             #   @param parent_id [String, nil] Parent entity ID in the hierarchy. Omit to leave the current parent untouched (a
             #
-            #   @param scope_entity_ids [Array<String>]
+            #   @param scope_entity_ids [Array<String>] Dimension-scoped sub-budget: the set of entity IDs this budget applies to (order
             #
             #   @param usage_limit [Float, nil] Maximum usage allowed within one cadence window (required on create)
           end

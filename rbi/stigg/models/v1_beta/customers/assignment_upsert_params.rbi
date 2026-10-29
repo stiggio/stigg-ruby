@@ -123,6 +123,9 @@ module Stigg
             sig { returns(T.nilable(String)) }
             attr_accessor :parent_id
 
+            # Dimension-scoped sub-budget: the set of entity IDs this budget applies to
+            # (order-insensitive, unique, at most 5). Omit or leave empty for the node-wide
+            # budget.
             sig { returns(T.nilable(T::Array[String])) }
             attr_reader :scope_entity_ids
 
@@ -165,6 +168,9 @@ module Stigg
               # the parent. Reparenting or detaching an existing node is leaf-only; place a
               # parent before its children, or in the same batch.
               parent_id: nil,
+              # Dimension-scoped sub-budget: the set of entity IDs this budget applies to
+              # (order-insensitive, unique, at most 5). Omit or leave empty for the node-wide
+              # budget.
               scope_entity_ids: nil,
               # Maximum usage allowed within one cadence window (required on create)
               usage_limit: nil
