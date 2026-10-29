@@ -5,10 +5,13 @@ module Stigg
     class V1Beta
       class Customers
         class Entities
+          # @deprecated
+          #
           # Some parameter documentations has been truncated, see
           # {Stigg::Models::V1Beta::Customers::EntityRetrieveParams} for more details.
           #
-          # Retrieves a single entity for the given customer by its identifier.
+          # Retrieves a single entity for the given customer by its identifier. Deprecated:
+          # use `GET /api/v1/customers/{id}/entities/{entityId}`.
           #
           # @overload retrieve(entity_id, id:, x_account_id: nil, x_environment_id: nil, request_options: {})
           #
@@ -43,10 +46,13 @@ module Stigg
             )
           end
 
+          # @deprecated
+          #
           # Some parameter documentations has been truncated, see
           # {Stigg::Models::V1Beta::Customers::EntityListParams} for more details.
           #
-          # Retrieves a paginated list of entities for the given customer.
+          # Retrieves a paginated list of entities for the given customer. Deprecated: use
+          # `GET /api/v1/customers/{id}/entities`.
           #
           # @overload list(id, after: nil, before: nil, entity_type_id: nil, include_archived: nil, limit: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
           #
@@ -92,10 +98,14 @@ module Stigg
             )
           end
 
+          # @deprecated
+          #
           # Some parameter documentations has been truncated, see
           # {Stigg::Models::V1Beta::Customers::EntityArchiveParams} for more details.
           #
-          # Archives entities in bulk for the given customer by id.
+          # Archives entities in bulk for the given customer by id. Upsert an archived
+          # entity to restore it. Deprecated: use
+          # `POST /api/v1/customers/{id}/entities/archive`.
           #
           # @overload archive(id, ids:, x_account_id: nil, x_environment_id: nil, request_options: {})
           #
@@ -130,8 +140,9 @@ module Stigg
           # Some parameter documentations has been truncated, see
           # {Stigg::Models::V1Beta::Customers::EntityUnarchiveParams} for more details.
           #
-          # Deprecated: upsert an entity to restore it. Restores previously archived
-          # entities in bulk for the given customer by id.
+          # Deprecated: use `PUT /api/v1/customers/{id}/entities` with the entity id to
+          # restore it. Restores previously archived entities in bulk for the given customer
+          # by id.
           #
           # @overload unarchive(id, ids:, x_account_id: nil, x_environment_id: nil, request_options: {})
           #
@@ -161,12 +172,15 @@ module Stigg
             )
           end
 
+          # @deprecated
+          #
           # Some parameter documentations has been truncated, see
           # {Stigg::Models::V1Beta::Customers::EntityUpsertParams} for more details.
           #
           # Creates or updates entities in bulk for the given customer. Existing entities
           # matched by id are updated; new ids are created. An upsert of an archived entity
-          # restores it. An entity on an archived entity type fails with 400.
+          # restores it. An entity on an archived entity type fails with 400. Deprecated:
+          # use `PUT /api/v1/customers/{id}/entities`.
           #
           # @overload upsert(id, entities:, x_account_id: nil, x_environment_id: nil, request_options: {})
           #

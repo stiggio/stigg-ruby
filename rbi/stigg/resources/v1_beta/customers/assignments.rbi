@@ -7,7 +7,8 @@ module Stigg
         class Assignments
           # Returns a cursor-paginated list of capability assignments for the given
           # customer. An assignment ties an entity to a capability with a usage limit and
-          # reset cadence.
+          # reset cadence. Deprecated: use
+          # `GET /api/v1/customers/{id}/entities/entitlements`.
           sig do
             params(
               id: String,
@@ -57,7 +58,9 @@ module Stigg
           # Batched create-or-update of capability assignments. Existing assignments matched
           # by (entityId, capabilityId) are updated; new pairs are created. On update,
           # omitted fields (usageLimit, cadence) are preserved; on create both are required
-          # by the governance service.
+          # by the governance service. Deprecated: use
+          # `PUT /api/v1/customers/{id}/entities/entitlements` with the body key
+          # `entityEntitlements`.
           sig do
             params(
               id: String,

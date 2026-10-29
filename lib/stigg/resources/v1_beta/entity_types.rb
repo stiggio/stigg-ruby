@@ -4,13 +4,15 @@ module Stigg
   module Resources
     class V1Beta
       class EntityTypes
+        # @deprecated
+        #
         # Some parameter documentations has been truncated, see
         # {Stigg::Models::V1Beta::EntityTypeListParams} for more details.
         #
         # Returns a cursor-paginated list of entity types defined in the environment.
         # Entity types are vendor-defined categories of resource that can be governed
         # (e.g. Org, Team, User). Archived entity types are excluded unless
-        # includeArchived=true.
+        # includeArchived=true. Deprecated: use `GET /api/v1/entity-types`.
         #
         # @overload list(after: nil, before: nil, include_archived: nil, limit: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #
@@ -49,12 +51,15 @@ module Stigg
           )
         end
 
+        # @deprecated
+        #
         # Some parameter documentations has been truncated, see
         # {Stigg::Models::V1Beta::EntityTypeUpsertParams} for more details.
         #
         # Batched create-or-update of entity types. Existing types matched by id are
         # updated; new ids are created. Idempotent — re-submitting the same payload
         # converges to the same state. An upsert of an archived entity type restores it.
+        # Deprecated: use `PUT /api/v1/entity-types`.
         #
         # @overload upsert(types:, x_account_id: nil, x_environment_id: nil, request_options: {})
         #

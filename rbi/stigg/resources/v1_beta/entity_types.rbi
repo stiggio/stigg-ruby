@@ -7,7 +7,7 @@ module Stigg
         # Returns a cursor-paginated list of entity types defined in the environment.
         # Entity types are vendor-defined categories of resource that can be governed
         # (e.g. Org, Team, User). Archived entity types are excluded unless
-        # includeArchived=true.
+        # includeArchived=true. Deprecated: use `GET /api/v1/entity-types`.
         sig do
           params(
             after: String,
@@ -47,6 +47,7 @@ module Stigg
         # Batched create-or-update of entity types. Existing types matched by id are
         # updated; new ids are created. Idempotent — re-submitting the same payload
         # converges to the same state. An upsert of an archived entity type restores it.
+        # Deprecated: use `PUT /api/v1/entity-types`.
         sig do
           params(
             types:

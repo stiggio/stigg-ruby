@@ -5,7 +5,8 @@ module Stigg
     class V1Beta
       class Customers
         class Entities
-          # Retrieves a single entity for the given customer by its identifier.
+          # Retrieves a single entity for the given customer by its identifier. Deprecated:
+          # use `GET /api/v1/customers/{id}/entities/{entityId}`.
           sig do
             params(
               entity_id: String,
@@ -31,7 +32,8 @@ module Stigg
           )
           end
 
-          # Retrieves a paginated list of entities for the given customer.
+          # Retrieves a paginated list of entities for the given customer. Deprecated: use
+          # `GET /api/v1/customers/{id}/entities`.
           sig do
             params(
               id: String,
@@ -75,7 +77,9 @@ module Stigg
           )
           end
 
-          # Archives entities in bulk for the given customer by id.
+          # Archives entities in bulk for the given customer by id. Upsert an archived
+          # entity to restore it. Deprecated: use
+          # `POST /api/v1/customers/{id}/entities/archive`.
           sig do
             params(
               id: String,
@@ -101,8 +105,9 @@ module Stigg
           )
           end
 
-          # Deprecated: upsert an entity to restore it. Restores previously archived
-          # entities in bulk for the given customer by id.
+          # Deprecated: use `PUT /api/v1/customers/{id}/entities` with the entity id to
+          # restore it. Restores previously archived entities in bulk for the given customer
+          # by id.
           sig do
             params(
               id: String,
@@ -130,7 +135,8 @@ module Stigg
 
           # Creates or updates entities in bulk for the given customer. Existing entities
           # matched by id are updated; new ids are created. An upsert of an archived entity
-          # restores it. An entity on an archived entity type fails with 400.
+          # restores it. An entity on an archived entity type fails with 400. Deprecated:
+          # use `PUT /api/v1/customers/{id}/entities`.
           sig do
             params(
               id: String,
