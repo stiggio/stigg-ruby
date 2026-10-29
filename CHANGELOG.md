@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.0-beta.62](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.61...v0.1.0-beta.62) (2026-10-29)
+
+
+### Bug Fixes
+
+* sync OpenAPI spec from stigg-api ([e878bee](https://github.com/stiggio/stigg-ruby/commit/e878beec1f2c5495d17e56b44725cf61d97938e6))
+* sync OpenAPI spec from stigg-api ([fec3f5a](https://github.com/stiggio/stigg-ruby/commit/fec3f5a1f1316311fe2d653493f335f21bedd7b4))
+
+
+### Chores
+
+* normalize version.rb to gem prerelease format for stlc codegen ([c610c8a](https://github.com/stiggio/stigg-ruby/commit/c610c8a60136a8fb7dc36e3ca47ed172f90f77fe))
+
 ## [0.1.0-beta.61](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.60...v0.1.0-beta.61) (2026-10-28)
 
 
