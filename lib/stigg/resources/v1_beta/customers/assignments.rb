@@ -5,7 +5,7 @@ module Stigg
     class V1Beta
       class Customers
         class Assignments
-          # @deprecated
+          # @deprecated Use `v1.customers.entities.entitlements.list` instead.
           #
           # Some parameter documentations has been truncated, see
           # {Stigg::Models::V1Beta::Customers::AssignmentListParams} for more details.
@@ -62,7 +62,8 @@ module Stigg
             )
           end
 
-          # @deprecated
+          # @deprecated Use `v1.customers.entities.entitlements.upsert` instead. Its body key is
+          # `entityEntitlements`.
           #
           # Some parameter documentations has been truncated, see
           # {Stigg::Models::V1Beta::Customers::AssignmentUpsertParams} for more details.

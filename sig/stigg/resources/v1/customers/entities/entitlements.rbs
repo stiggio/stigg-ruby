@@ -1,0 +1,34 @@
+module Stigg
+  module Resources
+    class V1
+      class Customers
+        class Entities
+          class Entitlements
+            def list: (
+              String id,
+              ?after: String,
+              ?before: String,
+              ?currency_id: String,
+              ?entity_id: String,
+              ?feature_id: String,
+              ?limit: Integer,
+              ?x_account_id: String,
+              ?x_environment_id: String,
+              ?request_options: Stigg::request_opts
+            ) -> Stigg::Internal::MyCursorIDPage[Stigg::Models::V1::Customers::Entities::EntitlementListResponse]
+
+            def upsert: (
+              String id,
+              entity_entitlements: ::Array[Stigg::V1::Customers::Entities::EntitlementUpsertParams::EntityEntitlement],
+              ?x_account_id: String,
+              ?x_environment_id: String,
+              ?request_options: Stigg::request_opts
+            ) -> Stigg::Models::V1::Customers::Entities::EntitlementUpsertResponse
+
+            def initialize: (client: Stigg::Client) -> void
+          end
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,92 @@
+module Stigg
+  module Models
+    module V1
+      module Customers
+        module Entities
+          type entitlement_upsert_response =
+            {
+              data: ::Array[Stigg::Models::V1::Customers::Entities::EntitlementUpsertResponse::Data]
+            }
+
+          class EntitlementUpsertResponse < Stigg::Internal::Type::BaseModel
+            attr_accessor data: ::Array[Stigg::Models::V1::Customers::Entities::EntitlementUpsertResponse::Data]
+
+            def initialize: (
+              data: ::Array[Stigg::Models::V1::Customers::Entities::EntitlementUpsertResponse::Data]
+            ) -> void
+
+            def to_hash: -> {
+              data: ::Array[Stigg::Models::V1::Customers::Entities::EntitlementUpsertResponse::Data]
+            }
+
+            type data =
+              {
+                id: String,
+                cadence: String,
+                created_at: Time,
+                entity_id: String,
+                parent_id: String?,
+                scope_entity_ids: ::Array[String],
+                updated_at: Time,
+                usage_limit: Float?,
+                currency_id: String,
+                feature_id: String
+              }
+
+            class Data < Stigg::Internal::Type::BaseModel
+              attr_accessor id: String
+
+              attr_accessor cadence: String
+
+              attr_accessor created_at: Time
+
+              attr_accessor entity_id: String
+
+              attr_accessor parent_id: String?
+
+              attr_accessor scope_entity_ids: ::Array[String]
+
+              attr_accessor updated_at: Time
+
+              attr_accessor usage_limit: Float?
+
+              attr_reader currency_id: String?
+
+              def currency_id=: (String) -> String
+
+              attr_reader feature_id: String?
+
+              def feature_id=: (String) -> String
+
+              def initialize: (
+                id: String,
+                cadence: String,
+                created_at: Time,
+                entity_id: String,
+                parent_id: String?,
+                scope_entity_ids: ::Array[String],
+                updated_at: Time,
+                usage_limit: Float?,
+                ?currency_id: String,
+                ?feature_id: String
+              ) -> void
+
+              def to_hash: -> {
+                id: String,
+                cadence: String,
+                created_at: Time,
+                entity_id: String,
+                parent_id: String?,
+                scope_entity_ids: ::Array[String],
+                updated_at: Time,
+                usage_limit: Float?,
+                currency_id: String,
+                feature_id: String
+              }
+            end
+          end
+        end
+      end
+    end
+  end
+end

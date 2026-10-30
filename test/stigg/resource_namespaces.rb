@@ -13,9 +13,14 @@ module Stigg
       end
 
       module Customers
+        module Entities
+        end
       end
 
       module DataExport
+      end
+
+      module Entities
       end
 
       module Events
@@ -40,6 +45,8 @@ module Stigg
         end
 
         module Customers
+          module Entities
+          end
         end
 
         module Events

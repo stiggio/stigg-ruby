@@ -5,7 +5,7 @@ module Stigg
     class V1Beta
       class Customers
         class Entities
-          # @deprecated
+          # @deprecated Use `v1.customers.entities.retrieve` instead.
           #
           # Some parameter documentations has been truncated, see
           # {Stigg::Models::V1Beta::Customers::EntityRetrieveParams} for more details.
@@ -46,7 +46,7 @@ module Stigg
             )
           end
 
-          # @deprecated
+          # @deprecated Use `v1.customers.entities.list` instead.
           #
           # Some parameter documentations has been truncated, see
           # {Stigg::Models::V1Beta::Customers::EntityListParams} for more details.
@@ -98,7 +98,7 @@ module Stigg
             )
           end
 
-          # @deprecated
+          # @deprecated Use `v1.customers.entities.archive` instead.
           #
           # Some parameter documentations has been truncated, see
           # {Stigg::Models::V1Beta::Customers::EntityArchiveParams} for more details.
@@ -135,7 +135,8 @@ module Stigg
             )
           end
 
-          # @deprecated
+          # @deprecated Use `v1.customers.entities.upsert` with the entity id to restore an archived
+          # entity.
           #
           # Some parameter documentations has been truncated, see
           # {Stigg::Models::V1Beta::Customers::EntityUnarchiveParams} for more details.
@@ -172,7 +173,7 @@ module Stigg
             )
           end
 
-          # @deprecated
+          # @deprecated Use `v1.customers.entities.upsert` instead.
           #
           # Some parameter documentations has been truncated, see
           # {Stigg::Models::V1Beta::Customers::EntityUpsertParams} for more details.

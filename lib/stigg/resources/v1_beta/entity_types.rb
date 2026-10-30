@@ -4,7 +4,7 @@ module Stigg
   module Resources
     class V1Beta
       class EntityTypes
-        # @deprecated
+        # @deprecated Use `v1.entity_types.list` instead.
         #
         # Some parameter documentations has been truncated, see
         # {Stigg::Models::V1Beta::EntityTypeListParams} for more details.
@@ -51,7 +51,7 @@ module Stigg
           )
         end
 
-        # @deprecated
+        # @deprecated Use `v1.entity_types.upsert` instead.
         #
         # Some parameter documentations has been truncated, see
         # {Stigg::Models::V1Beta::EntityTypeUpsertParams} for more details.

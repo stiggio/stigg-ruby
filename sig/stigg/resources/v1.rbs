@@ -23,6 +23,8 @@ module Stigg
 
       attr_reader contracts: Stigg::Resources::V1::Contracts
 
+      attr_reader entity_types: Stigg::Resources::V1::EntityTypes
+
       def initialize: (client: Stigg::Client) -> void
     end
   end

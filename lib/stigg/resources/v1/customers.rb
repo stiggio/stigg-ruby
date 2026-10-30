@@ -15,6 +15,9 @@ module Stigg
         # @return [Stigg::Resources::V1::Customers::Integrations]
         attr_reader :integrations
 
+        # @return [Stigg::Resources::V1::Customers::Entities]
+        attr_reader :entities
+
         # Some parameter documentations has been truncated, see
         # {Stigg::Models::V1::CustomerRetrieveParams} for more details.
         #
@@ -596,6 +599,7 @@ module Stigg
           @payment_method = Stigg::Resources::V1::Customers::PaymentMethod.new(client: client)
           @promotional_entitlements = Stigg::Resources::V1::Customers::PromotionalEntitlements.new(client: client)
           @integrations = Stigg::Resources::V1::Customers::Integrations.new(client: client)
+          @entities = Stigg::Resources::V1::Customers::Entities.new(client: client)
         end
       end
     end

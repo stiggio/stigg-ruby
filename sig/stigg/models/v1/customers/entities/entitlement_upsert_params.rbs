@@ -1,0 +1,106 @@
+module Stigg
+  module Models
+    module V1
+      module Customers
+        module Entities
+          type entitlement_upsert_params =
+            {
+              id: String,
+              entity_entitlements: ::Array[Stigg::V1::Customers::Entities::EntitlementUpsertParams::EntityEntitlement],
+              x_account_id: String,
+              x_environment_id: String
+            }
+            & Stigg::Internal::Type::request_parameters
+
+          class EntitlementUpsertParams < Stigg::Internal::Type::BaseModel
+            extend Stigg::Internal::Type::RequestParameters::Converter
+            include Stigg::Internal::Type::RequestParameters
+
+            attr_accessor id: String
+
+            attr_accessor entity_entitlements: ::Array[Stigg::V1::Customers::Entities::EntitlementUpsertParams::EntityEntitlement]
+
+            attr_reader x_account_id: String?
+
+            def x_account_id=: (String) -> String
+
+            attr_reader x_environment_id: String?
+
+            def x_environment_id=: (String) -> String
+
+            def initialize: (
+              id: String,
+              entity_entitlements: ::Array[Stigg::V1::Customers::Entities::EntitlementUpsertParams::EntityEntitlement],
+              ?x_account_id: String,
+              ?x_environment_id: String,
+              ?request_options: Stigg::request_opts
+            ) -> void
+
+            def to_hash: -> {
+              id: String,
+              entity_entitlements: ::Array[Stigg::V1::Customers::Entities::EntitlementUpsertParams::EntityEntitlement],
+              x_account_id: String,
+              x_environment_id: String,
+              request_options: Stigg::RequestOptions
+            }
+
+            type entity_entitlement =
+              {
+                entity_id: String,
+                cadence: String,
+                currency_id: String,
+                feature_id: String,
+                parent_id: String?,
+                scope_entity_ids: ::Array[String],
+                usage_limit: Float?
+              }
+
+            class EntityEntitlement < Stigg::Internal::Type::BaseModel
+              attr_accessor entity_id: String
+
+              attr_reader cadence: String?
+
+              def cadence=: (String) -> String
+
+              attr_reader currency_id: String?
+
+              def currency_id=: (String) -> String
+
+              attr_reader feature_id: String?
+
+              def feature_id=: (String) -> String
+
+              attr_accessor parent_id: String?
+
+              attr_reader scope_entity_ids: ::Array[String]?
+
+              def scope_entity_ids=: (::Array[String]) -> ::Array[String]
+
+              attr_accessor usage_limit: Float?
+
+              def initialize: (
+                entity_id: String,
+                ?cadence: String,
+                ?currency_id: String,
+                ?feature_id: String,
+                ?parent_id: String?,
+                ?scope_entity_ids: ::Array[String],
+                ?usage_limit: Float?
+              ) -> void
+
+              def to_hash: -> {
+                entity_id: String,
+                cadence: String,
+                currency_id: String,
+                feature_id: String,
+                parent_id: String?,
+                scope_entity_ids: ::Array[String],
+                usage_limit: Float?
+              }
+            end
+          end
+        end
+      end
+    end
+  end
+end

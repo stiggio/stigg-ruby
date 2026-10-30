@@ -1,0 +1,30 @@
+module Stigg
+  module Models
+    module V1
+      type entity_type_check_active_entities_response =
+        { data: Stigg::Models::V1::EntityTypeCheckActiveEntitiesResponse::Data }
+
+      class EntityTypeCheckActiveEntitiesResponse < Stigg::Internal::Type::BaseModel
+        attr_accessor data: Stigg::Models::V1::EntityTypeCheckActiveEntitiesResponse::Data
+
+        def initialize: (
+          data: Stigg::Models::V1::EntityTypeCheckActiveEntitiesResponse::Data
+        ) -> void
+
+        def to_hash: -> {
+          data: Stigg::Models::V1::EntityTypeCheckActiveEntitiesResponse::Data
+        }
+
+        type data = { has_active_entities: bool }
+
+        class Data < Stigg::Internal::Type::BaseModel
+          attr_accessor has_active_entities: bool
+
+          def initialize: (has_active_entities: bool) -> void
+
+          def to_hash: -> { has_active_entities: bool }
+        end
+      end
+    end
+  end
+end

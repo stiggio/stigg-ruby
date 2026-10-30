@@ -43,6 +43,9 @@ module Stigg
       # @return [Stigg::Resources::V1::Contracts]
       attr_reader :contracts
 
+      # @return [Stigg::Resources::V1::EntityTypes]
+      attr_reader :entity_types
+
       # @api private
       #
       # @param client [Stigg::Client]
@@ -59,6 +62,7 @@ module Stigg
         @usage = Stigg::Resources::V1::Usage.new(client: client)
         @products = Stigg::Resources::V1::Products.new(client: client)
         @contracts = Stigg::Resources::V1::Contracts.new(client: client)
+        @entity_types = Stigg::Resources::V1::EntityTypes.new(client: client)
       end
     end
   end

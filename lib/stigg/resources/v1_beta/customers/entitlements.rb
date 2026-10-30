@@ -5,7 +5,7 @@ module Stigg
     class V1Beta
       class Customers
         class Entitlements
-          # @deprecated
+          # @deprecated Use `v1.customers.check_entitlement` instead.
           #
           # Some parameter documentations has been truncated, see
           # {Stigg::Models::V1Beta::Customers::EntitlementCheckParams} for more details.
