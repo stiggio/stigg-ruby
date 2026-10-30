@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.1.0-beta.63](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.62...v0.1.0-beta.63) (2026-10-30)
+
+
+### Features
+
+* **STIGG-9594:** add the v1 governance resources and v1-beta deprecation messages ([dca8ab0](https://github.com/stiggio/stigg-ruby/commit/dca8ab05c289863df048895cd9c3848f679b83cd))
+
+
+### Bug Fixes
+
+* sync OpenAPI spec from stigg-api ([7407bad](https://github.com/stiggio/stigg-ruby/commit/7407bade916d8ef0ff00f38e2424d5d72137b492))
+* sync OpenAPI spec from stigg-api ([dfa506f](https://github.com/stiggio/stigg-ruby/commit/dfa506f71d8be6cd7b8a0733f79a2356a2683ef7))
+* sync OpenAPI spec from stigg-api ([a43c0a9](https://github.com/stiggio/stigg-ruby/commit/a43c0a93ba3c3077db2f54a0faa9786eecddcec8))
+* sync OpenAPI spec from stigg-api ([316bf50](https://github.com/stiggio/stigg-ruby/commit/316bf50276593b429ccc7333e5cb08288b057fda))
+
+
+### Chores
+
+* normalize version.rb to gem prerelease format for stlc codegen ([dc4e82a](https://github.com/stiggio/stigg-ruby/commit/dc4e82a110db751da07d0da17048fa1e29800233))
+
 ## [0.1.0-beta.62](https://github.com/stiggio/stigg-ruby/compare/v0.1.0-beta.61...v0.1.0-beta.62) (2026-10-29)
 
 
