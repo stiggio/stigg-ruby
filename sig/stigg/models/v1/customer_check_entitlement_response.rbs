@@ -27,6 +27,7 @@ module Stigg
               access_denied_reason: Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature::access_denied_reason?,
               is_granted: bool,
               type: :FEATURE,
+              chains: ::Array[::Array[Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature::Chain]],
               current_usage: Float,
               entitlement_updated_at: Time,
               feature: Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature::Feature,
@@ -45,6 +46,12 @@ module Stigg
             attr_accessor is_granted: bool
 
             attr_accessor type: :FEATURE
+
+            attr_reader chains: ::Array[::Array[Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature::Chain]]?
+
+            def chains=: (
+              ::Array[::Array[Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature::Chain]]
+            ) -> ::Array[::Array[Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature::Chain]]
 
             attr_reader current_usage: Float?
 
@@ -87,6 +94,7 @@ module Stigg
             def initialize: (
               access_denied_reason: Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature::access_denied_reason?,
               is_granted: bool,
+              ?chains: ::Array[::Array[Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature::Chain]],
               ?current_usage: Float,
               ?entitlement_updated_at: Time,
               ?feature: Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature::Feature,
@@ -104,6 +112,7 @@ module Stigg
               access_denied_reason: Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature::access_denied_reason?,
               is_granted: bool,
               type: :FEATURE,
+              chains: ::Array[::Array[Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature::Chain]],
               current_usage: Float,
               entitlement_updated_at: Time,
               feature: Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature::Feature,
@@ -151,6 +160,43 @@ module Stigg
               ENTITLEMENT_NOT_FOUND: :EntitlementNotFound
 
               def self?.values: -> ::Array[Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature::access_denied_reason]
+            end
+
+            type chain =
+              {
+                current_usage: Float,
+                entity_id: String,
+                is_granted: bool,
+                scope_entity_ids: ::Array[String],
+                usage_limit: Float?
+              }
+
+            class Chain < Stigg::Internal::Type::BaseModel
+              attr_accessor current_usage: Float
+
+              attr_accessor entity_id: String
+
+              attr_accessor is_granted: bool
+
+              attr_accessor scope_entity_ids: ::Array[String]
+
+              attr_accessor usage_limit: Float?
+
+              def initialize: (
+                current_usage: Float,
+                entity_id: String,
+                is_granted: bool,
+                scope_entity_ids: ::Array[String],
+                usage_limit: Float?
+              ) -> void
+
+              def to_hash: -> {
+                current_usage: Float,
+                entity_id: String,
+                is_granted: bool,
+                scope_entity_ids: ::Array[String],
+                usage_limit: Float?
+              }
             end
 
             type feature =
@@ -233,6 +279,7 @@ module Stigg
               type: :CREDIT,
               usage_limit: Float,
               usage_updated_at: Time,
+              chains: ::Array[::Array[Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Chain]],
               entitlement_updated_at: Time,
               reservation: Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Reservation?,
               reserved: Float,
@@ -255,6 +302,12 @@ module Stigg
             attr_accessor usage_limit: Float
 
             attr_accessor usage_updated_at: Time
+
+            attr_reader chains: ::Array[::Array[Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Chain]]?
+
+            def chains=: (
+              ::Array[::Array[Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Chain]]
+            ) -> ::Array[::Array[Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Chain]]
 
             attr_reader entitlement_updated_at: Time?
 
@@ -285,6 +338,7 @@ module Stigg
               is_granted: bool,
               usage_limit: Float,
               usage_updated_at: Time,
+              ?chains: ::Array[::Array[Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Chain]],
               ?entitlement_updated_at: Time,
               ?reservation: Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Reservation?,
               ?reserved: Float,
@@ -302,6 +356,7 @@ module Stigg
               type: :CREDIT,
               usage_limit: Float,
               usage_updated_at: Time,
+              chains: ::Array[::Array[Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Chain]],
               entitlement_updated_at: Time,
               reservation: Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Reservation?,
               reserved: Float,
@@ -386,6 +441,43 @@ module Stigg
                 metadata: ::Hash[Symbol, String]?,
                 unit_plural: String?,
                 unit_singular: String?
+              }
+            end
+
+            type chain =
+              {
+                current_usage: Float,
+                entity_id: String,
+                is_granted: bool,
+                scope_entity_ids: ::Array[String],
+                usage_limit: Float?
+              }
+
+            class Chain < Stigg::Internal::Type::BaseModel
+              attr_accessor current_usage: Float
+
+              attr_accessor entity_id: String
+
+              attr_accessor is_granted: bool
+
+              attr_accessor scope_entity_ids: ::Array[String]
+
+              attr_accessor usage_limit: Float?
+
+              def initialize: (
+                current_usage: Float,
+                entity_id: String,
+                is_granted: bool,
+                scope_entity_ids: ::Array[String],
+                usage_limit: Float?
+              ) -> void
+
+              def to_hash: -> {
+                current_usage: Float,
+                entity_id: String,
+                is_granted: bool,
+                scope_entity_ids: ::Array[String],
+                usage_limit: Float?
               }
             end
 

@@ -186,18 +186,22 @@ module Stigg
         #
         # Checks a single entitlement (feature or credit) for a customer or resource.
         # Supports `requestedUsage` and `requestedValues` to evaluate against limits or
-        # enum values. Each call reaches the Stigg API directly, so latency reflects a
-        # network round trip. For entitlement checks on a hot path (e.g. gating a request
-        # in real time), the Stigg Node Server SDK (with its built-in cache) or the
-        # Sidecar will typically respond faster and keep working through brief Stigg
-        # outages; reach for this endpoint when a live HTTP call is the natural fit, such
-        # as from a non-Node backend or a server-side job.
+        # enum values. Pass `dimensions` to also check the governance budgets of the
+        # entities the usage is attributed to; the response then includes `chains`. Each
+        # call reaches the Stigg API directly, so latency reflects a network round trip.
+        # For entitlement checks on a hot path (e.g. gating a request in real time), the
+        # Stigg Node Server SDK (with its built-in cache) or the Sidecar will typically
+        # respond faster and keep working through brief Stigg outages; reach for this
+        # endpoint when a live HTTP call is the natural fit, such as from a non-Node
+        # backend or a server-side job.
         #
-        # @overload check_entitlement(id, currency_id: nil, feature_id: nil, requested_usage: nil, requested_values: nil, reservation_expires_at: nil, reservation_id: nil, reservation_metadata: nil, reservation_ttl_seconds: nil, reserve_amount: nil, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        # @overload check_entitlement(id, currency_id: nil, dimensions: nil, feature_id: nil, requested_usage: nil, requested_values: nil, reservation_expires_at: nil, reservation_id: nil, reservation_metadata: nil, reservation_ttl_seconds: nil, reserve_amount: nil, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #
         # @param id [String] Path param: The unique identifier of the entity
         #
         # @param currency_id [String] Query param: Currency ID (refId) to check for credit entitlements. Mutually excl
+        #
+        # @param dimensions [Hash{Symbol=>String}] Query param: Attribution map of the entities the usage is attributed to (e.g. `d
         #
         # @param feature_id [String] Query param: Feature ID (refId) to check. Mutually exclusive with `currencyId`.
         #
@@ -230,6 +234,7 @@ module Stigg
           query_params =
             [
               :currency_id,
+              :dimensions,
               :feature_id,
               :requested_usage,
               :requested_values,

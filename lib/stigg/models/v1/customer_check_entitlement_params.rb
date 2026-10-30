@@ -20,6 +20,14 @@ module Stigg
         #   @return [String, nil]
         optional :currency_id, String
 
+        # @!attribute dimensions
+        #   Attribution map of the entities the usage is attributed to (e.g.
+        #   `dimensions[userId]=u1`). When provided, their governance budgets are checked
+        #   too and the response includes `chains`.
+        #
+        #   @return [Hash{Symbol=>String}, nil]
+        optional :dimensions, Stigg::Internal::Type::HashOf[String]
+
         # @!attribute feature_id
         #   Feature ID (refId) to check. Mutually exclusive with `currencyId`.
         #
@@ -68,7 +76,8 @@ module Stigg
 
         # @!attribute reserve_amount
         #   Credits to reserve (credit entitlements only). The check is decided and the
-        #   credits held atomically; `requestedUsage` is ignored.
+        #   credits held atomically; `requestedUsage` is ignored. Not supported with
+        #   `dimensions`.
         #
         #   @return [Float, nil]
         optional :reserve_amount, Float
@@ -89,13 +98,15 @@ module Stigg
         #   @return [String, nil]
         optional :x_environment_id, String
 
-        # @!method initialize(id:, currency_id: nil, feature_id: nil, requested_usage: nil, requested_values: nil, reservation_expires_at: nil, reservation_id: nil, reservation_metadata: nil, reservation_ttl_seconds: nil, reserve_amount: nil, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        # @!method initialize(id:, currency_id: nil, dimensions: nil, feature_id: nil, requested_usage: nil, requested_values: nil, reservation_expires_at: nil, reservation_id: nil, reservation_metadata: nil, reservation_ttl_seconds: nil, reserve_amount: nil, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {Stigg::Models::V1::CustomerCheckEntitlementParams} for more details.
         #
         #   @param id [String]
         #
         #   @param currency_id [String] Currency ID (refId) to check for credit entitlements. Mutually exclusive with `f
+        #
+        #   @param dimensions [Hash{Symbol=>String}] Attribution map of the entities the usage is attributed to (e.g. `dimensions[use
         #
         #   @param feature_id [String] Feature ID (refId) to check. Mutually exclusive with `currencyId`.
         #

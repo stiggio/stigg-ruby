@@ -405,7 +405,7 @@ module Stigg
                 sig { returns(T::Array[String]) }
                 attr_accessor :scope_entity_ids
 
-                # Hard usage limit for this node; null when no assignment is configured.
+                # Hard usage limit for this node; null when the entity has no entity entitlement.
                 sig { returns(T.nilable(Float)) }
                 attr_accessor :usage_limit
 
@@ -431,7 +431,7 @@ module Stigg
                   # node-wide budget; a non-empty set is the dimension-scoped budget that matched
                   # this request — use it to tell apart multiple budgets on the same entity.
                   scope_entity_ids:,
-                  # Hard usage limit for this node; null when no assignment is configured.
+                  # Hard usage limit for this node; null when the entity has no entity entitlement.
                   usage_limit:
                 )
                 end
@@ -1083,7 +1083,7 @@ module Stigg
                 sig { returns(T::Array[String]) }
                 attr_accessor :scope_entity_ids
 
-                # Hard usage limit for this node; null when no assignment is configured.
+                # Hard usage limit for this node; null when the entity has no entity entitlement.
                 sig { returns(T.nilable(Float)) }
                 attr_accessor :usage_limit
 
@@ -1109,7 +1109,7 @@ module Stigg
                   # node-wide budget; a non-empty set is the dimension-scoped budget that matched
                   # this request — use it to tell apart multiple budgets on the same entity.
                   scope_entity_ids:,
-                  # Hard usage limit for this node; null when no assignment is configured.
+                  # Hard usage limit for this node; null when the entity has no entity entitlement.
                   usage_limit:
                 )
                 end

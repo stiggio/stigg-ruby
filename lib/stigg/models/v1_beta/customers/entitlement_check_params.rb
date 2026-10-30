@@ -22,8 +22,9 @@ module Stigg
           optional :currency_id, String
 
           # @!attribute dimensions
-          #   Optional attribution map (e.g. `dimensions[userId]=u1`). When provided, the
-          #   response includes a `chains` array with per-entity governance limits.
+          #   Attribution map of the entities the usage is attributed to (e.g.
+          #   `dimensions[userId]=u1`). When provided, their governance budgets are checked
+          #   too and the response includes `chains`.
           #
           #   @return [Hash{Symbol=>String}, nil]
           optional :dimensions, Stigg::Internal::Type::HashOf[String]
@@ -71,7 +72,7 @@ module Stigg
           #
           #   @param currency_id [String] Currency ID (refId) to check for credit entitlements. Mutually exclusive with `f
           #
-          #   @param dimensions [Hash{Symbol=>String}] Optional attribution map (e.g. `dimensions[userId]=u1`). When provided, the resp
+          #   @param dimensions [Hash{Symbol=>String}] Attribution map of the entities the usage is attributed to (e.g. `dimensions[use
           #
           #   @param feature_id [String] Feature ID (refId) to check. Mutually exclusive with `currencyId`.
           #

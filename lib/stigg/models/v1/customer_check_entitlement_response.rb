@@ -44,6 +44,14 @@ module Stigg
             #   @return [Symbol, :FEATURE]
             required :type, const: :FEATURE
 
+            # @!attribute chains
+            #   Per-entity rollups, one chain per resolved dimension. Omitted when dimensions
+            #   was not provided.
+            #
+            #   @return [Array<Array<Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature::Chain>>, nil]
+            optional :chains,
+                     -> { Stigg::Internal::Type::ArrayOf[Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature::Chain]] }
+
             # @!attribute current_usage
             #
             #   @return [Float, nil]
@@ -105,7 +113,7 @@ module Stigg
             #   @return [Time, nil]
             optional :valid_until, Time, api_name: :validUntil
 
-            # @!method initialize(access_denied_reason:, is_granted:, current_usage: nil, entitlement_updated_at: nil, feature: nil, has_unlimited_usage: nil, reset_period: nil, usage_limit: nil, usage_period_anchor: nil, usage_period_end: nil, usage_period_start: nil, valid_until: nil, type: :FEATURE)
+            # @!method initialize(access_denied_reason:, is_granted:, chains: nil, current_usage: nil, entitlement_updated_at: nil, feature: nil, has_unlimited_usage: nil, reset_period: nil, usage_limit: nil, usage_period_anchor: nil, usage_period_end: nil, usage_period_start: nil, valid_until: nil, type: :FEATURE)
             #   Some parameter documentations has been truncated, see
             #   {Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature} for more
             #   details.
@@ -113,6 +121,8 @@ module Stigg
             #   @param access_denied_reason [Symbol, Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature::AccessDeniedReason, nil]
             #
             #   @param is_granted [Boolean]
+            #
+            #   @param chains [Array<Array<Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature::Chain>>] Per-entity rollups, one chain per resolved dimension. Omitted when dimensions wa
             #
             #   @param current_usage [Float]
             #
@@ -157,6 +167,58 @@ module Stigg
 
               # @!method self.values
               #   @return [Array<Symbol>]
+            end
+
+            class Chain < Stigg::Internal::Type::BaseModel
+              # @!attribute current_usage
+              #   Amount consumed by this entity in the current cadence period.
+              #
+              #   @return [Float]
+              required :current_usage, Float, api_name: :currentUsage
+
+              # @!attribute entity_id
+              #   External id of the entity within the customer.
+              #
+              #   @return [String]
+              required :entity_id, String, api_name: :entityId
+
+              # @!attribute is_granted
+              #   Whether this node alone permits the requested usage.
+              #
+              #   @return [Boolean]
+              required :is_granted, Stigg::Internal::Type::Boolean, api_name: :isGranted
+
+              # @!attribute scope_entity_ids
+              #   External ids of the entities this budget is scoped to. Empty (`[]`) is the
+              #   node-wide budget; a non-empty set is the dimension-scoped budget that matched
+              #   this request — use it to tell apart multiple budgets on the same entity.
+              #
+              #   @return [Array<String>]
+              required :scope_entity_ids, Stigg::Internal::Type::ArrayOf[String], api_name: :scopeEntityIds
+
+              # @!attribute usage_limit
+              #   Hard usage limit for this node; null when the entity has no entity entitlement.
+              #
+              #   @return [Float, nil]
+              required :usage_limit, Float, api_name: :usageLimit, nil?: true
+
+              # @!method initialize(current_usage:, entity_id:, is_granted:, scope_entity_ids:, usage_limit:)
+              #   Some parameter documentations has been truncated, see
+              #   {Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature::Chain} for
+              #   more details.
+              #
+              #   Per-entity governance node — limit and current usage for a single resolved
+              #   entity.
+              #
+              #   @param current_usage [Float] Amount consumed by this entity in the current cadence period.
+              #
+              #   @param entity_id [String] External id of the entity within the customer.
+              #
+              #   @param is_granted [Boolean] Whether this node alone permits the requested usage.
+              #
+              #   @param scope_entity_ids [Array<String>] External ids of the entities this budget is scoped to. Empty (`[]`) is the node-
+              #
+              #   @param usage_limit [Float, nil] Hard usage limit for this node; null when the entity has no entity entitlement.
             end
 
             # @see Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature#feature
@@ -283,6 +345,14 @@ module Stigg
             #   @return [Time]
             required :usage_updated_at, Time, api_name: :usageUpdatedAt
 
+            # @!attribute chains
+            #   Per-entity rollups, one chain per resolved dimension. Omitted when dimensions
+            #   was not provided.
+            #
+            #   @return [Array<Array<Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Chain>>, nil]
+            optional :chains,
+                     -> { Stigg::Internal::Type::ArrayOf[Stigg::Internal::Type::ArrayOf[Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Chain]] }
+
             # @!attribute entitlement_updated_at
             #   Timestamp of the last update to the entitlement grant or configuration.
             #
@@ -325,7 +395,7 @@ module Stigg
             #   @return [Time, nil]
             optional :valid_until, Time, api_name: :validUntil
 
-            # @!method initialize(access_denied_reason:, currency:, current_usage:, is_granted:, usage_limit:, usage_updated_at:, entitlement_updated_at: nil, reservation: nil, reserved: nil, reserved_on_expired_grants: nil, usage_period_end: nil, valid_until: nil, type: :CREDIT)
+            # @!method initialize(access_denied_reason:, currency:, current_usage:, is_granted:, usage_limit:, usage_updated_at:, chains: nil, entitlement_updated_at: nil, reservation: nil, reserved: nil, reserved_on_expired_grants: nil, usage_period_end: nil, valid_until: nil, type: :CREDIT)
             #   Some parameter documentations has been truncated, see
             #   {Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit} for more
             #   details.
@@ -341,6 +411,8 @@ module Stigg
             #   @param usage_limit [Float]
             #
             #   @param usage_updated_at [Time] Timestamp of the last update to the credit usage.
+            #
+            #   @param chains [Array<Array<Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Chain>>] Per-entity rollups, one chain per resolved dimension. Omitted when dimensions wa
             #
             #   @param entitlement_updated_at [Time] Timestamp of the last update to the entitlement grant or configuration.
             #
@@ -431,6 +503,58 @@ module Stigg
               #   @param unit_plural [String, nil] The plural form of the currency unit.
               #
               #   @param unit_singular [String, nil] The singular form of the currency unit.
+            end
+
+            class Chain < Stigg::Internal::Type::BaseModel
+              # @!attribute current_usage
+              #   Amount consumed by this entity in the current cadence period.
+              #
+              #   @return [Float]
+              required :current_usage, Float, api_name: :currentUsage
+
+              # @!attribute entity_id
+              #   External id of the entity within the customer.
+              #
+              #   @return [String]
+              required :entity_id, String, api_name: :entityId
+
+              # @!attribute is_granted
+              #   Whether this node alone permits the requested usage.
+              #
+              #   @return [Boolean]
+              required :is_granted, Stigg::Internal::Type::Boolean, api_name: :isGranted
+
+              # @!attribute scope_entity_ids
+              #   External ids of the entities this budget is scoped to. Empty (`[]`) is the
+              #   node-wide budget; a non-empty set is the dimension-scoped budget that matched
+              #   this request — use it to tell apart multiple budgets on the same entity.
+              #
+              #   @return [Array<String>]
+              required :scope_entity_ids, Stigg::Internal::Type::ArrayOf[String], api_name: :scopeEntityIds
+
+              # @!attribute usage_limit
+              #   Hard usage limit for this node; null when the entity has no entity entitlement.
+              #
+              #   @return [Float, nil]
+              required :usage_limit, Float, api_name: :usageLimit, nil?: true
+
+              # @!method initialize(current_usage:, entity_id:, is_granted:, scope_entity_ids:, usage_limit:)
+              #   Some parameter documentations has been truncated, see
+              #   {Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Chain} for
+              #   more details.
+              #
+              #   Per-entity governance node — limit and current usage for a single resolved
+              #   entity.
+              #
+              #   @param current_usage [Float] Amount consumed by this entity in the current cadence period.
+              #
+              #   @param entity_id [String] External id of the entity within the customer.
+              #
+              #   @param is_granted [Boolean] Whether this node alone permits the requested usage.
+              #
+              #   @param scope_entity_ids [Array<String>] External ids of the entities this budget is scoped to. Empty (`[]`) is the node-
+              #
+              #   @param usage_limit [Float, nil] Hard usage limit for this node; null when the entity has no entity entitlement.
             end
 
             # @see Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit#reservation

@@ -78,6 +78,33 @@ module Stigg
             sig { returns(Symbol) }
             attr_accessor :type
 
+            # Per-entity rollups, one chain per resolved dimension. Omitted when dimensions
+            # was not provided.
+            sig do
+              returns(
+                T.nilable(
+                  T::Array[
+                    T::Array[
+                      Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature::Chain
+                    ]
+                  ]
+                )
+              )
+            end
+            attr_reader :chains
+
+            sig do
+              params(
+                chains:
+                  T::Array[
+                    T::Array[
+                      Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature::Chain::OrHash
+                    ]
+                  ]
+              ).void
+            end
+            attr_writer :chains
+
             sig { returns(T.nilable(Float)) }
             attr_reader :current_usage
 
@@ -164,6 +191,12 @@ module Stigg
                     Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature::AccessDeniedReason::OrSymbol
                   ),
                 is_granted: T::Boolean,
+                chains:
+                  T::Array[
+                    T::Array[
+                      Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature::Chain::OrHash
+                    ]
+                  ],
                 current_usage: Float,
                 entitlement_updated_at: Time,
                 feature:
@@ -184,6 +217,9 @@ module Stigg
             def self.new(
               access_denied_reason:,
               is_granted:,
+              # Per-entity rollups, one chain per resolved dimension. Omitted when dimensions
+              # was not provided.
+              chains: nil,
               current_usage: nil,
               # Timestamp of the last update to the entitlement grant or configuration.
               entitlement_updated_at: nil,
@@ -215,6 +251,12 @@ module Stigg
                     ),
                   is_granted: T::Boolean,
                   type: Symbol,
+                  chains:
+                    T::Array[
+                      T::Array[
+                        Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature::Chain
+                      ]
+                    ],
                   current_usage: Float,
                   entitlement_updated_at: Time,
                   feature:
@@ -326,6 +368,79 @@ module Stigg
                 )
               end
               def self.values
+              end
+            end
+
+            class Chain < Stigg::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature::Chain,
+                    Stigg::Internal::AnyHash
+                  )
+                end
+
+              # Amount consumed by this entity in the current cadence period.
+              sig { returns(Float) }
+              attr_accessor :current_usage
+
+              # External id of the entity within the customer.
+              sig { returns(String) }
+              attr_accessor :entity_id
+
+              # Whether this node alone permits the requested usage.
+              sig { returns(T::Boolean) }
+              attr_accessor :is_granted
+
+              # External ids of the entities this budget is scoped to. Empty (`[]`) is the
+              # node-wide budget; a non-empty set is the dimension-scoped budget that matched
+              # this request — use it to tell apart multiple budgets on the same entity.
+              sig { returns(T::Array[String]) }
+              attr_accessor :scope_entity_ids
+
+              # Hard usage limit for this node; null when the entity has no entity entitlement.
+              sig { returns(T.nilable(Float)) }
+              attr_accessor :usage_limit
+
+              # Per-entity governance node — limit and current usage for a single resolved
+              # entity.
+              sig do
+                params(
+                  current_usage: Float,
+                  entity_id: String,
+                  is_granted: T::Boolean,
+                  scope_entity_ids: T::Array[String],
+                  usage_limit: T.nilable(Float)
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Amount consumed by this entity in the current cadence period.
+                current_usage:,
+                # External id of the entity within the customer.
+                entity_id:,
+                # Whether this node alone permits the requested usage.
+                is_granted:,
+                # External ids of the entities this budget is scoped to. Empty (`[]`) is the
+                # node-wide budget; a non-empty set is the dimension-scoped budget that matched
+                # this request — use it to tell apart multiple budgets on the same entity.
+                scope_entity_ids:,
+                # Hard usage limit for this node; null when the entity has no entity entitlement.
+                usage_limit:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    current_usage: Float,
+                    entity_id: String,
+                    is_granted: T::Boolean,
+                    scope_entity_ids: T::Array[String],
+                    usage_limit: T.nilable(Float)
+                  }
+                )
+              end
+              def to_hash
               end
             end
 
@@ -580,6 +695,33 @@ module Stigg
             sig { returns(Time) }
             attr_accessor :usage_updated_at
 
+            # Per-entity rollups, one chain per resolved dimension. Omitted when dimensions
+            # was not provided.
+            sig do
+              returns(
+                T.nilable(
+                  T::Array[
+                    T::Array[
+                      Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Chain
+                    ]
+                  ]
+                )
+              )
+            end
+            attr_reader :chains
+
+            sig do
+              params(
+                chains:
+                  T::Array[
+                    T::Array[
+                      Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Chain::OrHash
+                    ]
+                  ]
+              ).void
+            end
+            attr_writer :chains
+
             # Timestamp of the last update to the entitlement grant or configuration.
             sig { returns(T.nilable(Time)) }
             attr_reader :entitlement_updated_at
@@ -651,6 +793,12 @@ module Stigg
                 is_granted: T::Boolean,
                 usage_limit: Float,
                 usage_updated_at: Time,
+                chains:
+                  T::Array[
+                    T::Array[
+                      Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Chain::OrHash
+                    ]
+                  ],
                 entitlement_updated_at: Time,
                 reservation:
                   T.nilable(
@@ -672,6 +820,9 @@ module Stigg
               usage_limit:,
               # Timestamp of the last update to the credit usage.
               usage_updated_at:,
+              # Per-entity rollups, one chain per resolved dimension. Omitted when dimensions
+              # was not provided.
+              chains: nil,
               # Timestamp of the last update to the entitlement grant or configuration.
               entitlement_updated_at: nil,
               # The reservation created by this request, when it asked to reserve credits and
@@ -706,6 +857,12 @@ module Stigg
                   type: Symbol,
                   usage_limit: Float,
                   usage_updated_at: Time,
+                  chains:
+                    T::Array[
+                      T::Array[
+                        Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Chain
+                      ]
+                    ],
                   entitlement_updated_at: Time,
                   reservation:
                     T.nilable(
@@ -884,6 +1041,79 @@ module Stigg
                     metadata: T.nilable(T::Hash[Symbol, String]),
                     unit_plural: T.nilable(String),
                     unit_singular: T.nilable(String)
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+
+            class Chain < Stigg::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Chain,
+                    Stigg::Internal::AnyHash
+                  )
+                end
+
+              # Amount consumed by this entity in the current cadence period.
+              sig { returns(Float) }
+              attr_accessor :current_usage
+
+              # External id of the entity within the customer.
+              sig { returns(String) }
+              attr_accessor :entity_id
+
+              # Whether this node alone permits the requested usage.
+              sig { returns(T::Boolean) }
+              attr_accessor :is_granted
+
+              # External ids of the entities this budget is scoped to. Empty (`[]`) is the
+              # node-wide budget; a non-empty set is the dimension-scoped budget that matched
+              # this request — use it to tell apart multiple budgets on the same entity.
+              sig { returns(T::Array[String]) }
+              attr_accessor :scope_entity_ids
+
+              # Hard usage limit for this node; null when the entity has no entity entitlement.
+              sig { returns(T.nilable(Float)) }
+              attr_accessor :usage_limit
+
+              # Per-entity governance node — limit and current usage for a single resolved
+              # entity.
+              sig do
+                params(
+                  current_usage: Float,
+                  entity_id: String,
+                  is_granted: T::Boolean,
+                  scope_entity_ids: T::Array[String],
+                  usage_limit: T.nilable(Float)
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # Amount consumed by this entity in the current cadence period.
+                current_usage:,
+                # External id of the entity within the customer.
+                entity_id:,
+                # Whether this node alone permits the requested usage.
+                is_granted:,
+                # External ids of the entities this budget is scoped to. Empty (`[]`) is the
+                # node-wide budget; a non-empty set is the dimension-scoped budget that matched
+                # this request — use it to tell apart multiple budgets on the same entity.
+                scope_entity_ids:,
+                # Hard usage limit for this node; null when the entity has no entity entitlement.
+                usage_limit:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    current_usage: Float,
+                    entity_id: String,
+                    is_granted: T::Boolean,
+                    scope_entity_ids: T::Array[String],
+                    usage_limit: T.nilable(Float)
                   }
                 )
               end

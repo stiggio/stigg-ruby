@@ -55,6 +55,7 @@ module Stigg
         def check_entitlement: (
           String id,
           ?currency_id: String,
+          ?dimensions: ::Hash[Symbol, String],
           ?feature_id: String,
           ?requested_usage: Integer,
           ?requested_values: ::Array[String],

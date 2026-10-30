@@ -26,6 +26,15 @@ module Stigg
         sig { params(currency_id: String).void }
         attr_writer :currency_id
 
+        # Attribution map of the entities the usage is attributed to (e.g.
+        # `dimensions[userId]=u1`). When provided, their governance budgets are checked
+        # too and the response includes `chains`.
+        sig { returns(T.nilable(T::Hash[Symbol, String])) }
+        attr_reader :dimensions
+
+        sig { params(dimensions: T::Hash[Symbol, String]).void }
+        attr_writer :dimensions
+
         # Feature ID (refId) to check. Mutually exclusive with `currencyId`.
         sig { returns(T.nilable(String)) }
         attr_reader :feature_id
@@ -80,7 +89,8 @@ module Stigg
         attr_writer :reservation_ttl_seconds
 
         # Credits to reserve (credit entitlements only). The check is decided and the
-        # credits held atomically; `requestedUsage` is ignored.
+        # credits held atomically; `requestedUsage` is ignored. Not supported with
+        # `dimensions`.
         sig { returns(T.nilable(Float)) }
         attr_reader :reserve_amount
 
@@ -110,6 +120,7 @@ module Stigg
           params(
             id: String,
             currency_id: String,
+            dimensions: T::Hash[Symbol, String],
             feature_id: String,
             requested_usage: Integer,
             requested_values: T::Array[String],
@@ -129,6 +140,10 @@ module Stigg
           # Currency ID (refId) to check for credit entitlements. Mutually exclusive with
           # `featureId`.
           currency_id: nil,
+          # Attribution map of the entities the usage is attributed to (e.g.
+          # `dimensions[userId]=u1`). When provided, their governance budgets are checked
+          # too and the response includes `chains`.
+          dimensions: nil,
           # Feature ID (refId) to check. Mutually exclusive with `currencyId`.
           feature_id: nil,
           # Requested usage amount to evaluate against the entitlement limit (numeric
@@ -148,7 +163,8 @@ module Stigg
           # Mutually exclusive with `reservationExpiresAt`.
           reservation_ttl_seconds: nil,
           # Credits to reserve (credit entitlements only). The check is decided and the
-          # credits held atomically; `requestedUsage` is ignored.
+          # credits held atomically; `requestedUsage` is ignored. Not supported with
+          # `dimensions`.
           reserve_amount: nil,
           # Resource ID to scope the entitlement check to a specific resource
           resource_id: nil,
@@ -163,6 +179,7 @@ module Stigg
             {
               id: String,
               currency_id: String,
+              dimensions: T::Hash[Symbol, String],
               feature_id: String,
               requested_usage: Integer,
               requested_values: T::Array[String],

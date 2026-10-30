@@ -8,6 +8,7 @@ module Stigg
           # Experimental — request and response shapes may change without notice. Same
           # semantics as `Check entitlement`, plus an optional `dimensions` query param that
           # resolves to per-entity governance limits surfaced as `chains` on the response.
+          # Deprecated: use `GET /api/v1/customers/{id}/entitlements/check`.
           sig do
             params(
               id: String,
@@ -30,9 +31,9 @@ module Stigg
             # Query param: Currency ID (refId) to check for credit entitlements. Mutually
             # exclusive with `featureId`.
             currency_id: nil,
-            # Query param: Optional attribution map (e.g. `dimensions[userId]=u1`). When
-            # provided, the response includes a `chains` array with per-entity governance
-            # limits.
+            # Query param: Attribution map of the entities the usage is attributed to (e.g.
+            # `dimensions[userId]=u1`). When provided, their governance budgets are checked
+            # too and the response includes `chains`.
             dimensions: nil,
             # Query param: Feature ID (refId) to check. Mutually exclusive with `currencyId`.
             feature_id: nil,

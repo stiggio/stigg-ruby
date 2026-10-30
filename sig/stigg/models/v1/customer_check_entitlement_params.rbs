@@ -5,6 +5,7 @@ module Stigg
         {
           id: String,
           currency_id: String,
+          dimensions: ::Hash[Symbol, String],
           feature_id: String,
           requested_usage: Integer,
           requested_values: ::Array[String],
@@ -28,6 +29,10 @@ module Stigg
         attr_reader currency_id: String?
 
         def currency_id=: (String) -> String
+
+        attr_reader dimensions: ::Hash[Symbol, String]?
+
+        def dimensions=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
 
         attr_reader feature_id: String?
 
@@ -76,6 +81,7 @@ module Stigg
         def initialize: (
           id: String,
           ?currency_id: String,
+          ?dimensions: ::Hash[Symbol, String],
           ?feature_id: String,
           ?requested_usage: Integer,
           ?requested_values: ::Array[String],
@@ -93,6 +99,7 @@ module Stigg
         def to_hash: -> {
           id: String,
           currency_id: String,
+          dimensions: ::Hash[Symbol, String],
           feature_id: String,
           requested_usage: Integer,
           requested_values: ::Array[String],

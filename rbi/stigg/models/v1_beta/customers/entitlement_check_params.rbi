@@ -27,8 +27,9 @@ module Stigg
           sig { params(currency_id: String).void }
           attr_writer :currency_id
 
-          # Optional attribution map (e.g. `dimensions[userId]=u1`). When provided, the
-          # response includes a `chains` array with per-entity governance limits.
+          # Attribution map of the entities the usage is attributed to (e.g.
+          # `dimensions[userId]=u1`). When provided, their governance budgets are checked
+          # too and the response includes `chains`.
           sig { returns(T.nilable(T::Hash[Symbol, String])) }
           attr_reader :dimensions
 
@@ -95,8 +96,9 @@ module Stigg
             # Currency ID (refId) to check for credit entitlements. Mutually exclusive with
             # `featureId`.
             currency_id: nil,
-            # Optional attribution map (e.g. `dimensions[userId]=u1`). When provided, the
-            # response includes a `chains` array with per-entity governance limits.
+            # Attribution map of the entities the usage is attributed to (e.g.
+            # `dimensions[userId]=u1`). When provided, their governance budgets are checked
+            # too and the response includes `chains`.
             dimensions: nil,
             # Feature ID (refId) to check. Mutually exclusive with `currencyId`.
             feature_id: nil,

@@ -210,7 +210,7 @@ module Stigg
                 required :scope_entity_ids, Stigg::Internal::Type::ArrayOf[String], api_name: :scopeEntityIds
 
                 # @!attribute usage_limit
-                #   Hard usage limit for this node; null when no assignment is configured.
+                #   Hard usage limit for this node; null when the entity has no entity entitlement.
                 #
                 #   @return [Float, nil]
                 required :usage_limit, Float, api_name: :usageLimit, nil?: true
@@ -231,7 +231,7 @@ module Stigg
                 #
                 #   @param scope_entity_ids [Array<String>] External ids of the entities this budget is scoped to. Empty (`[]`) is the node-
                 #
-                #   @param usage_limit [Float, nil] Hard usage limit for this node; null when no assignment is configured.
+                #   @param usage_limit [Float, nil] Hard usage limit for this node; null when the entity has no entity entitlement.
               end
 
               # @see Stigg::Models::V1Beta::Customers::EntitlementCheckResponse::Data::Feature#feature
@@ -553,7 +553,7 @@ module Stigg
                 required :scope_entity_ids, Stigg::Internal::Type::ArrayOf[String], api_name: :scopeEntityIds
 
                 # @!attribute usage_limit
-                #   Hard usage limit for this node; null when no assignment is configured.
+                #   Hard usage limit for this node; null when the entity has no entity entitlement.
                 #
                 #   @return [Float, nil]
                 required :usage_limit, Float, api_name: :usageLimit, nil?: true
@@ -574,7 +574,7 @@ module Stigg
                 #
                 #   @param scope_entity_ids [Array<String>] External ids of the entities this budget is scoped to. Empty (`[]`) is the node-
                 #
-                #   @param usage_limit [Float, nil] Hard usage limit for this node; null when no assignment is configured.
+                #   @param usage_limit [Float, nil] Hard usage limit for this node; null when the entity has no entity entitlement.
               end
 
               # @see Stigg::Models::V1Beta::Customers::EntitlementCheckResponse::Data::Credit#reservation

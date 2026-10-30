@@ -5,12 +5,15 @@ module Stigg
     class V1Beta
       class Customers
         class Entitlements
+          # @deprecated
+          #
           # Some parameter documentations has been truncated, see
           # {Stigg::Models::V1Beta::Customers::EntitlementCheckParams} for more details.
           #
           # Experimental — request and response shapes may change without notice. Same
           # semantics as `Check entitlement`, plus an optional `dimensions` query param that
           # resolves to per-entity governance limits surfaced as `chains` on the response.
+          # Deprecated: use `GET /api/v1/customers/{id}/entitlements/check`.
           #
           # @overload check(id, currency_id: nil, dimensions: nil, feature_id: nil, requested_usage: nil, requested_values: nil, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
           #
@@ -18,7 +21,7 @@ module Stigg
           #
           # @param currency_id [String] Query param: Currency ID (refId) to check for credit entitlements. Mutually excl
           #
-          # @param dimensions [Hash{Symbol=>String}] Query param: Optional attribution map (e.g. `dimensions[userId]=u1`). When provi
+          # @param dimensions [Hash{Symbol=>String}] Query param: Attribution map of the entities the usage is attributed to (e.g. `d
           #
           # @param feature_id [String] Query param: Feature ID (refId) to check. Mutually exclusive with `currencyId`.
           #
