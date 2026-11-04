@@ -37,6 +37,13 @@ module Stigg
         sig { params(currency_id: String).void }
         attr_writer :currency_id
 
+        # Filter to events with a timestamp on or before this date, inclusive (ISO 8601)
+        sig { returns(T.nilable(Time)) }
+        attr_reader :end_date
+
+        sig { params(end_date: Time).void }
+        attr_writer :end_date
+
         # Filter by event type(s), comma-separated
         sig { returns(T.nilable(String)) }
         attr_reader :event_type
@@ -65,6 +72,13 @@ module Stigg
         sig { params(resource_id: String).void }
         attr_writer :resource_id
 
+        # Filter to events with a timestamp on or after this date, inclusive (ISO 8601)
+        sig { returns(T.nilable(Time)) }
+        attr_reader :start_date
+
+        sig { params(start_date: Time).void }
+        attr_writer :start_date
+
         sig { returns(T.nilable(String)) }
         attr_reader :x_account_id
 
@@ -83,10 +97,12 @@ module Stigg
             after: String,
             before: String,
             currency_id: String,
+            end_date: Time,
             event_type: String,
             limit: Integer,
             reservation_id: String,
             resource_id: String,
+            start_date: Time,
             x_account_id: String,
             x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
@@ -101,6 +117,8 @@ module Stigg
           before: nil,
           # Filter by currency ID
           currency_id: nil,
+          # Filter to events with a timestamp on or before this date, inclusive (ISO 8601)
+          end_date: nil,
           # Filter by event type(s), comma-separated
           event_type: nil,
           # Maximum number of items to return
@@ -109,6 +127,8 @@ module Stigg
           reservation_id: nil,
           # Filter by resource ID
           resource_id: nil,
+          # Filter to events with a timestamp on or after this date, inclusive (ISO 8601)
+          start_date: nil,
           x_account_id: nil,
           x_environment_id: nil,
           request_options: {}
@@ -122,10 +142,12 @@ module Stigg
               after: String,
               before: String,
               currency_id: String,
+              end_date: Time,
               event_type: String,
               limit: Integer,
               reservation_id: String,
               resource_id: String,
+              start_date: Time,
               x_account_id: String,
               x_environment_id: String,
               request_options: Stigg::RequestOptions

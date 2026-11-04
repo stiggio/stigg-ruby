@@ -32,6 +32,12 @@ module Stigg
         #   @return [String, nil]
         optional :currency_id, String
 
+        # @!attribute end_date
+        #   Filter to events with a timestamp on or before this date, inclusive (ISO 8601)
+        #
+        #   @return [Time, nil]
+        optional :end_date, Time
+
         # @!attribute event_type
         #   Filter by event type(s), comma-separated
         #
@@ -56,6 +62,12 @@ module Stigg
         #   @return [String, nil]
         optional :resource_id, String
 
+        # @!attribute start_date
+        #   Filter to events with a timestamp on or after this date, inclusive (ISO 8601)
+        #
+        #   @return [Time, nil]
+        optional :start_date, Time
+
         # @!attribute x_account_id
         #
         #   @return [String, nil]
@@ -66,7 +78,7 @@ module Stigg
         #   @return [String, nil]
         optional :x_environment_id, String
 
-        # @!method initialize(customer_id:, after: nil, before: nil, currency_id: nil, event_type: nil, limit: nil, reservation_id: nil, resource_id: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
+        # @!method initialize(customer_id:, after: nil, before: nil, currency_id: nil, end_date: nil, event_type: nil, limit: nil, reservation_id: nil, resource_id: nil, start_date: nil, x_account_id: nil, x_environment_id: nil, request_options: {})
         #   @param customer_id [String] Filter by customer ID (required)
         #
         #   @param after [String] Return items that come after this cursor
@@ -75,6 +87,8 @@ module Stigg
         #
         #   @param currency_id [String] Filter by currency ID
         #
+        #   @param end_date [Time] Filter to events with a timestamp on or before this date, inclusive (ISO 8601)
+        #
         #   @param event_type [String] Filter by event type(s), comma-separated
         #
         #   @param limit [Integer] Maximum number of items to return
@@ -82,6 +96,8 @@ module Stigg
         #   @param reservation_id [String] Filter by credit reservation ID
         #
         #   @param resource_id [String] Filter by resource ID
+        #
+        #   @param start_date [Time] Filter to events with a timestamp on or after this date, inclusive (ISO 8601)
         #
         #   @param x_account_id [String]
         #

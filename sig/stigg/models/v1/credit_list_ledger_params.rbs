@@ -7,10 +7,12 @@ module Stigg
           after: String,
           before: String,
           currency_id: String,
+          end_date: Time,
           event_type: String,
           limit: Integer,
           reservation_id: String,
           resource_id: String,
+          start_date: Time,
           x_account_id: String,
           x_environment_id: String
         }
@@ -34,6 +36,10 @@ module Stigg
 
         def currency_id=: (String) -> String
 
+        attr_reader end_date: Time?
+
+        def end_date=: (Time) -> Time
+
         attr_reader event_type: String?
 
         def event_type=: (String) -> String
@@ -50,6 +56,10 @@ module Stigg
 
         def resource_id=: (String) -> String
 
+        attr_reader start_date: Time?
+
+        def start_date=: (Time) -> Time
+
         attr_reader x_account_id: String?
 
         def x_account_id=: (String) -> String
@@ -63,10 +73,12 @@ module Stigg
           ?after: String,
           ?before: String,
           ?currency_id: String,
+          ?end_date: Time,
           ?event_type: String,
           ?limit: Integer,
           ?reservation_id: String,
           ?resource_id: String,
+          ?start_date: Time,
           ?x_account_id: String,
           ?x_environment_id: String,
           ?request_options: Stigg::request_opts
@@ -77,10 +89,12 @@ module Stigg
           after: String,
           before: String,
           currency_id: String,
+          end_date: Time,
           event_type: String,
           limit: Integer,
           reservation_id: String,
           resource_id: String,
+          start_date: Time,
           x_account_id: String,
           x_environment_id: String,
           request_options: Stigg::RequestOptions

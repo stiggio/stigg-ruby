@@ -109,10 +109,12 @@ module Stigg
             after: String,
             before: String,
             currency_id: String,
+            end_date: Time,
             event_type: String,
             limit: Integer,
             reservation_id: String,
             resource_id: String,
+            start_date: Time,
             x_account_id: String,
             x_environment_id: String,
             request_options: Stigg::RequestOptions::OrHash
@@ -131,6 +133,9 @@ module Stigg
           before: nil,
           # Query param: Filter by currency ID
           currency_id: nil,
+          # Query param: Filter to events with a timestamp on or before this date, inclusive
+          # (ISO 8601)
+          end_date: nil,
           # Query param: Filter by event type(s), comma-separated
           event_type: nil,
           # Query param: Maximum number of items to return
@@ -139,6 +144,9 @@ module Stigg
           reservation_id: nil,
           # Query param: Filter by resource ID
           resource_id: nil,
+          # Query param: Filter to events with a timestamp on or after this date, inclusive
+          # (ISO 8601)
+          start_date: nil,
           # Header param: Account ID — optional when authenticating with a user JWT (Bearer
           # token); falls back to the user's first membership. Ignored for API-key auth.
           x_account_id: nil,
