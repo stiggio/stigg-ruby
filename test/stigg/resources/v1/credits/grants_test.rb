@@ -8,7 +8,7 @@ class Stigg::Test::Resources::V1::Credits::GrantsTest < Stigg::Test::ResourceTes
 
     response =
       @stigg.v1.credits.grants.create(
-        amount: 0,
+        amount: 9_007_199_254,
         currency_id: "currencyId",
         customer_id: "customerId",
         display_name: "displayName",
