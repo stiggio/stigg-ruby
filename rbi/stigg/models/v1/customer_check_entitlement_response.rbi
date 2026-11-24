@@ -388,6 +388,11 @@ module Stigg
               sig { returns(String) }
               attr_accessor :entity_id
 
+              # Whether this node allows usage past `usageLimit` and keeps counting it. When
+              # `true`, the node does not deny on its own limit.
+              sig { returns(T::Boolean) }
+              attr_accessor :has_soft_limit
+
               # Whether this node alone permits the requested usage.
               sig { returns(T::Boolean) }
               attr_accessor :is_granted
@@ -398,7 +403,7 @@ module Stigg
               sig { returns(T::Array[String]) }
               attr_accessor :scope_entity_ids
 
-              # Hard usage limit for this node; null when the entity has no entity entitlement.
+              # Usage limit for this node; null when the entity has no entity entitlement.
               sig { returns(T.nilable(Float)) }
               attr_accessor :usage_limit
 
@@ -408,6 +413,7 @@ module Stigg
                 params(
                   current_usage: Float,
                   entity_id: String,
+                  has_soft_limit: T::Boolean,
                   is_granted: T::Boolean,
                   scope_entity_ids: T::Array[String],
                   usage_limit: T.nilable(Float)
@@ -418,13 +424,16 @@ module Stigg
                 current_usage:,
                 # External id of the entity within the customer.
                 entity_id:,
+                # Whether this node allows usage past `usageLimit` and keeps counting it. When
+                # `true`, the node does not deny on its own limit.
+                has_soft_limit:,
                 # Whether this node alone permits the requested usage.
                 is_granted:,
                 # External ids of the entities this budget is scoped to. Empty (`[]`) is the
                 # node-wide budget; a non-empty set is the dimension-scoped budget that matched
                 # this request — use it to tell apart multiple budgets on the same entity.
                 scope_entity_ids:,
-                # Hard usage limit for this node; null when the entity has no entity entitlement.
+                # Usage limit for this node; null when the entity has no entity entitlement.
                 usage_limit:
               )
               end
@@ -434,6 +443,7 @@ module Stigg
                   {
                     current_usage: Float,
                     entity_id: String,
+                    has_soft_limit: T::Boolean,
                     is_granted: T::Boolean,
                     scope_entity_ids: T::Array[String],
                     usage_limit: T.nilable(Float)
@@ -1065,6 +1075,11 @@ module Stigg
               sig { returns(String) }
               attr_accessor :entity_id
 
+              # Whether this node allows usage past `usageLimit` and keeps counting it. When
+              # `true`, the node does not deny on its own limit.
+              sig { returns(T::Boolean) }
+              attr_accessor :has_soft_limit
+
               # Whether this node alone permits the requested usage.
               sig { returns(T::Boolean) }
               attr_accessor :is_granted
@@ -1075,7 +1090,7 @@ module Stigg
               sig { returns(T::Array[String]) }
               attr_accessor :scope_entity_ids
 
-              # Hard usage limit for this node; null when the entity has no entity entitlement.
+              # Usage limit for this node; null when the entity has no entity entitlement.
               sig { returns(T.nilable(Float)) }
               attr_accessor :usage_limit
 
@@ -1085,6 +1100,7 @@ module Stigg
                 params(
                   current_usage: Float,
                   entity_id: String,
+                  has_soft_limit: T::Boolean,
                   is_granted: T::Boolean,
                   scope_entity_ids: T::Array[String],
                   usage_limit: T.nilable(Float)
@@ -1095,13 +1111,16 @@ module Stigg
                 current_usage:,
                 # External id of the entity within the customer.
                 entity_id:,
+                # Whether this node allows usage past `usageLimit` and keeps counting it. When
+                # `true`, the node does not deny on its own limit.
+                has_soft_limit:,
                 # Whether this node alone permits the requested usage.
                 is_granted:,
                 # External ids of the entities this budget is scoped to. Empty (`[]`) is the
                 # node-wide budget; a non-empty set is the dimension-scoped budget that matched
                 # this request — use it to tell apart multiple budgets on the same entity.
                 scope_entity_ids:,
-                # Hard usage limit for this node; null when the entity has no entity entitlement.
+                # Usage limit for this node; null when the entity has no entity entitlement.
                 usage_limit:
               )
               end
@@ -1111,6 +1130,7 @@ module Stigg
                   {
                     current_usage: Float,
                     entity_id: String,
+                    has_soft_limit: T::Boolean,
                     is_granted: T::Boolean,
                     scope_entity_ids: T::Array[String],
                     usage_limit: T.nilable(Float)

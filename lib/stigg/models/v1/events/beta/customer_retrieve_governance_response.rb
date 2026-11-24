@@ -60,6 +60,13 @@ module Stigg
               #   @return [String]
               required :entity_type_id, String, api_name: :entityTypeId
 
+              # @!attribute has_soft_limit
+              #   Whether usage past `usageLimit` is allowed and still counted. `null` when the
+              #   node has no usage configuration.
+              #
+              #   @return [Boolean, nil]
+              required :has_soft_limit, Stigg::Internal::Type::Boolean, api_name: :hasSoftLimit, nil?: true
+
               # @!attribute parent_id
               #   External id of the parent entity in the tree. `null` means the entity is either
               #   a root or not yet placed in the hierarchy — placement rides on an assignment, so
@@ -77,7 +84,7 @@ module Stigg
               required :scope_entity_ids, Stigg::Internal::Type::ArrayOf[String], api_name: :scopeEntityIds
 
               # @!attribute usage_limit
-              #   Hard usage limit for this node per cadence period.
+              #   Usage limit for this node per cadence period.
               #
               #   @return [Float, nil]
               required :usage_limit, Float, api_name: :usageLimit, nil?: true
@@ -118,7 +125,7 @@ module Stigg
               #   @return [String, nil]
               optional :feature_id, String, api_name: :featureId
 
-              # @!method initialize(cadence:, current_usage:, display_name:, entity_id:, entity_type_id:, parent_id:, scope_entity_ids:, usage_limit:, usage_period_end:, usage_period_start:, utilization:, currency_id: nil, feature_id: nil)
+              # @!method initialize(cadence:, current_usage:, display_name:, entity_id:, entity_type_id:, has_soft_limit:, parent_id:, scope_entity_ids:, usage_limit:, usage_period_end:, usage_period_start:, utilization:, currency_id: nil, feature_id: nil)
               #   Some parameter documentations has been truncated, see
               #   {Stigg::Models::V1::Events::Beta::CustomerRetrieveGovernanceResponse::Data} for
               #   more details.
@@ -138,11 +145,13 @@ module Stigg
               #
               #   @param entity_type_id [String] External id of the entity type (e.g. `team`, `user`).
               #
+              #   @param has_soft_limit [Boolean, nil] Whether usage past `usageLimit` is allowed and still counted. `null` when the no
+              #
               #   @param parent_id [String, nil] External id of the parent entity in the tree. `null` means the entity is either
               #
               #   @param scope_entity_ids [Array<String>] The configuration scope (entity ids). Empty is the node-wide configuration; a no
               #
-              #   @param usage_limit [Float, nil] Hard usage limit for this node per cadence period.
+              #   @param usage_limit [Float, nil] Usage limit for this node per cadence period.
               #
               #   @param usage_period_end [Time, nil] Exclusive end of the cadence period in progress now — when usage resets. `null`
               #

@@ -31,6 +31,11 @@ module Stigg
             sig { returns(String) }
             attr_accessor :entity_id
 
+            # Whether usage past `usageLimit` is allowed and still counted, instead of
+            # blocked.
+            sig { returns(T::Boolean) }
+            attr_accessor :has_soft_limit
+
             # Parent entity ID in the hierarchy, or `null` for a root.
             sig { returns(T.nilable(String)) }
             attr_accessor :parent_id
@@ -73,6 +78,7 @@ module Stigg
                 cadence: String,
                 created_at: Time,
                 entity_id: String,
+                has_soft_limit: T::Boolean,
                 parent_id: T.nilable(String),
                 scope_entity_ids: T::Array[String],
                 updated_at: Time,
@@ -91,6 +97,9 @@ module Stigg
               created_at:,
               # The entity ID this entity entitlement is attached to
               entity_id:,
+              # Whether usage past `usageLimit` is allowed and still counted, instead of
+              # blocked.
+              has_soft_limit:,
               # Parent entity ID in the hierarchy, or `null` for a root.
               parent_id:,
               # Dimension-scoped sub-limit key: the set of entity IDs this limit applies to.
@@ -116,6 +125,7 @@ module Stigg
                   cadence: String,
                   created_at: Time,
                   entity_id: String,
+                  has_soft_limit: T::Boolean,
                   parent_id: T.nilable(String),
                   scope_entity_ids: T::Array[String],
                   updated_at: Time,

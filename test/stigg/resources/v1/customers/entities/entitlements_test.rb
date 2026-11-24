@@ -25,6 +25,7 @@ class Stigg::Test::Resources::V1::Customers::Entities::EntitlementsTest < Stigg:
         cadence: String,
         created_at: Time,
         entity_id: String,
+        has_soft_limit: Stigg::Internal::Type::Boolean,
         parent_id: String | nil,
         scope_entity_ids: ^(Stigg::Internal::Type::ArrayOf[String]),
         updated_at: Time,

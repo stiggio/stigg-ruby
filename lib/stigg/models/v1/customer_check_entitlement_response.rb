@@ -182,6 +182,13 @@ module Stigg
               #   @return [String]
               required :entity_id, String, api_name: :entityId
 
+              # @!attribute has_soft_limit
+              #   Whether this node allows usage past `usageLimit` and keeps counting it. When
+              #   `true`, the node does not deny on its own limit.
+              #
+              #   @return [Boolean]
+              required :has_soft_limit, Stigg::Internal::Type::Boolean, api_name: :hasSoftLimit
+
               # @!attribute is_granted
               #   Whether this node alone permits the requested usage.
               #
@@ -197,12 +204,12 @@ module Stigg
               required :scope_entity_ids, Stigg::Internal::Type::ArrayOf[String], api_name: :scopeEntityIds
 
               # @!attribute usage_limit
-              #   Hard usage limit for this node; null when the entity has no entity entitlement.
+              #   Usage limit for this node; null when the entity has no entity entitlement.
               #
               #   @return [Float, nil]
               required :usage_limit, Float, api_name: :usageLimit, nil?: true
 
-              # @!method initialize(current_usage:, entity_id:, is_granted:, scope_entity_ids:, usage_limit:)
+              # @!method initialize(current_usage:, entity_id:, has_soft_limit:, is_granted:, scope_entity_ids:, usage_limit:)
               #   Some parameter documentations has been truncated, see
               #   {Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature::Chain} for
               #   more details.
@@ -214,11 +221,13 @@ module Stigg
               #
               #   @param entity_id [String] External id of the entity within the customer.
               #
+              #   @param has_soft_limit [Boolean] Whether this node allows usage past `usageLimit` and keeps counting it. When `tr
+              #
               #   @param is_granted [Boolean] Whether this node alone permits the requested usage.
               #
               #   @param scope_entity_ids [Array<String>] External ids of the entities this budget is scoped to. Empty (`[]`) is the node-
               #
-              #   @param usage_limit [Float, nil] Hard usage limit for this node; null when the entity has no entity entitlement.
+              #   @param usage_limit [Float, nil] Usage limit for this node; null when the entity has no entity entitlement.
             end
 
             # @see Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Feature#feature
@@ -518,6 +527,13 @@ module Stigg
               #   @return [String]
               required :entity_id, String, api_name: :entityId
 
+              # @!attribute has_soft_limit
+              #   Whether this node allows usage past `usageLimit` and keeps counting it. When
+              #   `true`, the node does not deny on its own limit.
+              #
+              #   @return [Boolean]
+              required :has_soft_limit, Stigg::Internal::Type::Boolean, api_name: :hasSoftLimit
+
               # @!attribute is_granted
               #   Whether this node alone permits the requested usage.
               #
@@ -533,12 +549,12 @@ module Stigg
               required :scope_entity_ids, Stigg::Internal::Type::ArrayOf[String], api_name: :scopeEntityIds
 
               # @!attribute usage_limit
-              #   Hard usage limit for this node; null when the entity has no entity entitlement.
+              #   Usage limit for this node; null when the entity has no entity entitlement.
               #
               #   @return [Float, nil]
               required :usage_limit, Float, api_name: :usageLimit, nil?: true
 
-              # @!method initialize(current_usage:, entity_id:, is_granted:, scope_entity_ids:, usage_limit:)
+              # @!method initialize(current_usage:, entity_id:, has_soft_limit:, is_granted:, scope_entity_ids:, usage_limit:)
               #   Some parameter documentations has been truncated, see
               #   {Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit::Chain} for
               #   more details.
@@ -550,11 +566,13 @@ module Stigg
               #
               #   @param entity_id [String] External id of the entity within the customer.
               #
+              #   @param has_soft_limit [Boolean] Whether this node allows usage past `usageLimit` and keeps counting it. When `tr
+              #
               #   @param is_granted [Boolean] Whether this node alone permits the requested usage.
               #
               #   @param scope_entity_ids [Array<String>] External ids of the entities this budget is scoped to. Empty (`[]`) is the node-
               #
-              #   @param usage_limit [Float, nil] Hard usage limit for this node; null when the entity has no entity entitlement.
+              #   @param usage_limit [Float, nil] Usage limit for this node; null when the entity has no entity entitlement.
             end
 
             # @see Stigg::Models::V1::CustomerCheckEntitlementResponse::Data::Credit#reservation

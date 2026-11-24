@@ -117,6 +117,14 @@ module Stigg
               sig { params(feature_id: String).void }
               attr_writer :feature_id
 
+              # Allow usage past `usageLimit` and keep counting it, instead of blocking.
+              # Defaults to `false` on create; omit on update to keep the current value.
+              sig { returns(T.nilable(T::Boolean)) }
+              attr_reader :has_soft_limit
+
+              sig { params(has_soft_limit: T::Boolean).void }
+              attr_writer :has_soft_limit
+
               # Parent entity ID in the hierarchy. Omit to leave the current parent untouched (a
               # new node defaults to a root); `null` detaches to a root; an ID sets or changes
               # the parent. Reparenting or detaching an existing node is leaf-only; place a
@@ -148,6 +156,7 @@ module Stigg
                   cadence: String,
                   currency_id: String,
                   feature_id: String,
+                  has_soft_limit: T::Boolean,
                   parent_id: T.nilable(String),
                   scope_entity_ids: T::Array[String],
                   usage_limit: T.nilable(Float)
@@ -164,6 +173,9 @@ module Stigg
                 currency_id: nil,
                 # Feature ID this entity entitlement grants. Mutually exclusive with `currencyId`.
                 feature_id: nil,
+                # Allow usage past `usageLimit` and keep counting it, instead of blocking.
+                # Defaults to `false` on create; omit on update to keep the current value.
+                has_soft_limit: nil,
                 # Parent entity ID in the hierarchy. Omit to leave the current parent untouched (a
                 # new node defaults to a root); `null` detaches to a root; an ID sets or changes
                 # the parent. Reparenting or detaching an existing node is leaf-only; place a
@@ -185,6 +197,7 @@ module Stigg
                     cadence: String,
                     currency_id: String,
                     feature_id: String,
+                    has_soft_limit: T::Boolean,
                     parent_id: T.nilable(String),
                     scope_entity_ids: T::Array[String],
                     usage_limit: T.nilable(Float)

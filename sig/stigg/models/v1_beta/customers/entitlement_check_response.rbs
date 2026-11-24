@@ -169,6 +169,7 @@ module Stigg
                 {
                   current_usage: Float,
                   entity_id: String,
+                  has_soft_limit: bool,
                   is_granted: bool,
                   scope_entity_ids: ::Array[String],
                   usage_limit: Float?
@@ -179,6 +180,8 @@ module Stigg
 
                 attr_accessor entity_id: String
 
+                attr_accessor has_soft_limit: bool
+
                 attr_accessor is_granted: bool
 
                 attr_accessor scope_entity_ids: ::Array[String]
@@ -188,6 +191,7 @@ module Stigg
                 def initialize: (
                   current_usage: Float,
                   entity_id: String,
+                  has_soft_limit: bool,
                   is_granted: bool,
                   scope_entity_ids: ::Array[String],
                   usage_limit: Float?
@@ -196,6 +200,7 @@ module Stigg
                 def to_hash: -> {
                   current_usage: Float,
                   entity_id: String,
+                  has_soft_limit: bool,
                   is_granted: bool,
                   scope_entity_ids: ::Array[String],
                   usage_limit: Float?
@@ -451,6 +456,7 @@ module Stigg
                 {
                   current_usage: Float,
                   entity_id: String,
+                  has_soft_limit: bool,
                   is_granted: bool,
                   scope_entity_ids: ::Array[String],
                   usage_limit: Float?
@@ -461,6 +467,8 @@ module Stigg
 
                 attr_accessor entity_id: String
 
+                attr_accessor has_soft_limit: bool
+
                 attr_accessor is_granted: bool
 
                 attr_accessor scope_entity_ids: ::Array[String]
@@ -470,6 +478,7 @@ module Stigg
                 def initialize: (
                   current_usage: Float,
                   entity_id: String,
+                  has_soft_limit: bool,
                   is_granted: bool,
                   scope_entity_ids: ::Array[String],
                   usage_limit: Float?
@@ -478,6 +487,7 @@ module Stigg
                 def to_hash: -> {
                   current_usage: Float,
                   entity_id: String,
+                  has_soft_limit: bool,
                   is_granted: bool,
                   scope_entity_ids: ::Array[String],
                   usage_limit: Float?

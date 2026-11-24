@@ -25,6 +25,7 @@ module Stigg
                 cadence: String,
                 created_at: Time,
                 entity_id: String,
+                has_soft_limit: bool,
                 parent_id: String?,
                 scope_entity_ids: ::Array[String],
                 updated_at: Time,
@@ -41,6 +42,8 @@ module Stigg
               attr_accessor created_at: Time
 
               attr_accessor entity_id: String
+
+              attr_accessor has_soft_limit: bool
 
               attr_accessor parent_id: String?
 
@@ -63,6 +66,7 @@ module Stigg
                 cadence: String,
                 created_at: Time,
                 entity_id: String,
+                has_soft_limit: bool,
                 parent_id: String?,
                 scope_entity_ids: ::Array[String],
                 updated_at: Time,
@@ -76,6 +80,7 @@ module Stigg
                 cadence: String,
                 created_at: Time,
                 entity_id: String,
+                has_soft_limit: bool,
                 parent_id: String?,
                 scope_entity_ids: ::Array[String],
                 updated_at: Time,

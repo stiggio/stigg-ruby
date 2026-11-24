@@ -36,6 +36,11 @@ module Stigg
           sig { returns(String) }
           attr_accessor :entity_type_id
 
+          # Whether usage past `usageLimit` is allowed and still counted. `null` when the
+          # node has no usage configuration.
+          sig { returns(T.nilable(T::Boolean)) }
+          attr_accessor :has_soft_limit
+
           # External id of the parent entity in the tree. `null` means the entity is either
           # a root or not yet placed in the hierarchy — placement rides on an assignment, so
           # an entity with no limits set has no parent yet. Both render at the top level;
@@ -48,7 +53,7 @@ module Stigg
           sig { returns(T::Array[String]) }
           attr_accessor :scope_entity_ids
 
-          # Hard usage limit for this node per cadence period.
+          # Usage limit for this node per cadence period.
           sig { returns(T.nilable(Float)) }
           attr_accessor :usage_limit
 
@@ -95,6 +100,7 @@ module Stigg
               display_name: T.nilable(String),
               entity_id: String,
               entity_type_id: String,
+              has_soft_limit: T.nilable(T::Boolean),
               parent_id: T.nilable(String),
               scope_entity_ids: T::Array[String],
               usage_limit: T.nilable(Float),
@@ -119,6 +125,9 @@ module Stigg
             entity_id:,
             # External id of the entity type (e.g. `team`, `user`).
             entity_type_id:,
+            # Whether usage past `usageLimit` is allowed and still counted. `null` when the
+            # node has no usage configuration.
+            has_soft_limit:,
             # External id of the parent entity in the tree. `null` means the entity is either
             # a root or not yet placed in the hierarchy — placement rides on an assignment, so
             # an entity with no limits set has no parent yet. Both render at the top level;
@@ -127,7 +136,7 @@ module Stigg
             # The configuration scope (entity ids). Empty is the node-wide configuration; a
             # non-empty set is a dimension-scoped sub-configuration.
             scope_entity_ids:,
-            # Hard usage limit for this node per cadence period.
+            # Usage limit for this node per cadence period.
             usage_limit:,
             # Exclusive end of the cadence period in progress now — when usage resets. `null`
             # when the node has no usage configuration, or when a stored cadence cannot be
@@ -156,6 +165,7 @@ module Stigg
                 display_name: T.nilable(String),
                 entity_id: String,
                 entity_type_id: String,
+                has_soft_limit: T.nilable(T::Boolean),
                 parent_id: T.nilable(String),
                 scope_entity_ids: T::Array[String],
                 usage_limit: T.nilable(Float),

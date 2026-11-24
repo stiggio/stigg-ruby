@@ -73,6 +73,13 @@ module Stigg
               #   @return [String, nil]
               optional :feature_id, String, api_name: :featureId
 
+              # @!attribute has_soft_limit
+              #   Allow usage past `usageLimit` and keep counting it, instead of blocking.
+              #   Defaults to `false` on create; omit on update to keep the current value.
+              #
+              #   @return [Boolean, nil]
+              optional :has_soft_limit, Stigg::Internal::Type::Boolean, api_name: :hasSoftLimit
+
               # @!attribute parent_id
               #   Parent entity ID in the hierarchy. Omit to leave the current parent untouched (a
               #   new node defaults to a root); `null` detaches to a root; an ID sets or changes
@@ -96,7 +103,7 @@ module Stigg
               #   @return [Float, nil]
               optional :usage_limit, Float, api_name: :usageLimit, nil?: true
 
-              # @!method initialize(entity_id:, cadence: nil, currency_id: nil, feature_id: nil, parent_id: nil, scope_entity_ids: nil, usage_limit: nil)
+              # @!method initialize(entity_id:, cadence: nil, currency_id: nil, feature_id: nil, has_soft_limit: nil, parent_id: nil, scope_entity_ids: nil, usage_limit: nil)
               #   Some parameter documentations has been truncated, see
               #   {Stigg::Models::V1::Customers::Entities::EntitlementUpsertParams::EntityEntitlement}
               #   for more details.
@@ -114,6 +121,8 @@ module Stigg
               #   @param currency_id [String] Currency ID this entity entitlement grants (credit limits). Mutually exclusive w
               #
               #   @param feature_id [String] Feature ID this entity entitlement grants. Mutually exclusive with `currencyId`.
+              #
+              #   @param has_soft_limit [Boolean] Allow usage past `usageLimit` and keep counting it, instead of blocking. Default
               #
               #   @param parent_id [String, nil] Parent entity ID in the hierarchy. Omit to leave the current parent untouched (a
               #

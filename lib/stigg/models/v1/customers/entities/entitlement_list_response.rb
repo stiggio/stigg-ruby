@@ -32,6 +32,13 @@ module Stigg
             #   @return [String]
             required :entity_id, String, api_name: :entityId
 
+            # @!attribute has_soft_limit
+            #   Whether usage past `usageLimit` is allowed and still counted, instead of
+            #   blocked.
+            #
+            #   @return [Boolean]
+            required :has_soft_limit, Stigg::Internal::Type::Boolean, api_name: :hasSoftLimit
+
             # @!attribute parent_id
             #   Parent entity ID in the hierarchy, or `null` for a root.
             #
@@ -71,7 +78,7 @@ module Stigg
             #   @return [String, nil]
             optional :feature_id, String, api_name: :featureId
 
-            # @!method initialize(id:, cadence:, created_at:, entity_id:, parent_id:, scope_entity_ids:, updated_at:, usage_limit:, currency_id: nil, feature_id: nil)
+            # @!method initialize(id:, cadence:, created_at:, entity_id:, has_soft_limit:, parent_id:, scope_entity_ids:, updated_at:, usage_limit:, currency_id: nil, feature_id: nil)
             #   Some parameter documentations has been truncated, see
             #   {Stigg::Models::V1::Customers::Entities::EntitlementListResponse} for more
             #   details.
@@ -87,6 +94,8 @@ module Stigg
             #   @param created_at [Time] Timestamp of when the record was created
             #
             #   @param entity_id [String] The entity ID this entity entitlement is attached to
+            #
+            #   @param has_soft_limit [Boolean] Whether usage past `usageLimit` is allowed and still counted, instead of blocked
             #
             #   @param parent_id [String, nil] Parent entity ID in the hierarchy, or `null` for a root.
             #

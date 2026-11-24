@@ -31,6 +31,7 @@ module Stigg
                 display_name: String?,
                 entity_id: String,
                 entity_type_id: String,
+                has_soft_limit: bool?,
                 parent_id: String?,
                 scope_entity_ids: ::Array[String],
                 usage_limit: Float?,
@@ -51,6 +52,8 @@ module Stigg
               attr_accessor entity_id: String
 
               attr_accessor entity_type_id: String
+
+              attr_accessor has_soft_limit: bool?
 
               attr_accessor parent_id: String?
 
@@ -78,6 +81,7 @@ module Stigg
                 display_name: String?,
                 entity_id: String,
                 entity_type_id: String,
+                has_soft_limit: bool?,
                 parent_id: String?,
                 scope_entity_ids: ::Array[String],
                 usage_limit: Float?,
@@ -94,6 +98,7 @@ module Stigg
                 display_name: String?,
                 entity_id: String,
                 entity_type_id: String,
+                has_soft_limit: bool?,
                 parent_id: String?,
                 scope_entity_ids: ::Array[String],
                 usage_limit: Float?,

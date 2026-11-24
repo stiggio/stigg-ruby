@@ -26,6 +26,7 @@ class Stigg::Test::Resources::V1Beta::Customers::GovernanceTest < Stigg::Test::R
         display_name: String | nil,
         entity_id: String,
         entity_type_id: String,
+        has_soft_limit: Stigg::Internal::Type::Boolean | nil,
         parent_id: String | nil,
         scope_entity_ids: ^(Stigg::Internal::Type::ArrayOf[String]),
         usage_limit: Float | nil,
