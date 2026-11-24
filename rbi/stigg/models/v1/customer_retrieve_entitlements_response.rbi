@@ -79,6 +79,11 @@ module Stigg
           end
           attr_accessor :entitlements
 
+          # When these entitlements last changed, on the same clock as the
+          # entitlementsUpdated event; always set, also when the list is empty.
+          sig { returns(Time) }
+          attr_accessor :entitlements_updated_at
+
           # The effective entitlements state for a customer or resource.
           sig do
             params(
@@ -92,14 +97,18 @@ module Stigg
                     Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature::OrHash,
                     Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Credit::OrHash
                   )
-                ]
+                ],
+              entitlements_updated_at: Time
             ).returns(T.attached_class)
           end
           def self.new(
             # Reason why entitlements access was denied, if applicable
             access_denied_reason:,
             # List of effective feature and credit entitlements
-            entitlements:
+            entitlements:,
+            # When these entitlements last changed, on the same clock as the
+            # entitlementsUpdated event; always set, also when the list is empty.
+            entitlements_updated_at:
           )
           end
 
@@ -113,7 +122,8 @@ module Stigg
                 entitlements:
                   T::Array[
                     Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Variants
-                  ]
+                  ],
+                entitlements_updated_at: Time
               }
             )
           end

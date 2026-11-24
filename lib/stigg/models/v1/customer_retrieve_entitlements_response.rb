@@ -34,12 +34,25 @@ module Stigg
           required :entitlements,
                    -> { Stigg::Internal::Type::ArrayOf[union: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement] }
 
-          # @!method initialize(access_denied_reason:, entitlements:)
+          # @!attribute entitlements_updated_at
+          #   When these entitlements last changed, on the same clock as the
+          #   entitlementsUpdated event; always set, also when the list is empty.
+          #
+          #   @return [Time]
+          required :entitlements_updated_at, Time, api_name: :entitlementsUpdatedAt
+
+          # @!method initialize(access_denied_reason:, entitlements:, entitlements_updated_at:)
+          #   Some parameter documentations has been truncated, see
+          #   {Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data} for more
+          #   details.
+          #
           #   The effective entitlements state for a customer or resource.
           #
           #   @param access_denied_reason [Symbol, Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::AccessDeniedReason, nil] Reason why entitlements access was denied, if applicable
           #
           #   @param entitlements [Array<Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Feature, Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::Entitlement::Credit>] List of effective feature and credit entitlements
+          #
+          #   @param entitlements_updated_at [Time] When these entitlements last changed, on the same clock as the entitlementsUpdat
 
           # Reason why entitlements access was denied, if applicable
           #

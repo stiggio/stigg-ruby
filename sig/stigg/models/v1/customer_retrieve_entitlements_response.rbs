@@ -18,7 +18,8 @@ module Stigg
         type data =
           {
             access_denied_reason: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::access_denied_reason?,
-            entitlements: ::Array[Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::entitlement]
+            entitlements: ::Array[Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::entitlement],
+            entitlements_updated_at: Time
           }
 
         class Data < Stigg::Internal::Type::BaseModel
@@ -26,14 +27,18 @@ module Stigg
 
           attr_accessor entitlements: ::Array[Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::entitlement]
 
+          attr_accessor entitlements_updated_at: Time
+
           def initialize: (
             access_denied_reason: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::access_denied_reason?,
-            entitlements: ::Array[Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::entitlement]
+            entitlements: ::Array[Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::entitlement],
+            entitlements_updated_at: Time
           ) -> void
 
           def to_hash: -> {
             access_denied_reason: Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::access_denied_reason?,
-            entitlements: ::Array[Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::entitlement]
+            entitlements: ::Array[Stigg::Models::V1::CustomerRetrieveEntitlementsResponse::Data::entitlement],
+            entitlements_updated_at: Time
           }
 
           type access_denied_reason =
