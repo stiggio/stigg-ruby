@@ -278,9 +278,16 @@ module Stigg
                   )
                 end
 
-              # The absolute usage counted against the entitlement
+              # The usage counted against the entitlement, rounded up to a whole number and
+              # never below zero (readable by older SDKs). See currentUsageExact for the exact
+              # value
               sig { returns(Float) }
               attr_accessor :current_usage
+
+              # The exact usage counted against the entitlement, to the millionth; negative
+              # after a negative usage report takes it below zero
+              sig { returns(Float) }
+              attr_accessor :current_usage_exact
 
               # The customer whose usage counted towards the entitlement
               sig { returns(String) }
@@ -326,6 +333,7 @@ module Stigg
               sig do
                 params(
                   current_usage: Float,
+                  current_usage_exact: Float,
                   customer_id: String,
                   entitlement_id: String,
                   entity_id: String,
@@ -337,8 +345,13 @@ module Stigg
                 ).returns(T.attached_class)
               end
               def self.new(
-                # The absolute usage counted against the entitlement
+                # The usage counted against the entitlement, rounded up to a whole number and
+                # never below zero (readable by older SDKs). See currentUsageExact for the exact
+                # value
                 current_usage:,
+                # The exact usage counted against the entitlement, to the millionth; negative
+                # after a negative usage report takes it below zero
+                current_usage_exact:,
                 # The customer whose usage counted towards the entitlement
                 customer_id:,
                 # The governance entitlement the usage counts towards
@@ -364,6 +377,7 @@ module Stigg
                 override.returns(
                   {
                     current_usage: Float,
+                    current_usage_exact: Float,
                     customer_id: String,
                     entitlement_id: String,
                     entity_id: String,

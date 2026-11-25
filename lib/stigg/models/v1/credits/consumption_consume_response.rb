@@ -144,10 +144,19 @@ module Stigg
 
             class Entity < Stigg::Internal::Type::BaseModel
               # @!attribute current_usage
-              #   The absolute usage counted against the entitlement
+              #   The usage counted against the entitlement, rounded up to a whole number and
+              #   never below zero (readable by older SDKs). See currentUsageExact for the exact
+              #   value
               #
               #   @return [Float]
               required :current_usage, Float, api_name: :currentUsage
+
+              # @!attribute current_usage_exact
+              #   The exact usage counted against the entitlement, to the millionth; negative
+              #   after a negative usage report takes it below zero
+              #
+              #   @return [Float]
+              required :current_usage_exact, Float, api_name: :currentUsageExact
 
               # @!attribute customer_id
               #   The customer whose usage counted towards the entitlement
@@ -199,14 +208,16 @@ module Stigg
               #   @return [String, nil]
               optional :feature_id, String, api_name: :featureId
 
-              # @!method initialize(current_usage:, customer_id:, entitlement_id:, entity_id:, resource_id:, scope_entity_ids:, usage_updated_at:, currency_id: nil, feature_id: nil)
+              # @!method initialize(current_usage:, current_usage_exact:, customer_id:, entitlement_id:, entity_id:, resource_id:, scope_entity_ids:, usage_updated_at:, currency_id: nil, feature_id: nil)
               #   Some parameter documentations has been truncated, see
               #   {Stigg::Models::V1::Credits::ConsumptionConsumeResponse::Data::Entity} for more
               #   details.
               #
               #   The usage counted against one governance entitlement
               #
-              #   @param current_usage [Float] The absolute usage counted against the entitlement
+              #   @param current_usage [Float] The usage counted against the entitlement, rounded up to a whole number and neve
+              #
+              #   @param current_usage_exact [Float] The exact usage counted against the entitlement, to the millionth; negative afte
               #
               #   @param customer_id [String] The customer whose usage counted towards the entitlement
               #

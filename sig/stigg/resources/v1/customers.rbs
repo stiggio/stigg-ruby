@@ -59,7 +59,7 @@ module Stigg
           ?currency_id: String,
           ?dimensions: ::Hash[Symbol, String],
           ?feature_id: String,
-          ?requested_usage: Integer,
+          ?requested_usage: Float,
           ?requested_values: ::Array[String],
           ?reservation_expires_at: Time,
           ?reservation_id: String,

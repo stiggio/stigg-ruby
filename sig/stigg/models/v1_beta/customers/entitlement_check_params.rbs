@@ -8,7 +8,7 @@ module Stigg
             currency_id: String,
             dimensions: ::Hash[Symbol, String],
             feature_id: String,
-            requested_usage: Integer,
+            requested_usage: Float,
             requested_values: ::Array[String],
             resource_id: String,
             x_account_id: String,
@@ -34,9 +34,9 @@ module Stigg
 
           def feature_id=: (String) -> String
 
-          attr_reader requested_usage: Integer?
+          attr_reader requested_usage: Float?
 
-          def requested_usage=: (Integer) -> Integer
+          def requested_usage=: (Float) -> Float
 
           attr_reader requested_values: ::Array[String]?
 
@@ -59,7 +59,7 @@ module Stigg
             ?currency_id: String,
             ?dimensions: ::Hash[Symbol, String],
             ?feature_id: String,
-            ?requested_usage: Integer,
+            ?requested_usage: Float,
             ?requested_values: ::Array[String],
             ?resource_id: String,
             ?x_account_id: String,
@@ -72,7 +72,7 @@ module Stigg
             currency_id: String,
             dimensions: ::Hash[Symbol, String],
             feature_id: String,
-            requested_usage: Integer,
+            requested_usage: Float,
             requested_values: ::Array[String],
             resource_id: String,
             x_account_id: String,

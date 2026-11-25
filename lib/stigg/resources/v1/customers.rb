@@ -208,7 +208,7 @@ module Stigg
         #
         # @param feature_id [String] Query param: Feature ID (refId) to check. Mutually exclusive with `currencyId`.
         #
-        # @param requested_usage [Integer] Query param: Requested usage amount to evaluate against the entitlement limit (n
+        # @param requested_usage [Float] Query param: Requested usage amount to evaluate against the entitlement limit (n
         #
         # @param requested_values [Array<String>] Query param: Requested values to evaluate against allowed values (enum features
         #

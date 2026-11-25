@@ -197,7 +197,7 @@ module Stigg
             currency_id: String,
             dimensions: T::Hash[Symbol, String],
             feature_id: String,
-            requested_usage: Integer,
+            requested_usage: Float,
             requested_values: T::Array[String],
             reservation_expires_at: Time,
             reservation_id: String,
@@ -223,7 +223,7 @@ module Stigg
           # Query param: Feature ID (refId) to check. Mutually exclusive with `currencyId`.
           feature_id: nil,
           # Query param: Requested usage amount to evaluate against the entitlement limit
-          # (numeric features only)
+          # (numeric features only); negative for usage given back
           requested_usage: nil,
           # Query param: Requested values to evaluate against allowed values (enum features
           # only)

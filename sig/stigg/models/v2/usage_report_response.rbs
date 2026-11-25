@@ -181,6 +181,7 @@ module Stigg
           type entity =
             {
               current_usage: Float,
+              current_usage_exact: Float,
               customer_id: String,
               entitlement_id: String,
               entity_id: String,
@@ -193,6 +194,8 @@ module Stigg
 
           class Entity < Stigg::Internal::Type::BaseModel
             attr_accessor current_usage: Float
+
+            attr_accessor current_usage_exact: Float
 
             attr_accessor customer_id: String
 
@@ -216,6 +219,7 @@ module Stigg
 
             def initialize: (
               current_usage: Float,
+              current_usage_exact: Float,
               customer_id: String,
               entitlement_id: String,
               entity_id: String,
@@ -228,6 +232,7 @@ module Stigg
 
             def to_hash: -> {
               current_usage: Float,
+              current_usage_exact: Float,
               customer_id: String,
               entitlement_id: String,
               entity_id: String,

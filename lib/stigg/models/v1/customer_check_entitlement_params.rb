@@ -36,10 +36,10 @@ module Stigg
 
         # @!attribute requested_usage
         #   Requested usage amount to evaluate against the entitlement limit (numeric
-        #   features only)
+        #   features only); negative for usage given back
         #
-        #   @return [Integer, nil]
-        optional :requested_usage, Integer
+        #   @return [Float, nil]
+        optional :requested_usage, Float
 
         # @!attribute requested_values
         #   Requested values to evaluate against allowed values (enum features only)
@@ -110,7 +110,7 @@ module Stigg
         #
         #   @param feature_id [String] Feature ID (refId) to check. Mutually exclusive with `currencyId`.
         #
-        #   @param requested_usage [Integer] Requested usage amount to evaluate against the entitlement limit (numeric featur
+        #   @param requested_usage [Float] Requested usage amount to evaluate against the entitlement limit (numeric featur
         #
         #   @param requested_values [Array<String>] Requested values to evaluate against allowed values (enum features only)
         #

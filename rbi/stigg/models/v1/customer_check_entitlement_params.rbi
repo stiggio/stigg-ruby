@@ -43,11 +43,11 @@ module Stigg
         attr_writer :feature_id
 
         # Requested usage amount to evaluate against the entitlement limit (numeric
-        # features only)
-        sig { returns(T.nilable(Integer)) }
+        # features only); negative for usage given back
+        sig { returns(T.nilable(Float)) }
         attr_reader :requested_usage
 
-        sig { params(requested_usage: Integer).void }
+        sig { params(requested_usage: Float).void }
         attr_writer :requested_usage
 
         # Requested values to evaluate against allowed values (enum features only)
@@ -122,7 +122,7 @@ module Stigg
             currency_id: String,
             dimensions: T::Hash[Symbol, String],
             feature_id: String,
-            requested_usage: Integer,
+            requested_usage: Float,
             requested_values: T::Array[String],
             reservation_expires_at: Time,
             reservation_id: String,
@@ -147,7 +147,7 @@ module Stigg
           # Feature ID (refId) to check. Mutually exclusive with `currencyId`.
           feature_id: nil,
           # Requested usage amount to evaluate against the entitlement limit (numeric
-          # features only)
+          # features only); negative for usage given back
           requested_usage: nil,
           # Requested values to evaluate against allowed values (enum features only)
           requested_values: nil,
@@ -181,7 +181,7 @@ module Stigg
               currency_id: String,
               dimensions: T::Hash[Symbol, String],
               feature_id: String,
-              requested_usage: Integer,
+              requested_usage: Float,
               requested_values: T::Array[String],
               reservation_expires_at: Time,
               reservation_id: String,
